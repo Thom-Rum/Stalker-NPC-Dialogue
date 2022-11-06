@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< Companion Chatter Strings (drx_ql_chatter_strings.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: October 06, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Enemy Warning Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 22, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Enemy warning messages (%s = direction to target): -->
+	<string id="drx_ql_ch_str_enemy_warning_1">
+		<text>Enemy spotted, %s!</text>
+	</string>
+	<string id="drx_ql_ch_str_enemy_warning_2">
+		<text>Looks like we've got company to the %s.</text>
+	</string>
+	<string id="drx_ql_ch_str_enemy_warning_3">
+		<text>Hostiles approaching from the %s!</text>
+	</string>
+	<string id="drx_ql_ch_str_enemy_warning_4">
+		<text>Get down! Enemies to the %s!</text>
+	</string>
+	<string id="drx_ql_ch_str_enemy_warning_5">
+		<text>Enemy in sight, %s!</text>
+	</string>
+	<string id="drx_ql_ch_str_enemy_warning_6">
+		<text>Watch out! Hostiles to the %s!</text>
+	</string>
+	<string id="drx_ql_ch_str_enemy_warning_7">
+		<text>There's someone over there, to the %s.</text>
+	</string>
+
+	<!-- Mutant warning messages (%s = direction to target): -->
+	<string id="drx_ql_ch_str_mutant_warning_1">
+		<text>Mutants! To the %s!</text>
+	</string>
+	<string id="drx_ql_ch_str_mutant_warning_2">
+		<text>Careful, there are some mutants over there, to the %s.</text>
+	</string>
+	<string id="drx_ql_ch_str_mutant_warning_3">
+		<text>Look out! Mutants to the %s!</text>
+	</string>
+	<string id="drx_ql_ch_str_mutant_warning_4">
+		<text>Shh... I hear something moving in those bushes to the %s.</text>
+	</string>
+	<string id="drx_ql_ch_str_mutant_warning_5">
+		<text>Look, to the %s. What is that thing?</text>
+	</string>
+	<string id="drx_ql_ch_str_mutant_warning_6">
+		<text>There's a couple of mutants to the %s. Let's go clear them out.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Companion Wounded Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 22, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Companion wounded messages (%s = player name): -->
+	<string id="drx_ql_ch_str_wounded_1">
+		<text>%s, help me! I'm wounded!</text>
+	</string>
+	<string id="drx_ql_ch_str_wounded_2">
+		<text>Help! I'm wounded!</text>
+	</string>
+	<string id="drx_ql_ch_str_wounded_3">
+		<text>I'm down! %s, help me!</text>
+	</string>
+	<string id="drx_ql_ch_str_wounded_4">
+		<text>%s! I need help!</text>
+	</string>
+	<string id="drx_ql_ch_str_wounded_5">
+		<text>Medic! I'm hit!</text>
+	</string>
+	<string id="drx_ql_ch_str_wounded_6">
+		<text>I'm finished... Go on without me.</text>
+	</string>
+	<string id="drx_ql_ch_str_wounded_7">
+		<text>I'm hurt! I need help!</text>
+	</string>
+	<string id="drx_ql_ch_str_wounded_8">
+		<text>Come back! I need your help!</text>
+	</string>
+	<string id="drx_ql_ch_str_wounded_9">
+		<text>I'm hit bad!</text>
+	</string>
+	<string id="drx_ql_ch_str_wounded_10">
+		<text>%s, help!</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Companion Injured Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 22, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Companion injured messages (%s = player name): -->
+	<string id="drx_ql_ch_str_injured_1">
+		<text>%s, can we slow down for a bit? I'm hurt pretty bad.</text>
+	</string>
+	<string id="drx_ql_ch_str_injured_2">
+		<text>I could use some rest, I'm still injured.</text>
+	</string>
+	<string id="drx_ql_ch_str_injured_3">
+		<text>I need to rest a little while, I got torn up pretty good back there.</text>
+	</string>
+	<string id="drx_ql_ch_str_injured_4">
+		<text>Try to keep us out of trouble, %s. I'm still not fully healed from before.</text>
+	</string>
+	<string id="drx_ql_ch_str_injured_5">
+		<text>Do you mind if we rest a little while, %s? I need to tend to my wounds.</text>
+	</string>
+	<string id="drx_ql_ch_str_injured_6">
+		<text>I got hit pretty good back there. Hurts like a mother.</text>
+	</string>
+	<string id="drx_ql_ch_str_injured_7">
+		<text>Damn, I got hurt bad back there.</text>
+	</string>
+	<string id="drx_ql_ch_str_injured_8">
+		<text>These injuries are worse than I thought. I need to regain my strength.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Actor Kill Compliment Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	April 05, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor kill compliment messages (%s = player name): -->
+	<string id="drx_ql_ch_str_compliment_1">
+		<text>Nice shot.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_2">
+		<text>Damn %s, where'd you learn to shoot like that?</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_3">
+		<text>Whoa, nice kill.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_4">
+		<text>That was impressive.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_5">
+		<text>Jeez %s, remind me not to get on your bad side.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_6">
+		<text>Good kill.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_7">
+		<text>Well executed.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_8">
+		<text>Watching you engage a target is like watching a ballet.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_9">
+		<text>Nice.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_10">
+		<text>That shut him up.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_11">
+		<text>Damn you're good.</text>
+	</string>
+	<string id="drx_ql_ch_str_compliment_12">
+		<text>I never would have pulled that off in a million years.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Companion Kill Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 23, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Companion kill messages (%s = player name): -->
+	<string id="drx_ql_ch_str_companion_kill_1">
+		<text>Got him!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_kill_2">
+		<text>Eat shit! Eat my shit!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_kill_3">
+		<text>I got him!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_kill_4">
+		<text>One down.</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_kill_5">
+		<text>He's dead.</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_kill_6">
+		<text>Die you fucking piece of shit!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_kill_7">
+		<text>Boom.</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_kill_8">
+		<text>Bet you didn't see me coming, did you, asshole?</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_kill_9">
+		<text>Anyone else want some of this?</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_kill_10">
+		<text>Fuck you!</text>
+	</string>
+
+	<!-- Companion mutant kill messages (%s = player name): -->
+	<string id="drx_ql_ch_str_companion_mutant_kill_1">
+		<text>Got it!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_2">
+		<text>Killed one!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_3">
+		<text>Take that you filthy mutant!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_4">
+		<text>Fuck you, mutants!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_5">
+		<text>Bagged it!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_6">
+		<text>Ooh! Great shot if I do say so myself.</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_7">
+		<text>Die you fucking thing!</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_8">
+		<text>Argh, I got it's guts all over me.</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_9">
+		<text>Dead.</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_10">
+		<text>Another one down.</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_11">
+		<text>Damn I'm good.</text>
+	</string>
+	<string id="drx_ql_ch_str_companion_mutant_kill_12">
+		<text>Got that one!</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Building Chatter Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	March 26, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Companion commenting about building messages (%s = player name): -->
+	<string id="drx_ql_ch_str_building_1">
+		<text>This place gives me the creeps.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_2">
+		<text>What do you think this place used to be?</text>
+	</string>
+	<string id="drx_ql_ch_str_building_3">
+		<text>This place is cool.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_4">
+		<text>I wonder what used to go on in here.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_5">
+		<text>This place is creepy, man.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_6">
+		<text>I don't like this place.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_7">
+		<text>It's freezing in here.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_8">
+		<text>Did you hear that?</text>
+	</string>
+	<string id="drx_ql_ch_str_building_9">
+		<text>I thought I saw something moving in the shadows over there.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_10">
+		<text>Something doesn't seem right with this place.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_11">
+		<text>Check this place out.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_12">
+		<text>Not afraid of the dark I hope.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_13">
+		<text>Oh, we're about to get attacked by snorks, I just know it.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_14">
+		<text>I hate this place.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_15">
+		<text>Watch your step around here. Nearly twisted my ankle.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_16">
+		<text>This place looks like it could collapse at any moment.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_17">
+		<text>Sad thing is, I'm looking around here and thinking this place is so much cleaner than my apartment back home.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_18">
+		<text>If we see any rats in here it's a good sign. It means there's nothing bigger in here that ate them.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_19">
+		<text>What do you think they used to use this place for?</text>
+	</string>
+	<string id="drx_ql_ch_str_building_20">
+		<text>Ah, another fine example of 1980's Soviet architecture.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_21">
+		<text>Have we been in this one before? All the buildings are starting to look the same to me.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_22">
+		<text>I was sitting outside the other day, looking at a building, and it collapsed. No reason why, other than it being so old and neglected, just happened to be it's time. Something to think about while we're in here.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_23">
+		<text>It is so damn cold in here.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_24">
+		<text>Watch out for blind dogs. They tend to make their dens inside buildings.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_25">
+		<text>Did you see that? This place is so dilapidated the leaves blow right through the walls.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_26">
+		<text>I was here by myself once. I kept thinking I heard someone calling my name. It was really spooky.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_27">
+		<text>What is this place?</text>
+	</string>
+	<string id="drx_ql_ch_str_building_28">
+		<text>I'm getting a really bad vibe from this place. It's like the building itself doesn't want us in here.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_29">
+		<text>This place isn't bad; needs a litte paint, a couple curtains, maybe a rug... I could live here.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_30">
+		<text>Did you see that calender back there? Still turned to April 1986. A place frozen in time.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_31">
+		<text>Shhh! Did you hear that? I think there's someone in here.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_32">
+		<text>What the fuck was that? Something just brushed up against my leg!</text>
+	</string>
+	<string id="drx_ql_ch_str_building_33">
+		<text>Did you notice there is not a single spider web in here?</text>
+	</string>
+	<string id="drx_ql_ch_str_building_34">
+		<text>Hey, a piece of gum from the 1980's... Mmm, still has some flavor, too.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_35">
+		<text>I'm starting to notice some of the buildings around here look like they were re-purposed at some point after the 1986 accident, and not just by stalkers. I wonder what was going on in here?</text>
+	</string>
+	<string id="drx_ql_ch_str_building_36">
+		<text>Maybe this building houses the Wish Granter? You never know, this could be the one.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_37">
+		<text>Hello... (hello)... (hello)... Nice echo.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_38">
+		<text>How is it 30 degrees colder in here than it is outside?</text>
+	</string>
+	<string id="drx_ql_ch_str_building_39">
+		<text>I've got a bad feeling about this.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_40">
+		<text>What is that? Is that an owl? Never seen an owl in the Zone before.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_41">
+		<text>Hey, look at this; a porno mag from the 1980's... Jesus, I guess they didn't have razors back then.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_42">
+		<text>Look in the corner there, that mouse trap still has cheese on it. All this time and it still hasn't caught one mouse.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_43">
+		<text>You know Yuri Icepick, that guy that hangs out in Garbage? He says he never goes exploring inside buildings, he's worried about the lead paint. I mean, come on, of all the things that can kill you here in the Zone you're worried about lead paint?</text>
+	</string>
+	<string id="drx_ql_ch_str_building_44">
+		<text>This is how my first apartment was decorated.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_45">
+		<text>I hate going into buildings alone. I swear, it's like you can feel the memories of those who inhabited it before. Ghosts are real, man.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_46">
+		<text>Chilly in here.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_47">
+		<text>Is that a snake?</text>
+	</string>
+	<string id="drx_ql_ch_str_building_48">
+		<text>Dimka Cornhusker was up this way not too long ago, word is he ran into a pack of blind dogs. I think we passed by part of him on the way in here.</text>
+	</string>
+	<string id="drx_ql_ch_str_building_49">
+		<text>I think there's something moving over there in the corner.</text>
+	</string>
+
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Idle Chatter Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 17, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Idle chatter messages (%s = player name): -->
+	<string id="drx_ql_ch_str_idle_1">
+		<text>My feet are killing me.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_2">
+		<text>Your boot's untied.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_3">
+		<text>Beautiful out here, isn't it?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_4">
+		<text>At least it's not raining...</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_5">
+		<text>Those crows always seem to be flying right above us. It's a miracle we haven't gotten crapped on yet.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_6">
+		<text>I need to get some more antirads next time I'm at a trader.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_7">
+		<text>*hic* Crap, I've got the hiccups.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_8">
+		<text>I start to get nervous when it's this quiet.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_9">
+		<text>I was camping out in the old mill in Cordon a while back, and I heard some commotion coming from near the train bridge. I could see it was some rookie Bandit trying to get his fat ass up the hill, but he kept slipping back down and dumping all his gear. He finally made it to the sniper's nest at the top, and he pulls out a goddamn Makarov of all things and squats down on top of the sandbags like they're a park bench or something. Here this guy is, he just woke up all of Cordon with the racket he was making, and now he's fully exposed and armed only with a pistol. I had to shoot him, he was just too stupid to live.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_10">
+		<text>Last time I was up this way I thought I saw a bear.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_11">
+		<text>If you found the Wish Granter and wished to find the Wish Granter, would you get trapped in an infinite loop?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_12">
+		<text>I can't help but feel bad for snorks. There but for the grace of god...</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_13">
+		<text>Of all the horrible mutants in the Zone, I think I hate Tushkano's the most. Nibbled to death, what a way to go.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_14">
+		<text>*ah-choo!*</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_15">
+		<text>I swore off vodka for a while. It was the most difficult 15 minutes of my life.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_16">
+		<text>Ah, this damned thing. I need to get a new backpack.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_17">
+		<text>See that crow up there? No, that one, to the left. Yeah, him. He's my pet. I call him Kolya.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_18">
+		<text>Some view, huh?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_19">
+		<text>I tried to go fishing here once. My rod melted.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_20">
+		<text>Kalinka, Kalinka, hmm hmm hmm...</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_21">
+		<text>*yawn*</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_22">
+		<text>I think I sleep the best during a blowout. It's the one time when you know no one can sneak up on you.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_23">
+		<text>You know the legend of the Oasis, right? It's supposedly a magical area right in the heart of the Zone that is free from radiation and anomalies, and has the power to rejuvenate a stalker. I hope to find it some day.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_24">
+		<text>We should go hit 100 Rads bar later.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_25">
+		<text>I swear I'm going to find a way to get that ferris wheel in Pripyat running. I'm dying to take that thing for a ride. You watch, I'll do it.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_26">
+		<text>I once had to huddle up next to a decomposing Flesh for warmth one night when I couldn't start a fire. Wasn't too bad, it was like sleeping with a big, squishy teddy bear.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_27">
+		<text>Me and Vasya Pipefitter used to play a game during blowouts, we would run out of cover inbetween the waves and see who could get farthest before chickening out. I saw Vasya just the other day, moaning and drooling on himself. He won.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_28">
+		<text>I have yet to eat mutant meat, and I'm sure it's disgusting, but Flesh meat cooking really smells good.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_29">
+		<text>I should have packed sunglasses. I always forget my sunglasses.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_30">
+		<text>Ow, damn it! Stubbed my toe.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_31">
+		<text>I got a rock in my shoe.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_32">
+		<text>Do you hear a telephone?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_33">
+		<text>What the fuck was that?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_34">
+		<text>I saw a Bloodsucker trying to hump a Flesh once. You can't unsee something like that. The squeals still haunt me.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_35">
+		<text>Do you think Controller's might have been human at some point? I mean, they could be aliens or demons or something, but then where did they get the pants?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_36">
+		<text>One night I came up to a guy sitting at a campfire, sat down next to him and started talking. When I finally looked up I realized he was a Controller! He's just looking at me like, "what the fuck are you doing here?" Never ran so fast in my life.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_37">
+		<text>You know, I have not seen one insect the whole time I've been in the Zone.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_38">
+		<text>All the planning and preparation I did to find a way to sneak into the Zone, never once did it dawn on me how much more difficult it was going to be to find a way back out.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_39">
+		<text>Watch out for that pile of Flesh poo.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_40">
+		<text>I swear, if I ever find the Wish Granter I'm wishing for socks. That's all I keep thinking, I wish I had on a fresh pair of socks.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_41">
+		<text>There are two stalkers here in the Zone that I grew up with. They were best friends, but one joined Duty and the other Freedom. Now they hate each other because they are told to. Mind control isn't just limited to emitters in the Zone.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_42">
+		<text>I've seen some of the most horrific sights here in the Zone, but I've also seen incredible beauty. It's the extreme peaks and valleys that I came here for, the adventure into the transmundane.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_43">
+		<text>I have to pee.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_44">
+		<text>Shooting star! Ah, you missed it.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_45">
+		<text>Notice you don't see many corpses lying around for too long? Eventually something comes along and eats it. Freaking Zone man, everything gets eaten.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_46">
+		<text>Dancing on the ashes of the world... hmm hmm hmm...</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_47">
+		<text>Did you know you can tame a Pseudodog? I know a guy who did it, kept one as his pet, it was his best friend. An unsuspecting stalker shot it one day, so the guy shot him. Murdered for killing a mutant... fucking Zone, man.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_48">
+		<text>Gah! Just walked into a spider web.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_49">
+		<text>Wind's coming from the east now.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_50">
+		<text>Ow, fucking thorn bush.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_51">
+		<text>Where does a king keep his armies? Shit.. I forget how that joke ends.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_52">
+		<text>I used to have a Moskvitch like the one we passed by earlier. It was in about the same condition, too.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_53">
+		<text>I can feel when a blowout is about to happen. The next one is going to occur... now! ...nope... okay, now! ...wait...</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_54">
+		<text>I have had a headache for the past 3 days straight. I'm about to blow my brains out.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_55">
+		<text>The artefacts from the Zone, side of the tracks... hmm hmm hmm...</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_56">
+		<text>It's hard to believe this once used to be a thriving community. I wonder if the original residents could ever have imagined the series of horrors their homes would be subjected to. Now here it stands; frozen in time as a hollowed out, forgotten memory.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_57">
+		<text>Today has probably been the best day of my life. Kinda sad, if you think about it.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_58">
+		<text>Have you ever seen two mutants having sex? Neither have I. The researchers say they are all sterilized from the prolonged exposure to the radiation. But think of how many have been killed, where do they keep coming from?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_59">
+		<text>A friend of mine died due to the emissions put out by the Miracle Machine. Well, I like to think he is dead anyway. The sad thing is he is still alive. I saw him just the other day, eating the face off an Ecologist. This fucking place...</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_60">
+		<text>You know what I could go for right now? An apple. I haven't had an apple in a long time.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_61">
+		<text>Do you know why squirrels swim on their backs? To keep their nuts dry.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_62">
+		<text>Have you ever seen a porcupine in the Zone? I was talking to a stalker the other day and he said there aren't flowers in the Zone anymore because the porcupines trampled them all.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_63">
+		<text>I heard they were researching some secret weapons programs around here.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_64">
+		<text>Have you seen that prototype rifle the Monolith have? That thing is bad ass.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_65">
+		<text>I'm getting hungry. What do I want to eat? Let's see... bread, diet sausage, tourist's delight... decisions, decisions.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_66">
+		<text>I need more ammo. It always seems like I need more ammo. No matter how many rounds I have, I always feel like I will need one more. It scares the hell out me.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_67">
+		<text>I feel like something really bad is about to happen.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_68">
+		<text>What do you keep looking at?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_69">
+		<text>I've heard the radiation levels inside Reactor #4 are still so high they would kill a man in thirty seconds. Shame, it would probably be pretty cool to search around inside there and see what it's like.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_70">
+		<text>Everyone thinks Sidorovich is a good guy. They're all buying the act, I don't trust him. He is a rip-off artist, a con man, and a scammer. He is a fat, fat, slimy man.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_71">
+		<text>I have no problem raiding someone's stash, but I never touch one at a gravesite. It's like I would be tempting fate, like I would be the next one to have a marker.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_72">
+		<text>Fwww... fhwww.. I want to learn to whistle. I've never been able to do it.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_73">
+		<text>There's this story I want to tell you. It's about this girl... what was her name? Anyway, she was going to... ah, where the hell was she going? Well the point is, once she got there she... damn, I forget. Anyway, you get what I'm trying to say.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_74">
+		<text>You know what I want to try? Elephant meat. Never heard of anyone eating it. I'll bet it's tasty.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_75">
+		<text>Do you think it would be a waste if I found the Wish Granter and I just wished for a clean, dry place to sleep? Because lately that's all I've been wishing for.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_76">
+		<text>Ow, ow, fucking blister.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_77">
+		<text>I'll bet you 20 RU it's going to rain all day today.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_78">
+		<text>So the Oasis, it is supposed to have healing powers, if you stand in it nothing can hurt you. So if you stood in there forever, would you be immortal? Eternity spent in the same spot. You can live forever but you can never leave.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_79">
+		<text>Did you know snorks like to steal clothes? I'm serious, I've seen it. Makes me think about all the times a sock went missing back home, maybe I had a snork living in my house.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_80">
+		<text>I once sold an artefact to a tourist for 10,000 RU and put the money in my coat pocket. Later that day I was attacked by a snork. I fought the damn thing off but it ran away with my jacket. Somewhere out there is a snork wearing a very expensive coat.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_81">
+		<text>I know I'm going to hell and I don't mind. I've already been through the Red Forest, how much worse could hell be?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_82">
+		<text>I had a relative that used to live here before the 1986 disaster. Used to be a nice, quiet, peaceful community. She moved away two weeks before the accident. Pretty lucky, right? She was hit by a bus the next day. The universe is a bitch sometimes, man.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_83">
+		<text>Never go back the same way you came. A wise old stalker told me that once.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_84">
+		<text>I sometimes wonder if I've already found the Wish Granter and just didn't realize it. I mean, what does such a thing look like? It could look like a twig for all we know and everyone just keeps walking by it. I'll just have to start wishing at twigs.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_85">
+		<text>You know what I love about the Zone? It's the kind of place you hear about, there's all these myths and legends and rumors about it, and you know half of it must be made up, and you finally get in here and realize it's all true.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_86">
+		<text>Did you hear about Vadim Wirecutter? He was missing for days up in Jupiter. Someone found him in a building near the Ventillation Complex, he had starved to death. He was less than 20 meters from the entrance. How does something like that happen?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_87">
+		<text>There was a stalker called Varmint who thought he had it all figured out. He found a big piece of iron to sleep on because it was nice and warm. Of course it was, it was highly irradiated. When he woke up, all of his teeth had fallen out. Always carry a Geiger counter.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_88">
+		<text>I cannot get this damned splinter out for the life of me.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_89">
+		<text>Give me a medkit. If something should happen to you I can use it to revive you.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_90">
+		<text>You've got something stuck on your shoe.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_91">
+		<text>Shit, did I lose my compass? Who the hell sells compasses around here?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_92">
+		<text>I had a dream last night where we were all just children's dolls, and our lives were acted out in their imaginations. We lived in a sandbox next to a giant crystal stuck in the ground.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_93">
+		<text>I learned how to shoot a rifle when I was six years old. Still trying to figure out how to hit stuff with it.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_94">
+		<text>I was in a firefight a while back and something hit me on the side of the head. I'm thinking, what the hell? Did this guy just run out of ammo and now he's throwing rocks at me? I was so pissed off I threw it right back at him. Good thing I did, it was a grenade.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_95">
+		<text>Ah, the Zone... Where else can you go where the leading cause of death is getting eaten by something?</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_96">
+		<text>Have you heard the old rookie initiation joke? Tell him to look for a stalker called Magpie. He'll be running in circles for days. It's hilarious.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_97">
+		<text>Have you heard of the Death Trucks? Supposedly the Monolith gather up stalkers who fell victim to the Brain Scorcher and load them into trucks to indoctrinate them into the Monolith faction. They're called the Death Trucks because very few make it alive.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_98">
+		<text>Bread and sausage, that's all I eat. I can't afford Tourist's Delight.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_99">
+		<text>My last name has nothing to do with my former occupation.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_100">
+		<text>I saw a deer the other day. Seriously, I did, no one believes me. Freaking Zone man, I can say I saw a mutant vampire that turns invisible or a two-headed monster capable of leaping thirty meters through the air and shredding a man to pieces, no one blinks an eye. But say you saw a deer around here and you might as well be talking about Bigfoot.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_101">
+		<text>I came to the Zone to be alone. I never imagined how lonely it could get.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_102">
+		<text>The best advice I can give any stalker is; don't piss on an electro anomaly. Trust me.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_103">
+		<text>Have you heard of Alexey Printmaker? He was legendary as a literal artefact magnet. He could just stand in an anomaly field with his detector out, wait a little while, and eventually an artefact would move close enough to him for him to pick it up. No one knows how he gained this power, but it seemed to keep getting stronger as time went on. You'd think the guy was pretty lucky, right? He was killed when a Jellyfish shot out at him with enough force to embed itself inside his cranium.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_104">
+		<text>I was watching a couple of Flesh running around in a field the other day. They weren't threatening anyone, just seemed to be having a good time. A Bandit came along and started watching them too. After a while, for no reason, he pulled out his rifle and shot one of them. He smirked, apparently satisfied he could still hit the broad side of a barn, and turned and walked away. Well, the other Flesh wasn't letting that shit pass, it ran right up to him and headbutted him into an anomaly. Zone karma.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_105">
+		<text>I was talking to Roma Antfarmer the other day, and I noticed he was carrying a grenade. He said he always carries a grenade incase he gets attacked by a Chimera. When I asked him how he planned on killing a Chimera with a grenade, he told me the grenade wasn't for the Chimera, it was for him. He figures it would be a less painful death.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_106">
+		<text>First time I encountered a Whirligig I blundered right into it. I managed to fight my way out of it before it detonated but it sucked off all my clothes. That was a cold night.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_107">
+		<text>Have you ever seen the way the sky looks after a blowout? One of the rare times something beautiful results from something horrific.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_108">
+		<text>You know you're hungry when Bloodsucker meat starts looking good.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_109">
+		<text>I've heard rumors of some weird experiments that were being conducted in the Zone. I wonder what was going on here.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_110">
+		<text>These blowouts need to end. The Zone conjures them up at its will and we all scurry for cover like mice. It's like we're not even human anymore.</text>
+	</string>
+	<string id="drx_ql_ch_str_idle_111">
+		<text>I heard there was some weird shit going on in Limansk. Anatoli Boarkiller was telling me a story about a guy there that built a teleport machine in his basement. It supposedly worked, and it successfully de-materialized him. Trouble is, he never built one on the other side to put him back together. God only knows where he is now.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

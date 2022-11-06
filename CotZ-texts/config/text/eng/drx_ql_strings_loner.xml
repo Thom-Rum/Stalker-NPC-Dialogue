@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Provided By Loners (drx_ql_strings_loner.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: November 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Loner Storyline Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Barkeep's Bounty Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_1_name">
+		<text>Barkeep's Bounty</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_1_text">
+		<text>{npc_name} has placed a bounty on %s known as %s. Ask around to see if anyone has any information that will help you track him down.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_1_about_pre_npc_1">
+		<text>If you had come a few hours ago you could have helped me clean some poor bastard's brains off of the wall.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_1_about_pre_actor_1">
+		<text>What happened?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_1_about_pre_npc_2">
+		<text>There were two stalkers standing over there at that table, having a few drinks, and they got into an argument. Before anyone had a chance to break it up, the one guy pulls out his pistol and blows a hole in his friend's forehead. Damned psycho. I don't care how bad an argument is, nobody pulls out their weapon, not in here. If I ever see that guy again he'll be breathing his last.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_1_about_pre_actor_2">
+		<text>Where did he go?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_1_about">
+		<text>I don't know. He ran out of here as soon as he realized what he had done. A couple of guys ran after him, Garik took a shot and might have wounded him, but he got away. If you can manage to track him down I'll pay you a bounty. He couldn't have gotten far. Ask around, someone is sure to have seen where he went.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_1_finish">
+		<text>He's finished? Good. Let that be a lesson to anyone who tries to start trouble in here.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Search Jupiter Underground Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_2_name">
+		<text>Search Jupiter Underground</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_2_text">
+		<text>Lead the expedition into Jupiter Underground in search of the lost documents rumored to exist down there.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_2_about">
+		<text>Some of the boys are gearing up for an expedition into the tunnels between Jupiter and the Outskirts. They think there are some valuable documents that were lost down there. I think they are morons. But, if what they say is down there is really down there, I know I would be willing to pay a good reward for it. The problem is they are inexperienced. They will get themselves killed in those tunnels. They need a good leader if they have any chance of succeeding. Are you up for the task?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_2_finish">
+		<text>Ah, look what you have found! And you are nearly still in one piece, ha! Look at what this is, proof of yet another emitter that was being constructed here in the Zone. Looks like this one was intended to be more powerful than the Miracle Machine and the Brain Scorcher combined. If they completed constructing this emitter, this could be the source of the blowouts that have been plaguing the Zone! We got them now, ha! Now we just need to find the damn thing. Here, come have a drink, you have done a great job.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Outskirts Hospital Brawl Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_3_name">
+		<text>Hospital Assault</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_3_text">
+		<text>A small group of stalkers is planning a surprise attack on a platoon of Monolith soldiers. Link up with them near the hospital in the Outskirts to reinforce the attack.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_3_text_1">
+		<text>Assault the hospital and eliminate the Monolith occupiers.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_3_text_2">
+		<text>Return to the Skadovsk for your reward.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_3_about">
+		<text>Word just came through over the radio, some stalkers spied a large group of Monolith gathered at the old hospital in the Outskirts and they're planning on mounting a sneak attack. Take some of the boys and head over there to help them out! Hurry! I know the guy planning the attack, he's likely to run in there by himself if he has to wait around too long. We've got the bastards now, ha!</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_3_message">
+		<text>Hey, %s! We're over here, by the Arch. Let's sneak in through the west wing of the hospital and take the Monolith by surprise.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_3_finish">
+		<text>Wow, some fight! Don't worry, vodka heals all wounds, ha!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Jupiter Container Yard Brawl Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_4_name">
+		<text>Container Yard Coward</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_4_text">
+		<text>A Bandit has murdered a stalker aboard the Skadovsk, threatening the sanctity of the refuge, and is now cowering within the Container Yard in Jupiter under the protection of his fellow Bandits. Join up with the group that has surrounded the area and extract the murderer using whatever force if necessary.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_4_about_pre_npc_1">
+		<text>Stalker, an attrocity has been committed here aboard Skadovsk. We're all in mourning over our fallen brother who was viciously killed by a Bandit that stormed in here looking to settle a score.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_4_about_pre_actor_1">
+		<text>What? This is inexcusable. Rivalries are one thing but we need to have a place in the Zone where stalkers know they can feel safe, especially up here. Where is the bastard? I'll end him myself.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_4_about_pre_npc_2">
+		<text>A bunch of men ran after him and have him cornered in the Container Yard in Jupiter. The Bandits there are harboring him and won't give him up.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_4_about_pre_actor_2">
+		<text>Then they have chosen their side and will pay the consequences. Radio ahead to the men and let them know I'm coming. When I get there if the Bandits still won't hand him over we'll take them all out.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_4_about">
+		<text>Ok, but you better hurry. Those boys are pissed and they're not likely to wait too long.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_4_message">
+		<text>Ok, here comes %s. Move in boys! Let's get this coward!</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_4_finish">
+		<text>Hoo, that's bound to send a message. It will be a long time before someone tries starting trouble aboard the Skadovsk again. Have a drink stalker, and take this in gratitude.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Cordon Rumble Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_5_name">
+		<text>Rumble in Cordon</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_5_text">
+		<text>A large group of Bandits is mounting a raid on Rookie Village. Organize a defense to hold them off.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_5_about">
+		<text>One of the boys got a tip that a large group of Bandits is heading our way. Everyone's meeting up at the old boxcar to mount a defense. They need a good leader, head on up there and take charge. If you can hold off the attack I'll give you that rifle you've been eyeing.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_5_finish">
+		<text>Great job! Here's what I promised you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Assassination Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_6_name">
+		<text>Executioner</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_6_text">
+		<text>{npc_name} has located the hideout of %s called %s who is responsible for the murder of numerous innocent stalkers. Bring him to justice, or bring justice to him.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_6_about">
+		<text>There is a stalker out there with a bounty on his head. This scumbag is responsible for several murders here in the Zone, and on the outside as well. I happen to know where he is right now. Go get this prick, stalker, not just for the bounty, but for the good of all of us.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_6_finish">
+		<text>You have done a great deed by eliminating that murderer. Here's your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Investigate Stingray 3 (Zaton, Southern Plateau) Storyline Task- -->
+
+	<string id="drx_ql_stalker_sl_task_7_name">
+		<text>Investigate Stingray 3 Crash Site</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_7_text">
+		<text>A Military helicopter has crashed on top of the inaccessible Southern Plateau in Zaton. Meet with a stalker called Noah and convince him to tell you his secret way of reaching it.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_7_text_1">
+		<text>According to Noah, the top of the Southern Plateau can somehow be reached from inside the Burnt Village. His instructions are as follows: Enter the village via the road leading in from the southwest and cross the thermal field to the right to find the opening in the fence on the other side. Jump off the edge of the cliff to be transported to the plateau.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_7_text_2">
+		<text>Find the equipment case the surviving Stingray 3 crew members stashed on top of the plateau.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_7_about">
+		<text>A Military helicopter has crashed atop the Southern Plateau in Zaton. Most of the crew made it out okay, before most of the rest were eaten by the snorks, but word is they left some valuable equipment up there. So far no one has been able to climb back up there to get it. There is a stalker called Noah who supposedly knows a way to the top. He's a little loopy, but if you can convince him to show you the way, I'll reward you well for any equipment you can recover from the crash site.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_7_finish">
+		<text>Ah, let's see what you have brought me... Hey, jackpot! Loot at everything in here; weapons, advanced anomaly and emission detectors, anti-radiation body armor, this is very valuable indeed! The troops on this helicopter were geared up for one hell of a battle. I've heard there are other helicopters that crashed in that area, too. Who knows what the jarheads were up to this time, but it looks like it didn't go well for them. Thank you for bringing this to me. Here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Manhunt Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_8_name">
+		<text>Manhunt</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_8_text">
+		<text>{npc_name} has tasked you with finding and killing %s called %s. You should inquire with local stalkers to try to track down his whereabouts.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_8_about">
+		<text>I have a very important job for you. There is a scumbag out there wandering the Zone, a worse terror than any mutant you will encounter. This piece of shit has been hunting and slaughtering innocent rookies for sport. He is a cold-blooded killer, and he is very good at not getting caught. I have sent six men after him, none of them have returned. He is incredibly elusive and a master at staying hidden. You have a talent though, if anyone can catch him it's you. Do this for me stalker, and I will reward you well.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_8_finish">
+		<text>Ah, good, you killed the bastard. You have done a great service for all stalkers in the Zone. Here, take this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Rescue Missing Stalker Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_9_name">
+		<text>Rescue Missing Stalker</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_9_text">
+		<text>A stalker is missing from {npc_name}'s camp. Find him.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_9_about">
+		<text>I need your help. A stalker from the camp went out for supplies and hasn't come back. I fear something may have happened to him. I will mark his last known location on your map, see if you can find him.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_9_finish">
+		<text>You saved him! Excellent work stalker. Take this as a sign of my gratitude.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Search Agroprom Underground Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_10_name">
+		<text>Search Agroprom Underground</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_10_text">
+		<text>A stalker managed to stash some important documents in the Agroprom underground before he was killed. Search the tunnels and find the documents before the Military does.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_10_about">
+		<text>I have an important request. There is news that a stalker has made an important discovery, but he was killed by the Military before he could return with the find. He hid the documents somewhere in the tunnels below Agroprom, I want you to go down there and see if you can recover them. You must be careful though, if these documents are what I think they are the Military will be looking for them too, and I doubt they will be very happy to find you sneaking around through their sewers.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_10_finish">
+		<text>You found them! Let me take a look... Ah, it is as he claimed. This is a report on secret experiments that were being conducted in hidden locations throughout the Zone. My god, look at all they were doing; biological engineering, genetic manipulation, even research into mind control. The experiments mentioned in here are horrific. Who would do such things, and for what purpose? It's good you recovered this before the Military did, they would have just covered it up.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Eliminate Train Tunnel Bandits Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_11_name">
+		<text>Stop the Cordon Killers</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_11_text">
+		<text>A group of murderous Bandits have been ambushing and killing unsuspecting rookies in the area. {npc_name} has offered a reward to put an end to the bloodshed.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_11_about_pre_npc_1">
+		<text>Be careful around here stalker, there's a group of Bandits in the area that have been attacking rookies such as youself.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_11_about_pre_actor_1">
+		<text>I'm no rookie. Want me to take care of them?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_11_about_pre_npc_2">
+		<text>Don't hurt yourself. These guys are real killers, not just some punk thugs. They hide out in the train tunnel and ambush any rookies they see walking down the road. I am sickened every time I hear the gunfire, I know another innocent stalker has been murdered. But there is nothing I can do about it, I'm no warrior.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_11_about_pre_actor_2">
+		<text>I'll put an end to this menace. This cannot be allowed to continue.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_11_about">
+		<text>You talk tough stalker, but these guys may be tougher. I strongly caution you not to tangle with them. However, if you should be foolish enough to do battle with them, and lucky enough to survive, I would certainly be willing to pay a hefty reward for keeping the area safe.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_11_finish">
+		<text>Thanks for your help. Keep that up and you're going to become a legend around here.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Track Wounded Attacker Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_12_name">
+		<text>Track Wounded Attacker</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_12_text">
+		<text>A rouge military squad attacked {npc_name}'s camp and murdered them. One of the attackers managed to escape. Track him down.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_12_about">
+		<text>Where have you been? A military squad came through here and tore up the place. Between them and that damn helicopter they wiped out nearly everyone in the camp. We were able to take out most of them, but one of them managed to get away. He may be injured, see if you can follow the blood trail. I'll show you the direction he was headed.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_12_finish">
+		<text>Thank you stalker. Take this as a gift for your actions.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Nimble Infiltrate Lab X-18 (Dark Valley) Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_13_name">
+		<text>Infiltrate Lab X-18</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_13_text">
+		<text>{npc_name} has discovered the location of a hidden laboratory being guarded by the Military. Find out what secret experiments were being conducted there and bring back any information you find.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_13_about_pre_npc_1">
+		<text>Hey, remember that PDA you brought me? It had some information on it about experiments that were being conducted in a secret lab in Dark Valley. I have the location of the bunker. If you're willing to try to sneak in there and find out what they were up to, I'd be willing to pay you for any information you can bring back. What do you say, are you up for it?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_13_about_pre_actor_1">
+		<text>Sure, I'll go check it out.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_13_about">
+		<text>Okay, but be careful. I know the place where the entrance to the lab is hidden. There's usually a Military garrison stationed there, and they probably wouldn't be too happy to find a stalker snooping around in there.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_13_finish">
+		<text>Hey, you made it! What have you brought me? Ah, these are notes on some of the tests that were being conducted. My god, look at what they were doing; experimenting on living subjects, altering their genetic and biological makeup, exposing them to mind-altering fields... These experiments were horrific and criminal. Thank you for bringing this to me, stalker. I'll make sure this information gets into the right hands. Please, take this as payment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Owl Meet With Cardan Storyline Task (LINKS TO: Loner Cardan Infiltrate Lab X-8) -->
+
+	<string id="drx_ql_stalker_sl_task_14_name">
+		<text>Meet with Cardan</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_14_text">
+		<text>Talk to Cardan, the Skadovsk mechanic, to see if he has information on the Gauss rifle</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_14_about_pre_npc_1">
+		<text>You here to buy something? What can I sell you today, stalker?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_14_about_pre_actor_1">
+		<text>I need a more powerful weapon. I've encountered some Monolith cultists that have a rifle the likes of which I have never seen before. Can you get me one?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_14_about">
+		<text>Ah, the Gauss rifle. That is a spectacular weapon indeed. I would love to sell you one, but I've never been able to get my hands on one either. The only way I know of to get one is to whack a cultist over the head and take it from him, although if he has a Gauss rifle he probably ain't gonna let you get that close to him. Talk to Cardan, he keeps bragging that he helped develop the damned thing, though I've never seen the lazy bastard actually build one.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Infiltrate Lab X-8 (Outskirts) Storyline Task (LINKS FROM: Meet With Cardan) (LINKS TO: Build Gauss Gun Task) -->
+
+	<string id="drx_ql_stalker_sl_task_15_name">
+		<text>Infiltrate Lab X-8</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_15_text">
+		<text>Cardan may be able to build a Gauss rifle for you if the plans can be recovered from Lab X-8 in the Pripyat Outskirts.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_15_about_pre_npc_1">
+		<text>Sure buddy, what can I do for you?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_15_about_pre_actor_1">
+		<text>Owl tells me you know something about the Gauss rifle.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_15_about_pre_npc_2">
+		<text>The Gauss rifle? Yeah, I know it. I was part of the development team that was researching the weapon a while back. "Item 62" it was called. It was a top-secret project to build a highly accurate and extremely powerful long-range rifle that worked on electromagnetic propultion. We had to abandon the project when all the shit went down in the Zone. The Monolith cultists overran our research facilities and captured any of the prototypes we had developed.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_15_about_pre_actor_2">
+		<text>Do you think you could build another one?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_15_about_pre_npc_3">
+		<text>Not just off of what I know. The project was so secret that they segmented the research teams, and each of us only concentrated on one aspect of the weapon, we never were allowed any information on what the other teams were doing. I was responsible for constructing the coils, that's the only part I have knowledge on. But without the rest of the rifle, the coils are useless. If I had a complete set of plans I could probably build one, but the only place the compiled plans might be is controlled by the Monolith.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_15_about_pre_actor_3">
+		<text>Where is it? I'll find those plans if you can build me a Gauss rifle.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_15_about">
+		<text>Alright buddy, it's your funeral. The senior research team was working out of a hidden lab in the bowels of the Yubileiny Service Center in the Pripyat Outskirts. If there is a complete set of plans anywhere, they would be there. If you manage to find them, bring them back here and I'll see what I can do.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_15_finish">
+		<text>Holy shit, you survived. Very good, you have done well.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Build Gauss Gun Storyline Task (LINKS FROM: Infiltrate Lab X-8) (LINKS TO: Wait for Gauss Gun Task) -->
+
+	<string id="drx_ql_stalker_sl_task_16_name">
+		<text>Gauss Gun Components</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_16_text">
+		<text>Find the capacitors, wire, and Flash artefact needed for Cardan to build a Gauss rifle for you.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_16_about">
+		<text>Hey, you chicken out already? What, holy shit! You found the plans? Let me see... Ah yes, of course... It's rather elegant in its simplicity, really. I can definitely build one of these, but we're going to need to locate the materials. I can find most of what I need around here, you see if you can scrounge some wire, a couple capacitors, and a Flash artefact. Once you've found them, bring them back here and I'll get started working on the Gauss rifle.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_16_finish">
+		<text>Thanks.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Wait For Gauss Gun Storyline Task (LINKS FROM: Build Gauss Gun Task) -->
+
+	<string id="drx_ql_stalker_sl_task_17_name">
+		<text>Wait for Gauss Gun Completion</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_17_text">
+		<text>{npc_name} is building a Gauss rifle for you from the plans recovered from Lab X-8. He will contact you when it is ready.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_17_about">
+		<text>Good, you've brought the final pieces I need for the rifle. I was able to scrounge the rest of the parts off of some of the local shipwrecks. It's not going to be the prettiest weapon on the battlefield, but I promise you it will be one of the most powerful. I should have it completed before too long. Give me a day or so, I'll call you when it's ready.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_17_message">
+		<text>Okay, the weapon is ready for you. Come see me.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_17_finish">
+		<text>I was able to build the Gauss rifle from the plans you brought me, as I promised. I tested it out earlier today; smoked a Pseudodog from over 200 meters away! That was a fun project, brought me back to my glory days. Here you go, hope you have just as much fun. Don't tell Owl you got it from me, he'll just want me to start cranking them out to sell in his shop.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Bonesetter Deactivate Brain Scorcher Storyline Task (LINKS FROM: Freedom Meet With Bonesetter) -->
+
+	<string id="drx_ql_stalker_sl_task_18_name">
+		<text>Deactivate the Brain Scorcher</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_18_text">
+		<text>Infiltrate the Monolith faction and gain access to Lab X-19. Find a way to deactivate the massive psi emitter known as the "Brain Scorcher" that has been plaguing the Zone.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_18_about_pre_npc_1">
+		<text>What do you need, buddy?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_18_about_pre_actor_1">
+		<text>Loki says you have a serum that will allow me to infiltrate the Monolith.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_18_about_pre_npc_2">
+		<text>Oh, you must be the suck.. eh, I mean the brave soul who is going to try to shut off the Brain Scorcher, eh? Okay, I got just the thing for you. I inject this serum into you, Loki and his men will smuggle you aboard one of the death trucks, the Monolith will think you have fallen victim to a psi emission, no problem. Now, where did I put the serum? I usually keep it over here, right next to the deadly poisons... I really should label these things. Oh well, here goes nothing. Stick out your arm...</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_18_about_pre_actor_2">
+		<text>Hey, wait a minute!</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_18_about">
+		<text>Ah, what are you worried about? If this doesn't kill you, the Monolith will. Now, give me your arm, this won't hurt a bit... until I inject the needle. Then it will be agonizing.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_18_finish">
+		<text>Sorry buddy, the morgue is the next door over... hey, wait, you're not dead! Well, now that you've opened the path to the north I guess we'll get more stalkers up this way. This is good, if business picks up I might be able to afford that medical degree some day.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Barkeep Infiltrate Lab X-18 (Dark Valley) Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_19_name">
+		<text>Infiltrate Lab X-18</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_19_text">
+		<text>{npc_name} has discovered the location of a hidden laboratory being guarded by the Military. Find out what secret experiments were being conducted there and bring back any information you find.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_19_about_pre_npc_1">
+		<text>There has been a lot of talk about those documents you discovered in the tunnels below Agroprom. There are hints in there that some of the experiments described in there were being conducted in secret in a laboratory in the Dark Valley. I have an idea where that lab might be hidden. The military has a detachment stationed at a warehouse there, I had always found that strange, it's too far from the Cordon to be of any use to them as an outpost. Why else commit a squad of troops there unless you are trying to hide something?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_19_about_pre_actor_1">
+		<text>Show me where you think it is. I managed to get past the Military to get into Agroprom, I could probably find a way into this compound.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_19_about">
+		<text>Good. If the experiments they were doing there are anywhere near as horrific as the Agroprom Underground documents suggest, those responsible cannot be allowed to cover it up. Find a way into that lab and search for any evidence as to what they were up to down there.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_19_finish">
+		<text>Still alive? That's great. Show me what you have found... Hmm, these seem to be a collection of research notes on some of the experiments they were conducting down there; biological manipulation, genetic alteration, exposing living subject to mind-control fields, this is outlandish! No wonder the Military was so intent on keeping this hidden. Stalker, I fear this is just the tip of the iceberg. There is talk of other labs throughout the Zone that may have been conducting illicit research like this as well. You have done well to bring these documents to light. Please, take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Disable the Miracle Machine Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_20_name">
+		<text>Disable the Miracle Machine</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_20_text">
+		<text>Gain access to Lab X-16 in Yantar and find a way to disable whatever is generating the harmful field there.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_20_about_pre_npc_1">
+		<text>Stalker, there are many natural and unnatural threats here in the Zone, but the most insidious are man-made. By now you must know of the psi fields that exist in Yantar, blocking access to Dead City, the far larger field that seems to be emanating from Radar, cutting the Zone in half, and the horrific blowouts that incessantly wash down from the north and rape the land. If you have not experienced them for yourself yet you certainly have witnessed their effects; horribly mutated wildlife, men reduced to mindless husks, stalkers brainwashed into joining the murderous cult of the Monolith. The emitters that are generating these lethal fields that destroy flesh and turn minds into soup must be deactivated, and those responsible for their creation must be brought to light.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_20_about_pre_actor_1">
+		<text>I agree. But there is no way to deactivate them, even if the source could be located. The field they generate also protects them, preventing anyone from getting near them without falling victim to their effects.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_20_about_pre_npc_2">
+		<text>Thanks to you that may no longer be the case. The eggheads have been studying the documents you recovered from the lab in the Dark Valley. They contained blueprints on a device that was being developed there to counter the effects of the field. From those plans, the researchers were able to recreate the device, and they are looking for a brave volunteer to use the device to attempt to gain access into the facility in Yantar that houses whatever is causing the psi field there and find a way to shut it down. I told them I could think of no stalker who has proven their courage more than you.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_20_about_pre_actor_2">
+		<text>Courage and foolhardiness are two different things. To what do I owe the honor of being volunteered as the guinea pig?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_20_about">
+		<text>Stalker, there are not many people here in the Zone, word spreads quickly. The stories of what you have done in your time here are starting to be talked about like they are legend. There is no one else here in the Zone who has the skill to infiltrate the complex, the smarts to figure out what to do once inside, and the conviction to do what you know must be done. The psi field in Yantar is the weakest of all the emitters. Take the device and use it to push through the field and gain access to the facility. Find what is generating the psi field, and find a way to shut it down. If you can find a way to defeat that emitter, perhaps we will be one step closer to finding a way to defeat them all.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_20_finish">
+		<text>Excellent, you've returned! Word has spread quickly about your success, your reputation grows. Please, take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Deactivate Brain Scorcher Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_21_name">
+		<text>Deactivate the Brain Scorcher</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_21_text">
+		<text>Gain access to Lab X-19 and find a way to disable the massive psi emitter located there.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_21_about_pre_npc_1">
+		<text>The Brain Scorcher continues to claim the lives of stalkers on a daily basis. Rookies continue to try to rush to the north, lured by temptation and all the stories of fabulous wealths of loot, fields of artefacts, and of course, the legend of the so-called "Wish Granter". But most of them are in such a rush they never have time to let the warnings sink in, or to even hear them in the first place, of the dangers of the massive invisible psi field surrounding the Radar, and they end up dead, mindless, or brainwashed into becoming another drone for the cult of the Monolith. There were three new stalkers here at the bar just the other day, they were just kids, they had no idea what they were getting into. They thought they had the path through the Brain Scorcher all figured out. Now they are all dead, the first two killed by the third when the Brain Scorcher took control of their minds and made them attack their friend, who in turn lost his mind as well as his brains melted out through his ear canals.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_21_about_pre_actor_1">
+		<text>I can't bear to hear stories like this anymore. Who could have conceived such horrible devices, and for what purpose?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_21_about_pre_npc_2">
+		<text>The question at hand is how to stop it. You have a device that protected you from the psi field when you shut down the Miracle Machine in Yantar, do you think you could use it to penetrate the field in Radar?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_21_about_pre_actor_2">
+		<text>The psi field in Yantar was weak and far less massive than the one in Radar, I don't know how long it would hold up against the Brain Scorcher. Even if it could though, the place is bound to be crawling with Monolith cultists. If I did manage to find a way in there and shut it down, I will have kicked a rather large hornet's nest. There is no way the Monolith would let me out of there alive.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_21_about">
+		<text>Stalker, I am your Barkeep, I have solution for everything! I will recruit the finest stalkers to help, men I know I can trust and who will not let you down. I will send them to the Red Forest and have them wait for you to infiltrate the Radar and deactivate the Brain Scorcher. Once you do, they will rush in, guns ablaze, and help you make your escape.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_21_finish">
+		<text>You have done it! By deactivating the Brain Scorcher you have opened the path to the north and saved countless stalkers lives. Here, take this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Owl Dynamic Brawl Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_22_name">
+		<text>Owl's Embargo</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_22_text">
+		<text>Join up with a group of stalkers that are launching an attack against some %s that have been blocking Owl's supply shipments.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_22_text_1">
+		<text>Attack the group of %s.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_22_about">
+		<text>Listen, you know me, I don't like to get into anyone else's business, unless it impacts mine. Right now there is a gang of %s that have cut off my supply line and keep killing all my couriers. I can't get anything through them and I'm running out of supplies. I just sent a couple guys to take care of them, go catch up to them and help them out and I'll cut you in on the reward.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_22_message">
+		<text>Check it out, Owl sent %s to help us.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_22_finish">
+		<text>Excellent work. Now that those pricks are out of my way I can keep doing business here. Here's your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Sidorovich Recover Stolen Shipment Task -->
+
+	<string id="drx_ql_stalker_sl_task_23_name">
+		<text>Recover Hijacked Supply Shipment</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_23_text">
+		<text>Some Bandits have intercepted a supply shipment intended for Sidorovich. Find the Bandits and take back the supplies.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_23_about">
+		<text>I just got word one of my supply shipments has been hijacked by some bandits. Go get me my delivery back, I will make it worth your while.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_23_finish">
+		<text>Well done stalker, take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Beard Big Mutant Hunt Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_24_name">
+		<text>Dangerous Mutant Extermination</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_24_text">
+		<text>Dangerous mutants have been sighted in the area. Clear out the threat.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_24_about">
+		<text>One of the lookouts sighted some dangerous mutants in the area. How about you head out there and take care of them, I don't want them hurting any of the local stalkers.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_24_finish">
+		<text>Well done! Have a drink on me!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Beard Investigate Stingray 4 (Jupiter, Jupiter Plant) Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_25_name">
+		<text>Rescue Stingray 4 Crash Survivors</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_25_text">
+		<text>A distress signal was received from the crew of the Stingray 4 flight. Find the source of the signal and locate the survivors.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_25_text_1">
+		<text>The wreckage of Stingray 4 has been found, but there are no survivors in the area. Search for any clues they may have left behind.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_25_text_2">
+		<text>The map on the PDA found at the crash site shows the location of a potential rally point. Head to the location to see if any survivors have gathered there.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_25_text_3">
+		<text>Interrogate the pilot for information about the failed operation.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_25_about">
+		<text>Cardan just picked up a distress signal coming from inside the Jupiter plant. It could be from some survivors from one of the helicopters that came down in the area. It's going to take days for the Military to dispatch a rescue operation this far north, those survivors don't stand a chance with all the mutants in the area, especially if they're wounded. Here, take some medkits and vodka to them, see if you can help them out. In return, find out whatever you can about what they were doing up here in the first place. If Skadovsk is target of large-scale Military assault, we need to find out what they are up to, ha!</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_25_finish">
+		<text>Ha! You succeeded! Good for you, have some vodka on me! So, you have found out from the pilot that the Monolith cult is more than just a cult, they are an army that completely occupies the center of the Zone, eh? Ah, good to know who your neighbors are, just don't ask to borrow cups of sugar, ha! Well staker, it seems then Skadovsk has become the center of the universe then, eh? The Zone will make sure there are plenty of anomalies to go around, the Military will continue push up from the south, the Monolith army will swarm down from the north, and everyone will meet at Skadovsk. What a party that will be, I'm going to need to get more vodka, ha!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Owl Stingray 2 (Zaton, Iron Forest) Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_26_name">
+		<text>Scavenge Stingray 2 Crash Site</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_26_text">
+		<text>{npc_name} believes some valuable equipment may be found amongst the wreckage of the Stingray 2 helicopter crash, and is willing to pay for anything that can be recovered from there. He warned of a supposed supernatural force haunting the crash site.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_26_about_pre_npc_1">
+		<text>You want to make a few coins? One of the lookouts was screwing around with his telescope and he zoomed in on the wreck of the Military helicopter that crashed in the Iron Forest. He said he saw some weird piece of Military equipment amongst the debris; from what he described it seems like it could be something worth a lot of money. How about you head up there and find out what it is?</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_26_about_pre_actor_1">
+		<text>What, your legs broken? Go yourself, I've got enough to do.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_26_about">
+		<text>I'd go there myself, but the place is haunted and I swore I would never go back there again. Last time I was up there the hair on the back of my neck was standing up the whole time. I kept thinking I heard someone whispering my name, but I would look around and there was nobody there. I could here cackling and voices coming from nowhere, and then objects started floating around me and getting hurled right at me! There was some strange malevolent force that didn't want me there, I'll never go back there again. But if you can get that piece of equipment for me, I'd be willing to reward you well for it, no matter what it is.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_26_finish">
+		<text>Good, let's see what you recovered from the crash site... What, this is it? This isn't valuable, it's just a damn data module! That asshole lookout needs to get his eyes examined. Well, let's see if maybe there is some valuable data on it anyway. Let's see... just some info on the auxiliary equipment that was installed on the helicopter; radiation buffers, emission shielding, stealth systems... Now that's the valuable stuff right there, too bad none of that survived the crash. That's a lot of high-dollar equipment to have installed on a Military helicopter even in war, what the hell were they planning on doing with all of that here inside the Zone? Well, nothing here of value to me, but I did promise you a reward, so here you go. Don't worry, I'll find some other way to get you to work it off for me.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Owl Big Mutant Hunt Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_27_name">
+		<text>Open the Supply Line</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_27_text">
+		<text>Eliminate the dangerous mutants that are preventing {npc_name} from getting resupplied.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_27_about">
+		<text>My couriers are complaining their route is blocked by some dangerous mutants and they are refusing to deliver my shipments. Stalker, if I don't get resupplied soon I'm going to go out of business! I need that supply line opened back up. If you can make that happen I will reward you well.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_27_finish">
+		<text>Excellent, well done. You've saved my business. Here, take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Sidorovich Sniper Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_28_name">
+		<text>Thread the Needle</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_28_text">
+		<text>Sidorovich has ordered a hit against %s called %s. He has insisted that only the target is to be eliminated, any companions he is traveling with must be left unharmed.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_28_about_pre_npc_1">
+		<text>There is a stalker that needs to be taken out of the picture for various reasons, and I need someone who is a very good shot. This isn't the kind of job where any sloppy work will be tolerated, you see? How is your aim? Your arm seems a little shaky.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_28_about_pre_actor_1">
+		<text>My aim is fine, old man. Just give me the target and I'll take care of business for you.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_28_about">
+		<text>Listen stalker, I need this piece of shit eliminated but the people he tends to associate with are business contacts of mine, you see. I can't have you gunning him down in a blaze of glory like some cowboy and risk killing them. This must be very precision work, take out the target and only him. If any of his companions are killed you will not get a dime from me, understand? Good. Talk to me when it's done and I will give you your payment.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_28_finish">
+		<text>Ah, you have done well. One more of my enemies dead and my friends are still alive. Best kind of day to hope for in the Zone.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Nimble Big Mutant Hunt Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_29_name">
+		<text>Dangerous Mutants</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_29_text">
+		<text>Dangerous mutants have been sighted in the area. {npc_name} wants them eliminated.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_29_about">
+		<text>Some dangerous mutants have been spotted in the area. Go take care of them before they hurt any of the rookies.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_29_finish">
+		<text>Thanks for your help stalker. Please take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Barkeep Find Case Storyline Task -->
+
+	<string id="drx_ql_stalker_sl_task_30_name">
+		<text>Recover Missed Supply Delivery</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_30_text">
+		<text>Search the area for Barkeep's missing supply delivery.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_30_about">
+		<text>I need you to do something for me. My last delivery has not arrived and I fear my courier has been killed yet again. Go check his hideout and see if he might have left it there. If you find it I will reward you for returning it to me.</text>
+	</string>
+	<string id="drx_ql_stalker_sl_task_30_finish">
+		<text>Thank you stalker. Take this as your reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Loner Simulation Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 04, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Rifle for an Artefact for Loner Simulation Task -->
+
+	<string id="drx_ql_simulation_task_stalker_1_name">
+		<text>Rifle for a %s</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_1_text">
+		<text>{npc_name} is offering a rifle in exchange for a %s artefact.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_1_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_1_fetch_about">
+		<text>Are you any good at artefact hunting? If you happen to find a %s, let me know. I can't afford to pay you but I have a very nice rifle I think you will like.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_1_fetch_finish">
+		<text>Finally! You don't know how long I've been searching for this. Here, this is my finest rifle. I hate to part with it but it is well worth it to me.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Replace Looted Weapon for Loner Simulation Task -->
+
+	<string id="drx_ql_simulation_task_stalker_2_name">
+		<text>Replace Looted %s for a Loner</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_2_text">
+		<text>{npc_name} needs a %s to replace the one that was stolen from him.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_2_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_2_fetch_about">
+		<text>Yeah, my stash was looted and I lost my favorite rifle, a %s. I loved that rifle. If you can help me find a new one I'll pay you a premium for it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_2_fetch_finish">
+		<text>Thank you stalker! Here is what I owe you. Now off to hunt that damn Fracture...</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Missing Loner Simulation Task -->
+
+	<string id="drx_ql_simulation_task_stalker_3_name">
+		<text>Locate Missing Stalker</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_3_text">
+		<text>A stalker's companion has gone missing. Track him down and see if you can help him.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_3_about">
+		<text>Can you help me out? My friend has gone missing, I don't know what could have happened to him. I'm very worried, will you help me find him?</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_3_finish">
+		<text>You did it! Thank you, stalker. It's good to see my friend back and alive! Here, for your trouble:</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Reverse Bounty Hunt for Loner Simulation Task -->
+
+	<string id="drx_ql_simulation_task_stalker_4_name">
+		<text>Reverse Bounty Hunt</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_4_text">
+		<text>A stalker needs a bounty taken off his head. Find %s named %s and "persuade" him to remove the bounty.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_4_about">
+		<text>Yes, help me brother! Some bastard has put a price on my head. Take care of him for me and I will pay you double the bounty he has on me.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_4_finish">
+		<text>Oh, thank you stalker! Here is your payment. I can finally sleep for the first time in days!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Vengeance for Stalker Simulation Task -->
+
+	<string id="drx_ql_simulation_task_stalker_5_name">
+		<text>Vengeance for Stalker</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_5_text">
+		<text>A stalker wants you to avenge the death of his comrade. Find and kill %s known as %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_5_about">
+		<text>A bandit snuck into our camp last night and murdered my friend in cold blood. This kind of scum cannot be allowed to live. Kill him for me, stalker. In return I will give you my slain comrade's rifle.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_5_finish">
+		<text>Thank you stalker, you are a good warrior. Join me in a drink to my fallen brother.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Search the Stash Simulation Task -->
+
+	<string id="drx_ql_simulation_task_stalker_6_name">
+		<text>Search the Stash</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_6_text">
+		<text>{npc_name} has given the location of a good stash. If it contains a PDA, he is offering a reward.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_6_about">
+		<text>I know where someone hid a good stash. If you find a PDA in there bring it to me, I'll pay you for it. Anything else you find is yours.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_6_finish">
+		<text>Thank you stalker!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- HAVFetch Reward Assassination for Stalker Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_stalker_7_name">
+		<text>Problem Solver</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_7_text">
+		<text>A stalker is being tormented by %s known as %s. He has promised to give you an item you have been looking for if you can take care of his problem.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_7_about">
+		<text>I hear you're looking for a %s. I can get one for you, if you're willing to do something for me. There's a guy who's been causing me no end of grief. I can't take it anymore. I need him taken out of the picture. Do this for me, I will give you what you are looking for.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_7_finish">
+		<text>Thank you stalker. Here is what I promised you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Guide Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_stalker_8_name">
+		<text>Stalker Guide</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_8_text">
+		<text>{npc_name} has hired you to protect him and lead him to his destination.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_8_about">
+		<text>I'm traveling to a location in %s and could use an experienced guide to lead the way. If you're interested, I will pay you for the distance traveled. In addition, if we are attacked along the way I will pay you a bonus for your role in defending me.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_8_message">
+		<text>We made it! Come talk to me, I'll give you your reward.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_8_finish">
+		<text>Thank you, I don't think I could have made it here without your help. Here is your fee.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Supplies for Loner Simulation Task -->
+
+	<string id="drx_ql_simulation_task_stalker_9_name">
+		<text>%s Business Proposition</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_9_text">
+		<text>{npc_name} knows someone willing to pay a high price for %s. The cheaper you can find them for, the more your profit will be.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_9_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_9_fetch_about">
+		<text>You want to make a quick buck? I know a guy who is willing to pay a high price for %s. If you can get me some cheap to sell him I'll split the profits with you.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_9_fetch_finish">
+		<text>Awesome, man. Here's your cut.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mutant Hunt with Loner Simulation Task -->
+
+	<string id="drx_ql_simulation_task_stalker_10_name">
+		<text>Mutant Hunt</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_10_text">
+		<text>{npc_name} has invited you to join him on a mutant hunt.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_10_about">
+		<text>I'm heading out on a mutant hunt. You want to come along?</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_10_finish">
+		<text>Nice shooting. Um, I don't have anything to butcher the meat with. Here, take this instead, it's worth at least the value of your share.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loner Reverse Float Fetch Simulation Task -->
+
+	<string id="drx_ql_simulation_task_stalker_11_name">
+		<text>Missing Case</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_11_text">
+		<text>{npc_name} needs help with his task to find a missing case.</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_11_about">
+		<text>I'm on a job to find a lost case but I'm having a hard time locating it, and now some %s have moved into the area. Can you come along and give me a hand?</text>
+	</string>
+	<string id="drx_ql_simulation_task_stalker_11_finish">
+		<text>Thanks for your help. Here's something for the trouble.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

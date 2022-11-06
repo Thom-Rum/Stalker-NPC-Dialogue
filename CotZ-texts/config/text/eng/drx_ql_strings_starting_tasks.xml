@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Start Questline Tasks (drx_ql_strings_starting_tasks.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_starting_tasks.ltx
+<
+<	Created by: DoctorX
+<	Last revised: November 08, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Loner Start Game Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sidorovich (Loner Trader, Cordon) Start Game Task 1 -->
+
+	<string id="drx_ql_esc_m_trader_start_game_1_name">
+		<text>Meet with Sidorovich</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_start_game_1_text">
+		<text>Sidorovich in Cordon is known to give assistance to new stalkers in the Zone.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_start_game_1_actor_text">
+		<text>I have come here in search of the Wish Granter. What can you tell me about it?</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_start_game_1_npc_text">
+		<text>You want to find the Wish Granter? Sure easy, it's the third stop on the tour, the next bus leaves in twenty minutes, hehe... Listen stalker, there have been many people before you that have come here looking to find the Wish Granter, you know what they all have in common? They are all feeding the worms right now. The Wish Granter is just a legend, it doesn't exist. Even if it did exist do you know what your wish would be if you found it? That you never went looking for it in the first place. You want to get rich, is that it? You don't need to wish for your fortune. Someone like you can make plenty of money here in the Zone if you are smart. Here is what I will do for you; show me your PDA... Ah, there, I've loaded in a list of contacts, people here in the Zone who I know are looking to have work done. Go visit them when you are ready, some of them pay well. In the meantime, ask around camp, there is plenty of work here, heck, I even have some jobs I need done from time to time. It's an honest living, at least as honest as it gets here in the Zone.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_start_game_1_endgame_1_text">
+		<text>Thank you stalker. So, you came to the Zone looking to find the Wish Granter, and look at all you have found instead; conspiracy, secret laboratories, an army of brainwashed cultists growing in the center of the Zone, do you still want to make your wish? You know what my wish would be? An end to these terrible blowouts. You have deactivated the Miracle Machine and the Brain Scorcher, but there is still one emitter left - the largest and most insidious of them all. Whatever is causing these blowouts must be destroyed, otherwise the Zone will continue to grow and ravage the land. I may know someone who may have information that could help you; an old hermit that goes by the name of Doc. Find him and perhaps you will be one step closer to finding the source of the blowouts and putting an end to them once and for all.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Barkeep (Loner Barman, Rostok) Start Game Task 1 -->
+
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_start_game_1_name">
+		<text>Meet with Barkeep</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_start_game_1_text">
+		<text>The Barkeep at 100 Rads Bar is likely to have some information on this part of the Zone.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_start_game_1_actor_text">
+		<text>I have heard legends of stalkers who have gotten very rich off the Zone. How do I become one of them?</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_start_game_1_npc_text">
+		<text>That all depends on what you mean by rich. Some come here to see the wonders of the Zone and explore uncharted areas. For them, the experience has left them richer. Others come here to escape, to live in solitude away from the distractions of the civilized world. They are richer in quality of life. And then there are those who come for profit. The Zone does not seem to like these people as much. The Zone has much to offer, but it can also take away. The bigger the reward, the bigger the risk. Yes, some have succeeded in taking wealth from the Zone, but countless others have instead been taken by the Zone. I will give you a list of contacts who can help you find your riches, which type of riches you are after is up to you.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_start_game_1_endgame_1_text">
+		<text>Thank you stalker. Here is your reward, to add to your riches. Have you made it rich yet? Isn't that what you came to the Zone for? Of course it is, this is what brought every stalker to the Zone. Why else would someone risk their life and run a gauntlet of machine gun fire just to break into a place where they will get shot at even more, and possibly eaten? Only when you have reached the level of desperation where there is nothing left in your life but a crumb of bread and a glimmer of hope. By deactivating the Miracle Machine and the Brain Scorcher, you have magnified that ray of hope for many stalkers. But there is still one emitter left; the largest of them all that continues to claim the lives and minds of countless stalkers. Whatever is causing these blowouts must be destroyed. I know of a stalker that may know where the true source might be located. Find the stalker called Doc, and perhaps you will be one step closer to ending these terrible blowouts that ravage the land.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Beard (Loner Barman, Zaton) Start Game Task 1 -->
+
+	<string id="drx_ql_zat_a2_stalker_barmen_start_game_1_name">
+		<text>Meet with Beard</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_start_game_1_text">
+		<text>Beard aboard the Skadovsk is known to give assistance to stalkers new to this part of the Zone.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_start_game_1_actor_text">
+		<text>Is there any work up here?</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_start_game_1_npc_text">
+		<text>Up here? No, not much any way. But then again there's not many people up here to give work, either. Maybe the zombies have work but I doubt they pay well, ha! Here, I know some people who might be able help you out. Go pay them a visit and tell them Beard sent you! Maybe they will give you a shot of vodka, or maybe they will give you a punch in the face, ha!</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_start_game_1_endgame_1_text">
+		<text>Thank you stalker. So, you began your journey near the center of the Zone and now everything you have experienced in here will lead you back there. You have uncovered a conspiracy, discovered secret laboratories where unnatural experiments were being conducted, and learned the Monolith cult is, in fact, an entire army occupying the center of the Zone that even the Military cannot stop. You have deactivated the Brain Scorcher and the Miracle Machine, saving countless lives and opening up areas of the Zone that have been inaccessible for ages. And yet, the blowouts continue, stalkers continue to perish, and the Zone continues to grow. Whatever is causing these blowouts must be destroyed. I know of a stalker called Doc, he was one of the original stalkers to explore the Zone. If you can find him, perhaps he will have the answers as to where the source of these terrible emissions is located.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Duty Start Game Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Petrenko (Duty Trader, Rostok) Start Game Task 1 -->
+
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_start_game_1_name">
+		<text>Meet Colonel Petrenko</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_start_game_1_text">
+		<text>Report to Colonel Petrenko to receive your mission.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_start_game_1_actor_text">
+		<text>I heard the Duty propaganda being played over the loudspeaker. I agree with your goals and ideals, and I want to join the fight. What can I do to help?</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_start_game_1_npc_text">
+		<text>Excellent! You have built quite a reputation for yourself stalker, we could use someone like you. Very well, let's get right to business. I need someone who knows how to navigate the Zone. We have many friends in various areas throughout the Zone who need our assistance but not many of our soldiers are able to reach them. I will send you to them. They will tell you what they need done.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_start_game_1_endgame_1_text">
+		<text>Thank you stalker. So why did you decide to join Duty when you first came to the Zone? Do you share the conviction that the Zone must be destroyed? Surely you have done more than any stalker to make that goal closer to becoming a reality. You have disabled the Miracle Machine and the Brain Scorcher when no one else could. You have brought to light a conspiracy involving hidden laboratories and secret experiments and unethical research. You have discovered there is an entire army of Monolith warriors occupying the center of the Zone. Nevertheless, the Zone carries on and continues to grow and claim the lives and minds of countless stalkers. There is no hope of defeating the Zone while these horrific blowouts continue to rampage down from the north. Their source must be located and destroyed once and for all. I know of a stalker who may know where the source of the emissions is located. An old hermit that goes by the name Doc, he was one of the original stalkers to explore the Zone, now he just wanders it aimlessly. Find him and perhaps you will be one step closer to finding the source of the blowouts and putting an end to them.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Freedom Start Game Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Lukash (Freedom Honcho, Army Warehouses) Start Game Task 1 -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_name">
+		<text>Meet Lukash</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_text">
+		<text>Freedom leader Lukash wants to meet with you.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_actor_text">
+		<text>You asked to see me?</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_pre_npc_1">
+		<text>I need your help. This place is becoming a warzone and it's time for everyone to choose their side. I want you to join the cause. Help us bring peace to the Zone.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_pre_actor_1">
+		<text>If this is a warzone then you are just as much to blame. Freedom is one of the most militant factions in the Zone. Some people even call you terrorists.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_pre_npc_2">
+		<text>Peace does not often come about through peaceful methods, but we are not the terrorists. We are the protectors of this land. Look at where we are, mankind has been given a gift, a Zone full of wonders and miracles. But as with anything beautiful and misunderstood, there are those that want to covet it, those that want to profit off of it, and those that want to destroy it. The Military is trying to keep it secret, the scientists have been exploiting it, Duty wants to destroy it, and the Monolith are trying to control it. We are the only one's defending it, but we are few in number. We could use your help.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_pre_actor_2">
+		<text>What do you need me to do?</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_npc_text">
+		<text>We managed to capture this base from the Bandits and now have our hands full trying to prevent the Monolith from moving further south, while keeping Duty from pushing further north. We are in a perfect position to maintain balance in the Zone but it requires our full attention. There is so much more that needs to be done elsewhere but we cannot compromise our stance here by sending too many of our forces out into the field. I need you to help increase our reach. You are mobile, you can travel the Zone freely. I have loaded a list of contacts that are sympathetic to our cause into your PDA. Go meet with them and ask what you can do for them. Your work will help us immensely in liberating the Zone and making it a gift that all humanity can enjoy.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_endgame_1_text">
+		<text>Thank you stalker. So tell me, all that you have experienced, is this what you were expecting when you first came to the Zone and joined up with Freedom? You have already done so much to help liberate the Zone; you have uncovered a conspiracy involving secret and unethical experiments being conducted right here in the Zone, you deactivated the psi emitters in Yantar and Radar, you have discovered the Monolith cult is actually a powerful army occupying the center of the Zone. And yet, despite all that you have accomplished, the Zone will truely never be free while these horrific blowouts continue to wash down from the north. Whatever is causing them must be destroyed. I know of a staker called Doc who might have information as to the source of the blowouts. Find him and you may be one step closer to finding the source of the emissions and putting an end to them.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loki (Freedom Trader) Start Game Task 1 -->
+
+	<string id="drx_ql_jup_a6_freedom_leader_start_game_1_name">
+		<text>Meet Loki</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_start_game_1_text">
+		<text>A small group of Freedomers is rumored to be surviving in Yanov Station. Find Loki and see if you can offer them any assistance.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_start_game_1_actor_text">
+		<text>Glad I found you. I had heard legends there was a Freedom faction up here, wasn't sure if you were still alive.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_start_game_1_npc_text">
+		<text>Ha, yeah man, we're still alive. We're in the heart of it all up here. You can't fully appreciate the Zone until you're completely surrounded by it. Glad to see a friendly face, maybe you can help us out. We are close to finding a way to deactivate some of the deadly psi emitters around here. If we can pool together enough resources, we stand a chance of defeating them and opening up free access to the Zone for everyone. But we are just a small team up here, and we don't have easy access to the rest of the Zone. You managed to find your way up here, if you are that good at navigating the Zone, maybe you could help us. I'll give you a list of contacts to meet with. Do some work for them, get to know them, gain their trust. The more people you can meet with the more information you will get that can help us defeat these emitters that are cutting off access to the Zone and killing countless stalkers.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_start_game_1_endgame_1_text">
+		<text>Thank you stalker. Listen, I know you have been looking to find out more about the deadly emitters in the Zone. You have already defeated the Brain Scorcher and the Miracle Machine, yet there is still another emitter - far larger and more powerful than the others combined. The emissions it produces continue to wash over the Zone, ravaging the land and taking the lives and minds of countless stalkers. Whatever is causing these blowouts must be destroyed, until then you will not be able to declare your victory. I know of a man that might be able to help you. He is an old stalker that wanders the Zone and goes by the name of Doc. If you can find him, he may have information that could lead you to the source of the blowouts.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Clear Sky Start Game Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 09, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cold (Clear Sky Honcho, Great Swamp) Start Game Task 1 -->
+
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_name">
+		<text>Meet Cold</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_text">
+		<text>Meet with the Clear Sky leader in the hidden base.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_actor_text">
+		<text>I didn't know there was a stalker camp here.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_pre_npc_1">
+		<text>Yes, we try to keep it that way. We are Clear Sky, or what's left of it. We are just a small band of scavengers, hidden in a toxic swamp like rats. Well, you found us. Now go away and forget you were ever here.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_pre_actor_1">
+		<text>That's not what I hear. I've heard Clear Sky are warriors actively fighting the Zone. Your little rag-tag band of fighters have made a name for yourselves, no matter how hard you have tried to keep yourselves secret. I didn't just stumble onto this camp by accident, I tracked you down because I believe in your cause.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_pre_npc_2">
+		<text>Our cause? You know nothing of our cause, no matter how much you think you know. Yes, we are fighting the Zone. We have to make right everything that has gone wrong with it. We were once a proud group of scientists and engineers, now we are spies, saboteurs, assassins... We are not proud of the things we have done, but it has all been for the greater good.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_pre_actor_2">
+		<text>Why not team up with Duty? Aren't your goals aligned?</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_pre_npc_3">
+		<text>Duty is far too blunt in their aspirations. They want to destroy the Zone entirely, wipe it's existence from the face of the earth because they are afraid of it. We are not trying to destroy the Zone, our mission is to destroy the things within the Zone that have gone horribly wrong. There have been things done here; experimental projects that had unintended consequences and were probably ill-conceived to begin with. The data and results of these experiments are far too dangerous to let fall into the wrong hands. It is up to us to track down and contain all of the data from the experiments, and to put an end to any projects that may still be active. We could use your help.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_pre_actor_3">
+		<text>What would you have me do?</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_npc_text">
+		<text>I want you to work as one of our agents. You are new to the Zone and can still blend in. I'll provide you with a list of individuals we would like to interrogate. Go to them, get to know them, gain their trust. Find out whatever you can and listen for clues that can help us find and destroy any of the remaining aftermath of these atrocities.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_endgame_1_text">
+		<text>Thank you, and I may have something else for you. You have deactivated the Miracle Machine and the Brain Scorcher, but the emissions are still occurring. The blowouts must have another source, and I think I know someone who might have information about it. He calls himself Doc, he's an old stalker that wanders the Zone. I'm not sure where you can find him, but if you are able to track him down he may be able to provide clues to the answers you seek.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Ecologist Start Game Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sakharov (Ecologist Trader, Yantar) Start Game Task 1 -->
+
+	<string id="drx_ql_yan_stalker_sakharov_start_game_1_name">
+		<text>Meet Professor Sakharov</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_start_game_1_text">
+		<text>Professor Sakharov has an assignment for you.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_start_game_1_actor_text">
+		<text>You wanted to see me, boss?</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_start_game_1_npc_text">
+		<text>Oh, yes, yes. Good! I'm glad you're here. I have an important assignment for you. I want you to travel the Zone and learn as much as you can. There is so much out there we haven't yet discovered. Consider it... exploratory research. I've provided you with a list of contacts who will take care of you along your journey. Visit them, they can provide you with work or food or shelter. Explore and be curious! Be bold and adventurous! I expect your research will vastly increase our understanding of the Zone.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_start_game_1_endgame_1_text">
+		<text>Thank you stalker. You came to the Zone to study it, and look at what all your research has uncovered; a conspiracy involving secret laboratories and unethical experimentation, an entire army of Monolith soldiers occupying the center of the Zone, large-scale attempts at mind control. You have defeated the Miracle Machine and the Brain Scorcher when no one else could. But there is still one question that remains unanswered, perhaps the biggest one of all; what is the source of the blowouts? Whatever is causing these emissions that continue to ravage the land and take countless lives must be located and destroyed. I know of a stalker that may be able to help. His name is Doc, you should try to find him. He may be the only one who knows where the source of the blowouts might be found.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hermann (Ecologist Trader, Jupiter) Start Game Task 1 -->
+
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_start_game_1_name">
+		<text>Meet Professor Hermann</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_start_game_1_text">
+		<text>You have been transferred from the mobile lab in Yantar to Professor Hermann's group in Jupiter.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_start_game_1_actor_text">
+		<text>Professor Sakharov sent me to see you.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_start_game_1_npc_text">
+		<text>Ah yes, he sent word ahead. Sakharov spoke very highly of you, which is why he sent you to me. The research you have been doing down there is only the first stage of our mission here. The end game is reclamation of the Zone. This is where our responsibility lies. If we are to achieve this we need to start by decomissioning the various transmitters that are running out of control throughout the Zone. I have a list of contacts for you to meet with. Take what you have learned about the Zone from your research in Yantar and combine it with whatever information you can gather from them to find a way to gain access and deactivate the devices.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_start_game_1_endgame_1_text">
+		<text>Thank you stalker, you have done well. I have some information for you that could be useful in your mission to deactivate the deadly psi emitters in the Zone. You have already done a commendable job by deactivating the Brain Scorcher and the Miracle Machine, but there is still the most powerful emitter left. Whatever is causing these blowouts that continue to ravage the Zone and kill everything within it must be found and destroyed. There is a stalker that wanders the Zone called Doc. Find him. He may have information that could shed light on where the source is located.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mercenary Start Game Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 06, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dushman (Mercenary Trader, Dead City) Start Game Task 1 -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_name">
+		<text>Meet Dushman</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_text">
+		<text>Talk to Dushman.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_actor_text">
+		<text>So I was blindfolded, stuffed into a helicopter, and parachuted into a hostile drop zone in the middle of the night with barely any equipment or provisions. Anyone going to fill me in on what the job is anytime soon?</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_pre_npc_1">
+		<text>The secrecy was necessary. If word were to get out about our presence in the area it would be a major international incident. This is the Chernobyl Exclusion Zone, and we are knee-deep in it. Our employers believe there were highly advanced experimental research projects being conducted within this area. We have been contracted to locate and capture as much information about these projects as possible.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_pre_actor_1">
+		<text>So what is my role?</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_pre_npc_2">
+		<text>You have been selected for your uniquely versatile skill set. Our advance party arrived three days ago and have already begun establishing contacts with some of the indigenous population. You will be travelling the Zone and meeting with these contacts. Use their knowledge and resources to find out whatever you can, and capture any information you may find.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_pre_actor_2">
+		<text>Sounds easy enough.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_pre_npc_3">
+		<text>That could not be further from the truth. It won't be long before the Military finds out we're here and our intel shows they are a very well-armed detachment. However, our biggest problem so far has been that that this place is a living nightmare. Most of the local wildlife has been horrifically mutated and is ferociously aggressive. Many of the civilian trespassers in the area are criminals and killers who won't hesitate to shoot you before asking your name. Radioactive contamination exceeds lethal levels in almost every area. Even the environment itself is deadly, men have been swallowed up by the earth, burnt alive by flames that appeared from nowhere... Hell, less than an hour ago I watched a man get torn to shreds by the air itself. We've lost over half our team already and we just got here. Each day that goes by we lose that many more.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_pre_actor_3">
+		<text>Then I guess we better get a move on.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_npc_text">
+		<text>Excellent. I've loaded the location of your first contact into your PDA. Report back to me with your findings. Good luck to you.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_start_game_1_endgame_1_text">
+		<text>Thank you. It's no secret that you are the one who deactivated the Miracle Machine and the Brain Scorcher. You are the only one who has a chance of finding the source of these terrible blowouts that have been plaguing the Zone and putting an end to them. I might be able to help you, or at least I know of someone who might. His name is Doc, and he won't be easy to find. But he is the only person in the Zone that may have the information you need to help you find the source.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Military Start Game Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 06, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kuznetsov (Military Honcho, Agroprom) Start Game Task 1 -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_start_game_1_name">
+		<text>Meet Major Kuznetsov</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_start_game_1_text">
+		<text>Report to Major Kuznetsov.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_start_game_1_actor_text">
+		<text>Reporting for duty, sir.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_start_game_1_npc_text">
+		<text>Welcome to hell, soldier. You must have pissed someone off pretty bad to pull this assignment. Well, listen to me and maybe you'll stay alive. We are a special detachment of the Military force that has been dispatched to regain control of the Zone. The boys on the fenceline have been slacking off lately and there has been an upswell in unauthorized trespassers in the area, but that is the least of our concerns. Groups of stalkers have banded together in factions in here, with some of them starting to become sizeable militant forces. They must be removed. On top of that there are numerous locations throughout the Zone that may contain highly classified information, and we are tasked with securing it. Your tour of duty will take you all over the Zone, most of the time no one will be there to help you. Rely on your survival training. Meet with the contacts loaded into your PDA and they will give you your orders. Just complete your tour of duty and stay alive and you'll get to go home. You are dismissed.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_start_game_1_endgame_1_text">
+		<text>Thank you. You are the one who deactivated the Miracle Machine and the Brain Scorcher, right? You now want to find the source of the blowouts and shut it down too, yes? I may have some important intel for you. There was a stalker who came close to finding the source once, but no one knows what ever happened to him. I have recently learned that there is an old companion of his that still lives here in the Zone. He is called Doc and, if you can find him, perhaps he might have some information that can help you.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Bandit Start Game Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 09, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sultan (Bandit Honcho, Dark Valley) Start Game Task 1 -->
+
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_start_game_1_name">
+		<text>Meet Sultan</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_start_game_1_text">
+		<text>Sultan wants to meet with you.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_start_game_1_actor_text">
+		<text>You want me to work for you? What's in it for me?</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_start_game_1_npc_text">
+		<text>There are people here in the Zone who need things done for them. Some of these things cannot be done, shall we say; inside of regular channels. So they come to me. I arrange to take care of business for them and in return I expect them to pay me a very hefty sum. I will give you a list of these people. Go to them, do what they ask, and collect the payment. All I require is you give me 20 percent of what they pay when you are finished. Any money you make on the side while you're out there is your's to keep. Good deal, yes? It's more money than you would make pick-pocketing and looting stashes and sticking up rookies I guarantee. Just don't double-cross me, understand? I know everyone in this place and they can be very motivated to make examples of anyone who tries to rip me off.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_start_game_1_endgame_1_text">
+		<text>Thanks buddy. You know, it's funny, a guy like you comes to the Zone looking to profit off of it and yet you ended up giving the rest of us the rewards. You deactivated the Miracle Machine and the Brain Scorcher and set parts of the Zone free. You trying to make up for your evil ways? Hehe.. Well, for peace or for profit there is still at least one more major opportunity in the Zone. These blowouts have to be caused by something, and I might know a guy who might know something about that. He's an old coot who wanders the Zone, goes by the name Doc. If you can find him you might be able to find the source of the emissions.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Monolith Start Game Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Krolik (Monolith Trader, Pripyat) Start Game Task 1 -->
+
+	<string id="drx_ql_pri_monolith_monolith_trader_stalker_start_game_1_name">
+		<text>Meet Krolok</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_trader_stalker_start_game_1_text">
+		<text>Seek guidance from the wise one known as Krolok.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_trader_stalker_start_game_1_actor_text">
+		<text>Can you help me? I don't know what is wrong with me, I have no idea where I am. I can't even remember who I am.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_trader_stalker_start_game_1_pre_npc_1">
+		<text>Be calm, my brother. A temporary effect of the Zone, your memories will return in time. You are a Monolith soldier, and you do well to serve us.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_trader_stalker_start_game_1_pre_actor_1">
+		<text>Who are the Monolith?</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_trader_stalker_start_game_1_npc_text">
+		<text>We are your family. We are the protectors of the great works of the Zone that our masters have achieved. Our lords have since ascended and we loyally await them to rise us up with them. In their benevolence they have bestowed upon us the great works that we now care for. Now, there is much work to be done my brother. The Zone must be purged of the infidels. We must keep control of the mutant population. Your brothers need food and weapons. You will report to your Monolith elders and we will give you your assignments. You must do your part. Praise Monolith and may the Monolith bless you.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_trader_stalker_start_game_1_endgame_1_text">
+		<text>Well done. You know, you have really earned my trust after all you have done, and that ain't easy. I never thought a Monolith could ever come back from the dark side. But you did, and you managed to deactivate the Brain Scorcher and the Miracle Machine when no one else could. There is still one emitter left though, and perhaps you are the only one who can disable it. Something is causing these horrific blowouts that wash over the Zone like a tsunami, and it must be stopped. There is only one man I know of who made any progress in trying to find it, but he is long dead. One of his former companions however, is still alive. He is called Doc, and nowadays he mostly lives as a hermit wandering the Zone. Find him, and perhaps you can find a way to free the Zone from it's mind control, just as you have freed yourself.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

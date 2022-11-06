@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Clear Sky Task Strings (drx_ql_strings_csky.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: November 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Clear Sky Storyline Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Search Agroprom Underground Storyline Task -->
+
+	<string id="drx_ql_csky_sl_task_1_name">
+		<text>Search Agroprom Underground</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_1_text">
+		<text>Stolen Military documents are stashed in the tunnels below Agroprom. Find them and return them to {npc_name}.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_1_about">
+		<text>One of our agents has managed to capture important documents from the Military but he was killed before he could bring them back. They are currently hidden in the tunnels below Agroprom. I need you to covertly infiltrate the area and find them before the Military does. Return them here at once when you have found them. Good luck to you.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_1_finish">
+		<text>Ah, just as I suspected. It is good you brought these to me, if they had ended up in the wrong hands it could be disasterous. These are the project summaries of secret experiments that were being conducted in several underground laboratories hidden throughout the Zone. You see, the Zone is a cordoned-off, desolate area that not many people want to come to anyway. It is the perfect location for covert research to take place, the kind of research you don't ever want anyone to know you are conducting. Things like; biological alteration, genetic engineering, mind control... The details of such research are not something that those responsible for them would want getting out. Excellent work. If you should find any more documents like this you must bring them to me immediately.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Meet With Ivan Trodnik Storyline Task (LINKS TO: Clear Sky Ivan Trodnik Deactivate Brain Scorcher) -->
+
+	<string id="drx_ql_csky_sl_task_2_name">
+		<text>Meet with Ivan Trodnik</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_2_text">
+		<text>Ivan Trodnik has developed a serum that will allow you to infiltrate the Monolith cult and gain access to the Brain Scorcher. You should finish up any outstanding tasks and find a place to stash your gear before meeting with him.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_2_about_pre_npc_1">
+		<text>I have a mission of utmost importance for you. There is an emitter in Radar known as the Brain Scorcher. This monstrosity is a blight upon the planet and a threat to all life in the Zone. The psi field it produces is orders of magnitude larger and more powerful than the one in Yantar was. Every day more stalkers are killed or worse by it's effects. It must be destroyed.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_2_about_pre_actor_1">
+		<text>You don't have to explain to me the horrors of the Brain Scorcher. But penetrating the bunker in Radar is a far greater challenge than deactivating the Miracle Machine was. The place is crawling with mutants and Monolith troops. It would take an army to even get close to the lab entrance.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_2_about_pre_npc_2">
+		<text>This is why I called you here. We have a rare opportunity and must take action. You are going to infiltrate the cult of the Monolith, pose as one of them. Ivan Trodnik has just completed developing a serum that mimics the effects of exposure to psi fields, without effecting the user's mind. Once he administers the serum you will appear to the Monolith as though you are another victim of the Brain Scorcher. We will smuggle you aboard one of the Death Trucks they use to collect survivors of the Brain Scorcher and take them to be converted into their ranks. Your psi helmet will protect you from any psi fields in their territory. Posing as a newly converted Monolith cultist, you will have unrestricted access to areas they control. Make your way to the emitter in Radar, find it's source, and find a way to shut it down.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_2_about_pre_actor_2">
+		<text>This sounds like a suicide mission. Even if I succeed in fooling the Monolith into thinking I am one of them, the charade will be exposed once I deactivate the emitter. They will never let me out of Radar alive.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_2_about">
+		<text>I will have an extraction team standing by in the Red Forest. Once they receive confirmation the emitter is disabled, they will storm the compound to help clear a path so you can make your escape. I'm not going to lie to you, this is an incredibly risky operation. You will have to go in alone, and the Monolith will surely strip you of all your gear before they load you on the Death Truck. Everyone will think you have been converted to the Monolith faction, even your former allies will think you are now their enemy. I will give you some time to say goodbye to your friends and finish up any outstanding business you might have. When you are ready, find a place to stash your gear and go see Ivan. He will administer the treatment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Ivan Trodnik Deactivate Brain Scorcher Storyline Task (LINKS FROM: Clear Sky Meet With Ivan Trodnik) -->
+
+	<string id="drx_ql_csky_sl_task_3_name">
+		<text>Deactivate the Brain Scorcher</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_3_text">
+		<text>Infiltrate the Monolith faction and gain access to Lab X-19. Find a way to deactivate the massive psi emitter known as the "Brain Scorcher" that is located there.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_3_about">
+		<text>You are ready? Very well, I have the serum prepared for you. Once I inject it, you will lose conciousness for a few hours. Cold and his men will smuggle you aboard one of the Monolith's Death Trucks to be transported to their base. When you wake up, if all goes well, everyone will believe you are a Monolith cultist. Even your former allies will consider you their enemy. Make your way into the bunker in Radar and find a way to disable the Brain Scorcher.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_3_finish">
+		<text>What you have done is amazing. With the Miracle Machine and the Brain Scorcher deactivated, areas of the Zone that were previously inaccessible can now be navigated freely, and we have made great strides in making right what was made wrong. Please accept this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Meet With Novikov Storyline Task (LINKS TO: Clear Sky Novikov Infiltrate Lab X-16) -->
+
+	<string id="drx_ql_csky_sl_task_4_name">
+		<text>Meet with Novikov</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_4_text">
+		<text>Novikov, the Clear Sky technician, has requested to see you.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_4_about">
+		<text>Novikov is looking for you. He has made an important discovery and requested to see you personally.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Novikov Infiltrate Lab X-16 Storyline Task (LINKS FROM: Clear Sky Meet With Novikov )-->
+
+	<string id="drx_ql_csky_sl_task_5_name">
+		<text>Infiltrate Lab X-16</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_5_text">
+		<text>Infiltrate the Miracle Machine compound in Yantar using the psi helmet {npc_name} gave you. Find a way to disable the emitter located there.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_5_about_pre_npc_1">
+		<text>Ah, good, you're here. I was able to get my hands on the documents you recovered from lab X-18 in the Dark Valley. Tucked away in the back were the blueprints and technical specs for a device that was being developed and tested down there. I was able to recreate the device from the data. I believe this helmet could be used to protect the wearer from some of the harmful psi fields in the Zone.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_5_about_pre_actor_1">
+		<text>Great. What did you need me for?</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_5_about">
+		<text>There is an emitter in Yantar, you've probably heard of it by now, stalkers call it the "Miracle Machine". The area surrounding it has been completely inaccessible due to the strong localized psi field emanating from there. The effects of the field are horrific. It is rumored to turn men into mindless killers and has been responsible for countless deaths. Take the device. You can use it to penetrate the field and infiltrate the bunker housing the emitter. Perhaps you can find a way to shut it off.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_5_finish">
+		<text>You're back! The whole camp has been talking about what you have done. With the Miracle Machine deactivated we have helped make right what was once made wrong. Excellent work. Please, take this in gratitute.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Infiltrate Lab X-18 (Dark Valley) Storyline Task -->
+
+	<string id="drx_ql_csky_sl_task_6_name">
+		<text>Infiltrate Lab X-18</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_6_text">
+		<text>Military forces have taken over a warehouse complex in the Dark Valley that is believed to be the location of one of the secret laboratories mentioned in the Agroprom Underground documents. Infiltrate the lab and recover any research documents found inside before the Military begins their own search.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_6_about">
+		<text>There is an abandoned warehouse in the Dark Valley that the Military has recently occupied and cordoned off. We believe they have discovered one of the hidden laboratories where some of the secret experiments outlined in the Agroprom Underground documents were being conducted. It is imperative that we recover any evidence of the research that was going on there before the Military can get their hands on it. Head over there immediately and find a way to penetrate the complex. Locate the entrance to the laboratory and search for any documentation on the experiments that may have been left down there. You must not fail. It would be catastrophic if the Military were to gain control of that information.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_6_finish">
+		<text>Excellent, you have succeeded. Let me see what you recovered... These are the details of genetic and psychological field experiments that were being conducted at that location, tests which went horribly awry. You have done well to recover these. This information is far better off in our hands than in those of the Military.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Protect Clear Sky Base Storyline Task -->
+
+	<string id="drx_ql_csky_sl_task_7_name">
+		<text>Protect Clear Sky Base</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_7_text">
+		<text>Remove any hostile forces in the area to prevent them from discovering Clear Sky base.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_7_about">
+		<text>There has been an increase of activity in the swamp. I can't risk having anyone blunder into our base. I want you to clear the area of anyone hostile to Clear Sky.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_7_finish">
+		<text>You have done well. Thank you stalker.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Rescue Missing Operative Storyline Task -->
+
+	<string id="drx_ql_csky_sl_task_8_name">
+		<text>Rescue Clear Sky Operative</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_8_text">
+		<text>A Clear Sky operative has been captured and detained by a group of %s. Head to the area and rescue the captive.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_8_about">
+		<text>One of our operatives is being detained by hostile %s. Mount a rescue operation and set him free him before they start torturing him for information.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_8_finish">
+		<text>Excellent work. Take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Dynamic Brawl Storyline Task -->
+
+	<string id="drx_ql_csky_sl_task_9_name">
+		<text>Reinforce Clear Sky</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_9_text">
+		<text>Some members of Clear Sky have come across a group of %s in the area. Meet up with them and help them dislodge the threat.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_9_text_1">
+		<text>Push forward and eliminate the %s from the area.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_9_about">
+		<text>A few of our operatives just radioed in, they made contact with a group of %s and need help driving them out. Head over there and see if you can lend a hand.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_9_message">
+		<text>Hey %s, there are hostiles in the area. Help us clear them out.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_9_finish">
+		<text>Thanks for your assistance. Please take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Sky Sniper Storyline Task -->
+
+	<string id="drx_ql_csky_sl_task_10_name">
+		<text>Kill the Profiteer</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_10_text">
+		<text>Cold wants %s called %s silenced before he can sell the secrets of the Zone to outside influences. The hit must be carried out discretely; eliminate the target but leave any companions of his alive.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_10_about_pre_npc_1">
+		<text>Listen carefully. There is a stalker out there that has acquired information about covert experiments that were taking place here in the Zone, and I believe he is planning on smuggling that information to the outside and selling it to the highest bidder. If any research information from the experiments were to fall into the wrong hands it could be disasterous. He must be stopped before he has a chance.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_10_about_pre_actor_1">
+		<text>I can silence him. Just let me know where to find him.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_10_about">
+		<text>Here is his last known location. Now listen; once you find him, I want him and only him eliminated. I can't have this be a bloodbath, it will draw too much attention. Plan on making your attack from a distance, if he is traveling with any companions they must be left alive.</text>
+	</string>
+	<string id="drx_ql_csky_sl_task_10_finish">
+		<text>Excellent marksmanship. Well done.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Clear Sky Simulation Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 03, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Eliminate Dangerous Mutants for Clear Sky Simulation Task -->
+
+	<string id="drx_ql_simulation_task_csky_1_name">
+		<text>Eliminate Dangerous Mutants for Clear Sky</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_1_text">
+		<text>Eliminate dangerous mutants in the area for Clear Sky.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_1_about">
+		<text>I was just attacked by a pack of mutants. I'll show you where they are, take them out before they kill somebody.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_1_finish">
+		<text>Thank you, please take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mutant Meat Stew for Clear Sky Simulation Task -->
+
+	<string id="drx_ql_simulation_task_csky_2_name">
+		<text>%s Stew</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_2_text">
+		<text>A guy from Clear Sky has a special recipe for preparing mutant meat and needs %s brought to him.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_2_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_2_fetch_about">
+		<text>Have you ever tried mutant meat? A lot of guys won't touch it unless they're starving, but personally I love it. If you can get me a few good cuts of %s I'll make it worth your while. Mmm... I'm drooling just thinking about it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_2_fetch_finish">
+		<text>Yes! I'm going to eat good tonight! Thanks stalker, here is your payment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Retrieve Notebook for Clear Sky Simulation Task -->
+
+	<string id="drx_ql_simulation_task_csky_3_name">
+		<text>Retrieve Documents for Clear Sky</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_3_text">
+		<text>{npc_name} needs his documents returned to him.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_3_about">
+		<text>I have some important documents that I stashed away when I was attacked by bandits. I dread to go back there. If you can get them for me, I'll gladly pay you.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_3_finish">
+		<text>Thank you stalker!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- HAVFetch Reward Assault for Clear Sky Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_csky_4_name">
+		<text>Home Away From Home</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_4_text">
+		<text>{npc_name} wants his sanctuary back from the %s that moved in there. In return he is willing to offer an item you have been looking for.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_4_about">
+		<text>There's this place I like to go. My little refuge in the Zone. You know what I'm talking about, right? Surely you have a spot or two like that, somewhere you feel safe, where you actually enjoy being in the Zone. Anyway, my spot has recently been overrun by undesirables. If you can clear them away for me I would be willing to give you my %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_4_finish">
+		<text>Thank you stalker. Here is what I promised you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Lost PDA for Clear Sky Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_csky_5_name">
+		<text>Find Lost PDA</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_5_text">
+		<text>{npc_name} dropped his PDA and cannot find it. He is offering a reward if you can.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_5_about">
+		<text>I dropped my PDA when I was attacked by some mutants. I looked all over, I can't find the damned thing. I had some really important information on there stalker, I have to get it back. Can you have a look for me? I'll reward you well if you can find it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_5_finish">
+		<text>You are a lifesaver my friend. Have this in gratitude.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Item Swap with Clear Sky Simulation Task -->
+
+	<string id="drx_ql_simulation_task_csky_6_name">
+		<text>Find a %s for Clear Sky</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_6_text">
+		<text>Find a %s for {npc_name}. He is offering some valuable equipment in return.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_6_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_6_fetch_about">
+		<text>I'm trying to get my hands on a %s. If you can find one for me I'd be willing to give you a %s for it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_csky_6_fetch_finish">
+		<text>Hey, great! You found one! Thanks stalker, here is what I promised you.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

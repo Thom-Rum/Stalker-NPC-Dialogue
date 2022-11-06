@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Nimble (Loner Trader, Cordon) (drx_ql_strings_loner_nimble.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_loner_nimble.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 04, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 04, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Nimble (Loner Trader) Find Weapon Task -->
+
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_1_name">
+		<text>Find a %s for Nimble</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_1_text">
+		<text>Nimble has asked you to find a specific firearm. It needs to be in mint condition. Return to him when you find what he is looking for.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_1_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_1_fetch_about">
+		<text>I have a client looking for a %s and I need someone to help me find it. It must be in mint condition. The client is paying top dollar and he doesn't want a rusty piece of shit that will jam up in a life or death situation. I'll give you most of the profit since you are doing all the work. Come back when you find it, man.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_1_fetch_finish">
+		<text>This is a fine weapon. I think my client will be pleased when I deliver this to him. Here is what I owe you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Nimble (Loner Trader) Retrieve PDA Dynamic Task -->
+
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_2_name">
+		<text>Retrieve PDA for Nimble</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_2_text">
+		<text>Nimble has a PDA he needs retrieved.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_2_about">
+		<text>I need you to pick up a PDA for me. It's hidden in a spot a little while away from here.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_2_finish">
+		<text>Thank you stalker!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Nimble (Loner Trader) PDA Float Fetch Task- -->
+
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_3_name">
+		<text>Find Nimble's PDA</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_3_text">
+		<text>A PDA intended for Nimble was lost when it's previous courier was killed. Search the area and recover the PDA.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_3_about">
+		<text>Spore hired a rookie to deliver a PDA to me, but the poor bastard got torn to shreds by a pack of mutants before he could get here. Would you mind checking the area where he was killed to see if you can find the PDA for me? I'll reward you well if you can find it.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_3_finish">
+		<text>Thank you, stalker. Take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Nimble (Loner Trader) Checkpoint Infiltration Storyline Task -->
+
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_4_name">
+		<text>Supply Intercept</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_4_text">
+		<text>Sneak into the southern checkpoint and find the supply shipment being held there.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_4_about">
+		<text>We have fallen on hard times here in the camp, stalker. Supplies are running low and with the increase in Military patrols we can't even go out to hunt. Desperate times call for desperate measures, and I need your help. I got a tip there was a supply delivery intended for the Military outpost in Agroprom, but it got held up at the checkpoint south of here. If someone had enough balls to sneak in there and take it we could feed the camp for a week. What do you think, stalker? I'll give you a cut of the loot if you're up for it.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_task_4_finish">
+		<text>Thanks stalker, you are amazing. Here is your share.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

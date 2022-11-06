@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks  Given by Spore (Clear Sky Trader, Great Swamp) (drx_ql_strings_csky_spore.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_csky_spore.ltx
+<
+<	Created by: DoctorX
+<	Last revised: November 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spore (Clear Sky Trader) Deliver PDA Task -->
+
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_1_name">
+		<text>Deliver PDA to Nimble</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_1_text">
+		<text>Spore needs you to deliver an encrypted PDA to Nimble in Cordon.</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_1_about">
+		<text>Sure, I have a job for you. I need this PDA delivered to a friend of mine who hangs out at the rookie camp in Cordon, his name is Nimble. He will compensate you on delivery. If you haven't met him yet, ask him what he has to offer. He can get his hands on some nice equipment... for a price.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spore (Clear Sky Trader) Destroy Helicopter Task -->
+
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_2_name">
+		<text>Destroy the Military Helicopter</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_2_text">
+		<text>Spore is fed up and wants you to destroy the helicopter that is patrolling the Swamp. He will offer you a discount if you follow through.</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_2_about">
+		<text>The Military has been stepping up their helicopter patrols of the area. It's getting to the point where we can't even set foot outside of the base without getting shot at by the damn thing. We need to be able to operate freely in the Zone if we are to accomplish anything. I'm afraid we are left with no other choice than to take it out. If you can find a way to bring that chopper down, I will give you a lifetime discount on everything I have to offer in my shop.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spore (Clear Sky Trader) Escort Great Swamp Scientists Task -->
+
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_3_name">
+		<text>Escort Great Swamp Scientists</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_3_text">
+		<text>Clear Sky has hired you to guide some scientists them to a specific location for study. Once their research has been successfully conducted, return them safely to camp.</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_3_about">
+		<text>Scientists here in camp need an experienced stalker to lead them out into the field for study. Are you up for it? Your job is to keep them alive and guide them to their destination.</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_3_finish">
+		<text>Thank you stalker. You may have this as payment for your services.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spore (Clear Sky Trader) Interceptor Task -->
+
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_4_name">
+		<text>Recover Sensitive Documents</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_4_text">
+		<text>Intercept the Military squad and capture the sensitive documents they are transporting.</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_4_about">
+		<text>Right now there is a detachment of military personnel transporting a set of documents we believe came from one of the secret underground research facilities in the area. We need to recover those documents at all costs. Can I count on you to get the job done?</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_4_finish">
+		<text>You have done well. It would have been a disaster if these documents fell into the wrong hands.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spore (Clear Sky Trader) Recover Documents Task -->
+
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_5_name">
+		<text>Document Search</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_5_text">
+		<text>Search for classified documents that may exist in the area.</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_5_about">
+		<text>Classified documents are believed to have been stored in a compound in the area. Search the grounds and see if you can find them before someone else does.</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_5_finish">
+		<text>Excellent. We wouldn't want anyone else to gain control of these documents. Well done.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spore (Clear Sky Trader) Clear Research Area Task -->
+
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_6_name">
+		<text>Swamp Scout</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_6_text">
+		<text>Travel to the research area in advance of the research team to eliminate any hostile activity.</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_6_about">
+		<text>I'm going to be sending some Ecologists out into the swamp to conduct some research. I'd like a scout to go ahead of them and clear out any trouble they might encounter. Are you up for the task?</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_task_6_finish">
+		<text>Excellent work. You have done well.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

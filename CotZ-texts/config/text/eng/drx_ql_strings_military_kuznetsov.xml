@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Major Kuznetsov (Military Honcho, Agroprom) (drx_ql_strings_military_kuznetsov.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_military_kuznetsov.ltx
+<
+<	Created by: DoctorX
+<	Last revised: November 17, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kuznetsov (Military Honcho) Payoff Change Factions Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_cf_task_1_name">
+		<text>Bribe Kuznetsov to Join the Military</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_cf_task_1_text">
+		<text>Major Kuznetsov will accept a 8,000 RU payment to let you join the Military</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_cf_task_1_about">
+		<text>You want to enlist? Well, you'll never pass the physical requirements will all the radiation you've absorbed in the Zone. Tell you what though, if you're willing to slip me 8,000 RU I might be persuaded to look the other way.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_cf_task_1_finish">
+		<text>Very well. Welcome to the Military, soldier.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 17, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kuznetsov (Military Honcho) Stop Unauthorized Incursions Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_1_name">
+		<text>Stop Unauthorized Incursions</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_1_text">
+		<text>You have been assigned to lead an assault squad to clear out any unauthorized individuals.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_1_about">
+		<text>HQ is concerned about the rising number of incursions into the Zone. I want you to take a squad and sweep an area for unauthorized personnel. Keep alert for any friendlies, but anyone else you see you are cleared to shoot on sight.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_1_finish">
+		<text>Great job. Keep it up you'll be in line for a commendation.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kuznetsov (Military Honcho) Capture Territory Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_2_name">
+		<text>Reclaim Exclusion Zone Territory</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_2_text">
+		<text>You have been ordered to capture territory within the Zone.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_2_about">
+		<text>Our unit has been tasked with pushing further into the Zone. I am looking for volunteers to recapture remote territories for us. Can I be confident in your cooperation?</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_2_finish">
+		<text>Excellent work. Your success has helped us greatly.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kuznetsov (Military Honcho) Capture Enemy Combatant Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_3_name">
+		<text>Capture Enemy Combatant</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_3_text">
+		<text>You have been ordered to capture %s named %s. Deliver the prisoner alive to {npc_name}.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_3_about">
+		<text>HQ has a identified a target they would like brought in for questioning. Find the target, take him into custody, and bring him to me. Wound him if you have to, but he must be brought back alive.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_3_finish">
+		<text>Outstanding work! I will notify HQ right away of your success.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kuznetsov (Military Honcho) Mercenary Interceptor Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_4_name">
+		<text>Mercenary Interrogation</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_4_text">
+		<text>Major Kuznetsov has learned the location of a Mercenary officer. Find him and get any information you can off of him, even if it requires taking it from his corpse.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_4_about">
+		<text>We need to find out more about these Mercenaries that have shown up here in the Zone. I have identified the location of a high-ranking member of their organization. I want you to find him and recover whatever information you can from him, using whatever tactics are necessary.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_4_finish">
+		<text>You have done well. This information will be valuable in determining who has hired these Mercenaries.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kuznetsov (Military Honcho) Loner Interceptor Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_5_name">
+		<text>Recover Stolen Documents</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_5_text">
+		<text>A stalker has stolen classified documents from one of the research labs. Recover the documents before they can be smuggled out of the Zone.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_5_about">
+		<text>A trespasser has infiltrated one of the underground locations and may have absconded with classified documents. Apprehend him and recover those documents with extreme urgency. You are authorized to use whatever force is necessary.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_5_finish">
+		<text>Outstanding. This information could have been very dangerous if it had fallen into the wrong hands.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kuznetsov (Military Honcho) Dynamic Brawl Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_6_name">
+		<text>Enforce the Cordon</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_6_text">
+		<text>Meet up with the Military squad and organize the assault to push out the unauthorized %s.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_6_text_1">
+		<text>Lead the attack to remove the %s from the area.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_6_about">
+		<text>We are planning an assault on a large gathering of %s that have invaded the area. Link up with the rest of the assault squad and lead the effort to dislodge the trespassers.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_6_message">
+		<text>Look alive boys, here comes %s to lead us to victory!</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_task_6_finish">
+		<text>Well done. You are a fine leader of men.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

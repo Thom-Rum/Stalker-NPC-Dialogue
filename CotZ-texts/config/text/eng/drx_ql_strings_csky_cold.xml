@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Cold (Clear Sky Honcho, Great Swamp) (drx_ql_strings_csky_cold.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_csky_cold.ltx
+<
+<	Created by: DoctorX
+<	Last revised: November 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cold (Clear Sky Honcho) Payoff Change Factions Task -->
+
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_cf_task_1_name">
+		<text>Get Funds to Join Clear Sky</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_cf_task_1_text">
+		<text>Cold will indoctrinate you into Clear Sky for 15,000 RU.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_cf_task_1_about">
+		<text>Yes, we've been watching you. You will be a good fit for Clear Sky. We insist every initiate pays a 15,000 RU fee, this helps fund our research and pays our protection. What do you say?</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_cf_task_1_finish">
+		<text>Good. We're glad to have you aboard Clear Sky.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cold (Clear Sky Honcho) Squash the Conspiracy Task -->
+
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_1_name">
+		<text>Squash the Conspiracy</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_1_text">
+		<text>Eliminate the group of %s that intend to leak secrets of the Zone to the outside world.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_1_about">
+		<text>A group of %s are conspiring to infiltrate one of the hidden laboratories to steal any information they can find and sell it on the black market. We cannot have any information about the experiments that were being conducted in the Zone making their way to the outside, the consequences could be disasterous. Go take care of them.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_1_finish">
+		<text>Well done. Have this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cold (Clear Sky Honcho) Dynamic Brawl Task -->
+
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_2_name">
+		<text>Surrounded</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_2_text">
+		<text>Reinforce the Clear Sky agents that are pinned down by enemy %s.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_2_text_1">
+		<text>Push through the enemy lines and eliminate the %s.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_2_about">
+		<text>Some of our agents made contact with a group of %s that have them surrounded. Head over there quickly and help them out.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_2_message">
+		<text>%s, keep quiet and come with us. The hostiles are massed nearby here.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_2_finish">
+		<text>Good work. Take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cold (Clear Sky Honcho) Assault Task -->
+
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_3_name">
+		<text>Unauthorized Access</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_3_text">
+		<text>%s are intruding on a sensitive area. Eliminate them.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_3_about">
+		<text>Some %s have been poking their noses around an area I would rather they not be. I would like you to head out there and take care of the problem.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_3_finish">
+		<text>Good job. Take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cold (Clear Sky Honcho) Dead Drop Task- -->
+
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_4_name">
+		<text>Dead Drop</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_4_text">
+		<text>Retrieve documents left by a Clear Sky operative and return them to Cold.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_4_about">
+		<text>One of my operatives has left some documents for me at an unmarked drop point. I want you to retrieve them for me. Don't let anyone follow you. If you see someone tailing you, kill them immediately.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_task_4_finish">
+		<text>You weren't followed here were you? Good work.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

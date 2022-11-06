@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< PDA Encyclopedia Guide Articles - Anomalies (drx_cotz_guide_anomalies.xml)
+<	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+<
+<		- String ID's must be formatted as follows:
+<			drx_cotz_str_guide_{x}
+<				- Text to display for current guide article section name ({x} = sequential int starting with 1)
+<			drx_cotz_str_guide_{x}_{y}
+<				- Text to display for current article title ({y} = sequential int starting with 1)
+<			drx_cotz_str_guide_{x}_{y}_text
+<				- The body of the guide article text
+<
+<	Created by: DoctorX
+<	Last revised: October 05, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Anomalies
+	<!--
+	<!--	- Modification of string_table_enc_zone.xml (ShoC 1.0005) and ui_st_loadscreen.xml (CoC 1.5b r4)
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	October 05, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Anomalies section name -->
+	<string id="drx_cotz_str_guide_5">
+		<text>Anomalies</text>
+	</string>
+
+	<!-- Springboard -->
+	<string id="drx_cotz_str_guide_5_1">
+		<text>Springboard</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_1_text">
+		<text>One of the first anomalies ever recorded - an unstable gravitational field inflicting shock damage to anyone within its radius. The amount of damage inflicted changes during its lifetime, ranging from minor bruises, through serious wounds, to instant death. Easy to spot in daylight. Accompanied by air fluctuation above the anomaly, dancing leaves and distinctive crimson-colored stains on the ground. Forms three types of artefacts: Jellyfish, Stone Flower and Night Star.</text>
+	</string>
+
+	<!-- Whirligig -->
+	<string id="drx_cotz_str_guide_5_2">
+		<text>Whirligig</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_2_text">
+		<text>The anomaly snatches its victims up in the air and spins them at a breakneck speed. The exact nature of the Whirligig remains unknown. The anomaly can be recognized by a light whirlwind of dust above and by body fragments scattered in the vicinity. Victims caught on its outer rim - far enough from the maximum effect zone at the center - can escape the Whirligig with relatively minor injuries. Forms three types of artefacts: Stone Blood, Meat Chunk and Soul.</text>
+	</string>
+
+	<!-- Vortex -->
+	<string id="drx_cotz_str_guide_5_3">
+		<text>Vortex</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_3_text">
+		<text>An anomaly of presumably gravitational nature. When triggered, the tremendous power of the Vortex drags everything within the radius of 10-15 meters towards center. Victims drawn into the core have no chance of survival: their bodies are quickly constricted into a tight lump, only to be blown up in a powerful discharge of energy a moment later. Easily recognizable in daylight by the air fluctuation above, dancing leaves, fragments of dismembered corpses lying around and a distinctive dark stain in the center. Highly dangerous. Forms three types of artefacts: Wrenched, Gravi and Goldfish.</text>
+	</string>
+
+	<!-- Fruit Punch -->
+	<string id="drx_cotz_str_guide_5_4">
+		<text>Fruit Punch</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_4_text">
+		<text>An anomaly of unknown nature. Often forms in shallow pools and can be recognized by the transparent green mist that hangs above it and fluoresces at night. On contact inflicts injuries similar to the effects of a strong acid. Forms three types of artefacts: Slime, Slug, and Mica.</text>
+	</string>
+
+	<!-- Burnt Fuzz -->
+	<string id="drx_cotz_str_guide_5_5">
+		<text>Burnt Fuzz</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_5_text">
+		<text>One of the Zone's examples of mutated vegetation. Reacts to rapidly approaching living beings by discharging a cloud of projectiles severely injuring uncovered or lightly protected skin upon contact. Does not react to slowly moving targets. Forms three types of artefacts (possibly its seeds): Thorn, Crystal Thorn and Urchin.</text>
+	</string>
+
+	<!-- Electro -->
+	<string id="drx_cotz_str_guide_5_6">
+		<text>Electro</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_6_text">
+		<text>An anomalous formation, roughly 10 meters in diameter, accumulating large quantities of static electricity. When triggered, the anomaly bursts out in dozens of miniature bolts of lightning, causing electric shock nearly always lethal to all living beings. Recognizable by the bluish fog hovering above it in daylight. Forms three types of artefacts: Sparkler, Flash and Moonlight.</text>
+	</string>
+
+	<!-- Burner -->
+	<string id="drx_cotz_str_guide_5_7">
+		<text>Burner</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_7_text">
+		<text>While inactive, the anomaly manifests itself as a barely visible cloud of hot air. When triggered by an object or a living being it instantly heats up to lethal temperatures approaching 1500K. The sudden and intense conflagration rips oxygen from the victims lungs, causing the muscles to seize, making escape from the inferno nearly impossible. Forms three types of artefacts: Droplets, Fireball and Crystal.</text>
+	</string>
+
+	<!-- Comet -->
+	<string id="drx_cotz_str_guide_5_8">
+		<text>Comet</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_8_text">
+		<text>An extremely powerful anomaly, the Comet is an intense concentration of high-temperature gasses that manifests itself as a moving fireball. They tend to occur in pairs, and their seemingly coordinated maneuvers can be spectacular to observe from a distance, but are instantly fatal to an unsuspecting stalker overtaken by one.</text>
+	</string>
+
+	<!-- Tesla -->
+	<string id="drx_cotz_str_guide_5_9">
+		<text>Tesla</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_9_text">
+		<text>Only recently discovered, the Tesla is a floating orb containing immeasurably high levels of stored electricity. Like the Comet, the Tesla tends to hover above the ground and move in various racetrack patterns along a wide area. As it travels, it continually discharges plasma into the air, giving it a distinctive bright blue glow that can serve as a warning that one is approaching. When it comes in contact with an organic object it immediately discharges its full potential to ground through the organism, often resulting in instant death.</text>
+	</string>
+
+	<!-- Psi Fields -->
+	<string id="drx_cotz_str_guide_5_10">
+		<text>Psi Fields</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_10_text">
+		<text>Unlike other anomalies, psi fields are suspected of being directly man-made, although it is unknown who is responsible for creating them or exactly how they are generated. They tend to affect very wide areas, the largest of which is the massive Brain Scorcher located in Radar that effectively cuts the Zone in half. Getting caught in a psi field almost guarantees a horrific fate, those that aren't killed instantly suffer from severe necrosis of the flesh and liquefaction of the brain tissue, leaving the victim a mindless husk devoid of consciousness yet still alive. Lower levels of exposure to the fields are survivable, however even brief encounters with the field seem to completely erase a stakers mind. Some suspect the Monolith cultists have been abducting stalkers in this condition, and reprogramming them to serve in their growing army.</text>
+	</string>
+
+	<!-- Blowouts -->
+	<string id="drx_cotz_str_guide_5_11">
+		<text>Blowouts</text>
+	</string>
+	<string id="drx_cotz_str_guide_5_11_text">
+		<text>Blowouts are deadly emissions that occur regularly in the Zone. They are accompanied by massive rolling shockwaves of psi energy that thunder down from the north. Blowouts are extremely powerful and are nearly impossible to survive if one should be caught outside. Exposure results in either instant death or zombification. Little is known about the source of the blowouts, however they so intensively affect the local environment it is thought they are responsible for transforming the Zone into what it is today.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

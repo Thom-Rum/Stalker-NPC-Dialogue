@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Noah (Loner Honcho, Zaton) (drx_ql_strings_loner_noah.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_loner_noah.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 01, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Noah (Loner Honcho) Big Mutant Hunt Task -->
+
+	<string id="drx_ql_zat_b18_noah_task_1_name">
+		<text>Mutant Caretaker</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_1_text">
+		<text>Noah has asked for your help clearing mutants away from his barge. Locate and eliminate the pack that threatened him.</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_1_about">
+		<text>Mutants man, mutants! They're crawling all over this place! Help me take care of them, will you? There's a big boy that came by here a while ago, I'll show you where it went. Help me out and I'll help you.</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_1_finish">
+		<text>Ah, you have done well. Don't worry, that scar will barely be noticeable. Take this as payment, and stop back any time you want to do some more hunting.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Noah (Loner Honcho) Dog Food Task -->
+
+	<string id="drx_ql_zat_b18_noah_task_2_name">
+		<text>Find %s for Noah's Dog</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_2_text">
+		<text>Noah's mutant pet is hungry for %s. Better find some soon before she decides to eat Noah.</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_2_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_2_fetch_about">
+		<text>Where the hell have you been? I'm out of dog food! Get me some damn %s to feed my dog! This little bitch is gonna eat me out of house and home. She's a looker though, ain't she? Just like her master.</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_2_fetch_finish">
+		<text>About damn time! Here you go girl, eat up. She's such a pretty lass. Look at how full that coat is. What? You still here? Here, take this if it will get you to go away.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Noah (Loner Honcho) Exterminate Mutant Infestation Task -->
+
+	<string id="drx_ql_zat_b18_noah_task_3_name">
+		<text>Exterminate Noah's Mutant Infestation</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_3_text">
+		<text>Noah is having trouble keeping the area clear of mutants. Help him out.</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_3_about">
+		<text>You're late! There's mutants everywhere out here! You expect me to keep killing them all? Get the hell out there and help me get rid of them damn things!</text>
+	</string>
+	<string id="drx_ql_zat_b18_noah_task_3_finish">
+		<text>You've been gone all day! How long does it take to kill a couple damn mutants? Here, take your pay and get the hell off my boat. And pet my dog on the way out, will you? She loves attention... and stalker fingers.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

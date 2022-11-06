@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Monolith Task Strings (drx_ql_strings_monolith.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: October 03, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Monolith Storyline Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 03, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Big Mutant Hunt Storyline Task -->
+
+	<string id="drx_ql_monolith_sl_task_1_name">
+		<text>Pripyat Mutant Purge</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_1_text">
+		<text>{npc_name} has commanded you to do away with the mutants threatening Pripyat.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_1_about">
+		<text>My brother, never forget that it is we who control Pripyat, not the mutants. As we speak there are some in the area that threaten our presence. Go and destroy them.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_1_finish">
+		<text>You have succeeded. Well done.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Raid Enemy Camp Storyline Task- -->
+
+	<string id="drx_ql_monolith_sl_task_2_name">
+		<text>Eradicate the Pestilence</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_2_text">
+		<text>The wise {npc_name} has placed you in charge of a band of Monolith warriors to eliminate a camp of %s.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_2_about">
+		<text>We can no longer tolerate this scourge of unindoctrinated %s. Lead your brothers into the Zone and clear the pestilence from where they sleep.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_2_finish">
+		<text>Excellent work. You serve the Monolith well.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Hunt for Food Storyline Task -->
+
+	<string id="drx_ql_monolith_sl_task_3_name">
+		<text>Hunt for Food</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_3_text">
+		<text>Lead a hunt into the Zone to harvest meat for your Monolith brothers.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_3_about">
+		<text>My son, we must replenish our food stores. Will you lead a hunt so your brothers may feast?</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_3_finish">
+		<text>You have served the Monolith well. The meat you have brought will be prepared for tonight's feast. As a reward, we will reserve the eyeballs for you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Search Agroprom Underground Storyline Task -->
+
+	<string id="drx_ql_monolith_sl_task_4_name">
+		<text>Search Agroprom Underground</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_4_text">
+		<text>Holy documents have been stolen and hidden in the tunnels beneath Agroprom. Search the underground complex and recover the great works.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_4_about">
+		<text>My brother, I have an important assignment for you. A book containing the great works of our masters has been stolen. This atrocious act of heresy must be dealt with swiftly. Your brothers have tracked the infidel to Agroprom, and suspect he has hidden the documents in the underground tunnels located there. Go there and find our master's stolen property. Bring the scriptures back to us so we may once again bask in their glory.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_4_finish">
+		<text>You have done well, my brother. This book contains all the wonders that our lords and masters have achieved before they ascended. We are the protectors of the miraculous devices they created, and the caretakers of the hallowed grounds on which they were concieved. You are truely blessed to have gazed upon this text directly, not many Monolith have had such an honor.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Dynamic Brawl Storyline Task -->
+
+	<string id="drx_ql_monolith_sl_task_5_name">
+		<text>Exterminate the Infidel Vermin</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_5_text">
+		<text>Meet with the Monolith warriors that have sighted the group of infidel %s.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_5_text_1">
+		<text>Exterminate the vile %s for the good of the almighty Monolith.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_5_about">
+		<text>The infidel pestilence continues to plague our great works. Your brothers have located a group of them and have them cornered like the rats they are. Go to them and lead them in the eradication of the vermin.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_5_message">
+		<text>Our brother %s has arrived to help us. Monolith be praised.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_5_finish">
+		<text>You have done well. You are a loyal servant of the Monolith.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Destroy the Non-Believers Storyline Task- -->
+
+	<string id="drx_ql_monolith_sl_task_6_name">
+		<text>Destroy the Non-Believers</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_6_text">
+		<text>Lead the Monolith attack against the infidels.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_6_about">
+		<text>The time has come, my son. You must lead your brothers into battle. Fight fiecely and accept no surrender. Defeat the infidels for the good of the Monolith.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_6_finish">
+		<text>Excellent work. You are a fine warrior.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Venture into the Zone Storyline Task -->
+
+	<string id="drx_ql_monolith_sl_task_7_name">
+		<text>Venture into the Zone</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_7_text">
+		<text>You must prove your worth by surviving a journey into the Zone.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_7_about">
+		<text>My son, you must prove yourself to the almighty Monolith. You must travel alone deep into the Zone. Face all challenges that confront you. Destroy all enemies you encounter. Do this for the good of the Monolith.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_7_finish">
+		<text>You have done well, my son.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Recover Stolen Equipment Task -->
+
+	<string id="drx_ql_monolith_sl_task_8_name">
+		<text>Recover Stolen Monolith Equipment</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_8_text">
+		<text>A stalker has sabotaged the Brain Scorcher. Recover the equipment he removed.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_8_about">
+		<text>An infidel has stolen a vital piece of equipment from the Brain Scorcher. You must recover it for the good of the almighty Monolith.</text>
+	</string>
+	<string id="drx_ql_monolith_sl_task_8_finish">
+		<text>You have done well.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Monolith Simulation Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 10, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bring Supplies for Monolith Simulation Task -->
+
+	<string id="drx_ql_simulation_task_monolith_1_name">
+		<text>Bring %s to Monolith Member</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_1_text">
+		<text>{npc_name} is ill and requires %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_1_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_1_fetch_about">
+		<text>My brother, I am very ill. Cleric has graciously offered to pray for me but I'm pretty sure I just need %s. Please bring me some.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_1_fetch_finish">
+		<text>Thank you my brother. May the glory of the Monolith shine upon you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Redemption for Monolith Simulation Task -->
+
+	<string id="drx_ql_simulation_task_monolith_2_name">
+		<text>Redemption</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_2_text">
+		<text>A Monolith brother was defeated by an infidel. Destroy him lest anyone begin to think the Monolith are not to be feared.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_2_about">
+		<text>My brother, Krolik has asked of me that I slay one of the infidels for the good of the Monolith. I fear I have failed him, as I was not able to get to the target. Will you not complete my task and redeem my failure?</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_2_finish">
+		<text>You have done well. It is an honor to serve the almighty Monolith along side with you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Eliminate Dangerous Mutants for Monolith Simulation Task -->
+
+	<string id="drx_ql_simulation_task_monolith_3_name">
+		<text>Eliminate Dangerous Mutants for Monolith</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_3_text">
+		<text>Eliminate dangerous mutants in the area for the Monolith.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_3_about">
+		<text>There are dangerous mutants in the area. They have killed one of our brothers. Go eliminate them.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_3_finish">
+		<text>You have done well, my brother.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Item Swap with Monolith Simulation Task -->
+
+	<string id="drx_ql_simulation_task_monolith_4_name">
+		<text>%s for a Monolith</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_4_text">
+		<text>{npc_name} is in desperate need of a %s and is willing to give you everything he owns for one.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_4_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_4_fetch_about">
+		<text>My brother, the great Krolik has tasked me with an assignment that will require a %s, but I do not have the money or resources to get one. I do not want to fail him. If you can find what I need, I will give to you my only worldly possession, a %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_4_fetch_finish">
+		<text>Thank you, brother. This is exactly what I need.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Guide Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_monolith_5_name">
+		<text>Monolith Guide</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_5_text">
+		<text>{npc_name} is lost and has requested your assistance guiding him to his destination.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_5_about">
+		<text>My brother, I am lost. Will you escort me to %s and help me find my way?</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_5_message">
+		<text>This is my destination. Come see me, I will reward you for your assistance.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_5_finish">
+		<text>Thank you brother. Monolith be praised.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Lost PDA for Monolith Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_monolith_6_name">
+		<text>Recover Stolen Data</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_6_text">
+		<text>Infidels have captured information about the glorious great works. Search the battlefield where they were killed and find the device they used to record the stolen data.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_6_about">
+		<text>The infidel vermin have been caught spying on our great works. We slaughtered the pestilence but were unable to locate the device they recorded the data on. Go look there, find the device for the good of the Monolith.</text>
+	</string>
+	<string id="drx_ql_simulation_task_monolith_6_finish">
+		<text>You have done well, my brother. We must not allow the eyes of the unclean to gaze upon our glorious works.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

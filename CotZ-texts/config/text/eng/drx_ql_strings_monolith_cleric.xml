@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Cleric (Monolith Mechanic, Pripyat) (drx_ql_strings_monolith_cleric.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_monolith_cleric.ltx
+<
+<	Created by: DoctorX
+<	Last revised: June 05, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	June 05, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cleric (Monolith Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_1_name">
+		<text>Retrieve Gunsmith Toolkit for Cleric</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_1_text">
+		<text>Retrieve the set of gunsmith tools from an infidel's stash and return them to Cleric so he can perform basic weapon and equipment upgrades.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_1_about">
+		<text>An infidel has revealed the location of a set of gunsmith tools that were stashed away. You must retrieve these tools and bring them to me at once so I may upgrade the weaponry of you and your brothers. Go quickly. Do not fail.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_1_finish">
+		<text>Good. You have found them.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cleric (Monolith Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_2_name">
+		<text>Find Technician Toolkit for Cleric</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_2_text">
+		<text>Locate a set of technician's tools for Cleric so he can perform advanced upgrades to your equipment.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_2_about">
+		<text>You must locate a set of technician's tools so that I can further upgrade the arsenal of the Monolith warriors. Search the location I have marked on your map. Do not return until you have found them. Go, now.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_2_finish">
+		<text>Good. You have brought them to me.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cleric (Monolith Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_3_name">
+		<text>Retrieve Armorer's Toolkit for Cleric</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_3_text">
+		<text>Kill the infidel known to be carrying a set of armorer's tools and return the tools to Cleric so he can fully upgrade your equipment.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_3_about">
+		<text>There is an infidel who is known to be in possession of a set of armorer's tools. Slay the vermin and return the tools to me so that I may upgrade the weapons and equiment of the mighty Monolith warriors to it's fullest potential. Go, do not fail us.</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_task_3_finish">
+		<text>Good. You have succeeded.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

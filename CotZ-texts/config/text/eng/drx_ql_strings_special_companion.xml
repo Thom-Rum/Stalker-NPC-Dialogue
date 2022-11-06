@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Special Companion Task Strings (drx_ql_strings_special_companion.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: December 26, 2017
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Bandit Companion Task 1 Squad (Dark Valley Raiders) Companion Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	December 13, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Companion squad leader intro dialog text: -->
+	<string id="drx_ql_str_bandit_companion_task_1_start_dialog_1">
+		<text>The boss says you know how to spot the big takes, eh? Alright, lead us there and we'll do all the heavy lifting. You just watch our backs.</text>
+	</string>
+
+	<!-- Companion squad leader during task dialog text: -->
+	<string id="drx_ql_str_bandit_companion_task_1_start_dialog_2">
+		<text>We should keep moving. Just remember, we'll do the looting. You focus on keeping us alive.</text>
+	</string>
+
+	<!-- Companion squad leader task complete dialog text: -->
+	<string id="drx_ql_str_bandit_companion_task_1_complete">
+		<text>Ok, enough. Let's head back and split up the loot.</text>
+	</string>
+
+	<!-- Actor reply dialog text: -->
+	<string id="drx_ql_str_bandit_companion_task_1_actor_reply">
+		<text>Okay.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Ecologist Companion Task 1 Squad (Escort Marsh Scientists) Companion Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	December 26, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Companion squad leader intro dialog text: -->
+	<string id="drx_ql_str_ecolog_companion_task_1_start_dialog_1">
+		<text>We are researching an anomaly field not far from here. We need you to escort us there and keep us safe while we collect a few samples and take some readings. I've marked the location on your PDA.</text>
+	</string>
+
+	<!-- Companion squad leader during task dialog text: -->
+	<string id="drx_ql_str_ecolog_companion_task_1_start_dialog_2">
+		<text>We should keep moving. The longer we wait around the more dangerous it gets.</text>
+	</string>
+
+	<!-- Companion squad leader task complete dialog text: -->
+	<string id="drx_ql_str_ecolog_companion_task_1_complete">
+		<text>We have completed our analysis. Let's return to the camp.</text>
+	</string>
+
+	<!-- Actor reply dialog text: -->
+	<string id="drx_ql_str_ecolog_companion_task_1_actor_reply">
+		<text>Okay.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Ecologist Companion Task 2 Squad (Escort Jupiter Scientists) Companion Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	December 26, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Companion squad leader intro dialog text: -->
+	<string id="drx_ql_str_ecolog_companion_task_2_start_dialog_1">
+		<text>We are researching an anomaly field not far from here. We need you to escort us there and keep us safe while we collect a few samples and take some readings. I've marked the location on your PDA.</text>
+	</string>
+
+	<!-- Companion squad leader during task dialog text: -->
+	<string id="drx_ql_str_ecolog_companion_task_2_start_dialog_2">
+		<text>We should keep moving. The longer we wait around the more dangerous it gets.</text>
+	</string>
+
+	<!-- Companion squad leader task complete dialog text: -->
+	<string id="drx_ql_str_ecolog_companion_task_2_complete">
+		<text>We have completed our analysis. Let's return to the camp.</text>
+	</string>
+
+	<!-- Actor reply dialog text: -->
+	<string id="drx_ql_str_ecolog_companion_task_2_actor_reply">
+		<text>Okay.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

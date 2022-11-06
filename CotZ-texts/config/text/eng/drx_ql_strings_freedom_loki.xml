@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Loki (Freedom Trader, Jupiter) (drx_ql_strings_freedom_loki.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_jupiter_loki.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 01, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loki (Freedom Trader) Zombie Sweep Task -->
+
+	<string id="drx_ql_jup_a6_freedom_leader_task_1_name">
+		<text>Zombie Sweep</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_1_text">
+		<text>Loki has ordered a sweep of the local area to eliminate any zombified stalkers.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_1_about">
+		<text>We're conducting another sweep of the area to cut down the growing numbers of zombified stalkers. I'm happy to pay you if you want to join in.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_1_finish">
+		<text>Thanks for the help bro.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loki (Freedom Trader) Dynamic Brawl Task -->
+
+	<string id="drx_ql_jup_a6_freedom_leader_task_2_name">
+		<text>Pre-emptive Assault</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_2_text">
+		<text>A Freedom scouting patrol has spotted a group of %s preparing a raid on a Freedom camp. Meet up with the scouts and lead the attack against the enemy.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_2_text_1">
+		<text>Search and destroy any %s in the area.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_2_text_2">
+		<text>Report back to {npc_name} on the success of the attack.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_2_about">
+		<text>We need your help. Our scouts have spotted a gathering of %s and are concerned they are preparing to mount an assault against one of our camps. I want us to get them before they get us. Head over there to reinforce the scouts and lead them in the attack.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_2_message">
+		<text>Good, Loki sent %s to help us. Let's move out.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_2_finish">
+		<text>You have done well to help us. We need all the help we can get up here. Please, take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loki (Freedom Trader) Manhunt Task -->
+
+	<string id="drx_ql_jup_a6_freedom_leader_task_3_name">
+		<text>Serial Killer</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_3_text">
+		<text>There is %s known as %s that has been indiscriminately murdering stalkers in the area around Yanov Station. Find out where he is hiding and put an end to the bloodshed.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_3_about">
+		<text>There's a killer on the loose that has been plaguing this area. It's hard enough to survive up here without having a psychopath running around. Help us track him down and bring him to justice.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_3_finish">
+		<text>Thank you stalker. You have saved countless lives by putting an end to the slaughter.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Loki (Freedom Trader) Freedom Prisoner Task -->
+
+	<string id="drx_ql_jup_a6_freedom_leader_task_4_name">
+		<text>Freedom Prisoner</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_4_text">
+		<text>A band of %s have captured a Freedomer. Kill the guards and extract the prisoner.</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_4_about">
+		<text>Yes, help us out! One of my men was captured and taken prisoner by some %s. Head over there and break him out!</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_task_4_finish">
+		<text>You have done well. Thank you for freeing our comrade.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

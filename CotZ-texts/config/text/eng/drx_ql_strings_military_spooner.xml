@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Sergeant Spooner (Military Trader, Agroprom) (drx_ql_strings_military_spooner.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_military_spooner.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 03, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 03, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spooner (Military Trader) Supply Run Task- -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_1_name">
+		<text>Lost In Transit</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_1_text">
+		<text>A critical supply delivery has disappeared. Locate the missing case of provisions and bring it to Sergeant Spooner before the Military base runs out of food.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_1_about">
+		<text>Someone screwed up the last supply delivery and now we are in danger of running out of provisions. Logistics tells me the last place it was tracked was at the main checkpoint in Cordon. Head on down there and see if you can find out what those dipshits did with our food.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_1_finish">
+		<text>Excellent work. Thanks to you we won't have to resort to eating mutant meat tonight.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spooner (Military Trader) Patrol Local Area Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_2_name">
+		<text>Patrol Local Area</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_2_text">
+		<text>Patrol the area around Agoroprom.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_2_about">
+		<text>It's your turn for sentry duty. Patrol the local area and keep an eye out for any unauthorized personnel.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_2_finish">
+		<text>Good work. Here's your pay.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spooner (Military Trader) Manhunt Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_3_name">
+		<text>Hunt the Hunter</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_3_text">
+		<text>A %s known as %s has been responsible for the deaths of several soldiers. Hunt him down and end his reign of terror.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_3_about">
+		<text>There is a particular individual within the Zone that the brass is very interested in getting their hands on. We don't know much about him other than he is a high-ranking member within his faction, he is incredibly elusive, and he is responsible for numerous casualties amongst our troops. If you manage to track him down, make sure to ventilate the space between his eyes for him. There will be a nice paycheck in it for you.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_3_finish">
+		<text>Unbelievable. I didn't think anyone would ever find that guy.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spooner (Military Trader) Dynamic Brawl Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_4_name">
+		<text>Trespassers</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_4_text">
+		<text>Lead your squad to meet up with the patrol that spotted the enemy %s.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_4_text_1">
+		<text>Clear the enemy %s from the area.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_4_about">
+		<text>A patrol has sighted a large group of heavily armed trespassers in the area. Take a squad up there immediately and help them remove the %s gathered there.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_4_message">
+		<text>Here comes %s with reinforcements. Let's get this attack underway.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_4_finish">
+		<text>You are a fine warrior. Excellent work.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Spooner (Military Trader) Extract Military Prisoner Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_5_name">
+		<text>Rescue the Military Prisoner</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_5_text">
+		<text>Rescue the Military prisoner being held by Mercenaries.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_5_about">
+		<text>Mercenaries have captured one of our men and are holding him for interrogation. I want you to stage a rescue operation and get our boy back.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_trader_stalker_task_5_finish">
+		<text>Well executed. I knew we could count on you.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

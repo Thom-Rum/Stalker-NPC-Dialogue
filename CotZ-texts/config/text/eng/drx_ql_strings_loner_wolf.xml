@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Wolf (Loner Honcho, Cordon) (drx_ql_strings_loner_wolf.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_loner_wolf.ltx
+<
+<	Created by: DoctorX
+<	Last revised: July 10, 2018
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	July 10, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Wolf (Loner Honcho) Eliminate Mutant Threat Task -->
+
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_1_name">
+		<text>Eliminate Mutant Threat from Cordon</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_1_text">
+		<text>Wolf asked you to purge an area of all mutant threats in order to ensure the safety of rookie village; as well as the stalkers who pass through Cordon. Reach the location and eliminate all mutants around the area. Return to Wolf for payment after you job is complete.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_1_about">
+		<text>Stalker, I need someone to who is a bit more experienced than the rookies for a task. Cordon is becoming a very dangerous place with all this rampant mutant breeding going on. I need you to hunt around an area that I will mark on your PDA. The job is to kill any mutants you see. If you do this for me, it will earn you some cash. So will you?</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_1_finish">
+		<text>Thank you, the rookies will be much safer now because of you. Here is your payment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Wolf (Loner Honcho) Destroy Helicopter Task -->
+
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_2_name">
+		<text>Death to Death From Above</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_2_text">
+		<text>The Military's indiscriminate killing from the sky must be stopped. Find a way to take out the Military helicopter in Cordon.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_2_about">
+		<text>Speak quietly. I know Sidorovich doesn't want us tangling with the Military but what they have been doing with that helicopter is outright murder. I can't stand to see another innocent stalker ripped to shreds by its cannons. If you can find a way to take it down, I will reward you well.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_2_finish">
+		<text>What you have done is legendary. You have saved countless lives.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Wolf (Loner Honcho) Stalker Search and Rescue Dynamic Task -->
+
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_3_name">
+		<text>Stalker Search and Rescue</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_3_text">
+		<text>Search for the missing stalker.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_3_about">
+		<text>A stalker is missing from the camp. I need you to go find out what sort of trouble he's gotten himself into.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_3_finish">
+		<text>Thank you. It's stalkers like you that keep this place one of the only safe areas in the Zone.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Wolf (Loner Honcho) Stalker Guide Dynamic Task -->
+
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_4_name">
+		<text>Rookie Orientation</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_4_text">
+		<text>Lead a group of rookies into the Zone.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_4_about">
+		<text>A group of rookies is heading out into the Zone for the first time. I need a competent stalker to guide them and keep them safe.</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_wolf_task_4_finish">
+		<text>Thank you for keeping the rookies safe, stalker.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

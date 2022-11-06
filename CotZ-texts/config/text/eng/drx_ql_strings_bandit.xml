@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Bandit Task Strings (drx_ql_strings_bandit.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: November 17, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Bandit Storyline Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 17, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Dark Valley Military Brawl Storyline Task -->
+
+	<string id="drx_ql_bandit_sl_task_1_name">
+		<text>Sneak Attack</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_1_text">
+		<text>Link up with your fellow Bandits and join the ambush against the Military assault force.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_1_about">
+		<text>Limpid just intercepted a radio transmission on the scanner. A large Military attack force is building near here and getting ready to sweep through our territory and wipe us out. Some of the boys just set out to ambush them. Head out there with them and show those Military fucks we ain't scared of them.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_1_finish">
+		<text>Great job, buddy.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Southern Plateau Storyline Task -->
+
+	<string id="drx_ql_bandit_sl_task_2_name">
+		<text>Stingray 3 Crash Site Loot</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_2_text">
+		<text>A Military helicopter has crashed on top of the inaccessible Southern Plateau in Zaton. Meet with a stalker called Noah and convince him to tell you his secret way of reaching it.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_2_text_1">
+		<text>According to Noah, the top of the Southern Plateau can somehow be reached from inside the Burnt Village. His instructions are as follows: Enter the village via the road leading in from the southwest and cross the thermal field to the right to find the opening in the fence on the other side. Jump off the edge of the cliff to be transported to the plateau.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_2_text_2">
+		<text>Find the case the helicopter crew stashed in the cave and bring back it to {npc_name} for your reward.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_2_about_pre_npc_1">
+		<text>I have a standing offer out there for 10,000 RU for any Bandit who can pick up a case for me. So far no one has been dumb enough to do it. You look pretty dumb, wanna give it a shot?</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_2_about_pre_actor_1">
+		<text>I take it for 10,000 RU this isn't going to be a very easy case to get.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_2_about">
+		<text>Maybe not so dumb. Ok, here's the deal; there's a Military helicopter that set down on the Southern Plateau in Zaton after it experienced an emergency. The crew got out ok, but they let word slip that they left a case full of some valuable shit stashed away in a cave up there. Trouble is, the only way to get back up the plateau is by helicopter, or so everyone thought. Seems there's this cat called Noah who found a way up there, so say the rumors. Trouble is, the motherfucker is out of his mind and even more paranoid than I am, no one's been able to get anything out of him. Go talk to him and see if you can squeeze him for any information that might get you on top of that plateau. Find me the equipment they left up there and the reward is yours.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_2_finish">
+		<text>Man, you are one crazy motherfucker. Let's see what we got here... Woah, this is a lot of toys in here! Look at all of this loot; weapons, radiation shielding, anomaly detectors, these boys were geared up for a hell of a battle! My snitch in the Military tells me there were more helicopters that crashed up there too. Seems they were launching some sort of secret operation that went tits-up. Soon as I can find where the rest of 'em are we're gonna be rolling in loot! Here's your cash, you earned it.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Meet With Limpid Storyline Task (LINKS TO: Bandit Limpid Infiltrate Lab X-18) -->
+
+	<string id="drx_ql_bandit_sl_task_3_name">
+		<text>Meet with Limpid</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_3_text">
+		<text>Limpid, the Bandit mechanic, may have an idea how to gain access to the Miracle Machine.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_3_about_pre_npc_1">
+		<text>What do you want?</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_3_about_pre_actor_1">
+		<text>I didn't come here to scrounge around for scraps and trinkets. Where's the real loot?</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_3_about_pre_npc_2">
+		<text>There is at least one place in the Zone I guarantee you hasn't been looted yet. That haunted lab in Yantar, no one has ever gone in there and come out alive. You've heard the boys tell the legend; the ghosts in Yantar suck out your brains if you go in there.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_3_about_pre_actor_2">
+		<text>I don't believe in ghost stories. There is a worldly explanation for what is going on over there so there must be a worldly solution.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_3_about">
+		<text>Heh, you are smarter than you look. Tell you what, Limpid has been working on a way to get into the lab, go talk to him. Maybe the two of you can figure out a way in there. You can be the ghost busters, hah!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Limpid Infiltrate Lab X-18 (Dark Valley) Storyline Task (LINKS FROM: Bandit Meet with Limpid) (LINKS TO: Bandit Limpid Wait For Psi Helmet) -->
+
+	<string id="drx_ql_bandit_sl_task_4_name">
+		<text>Infiltrate Lab X-18</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_4_text">
+		<text>{npc_name} needs the research documents from Lab X-18 in Dark Valley so he can calibrate the psi helmet.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_4_about_pre_npc_1">
+		<text>What's up, brother?</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_4_about_pre_actor_1">
+		<text>I hear you've been working on finding a way into the Miracle Machine.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_4_about_pre_npc_2">
+		<text>Yeah, I've got this device one of the boys, ah, "liberated" from one of the eggheads. From what I can tell they were developing a mental shield to protect the wearer from the effects of the psi fields in Yantar. Trouble is, I can't get it to work. I need the calibration info, without it I'm just guessing how to adjust it.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_4_about_pre_actor_2">
+		<text>Who has the calibration info?</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_4_about_pre_npc_3">
+		<text>Rumor has it whoever invented this thing was working out of the underground lab near here. If the calibration data exists, it must be in there. So far none of the boys have had the balls to fight their way past the Military to get in there.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_4_about_pre_actor_3">
+		<text>I'll get your documents. But in return I want to be the one to get first crack at looting the Miracle Machine.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_4_about">
+		<text>Heh, the honor will be yours, buddy. Ain't gonna be too many other people lining up to test the thing out.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_4_finish">
+		<text>Thanks buddy. These are just what I needed.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Wait For Psi Helmet Storyline Task (LINKS FROM: Bandit Limpid Infiltrate Lab X-18) (LINKS TO: Bandit Limpid Disable the Miracle Machine)-->
+
+	<string id="drx_ql_bandit_sl_task_5_name">
+		<text>Wait for Psi Helmet Calibration</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_5_text">
+		<text>{npc_name} needs a few days to calibrate the device. He will contact you when it is ready.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_5_about">
+		<text>You got the data? Let me see... Yes! This is exactly what I needed, it has the calibration settings they were using during their experiments down in that lab. Jesus, looks like most of the experiments didn't go too well for the subjects... mutations, deformities, brain loss, death... Well, hopefully I can give you a slightly better outcome, eh buddy? Give me a few days to perform the adjustments. I'll let you know when it's ready.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_5_message">
+		<text>I think I got the damn thing working. Come and get it whenever you're ready.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_5_finish">
+		<text>The device is ready. This helmet should protect you against the effects of the psi field.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Limpid Disable the Miracle Machine Storyline Task (LINKS FROM: Bandit Wait For Psi Helmet)-->
+
+	<string id="drx_ql_bandit_sl_task_6_name">
+		<text>Disable the Miracle Machine</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_6_text">
+		<text>{npc_name}'s psi helmet should allow you to gain access to Lab X-16 in Yantar and be the first one to loot it. Once inside, you will need to find a way to disable the transmitter before the helmet stops working. {npc_name} has promised a reward if you are successful.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_6_about_pre_npc_1">
+		<text>It's done. This should give you protection against the psi field around the Miracle Machine long enough to get in there, but I gotta warn you it's going to be a one-way trip. You're going to have to find a way to shut down the transmitter before the helmet protection becomes ineffective if you want any chance of coming back out alive.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_6_about_pre_actor_1">
+		<text>Good thing I'm quick. Give me the damn thing, I'm going in.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_6_about">
+		<text>Okay buddy. Now listen, I didn't just do this out of the kindness of my heart. I got a trafficking operation in the works and I need that route opened up between Yantar and the Dead City, so I'm relying on you to shut down that emitter and not to pussy out at the last minute. If you can get this done, come see me afterward and I'll give you a reward.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_6_finish">
+		<text>Hey, still alive! Well, I lost a bet. Here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Search Agroprom Underground Storyline Task -->
+
+	<string id="drx_ql_bandit_sl_task_7_name">
+		<text>Search Agroprom Underground</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_7_text">
+		<text>The Military is searching the tunnels below Agroprom for hidden classified documents. {npc_name} is offering a reward if you can find them before they do.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_7_about_pre_npc_1">
+		<text>I've been watching you. I've seen the way you handle a weapon, your ability to get into places others can't, and the amount of loot you've brought back. I'm close to saying I'm impressed. I've got a special job for you, one that can make us both a lot of money.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_7_about_pre_actor_1">
+		<text>What's the job?</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_7_about">
+		<text>Do you know there's a network of tunnels running under Agroprom? Some of the boys hang out down there once in a while, but otherwise there's nothing down there of interest, unless you find snorks and bloodsuckers interesting. Now all of a sudden the Military has taken a special interest in the area and has sealed off the entrances. My snitch tells me they are searching for some classified documents that were hidden down there. With the amount of resources they're committing to the tunnels those documents must be very valuable. If you can get in there and find them before they do, I will be willing to pay you half of what I can get for them.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_7_finish">
+		<text>Let's see what you have brought me... Ah, yes. I see why the Military was so interested in recovering these documents. Do you know what these are? Classified reports on experiments being conducted right here in the Zone. Jesus, look at all they were doing; biological research, genetic experimentation, mind control... Spooky shit, man. I'm sure whoever is behind this wouldn't want this information getting out, and they will pay well to get these documents back. Good job, here's your cut.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Hidden Target Storyline Task -->
+
+	<string id="drx_ql_bandit_sl_task_8_name">
+		<text>Kill the Rat</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_8_text">
+		<text>{npc_name} has identified %s known as %s that has betrayed his entire faction. Find him and eliminate him.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_8_about">
+		<text>There is a traitor in our midst. One of our own has betrayed us; sold us out to the Military, and has gone into hiding. He'll be easy to get if you can find him; just walk up to him, point your pistol at his face and pull the trigger. Just watch out for how his buddies react, you'll probably have to kill them too. Find the bastard, and talk to me again when he sleeps with the worms.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_8_finish">
+		<text>Good, you got rid of that asshole! Here is what I promised.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Double-Crosser Storyline Task -->
+
+	<string id="drx_ql_bandit_sl_task_9_name">
+		<text>Kill the Double-Crosser</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_9_text">
+		<text>{npc_name} was double-crossed by %s called %s and needs him to be taken care of.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_9_about">
+		<text>You know our friend in the Military? The one who used to let us run weapons past the checkpoint if we slipped him a carton of cigarettes? That little shit now says he wants me to start paying a percentage every time or else he's going to turn us in. Who the hell does he think he's dealing with? I want him dead, you hear me? Dead! Bring me his head!</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_9_finish">
+		<text>Good. Fuck that guy.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Sultan's Enemy Storyline Task -->
+
+	<string id="drx_ql_bandit_sl_task_10_name">
+		<text>Sultan's Enemy</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_10_text">
+		<text>{npc_name} wants revenge on %s known as %s who cheated him. Track him down and rub him out.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_10_about">
+		<text>A rat has double-crossed me and gone into hiding. No one messes with Sultan and lives to see the next sunrise. Find the asshole and kill him. I will make it worth your while.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_10_finish">
+		<text>Good. I should have told you to leave his head on a pike. No matter, now everyone knows not to mess with Sultan. Here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Dynamic Brawl Storyline Task -->
+
+	<string id="drx_ql_bandit_sl_task_11_name">
+		<text>Bandit Backup</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_11_text">
+		<text>Help out some Bandits that have been getting shot at by a group of %s.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_11_text_1">
+		<text>Eliminate the %s that have been harassing the Bandits.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_11_about">
+		<text>Some fookin %s have been messin' with our boys! Head on over there and help them out. Show those fucks you don't mess with the Bandits!</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_11_message">
+		<text>%s, come here. Help us out rub out these pricks.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_11_finish">
+		<text>Hey, great job man. You've got the killer's instinct. You'll do fine around here.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Sultan Prisoner Snatch Storyline Task -->
+
+	<string id="drx_ql_bandit_sl_task_12_name">
+		<text>Rat Catcher</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_12_text">
+		<text>{npc_name} wants %s called %s brought before him. The prisoner must be captured alive.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_12_about">
+		<text>There's a rat out there that rubbed me the wrong way. I want you to bring him to me so him and I can have a friendly little chat and work through our differences, if you know what I mean. Get the son of a bitch and bring him back here. I don't care how many holes you have to put in him, just make sure he's still breathing.</text>
+	</string>
+	<string id="drx_ql_bandit_sl_task_12_finish">
+		<text>Ah, there's the piece of shit. Well done. The boys will take him from here, we have some special treatment ready for this asshole. Here, take this as your reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Bandit Simulation Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 03, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Supplies for Bandit Simulation Task -->
+
+	<string id="drx_ql_simulation_task_bandit_1_name">
+		<text>Fence %s Through a Bandit</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_1_text">
+		<text>{npc_name} has offered to fence some loot for you. Bring him %s, he has promised to pay well for it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_1_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_1_fetch_about">
+		<text>Hey buddy, if you ever need to fence some goods you come to me, I pay the best. Right now %s is in high demand. You manage to come across some and you want to make a quick buck, you know who to talk to.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_1_fetch_finish">
+		<text>Great man, here's your cash.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Weapon Straw Purchase for Bandit Simulation Task -->
+
+	<string id="drx_ql_simulation_task_bandit_2_name">
+		<text>%s Straw Purchase</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_2_text">
+		<text>A bandit needs an untraceable %s, no questions asked.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_2_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_2_fetch_about">
+		<text>Listen, I need a weapon that can't be traced back to me, you know what I mean? Find me a %s. Buy it, steal it, loot it, whatever you gotta do, just get me one. I'll pay you double what it's worth.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_2_fetch_finish">
+		<text>Great! Here's what I promised you. And you never met me, got it?</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Guide Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_bandit_3_name">
+		<text>Bodyguard</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_3_text">
+		<text>{npc_name} has hired you to keep him safe along the journey to his destination.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_3_about">
+		<text>Hey, whoa, look at the size of this guy! Listen, I could use a guy like you in my gang. I'm too damned important to be doing all the killing around here, it's about time I get someone looking out for me. Tell you what, I'm on my way to %s. You want to come with me and keep an eye on my back? I'll make it worth your while. If you know who I am you know I got the money to back it up.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_3_message">
+		<text>Ok, we're here. Come see me.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_3_finish">
+		<text>Hey, thanks buddy. Here, take this for your trouble.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Item Swap with Bandit Simulation Task -->
+
+	<string id="drx_ql_simulation_task_bandit_4_name">
+		<text>%s Exchange with a Bandit</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_4_text">
+		<text>A Bandit has some equipment he is willing to offload in exchange for a %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_4_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_4_fetch_about">
+		<text>You want to swap some loot? I've been looking for a %s. If you can get me one I'll give you a %s for it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_4_fetch_finish">
+		<text>Finally! Here you go man, much appreciated.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Assassination Team Task -->
+
+	<string id="drx_ql_simulation_task_bandit_5_name">
+		<text>Team Hit</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_5_text">
+		<text>You and your new business associate are running a hit against %s called %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_5_about">
+		<text>I'm running a hit on a guy, but he's turning out to be a pain in the ass to get to. I think I need some help on this one. What do you say, want to team up on this and split the bounty?</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_5_finish">
+		<text>Thanks buddy, here's your cut. See you around.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Roll the Marks Task Task -->
+
+	<string id="drx_ql_simulation_task_bandit_6_name">
+		<text>Cheeki Breeki</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_6_text">
+		<text>You have teamed up with {npc_name} to liberate some valuable gear from some unsuspecting %s in the area.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_6_about">
+		<text>I spotted some %s not far from here. Looks like they had some pretty nice gear. What do you say, want to help me roll them and we'll split the loot?</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_6_finish">
+		<text>Nice job. Here's your cut of the loot.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bounty Hunt for Bandit Simulation Task -->
+
+	<string id="drx_ql_simulation_task_bandit_7_name">
+		<text>Bounty Hunt for a Bandit</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_7_text">
+		<text>{npc_name} has placed a bounty on the head of %s named %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_7_about">
+		<text>There's a guy that owes me a lot of money and he doesn't seem to be in too big of a hurry to get it back to me. If you see the prick I want you to put two between his eyes for me, understand? I'll make it worth your while.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_7_finish">
+		<text>You did him? Good. Here's what I owe you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Hidden Target Simulation Task -->
+
+	<string id="drx_ql_simulation_task_bandit_8_name">
+		<text>Double-Crossed</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_8_text">
+		<text>{npc_name}'s former partner, %s known as %s, has double-crossed him and gone into hiding. Track him down and collect the bounty on his head.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_8_about">
+		<text>A former business associate of mine double-crossed me and ran off with my loot. Help me hunt the asshole down and rub him out, there will be a nice payday in it for you.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_8_finish">
+		<text>Good, you got rid of that asshole! Here is what I promised.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Bandit Steal the Case Simulation Task -->
+
+	<string id="drx_ql_simulation_task_bandit_9_name">
+		<text>Steal the Case</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_9_text">
+		<text>Sneak into the camp of the %s and locate and steal the case of equipment they are transporting. Bring the case back to {npc_name} so he can pick the lock.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_9_about">
+		<text>I got a tip some %s are transporting some valuable equipment in a locked case. I happen to know how to crack a lock. If you can sneak into their camp and steal the case, I'll get it open and we can split the loot.</text>
+	</string>
+	<string id="drx_ql_simulation_task_bandit_9_finish">
+		<text>Nice work. Let me crack this baby open and let's see what we got... Not bad. Here's your half.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

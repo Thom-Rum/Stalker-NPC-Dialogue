@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Osoznanie Strings (drx_ql_strings_osoz.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: October 10, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Character Name Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Osoznanie name: -->
+	<string id="drx_ql_str_osoznanie_name">
+		<text>The Collective Consciousness</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Meet Dialog Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- NPC greets actor: -->
+	<string id="drx_ql_str_osoz_meet_0">
+		<text>Hello stalker. It's good to see you again.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Question Dialog Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 10, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Who is Osoznanie: -->
+	<string id="drx_ql_str_osoz_who_0">
+		<text>Who are you?</text>
+	</string>
+	<string id="drx_ql_str_osoz_who_1">
+		<text>We are the remaining members of The Group, we are seven volunteers who have devised a way to combine our sentient minds into one Collective Consciousness.  What you see before you is the culmination of our work, which took many years to accomplish.</text>
+	</string>
+	<string id="drx_ql_str_osoz_who_2">
+		<text>Why would you do this?</text>
+	</string>
+	<string id="drx_ql_str_osoz_who_3">
+		<text>For the betterment of all humanity. Humans go to war over ego, lives are destroyed by cruelty and greed. By combining our minds and projecting ourselves across the entire planet, we could remove these and other negative factors from the minds of those that intend to do harm. By knowing the desires and potential of each individual, we could influence those with the resources to help those with a need. Human development and satisfaction would increase exponentially, resulting in technological advancements in a matter of seconds that previously would have taken years, and would put an end to suffering and injustice for all mankind.</text>
+	</string>
+	<string id="drx_ql_str_osoz_who_4">
+		<text>How is this possible?</text>
+	</string>
+	<string id="drx_ql_str_osoz_who_5">
+		<text>Our research began decades ago. The Group had discovered that all sentient beings possess latent telepathic abilities. We found a way to unlock and magnify that potential, to gain the ability to project one's thoughts and to be receptive of the thoughts of others, and we developed devices that would allow us to do so over great distances. This initial research led to the construction of the Duga-3 array. We were making great progress at that facility up until the time of the Chernobyl accident.</text>
+	</string>
+
+	<!-- Chernobyl incident: -->
+	<string id="drx_ql_str_osoz_chernobyl_0">
+		<text>Were you responsible for the 1986 incident?</text>
+	</string>
+	<string id="drx_ql_str_osoz_chernobyl_1">
+		<text>No, in fact the loss of the power plant forced us to abandon the Duga-3 facility as there was no longer a large enough source of electricity to power it. The Exclusion Zone that was cordoned off to contain the disaster was a blessing in disguise for us however, as we now had a far more vast and exclusive area to conduct our research in secret. We developed ways to replicate our results through low-power methods, at first using biological means. This culminated in the emitter known as the "Miracle Machine" which, although it was just a prototype, was our most beautiful creation to date.</text>
+	</string>
+
+	<!-- Miracle Machine: -->
+	<string id="drx_ql_str_osoz_mm_0">
+		<text>Tell me about the Miracle Machine.</text>
+	</string>
+	<string id="drx_ql_str_osoz_mm_1">
+		<text>We recruited and studied individuals that had demonstrated advanced levels of psychic ability, determining what biological components and physiological traits contributed to the phenomenon, and were able to replicate it by creating an artificial neural network, cultivated from living tissue. The field it generated did not produce the effect we desired, but the fact we could successfully produce the field at all gave us the confidence to continue our research into its successor, the Rainbow Emitter, which you may know as the "Brain Scorcher".</text>
+	</string>
+
+	<!-- Brain Scorcher: -->
+	<string id="drx_ql_str_osoz_bs_0">
+		<text>Tell me about the Brain Scorcher.</text>
+	</string>
+	<string id="drx_ql_str_osoz_bs_1">
+		<text>Using what we learned through our experiments with the Miracle Machine, we developed a design for an emitter that was far more powerful and did not rely on organic material to generate the field. The initial tests of the Brain Scorcher were encouraging, but the signal inexplicably degraded over time, causing harm to the minds of anyone exposed to the field. The device was shut down and many long-time members of The Group became discouraged and abandoned the project. This is when the seven of us combined our consiousness to harness the unlimited potential of thinking in unison. We re-activated the Brain Scorcher and were able to correct and tune the signal with our minds, using it to recruit the help we needed to complete our great works.</text>
+	</string>
+	<string id="drx_ql_str_osoz_bs_2">
+		<text>The Cult of the Monolith.</text>
+	</string>
+	<string id="drx_ql_str_osoz_bs_3">
+		<text>Yes, we lured stalkers into the Zone and compelled them to push north in search of the Wish Granter, exposing them to the psi field and allowing us to reprogram their minds to serve the greater cause.</text>
+	</string>
+
+	<!-- Wish Granter: -->
+	<string id="drx_ql_str_osoz_wg_0">
+		<text>What is the Wish Granter?</text>
+	</string>
+	<string id="drx_ql_str_osoz_wg_1">
+		<text>Nothing more than a parlor trick. An illusion maintained by the Consciousness to draw stalkers into the Zone.  We simply had to provide the enticement, and human nature took care of the rest. From this we maintained a steady supply of labor to help complete and defend our great works, culminating in these Generators.</text>
+	</string>
+
+	<!-- Generators: -->
+	<string id="drx_ql_str_osoz_gen_0">
+		<text>Tell me about the Generators.</text>
+	</string>
+	<string id="drx_ql_str_osoz_gen_1">
+		<text>While the construction of the Brain Scorcher was underway, we discovered a way to resonate the atmosphere with a psi field, which would allow us to project the signal across the entire planet. We began developing this new emitter even before the Brain Scorcher was completed, and after The Group disbanded the Monolith laborers continued construction of these Generators under our direction. Due to unforeseen circumstances, we were forced to activate the device before it was fully ready. The first emission that it produced was by far the most powerful, and was responsible for what those on the outside know as the event called the "Second Incident". The effects of the emission altered the local area dramatically, warping the biology and chemistry of the Zone, and distorting the fundamental laws of physics.</text>
+	</string>
+	<string id="drx_ql_str_osoz_gen_2">
+		<text>So the Generators are responsible for the blowouts, and the blowouts are what is creating the Zone. Why do you let them continue?</text>
+	</string>
+	<string id="drx_ql_str_osoz_gen_3">
+		<text>We did not know the full extent of what we were getting into. When we operated the device for the first time and attempted to inject our consciousness into the Earth's atmosphere, we tore a hole in reality. The result is what you see now, what the Zone has become.  It has taken all of our collective effort since then to contain the Zone from becoming any larger.</text>
+	</string>
+	<string id="drx_ql_str_osoz_gen_4">
+		<text>Why not just shut it down?</text>
+	</string>
+	<string id="drx_ql_str_osoz_gen_5">
+		<text>If we were to shut the device down by disconnecting ourselves from the Consciousness, there would be nothing left to prevent the Zone from growing and spreading across the entire planet. We must keep the device operating, even if that means it continues emitting blowouts, we can at least keep them contained to the confines of the Exclusion Zone. It is only our collective will that is keeping the Zone at bay. We are working on developing a way to reverse it, to close the gap in reality that we created, but it takes all of our collective mental effort just to keep things from getting worse. We need your help.</text>
+	</string>
+	<string id="drx_ql_str_osoz_gen_6">
+		<text>Me? What do you want me to do?</text>
+	</string>
+	<string id="drx_ql_str_osoz_gen_7">
+		<text>Join us. With your additional mental input we can be strong enough to devise and implement a way to put an end to the Zone and right this terrible wrong. The fate of the world is in your hands. Join us, for the sake of all humanity.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Actor Decision Dialog Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor refuses: -->
+	<string id="drx_ql_str_osoz_refuse_0">
+		<text>I won't go along with this deception.</text>
+	</string>
+	<string id="drx_ql_str_osoz_refuse_1">
+		<text>Then you still intend to destroy us? Very well, your selfishness has jeopardized all of humanity. You realize, of course, you only made it here because we allowed it. We are perfectly capable of defending ourselves.</text>
+	</string>
+	<string id="drx_ql_str_osoz_refuse_2">
+		<text>So be it.</text>
+	</string>
+
+	<!-- Actor agrees: -->
+	<string id="drx_ql_str_osoz_agree_0">
+		<text>If it will save the planet I will help.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Message Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 09, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Osoznanie fail message: -->
+	<string id="drx_ql_str_osoznanie_fail">
+		<text>Oh, we've failed again.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

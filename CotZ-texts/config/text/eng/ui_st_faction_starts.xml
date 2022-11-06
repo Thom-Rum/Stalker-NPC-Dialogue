@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< ui_st_faction_starts.xml
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	- Added ordering prefixes to starting location id's
+<
+<	Modified by: DoctorX
+<	Last revised: November 09, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+	<string id="ui_st_01abandoned_sawmill">
+		<text>Abandoned Sawmill (Zaton)</text>
+	</string>
+
+	<string id="ui_st_05abandoned_school">
+		<text>Abandoned School (Dead City)</text>
+	</string>
+
+	<string id="ui_st_02abandoned_village">
+		<text>Farmhouse (Army Warehouses)</text>
+	</string>
+
+	<string id="ui_st_07apartment">
+		<text>Apartment (Outskirts)</text>
+	</string>
+
+	<string id="ui_st_03brain_scorcher">
+		<text>Brain Scorcher (Radar)</text>
+	</string>
+
+	<string id="ui_st_03car_park">
+		<text>Car Park (Cordon)</text>
+	</string>
+
+	<string id="ui_st_02construction_site">
+		<text>Construction Site (Wild Territory)</text>
+	</string>
+
+	<string id="ui_st_06container_warehouse">
+		<text>Container Warehouse (Jupiter)</text>
+	</string>
+
+	<string id="ui_st_01cultural_center">
+		<text>Cultural Center (Pripyat)</text>
+	</string>
+
+	<string id="ui_st_03eastern_factory">
+		<text>Warehouse (Dark Valley)</text>
+	</string>
+
+	<string id="ui_st_06factory_complex">
+		<text>Factory Complex (Agroprom)</text>
+	</string>
+
+	<string id="ui_st_02hermanns_bunker">
+		<text>Hermann's Bunker (Jupiter)</text>
+	</string>
+
+	<string id="ui_st_01hidden_base">
+		<text>Hidden Base (Great Swamp)</text>
+	</string>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Hidden Base 2
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 09, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="ui_st_02hidden_base2">
+		<text>Hidden Base (Great Swamp)</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<string id="ui_st_02kopachy_village">
+		<text>Kopachi Village (Jupiter)</text>
+	</string>
+
+	<string id="ui_st_03lodging_house">
+		<text>Industrial Complex (Rostok)</text>
+	</string>
+
+	<string id="ui_st_01makeshift_barracks">
+		<text>Industrial Complex (Rostok)</text>
+	</string>
+
+	<string id="ui_st_01military_base">
+		<text>Abandoned Army Base (Army Warehouses)</text>
+	</string>
+
+	<string id="ui_st_01northern_factory">
+		<text>Factory (Dark Valley)</text>
+	</string>
+
+	<string id="ui_st_03processing_station">
+		<text>Processing Station (Zaton)</text>
+	</string>
+
+	<string id="ui_st_02pumping_station">
+		<text>Pumping Station (Great Swamp)</text>
+	</string>
+
+	<string id="ui_st_02river_port">
+		<text>River Port (Outskirts)</text>
+	</string>
+
+	<string id="ui_st_01rookie_village">
+		<text>Rookie Village (Cordon)</text>
+	</string>
+
+	<string id="ui_st_01research_institute">
+		<text>Research Institute (Agroprom)</text>
+	</string>
+
+	<string id="ui_st_01sakharovs_bunker">
+		<text>Sakharov's Bunker (Yantar)</text>
+	</string>
+
+	<string id="ui_st_04skadovsk_shipwreck">
+		<text>Skadovsk Shipwreck (Zaton)</text>
+	</string>
+
+	<string id="ui_st_02southern_checkpoint">
+		<text>Military Checkpoint (Cordon)</text>
+	</string>
+
+	<string id="ui_st_01sports_center">
+		<text>Sports Center (Dead City)</text>
+	</string>
+
+	<string id="ui_st_02train_hangar">
+		<text>Train Depot (Garbage)</text>
+	</string>
+
+	<string id="ui_st_03tunnel_entrance">
+		<text>Underground Entrance (Jupiter)</text>
+	</string>
+
+	<string id="ui_st_07tunnel_refuge">
+		<text>Bandit Refuge (Agr. Underground)</text>
+	</string>
+
+	<string id="ui_st_04tuzla_outpost">
+		<text>Northwestern Farmstead (Great Swamp)</text>
+	</string>
+
+	<string id="ui_st_02yanov_station">
+		<text>Yanov Station (Jupiter)</text>
+	</string>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Yanov Station 2
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 09, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="ui_st_05yanov_station2">
+		<text>Yanov Station (Jupiter)</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

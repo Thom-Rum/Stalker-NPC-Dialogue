@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Hermann (Ecologist Trader, Jupiter) (drx_ql_strings_ecolog_hermann.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_ecolog_tukarev.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 02, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 02, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hermann (Ecologist Trader) Escort Jupiter Scientists Task -->
+
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_1_name">
+		<text>Escort Jupiter Scientists</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_1_text">
+		<text>Scientists have hired you to guide them to a specific location for study. Once their research has been successfully conducted, return them safely to camp.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_1_about">
+		<text>We need an experienced stalker to lead a few of our the colleagues out into the field for study. Are you up for the task?</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_1_finish">
+		<text>Thank you for your protection, stalker. Please, take this as a token of our gratitude.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hermann (Ecologist Trader) Find Artefact Task -->
+
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_2_name">
+		<text>Find the %s Artefact for Hermann</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_2_text">
+		<text>You have been asked to retrieve the %s artefact. Bring it back to {npc_name} if you happen to get your hands on one.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_2_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_2_fetch_about">
+		<text>We are looking for a certain kind of artefact, specifically a %s. You ever heard of it? If you can find one, we have something we can give you in return that I think you will find useful.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_2_fetch_finish">
+		<text>Great! You've found exactly what we are looking for. Take this suit, it offers great protection against the Zone and I'm sure you can command a good price for it.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hermann (Ecologist Trader) Find Transistors Task -->
+
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_3_name">
+		<text>Find Transistors for Hermann</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_3_text">
+		<text>{npc_name} needs transistors. They may exist inside one of the local abandoned buildings.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_3_about">
+		<text>There is some electronic equipment we need, but have been unable to obtain. It is quite possible the parts we need can be found inside an abandoned building not far from here, but it is not an easy place to get into. If you are willing to search for them I can pay you.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_3_finish">
+		<text>Thank you stalker!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hermann  (Ecologist Trader) Recover Stolen PDA Task -->
+
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_4_name">
+		<text>Recover Stolen PDA for Hermann</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_4_text">
+		<text>Hermann had a PDA stolen that contained important research. Find it and return it to him.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_4_about">
+		<text>Bandits broke into one of our mobile labs and looted it. One of the things they took was a PDA that has some research data on it that is very important. I have received a tip as to where they might have stashed it. Check it out. If you find the PDA I will reward you for its return.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_4_finish">
+		<text>Excellent! You have done well.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hermann (Ecologist Trader) Brains vs Brawn Task -->
+
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_5_name">
+		<text>Brains vs Brawn</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_5_text">
+		<text>Lead a group of Ecologist guards into battle against Bandits.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_5_about">
+		<text>My researchers are in constant peril. There are bandits all over the area and the Military doesn't seem to be able to do a damn thing about it. I want you to clear the area with some of my men. Don't let their A-levels fool you, these boys know how to fight. Now get out there and lead them to victory!</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_task_5_finish">
+		<text>Excellent work. Thank you.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

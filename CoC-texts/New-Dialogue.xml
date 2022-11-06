@@ -1,0 +1,72 @@
+	<string id="dm_tips_39">
+		<text>Pay attention to anyone in a gunfight or surrounded by mutants.</text>
+	</string>
+
+    	<string id="dm_job_13">
+		<text>I�ve got no work for you.... </text>
+	</string>
+
+            <string id="dm_information_69">
+		<text></text>
+	</string>
+
+    //referenf to this - https://stalker.fandom.com/wiki/Topol
+
+    // Pripyat/Chernobyl only
+
+    What's new? Well now anyone who can walk and carry a weapon is here in the north. Some people keep hearing a voice that promises it'll grant you anything you wish.
+    Anything. Can you imagine if someone says "I want the Zone to disappear"? No way! Warn other people to wish for something else. Spread the word! Or else we'll all be waking up in the middle of a field or a swamp. And worse, we'll all have to get jobs.
+
+
+This city is full of brainwashed idiots, all drooling and slobbering at the mouth. And to think, a lot of them used to be the toughest of Stalkers. Scary stuff. Best be careful or else we'll end up like one of them.
+
+Be careful of those stone-lickers. They're like cockroaches in these parts. They're absolutely everywhere.
+
+Ever since I got past the Scorcher I've been wondering one thing. How the hell did that one Freedom squad manage to hold out here for a month? It's impossible. 
+
+I heard about some members of Freedom who managed to survive in Pripyat for a whole month while cut off from the rest of the Zone. No idea how they did it. Maybe they just sat in an apartment with the lights off. 
+
+
+
+	<string id="dm_anomalies_58">
+		<text>I lost my friend last week to a Vortex. Everything was quiet, we were travelling back to camp and suddenly he just lifted into the air and started to spin. It tore him up till there was nothing left.
+	I can't stop thinking about him. What if I'd grabbed his hand? It just goes to show, you should always throw bolts.</text>
+	</string>
+
+		<string id="dm_hello_15">
+		<text>Oh hey!</text>
+	</string>
+
+	<string id="dm_no_more_11">
+		<text>Sorry man, I'm too tired. I need to get some rest.</text>
+	</string>
+
+	<string id="dm_do_not_know_11">
+		<text>I don't have anything else for you. Sorry man.</text>
+	</string>
+		<string id="dm_do_not_know_12">
+		<text>Nothing. Trying to make it, that's all.</text>
+		</string>
+		<string id="dm_do_not_know_13">
+		<text>Well I'm not really up to date with all the latest news.</text>
+		</string>
+	
+		<string id="dm_do_not_know_14">
+		<text>Don't know anything else. Sorry.</text>
+		</string>
+
+
+
+
+
+People here still talk about some stalker called Otter. They say he was one of the best, came to the Zone in the very first year. He was even on Strelok's team.
+And then one day he got too close to the Brain Scorcher and that's it. People saw him collapse, and then a few minutes later he suddenly got up and staggered further into the Scorcher. Never seen from again.
+
+<string id="dm_information_69">
+	<text>I'm stuck here, alright? Stuck. I want to go home and they're not letting me. That's all the news. The guys that walk deep into the Zone, the ones that have been around, they say different things. And at times they bring goodies too, enough to make you jealous. They say there are places like mounds of gold: artefacts all for the taking. Granted not many will get there, and even less will make it back with the loot.</text>
+</string>
+
+<string id="dm_information_70">
+	<text>Did you hear the rumour that the Zone is growing? I think it's true: I saw this frightening humanoid mutant right by the perimeter. Previously you could only run into these freakish things in the centre of the Zone. Things aren't looking good.
+</text>
+</string>

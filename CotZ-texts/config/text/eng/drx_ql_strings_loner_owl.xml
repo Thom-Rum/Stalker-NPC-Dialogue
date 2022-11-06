@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Owl (Loner Trader, Zaton) (drx_ql_strings_loner_owl.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_strings_loner_owl.ltx
+<
+<	Created by: DoctorX
+<	Last revised: November 08, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Owl (Loner Trader) Retrieve Locked Case from Snork Tunnels Task -->
+
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_1_name">
+		<text>Steal the Sinkhole Stash</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_1_text">
+		<text>Yar lost a valuable stash when it fell into a chasm. His loss could be you and Owl's gain.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_1_about">
+		<text>You want to hear a funny story? The other day I'm over in Yanov and I'm having some drinks with this guy from Freedom, Yar I think he was called. Anyway, he starts getting pretty drunk and rambling on about how miserable his luck is, and he goes on to tell me about this stash he lost when a sinkhole opened and swallowed up the car he had it hidden in. He's going on and on about it, cursing his luck over and over and having another drink every time he did! Well, he got so drunk it didn't take too much prodding to get him to blurt out not only the location of the stash, but what he was hiding inside of it, and even the damn combination to the safe! Can you believe it, the dumb shit? Tell you what sonny, if you want to go down there and find it I'll give you half of what it's worth, and that's a good bit, believe me.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_1_finish">
+		<text>Ah! You have done very well. Here is your cut.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Owl (Loner Trader) Eliminate Zaton Dredge Bandits Task -->
+
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_2_name">
+		<text>Eliminate the Dredge Bandits</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_2_text">
+		<text>Bandits have been harassing the Skadovsk lookouts. Owl wants them eliminated.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_2_about">
+		<text>There's a group of Bandits that have been taking pot-shots at our sentries from over at the dredging station. See if you can sneak up on them and take them out before they hurt one of the boys. I'll give you something from my shop in return.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_2_finish">
+		<text>Not bad, you might just make a name for yourself around here.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Owl (Loner Trader) Interceptor Task -->
+
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_3_name">
+		<text>Recover the Stolen Supply Shipment</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_3_text">
+		<text>A Bandit has stolen Owl's last supply shipment. Find him and get the shipment back.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_3_about">
+		<text>I just got word some damned Bandits have hijacked my supply delivery. But they don't know that I know where they are. Go get my shipment back from them, I'll give you half of what it's worth.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_3_finish">
+		<text>I appreciate what you have done, stalker. Supplies don't come easy up here, I couldn't afford to lose this delivery. Here is what I owe you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Owl (Loner Trader) PDA Float Fetch Task- -->
+
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_4_name">
+		<text>Find the Stalker's PDA</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_4_text">
+		<text>A stalker has lost a PDA containing valuable information. Owl is willing to pay if you can find it and bring it to him.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_4_about">
+		<text>I overheard one of the boys talking about a PDA he lost in the field. He had a lot of valuable information stored on there. Why don't you go take a look around where he was. If you find it, bring it to me without letting him know. I'll pay you well for it.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_4_finish">
+		<text>Ah, very good. Here, take this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Owl (Loner Trader) UAV Memory Module Task -->
+
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_5_name">
+		<text>Retrieve the Crashed UAV Memory Module</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_5_text">
+		<text>A spy drone has crashed in Jupiter and both the Military and the Mercenaries are racing to recover the information it was recording. If you can retrieve the data before they do, Owl is willing to pay well for it.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_5_about">
+		<text>There's word of some sort of spy plane that crashed in a remote area of Jupiter. Both the Military and the Mercs have dispatched squads to recover the information the drone was collecting. If they want it that bad, I want it worse. Head down there and see if you can get to the crash site before they do. If you can recover any information from the wreckage I'll reward you well for it.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_5_finish">
+		<text>Very good. I'll have the Mercs and the Military in a bidding war to get their hands on this. Here's your cut.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Owl (Loner Trader) Retrieve PDA Dynamic Task -->
+
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_6_name">
+		<text>Old Men Fighting</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_6_text">
+		<text>Steal the PDA that Beard has stashed away so Owl can wipe any incriminating evidence from the hard drive and replace it with evidence against Beard.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_6_about">
+		<text>Beard thinks he has some dirt on me, he keeps a bunch of PDA's stashed away with what he thinks is incriminating evidence against me. But I am always one step ahead of him, the dumb shit, and I find his PDA's and reprogram them with the dirt on him, ha! Go get one of his PDA's for me so I can do my handiwork, I'll give you something for the trouble.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_6_finish">
+		<text>Very good. When I get done with this no stalker will want to do business with that asshole Beard again!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Owl (Loner Trader) Bloodsucker Lair Task -->
+
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_name">
+		<text>Bloodsucker Lair</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_text">
+		<text>Search the basement of the Krug Antenna Array for the circuit boards.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_text_1">
+		<text>Search the doomed convoy on Preobrazhensky Bridge for the cargo of poisonous nerve gas they were hauling.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_text_2">
+		<text>Search the convoy for the keys needed to open the container.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_text_3">
+		<text>Search the convoy for the second key needed to open the container.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_text_4">
+		<text>Open the container and retrieve the gas canister.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_text_5">
+		<text>Take the poisonous gas canister to the Krug Antenna Array. Hook the gas into the ventilation system via a maintenance valve located in a lot next to the complex.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_text_6">
+		<text>Open the main valve to flood the basement of the complex with the gas.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_text_7">
+		<text>Wait for the gas to kill the Bloodsuckers.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_text_8">
+		<text>Find a way down to the basement of the Krug Antenna Complex. You will need to bring protection against the poison gas you just injected.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_about_pre_npc_1">
+		<text>I got an idea that can make us both some money, if you don't mind risking your life a few times. Cardan won't shut up back there about some project he's been working on. He says he needs some circuit boards from the basement of the Krug Antenna Complex, but the place has become infested with Bloodsuckers. He must need them bad, he's willing to pay quite a lot for them, but I imagine circuit boards are pretty hard to come by this far in the Zone.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_about_pre_actor_1">
+		<text>Hey, thanks for the tip. I'll head over there and blast those Bloodsuckers and collect my reward from Cardan.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_about_pre_npc_2">
+		<text>Not so fast, sonny. These aren't just a couple of cute little Bloodsuckers you run into in the field in ones or twos, there are scores of them down their from what I hear, they will tear you to shreds before you can even cry for your mama. You want to go down there and try yourself? Go, it's your funeral. Or you could agree to split the reward with me and I'll tell you how to take care of the Bloodsucker lair.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_about_pre_actor_2">
+		<text>I should have known you had something up your sleeve. Alright, what's your idea? And if it involves hand grenades I already thought of it.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_about_pre_npc_3">
+		<text>Before the first blowout, they were conducting some tests on deadly nerve gas in this area. When the Zone erupted, a convoy carrying a container of this gas met an unfortunate end on Preobrazhensky Bridge when an anomaly field engulfed it. That gas container is still on the bridge, nobody's been able to get past the anomalies. But if you think you can get to it, you could use that gas to snuff out the Bloodsuckers.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_about_pre_actor_3">
+		<text>How so?</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_about">
+		<text>I know a guy who used to work at the Krug. He told me there is a maintenance valve for the ventilation system in a lot next to the antenna array. You could hook the gas canister into the system there and inject the gas into the basement of the complex. Those Bloodsuckers will drop like flies! Trouble is; you will too, so you better bring some strong chemical protection with you before you go down in there to search for the circuit boards.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_7_finish">
+		<text>Ah excellent, you have succeeded. It's like I always say, "There's no problem in life that can't be solved with a deadly nerve agent." Here's your cut of the reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Owl (Loner Trader) Waste Processing Station Mercs Task -->
+
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_8_name">
+		<text>Sneak into the Mercenary Base</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_8_text">
+		<text>Infiltrate the Waste Processing Station and recover the delivery the Mercenaries stole from Owl.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_8_about">
+		<text>Those asshole Mercs over there at the Waste Processing Station keep harassing my couriers and hijacking my supply deliveries. They just confiscated one of my shipments and are holding it over there for ransom, can you believe the nerve! I want you to sneak in there and get my shipment back. They're pretty dumb so you should be okay as long as you are quiet. Find where they have the case containing the goods and bring it back to me. I will reward you well.</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_task_8_finish">
+		<text>Thank you stalker. Take this as your reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

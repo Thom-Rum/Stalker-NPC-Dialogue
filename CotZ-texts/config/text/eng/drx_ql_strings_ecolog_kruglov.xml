@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Professor Kruglov (Ecologist Mechanic, Yantar) (drx_ql_strings_ecolog_kruglov.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_ecolog_kruglov.ltx
+<
+<	Created by: DoctorX
+<	Last revised: June 03, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	June 03, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kruglov  (Ecologist Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_yan_ecolog_kruglov_task_1_name">
+		<text>Retrieve Gunsmith Toolkit for Kruglov</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_1_text">
+		<text>Retrieve the shipment of gunsmith tools that was stashed away so Kruglov can perform basic upgrades to your weapons and equipment.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_1_about_pre_npc_1">
+		<text>If you can pick up the shipment of gunsmith tools I had requested, I would be willing to use them to upgrade your equipment. I'll pay you for the trouble as well.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_1_about_pre_actor_1">
+		<text>Where is the shipment?</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_1_about">
+		<text>A Military courier was delivering them to me but he was called to reinforce a firefight and had to stash them away. I'll mark the location where he hid them on your map.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_1_finish">
+		<text>Ah, good. I've been waiting for these tools for a while. Here is payment for your time. Bring me your gear if you would like me to do any upgrades for you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kruglov  (Ecologist Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_yan_ecolog_kruglov_task_2_name">
+		<text>Find Technician Toolkit for Kruglov</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_2_text">
+		<text>Kruglov knows of an area where a set of technician's tools might be found. Search the area and find the tools so Kruglov can perform advanced upgrades to your equipment.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_2_about_pre_npc_1">
+		<text>I could do more advanced upgrades to your gear if I had a decent set of technician's tools. I put in a requisition for some quite a while ago but I doubt it will ever be fulfilled.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_2_about_pre_actor_1">
+		<text>We're in a gigantic junk yard. Aren't there any abandoned tools in the Zone you could use?</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_2_about">
+		<text>Possibly, but the only place I can think of where you might be able to find a set is constantly overrun with mutants and thugs. If you are willing to search there, I'll pay you for any tools you find and I'll be able to do more advanced upgrades for you.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_2_finish">
+		<text>You found some! These are perfect, they are just what I need. Thank you stalker, stop by any time you want me to upgrade your equipment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kruglov  (Ecologist Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_yan_ecolog_kruglov_task_3_name">
+		<text>Procure Armorer's Toolkit for Kruglov</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_3_text">
+		<text>A Bandit has stolen a set of armorer's tools from the Military that Kruglov could use to fully upgrade your gear. Locate the thief and find out what he did with the tools.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_3_about_pre_npc_1">
+		<text>A Bandit broke into a Military supply shed and made off with a set of armorer's tools. The Military is out searching for him right now, but if you should happen to find him first, it could be good for both of us.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_3_about_pre_actor_1">
+		<text>What are you getting at?</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_3_about">
+		<text>I have been after a good set of armorer's tools for a while. If the Military retrieves them, they will just lock them back up and they will be of no use to anyone. I can work wonders with a set of tools like that. Find the Bandit before the Military does, and bring the tools back to me. I will pay you for the trouble and I'll be able to do nearly any type of upgrade to your equipment.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_kruglov_task_3_finish">
+		<text>Great work. Thank you stalker, with these tools I'll be able to perform almost any upgrade to your equipment.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

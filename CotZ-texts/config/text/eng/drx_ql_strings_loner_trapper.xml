@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Trapper (Loner Honcho, Jupiter) (drx_ql_strings_loner_trapper.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_loner_trapper.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 02, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 02, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Trapper (Loner Honcho) Lead Mutant Hunt Task -->
+
+	<string id="drx_ql_jup_b220_trapper_task_1_name">
+		<text>Lead Mutant Hunt</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_1_text">
+		<text>Mutants have been spotted near this location making the area dangerous for some of the locals. You have been tasked to lead a hunting party to reduce the mutant threat within the area. Report back to Trapper after the job is done.</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_1_about">
+		<text>I have organized a hunt to help keep the area around Yanov a bit safer by depopulating the various mutant lairs found in area. I need someone experienced to lead it. Would you like the job?</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_1_finish">
+		<text>Thank you, stalker. The area will be much safer for others because of you. Take this as your payment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Trapper (Loner Honcho) Deadliest Game Task -->
+
+	<string id="drx_ql_jup_b220_trapper_task_2_name">
+		<text>Deadliest Game</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_2_text">
+		<text>Trapper has %s called %s that needs to be eliminated.</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_2_about">
+		<text>I have a dangerous threat that needs to be eliminated. Not a mutant this time, but a man. He will not be easy to get to but I promise to pay you well. Are you up for the job?</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_2_finish">
+		<text>Excellent work stalker. Here is your payment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Trapper (Loner Honcho) Find Weapon Task -->
+
+	<string id="drx_ql_jup_b220_trapper_task_3_name">
+		<text>Find a %s for Trapper</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_3_text">
+		<text>Trapper is looking for a specific firearm in perfect condition. Return to him if you find one.</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_3_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_3_fetch_about">
+		<text>One of my hunters is in the market for a specific firearm, a %s. He goes after dangerous game so he needs it to be in excellent condition. I can pay you well if you find one.</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_3_fetch_finish">
+		<text>Ah, perfect. This will do nicely. Here is the money I promised you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Trapper (Loner Honcho) Trophy Hunt Task -->
+
+	<string id="drx_ql_jup_b220_trapper_task_4_name">
+		<text>%s Trophy Hunt</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_4_text">
+		<text>Trapper says he will pay well if I can bring him a %s.</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_4_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_4_fetch_about">
+		<text>I have a bounty out on a particular type of mutant. Kill it and bring me its %s and I will pay you well, stalker.</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_4_fetch_finish">
+		<text>Ah, another threat eliminated and a new decoration for the camp. Well done, stalker.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Trapper (Loner Honcho) Big Mutant Hunt Task -->
+
+	<string id="drx_ql_jup_b220_trapper_task_5_name">
+		<text>Big Mutant Hunt</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_5_text">
+		<text>Hunt down the aggressive mutants spotted in the area.</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_5_about">
+		<text>I have a prime target for you if you are looking for a challenging hunt. Some aggressive mutants have been sighted not far from here. If you can bag them, I'll give you a reward.</text>
+	</string>
+	<string id="drx_ql_jup_b220_trapper_task_5_finish">
+		<text>Excellent work. You are proving to be one of my best hunters.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

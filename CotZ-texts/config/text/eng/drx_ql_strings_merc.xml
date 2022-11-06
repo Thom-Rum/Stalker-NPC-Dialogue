@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Mercenary Task Strings (drx_ql_strings_merc.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: November 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mercenary Storyline Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Jupiter UAV Memory Module Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_1_name">
+		<text>Retrieve the Crashed UAV Memory Module</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_1_text">
+		<text>The Mercenary spy drone has crashed in the area around the Jupiter Plant. The memory module containing the data it was recording must be retrieved before it falls into the wrong hands.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_1_about">
+		<text>An unfortunate event has occurred. Our spy drone has crashed north of here somewhere around the Jupiter plant. The area it came down in is extremely inaccessible, but we cannot risk having the data the drone was recording exposed to anyone. Find a way to the crash site, locate the memory module from the aircraft, and return it here immediately. Guard the unit with your life while you are in possession of it. The data it contains is highly classified.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_1_finish">
+		<text>You have done well. If that information had gotten out our entire operation here could have been compromised.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Wild Territory Electrified Tunnel Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_2_name">
+		<text>Shocking Documents</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_2_text">
+		<text>Classified documents may have been stashed in a tunnel in the Wild Territory that has since been overwhelmed by an electrical anomaly. Navigate through the anomaly field and find the documents.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_2_about">
+		<text>One of my teams has made an important discovery about one of the hidden labs in the area. An emission hit while they were on their way back with the documents, and they radioed us that they were taking refuge in a nearby tunnel in the Wild Territory. That was the last transmission we ever received from them. The scouts I sent to rescue them just returned, they say the tunnel is completely blocked off. An electrical anomaly had sprung up while the team was hiding in there and engulfed the entire tunnel, killing them all and trapping the salvaged documents within. We must retrieve those documents. I need someone who is capable of navigating their way through an anomaly field. Find a way in there.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_2_finish">
+		<text>Let's see what you managed to recover... Ah, these are status reports on a classified project that was being conducted here in the Zone, research into some sort of device only referred to as "Item 62". Hard to tell from these documents what it is, but it seems as though it could be some sort of very powerful experimental weapon. Looks like the research was taking place somewhere far to the north, but it doesn't give an exact location. This is a great lead. Outstanding work, here is your pay.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Limansk Bridge Brawl Storyline Task- -->
+
+	<string id="drx_ql_killer_sl_task_3_name">
+		<text>Battle of Limansk Bridge</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_3_text">
+		<text>A large Monolith assault force is pushing south through Limansk toward the Mercenary base in Dead City. Help reinforce the Mercenary defenses at the Limansk bridge and hold off the attack.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_3_about_pre_npc_1">
+		<text>The Monolith seem to have taken an interest in us. A sizeable force has been sighted moving south towards us through Limansk. There are two squads of Mercs up there now guarding the bridge. Head on up there and reinforce them before the Monolith arrive.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_3_about_pre_actor_1">
+		<text>You can count on me.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_3_about">
+		<text>Do not let the Monolith cross that bridge. We've got enough to deal with around here without those freaks threatening our base. Once you've secured the bridge, push across it and wipe out any remaining forces.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_3_message">
+		<text>Enemy in sight! The Monolith are approaching the bridge! %s, get up here! Help us out!</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_3_finish">
+		<text>Excellent work.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Dead City Brawl Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_4_name">
+		<text>Battle for Dead City</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_4_text">
+		<text>Sweep through Dead City and intercept the attacking Military force. Intervene their attack on the Mercenary base and push them back out of the city.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_4_about_pre_npc_1">
+		<text>The Military has discovered the location of our base. As we speak they are amassing an assault force to try to drive us out of Dead City. It's time to prove who is the superior fighting force. We may be smaller in number than the Spetsnaz, but we are far better equipped and more highly trained. This is a crucial moment for us. We must hold off the assault and push the Military back, not only for our survival, but to send the message that we are not to be fucked with.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_4_about_pre_actor_1">
+		<text>Excellent, I've been itching for a real fight. Where do you want me?</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_4_about">
+		<text>Right on the front line. You will be leading one of the counter-assault squads. Take your team and push south with the main force, intercept and eliminate the Military attackers before they can reach our base. Dead City must not fall, we're all counting on your success.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_4_finish">
+		<text>Victory! Your performance on the battlefield was commendable, our base surely would have fallen if it wasn't for your heroism. Our success today has sent a strong message to the Military. They may know where we live now, but they will surely think twice before they try to attack our base again.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Investigate Stingray 5 (Zaton, Distorted Swamp) Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_5_name">
+		<text>Investigate Stingray 5 Crash Site</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_5_text">
+		<text>{npc_name} wants to find out what brought down the Military helicopter in Zaton. Recover the black box from the wreckage and bring it to him.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_5_about">
+		<text>A Military helicopter went down in Zaton, and we weren't the ones who shot it. I am very interested in finding out what did bring it down, and what it was doing that far north to begin with. Head up there immediately and see if you can retrieve the helicopter's black box from the crash site before the Military organizes its own recovery operation. You will need to bring some serious chem protection PPE with you. The area it came down in is highly contaminated.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_5_finish">
+		<text>Well done. Let's see, if I can still access the data on this recorder I should be able to determine what brought the helicopter down... Well, the data is good, but it leaves me with more questions than answers. The systems check out, so it wasn't a mechanical failure that brought it down... no signs of explosion or small arms fire, pilot input was normal... Then there's a strange blip, the data goes dark for a second, and then it registers the impact from the crash landing. What could have possibly brought it down? The data also confirms that this helicopter was part of a larger unit, codenamed "Operation Fairway". Not clear what those idiots were up to, sending all those choppers up there. Excellent work, the information you have recovered is very valuable. Take this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Search Agroprom Underground Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_6_name">
+		<text>Search Agroprom Underground</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_6_text">
+		<text>Classified documents are reported to exist somewhere in the tunnels beneath Agroprom. Find them and return them to {npc_name}.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_6_about">
+		<text>We've gotten a good lead on some classified information that is hidden somewhere inside the tunnels underneath Agroprom. Trouble is, the Military seems to have found out it's down there too and is currently scouring the tunnels to find it. See if you can manage to find a way in there and locate the documents before they do. This information could be vital to our operation.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_6_finish">
+		<text>Well done. Look at this... What a great find, this is a report containing evidence of secret test sites throughout the Zone. Someone was conducting experimental research projects ranging from biological experimentation to genetic alteration to even mind control... Well we've got our work cut out for us. We'll have to locate and infiltrate the sites where these experiments were being conducted and collect as much information as we can. Our clients will be willing to pay a fortune for it.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Disable the Miracle Machine Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_7_name">
+		<text>Disable the Miracle Machine</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_7_text">
+		<text>Gain access to Lab X-16 in Yantar and find a way to disable whatever is generating the harmful field there.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_7_about_pre_npc_1">
+		<text>Ah good, you're here. I have news. I was able to study some of the documents you recovered from the lab in Dark Valley. In there were details of a device that was being developed to block the effects of harmful telepathic fields. I was able to reconstruct the device from the data, and I believe it could be used to gain access to the factory complex in Yantar. If we can shut down whatever is creating that field there we can open our path to the south.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_7_about_pre_actor_1">
+		<text>I've heard that place can melt your mind and turn you into a zombie. Why do I get to be the guinea pig?</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_7_about">
+		<text>Whatever is powering the field down there has got to be some sort of incredibly advanced technology, and our clients are willing to pay big to whoever can get them access to it. I'm giving you first shot at this. What do you say, are you up for the job?</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_7_finish">
+		<text>You're back, it worked! It only had a coin-flip of a chance, by which I mean sometimes a coin can land on it's edge. Great job, here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Infiltrate Lab X-18 (Dark Valley) Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_8_name">
+		<text>Infiltrate Lab X-18</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_8_text">
+		<text>{npc_name} suspects there is a hidden laboratory in Dark Valley that was the sight of covert experimental research. Gain access to the lab and search for any valuable research data that can be recovered.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_8_about">
+		<text>We believe we may have discovered the location of one of the hidden laboratories. There is a small compound in Dark Valley that is seemingly too inconsequential to be as closely guarded by the Military as it is. We believe it hides the entrance to an underground bunker where some of the secret research projects were being conducted. We cannot yet risk revealing the true size of our force to the Military by staging an all-out assault on the complex, I need a lone infiltrator to try to sneak past the guards and gain access to the lab. Find out what they are hiding down there. The information contained in that bunker could be incredibly valuable and there will be a big paycheck in it for you if you succeed.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_8_finish">
+		<text>You found something? Let me see... yes, they were doing experimental research down there. Biological engineering, genetic alteration, thought wave manipulation... looks like they were using live test subjects too. Sick shit man, I can't imagine what you saw down there. There's some data on some of the equipment they were developing down there, too. This is a great find, our clients will pay well for this. Here's your cut.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Deactivate Brain Scorcher Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_9_name">
+		<text>Deactivate the Brain Scorcher</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_9_text">
+		<text>Gain access to Lab X-19 find a way to disable the massive psi emitter located there.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_9_about_pre_npc_1">
+		<text>Our mission here is going to require us to push further north into the Zone. Our forces cannot advance while the psi emitter in Radar known as the "Brain Scorcher" continues to be operational. The time has come to take action. We need to take the device down, and I want you to lead the operation.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_9_about_pre_actor_1">
+		<text>What's the plan?</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_9_about">
+		<text>You are going to infiltrate the Monolith compound in Radar and gain access to the bunker there designated Lab X-19. That psi helmet of yours should protect you from the harmful effects of the field. The Monolith don't yet know we have a device to counter the field, they won't be expecting anyone to approach the complex so you should be able to slip through their defenses if you are careful. Once inside, search the lab and find a way to shut off the emitter. When you have succeeded, our extraction squads will rush in from the Red Forest to help you make your escape.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_9_finish">
+		<text>Amazing! The whole base has been talking about this, no one can believe you pulled it off! Now the path to the north is open, and we can begin searching for the remaining labs up there. Here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Search Jupiter Underground Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_10_name">
+		<text>Search Jupiter Underground</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_10_text">
+		<text>Classified documents were reportedly uncovered by a researcher who was killed while delivering them to the Military. {npc_name} believes the researcher may have stashed the documents somewhere in the tunnel complex running beneath Pripyat before he died. Search the Jupiter Underground and recover the documents before they fall into enemy hands.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_10_about_pre_npc_1">
+		<text>We have received intel that a scientist stumbled upon some classified documents while conducting his research in the Outskirts. He was reportedly killed while attempting to return them to the Military and the documents were subsequently lost. We suspect he may have been traveling through the tunnel system that runs beneath Pripyat to avoid detection by the Monolith, and may have hidden the documents somewhere down there before he was killed.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_10_about_pre_actor_1">
+		<text>What do you think the documents contained?</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_10_about">
+		<text>Unknown. But I can tell you both the Military and the Monolith have dispatched search parties in an attempt to retrieve them. If they want them that bad, our employers will want them more. You must find the documents before they do, and I warn you it will not be easy. The underground passageway is an enormous, fetid labrynth infested with mutants and plagued by anomalies. Very few have survived a descent into the tunnels. However, if you succeed, you will be compensated well for the risk you are about to undertake.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_10_finish">
+		<text>Ah good, you survived. Never doubted you for a minute. Excuse me a second... "Vlad! Call off the backup search party! ... No, he survived... No, I'm serious! ... You lost how much on that bet?..." Anyway, great job. Now, let's see what these documents contained... Ah, look at this... evidence of another emitter project that was being conducted here in the Zone. It looks like this one was massive, the culmination of the experiments performed in Yantar and Radar. According to these documents, construction was already well underway. This is a huge discovery, if they mangaged to get this new emitter operational it could be the source of the blowouts that are still occuring. Our employers will be very interested in getting their hands on this information. Here is your cut of the reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Infiltrate Lab X-8 (Outskirts) Storyline Task (LINKS TO: Build Gauss Gun Task) -->
+
+	<string id="drx_ql_killer_sl_task_11_name">
+		<text>Infiltrate Lab X-8</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_11_text">
+		<text>Search the hidden bunker designated Lab X-8 for evidence of a covert advanced weapon development project.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_11_about">
+		<text>We've discovered the location of a hidden underground lab up in the Outskirts. We think it was the site of some highly advanced weaponry research. We need to find out what was going on there and see if anything was left behind. Head up there, find a way into the lab, and scour the area for any information you can find.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_11_finish">
+		<text>Ah good, you found something. These could be very important indeed.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Build Gauss Gun Storyline Task (LINKS FROM: Infiltrate Lab X-8) (LINKS TO: Wait for Gauss Gun Task) -->
+
+	<string id="drx_ql_killer_sl_task_12_name">
+		<text>Gauss Gun Components</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_12_text">
+		<text>{npc_name} is willing to fabricate a Gauss Gun for you if you can find him some capacitors, wire, and a Flash artefact.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_12_about_pre_npc_1">
+		<text>I knew if anyone could find a way in there, it would be you. What did you find? Let me see... Wow, do you know what these are? This is a full set of schematics and blueprints to build a Gauss rifle!</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_12_about_pre_actor_1">
+		<text>You mean that kick ass rifle the Monolith have? I've been dying to get my hands on one of those. Without actually dying.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_12_about">
+		<text>You know, these plans are detailed enough I might be able to build one from them. I have most of the parts I would need lying around here. There are only a few specialized components I don't have. What do you say, if you want to get the components for me, I'll build you a Gauss gun.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_12_finish">
+		<text>Ah, good. I'll get started on the Gauss rifle. Might take a while.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Wait For Gauss Gun Storyline Task (LINKS FROM: Build Gauss Gun Task) -->
+
+	<string id="drx_ql_killer_sl_task_13_name">
+		<text>Wait for Gauss Gun Completion</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_13_text">
+		<text>{npc_name} is finishing construction of the Gauss rifle and should have it completed in a day or so. He will contact you when it is ready.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_13_about">
+		<text>Perfect, you found just what I needed. I've already started constructing the weapon, the frame is nearly complete. Now that you've brought the final components I should have it finished for you in a day or so. I'll let you know when it's ready.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_13_message">
+		<text>Hey, I finished the Gauss rifle. Stop on by and I'll give it to you.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_13_finish">
+		<text>Well, here she is. She ain't much to look at but she's got a lot of firepower. Kinda like my ex-wife. Good luck with it.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Scientist ID Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_14_name">
+		<text>Identify the Researcher</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_14_text">
+		<text>A mysterious high-ranking researcher was reported to have been attacked and injured. Search the area for any information about his identity he may have dropped during the struggle.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_14_about">
+		<text>There's been some activity while you were away. Word is some scientists got jumped by a few Bandits and one of them was hurt pretty bad. Turns out he may have been a high-ranking researcher involved in some of the covert experiments that were being conducted around here. Why don't you head over to where the researchers were attacked and see if there's anything you can find out about this guy. Scour the area, he may have left some clue that might help us identify him.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_14_finish">
+		<text>You found something? Ah, just what we needed. Now that we know who this guy is, perhaps we are one step closer to finding out what he was doing here and who he was doing it for.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Investigate Stingray 3 (Zaton, Southern Plateau) Storyline Task- -->
+
+	<string id="drx_ql_killer_sl_task_15_name">
+		<text>Investigate Stingray 3 Crash Site</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_15_text">
+		<text>A Military helicopter has crashed on top of the inaccessible Southern Plateau in Zaton. Meet with a stalker called Noah and convince him to tell you his secret way of reaching it.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_15_text_1">
+		<text>According to Noah, the top of the Southern Plateau can somehow be reached from inside the Burnt Village. His instructions are as follows: Enter the village via the road leading in from the southwest and cross the thermal field to the right to find the opening in the fence on the other side. Jump off the edge of the cliff to be transported to the plateau.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_15_text_2">
+		<text>Find the equipment case the surviving Stingray 3 crew members stashed on top of the plateau.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_15_about">
+		<text>We got word of a Military helicopter that crashed up in Zaton. Intelligence suspects it was carrying some advanced equipment, something we'd like to get our hands on. The Military has been unable to recover it since the plateau the helicopter came down on cannot be climbed back up to. However, we received some intel on a stalker called Noah who is said to have been seen at the crash site. Interview him and find out how he got up there. Recover the equipment before the Military can dispatch another helicopter to retrieve it.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_15_finish">
+		<text>Good work. Lets see what you have recovered... Damn, look at all that is in here; weapons, anomaly detectors, body armor, radiation shielding... This equipment is rather advanced for a recon patrol, looks like the troops on this helicopter were geared up for an all-out assault. They weren't the only ones either, Intelligence suspects this helicopter was part of a larger operation by the Military that fell on its ass. Great job recovering this. Here, take this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Investigate Stingray 4 (Jupiter, Jupiter Plant) Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_16_name">
+		<text>Investigate Stingray 4 Crash Site</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_16_text">
+		<text>A distress signal was received from the crew of the Stingray 4 flight. Find the source of the signal and locate the survivors.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_16_text_1">
+		<text>The wreckage of Stingray 4 has been found, but there are no survivors in the area. Search for any clues they may have left behind.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_16_text_2">
+		<text>The map on the PDA found at the crash site shows the location of a potential rally point. Head to the location to see if any survivors have gathered there.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_16_text_3">
+		<text>Interrogate the pilot for information about the failed operation.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_16_about">
+		<text>We intercepted a distress signal coming from inside the Jupiter plant. We believe it was initiated by survivors of one of the Military's crashed helicopters from their failed operation. I want you to head up there and locate the source of the signal. Find the survivors, we need them for information. Interrogate them and find out everything you can about what the purpose of their operation was and what caused it to fail.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_16_finish">
+		<text>Excellent work getting the information out of the pilot. This certainly ups the ass-pucker factor around here; our job was hard enough when we were going up against the Military, now it seems we have yet another full-fledged army to deal with, one even the Military can't defeat. With an army of Monolith troops completely occupying the center of the Zone it's going to be damn near impossible to get in there if we need to, nevermind the damned psi fields. Gotta love this place man, the clearer the picture becomes the worse it looks.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Dushman Dynamic Brawl Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_17_name">
+		<text>Reinforce the Mercs</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_17_text">
+		<text>A squad of Mercs have come across a group of hostile %s. Meet up with them and organize the assault to clear them out.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_17_text_1">
+		<text>Push forward and eliminate the hostile %s from the area.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_17_about">
+		<text>One of our squads has run into some %s in the area and have been receiving sporadic fire from them. Take a few men over there and help our brothers out.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_17_message">
+		<text>Hey %s, keep your head down! Those little pieces of shit aren't far from here. Help us push them back!</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_17_finish">
+		<text>You have done well. Here is your payment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Hog Manhunt Storyline Task -->
+
+	<string id="drx_ql_killer_sl_task_18_name">
+		<text>Uncatchable</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_18_text">
+		<text>There is a %s known as %s that Hog wants eliminated. Ask around for any information as to where he might be hiding.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_18_about">
+		<text>There is a target we have been trying to get to for a while now but he always seems to stay just out of reach, and now he has gone into hiding. See if you can track him down. Ask around, see if you can get any clues from local stalker as to where he may be hiding.</text>
+	</string>
+	<string id="drx_ql_killer_sl_task_18_finish">
+		<text>Excellent work. Here is your reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mercenary Simulation Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 02, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Subcontractor for Merc Simulation Task -->
+
+	<string id="drx_ql_simulation_task_killer_1_name">
+		<text>Mercenary Subcontractor</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_1_text">
+		<text>You have taken over the contract killing of %s named %s for a Mercenary.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_1_about">
+		<text>I've taken on more work than I can handle. Do you want to take over one of my contracts for me? I'll give you most of the bounty on it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_1_finish">
+		<text>Great job. Here's the money I owe you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Search Buildings for Merc Simulation Task -->
+
+	<string id="drx_ql_simulation_task_killer_2_name">
+		<text>Building Search</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_2_text">
+		<text>{npc_name} has given you the location of a building to search. There is a reward promised for the recovery of any useful information found there.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_2_about">
+		<text>We're searching a few of the buildings in the area to see if we can find some vital information. Want to check one out? If you find anything good there's a reward in it for you.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_2_finish">
+		<text>Nice find. Here's your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Item Swap with Mercenary Simulation Task -->
+
+	<string id="drx_ql_simulation_task_killer_3_name">
+		<text>%s for a Mercenary</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_3_text">
+		<text>{npc_name} needs a %s and is willing to trade some of his equipment for one.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_3_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_3_fetch_about">
+		<text>I really need to get my hands on a %s, but so far I've been unable to procure one. If you happen to find one let me know, I'd be willing to give you my %s for it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_3_fetch_finish">
+		<text>Ah, good. Well worth the wait. Thanks.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- HAVFetch Reward - Find Documents for Mercenary Simulation Task -->
+
+	<string id="drx_ql_simulation_task_killer_4_name">
+		<text>Top Secret Documents for a Mercenary</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_4_text">
+		<text>Locate top secret documents that were lost on the battlefield during a Mercenary engagement.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_4_about">
+		<text>My team is just returning from a pretty nasty fight. We eliminated the enemy force but so far have been unable to locate the top secret documents they were transporting. I suspect they were dropped sometime during the fight. My team is exhausted from the battle, can you help us out and search the area to see it you can find them? If you do, I have a %s I can give you.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_4_finish">
+		<text>Excellent! Thanks for the help, here's what I promised you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mercenary Assassination Team Task -->
+
+	<string id="drx_ql_simulation_task_killer_5_name">
+		<text>Team Bounty Hunt</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_5_text">
+		<text>Team up with {npc_name} to collect the bounty on %s known as %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_5_about">
+		<text>Want to work together on a bounty with me? I've been tracking this target for a while but he's proving damn near impossible to get to. We would probably stand a better chance of getting him if we worked together. What do you say? We can either not find the guy for no money, or we can team up and split the bounty down the middle.</text>
+	</string>
+	<string id="drx_ql_simulation_task_killer_5_finish">
+		<text>Great work. Here's your half of the bounty.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

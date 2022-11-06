@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Barkeep (Loner Barman, Rostok) (drx_ql_strings_loner_barkeep.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_strings_loner_barkeep.ltx
+<
+<	Created by: DoctorX
+<	Last revised: August 01, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Barkeep (Loner Barman) Retrieve Locked Case Task- -->
+
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_1_name">
+		<text>Pass the Baton</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_1_text">
+		<text>Barkeep needs you to pick up where a fellow stalker left off and complete the supply delivery.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_1_about">
+		<text>The guy I hired to deliver my supplies managed to get himself killed on the last shipment. If you can finish the job for the poor bastard I'll give you his payment.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_1_finish">
+		<text>Good job man.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Barkeep (Loner Barman) Find the Anomalous Plant Task -->
+
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_2_name">
+		<text>Boar's Head Seasoning</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_2_text">
+		<text>The cook at 100 Rads bar uses spices extracted from a particular plant to season the meat. Barkeep will pay you if you can find one.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_2_about">
+		<text>The cook here has a special recipe for mutant boar's head that is so good you almost forget you're eating mutant boar's head. His secret ingredient is a spice he makes from a special plant that only grows near anomalies. I don't expect you to make a special trip to get one, but if you happen to be in the area and manage to find one I'll pay you for it.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_2_finish">
+		<text>Great, I'll give it to the cook to season the boar's head. About time too, that thing's been roasting back there for a while now.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Barkeep (Loner Barman) Dynamic Brawl Task -->
+
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_3_name">
+		<text>Vodka Muscles</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_3_text">
+		<text>A group of stalkers from 100 Rads bar are tracking a band of %s spotted in the area. Meet up with them and lead them in the attack.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_3_text_1">
+		<text>Lead the attack against the %s.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_3_about">
+		<text>There has been word around the bar that some %s have been causing trouble in the area. Some of the boys went out there to check it out. They got a lot of guts, but not much in the way of brains. Go meet up with them and make sure they don't get themselves killed.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_3_message">
+		<text>Hey, %s came out to help us! There's no stopping us now, let's get 'em!</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_task_3_finish">
+		<text>Good work keeping the area safe. Here, take this as a reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

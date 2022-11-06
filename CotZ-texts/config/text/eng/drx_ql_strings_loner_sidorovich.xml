@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Sidorovich (Loner Trader, Cordon) (drx_ql_strings_loner_sidorovich.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_loner_sidorovich.ltx
+<
+<	Created by: DoctorX
+<	Last revised: February 10, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sidorovich (Loner Trader) Payoff Change Factions Task -->
+
+	<string id="drx_ql_esc_m_trader_cf_task_1_name">
+		<text>Pay Sidorovich to Become a Loner</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_cf_task_1_text">
+		<text>Sidorovich will get you out of your current faction commitments for a fee of 10,000 RU.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_cf_task_1_about">
+		<text>Well, it's good you've come to me then. I have a lot of connections here in the Zone. I can get you out of your commitment to your current faction, but it won't be cheap. I will need to grease some palms, you know. If you can get me, say... 10,000 RU I'll see what I can do for you.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_cf_task_1_finish">
+		<text>You got the money? Ah, yes, this should do well. I will make the necessary arrangements, enjoy your new life as a Loner.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 10, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sidorovich (Loner Trader) Eliminate Car Park Bandits Task -->
+
+	<string id="drx_ql_esc_m_trader_task_1_name">
+		<text>Eliminate Car Park Bandits</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_1_text">
+		<text>Stage an assault on the car park and eliminate the Bandits that occupy the location.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_1_about">
+		<text>Bandits have taken up base in the old car park. These assholes mug or kill anyone who use the roads leading in and out of the camp. It is disrupting local activities for my clients and the stalkers who take refuge in camp. It's hurting business! I need you to "take care" of them. If you want, talk to Fanatic, he may be able to offer you assistance.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_1_finish">
+		<text>Great work, stalker! You and I will be best of friends if you keep this up! Here is what I promised.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sidorovich (Loner Trader) Contract Killer Task -->
+
+	<string id="drx_ql_esc_m_trader_task_2_name">
+		<text>Contract Killer for Sidorovich</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_2_text">
+		<text>{npc_name} contracted you to run a hit against %s called %s. Find and eliminate the target then return to {npc_name} for payment.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_2_about">
+		<text>I have a list of outstanding bounties and stalkers that need taken care of. The worst kind of scum and villainy usually end up on this list... for various reasons. The Zone needs its trash taken out from time to time. What do you say, stalker, will you be my hired gun?</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_2_finish">
+		<text>Good, you got rid of that asshole! Here is what I promised.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sidorovich (Loner Trader) Rookie Initiation Task- -->
+
+	<string id="drx_ql_esc_m_trader_task_3_name">
+		<text>Rookie Initiation</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_3_text">
+		<text>Take a group of rookies into the Zone and show them how to survive.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_3_about">
+		<text>The new rookies in the camp are very green. I'm concerned they won't last a day in the Zone. It's bad for business if they die, you see? That many less customers for me. I want you to take them on an expedition into the Zone. Tell them what to watch out for, show them an anomoly, teach them how to stay alive.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_3_finish">
+		<text>Ah, my customers are still alive. And they need to buy more ammo from me, hehe. Thank you stalker. Take this for your trouble.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sidorovich (Loner Trader) Mutant Safari Task -->
+
+	<string id="drx_ql_esc_m_trader_task_4_name">
+		<text>Mutant Safari</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_4_text">
+		<text>{npc_name} has asked you to lead a group of tourists on a mutant hunt.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_4_about">
+		<text>I have a group of tourists coming through and they want to see what it's like to kill a mutant. Take them out on a hunt, give them a thrill. Just make sure they don't get themselves killed. It's bad for business.</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_task_4_finish">
+		<text>Back from the hunt? Good. Here is your payment.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

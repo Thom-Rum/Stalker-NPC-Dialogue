@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Skinflint (Freedom Trader, Army Warehouses) (drx_ql_strings_freedom_skinflint.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_freedom_skinflint.ltx
+<
+<	Created by: DoctorX
+<	Last revised: October 19, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 19, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Skinflint (Freedom Trader) Find Mutant Meat Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_name">
+		<text>Wild Game %s for Skinflint</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_text">
+		<text>Kill and field dress %s for Skinflint in the Army Warehouse base camp.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_fetch_about">
+		<text>We're surrounded by enemies here man, we need to be self-sufficient and willing to live completely off the grid. I've been stockpiling mutant meat, we might need it some day if we have to survive through a seige. If you do any hunting while you're out in the field, bring me back some %s. I'll give you something from my shop in return.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_fetch_finish">
+		<text>Another gift of the Zone, eh? Thanks man. Here, take this for your trouble.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Skinflint (Freedom Trader) Warehouses Crashed Helicopter Black Box Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2_name">
+		<text>Recover Black Box from the Army Warehouses Crash Site</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2_text">
+		<text>Skinflint needs the information contained in the black box from the crashed helicopter in the Army Warehouses. Hopefully the artefact he gave you will be powerful enough to counter the strong psi fields in the area.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2_about">
+		<text>There's a crashed Military helicopter near here, you've probably seen it. I am very interested in the information that might be contained in it's black box. So far it's been impossible to reach since it happened to crash in an area that tends to mess with people's minds. Supposedly there is an artefact that can lessen the effects of the field to allow entry for a short period of time. I happen to have such an artefact. I'll give it to you if you are willing to try to recover the black box for me, and I will pay you well if you are able to recover it.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2_finish">
+		<text>Fantastic! Let's see if I can recover any information... Well, it doesn't seem to have been a mechanical failure that brought the helicopter down, no evidence of air-to-air or ground fire... Ah, an operational designation; looks like this helicopter was a support element intended to reinforce a larger operation that was going in ahead of it. No idea what could have brought it down, it's almost like the helicopter simply and suddenly stopped working entirely. It was traveling north, but no indication of where it was heading... I wonder what the Military was up to. You have done well stalker, here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Skinflint (Freedom Trader) Deliver Equipment Dynamic Task- -->
+
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3_name">
+		<text>Deliver Equipment to Skinflint</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3_text">
+		<text>Skinflint has a delivery that needs to be picked up.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3_about">
+		<text>I have a delivery that I need to pick up. If you're willing to get it for me I can give you an item from my inventory.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3_finish">
+		<text>Thank you stalker!</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

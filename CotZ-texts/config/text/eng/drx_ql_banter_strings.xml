@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< NPC Banter Strings (drx_ql_banter_strings.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: October 17, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Ashot-Yar Banter Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 17, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Ashot - Yar banter 1: -->
+	<string id="drx_ql_bnt_ashot_yar_1_1">
+		<text>Yo, Ashot, are you gonna bring that over here or what?</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_1_2">
+		<text>That will be 20 RU!</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_1_3">
+		<text>You cheapskate! ...All right, get them from the commandant..</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_1_4">
+		<text>Come again?</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_1_5">
+		<text>So how 'bout it, Ashot?</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_1_6">
+		<text>If you want it, you get it, ok? Move your ass!</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_1_7">
+		<text>You're a real jerk, you know that? You're just standing around there, doing nothing all day!</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_1_8">
+		<text>Hey, you go suck my--</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_1_9">
+		<text>Cut the bullshit, you bozos! You're making the place sound like a used car dealership!!</text>
+	</string>
+
+	<!-- Ashot - Yar banter 2: -->
+	<string id="drx_ql_bnt_ashot_yar_2_1">
+		<text>Hey Mr. Fix-it! We got a used gun, you have a look?</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_2_2">
+		<text>That will be 20 RU.</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_2_3">
+		<text>Hey come on. Yesterday's joke no funny today!</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_2_4">
+		<text>Alright bring your stupid gun over here.</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_2_5">
+		<text>I no can leave my shop alone, you come to me, eh?</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_2_6">
+		<text>How 'bout you just use that damn gun right in your shop in the most unnatural way possible?</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_2_7">
+		<text>Hey- Ashot, Yar! Both of you shut the hell up! Your yapping is worse than my mother's. I can't take it anymore!</text>
+	</string>
+
+	<!-- Ashot - Yar banter 3: -->
+	<string id="drx_ql_bnt_ashot_yar_3_1">
+		<text>Hey Yar!</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_3_2">
+		<text>Yup?</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_3_3">
+		<text>Look what I got in here.</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_3_4">
+		<text>What you got in there, Ashot?</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_3_5">
+		<text>Come here and see!</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_3_6">
+		<text>You got nothing that would impress even a little girl. No, you come over. I've got something to show you, or should I stick it out for you to see?</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_3_7">
+		<text>I no have microscope...!</text>
+	</string>
+	<string id="drx_ql_bnt_ashot_yar_3_8">
+		<text>Have you both lost your freaking minds?! What is this a dick measuring contest? SHUT THE HELL UP NOW!</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

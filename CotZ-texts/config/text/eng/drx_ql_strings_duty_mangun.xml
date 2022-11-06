@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Mangun (Duty Mechanic, Rostok) (drx_ql_strings_duty_mangun.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_duty_mangun.ltx
+<
+<	Created by: DoctorX
+<	Last revised: May 12, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	May 12, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mangun (Duty Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_1_name">
+		<text>Retrieve Gunsmith Toolkit for Mangun</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_1_text">
+		<text>Mangun is able to do basic upgrades to your equipment if you bring him his gunsmith tools.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_1_about">
+		<text>Hey man, I could do some upgrades to your gear if you like. If you're interested, I have a set of gunsmith tools stashed away not too far from here. If you want to get them for me, I'll give you some cash and I'll be able to do some basic upgrades to your equipment.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_1_finish">
+		<text>Thanks man, here's something for your trouble. Stop by anytime if you want me to upgrade your gear.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mangun (Duty Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_2_name">
+		<text>Recover Technician Toolkit for Mangun</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_2_text">
+		<text>A Bandit borrowed a set of technician tools from Mangun and is refusing to give them back. Recover the stolen property from the Bandit.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_2_about_pre_npc_1">
+		<text>Wish I could do some better upgrades for you, but I loaned my set of technician tools to a guy a while ago and he never gave them back. I knew I shouldn't have trusted a Bandit.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_2_about_pre_actor_1">
+		<text>Where is he now? I'll get your tools back. I can be very persuasive.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_2_about">
+		<text>Hey man, that would be awesome. I'll mark his location on your map. If you can convince him to give me my tools back I'll pay you and I can do some better upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_2_finish">
+		<text>Hey, great! Thanks for getting my tools back. Let me know if you want any advanced upgrades done to your gear, I'll be able to do them now.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mangun (Duty Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_3_name">
+		<text>Find Armorer's Toolkit for Mangun</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_3_text">
+		<text>Find a set of armorer's tools for Mangun so he can fully upgrade your equipment.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_3_about">
+		<text>I'm pretty much at the limit of what I can do for your gear with the tools I currently have. If you want me to be able to fully upgrade your equipment I will need a set of armorer's tools. I don't know anyone who has any, but I do know a place you might be able to find some if you're willing to search for them.</text>
+	</string>
+	<string id="drx_ql_bar_visitors_stalker_mechanic_task_3_finish">
+		<text>Yes! These are just what I needed. I'll be able to do pretty much any equipment upgrades for you now. Thanks for bringing me these, stalker.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

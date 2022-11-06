@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< st_dialogs_darkvalley.xml
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Modified by: DoctorX
+<	Last revised: October 14, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+<!--------------------------- val_smart_terrain_7_4_bandit_trader_stalker -->
+	<string id="val_smart_terrain_7_4_bandit_trader_stalker_start_dialog_1">
+		<text>Hey, man! I have some stuff to sell you and maybe a couple jobs if you're interested. I'm the guy the boys around he come see when they line their pocket after a hit!</text>
+	</string>
+	<string id="val_smart_terrain_7_4_bandit_trader_stalker_start_dialog_2">
+		<text>Hey, man. What do you need? Looking for work?</text>
+	</string>
+<!---------------------------- val_smart_terrain_7_3_bandit_mechanic_stalker --->
+	<string id="val_smart_terrain_7_3_bandit_mechanic_stalker_start_dialog_1">
+		<text>What you need today, man? I'll fix your shit right up. Also, if you find any encrypted PDAs, I'll buy them from you.</text>
+	</string>
+
+	<!-- Sultan, moved from Zaton to Dark Valley -->
+
+	<string id="zat_b7_bandit_boss_sultan_intro_0">
+		<text>Remember. I'm Sultan. Everything that goes down here is either under my control or will be soon. If you want to live the good life, you gotta work for me. If you don't, you'll live the shitty life. That's how we roll, bro.</text>
+	</string>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Sultan Info Dialogs
+	<!--
+	<!--	Modified by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 14, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="zat_b7_bandit_boss_sultan_about_0">
+		<text>Tell me about your life here.</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_1">
+		<text>It ain't a walk in the park, that's for sure. What exactly do you want to know?</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_1111">
+		<text>What is it that you do here?</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_11111">
+		<text>We watch over stalkers. You have to admit, a good half of them are more like little kids than men. They come to the Zone with some silly dreams, or to play heroes, or just because life's treating them badly. They don't realize all that's waiting for them in here; the grim reaper, mostly. That's the kind we look after. We find one at the Garbage, we take his gear and set him straight, and send him back to the Cordon. If he's smart, he'll head on home to mama. Then there are those that have some stones and know how to make a living in here, those we put under our protection, and we tax 'em. I'm tellin' ya, no one dares go on our territory; not the Military, not the Mercenaries, not even mutants.</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_1112">
+		<text>What brought you to the Zone?</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_11121">
+		<text>Someone needed to maintain order around here. Without us around, it would be sheer god-damn chaos. Say someone wants to milk an anomaly; sure, go ahead, but who's watching your back to keep the mutants at bay and making sure you don't get a bullet in your back? That's the service we provide, as long as you pay your taxes. You know, the peace and security tax. And if one of youse wants to start smuggling goods past the Military, we can grease some palms, and we take a cut... for the assistance and protection we provide, you understand.</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_1113">
+		<text>How did you become boss?</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_11131">
+		<text>I was serving time a while back for whacking a couple drug dealers that sold some bad shit to my friend that killed him. Turns out they were some pretty powerful dudes in the cartel. I spent most of my time in the slammer trying to avoid getting shived in revenge for killing those assholes. By the time I got out, the cartel guys were so impressed they brought me into their racket. Did that for a while, got busted again, and ended up with a shiv in the belly. When I got out again, I left all that shit behind and set my sights on the Zone. Spent a couple months toughing it out in here and took over all the local operations. So now I'm in charge here, upholding the local law, and collecting the tax.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<string id="zat_b7_bandit_boss_sultan_about_1114">
+		<text>What do you think about stalkers?</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_11141">
+		<text>They're all different, like. Some are punks who don't last here a week, others are earners... and others still are okay guys that life has kicked around on both sides of the Cordon. We fleece the first kind, tax the second kind. As far as the last kind, well, we just try not to get in each other's way. Too bad you can't always tell them apart right away...</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_1115">
+		<text>Why are you sitting... There?</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_11151">
+		<text>Your whore of a mother's face had a month long waiting list. Want to ask any more stupid questions?</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_1116">
+		<text>Oh, never mind. Fuhgetaboutit.</text>
+	</string>
+	<string id="zat_b7_bandit_boss_sultan_about_11161">
+		<text>Suit yourself.</text>
+	</string>
+
+</string_table>

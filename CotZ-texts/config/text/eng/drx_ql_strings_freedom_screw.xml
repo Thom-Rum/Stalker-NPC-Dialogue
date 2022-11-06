@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Screw (Freedom Mechanic, Army Warehouses) (drx_ql_strings_freedom_screw.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_freedom_screw.ltx
+<
+<	Created by: DoctorX
+<	Last revised: May 19, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	May 19, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Screw (Freedom Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_1_name">
+		<text>Find Gunsmith Toolkit for Screw</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_1_text">
+		<text>Retrieve a set of gunsmith tools for Screw so he can perform basic upgrades to your equipment.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_1_about">
+		<text>Hey bro, can you help me out? I loaned my gunsmith tools to a guy but he got himself killed before he could give them back to me. I know where he usually kept his stuff, if you want to search his stash for them I'll give you some cash and I'll be able to do some basic upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_1_finish">
+		<text>Hey, thanks bro. Let me know if you want any upgrades done to your gear.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Screw (Freedom Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_2_name">
+		<text>Find Technician Toolkit for Screw</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_2_text">
+		<text>Screw lost his set of technician tools while he was out in the field. Find them and return them to him so he can perform additional upgrades to your equipment.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_2_about_pre_npc_1">
+		<text>I'm such an idiot. I was out scavenging one of the old buildings near here the other day, and I found an old set of technician tools in there, but I must have dropped them while I was leaving. I don't know what could have happened to them. Damn, I could have been able to do a lot more upgrades if I had those tools.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_2_about_pre_actor_1">
+		<text>I need you to be able to do those upgrades for me. Show me where you were, I'll look around and see if I can find them for you.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_2_about">
+		<text>Hey, that would be great bro. If you manage to find them, bring them back to me. I'll give you some cash and I'll be able to do better upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_2_finish">
+		<text>Awesome, thanks bro. Come see me anytime you want me to do some additional upgrades to your gear.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Screw (Freedom Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_3_name">
+		<text>Intercept Armorer's Toolkit for Screw</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_3_text">
+		<text>A Military squad is transporting a set of armorer's tools that Screw could use to fully upgrade your equipment. Intercept the delivery and bring the tools to Screw.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_3_about">
+		<text>Hey man, listen, Skinflint just got a tip that there is a Military squad transporting a set of armorer's tools to the mechanic in their base. I could do an awful lot with a set of tools like that. I know it's asking a lot, but if you're willing to intercept that delivery and bring the tools to me, I'll pay you well and I'll be able to do almost any equipment upgrade for you.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_mechanic_stalker_task_3_finish">
+		<text>Great job bro! I'll be able to do upgrade pretty much anything to it's full potential with these tools. Here's some cash for you, and let me know if there's any upgrades you would like me to do for you.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

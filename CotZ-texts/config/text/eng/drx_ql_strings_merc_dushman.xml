@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Dushman (Mercenary Trader, Dead City) (drx_ql_strings_merc_dushman.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_merc_dushman.ltx
+<
+<	Created by: DoctorX
+<	Last revised: November 17, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dushman (Merc Trader) Payoff Change Factions Task -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_cf_task_1_name">
+		<text>Pay Dushman Mercenary Initiation Fee</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_cf_task_1_text">
+		<text>Pay Dushman the 12,000 RU fee to join the Mercenaries.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_cf_task_1_about">
+		<text>You want to join us? Ok, fine. The fee is 12,000 RU, you bring your own weapons, no spitting on the floor. Sound good?</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_cf_task_1_finish">
+		<text>Very good. Welcome aboard, Mercenary.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 17, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dushman (Merc Trader) Contract Killing Task -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_1_name">
+		<text>Contract Killing for Dushman</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_1_text">
+		<text>You have been contracted to find and eliminate %s called %s. Return for payment when the task is complete.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_1_about">
+		<text>There are a number of outstanding bounties. We need volunteers to carry out these hits discretely. Are you interested?</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_1_finish">
+		<text>It is done? Great. Here your percentage:</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dushman (Merc Trader) Assault Enemy Territory Task -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_2_name">
+		<text>Urban Warfare</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_2_text">
+		<text>Clear the area of any and all hostile threats.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_2_about">
+		<text>I need you to be point man on an assault. Clear the target area of any and all hostile forces.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_2_finish">
+		<text>Excellent work. You are a fine warrior.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dushman (Mercenary Trader) Interceptor Task -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_3_name">
+		<text>Capture Classified Documents</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_3_text">
+		<text>Classified documents are being transported by a Military detachment. Capture the documents and return them to Dushman.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_3_about">
+		<text>We have identified a Military squad we believe are transporting classified documents. Catch up to them and recover those documents. What they contain could be very valuable.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_3_finish">
+		<text>You have done well. These documents are valuable indeed.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dushman (Mercenary Trader) Dynamic Brawl Task -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_4_name">
+		<text>Ambush Raid</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_4_text">
+		<text>Link up with the Mercs about to ambush an encampment of enemy %s in the area.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_4_text_1">
+		<text>Eliminate the enemy %s from the area.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_4_about">
+		<text>Some of the men have spotted an encampment of enemy %s in the area and are heading out to ambush them. If you hurry, you can probably catch up with them.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_4_message">
+		<text>Shit, %s is here too. Look's like our cut of the combat pay just got watered down.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_4_finish">
+		<text>Great job. Here's your cut.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dushman (Mercenary Trader) Extract Mercenary Prisoner Task -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_5_name">
+		<text>Extract Mercenary Prisoner</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_5_text">
+		<text>A Merc has been taken prisoner by the Military. Pull him out.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_5_about">
+		<text>Those bitches in the Military have captured one of our men! Get in there and extract him.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_5_finish">
+		<text>Good work. No man left behind.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dushman (Mercenary Trader) Capture Enemy Documents Task -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_6_name">
+		<text>Capture Enemy Documents</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_6_text">
+		<text>Capture the enemy documents and return them to {npc_name}.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_6_about">
+		<text>We have learned of the location of some important documents our employer would like us to capture from the enemy. Find them and bring them here and I will deliver your payment.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_6_finish">
+		<text>Good job.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dushman (Merc Trader) Prisoner Snatch Task -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_7_name">
+		<text>Capture Prisoner</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_7_text">
+		<text>Dushman wants %s called %s brought in for interrogation. The prisoner must be captured alive.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_7_about">
+		<text>There is a stalker that I need brought in for questioning. I need him alive, you understand? Don't get trigger happy, you just gotta wound the guy enough to let him know you mean business. Bring him to me once you have found him.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_task_7_finish">
+		<text>Excellent. Leave that piece of shit right here, the boys will take care of him. Here's your reward for bringing him in.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

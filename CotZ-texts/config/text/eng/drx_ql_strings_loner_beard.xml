@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Beard (Loner Barman, Zaton) (drx_ql_strings_loner_beard.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_strings_loner_beard.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 01, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Beard (Loner Barman) Clear Mutants from SkadovskTask -->
+
+	<string id="drx_ql_zat_a2_stalker_barmen_task_1_name">
+		<text>Clear Mutants Away from Skadovsk</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_1_text">
+		<text>Mutants are afoot. Hunt them down and clear the area.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_1_about">
+		<text>Shh... Listen, hear that? Some mutants howling. Still gives me the chills after all this time. How about you go out there and take care of them? I'll make it worth your while.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_1_finish">
+		<text>Haha! Well done stalker! Have a drink on Beard!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Beard (Loner Barman) Find Artefact Task -->
+
+	<string id="drx_ql_zat_a2_stalker_barmen_task_2_name">
+		<text>Find the %s Artefact for Beard</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_2_text">
+		<text>Beard wants you to find the %s artefact for him.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_2_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_2_fetch_about">
+		<text>I deal in artefacts. There is one in particular I would like to get my hands on, the %s. Do you want to try to get it for me? If you can find it I will pay you well.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_2_fetch_finish">
+		<text>Good hunting stalker! Have a drink on the house!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Beard (Loner Barman) Search and Rescue Task -->
+
+	<string id="drx_ql_zat_a2_stalker_barmen_task_3_name">
+		<text>Skadovsk Search and Rescue</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_3_text">
+		<text>Monolith have captured a stalker. Find him and rescue him.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_3_about">
+		<text>Stalker, Monolith bitches have captured one of our comrades. They headed off in that direction. Save him!</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_3_finish">
+		<text>Haha! Look at the pair of you, hard to tell who lost the fight, haha! Come, come, drink up! Have some vodka and feel no more pain!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Beard (Loner Barman) Assault Local Task -->
+
+	<string id="drx_ql_zat_a2_stalker_barmen_task_4_name">
+		<text>Defend Skadovsk</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_4_text">
+		<text>Monolith cultists are threatening the Skadovsk. Sneak up on their encampment and clear them out.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_4_about">
+		<text>Those Monolith cultists have been creeping around Skadovsk again. One of the lookouts spotted a campfire not far from here, why don't you go check it out?</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_4_finish">
+		<text>Ha! You got the bastards! Great job, have a drink!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Beard (Loner Barman) Diplomat Task -->
+
+	<string id="drx_ql_zat_a2_stalker_barmen_task_5_name">
+		<text>Diplomat</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_5_text">
+		<text>Convince %s called %s to call off his search for a fellow stalker.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_5_about">
+		<text>You see that guy in the corner there? Spetsnaz is looking for him. He's been hiding out here for weeks. They say he ran through the Brain Scorcher to escape them. I don't know how he survived, though he ain't quite right in the head anymore. Anyway, you want to help the poor fellow? I happen to know where the military commander who wants him is stationed. Maybe you can convince him to leave the guy alone.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_5_finish">
+		<text>Ah, you killed him! Well, that's effective diplomacy! Good man! Free drinks for you!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Beard (Loner Barman) Retrieve PDA Dynamic Task -->
+
+	<string id="drx_ql_zat_a2_stalker_barmen_task_6_name">
+		<text>Retrieve PDA for Beard</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_6_text">
+		<text>Beard has a PDA stashed away that contains some dirt on Owl.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_6_about">
+		<text>Haha! Look who it is! Well, my friend, have I got the deal for you! That prick Owl thinks he can shut me down, but I know a little something about him. There is a PDA I have stashed away that has everything I need to put him in his place. Bring it to me, stalker. I will make it worth your while.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_task_6_finish">
+		<text>Ha! You got it! Good man, stalker! Here, have a drink on me!</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

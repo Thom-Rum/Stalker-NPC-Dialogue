@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< PDA Encyclopedia Guide Articles - Mutants (drx_cotz_guide_mutants.xml)
+<	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+<
+<		- String ID's must be formatted as follows:
+<			drx_cotz_str_guide_{x}
+<				- Text to display for current guide article section name ({x} = sequential int starting with 1)
+<			drx_cotz_str_guide_{x}_{y}
+<				- Text to display for current article title ({y} = sequential int starting with 1)
+<			drx_cotz_str_guide_{x}_{y}_text
+<				- The body of the guide article text
+<
+<	Created by: DoctorX
+<	Last revised: September 29, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mutants
+	<!--
+	<!--	- Modification of string_table_enc_mutants.xml (ShoC 1.0005)
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	September 29, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Locations section name -->
+	<string id="drx_cotz_str_guide_4">
+		<text>Wildlife</text>
+	</string>
+
+	<!-- Rats -->
+	<string id="drx_cotz_str_guide_4_1">
+		<text>Rats</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_1_text">
+		<text>The rats in the Zone have evolved to become much larger and far more aggressive than their non-mutated counterparts. Individuals can easily be scared off, but when attacking in groups they can quickly overcome and debilitate their prey, severing the tendons of the legs with their sharp teeth and causing the victim to drop to the ground, where they continue tearing away flesh from their prey until it rapidly bleeds out.</text>
+	</string>
+
+	<!-- Tushkanos -->
+	<string id="drx_cotz_str_guide_4_2">
+		<text>Tushkanos</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_2_text">
+		<text>Although they bear a distinct resemblance to jerboas, these animals in fact are not related. Attempts at determining the exact species from which this rodent evolved have so far been unsuccessful, although its ancestor must have been a gregarious rodent. Reaching up to 40cm at the shoulder, the animal is far more dexterous, aggressive and ravenous than its desert cousin. Mutant rodents live mainly in basements of destroyed buildings, feeding on everything they can get their teeth in, from plants to careless stalkers. Occasionally a pack of rodents will attack and kill large animals and mutants, tearing them apart before they can escape.</text>
+	</string>
+
+	<!-- Flesh -->
+	<string id="drx_cotz_str_guide_4_3">
+		<text>Flesh</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_3_text">
+		<text>Like most other living creatures in the Zone, the domestic pig also underwent serious biological changes since the day of the catastrophe. It seems the genes responsible for metabolism were especially affected in this case. Mutant pigs, known simply as Flesh among the stalkers, are one of the most vivid examples of the Zone's disastrous perversion of nature. Mutant pigs developed a protective layer of scales and exoskeletal plates. Their regeneration potential increased several times, as did the complexity of their nervous system. Just like a normal pig, a Flesh is an omnivore and may attack a stalker if hungry.</text>
+	</string>
+
+	<!-- Boars -->
+	<string id="drx_cotz_str_guide_4_4">
+		<text>Wild Boars</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_4_text">
+		<text>A massive, mutated animal, reaching 1.5 meters at the shoulder. The Zone boar's aggressiveness and ability to survive surpass by far those of its relatives outside the contaminated area. Radiation and anomalies left their mark on the physical appearance of the animal as well: its fur is entirely gone in some places, and long and bristly in others. The hooves have evolved into sturdy, sharp claws, the pupils became colorless, and the boar's bald head is marred by pigmentation disorders and deep wrinkles. Zone boars are quite resistant to radiation and can stay in heavily contaminated areas for longer periods of time. They usually charge at their victims, trying to knock them over and then rip them to shreds.</text>
+	</string>
+
+	<!-- Cats -->
+	<string id="drx_cotz_str_guide_4_5">
+		<text>Feral Cats</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_5_text">
+		<text>Suspected to have mutated from local wildcats, the cats in the Zone are much larger and their bodies are riddled with large tumors and open sores. They have developed potent venom glands on the sides of their mouths that administer a toxic poison through their fangs when they attack their prey. Cats typically avoid stalkers and are more prone to run away rather than attack if encountered, but if one should latch on to a stalker its bite can be lethal. The mutated cats are remarkably resilient and have been reported to withstand an entire magazine of rifle fire before being taken down.</text>
+	</string>
+
+	<!-- Blind Dogs -->
+	<string id="drx_cotz_str_guide_4_6">
+		<text>Blind Dogs</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_6_text">
+		<text>Several generations of the dog species have lived and died since the catastrophe. Each was more affected by the Zone than the previous one. Rapid mutation lead to a vast improvement in previously peripheral abilities, frequently at the expense of primary ones. The most notable biological change was the loss of sight, paired with an uncanny development of smell. As it turned out, blind cubs survived in the Zone as well as normal ones, if not better. As a result, the common dog quickly became extinct in the Zone, giving way to a new breed - that of blind dogs. The animals instinctively identify and avoid anomalies, radiation, and other invisible dangers that plague the Zone. Like their wild ancestors - the wolves - blind dogs hunt in packs. An encounter with a large group of these animals can be dangerous even to an experienced and well-armed stalker.</text>
+	</string>
+
+	<!-- Pseudodogs -->
+	<string id="drx_cotz_str_guide_4_7">
+		<text>Pseudodogs</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_7_text">
+		<text>Despite the name, the pseudodogs evolved directly from wolves. The animals inhabiting the forests at the time of the catastrophe gave rise to one of the Zone's most dangerous mutant species. Pseudodogs are about as different from mutant dogs as wild wolves differ from poodles. The creatures mark and guard their territory carefully, attacking anyone stupid enough to venture onto their land on sight. Lightning-fast reflexes, uncanny dexterity and razor-sharp teeth make the pseudodog a formidable enemy for large mutants and well-armed stalkers. Some have been reported to demonstrate an enhanced psychic ability, confusing their prey by causing them to hallucinate and believe there are more attackers than there really are.</text>
+	</string>
+
+	<!-- Snorks -->
+	<string id="drx_cotz_str_guide_4_8">
+		<text>Snorks</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_8_text">
+		<text>It seems these creatures were human at some point, though it is difficult to imagine what conditions could turn a human being into such disgusting beast. Snorks are insane creatures leading a beast's life and differing little from other carnivorous monsters in the Zone. They move on all fours in long jumps, constantly sniffing the ground in hope of picking up the scent of prey. They hunt carefully, in a calculated manner, frequently setting up ambushes. Thanks to its uncanny reflexes and powerful muscles, the snork can approach the victim, pin it down in one long, accurate jump, and tear it to shreds in a matter of seconds. Strips of army uniforms and other clothing are occasionally found on their bodies. It stands to reason that they are all that's left of missing military stalkers.</text>
+	</string>
+
+	<!-- Bloodsuckers -->
+	<string id="drx_cotz_str_guide_4_9">
+		<text>Bloodsuckers</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_9_text">
+		<text>Experienced stalkers describe this semi-legendary beast as a tall, hunched humanoid with a mess of tentacles where its mouth should be. According to those who saw it and lived to tell the tale, the creature uses its tentacles to cling to the victim's throat, paralyze it, and suck it dry of blood. A dry, mummified shell is all that's left of what used to be a living human being. The most astounding feature of the bloodsucker, however, is its ability to become invisible. Countless dead or missing stalkers are said to have perished in the merciless grip of a bloodsucker. The lucky few who have survived an encounter tell spine-chilling tales of marshes and subterranean areas haunted by the Zone's version of Count Dracula.</text>
+	</string>
+
+	<!-- Zombies -->
+	<string id="drx_cotz_str_guide_4_10">
+		<text>Zombies</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_10_text">
+		<text>Stalkers exposed to a psi field or caught outside during a blowout and aren't killed outright are subject to a fate worse than death. The unfortunate victims are stripped of mind and reason, losing all semblance of consciousness and humanity. They are reduced to mindless husks, following only the most basic instincts and condemned to wander aimlessly throughout the Zone. Early on, they may retain enough dexterity to operate a weapon, but over time their minds continue to devolve and they eventually become little more than sluggish walking corpses, caring only about food and sleep. They eat and drink just about anything they can get their claws on, hence they are virtually soaked in radiation and toxic waste. Usually they roam the Zone without any apparent purpose or just lie corpse-like in abandoned buildings. However, as soon as they sense the presence of a human being, they attack immediately. Experienced stalkers have learned to avoid them if they can.</text>
+	</string>
+
+	<!-- Fractures -->
+	<string id="drx_cotz_str_guide_4_11">
+		<text>Fractures</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_11_text">
+		<text>Fractures appear to be mutated zombies, although they are more active and move faster than their mindless kin. Their limbs and extremities are grossly distended and deformed. They typically are not aggressive, however if they are provoked or startled they are capable of chasing down a stalker and violently bludgeoning him to death.</text>
+	</string>
+
+	<!-- Controllers -->
+	<string id="drx_cotz_str_guide_4_12">
+		<text>Controllers</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_12_text">
+		<text>A rare mutant sighted near the center of the Zone, controllers bear a superficial resemblance to a humanoid with a disproportionately large head. They seem to be intelligent, and have developed a psychic ability to control the behavior of less developed creatures. Mature specimens are reported to be capable of taking control of a human's mind. This is a ferocious enemy, and even the most experienced stalkers are afraid of meeting one.</text>
+	</string>
+
+	<!-- Burers -->
+	<string id="drx_cotz_str_guide_4_13">
+		<text>Burers</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_13_text">
+		<text>Burers are stocky, dwarf-like humanoids that tend to exist predominantly in dark areas, haunting the shadows and cellars of buildings during the day and roaming the Zone in the darkness of the night. They seem to have tapped into an enhanced telekinetic ability, reportedly being able to rip the weapons from a stalker's hands from several meters away, and attack by hurling objects with its mind or even generating bolts of fire and energy directed at its victim. The Burer is a formidable opponent and not many stalkers have survived an encounter with one.</text>
+	</string>
+
+	<!-- Pseudogiants -->
+	<string id="drx_cotz_str_guide_4_14">
+		<text>Pseudogiants</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_14_text">
+		<text>The pseudogiant resembles a massive, drop-shaped abdomen with a pair of disproportionately large limbs. The limbs are arms and legs at the same time. The creature uses them to move around and grab its victims. An adult pseudogiant can weigh up to two tons and stand 2 meters tall. Their clumsy appearance might be deceiving, since they can move very rapidly if needed. Their muscles are exceptionally powerful and their bones are as hard as steel. The creature's brain is protected by a sturdy thick skull, while many complex functions are controlled by the spinal medulla. Another astonishing feature of the beast is its ability to create local shock waves, which damage all living things in the vicinity.</text>
+	</string>
+
+	<!-- Borya -->
+	<string id="drx_cotz_str_guide_4_15">
+		<text>Borya</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_15_text">
+		<text>Not much is known about the Borya, and many doubt if it even exists. The legends tell of a large, hairy beast akin to a Yeti, but travelling on all fours, with a mastery for staying hidden. Those unfortunate enough to have discovered one are immediately devoured by the beast, leaving almost no first-hand accounts of seeing one. Most stalkers only know the Borya from the eerie distant howls heard in the middle of the night, and the mutilated corpses of its prey discovered in the morning.</text>
+	</string>
+
+	<!-- Chimera -->
+	<string id="drx_cotz_str_guide_4_16">
+		<text>Chimera</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_16_text">
+		<text>Chimeras are ferocious and grotesque two-headed beasts that can grow nearly 2 meters in length and weigh up to half a ton. Despite their size they are remarkably fast and agile, and have been reported to leap distances of over 20 meters to attack their prey. They are primarily nocturnal hunters with an incredibly thick hide that is nearly bulletproof. Chimeras are the most dreaded mutant to encounter in the Zone, even a lone juvenile is capable of ripping an entire group of stalkers to shreds in a matter of seconds.</text>
+	</string>
+
+	<!-- Karlik -->
+	<string id="drx_cotz_str_guide_4_17">
+		<text>Karlik</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_17_text">
+		<text>One of the rarest mutants in the Zone, Karliks are rather short, dwarf-like creatures that resemble a deformed, emaciated human. What they lack in size they make up for in ability, and are reported to possess telepathic and telekinetic abilities that rival those of Burers and Controllers. They tend to be rather mischievous and cunning, and seem to enjoy toying with their prey before ultimately killing it, using only the power of its mind.</text>
+	</string>
+
+	<!-- Poltergeists -->
+	<string id="drx_cotz_str_guide_4_18">
+		<text>Poltergeists</text>
+	</string>
+	<string id="drx_cotz_str_guide_4_18_text">
+		<text>Supernatural in the eyes of some, invisible creatures haunting the deeper reaches of the Zone, usually haunting old, abandoned buildings. Nothing is known about their origin, although rumors in circulation claim they are spirits of stalkers hit by a massive wave of radiation. Their mysterious appearances and disappearances seem to correspond to the poltergeist legend, hence the name. Known encounters with poltergeists are quite diverse in fact: from mischievous laughter and blood-chilling howling, to deadly fireballs appearing out of nowhere. Unfortunately, all information about the poltergeist phenomenon originates from unclear and contradictory stories of questionable validity.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

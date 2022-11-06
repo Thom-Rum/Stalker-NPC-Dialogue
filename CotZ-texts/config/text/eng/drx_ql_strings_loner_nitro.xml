@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Nitro (Loner Mechanic, Jupiter) (drx_ql_strings_loner_nitro.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_loner_nitro.ltx
+<
+<	Created by: DoctorX
+<	Last revised: June 09, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	June 09, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Nitro (Loner Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_jup_b217_stalker_tech_task_1_name">
+		<text>Find Gunsmith Toolkit for Nitro</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_1_text">
+		<text>Locate a set of gunsmith tools for Nitro so he can perform basic upgrades on your gear.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_1_about_pre_npc_1">
+		<text>No, I don't really have anything I need done right now.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_1_about_pre_actor_1">
+		<text>Too bad. I was hoping to trade some work for a few upgrades to my gear.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_1_about_pre_npc_2">
+		<text>Ah, well I wouldn't be able to help you much there, either. I don't have the tools I would need to do even basic upgrades right now. I've been scrounging around for a set of gunsmith tools, but so far no luck. There's a place I haven't looked yet where I might be able to find some, but every time I go there it's occupied by mutants and zombies.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_1_about_pre_actor_2">
+		<text>I'll take a look for you. Where is it?</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_1_about">
+		<text>Hey, that would be great. I'll mark the location on your map. If you are able to find a set of gunsmith tools there I'll be able to do basic upgrades for you and give you some cash to pay for them.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_1_finish">
+		<text>Ah, good, you found some gunsmith tools for me. Thanks stalker, let me know if you would like me to do any upgrades to your equipment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Nitro (Loner Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_jup_b217_stalker_tech_task_2_name">
+		<text>Recover Technician Toolkit for Nitro</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_2_text">
+		<text>Recover the set of technician's tools that was stolen from Nitro so he can perform advanced upgrades on your gear and equipment.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_2_about_pre_npc_1">
+		<text>I was out scrounging around for some parts and I found a nice set of technician's tools. On the way back I ran into a Monolith patrol and was attacked. I managed to get away but they took all my gear, including the tool set I had found.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_2_about_pre_actor_1">
+		<text>Where are the bastards? I'll get your tools back.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_2_about">
+		<text>I'll mark their location on your map. If you can get my tools back from them I'll be able to do more advanced upgrades to your equipment.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_2_finish">
+		<text>You did it? Great! Now I'll be able to perform more advanced upgrades on your gear. Here, take this for your trouble.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Nitro (Loner Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_jup_b217_stalker_tech_task_3_name">
+		<text>Find Armorer's Toolkit for Nitro</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_3_text">
+		<text>Search the stash for a set of armorer's tools and bring them back to Nitro so he can perform expert upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_3_about">
+		<text>Hawaiian told me he saw a stalker stashing away a set of tools. From what he described I think they may be armorer's tools. If I had a set of those I could do nearly any type of upgrade to your gear. If you want to check it out for me, I'll pay you for any tools you bring back.</text>
+	</string>
+	<string id="drx_ql_jup_b217_stalker_tech_task_3_finish">
+		<text>Good! With these armorer's tools I'll be able to perform almost any upgrade. Thanks, stalker.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>
