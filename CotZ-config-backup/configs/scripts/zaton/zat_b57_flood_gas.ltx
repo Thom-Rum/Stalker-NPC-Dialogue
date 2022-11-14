@@ -1,0 +1,43 @@
+;==============================================================
+;
+; zat_b57_flood_gas.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: November 01, 2019
+;
+;==============================================================
+
+
+[logic]
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Restore Krug UG poison gas
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 01, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; active = nil ;sr_idle@enable
+active = sr_idle@enable
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[sr_idle@enable]
+on_info = {+zat_b57_gas_running_play} sr_particle@flood
+
+[sr_particle@flood]
+name = industrial_particles\effects\exhaust_workshop_1_small
+path = zat_b57_place_gas_point
+mode = 2
+looped = true
+on_info = {+zat_b57_gas_running_stop} sr_idle@end
+
+[sr_idle@end]
+
+;позиционной ценности не представляет

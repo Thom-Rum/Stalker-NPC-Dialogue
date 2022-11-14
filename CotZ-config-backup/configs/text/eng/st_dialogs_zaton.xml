@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< st_dialogs_zaton.xml
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Modified by: DoctorX
+<	Last revised: October 21, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Crab Info Dialogs
+	<!--
+	<!--	- Modification of st_dialogs_zaton.xml (CoP 1.6.02)
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 14, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_1_0">
+		<text>Tell me about yourself.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_1_1">
+		<text>Name's Crab, I used to be part of a hunting crew with Gonta and a couple other guys. We would clear out mutants for cash, or trap them alive for anyone who wanted one as a scientific experiment or an exotic pet. We haven't done that in a while now, Gonta started his ferry service for stalkers along the Pripyat river; and as for me, well, I nearly got torn to shreds by a Chimera a while back. Haven't set foot off the Skadovsk since then. I'm through hunting, but I'm always willing to share what I've learned if it will help someone else from getting hurt.</text>
+	</string>
+
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_0">
+		<text>What can you tell me about hunting mutants?</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_1">
+		<text>Well, I'm not the most seasoned of hunters, but I can tell you a good bit about the mutants than run in packs. Flesh, Boars, Blind Dogs, Pseudodogs, Snorks, Tushkanos... I even know a thing or two about Bloodsuckers.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_11">
+		<text>Tell me about Boars and Flesh.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_111">
+		<text>Flesh are the most harmless of mutants. They try to stay away from stalkers, but they'll fight back if you attack them. Now, if there's a Boar among those Fleshes, that spells trouble. Three hundred kilos of rage is nothing to toy with. Try not to stand in its path as it charges at you, and use its momentum against it. Dodge to the side, a heavy bulk like that won't be able to turn on a dime, then plug it full of shot.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_12">
+		<text>Tell me about Blind Dogs and Pseudodogs.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_121">
+		<text>Lone canines aren't that dangerous, but packs of them are a real pain in the ass. They only attack if they're hungry; the bad thing is, they're almost always hungry. If you're up against a whole pack try to pick them off from a high spot, or else they'll just run you over. Watch out if there are mature Pseudodogs amongst them. Pseudodogs ain't much tougher than the blind ones, but they're much more cunning and dangerous. If one suddenly turns into a whole pack, then remember: you’re being attacked by phantoms. The real Pseudodog will hang back and only try to bite you now and again. Try to identify it. As soon as the real dog is dead, the phantoms will simply disappear.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_13">
+		<text>Tell me about Snorks.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_131">
+		<text>Remnants of humans. A lone Snork isn't much of a problem for an experienced hunter. You wait for him to jump at you, and pump him full of shot in the air. If there's a group of them however, you're in a heap of trouble. They know this and that's why they usually attack together. You've gotta just shoot at them as fast as you can while dodging their jumps.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_14">
+		<text>Tell me about Tushkanos.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_141">
+		<text>A hunter's nightmare. The worst thing you can do is underestimate Tushkanos because of their small size. They're incredibly fast, agile and always run in packs. When you feel dozens of small fangs tearing into you, that's when you stop underestimating and start shooting, but by then it's too late. And that's the scariest part, they're extremely hard to hit. That's why I always tell stalkers to carry a loaded shotgun.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_15">
+		<text>Tell me about the Bloodsuckers.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b106_stalker_crab_info_2_151">
+		<text>They're expert hunters themselves, with an excellent disguise. When they're camouflaged you can barely see them. If you are unlucky enough to run into a few Bloodsuckers, always watch your back. Remember, a Bloodsucker will try to sneak up behind you and weave its feelers around your neck. That's some creepy shit, man. If you're hunting a bloodsucker, try to startle it. You can see it better when it's on the move.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Noah Info Dialogs
+	<!--
+	<!--	- Modification of st_dialogs_zaton.xml (CoP 1.6.02)
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 21, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_0">
+		<text>Tell me your story.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_1">
+		<text>What do you want to know?</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_11">
+		<text>Why do you live on this garbage can?</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_111">
+		<text>It's an ark! Remember that if you want to live! When the Wave comes, stay close. Here you'll have a chance to survive. No mutant will ever break in here.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_112">
+		<text>What Wave?</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_113">
+		<text>The Wave of mutants that will crush us! It will destroy everyone in the Zone, and whatever poor bastards survive will be swept away by a ginormous emission!!! It will decimate every living thing in the Zone, except for those of us who are prepared.</text>
+	</string>
+
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_12">
+		<text>What can you tell me about mutants?</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_121">
+		<text>There's no stopping them. The mutants keep growing in number, and one day they are all going to attack! Their Wave will sweep the Zone clean of everyone who's not prepared!</text>
+	</string>
+
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_13">
+		<text>Where did you get this dog?</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b18_noah_info_131">
+		<text>That's Lassie. She's a sweet little pup. If not for her, I'd have been devoured in my sleep long ago. Cursed mutants, I hate them! As soon as you close your eyes, they start reaching for you with their nasty claws and fangs, and feelers...</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Axel Info Dialogs
+	<!--
+	<!--	- Modification of st_dialogs_zaton.xml (CoP 1.6.02)
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 13, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="drx_ql_str_dialog_zat_b22_stalker_medic_info_0">
+		<text>Tell me about yourself.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b22_stalker_medic_info_1">
+		<text>I'm a medic. A trained brain surgeon. What else would you like to know? I can excise a hypothalamus with laser precision, but I haven't had any such orders in the Zone so far. Here I'm just a regular physician; one of many, who knows his trade well.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Owl Info Dialogs
+	<!--
+	<!--	- Modification of st_dialogs_zaton.xml (CoP 1.6.02)
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 14, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="drx_ql_str_dialog_zat_b30_owl_stalker_trader_info_0">
+		<text>What do you know about the crashed helicopters?</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b30_owl_stalker_trader_info_1">
+		<text>No one knows much about them, seems like they were part of some big Military operation that went to shit. There are three of them in this area that I know about; one came down at the Southern Plateau, the second landed in the Swamp, and the third crashed right into the Substation pylons.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b30_owl_stalker_trader_info_11">
+		<text>Tell me about the one on the Southern Plateau.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b30_owl_stalker_trader_info_111">
+		<text>So, this chopper came down hard, and landed right next to a snork den. From what I heard, a few of the Military guys survived the crash, but most of them were wiped out by the mutants living up there. Only a few managed to escape and climb down. If you're ever thinking of heading up there, I can sell you a nice shotgun and some ammo to help deal with those beasts. The problem is, no one - except for Noah, that loopy bastard - knows how to climb back up to that plateau.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b30_owl_stalker_trader_info_12">
+		<text>You said one crashed at the old Substation?</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b30_owl_stalker_trader_info_121">
+		<text>Yeah, they also call that place the "Iron Forest". The chopper crashed right into the power pylons. None of the jarheads survived. Even if they did, they never would have made it out of there alive. There are Poltergeists there that just love chasing people into electrical anomalies, those damn things respond to even the tiniest movement.</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b30_owl_stalker_trader_info_13">
+		<text>What about the one in the Swamp?</text>
+	</string>
+	<string id="drx_ql_str_dialog_zat_b30_owl_stalker_trader_info_131">
+		<text>Someone told me they watched the chopper come down, and later five army guys were spotted walking away from the area. Apparently they managed to climb out of that swamp successfully; not an easy feat, and you'll see why if you ever go there. Reaching the place is no big deal, just stay away from the water and keep to the undisturbed areas. You'll need chemical protection too, so if you're planning on heading out there make sure to buy some antidotes from the medic.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Beard Info Dialogs
+	<!--
+	<!--	Modified by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 14, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="zat_a2_stalker_barmen_actor_info_0">
+		<text>Tell me what life is like here.</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_1">
+		<text>What would you like to know?</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_1111">
+		<text>What is this place?</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_11111">
+		<text>Ah, this is the mighty sailing vessel "Skadovsk", although it hasn't sailed anywhere in quite some time, ha! It's a refuge for stalkers who want to explore the terrain and search for artefacts. After they're done getting shot at, and shooting back at everything that comes rushing at them, they come back to Skadovsk to get drunk and talk trash, and enjoy some rest and relaxation before the next raid. Though when an emission hits, it's quite a different scene. That's when we all sit tight and remember those who didn't make it to cover in time.</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_1112">
+		<text>How did you end up here?</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_11121">
+		<text>I'm a trader, and I deal mainly in artefacts. I came up here with a stalker called Grouse before the Scorcher was turned back on. The outside world is already full of trinkets and gems, that's a sucker's game if you're a trader. If you want to make real money, you need to find the rare stuff. That's why I decided to set up a stalker camp right here in the center of the Zone, where the really valuable stuff can be found. I mean, when a stalker comes back with his loot, what does he really need? Someone to sell it to, a cold one in his hand, and good ol' human contact. That's what Skadovsk is all about.</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_1113">
+		<text>What drives stalkers to the center of the Zone?</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_11131">
+		<text>Some come out here in hopes of discovering the next artefact goldmine. Some are driven here in search of the Oasis. Others seek to find the legendary Wish Granter. Overall it is the basic human desires; curiosity and greed. Everyone's got their reasons, I'm sure you have yours, too.</text>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_1114">
+		<text>What do you think about bandits?</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_11141">
+		<text>Well, it's like this. I got nothing against 'em on board the Skadovsk, so long as they act decent. After all, you don't meet total douche bags all that often. Some of them are actually former stalkers. Who knows, one of them poor bastards might actually decide to give up the crook business before he catches a bullet... Life is full of surprises.</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_1115">
+		<text>Nah, that's okay. Fuhgetaboutit.</text>
+	</string>
+	<string id="zat_a2_stalker_barmen_actor_info_11151">
+		<text>If you say so.</text>
+	</string>
+
+	<string id="zat_b7_stalkers_victims_dialog_11">
+		<text>Howdy, stalker. I'm busy right now. Let's talk later, okay?</text>
+	</string>
+
+	<string id="zat_b22_stalker_medic_start_1">
+		<text>What brings you here?</text>
+	</string>
+	<string id="zat_b22_stalker_medic_need_health_care_0">
+		<text>I need medical assistance.</text>
+	</string>
+	<string id="zat_b22_stalker_medic_need_health_care_1">
+		<text>I'll see what I can do.</text>
+	</string>
+	<string id="zat_b22_stalker_medic_need_health_care_2">
+		<text>I'll take a look... Hmmm... You look fine to me. You don't have any wounds or show signs of radiation sickness. You should be good to go.</text>
+	</string>
+	<string id="zat_b22_stalker_medic_need_health_care_11">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Accept Medical Treatment Dialog
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Questlines 2.0
+		<!--	October 12, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+        <!-- <text>[continue...]</text> -->
+        <text>Okay.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+	<string id="zat_b22_stalker_medic_need_health_care_111">
+		<text>How you feeling now, buddy?</text>
+	</string>
+
+	<string id="zat_b18_noah_start_11">
+		<text>Who are you?</text>
+	</string>
+	<string id="zat_b18_noah_start_111">
+		<text>A stalker. We've met before.</text>
+	</string>
+	<string id="zat_b18_noah_start_1111">
+		<text>I don't recall... Anyway, what do you need?</text>
+	</string>
+	<string id="zat_b18_noah_start_112">
+		<text>A stalker. Just a stalker.</text>
+	</string>
+	<string id="zat_b18_noah_start_1121">
+		<text>I see. Looking for refuge in the Ark? Feel yourself at home.</text>
+	</string>
+	<string id="zat_b18_noah_start_113">
+		<text>None of your business.</text>
+	</string>
+	<string id="zat_b18_noah_start_21">
+		<text>Ah, it's you. What do you want?</text>
+	</string>
+
+
+	<string id="zat_b3_stalker_tech_start_15">
+		<text>A wise choice, my friend. Gotta keep your gun in mint condition... And if you got a bottle or two on you, I can make it upgrade galore in here. Want a parachute sewn to your shotgun? I can do that, hehe.</text>
+	</string>
+	<string id="zat_b3_stalker_tech_drink_1_0">
+		<text>Got some booze. Want a shot?</text>
+	</string>
+	<string id="zat_b3_stalker_tech_drink_1_2">
+		<text>Nah, I'm off the bottle, man. When I saw item 62, I thought "That's it, I'm having the jumps"... See, booze just screws you up. Not a part of a healthy diet. And if I'm gone, who's gonna hammer out ammo for your Gauss rifle?</text>
+	</string>
+	<string id="zat_b3_stalker_tech_drink_2_0">
+		<text>Here's another bottle for you.</text>
+	</string>
+	<string id="zat_b3_stalker_tech_drink_3_0">
+		<text>I've got a third one, if you need more.</text>
+	</string>
+
+</string_table>

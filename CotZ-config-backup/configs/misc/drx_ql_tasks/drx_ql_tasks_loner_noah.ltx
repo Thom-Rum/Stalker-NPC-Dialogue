@@ -1,0 +1,121 @@
+;==============================================================
+;
+; Tasks Given by Noah (Loner Honcho, Zaton) (drx_ql_tasks_loner_noah.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_loner_noah.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: September 01, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 01, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Noah (Loner Honcho) Big Mutant Hunt Task-
+
+[drx_ql_zat_b18_noah_task_1]
+
+icon = ui_inGame2_PD_Ohotnik_na_mutantov
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =is_night() -drx_ql_big_mutant_task_started =drx_ql_find_unoccupied_lair_local(drx_ql_zat_b18_noah_task_1)} true, false
+
+title = drx_ql_zat_b18_noah_task_1_name
+descr = drx_ql_zat_b18_noah_task_1_text
+descr_functor = drx_ql_big_mutant_task_target
+job_descr = drx_ql_zat_b18_noah_task_1_about
+task_complete_descr = drx_ql_zat_b18_noah_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_big_mutant_task_target
+status_functor = drx_ql_big_mutant_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b18_noah_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b18_noah_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_zat_b18_noah_task_1) =drx_ql_create_big_mutant_squad(drx_ql_zat_b18_noah_task_1) +drx_ql_big_mutant_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_zat_b18_noah_task_1) -drx_ql_big_mutant_task_started =drx_ql_reset_task(drx_ql_zat_b18_noah_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_zat_b18_noah_task_1) =drx_ql_reset_task(drx_ql_zat_b18_noah_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_zat_b18_noah_task_1) =drx_ql_reset_task(drx_ql_zat_b18_noah_task_1)%
+
+;------------------------------------------------
+; Noah (Loner Honcho) Dog Food Task-
+
+[drx_ql_zat_b18_noah_task_2]
+
+icon = ui_inGame2_Pripasi
+storyline = false
+prior = 30
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_zat_b18_noah_task_2_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_zat_b18_noah_task_2_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_zat_b18_noah_task_2_about
+fetch_descr = drx_ql_zat_b18_noah_task_2_fetch_about
+task_complete_descr = drx_ql_zat_b18_noah_task_2_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b18_noah_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b18_noah_task_2)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_zat_b18_noah_task_2:200:400:2:6:0:items_mutant_meat_list)%
+
+on_complete = %=drx_ql_fetch_reward_random(drx_ql_zat_b18_noah_task_2:8) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_zat_b18_noah_task_2) =drx_ql_reset_task(drx_ql_zat_b18_noah_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_zat_b18_noah_task_2) =drx_ql_reset_task(drx_ql_zat_b18_noah_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_zat_b18_noah_task_2) =drx_ql_reset_task(drx_ql_zat_b18_noah_task_2)%
+
+;------------------------------------------------
+; Noah (Loner Honcho) Exterminate Mutant Infestation Task-
+
+[drx_ql_zat_b18_noah_task_3]
+
+icon = ui_inGame2_PD_Ohotnik_na_mutantov
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(stalker:drx_ql_zat_b18_noah_task_3:monster)} true, false
+
+title = drx_ql_zat_b18_noah_task_3_name
+descr = drx_ql_zat_b18_noah_task_3_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_zat_b18_noah_task_3_about
+task_complete_descr = drx_ql_zat_b18_noah_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monster
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b18_noah_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b18_noah_task_3)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_zat_b18_noah_task_3)%
+
+on_complete = %=drx_ql_reward_random(1000:2000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_zat_b18_noah_task_3) =drx_ql_reset_task(drx_ql_zat_b18_noah_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_zat_b18_noah_task_3) =drx_ql_reset_task(drx_ql_zat_b18_noah_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_zat_b18_noah_task_3) =drx_ql_reset_task(drx_ql_zat_b18_noah_task_3)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks  Given by General Voronin (Duty Honcho, Rostok) (drx_ql_strings_duty_voronin.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_duty_voronin.ltx
+<
+<	Created by: DoctorX
+<	Last revised: August 06, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 06, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Voronin (Duty Honcho) Investigate Duty Squad Disappearance Task -->
+
+	<string id="drx_ql_bar_dolg_leader_task_1_name">
+		<text>Investigate Duty Squad Disappearance</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_1_text">
+		<text>General Voronin dispatched a squad of Dutiers to investigate reports of mutant activity in the area. They have not returned. Find out what happened to them.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_1_about">
+		<text>A couple of guys went out to investigate a mutant sighting down the road from here. They have been gone for quite a while. See if you can find out what happened to them.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_1_finish">
+		<text>Damn, the men were all eaten? More proof the Zone is nothing more than a menace that must be destroyed.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Voronin (Duty Honcho) Sniper Storyline Task -->
+
+	<string id="drx_ql_bar_dolg_leader_task_2_name">
+		<text>Zone Surgery</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_2_text">
+		<text>General Voronin wants %s called %s eliminated, but his companions must be left alive.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_2_about_pre_npc_1">
+		<text>I have a bounty out on a particular individual. He has been difficult to get to because the people he tends to travel with are very important here in the Zone.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_2_about_pre_actor_1">
+		<text>I can take him out. Fuck those other guys.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_2_about">
+		<text>You don't understand. The men he travels with are vital to me. They are the only one's keeping the violence between our factions in check. I need the target eliminated, but If any harm should come to his companions it could result in an all out war, with neither side coming out the winner.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_2_finish">
+		<text>You have done well.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Voronin (Duty Honcho) Manhunt Task -->
+
+	<string id="drx_ql_bar_dolg_leader_task_3_name">
+		<text>Bounty Hunter</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_3_text">
+		<text>General Veronin has issued a bounty on %s known as %s. Interview local stalkers for information as to where he may be found.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_3_about">
+		<text>I have an outstanding bounty on a vicious criminal hiding out within the Zone. The coward is laying low and so far our efforts to apprehend him have been fruitless. Nevertheless, someone must have information on where he might be found. Do some investigation, ask around. If you manage to track him down I will reward you well.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_3_finish">
+		<text>Excellent work. Here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Voronin (Duty Honcho) Dynamic Brawl Task -->
+
+	<string id="drx_ql_bar_dolg_leader_task_4_name">
+		<text>Enemy Ambush</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_4_text">
+		<text>Enemy %s are on the move. Link up with the Duty recon squad that spotted them and participate in the ambush.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_4_text_1">
+		<text>Locate and eliminate any %s in the area.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_4_about">
+		<text>One of our patrol squads has sighted a group of %s and are mounting an ambush. Go link up with them and see if you can lend a hand.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_4_message">
+		<text>%s, over here! We've sighted enemy movement not far from here. Let's sneak up on them and attack.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_task_4_finish">
+		<text>You have done well. Take this as a reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

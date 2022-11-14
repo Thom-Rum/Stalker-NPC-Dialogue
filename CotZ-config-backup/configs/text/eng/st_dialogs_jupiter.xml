@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< st_dialogs_jupiter.xml
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Modified by: DoctorX
+<	Last revised: October 14, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Hawaiian Info Dialogs
+	<!--
+	<!--	- Modification of st_dialogs_jupiter.xml (CoP 1.6.02)
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 14, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="drx_ql_str_dialog_jup_a6_stalker_barmen_info_0">
+		<text>Can I ask you something?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_a6_stalker_barmen_info_1">
+		<text>Sure, what would you like to know?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_a6_stalker_barmen_info_11">
+		<text>What can you tell me about this area?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_a6_stalker_barmen_info_111">
+		<text>There is an old military installation not far from here, not a lot there now except mutants and zombies, and Kopachi Village to the north of it. Well, it's not much of a village - just a few mounds, really. It was buried back in 86 to prevent it from emitting radiation. People don't go there much, it's not a healthy place and there's nothing of value there. Then there's the scientist's bunker that was airlifted in to the southwest of here.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_a6_stalker_barmen_info_12">
+		<text>Tell me about the people who live in the bunker.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_a6_stalker_barmen_info_112">
+		<text>They're a small group of researchers led by two scientists, Hermann and Ozersky. Hermann is the boss around there - he's a professor from some institute, probably a secret one. He organized the expedition, so they dropped this bunker in here almost immediately. Ozersky's the number two around there, he's a good, friendly fella. I don't know much more about him - Hermann is the one we deal with most of the time.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Trapper Info Dialogs
+	<!--
+	<!--	- Modification of st_dialogs_jupiter.xml (CoP 1.6.02)
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 13, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_1_0">
+		<text>What's your story?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_1_1">
+		<text>I'm a big game hunter, and the Zone has some of the biggest. I came to the north with a friend of mine on safari, we hunted for trophies and eliminated mutants that were a danger to the local stalkers. Nowadays, I mainly just organize the hunts for younger stalkers. I train them and teach them hunting tactics.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_1_2">
+		<text>Why don't you hunt anymore?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_1_3">
+		<text>I’m getting old, man. That’s why my friend Fox died. We hunted many a beast together, shoulder to shoulder, then we ran into these two Chimeras that have never been seen in the Zone before. One knocked Fox to the ground and eviscerated him before I could even get my shotgun out. I wounded the other one, but they ran off. They're still out there somewhere, I hope they burn in hell forever!</text>
+	</string>
+
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_0">
+		<text>Tell me about hunting mutants.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_1">
+		<text>Different mutants require different approaches, Burers and Poltergeists require one, Pseudogiants and Controllers need another. Then you got Chimeras, which are a real special case.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_11">
+		<text>Tell me about Burers.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_111">
+		<text>Burers use gravitation attacks. When at close range they'll throw you, and when they're far away they'll try to throw something at you. Your best bet is to keep them at a medium range from you and keep moving, unless you enjoy getting hit by something heavy. Be careful to conserve your energy, though! Burers can use directed gravitational impulses to try to yank your weapon out of your hands, and if you're tired it might just work.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_12">
+		<text>Tell me about Poltergeists.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_121">
+		<text>There are two types of Poltergeists. The first type sends items crashing into the enemy using gravitation, while the second type uses flames to burn its victims. Inexperienced hunters try to circle around them to evade their attacks. The trick is to know that Poltergeists can't see or hear, in the usual sense of those words, instead they sense objects that move in the gravitational field. Use that to your advantage. A seasoned hunter knows to freeze as soon as he sees a Poltergeist.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_13">
+		<text>Tell me about Controllers.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_131">
+		<text>They use your own mind against you. When you're hunting a Controller it's important to use cover. They must be able to see you in order to affect your mind. They're quite slow, so if your life is at stake, use grenades.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_14">
+		<text>Tell me about Chimeras.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_141">
+		<text>They're very dangerous nocturnal predators. They try to get behind you under cover of darkness and leap on top of you. If you know there's a Chimera around, keep checking your back and cover your friends' asses.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_15">
+		<text>Tell me about Pseudogiants.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b220_trapper_info_2_151">
+		<text>The most difficult thing about hunting Pseudogiants is killing them. They can take incredible punishment without so much as batting an eyelid. All I can say is that you may want to try using a shotgun at close range. Just remember that Pseudogiant attacks can obliterate anything that isn't bolted down. Attack it from above, and make sure that whatever you're standing on can withstand some damage.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Hermann Info Dialogs
+	<!--
+	<!--	- Modification of st_dialogs_jupiter.xml (CoP 1.6.02)
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 14, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="drx_ql_str_dialog_jup_b6_scientist_nuclear_physicist_info_0">
+		<text>What do you do here?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_nuclear_physicist_info_1">
+		<text>We research various phenomena. Are you interested in something specific?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_nuclear_physicist_info_11">
+		<text>What is the purpose of your research?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_nuclear_physicist_info_111">
+		<text>We have no specific objective in mind. We're scientific scouts, if you will. We are seeking to identify correlations in certain phenomena, develop new theories, and make new discoveries. We are trying to find a logical explanation for the unexplained things we see in the Zone. If we can uncover the secrets behind even ten percent of the phenomena we see here, we could advance global technological development by decades.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_nuclear_physicist_info_12">
+		<text>What do you know about the Zone?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_nuclear_physicist_info_121">
+		<text>I can only hypothesize at this stage, we're far from understanding the Zone as a system. I believe that the Zone was formed as a consequence of some new force. Electromagnetic fields, physical force, and radiation couldn't have changed the biosphere so quickly. Obviously, some mutations can be explained by radiation, but excuse me, an ordinary pig would need hundreds - if not thousands - of years to mutate into a Flesh! In the Zone the mutation occurred in just a couple of years. It's as if someone directly altered the genetic information in the individual animals. The thought of that is enough to send shivers down my spine.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Tukarev Info Dialogs
+	<!--
+	<!--	- Modification of st_dialogs_zaton.xml (CoP 1.6.02)
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 14, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_0">
+		<text>What can you tell me about anomalies?</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_1">
+		<text>As you approach an anomaly, keep in mind that it's going to be either very hot, or the air will be full of toxic gases, or it will be a radiation hot-spot. There can also be psi disruptions, but I won't go into those right now. It depends on the nature of the anomaly; be it heat, gas, electricity, or gravity. There are also moving anomalies, but that's a different kettle of fish altogether.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_11">
+		<text>Tell me about heat anomalies.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_111">
+		<text>If you see a sort of glimmering, like air steaming over pavement on a hot summer day, that's a heat anomaly. When something gets in it, that spot bursts into an extremely hot flame. At first it was thought those were jets of natural gas, but that theory has since fallen into obscurity.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_12">
+		<text>Tell me about gas anomalies.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_121">
+		<text>This type of anomaly is a strange, never-ending chemical process. They produce acids that eat your skin in a matter of seconds, as well as toxic gases that eat your lungs just as fast. Thankfully, gas anomalies are easy to spot out in the open. Just hope you don't walk into one in a dark tunnel.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_13">
+		<text>Tell me about electrical anomalies.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_131">
+		<text>A very interesting type of anomaly which accumulates a substantial amount of static electricity. Stalkers usually take advantage of the fact that an electrical anomaly can be discharged with any metallic item. They throw a bolt in and dash right through before it charges up again. I prefer to go around. The recharge phase is just too quick.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_14">
+		<text>Tell me about gravitational anomalies.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_141">
+		<text>They are typically stationary. When you look at a particular spot and notice that objects are distorted behind it you've got one, and you better keep your distance. All three known varieties react instantly, the moment something touches them. Springboards explode anything that wanders into one. Vortexes do the opposite; they suck an object in, crushing it with terrible pressure, only to send the bits flying seconds after. Whirligigs lift their victims into the air, spin them around and tear them to shreds. An unpleasant end, whichever way you go.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_15">
+		<text>Tell me about moving anomalies.</text>
+	</string>
+	<string id="drx_ql_str_dialog_jup_b6_scientist_tech_info_151">
+		<text>Personally I've only come across a Comet and a Tesla. The former is a fireball about three feet in diameter; but I assure you, you'll feel the heat from a much greater distance. The latter is, for lack of a better description, a ball of lightning. It's definitely a ball and it's definitely electrical in nature. Both anomalies always keep moving, but usually in closed-loop paths. A careful stalker should be able to easily go around them. Just don't lose your focus.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<string id="jup_a6_freedom_trader_ashot_start_dialog_0">
+		<text>What can I sell you today?</text>
+	</string>
+	<string id="jup_b19_freedom_yar_start_dialog_0">
+		<text>Hello stalker, what do you need?</text>
+	</string>
+
+	<string id="jup_b220_trapper_start_11">
+		<text>I'm Trapper... There's no need to introduce yourself.</text>
+	</string>
+	<string id="jup_b220_trapper_start_12">
+		<text>What brings you here?</text>
+	</string>
+
+	<string id="jup_a6_stalker_medik_start_dialog_0">
+		<text>You looking for medical supplies or just here for a chat?</text>
+	</string>
+	<string id="jup_a6_stalker_medik_need_health_care_0">
+		<text>I need medical assistance.</text>
+	</string>
+	<string id="jup_a6_stalker_medik_need_health_care_1">
+		<text>Let's have a look...</text>
+	</string>
+	<string id="jup_a6_stalker_medik_need_health_care_2">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Don't Need Medical Treatment Dialog
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Questlines 2.0
+		<!--	October 14, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<text>Let's have a look... Well, your liver is bigger than I'd expect, but that's an occupational hazard, right? Apart from that, you're as healthy as a Burer.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+	<string id="jup_a6_stalker_medik_need_health_care_11">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Accept Medical Treatment Dialog
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Questlines 2.0
+		<!--	October 12, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+        <!-- <text>[continue...]</text> -->
+        <text>Okay.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+	<string id="jup_a6_stalker_medik_need_health_care_111">
+		<text>That's better.</text>
+	</string>
+
+	<string id="jup_a6_freedom_leader_start_dialog_11">
+		<text>So, what have you got to say?</text>
+	</string>
+	<string id="jup_a6_freedom_leader_start_dialog_12">
+		<text>What's your business here?</text>
+	</string>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Loki Info Dialogs
+	<!--
+	<!--	Modified by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 14, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="jup_a6_freedom_leader_about_you_0">
+		<text>Tell me about your group.</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_1">
+		<text>It's a long story. What do you want to know?</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_1111">
+		<text>What is it that you do here?</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_11111">
+		<text>We're making sure that various officials don't conceal anything from the common folk. You know how it is; as soon as they find a new lab or some documents that shed light on the secrets of the Zone, they immediately organize a military operation and clean everything up better than a friggin' hoover. The only way of finding shit out is by getting there first.</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_1112">
+		<text>What brought you to the center of the Zone?</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_11121">
+		<text>We were an expedition force dispatched by Freedom to push north, further into the Zone. We were one of the first groups of stalkers to reach this far north, or so we thought. We ran across some Dutiers up here and had a bit of a scrap with them, but called a truce when a blowout came. Then somehow the Brain Scorcher got switched back on and we all found ourselves trapped up here. The poor bastards from Duty all died out since then, and we haven't been fairing much better either. It's not all bad though, it's an opportunity to find stuff that the world hasn't seen before. Neither the army nor stalkers have been here before, so there's something new everywhere you look.</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_111211">
+		<text>Did you find anything?</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_1112111">
+		<text>A couple of locked doors and some weird new artefacts.</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_1113">
+		<text>How did you end up in Freedom?</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_11131">
+		<text>I was friends with Freedom leaders back when there was no Zone. Mind you, in those days they weren't leaders, they were regular hippies. So when I made a move into the Zone in search of artefacts and ran into familiar faces, I figured I might as well go with what I know.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<string id="jup_a6_freedom_leader_about_you_1114">
+		<text>What do you think about Duty?</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_11141">
+		<text>They're idiots, that's what I think. I mean, why the hell would they want to destroy the Zone? It's not consuming precious resources or getting bigger... or anything. They could just sit there and study it to their heart's content - just think of how many scientific discoveries could be made... I mean, in the history of man-kind, no one has never been able to understand anti-gravitation, right? And in the Zone you've got ready-made anti-gravitation devices lying all over the place. It wouldn't hurt to kick their asses out of here, but it's too much hassle. By the way, don't be confused by our relations here at Yanov. We are at war... it's just that Yanov has been made neutral territory, if you know what I mean.</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_1115">
+		<text>Okay, forget about it.</text>
+	</string>
+	<string id="jup_a6_freedom_leader_about_you_11151">
+		<text>No problem.</text>
+	</string>
+
+	<string id="jup_a6_stalker_barmen_start_dialog_11">
+		<text>Welcome to my humble abode of pleasure and joy. You after joy, pleasure or both in equal measure?</text>
+	</string>
+	<string id="jup_a6_stalker_barmen_start_dialog_12">
+		<text>You come to chill? My drinks ain't nothing special but this is a welcoming and friendly place!</text>
+	</string>
+	<string id="jup_a6_stalker_barmen_start_dialog_13">
+		<text>I got all the shit you're ever gonna need. What are you after? You fancy some chow, a drink or feel like firing off a few rounds?</text>
+	</string>
+
+	<string id="jup_b6_scientist_nuclear_physicist_start_11">
+		<text>What would you like to say to me?</text>
+	</string>
+	<string id="jup_b16_biochemist_oasis_start_11">
+		<text>What brings you here?</text>
+	</string>
+
+	<string id="jup_b6_scientist_medic_start_11">
+		<text>What brings you here?</text>
+	</string>
+
+	<!-- Ashot and Yar -->
+	<string id="st_jup_yar_reply_1">
+		<text>You go tell %s to get his fat ass over here.</text>
+	</string>
+	<string id="st_jup_yar_reply_2">
+		<text>Doesn't he know I'm busy? Tell him to come over here.</text>
+	</string>
+	<string id="st_jup_yar_reply_3">
+		<text>I don't get paid for walking. Tell him to come to me.</text>
+	</string>
+	<string id="st_jup_yar_reply_4">
+		<text>What? Does he want a wheelchair? Go fetch %s for me.</text>
+	</string>
+	<string id="st_jup_yar_reply_5">
+		<text>Where is %s? I can't fix it until he brings it here.</text>
+	</string>
+
+	<string id="st_jup_ashot_reply_1">
+		<text>If %s wants it, tell him to come over here and take it from me.</text>
+	</string>
+	<string id="st_jup_ashot_reply_2">
+		<text>Come again? If he wants it, he comes and gets it. Okay?</text>
+	</string>
+	<string id="st_jup_ashot_reply_3">
+		<text>You tell that balding bastard to drag himself over here.</text>
+	</string>
+	<string id="st_jup_ashot_reply_4">
+		<text>I cannot leave my shop alone. He must come to me, 'eh?</text>
+	</string>
+	<string id="st_jup_ashot_reply_5">
+		<text>Do I look like an errand boy? Tell %s to get it himself.</text>
+	</string>
+</string_table>

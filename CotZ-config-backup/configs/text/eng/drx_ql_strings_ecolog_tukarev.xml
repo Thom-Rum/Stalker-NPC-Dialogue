@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Tukarev (Ecologist Mechanic, Jupiter) (drx_ql_strings_ecolog_tukarev.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_ecolog_tukarev.ltx
+<
+<	Created by: DoctorX
+<	Last revised: November 08, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Tukarev (Ecologist Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_jup_b6_scientist_tech_task_1_name">
+		<text>Recover Gunsmith Toolkit for Tukarev</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_tech_task_1_text">
+		<text>A Bandit has stolen Tukarev's gunsmith tools. Find the thief and get his tools back.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_tech_task_1_about">
+		<text>I was down at the swamp earlier, doing some repairs on a few sensors we had placed there, and a group of Bandits came by and stole my tools! I can't perform any equipment upgrades without them. I'll show you where they went. If you can get my tools back I'll give you a reward and I'll be able to do basic upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_tech_task_1_finish">
+		<text>Thank you stalker. With these tools I'll be able to do basic upgrades on your gear. Let me know if you want any work done.</text>
+	</string>
+
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Tukarev (Ecologist Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_jup_b6_scientist_tech_task_2_name">
+		<text>Retrieve Technician Toolkit for Tukarev</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_tech_task_2_text">
+		<text>Tukarev's courier was killed before he could deliver a set of technician tools to him. Retrieve the tools from the stalker's stash and bring them to Tukarev so he can perform advanced upgrades on your gear.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_tech_task_2_about">
+		<text>Would you mind picking up a set of tools for me? A courier was transporting a set of technician's tools to me from Yantar, but unfortunately he did not survive the journey. The tools should still be in his stash, if you can get them for me I'll pay you and I'll be able to do more advanced upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_tech_task_2_finish">
+		<text>Ah good, you got the tools. Thank you stalker. Let me know if you need any work done on your gear, I'll be able to install more advanced upgrades now.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Tukarev (Ecologist Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_jup_b6_scientist_tech_task_3_name">
+		<text>Find Armorer's Toolkit for Tukarev</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_tech_task_3_text">
+		<text>Find a set of armorer's tools for Tukarev so he can fully upgrade your gear.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_tech_task_3_about">
+		<text>Would you like to help me find some more tools? I'm trying to get a set of armorer's tools so I can fully upgrade your equipment. They are specialized tools, but not so uncommon that it would be out of the question to find some in one of the abandoned workshops around here. I'll give you a location to search. If you find any tools there, bring them back to me. I'll give you a reward and I'll be able to do almost any upgrade to your equipment.</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_tech_task_3_finish">
+		<text>Excellent, you found some tools. These are just what I needed, I'll be able to do almost any type of equipment upgrade now. Bring me your gear if you want to have any work done.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

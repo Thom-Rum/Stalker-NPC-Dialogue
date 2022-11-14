@@ -1,0 +1,155 @@
+;==============================================================
+;
+; Tasks Given by Loki (Freedom Trader, Jupiter) (drx_ql_tasks_freedom_loki.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_freedom_loki.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: September 10, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Loki (Freedom Trader) Zombie Sweep Task-
+
+[drx_ql_jup_a6_freedom_leader_task_1]
+
+icon = ui_inGame2_Fallout_acid
+storyline = false
+prior = 75
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -warlab_deactivate_generators_done =drx_ql_is_enemy(zombied) =is_factions_enemies(freedom:zombied) !squad_exist(drx_ql_designated_target_squad_zombied_jupiter_1) !squad_exist(drx_ql_designated_target_squad_zombied_jupiter_2) !squad_exist(drx_ql_designated_target_squad_zombied_jupiter_3) !squad_exist(drx_ql_designated_target_squad_zombied_jupiter_4) !squad_exist(drx_ql_attack_squad_freedom_jupiter_1) !squad_exist(drx_ql_attack_squad_freedom_jupiter_2)} true, false
+
+title = drx_ql_jup_a6_freedom_leader_task_1_name
+descr = drx_ql_jup_a6_freedom_leader_task_1_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_jup_a6_freedom_leader_task_1_about
+task_complete_descr = drx_ql_jup_a6_freedom_leader_task_1_finish
+
+stage_complete = 1
+target = {=check_task_stage(drx_ql_jup_a6_freedom_leader_task_1:1)} jup_a6_freedom_leader, {=squad_exist(drx_ql_designated_target_squad_zombied_jupiter_1)} drx_ql_designated_target_squad_zombied_jupiter_1, {=squad_exist(drx_ql_designated_target_squad_zombied_jupiter_2)} drx_ql_designated_target_squad_zombied_jupiter_2, {=squad_exist(drx_ql_designated_target_squad_zombied_jupiter_3)} drx_ql_designated_target_squad_zombied_jupiter_3, {=squad_exist(drx_ql_designated_target_squad_zombied_jupiter_4)} drx_ql_designated_target_squad_zombied_jupiter_4
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_zombied_jupiter_1, drx_ql_designated_target_squad_zombied_jupiter_2, drx_ql_designated_target_squad_zombied_jupiter_3, drx_ql_designated_target_squad_zombied_jupiter_4
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_jup_a6_freedom_leader_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_jup_a6_freedom_leader_task_1)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_zombied_jupiter_1:jup_b19) =create_squad(drx_ql_designated_target_squad_zombied_jupiter_2:jup_b19) =create_squad(drx_ql_designated_target_squad_zombied_jupiter_3:jup_b19) =create_squad(drx_ql_designated_target_squad_zombied_jupiter_4:jup_b19) =create_squad(drx_ql_attack_squad_freedom_jupiter_1:jup_sim_3) =create_squad(drx_ql_attack_squad_freedom_jupiter_2:jup_sim_3)%
+
+on_complete = %=drx_ql_reward_money(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_jup_a6_freedom_leader_task_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_jupiter_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_jupiter_2) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_jupiter_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_jupiter_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_jupiter_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_jupiter_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_jupiter_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_jupiter_2) =drx_ql_fail_task(drx_ql_jup_a6_freedom_leader_task_1) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_jupiter_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_jupiter_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_jupiter_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_jupiter_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_jupiter_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_jupiter_2) =drx_ql_fail_task(drx_ql_jup_a6_freedom_leader_task_1) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_1)%
+
+;------------------------------------------------
+; Loki (Freedom Trader) Dynamic Brawl Task-
+
+[drx_ql_jup_a6_freedom_leader_task_2]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 94
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_brawl_terrain(freedom:drx_ql_jup_a6_freedom_leader_task_2:monolith)} true, false
+
+title = drx_ql_jup_a6_freedom_leader_task_2_name
+descr = drx_ql_jup_a6_freedom_leader_task_2_text
+descr_1 = drx_ql_jup_a6_freedom_leader_task_2_text_1
+descr_2 = drx_ql_jup_a6_freedom_leader_task_2_text_2
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_jup_a6_freedom_leader_task_2_about
+message = drx_ql_jup_a6_freedom_leader_task_2_message
+task_complete_descr = drx_ql_jup_a6_freedom_leader_task_2_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_jup_a6_freedom_leader_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_jup_a6_freedom_leader_task_2)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_jup_a6_freedom_leader_task_2:4:2)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_jup_a6_freedom_leader_task_2) =drx_ql_end_brawl_task(drx_ql_jup_a6_freedom_leader_task_2) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_end_brawl_task(drx_ql_jup_a6_freedom_leader_task_2) =drx_ql_fail_task(drx_ql_jup_a6_freedom_leader_task_2) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_end_brawl_task(drx_ql_jup_a6_freedom_leader_task_2) =drx_ql_fail_task(drx_ql_jup_a6_freedom_leader_task_2) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_2)%
+
+;------------------------------------------------
+; Loki (Freedom Trader) Manhunt Task-
+
+[drx_ql_jup_a6_freedom_leader_task_3]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_assassination_target(freedom:drx_ql_jup_a6_freedom_leader_task_3)} true, false
+
+title = drx_ql_jup_a6_freedom_leader_task_3_name
+descr = drx_ql_jup_a6_freedom_leader_task_3_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_jup_a6_freedom_leader_task_3_about
+task_complete_descr = drx_ql_jup_a6_freedom_leader_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_jup_a6_freedom_leader_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_jup_a6_freedom_leader_task_3)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_jup_a6_freedom_leader_task_3)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_jup_a6_freedom_leader_task_3) =drx_ql_add_hidden_target(drx_ql_jup_a6_freedom_leader_task_3)%
+
+on_complete = %=drx_ql_reward_random(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_jup_a6_freedom_leader_task_3) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_jup_a6_freedom_leader_task_3) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_jup_a6_freedom_leader_task_3) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_3)%
+
+;------------------------------------------------
+; Loki (Freedom Trader) Freedom Prisoner Task-
+
+[drx_ql_jup_a6_freedom_leader_task_4]
+
+icon = ui_inGame2_Zalozhnik
+storyline = false
+prior = 95
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(freedom:drx_ql_jup_a6_freedom_leader_task_4) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_jup_a6_freedom_leader_task_4_name
+descr = drx_ql_jup_a6_freedom_leader_task_4_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_jup_a6_freedom_leader_task_4_about
+task_complete_descr = drx_ql_jup_a6_freedom_leader_task_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_jup_a6_freedom_leader_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_jup_a6_freedom_leader_task_4)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_jup_a6_freedom_leader_task_4) =drx_ql_setup_hostage_task(hostage_companion_task_1_freedom:nil:drx_ql_jup_a6_freedom_leader_task_4_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_jup_a6_freedom_leader_task_4) =unlock_smart(drx_ql_jup_a6_freedom_leader_task_4_id) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_jup_a6_freedom_leader_task_4_id) =drx_ql_fail_task(drx_ql_jup_a6_freedom_leader_task_4) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_jup_a6_freedom_leader_task_4_id) =drx_ql_fail_task(drx_ql_jup_a6_freedom_leader_task_4) =drx_ql_reset_task(drx_ql_jup_a6_freedom_leader_task_4)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

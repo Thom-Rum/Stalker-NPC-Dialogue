@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Librarian (Clear Sky Barman, Great Swamp) (drx_ql_strings_csky_librarian.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_csky_librarian.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 01, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Librarian (Clear Sky Barman) Clear Out Mutant Lair Task -->
+
+	<string id="drx_ql_mar_base_stalker_barmen_task_1_name">
+		<text>Clear Out Mutant Lair</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_1_text">
+		<text>Librarian knows of a mutant lair in the area he would like cleared out.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_1_about">
+		<text>There's a mutant lair not too far from here. Go poke it with a stick.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_1_finish">
+		<text>Heh, nice job. Here's something for your trouble.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Librarian (Clear Sky Trader) Raid Bandit Camp Task -->
+
+	<string id="drx_ql_mar_base_stalker_barmen_task_2_name">
+		<text>Raid Bandit Camp</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_2_text">
+		<text>You have been tasked to eliminate the Bandit threat within the area. Report back to Librarian after the job is done.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_2_about">
+		<text>We have a big problem with Bandits in the area. Those murderous thugs have been ambushing our camps, trying to take the territory over. As long as they are in the area it will deny us safe passage through the marshes. We need an experienced stalker to lead a raid to clear them out. Will you help us out?</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_2_finish">
+		<text>Fantastic! Here is your payment. I'll make sure to pass the word around that it's safe there once again. Thank you, stalker.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Librarian (Clear Sky Trader) Find Mutant Meat Task -->
+
+	<string id="drx_ql_mar_base_stalker_barmen_task_3_name">
+		<text>Hunt for %s for Librarian</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_3_text">
+		<text>Field dress freshly killed mutants to collect game meat. Then deliver %s to Librarian in the Clear Sky base camp.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_3_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_3_fetch_about">
+		<text>Rations are running low and I need to keep everyone in camp's bellies full. Some of the guys bring me back a kill or two every now and again, but it's been slow lately. So if you aren't too busy while you are out and about, bring me back some %s. I process the meat right here in my kitchen.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_3_fetch_finish">
+		<text>Great, you're a good hunter after all! Stick around for the feast!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Librarian (Clear Sky Trader) Big Mutant Hunt Task -->
+
+	<string id="drx_ql_mar_base_stalker_barmen_task_4_name">
+		<text>Investigate Mutant Sighting</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_4_text">
+		<text>There are reports of mutant activity in the swamp. Lead your team to check out the area and clear away any mutants that might be there.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_4_about">
+		<text>There's word of mutant activity nearby here. I know the area, usually just some stray dogs or a boar. Why don't you take a couple guys and go check it out? I don't want someone stumbling across them at night and getting bit.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_4_finish">
+		<text>Little bigger than a boar you say? Glad you were able to handle it. Please take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Librarian (Clear Sky Trader) Mutant Hunt Task -->
+
+	<string id="drx_ql_mar_base_stalker_barmen_task_5_name">
+		<text>Great Swamp Mutant Hunt</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_5_text">
+		<text>Mutants have been spotted near this location making the area dangerous for some of the locals. Eliminate the mutant threat within the area and report back to Librarian after the job is done.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_5_about">
+		<text>We need to make the marshes a bit safer by clearing out the mutants in areas that our faction frequents. I know a spot where you can probably find some, if you bag any I'll give you a reward.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_barmen_task_5_finish">
+		<text>Fantastic! Here is your payment. I'll make sure to pass the word around that it's safe there once again. Thank you, stalker.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

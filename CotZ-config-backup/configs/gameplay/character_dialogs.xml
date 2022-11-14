@@ -1,0 +1,40 @@
+<!--===========================================================
+<
+< NPC Dialogs (character_dialogs.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Modified by: DoctorX
+<	Last revised: May 27, 2019
+<
+<===========================================================-->
+
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////
+<!--
+<!-- NPC Dialogs
+<!--
+<!--	- Dialogs ID's declared in configs\gameplay\dialogs.xml
+<!--
+<!--	Modified by DoctorX
+<!--	for DoctorX Questlines 2.0
+<!--	May 27, 2019
+<!--
+<!-- ------------------------------------------------------------------------------------------ -->
+
+<start_dialog>hello_dialog</start_dialog>
+<actor_dialog>drx_ql_sim_task_completed_dialog_init</actor_dialog>
+<actor_dialog>drx_ql_invite_hostage_giver_companion_dialog_init</actor_dialog>
+<actor_dialog>drx_ql_hidden_assassin_dialog_init</actor_dialog>
+<actor_dialog>drx_ql_hidden_target_dialog_init</actor_dialog>
+<actor_dialog>drx_ql_float_fetch_dialog_init</actor_dialog>
+<actor_dialog>drx_ql_safecracker_dialog_init</actor_dialog>
+<actor_dialog>drx_ql_sim_task_dialog_init</actor_dialog>
+<actor_dialog>drx_ql_news_dialog_init</actor_dialog>
+<actor_dialog>drx_ql_invite_companion_dialog_init</actor_dialog>
+<actor_dialog>dm_is_actor_companion_dialog</actor_dialog>
+<actor_dialog>dm_companion_trade</actor_dialog>
+<actor_dialog>dm_companion_leave</actor_dialog>
+<actor_dialog>drx_ql_sim_task_cancel_dialog_init</actor_dialog>
+<actor_dialog>actor_break_dialog</actor_dialog>
+
+<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->

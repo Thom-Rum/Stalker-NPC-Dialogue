@@ -1,0 +1,259 @@
+;==============================================================
+;
+; Tasks Given by Lukash (Freedom Honcho, Army Warehouses) (drx_ql_tasks_freedom_lukash.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_freedom_lukash.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: November 17, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Change Factions Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 05, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; -----------------------------------------------
+; Lukash (Freedom Honcho) Payoff Change Factions Task-
+
+[drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1]
+
+icon = ui_inGame2_Sdelka
+storyline = true
+prior = 197
+weight = 1
+repeat_timeout = 0
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1_name
+descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1_text
+descr_functor = drx_ql_money_task_target
+job_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1_about
+task_complete_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_money_task_target
+status_functor = drx_ql_money_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1)} fail
+on_init = %=pstor_set(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1_fetch:15000) +drx_ql_on_cf_task%
+
+on_complete = %=drx_ql_money_task_payment(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1) =drx_ql_change_factions(freedom) =inc_task_stage(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1) -drx_ql_on_cf_task =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1)%
+on_fail = %-drx_ql_on_cf_task =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1)%
+on_cancel = %-drx_ql_on_cf_task =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 17, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Lukash (Freedom Honcho) Stop Enemy Assault Task-
+
+[drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(freedom:drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1)} true, false
+
+title = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1_name
+descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1_about
+task_complete_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1)%
+
+on_complete = %=drx_ql_reward_random(4000:7500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1)%
+
+;------------------------------------------------
+; Lukash (Freedom Honcho) Recapture Territory Task-
+
+[drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = false
+prior = 65
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_enemy(dolg) =is_factions_enemies(freedom:dolg) =drx_ql_find_occupied_smart_ext(freedom:drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2:dolg)} true, false
+
+title = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2_name
+descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2_about
+task_complete_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = dolg
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2)%
+
+on_complete = %=drx_ql_reward_random(4000:7500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2)%
+
+;------------------------------------------------
+; Lukash (Freedom Honcho) Capture Monolith Member Task-
+
+[drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3]
+
+icon = ui_inGame2_Vizhivshiy_monolit
+storyline = false
+prior = 47
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_enemy(monolith) =is_factions_enemies(freedom:monolith) =drx_ql_find_assassination_target(freedom:drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3:monolith)} true, false
+prisoner_task = true
+
+title = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_name
+descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_text
+descr_functor = drx_ql_prisoner_task_target
+job_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_about
+task_complete_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_finish
+
+stage_complete = 2
+target_functor = drx_ql_prisoner_task_target
+status_functor = drx_ql_prisoner_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3)%
+on_init = %=drx_ql_give_prisoner_target(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3)%
+
+on_complete = %=drx_ql_reward_random(4500:6000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3) =drx_ql_reset_prisoner_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3) =drx_ql_remove_prisoner(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3) =drx_ql_reset_prisoner_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3) =drx_ql_reset_prisoner_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3)%
+
+;------------------------------------------------
+; Lukash (Freedom Honcho) Assassinate Duty Task-
+
+[drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_enemy(dolg) =is_factions_enemies(freedom:dolg) =drx_ql_find_assassination_target(freedom:drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4:dolg)} true, false
+
+title = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4_name
+descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4_about
+task_complete_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4)%
+
+on_complete = %=drx_ql_reward_random(3500:5000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4)%
+
+;------------------------------------------------
+; Lukash (Freedom Honcho) Gun Runner Task-
+
+[drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5]
+
+icon = ui_inGame2_Neizvestnoe_oruzhie
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_about
+fetch_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_fetch_about
+task_complete_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5:5000:10000:1:1:0.7:items_rifles_list)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5)%
+
+on_complete = %=drx_ql_fetch_reward_money(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5:1.2) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5)%
+
+;------------------------------------------------
+; Lukash (Freedom Honcho) Dynamic Brawl Task-
+
+[drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 94
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_brawl_terrain(freedom:drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6)} true, false
+
+title = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_name
+descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_text
+descr_1 = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_text_1
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_about
+message = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_message
+task_complete_descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6:4:2)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6) =drx_ql_end_brawl_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_end_brawl_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_end_brawl_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

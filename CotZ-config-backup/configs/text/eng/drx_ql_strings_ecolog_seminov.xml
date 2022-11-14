@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Assistant Seminov (Ecologist Honcho, Yantar) (drx_ql_strings_ecolog_seminov.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_ecolog_seminov.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 01, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Semenov (Ecologist Honcho) Research Hunt Task -->
+
+	<string id="drx_ql_yan_ecolog_semenov_task_1_name">
+		<text>Semenov Research Hunt</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_1_text">
+		<text>Hunt %s more mutants for Assistant Seminov to study.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_1_about">
+		<text>Would you mind helping me kill some mutants so that I can take readings and tissue samples? Let's say... about five different mutants. I'll be putting my life in your hands and you would need to ensure my safety. I will compensate you for your efforts.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_1_finish">
+		<text>Thank you for your assistance, friend. I have all the tissue samples I need. Here is your payment... Come back and see me again some time.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Semenov (Ecologist Honcho) Eliminate Yantar Bandits Task -->
+
+	<string id="drx_ql_yan_ecolog_semenov_task_2_name">
+		<text>Unwanted Company</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_2_text">
+		<text>Disburse the group of Bandits that have been threatening Semenov.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_2_about">
+		<text>A group of Bandits has moved into the area. They camp out on top of the hill over there and take shots at me while I am conducting my research. Please do something about that.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_2_finish">
+		<text>Thank you very much.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Semenov (Ecologist Honcho) Find Artefact Task -->
+
+	<string id="drx_ql_yan_ecolog_semenov_task_3_name">
+		<text>Find a %s for Semenov</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_3_text">
+		<text>Assistant Semenov has requested a sample of the %s artefact for study.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_3_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_3_fetch_about">
+		<text>Stalker, I need your help locating a specific artefact called a %s. I must procure one for study. I believe there are properties to it that are yet undiscovered.</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_task_3_fetch_finish">
+		<text>Ah, wonderful, you found one. You have done well.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

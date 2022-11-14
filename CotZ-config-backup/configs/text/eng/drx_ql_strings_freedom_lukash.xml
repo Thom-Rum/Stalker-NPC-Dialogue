@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings For Tasks Given by Lukash (Freedom Honcho, Army Warehouses) (drx_ql_strings_freedom_lukash.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_freedom_lukash.ltx
+<
+<	Created by: DoctorX
+<	Last revised: August 18, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Lukash (Freedom Honcho) Payoff Change Factions Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1_name">
+		<text>Raise Money to Join Freedom</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1_text">
+		<text>Lukash wants 15,000 RU to let you join Freedom.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1_about">
+		<text>Ah, good. You will enjoy joining Freedom. Just pay the 15,000 RU fee and you're in.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_cf_task_1_finish">
+		<text>Excellent. Welcome to Freedom, bro.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 18, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Lukash (Freedom Honcho) Stop Enemy Assault Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1_name">
+		<text>Repel Assault on Freedom Base</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1_text">
+		<text>Intercept the %s closing in on the Freedom base. Clear the area and report back to Lukash.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1_about">
+		<text>%s are moving in on our camp. I need someone capable to repel the incursion. Are you the man for the job?</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_1_finish">
+		<text>You stopped them? Thank you stalker.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Lukash (Freedom Honcho) Recapture Territory Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2_name">
+		<text>Recapture Territory for Freedom</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2_text">
+		<text>You have been tasked to recapture a Freedom camp. Report back to Lukash after the job is done.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2_about">
+		<text>I have an important mission if you are willing. Duty has taken over one of our camps and I need an infiltrator to reclaim it.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_2_finish">
+		<text>Excellent. Well done.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Lukash (Freedom Honcho) Capture Monolith Member Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_name">
+		<text>Capture Monolith Member</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_text">
+		<text>Lukash has tasked you with finding and capturing %s called %s. The target must be brought in alive.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_about_pre_npc_1">
+		<text>I have a very dangerous mission. I've asked for volunteers but so far no one has stepped forward. I need someone to take a Monolith cultist prisoner. Before you agree, know that no one has ever captured a Monolith member alive. Do you think you can be the first?</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_about_pre_actor_1">
+		<text>I've encountered a few cultists before. I know how to handle them.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_about">
+		<text>Yes, we all know how to kill them, but I need one brought in alive. There is one I noticed during a recent battle that seems like he may not be fully converted to the cult, you may be able to convince him to come along with you. Try administering an injection of hot lead into his calf muscle, that can be very persuasive.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_3_finish">
+		<text>Excellent work. Hopefully we can get some useful information out of him before he finds a way to kill himself. Here is your payment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Lukash (Freedom Honcho) Assassinate Duty Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4_name">
+		<text>Assassinate Duty Member</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4_text">
+		<text>Lukash has tasked you with finding and eliminating %s called %s.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4_about">
+		<text>There is a certain individual who has been very loud in his opposition to Freedom and needs to be quieted. Are you any good at shutting people up?</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_4_finish">
+		<text>Great! You do us proud. Here is what I promised:</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Lukash (Freedom Honcho) Gun Runner Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_name">
+		<text>%s Gun Runner</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_text">
+		<text>Lukash has asked you to find a %s. Return to him when you find it.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_fetch_about">
+		<text>With Duty to the south of us and Monolith to the north, we are cut off. Our weaponry is wearing out and we need replacements. I'm looking for a gun runner to get us a new %s. If you are able to do it, I would be willing to pay a good price for it.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_5_fetch_finish">
+		<text>Well done. This will go a long way in helping us defend the Zone. Here is the payment I promised.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Lukash (Freedom Honcho) Dynamic Brawl Task -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_name">
+		<text>Eliminate the Enemy Threat</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_text">
+		<text>%s have been spotted in the area. Meet up with the advance team of Freedom scouts and repel the invaders.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_text_1">
+		<text>Eliminate the hostile %s.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_about">
+		<text>Our scouts have sighted a group of %s heading this way. Go reinforce the scouts and repel the attack.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_message">
+		<text>Hey, %s is here to help! Come on, the enemy force is just over the rise, let's clear them out.</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_task_6_finish">
+		<text>Thank you for your help, you are a fine warrior indeed. Take this as your reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

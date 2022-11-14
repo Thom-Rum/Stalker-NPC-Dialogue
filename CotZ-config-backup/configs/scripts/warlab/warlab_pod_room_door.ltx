@@ -1,0 +1,61 @@
+;==============================================================
+;
+; warlab_pod_room_door.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: May 14, 2018
+;
+;==============================================================
+
+
+[logic]
+active = ph_door@locked
+
+[ph_door@locked]
+locked = true
+closed = true
+tip_open = tip_door_coded
+on_info = {=actor_has_item(decoder)} ph_door@coded
+
+[ph_door@coded]
+locked = true
+closed = true
+tip_open = tip_door_decode
+on_info = {!actor_has_item(decoder)} ph_door@locked
+on_use = ph_door@decoding %+warlab_access_decoding =play_sound_looped(warlab_decoder)%
+
+[ph_door@decoding]
+locked = true
+closed = true
+tip_open = tip_door_decoding
+on_info = {+warlab_finish_decoding} ph_door@unlocked %+warlab_door_opened =stop_sound_looped%
+
+[ph_door@unlocked]
+locked = false
+closed = false
+show_tips = false
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Lock Door On Meeting Osoznanie
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 14, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+on_info = {+oso_who_are_you} ph_door@drx_ql_door_locked
+
+[ph_door@drx_ql_door_locked]
+locked = true
+closed = true
+on_info = {+warlab_deactivate_generators_done} ph_door@drx_ql_door_open
+
+[ph_door@drx_ql_door_open]
+locked = false
+closed = false
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< PDA Encyclopedia Guide Articles - History (drx_cotz_guide_history.xml)
+<	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+<
+<		- String ID's must be formatted as follows:
+<			drx_cotz_str_guide_{x}
+<				- Text to display for current guide article section name ({x} = sequential int starting with 1)
+<			drx_cotz_str_guide_{x}_{y}
+<				- Text to display for current article title ({y} = sequential int starting with 1)
+<			drx_cotz_str_guide_{x}_{y}_text
+<				- The body of the guide article text
+<
+<	Created by: DoctorX
+<	Last revised: September 29, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- History of The Zone
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	September 29, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Zone history section name -->
+	<string id="drx_cotz_str_guide_1">
+		<text>History</text>
+	</string>
+
+	<!-- 1986 - First disaster -->
+	<string id="drx_cotz_str_guide_1_1">
+		<text>1986: Chernobyl disaster</text>
+	</string>
+	<string id="drx_cotz_str_guide_1_1_text">
+		<text>On 26 April 1986, Reactor #4 at the Chernobyl Nuclear Power Plant suffered a critical meltdown, resulting in a massive release of highly irradiated material into the surrounding area.  The entire area within 30km of the disaster was evacuated and cordoned off while cleanup efforts commenced.</text>
+	</string>
+
+	<!-- Late 1980's -->
+	<string id="drx_cotz_str_guide_1_2">
+		<text>Late 1980's</text>
+	</string>
+	<string id="drx_cotz_str_guide_1_2_text">
+		<text>Throughout the late 1980's and into the 1990's, teams of Liquidators consisting of engineers, scientists, construction workers, laborers, and technicians were dispatched to the area to decommission the plant, construct the Sarcophagus around the reactor, and clean up the irradiated area.  The Military established a permanent cordon surrounding the area.  The resultant Exclusion Zone was off-limits to any personnel other than approved Liquidators and Military personnel.</text>
+	</string>
+
+	<!-- Early 1990's -->
+	<string id="drx_cotz_str_guide_1_3">
+		<text>Early 1990's</text>
+	</string>
+	<string id="drx_cotz_str_guide_1_3_text">
+		<text>In the early to mid-1990's cleanup and containment efforts ceased and the Liquidators and Military retreated from the area, leaving it an abandoned wasteland.  Military units continue to patrol the perimeter of the Exclusion Zone to prevent anyone trespassing for their own safety.</text>
+	</string>
+
+	<!-- Mid 1990's -->
+	<string id="drx_cotz_str_guide_1_4">
+		<text>Mid 1990's</text>
+	</string>
+	<string id="drx_cotz_str_guide_1_4_text">
+		<text>Shortly after cleanup efforts were completed and the Zone was abandoned, curious explorers begin to sneak past the Military cordon and venture into the Zone.  These small groups and sometimes lone individuals of urban explorers, adventurers, thrill-seekers, and looters become known as "Stalkers".  Their presence within the Zone is strictly forbidden, but as they are civilians the Military is not authorized to use deadly force to remove them or deter them from entering the Zone.  Anyone caught violating the cordon is typically escorted from the area and issued a fine.</text>
+	</string>
+
+	<!-- Late 1990's -->
+	<string id="drx_cotz_str_guide_1_5">
+		<text>Late 1990's</text>
+	</string>
+	<string id="drx_cotz_str_guide_1_5_text">
+		<text>The Ukrainian government launches an investigation into rumors of clandestine research projects allegedly being conducted within the Zone. The report on their findings is not made public, however around the same time would-be stalkers find the Military starting to become increasingly aggressive in their efforts to enforce the cordon.  Warning signs appear around the perimeter of the Zone notifying the public that trespass is strictly forbidden and guards are authorized to shoot on sight.  The threat of deadly force is enough to deter aspiring stalkers from attempting to enter the Zone, and unauthorized presence within the Zone drops to nearly zero, with only the occasional fool-hearty adventurer breaking through.</text>
+	</string>
+
+	<!-- Early 2000's -->
+	<string id="drx_cotz_str_guide_1_6">
+		<text>Early 2000's</text>
+	</string>
+	<string id="drx_cotz_str_guide_1_6_text">
+		<text>With little first-hand information coming from the Zone, public interest fades and the desolate wasteland is largely forgotten about by people outside the Zone.  Any news about the Zone is relegated to rumor and speculation on local internet forums and conspiracy websites, buzzing their suspicions that covert experimental research projects are continuing to be conducted behind the exclusive walls of the cordon.</text>
+	</string>
+
+	<!-- 2006 - Second incident -->
+	<string id="drx_cotz_str_guide_1_7">
+		<text>2006: Second incident</text>
+	</string>
+	<string id="drx_cotz_str_guide_1_7_text">
+		<text>On 13 April 2006, a blinding flash of light that could be seen for miles around the Exclusion Zone illuminated the pre-dawn sky, accompanied by a localized earthquake that registered on seismic sensors as far away as Kiev.  Officials rushed to disuade the public fears that the nuclear fuel pile at the reactor had erupted.  An official report was released in the following days, attributing the phenomenon to a small meteorite impact and assuring the public that the decomissioned nuclear power plant was not affected.  Officials remind the local population that it is illegal for unauthorized personnel to attempt to enter the Zone.</text>
+	</string>
+
+	<!-- Late 2000's -->
+	<string id="drx_cotz_str_guide_1_8">
+		<text>Late 2000's</text>
+	</string>
+	<string id="drx_cotz_str_guide_1_8_text">
+		<text>In the years following the second incident, stories and accounts of strange creatures and events within the Zone begin to invade the local population.  For the most part these stories are regarded as too ridiculous to be true, and are largely dismissed as fiction.  Nevertheless, the prevalence of the rumors and eye-witness accounts begin to re-spark a heightened interest in the Zone, and the ultra-curious become larger in number as they appear around the outskirts of the cordon, peering in to see if they can catch a glimpse of a monster or a ghost from beyond the guards, and occasionally probing the defenses of the cordon to see how impenetrable it truly is.</text>
+	</string>
+
+	<!-- 2010's - present -->
+	<string id="drx_cotz_str_guide_1_9">
+		<text>2010's - present</text>
+	</string>
+	<string id="drx_cotz_str_guide_1_9_text">
+		<text>With the Military cordon surrounding the Zone nearly impossible to breach, those who do successfully manage to break through are defeated to realize that it will be just as difficult to leave the Zone alive as it is to enter it.  The Military enforce the cordon with deadly force in both directions, and are just as willing to shoot you on the way out as they are on the way in.  Those that do survive, however, bring back with them stories of wonders and treasures wild enough to bring out the adventurer in even the meekest of people.  Many new aspiring stalkers cannot resist the call of the Zone and are drawn to it as though by the song of the mythical sirens.  A new generation of stalkers are born, this time sneaking into the Zone not only for the thrill and the adventure, but for the promise of witnessing unbelievable sights and to achieve fabulous riches.  Due to the extreme difficulty of entering and leaving the Zone, modern day stalkers opt to plan out long excursions rather than random hops, often spending weeks or even months living inside the Zone.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

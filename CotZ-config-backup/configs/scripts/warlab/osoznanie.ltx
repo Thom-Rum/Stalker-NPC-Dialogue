@@ -1,0 +1,111 @@
+;==============================================================
+;
+; osoznanie.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: May 11, 2018
+;
+;==============================================================
+
+
+[walker@generic]
+gather_items_enabled = false
+help_wounded_enabled = false
+corpse_detection_enabled = false
+turn_on_campfire = false
+
+[logic]
+;active = walker
+active = animpoint
+
+[walker]:walker@generic
+path_walk = oso_walk
+path_look = oso_look
+meet = meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
+danger = danger_ignore
+show_spot = false
+def_state_standing = oso_flying
+def_state_moving = oso_flying
+def_state_campering = oso_flying
+out_restr = mon_monolith_proektor_restr
+
+[animpoint]:walker@generic
+cover_name = warlab_animpoint_osoznanie
+avail_animations = oso_flying
+meet = meet
+combat_ignore_cond = true
+combat_ignore_keep_when_attacked = true
+invulnerable = true
+danger = danger_ignore
+show_spot = false
+out_restr = mon_monolith_proektor_restr
+
+[meet]
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Osoznanie Close Distance
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; close_distance 	= 10
+close_distance 	= 3
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+close_anim 		= oso_flying
+close_victim 	= actor
+far_distance 	= 10
+far_anim 		= oso_flying
+far_victim 		= actor
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Osoznanie Dialog Init Conditions
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; use = {+oso_init_dialog} self, false
+use = {+oso_init_dialog =dist_to_actor_le(3.5)} self, false
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Osoznanie Meet Dialog
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; meet_dialog = oso_osoznanie_start
+meet_dialog = drx_ql_osoz_meet_dialog
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+trade_enable = false
+;precond = "visibility"
+abuse           = false
+allow_break     = false
+
+[danger_ignore]
+ignore_distance = 0

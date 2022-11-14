@@ -1,0 +1,1568 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< DoctorX Questlines Strings (drx_ql_strings.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: December 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Storyline Task Dialog Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 15, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor greeting on meeting honcho to receive storyline task: -->
+	<string id="drx_ql_str_meet_honcho">
+		<text>I've come to see you.</text>
+	</string>
+
+	<!-- Actor accepts storyline task: -->
+	<string id="drx_ql_str_accept_sl_task">
+		<text>Very well.</text>
+	</string>
+
+	<!-- Actor turns in finished storyline task: -->
+	<string id="drx_ql_str_finished_sl_task">
+		<text>I have done what you asked.</text>
+	</string>
+
+	<!-- Actor requests to cancel storyline task: -->
+	<string id="drx_ql_str_sl_task_cancel">
+		<text>I could not complete your quest.</text>
+	</string>
+
+	<!-- Actor accepts endgame questline: -->
+	<string id="drx_ql_str_endgame_task_accept">
+		<text>Very well.</text>
+	</string>
+
+	<!-- Actor rejects endgame questline: -->
+	<string id="drx_ql_str_endgame_task_reject">
+		<text>I'm not ready.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- PDA Broker Dialog Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 18, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Multiple PDAs joiner phrase: -->
+	<string id="drx_ql_str_multi_pda_joiner">
+		<text>And this one...</text>
+	</string>
+
+	<!-- PDA Broker ending phrases: -->
+	<string id="drx_ql_str_broker_finish_1">
+		<text>I'll buy it.</text>
+	</string>
+	<string id="drx_ql_str_broker_finish_2">
+		<text>Ok, I'll take it.</text>
+	</string>
+	<string id="drx_ql_str_broker_finish_3">
+		<text>Here you go.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Surrender Victim Dialog Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	March 24, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor demands surrender victim weapons: -->
+	<string id="drx_ql_str_surrender_actor_demand">
+		<text>Hand over your weapons and tell me where you stashed your gear and I might let you live.</text>
+	</string>
+
+	<!-- Surrender victim response: -->
+	<string id="drx_ql_str_surrender_victim_response_1">
+		<text>Okay, okay! Just don't kill me!</text>
+	</string>
+	<string id="drx_ql_str_surrender_victim_response_2">
+		<text>Whatever you say, just let me live!</text>
+	</string>
+	<string id="drx_ql_str_surrender_victim_response_3">
+		<text>Here, take it. Hope you burn in hell, motherfucker.</text>
+	</string>
+	<string id="drx_ql_str_surrender_victim_response_4">
+		<text>Have mercy on me!</text>
+	</string>
+	<string id="drx_ql_str_surrender_victim_response_5">
+		<text>Take whatever you want! Just please let me live!</text>
+	</string>
+	<string id="drx_ql_str_surrender_victim_response_6">
+		<text>Oh god, please don't kill me!</text>
+	</string>
+	<string id="drx_ql_str_surrender_victim_response_7">
+		<text>Take it. Now go, let me die in peace.</text>
+	</string>
+	<string id="drx_ql_str_surrender_victim_response_8">
+		<text>Fuck you!</text>
+	</string>
+	<string id="drx_ql_str_surrender_victim_response_9">
+		<text>I'll do whatever you say, please don't kill me!</text>
+	</string>
+	<string id="drx_ql_str_surrender_victim_response_10">
+		<text>Take them. Now please let me go.</text>
+	</string>
+
+	<!-- Actor dismissal: -->
+	<string id="drx_ql_str_surrender_actor_nice">
+		<text>Here's a medkit. Now get out of my sight.</text>
+	</string>
+	<string id="drx_ql_str_surrender_actor_mean">
+		<text>Time to end you.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Hostage Rescued Dialog Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	May 16, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Hostage rescued NPC dialog text: -->
+	<string id="drx_ql_str_hostage_rescued_npc_1">
+		<text>Thanks for rescuing me. I thought I was done for.</text>
+	</string>
+
+	<!-- Hostage rescued actor dialog text: -->
+	<string id="drx_ql_str_hostage_rescued_actor_1">
+		<text>Come on, let's get out of here.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Prisoner Snatch Task Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 17, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Task description if actor moved away from prisoner: -->
+	<string id="drx_ql_str_return_prisoner">
+		<text>Return with the prisoner to claim your reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions Task Phrases
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 02, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor requests to change factions: -->
+	<string id="drx_ql_str_change_factions_request">
+		<text>I want to change factions.</text>
+	</string>
+
+	<!-- Actor accepts change factions task from npc -->
+	<string id="drx_ql_str_accept_cf_task">
+		<text>I'll do it.</text>
+	</string>
+
+	<!-- NPC affirmation of task acceptance: -->
+	<string id="drx_ql_str_cf_task_accepted">
+		<text>See me when it's done.</text>
+	</string>
+
+	<!-- Actor thanks npc: -->
+	<string id="drx_ql_str_cf_actor_exit">
+		<text>Okay.</text>
+	</string>
+
+	<!-- Actor turns in finished cf task: -->
+	<string id="drx_ql_str_cf_task_completed">
+		<text>I'm ready to join your facton.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Cancel Change Factions Task Phrases
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor cancels cf task: -->
+	<string id="drx_ql_str_cf_task_cancel">
+		<text>I no longer wish to join your faction.</text>
+	</string>
+
+	<!-- NPC asks actor for confirmation: -->
+	<string id="drx_ql_str_cf_task_cancel_question">
+		<text>You've changed your mind?</text>
+	</string>
+
+	<!-- Actor confirms cf task cancellation: -->
+	<string id="drx_ql_str_cf_task_cancel_confirm">
+		<text>Yes, I want to remain with my current faction.</text>
+	</string>
+
+	<!-- NPC accepts cancellation -->
+	<string id="drx_ql_str_cf_task_cancel_accepted">
+		<text>Suit yourself.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions News Alert
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 15, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Change faction dynamic news announcement (%s = new faction name): -->
+    <string id="drx_ql_str_joined_faction_news">
+        <text>You have joined the %s faction.</text>
+    </string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Task Cancel Phrases
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 15, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- NPC asks for confirmation of task to cancel (%s = task title): -->
+	<string id="drx_ql_str_task_cancel">
+		<text>You couldn't complete the %s task?</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Bounty Killer PDA Message
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 23, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- PDA message if actor companion kills an assassination task target (%s = assassination target name): -->
+	<string id="drx_ql_str_companion_bounty_killer_1">
+		<text>I got him! I killed %s! The reward is ours!</text>
+	</string>
+	<string id="drx_ql_str_companion_bounty_killer_2">
+		<text>Well that's the end of %s. Let's go collect that bounty.</text>
+	</string>
+	<string id="drx_ql_str_companion_bounty_killer_3">
+		<text>He's dead! That was him! That was %s! We got him!</text>
+	</string>
+
+	<!-- PDA message if another NPC kills an assassination task target (%s = assassination target name): -->
+	<string id="drx_ql_str_bounty_killer_1">
+		<text>Looks like I'll be the one collecting the bounty on %s.</text>
+	</string>
+	<string id="drx_ql_str_bounty_killer_2">
+		<text>Well boys, you can all stop looking for %s. I put an end to him.</text>
+	</string>
+	<string id="drx_ql_str_bounty_killer_3">
+		<text>If anyone else was looking for %s, you're too late. I got to him first.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Fetch Task Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	December 11, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Task description for fetch task when player has required items but they are not acceptable condition (%s1 = fetch item text, %s2 = minimum condition percent): -->
+	<string id="drx_ql_str_fetch_descr_repair">
+		<text>Repair %s to at least %s% condition</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Hidden Target Task Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	March 26, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor dialog on inquiring about a hidden target: -->
+	<string id="drx_ql_str_hidden_target_inquiry">
+		<text>I'm looking for someone.</text>
+	</string>
+
+	<!-- NPC reply to general inquiry about a hidden target: -->
+	<string id="drx_ql_str_hidden_target_inquiry_reply_1">
+		<text>Aren't we all.</text>
+	</string>
+	<string id="drx_ql_str_hidden_target_inquiry_reply_2">
+		<text>Yeah? And who might that be?</text>
+	</string>
+	<string id="drx_ql_str_hidden_target_inquiry_reply_3">
+		<text>Who are you looking for?</text>
+	</string>
+	<string id="drx_ql_str_hidden_target_inquiry_reply_4">
+		<text>Not sure if I can help you, I don't know too many other stalkers.</text>
+	</string>
+	<string id="drx_ql_str_hidden_target_inquiry_reply_5">
+		<text>Anyone in particular?</text>
+	</string>
+	<string id="drx_ql_str_hidden_target_inquiry_reply_6">
+		<text>What's his name? I might know him.</text>
+	</string>
+
+	<!-- Actor dialog on inquiring about a specific hidden target (%s1 = target faction collective, %s2 = target name): -->
+	<string id="drx_ql_str_ht_specific_inquiry_1">
+		<text>I'm looking for %s called %s. Do you know him?</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_inquiry_2">
+		<text>Have you seen %s by the name of %s?</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_inquiry_3">
+		<text>I need to find %s known as %s. Ever heard of him?</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_inquiry_4">
+		<text>Do you happen to know %s called %s?</text>
+	</string>
+
+	<!-- NPC reply on not knowing hidden target location: -->
+	<string id="drx_ql_str_ht_specific_reply_unknown_1">
+		<text>Sorry, never heard of him.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_unknown_2">
+		<text>No friend of mine.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_unknown_3">
+		<text>Haven't seen that asshole in ages. Punch him in the face for me if you find him.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_unknown_4">
+		<text>No idea, sorry.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_unknown_5">
+		<text>I've heard of him, no idea where he might be though.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_unknown_6">
+		<text>That guy? I heard he drowned in the Oasis.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_unknown_7">
+		<text>I know he's a son of a bitch, but that's about it.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_unknown_8">
+		<text>You're looking for him too, huh? I haven't had any luck finding him either.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_unknown_9">
+		<text>If you want to talk to him you better find him before I do. Next time I see him he's dead.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_unknown_10">
+		<text>He's probably home fucking your sister.</text>
+	</string>
+
+	<!-- NPC reply on revealing hidden target exact location: -->
+	<string id="drx_ql_str_ht_specific_reply_spot_1">
+		<text>Yes, I saw him near here not too long ago. I'll mark his location on your map.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_spot_2">
+		<text>Yeah, he's not far from here. I'll show you on your map.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_spot_3">
+		<text>You're in luck, I just saw him. I'll mark his location on your map.</text>
+	</string>
+
+	<!-- NPC reply on revealing hidden target area (%s = hidden target map name): -->
+	<string id="drx_ql_str_ht_specific_reply_area_1">
+		<text>Haven't seen him recently. He usually hangs out in %s.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_area_2">
+		<text>I saw him up in %s not too long ago.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_area_3">
+		<text>Yeah, I've heard of him. You can probably find him in %s.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_area_4">
+		<text>I know him, not sure where he is now though. Try asking around in %s.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_area_5">
+		<text>Last time I saw that guy was when I was in %s. Might want to try asking there.</text>
+	</string>
+	<string id="drx_ql_str_ht_specific_reply_area_6">
+		<text>Try checking around in %s, he's usually in that area.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Undiscovered Float Fetch Task Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	July 23, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor dialog on inquiring about an undiscovered float fetch task: -->
+	<string id="drx_ql_str_float_fetch_inquiry">
+		<text>I need your help finding something.</text>
+	</string>
+
+	<!-- NPC reply willing to help on an undiscovered float fetch task: -->
+	<string id="drx_ql_str_float_fetch_inquiry_reply_helpful_1">
+		<text>What is it you're looking for?</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_helpful_2">
+		<text>Sure, I'll help. What are we looking for?</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_helpful_3">
+		<text>I might be able to help.</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_helpful_4">
+		<text>Ok, I'll help. What are you trying to find?</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_helpful_5">
+		<text>What is it?</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_helpful_6">
+		<text>Ok, but I don't work cheap. What's the job?</text>
+	</string>
+
+	<!-- NPC reply unwilling to help on an undiscovered float fetch task: -->
+	<string id="drx_ql_str_float_fetch_inquiry_reply_no_help_1">
+		<text>Sorry, I can't help you.</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_no_help_2">
+		<text>Can't you see I'm busy, stalker? Go away.</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_no_help_3">
+		<text>I can't find my ass with both hands, what are you asking me for?</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_no_help_4">
+		<text>Sorry, I'm not looking for any work right now.</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_no_help_5">
+		<text>Not interested.</text>
+	</string>
+	<string id="drx_ql_str_float_fetch_inquiry_reply_no_help_6">
+		<text>Sorry buddy, I've got my own problems.</text>
+	</string>
+
+	<!-- Actor dialog on inquiring about a specific float fetch item (%s = float fetch task target item name): -->
+	<string id="drx_ql_str_ff_specific_inquiry_1">
+		<text>I've been looking for a %s. Will you help me find it?</text>
+	</string>
+	<string id="drx_ql_str_ff_specific_inquiry_2">
+		<text>I'm having trouble locating a %s. Can you help me look?</text>
+	</string>
+	<string id="drx_ql_str_ff_specific_inquiry_3">
+		<text>I need to find a %s. Want to help me look for it?</text>
+	</string>
+	<string id="drx_ql_str_ff_specific_inquiry_4">
+		<text>I'm trying to find a %s but I need another set of eyes.</text>
+	</string>
+
+	<!-- NPC reply on agreeing to help look for float fetch item (%s = NPC fee): -->
+	<string id="drx_ql_str_ff_specific_reply_1">
+		<text>I'll help you find it if you're willing to pay me for the trouble. %s RU should cover it.</text>
+	</string>
+	<string id="drx_ql_str_ff_specific_reply_2">
+		<text>I'm sure I can find it for you, but it will cost you %s RU if you want my help.</text>
+	</string>
+	<string id="drx_ql_str_ff_specific_reply_3">
+		<text>Ok, I'll do it. My fee is %s RU, and I need it up front.</text>
+	</string>
+	<string id="drx_ql_str_ff_specific_reply_4">
+		<text>Sure, I'll help you out. Give me say... %s RU and I'll come along with you.</text>
+	</string>
+	<string id="drx_ql_str_ff_specific_reply_5">
+		<text>Sounds important. I bet someone's willing to pay pretty good for something like that. Tell you what, give me a cut and I'll help you find it. I'm sure %s RU isn't asking too much for my services.</text>
+	</string>
+
+	<!-- Actor on not having enough money to hire the NPC to help look for float fetch item: -->
+	<string id="drx_ql_str_ff_no_money_1">
+		<text>I don't have enough money.</text>
+	</string>
+
+	<!-- Actor on agreeing to hire the NPC to help look for float fetch item: -->
+	<string id="drx_ql_str_ff_agreed_1">
+		<text>Okay. Follow me, I'll lead you to the area.</text>
+	</string>
+	<string id="drx_ql_str_ff_agreed_2">
+		<text>It's a deal. Follow me.</text>
+	</string>
+	<string id="drx_ql_str_ff_agreed_3">
+		<text>Fair enough. Come with me.</text>
+	</string>
+	<string id="drx_ql_str_ff_agreed_4">
+		<text>Sounds good. Let's get moving.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Task Helper Companion Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	July 25, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- PDA farewell message from task helper squad when done helping: -->
+	<string id="drx_ql_str_helper_farewell_1">
+		<text>Well, my work is done. Take care, stalker.</text>
+	</string>
+	<string id="drx_ql_str_helper_farewell_2">
+		<text>Glad I could be of help. Good luck to you stalker.</text>
+	</string>
+	<string id="drx_ql_str_helper_farewell_3">
+		<text>Ok, I held up my end of the bargain. See you around, stalker.</text>
+	</string>
+
+	<!-- PDA message from task helper when starting float fetch item search (%s = float fetch item name): -->
+	<string id="drx_ql_str_helper_start_search_1">
+		<text>This is the place? Ok, I'll start looking for the %s.</text>
+	</string>
+	<string id="drx_ql_str_helper_start_search_2">
+		<text>I'll let you know if I see the %s your're looking for.</text>
+	</string>
+	<string id="drx_ql_str_helper_start_search_3">
+		<text>I'll find your %s. Shouldn't take me too long.</text>
+	</string>
+	<string id="drx_ql_str_helper_start_search_4">
+		<text>You want me to find a %s in this mess? I should have charged you double.</text>
+	</string>
+
+	<!-- PDA message from task helper when float fetch item is found (%s = float fetch item name): -->
+	<string id="drx_ql_str_helper_search_done_1">
+		<text>I think I see it. I'll mark the location of the %s on your map.</text>
+	</string>
+	<string id="drx_ql_str_helper_search_done_2">
+		<text>I think I know where the %s is. I've marked the location on your map.</text>
+	</string>
+	<string id="drx_ql_str_helper_search_done_3">
+		<text>I see the %s. I'll send the coordinates to your PDA.</text>
+	</string>
+	<string id="drx_ql_str_helper_search_done_4">
+		<text>I found the %s. I'll show you where it is on your map.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Safecracker Dialog Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 30, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- NPC starts safecracker dialog: -->
+	<string id="drx_ql_str_safecracker_npc_start">
+		<text>That case you're carrying looks heavy. You must be tired of hauling it around.</text>
+	</string>
+
+	<!-- Actor replies: -->
+	<string id="drx_ql_str_safecracker_actor_reply">
+		<text>I need to return it to it's rightful owner.</text>
+	</string>
+
+	<!-- NPC offers safecracker task: -->
+	<string id="drx_ql_str_safecracker_npc_offer">
+		<text>Rightful owner? Shit man, this is the Zone, everything's up for grabs. You're lucky you met me, I'm a master safecracker. I'll have that case open in no time and we can split the contents, what do you say?</text>
+	</string>
+
+	<!-- Actor accepts offer: -->
+	<string id="drx_ql_str_safecracker_actor_accept">
+		<text>Alright, crack it open.</text>
+	</string>
+
+	<!-- Actor rejects offer: -->
+	<string id="drx_ql_str_safecracker_actor_reject">
+		<text>No thanks.</text>
+	</string>
+
+	<!-- NPC opens safe (%s1 = max reward count x 2, %s1 = max reward count): -->
+	<string id="drx_ql_str_safecracker_npc_open_safe">
+		<text>Let's see, simple enough lock... just need to... ah! There we go, it's open. Ok, so let's split this up. I've already seen what's in here so this is what we'll do to make it fair; there are %s items in here, I'll take them out one at a time, you tell me if you want it or not. If you want it, it's yours. If you don't, it's mine. We'll do that until we each have %s items, ok?</text>
+	</string>
+
+	<!-- Actor agrees: -->
+	<string id="drx_ql_str_safecracker_actor_agree">
+		<text>Fair enough. Let's get started.</text>
+	</string>
+
+	<!-- Actor keeps item: -->
+	<string id="drx_ql_str_safecracker_actor_keep_item">
+		<text>I'll take that.</text>
+	</string>
+
+	<!-- Actor gives item to NPC: -->
+	<string id="drx_ql_str_safecracker_npc_keep_item">
+		<text>You keep it.</text>
+	</string>
+
+	<!-- NPC presents item 1 (%s = item name): -->
+	<string id="drx_ql_str_safecracker_npc_present_item_1">
+		<text>Alright, the first item is a %s. Do you want it?</text>
+	</string>
+
+	<!-- NPC presents item 2 (%s = item name): -->
+	<string id="drx_ql_str_safecracker_npc_present_item_2">
+		<text>Ok, next is a %s. Your's or mine?</text>
+	</string>
+
+	<!-- NPC presents item 3 (%s = item name): -->
+	<string id="drx_ql_str_safecracker_npc_present_item_3">
+		<text>Fine by me. Next we have a %s.</text>
+	</string>
+
+	<!-- NPC presents item 4 (%s = item name): -->
+	<string id="drx_ql_str_safecracker_npc_present_item_4">
+		<text>Here's a %s. Want it?</text>
+	</string>
+
+	<!-- NPC presents item 5 (%s = item name): -->
+	<string id="drx_ql_str_safecracker_npc_present_item_5">
+		<text>Almost at the end. Do you want this %s?</text>
+	</string>
+
+	<!-- NPC announces actor has max items (%s = max reward count): -->
+	<string id="drx_ql_str_safecracker_npc_max_items_actor">
+		<text>Ok, you have your %s, the rest is mine. Thanks, stalker.</text>
+	</string>
+
+	<!-- NPC announces npc has max items (%s = max reward count): -->
+	<string id="drx_ql_str_safecracker_npc_max_items_npc">
+		<text>Alright, that's %s for me. The rest is yours. Pleasure doing business with you.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Hunted Dialog Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 17, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- NPC warns player is hunted (%s = previous assassination victim name) -->
+	<string id="drx_ql_str_hunted_warning">
+		<text>I've got bad news for you stalker, you're a wanted man for the killing of %s. There's a bounty on your head and an expert assassin is looking to bring you in, dead or alive. I'd lay low for a while if I were you.</text>
+	</string>
+
+	<!-- PDA message if assassin is killed -->
+	<string id="drx_ql_str_assassin_killed_message">
+		<text>Your attempted assassin has been killed.</text>
+	</string>
+
+	<!-- Actor dialog on inquiring about a hidden assassin: -->
+	<string id="drx_ql_str_hidden_assassin_inquiry">
+		<text>What do you know about the man who wants me dead?</text>
+	</string>
+
+	<!-- NPC reply on not knowing hidden assassin location: -->
+	<string id="drx_ql_str_ha_specific_reply_unknown_1">
+		<text>I know it's gonna be me in a minute if you don't stop breathing down my neck.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_unknown_2">
+		<text>I assume he wants you to live no more.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_unknown_3">
+		<text>From what I've heard he's one of the best. I'd hate to be you right now.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_unknown_4">
+		<text>Sorry stalker, I've got my own problems.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_unknown_5">
+		<text>He's a monster. Even the Monolith run away from him. I feel bad for you buddy, wish I could help.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_unknown_6">
+		<text>I don't even know who you are.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_unknown_7">
+		<text>I hear he's a lunatic. He likes to eat your ears before he kills you. Real sick shit.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_unknown_8">
+		<text>If it's who I think it is you better find a good place to hide out for a while. He's the best shot in the Zone.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_unknown_9">
+		<text>You're never going to see him coming. They say he learned how to become invisible by beating a Bloodsucker until it showed him how to do it.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_unknown_10">
+		<text>Why don't you back up about 50 meters and ask me again. I don't want anyone missing you and hitting me.</text>
+	</string>
+
+	<!-- NPC reply on revealing hidden assassin area (%s = hidden assassin map name): -->
+	<string id="drx_ql_str_ha_specific_reply_area_1">
+		<text>Word is some guy has been asking around about you in %s.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_area_2">
+		<text>I don't know, but I do know there's a renowned assassin that's traveling through %s right now.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_area_3">
+		<text>Someone asked me if I knew who you were while I was in %s, might be the guy you're looking for.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_area_4">
+		<text>I heard he's in %s, but if he's looking for you he probably won't be there long.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_area_5">
+		<text>He's probably made it to %s by now if he's tracking you here.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_area_6">
+		<text>I know that from where he was dispatched from, he would have to be traveling through %s if he's on his way here.</text>
+	</string>
+
+	<!-- NPC reply on revealing hidden assassin exact location: -->
+	<string id="drx_ql_str_ha_specific_reply_spot_1">
+		<text>There was a guy here asking around about you earlier. I'll show you where he went.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_spot_2">
+		<text>I heard there was someone looking for you not too long ago. I'll mark his location on your map.</text>
+	</string>
+	<string id="drx_ql_str_ha_specific_reply_spot_3">
+		<text>Not sure if it's your guy, but word is there's a master assassin stalking the area. I'll show you where he was spotted on your map.</text>
+	</string>
+
+	<!-- Dynamic news gossip about assassin (%s = assassin location, {actor_name} = actor name) -->
+	<string id="drx_ql_str_assassin_gossip_1">
+		<text>Hey {actor_name}, better watch out, there's a guy %s that has been asking around about you.</text>
+	</string>
+	<string id="drx_ql_str_assassin_gossip_2">
+		<text>Does anyone know a stalker called {actor_name}? Some guy %s is looking for him.</text>
+	</string>
+	<string id="drx_ql_str_assassin_gossip_3">
+		<text>There's a bounty hunter %s looking for {actor_name}. I'd hate to be him right now.</text>
+	</string>
+	<string id="drx_ql_str_assassin_gossip_4">
+		<text>Some guy %s was just asking about {actor_name}. Anyone know where he is?</text>
+	</string>
+	<string id="drx_ql_str_assassin_gossip_5">
+		<text>{actor_name}, do you know there's a bounty on your head? There's an assassin looking for you %s.</text>
+	</string>
+	<string id="drx_ql_str_assassin_gossip_6">
+		<text>I heard there's a master assassin %s looking for {actor_name}. Glad he's not looking for me.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Find Oasis Dialog Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	July 27, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- NPC tells Actor legend of Oasis -->
+	<string id="drx_ql_str_find_oasis">
+		<text>Has anyone told you about the Oasis yet? Well, then listen to me stalker. Legend tells of a magical area hidden deep within the Zone, the only place in Chernobyl where you can find clear water, free from radiation. The Zone has imparted these waters with the ability rejuvenate a stalker, healing all wounds and ailments, even removing radiation poisoning from the body. But there is even more to it than that. The waters are rumored to also have brought into existence a very special artefact, one so unique and powerful that men would be willing to pay great riches to obtain it. Many have spoken about the Oasis, some even claim to have seen it, but so far, no one has ever found it. Maybe it is just a legend, but with all of the wonders I have seen here in the Zone I would not be surprised if it was true. If the Oasis really does exist, and if it does contain it's legendary artefact, whoever should find it first could become a very rich man.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Noah Southern Plateau Dialog Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 19, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor Intro -->
+	<string id="drx_ql_str_noah_plateau_task_dialog_0">
+		<text>I've heard you know how to get to the top of the Southern Plateau.</text>
+	</string>
+	<string id="drx_ql_str_noah_plateau_task_dialog_1">
+		<text>Heard that, did ya? Yeah, I've been up there. Not sure why everyone's so interested in it, ain't nothing up there but a crashed helicopter and a bunch of goddamn mutants.</text>
+	</string>
+	<string id="drx_ql_str_noah_plateau_task_dialog_2">
+		<text>I need to investigate the wreckage. Can you tell me how to get to it?</text>
+	</string>
+	<string id="drx_ql_str_noah_plateau_task_dialog_3">
+		<text>There's no time! The mutant Wave is coming and will destroy us all if we're not prepared!</text>
+	</string>
+
+	<!-- Actor offers to help Noah -->
+	<string id="drx_ql_str_noah_plateau_task_dialog_11">
+		<text>Yes, they told me you were crazy. I can help you. Tell me how to get to the top and I'll help you battle the demons in your head.</text>
+	</string>
+	<string id="drx_ql_str_noah_plateau_task_dialog_111">
+		<text>Demons ain't the problem, it's the damned mutants! Ain't you been listening to me? When the Wave hits, idiots like you are gonna be the first to go. Get the hell off my ark before I feed you to my dog!</text>
+	</string>
+
+	<!-- Actor threatens Noah -->
+	<string id="drx_ql_str_noah_plateau_task_dialog_12">
+		<text>I've got a shotgun too, buddy. Tell me how to get to the crash site or we can test who has the quicker draw.</text>
+	</string>
+	<string id="drx_ql_str_noah_plateau_task_dialog_121">
+		<text>Haha! You mister tough-guy? Listen pal, you won't feel so tough when the mutant Wave washes over us and destroys everything within the Zone! The ark will be the only refuge, remember that if you want to live! In the meantime, get the fuck out of here before I sick Lassie on you.</text>
+	</string>
+
+	<!-- Actor offers to kill mutants on plateau -->
+	<string id="drx_ql_str_noah_plateau_task_dialog_13">
+		<text>Then we must eliminate the mutants before it is too late. Show me the way to the top of the Plateau, I will exterminate the mutants that have been hiding up there.</text>
+	</string>
+	<string id="drx_ql_str_noah_plateau_task_dialog_131">
+		<text>Well, you ain't so dumb after all... alright, I'll tell ya'. If you are a fool, you can head directly toward it and try to climb it, and you will soon discover why I am the only one who has been up there. If you want to know how I did it, you will go north instead. Go to the Burnt Village and enter it from the road to the southwest. As soon as you enter the village there will be a field enclosed by a wooden fence on your right. Cross the field and you will find an opening in the fence on the other side; if you can see the Skadovsk in the distance you are going the right way. But be careful, the entire area is alive with fire. One wrong move and you will be burned alive. When you reach the opening in the fence you will be at the edge of a cliff. Close your eyes and envision yourself on top of the plateau. Believe that you are there, remove any thought that it is impossible. Once your mind is ready, throw yourself into the void. When you open your eyes you will be on the plateau, the Zone will have taken you there.</text>
+	</string>
+	<string id="drx_ql_str_noah_plateau_task_dialog_132">
+		<text>So you're telling me to run through an inferno and then jump off a cliff? If you didn't want to help me you could have just said so.</text>
+	</string>
+	<string id="drx_ql_str_noah_plateau_task_dialog_133">
+		<text>Hey man, if you don't believe me, don't do it. Here, take this artefact, it will help protect you from the heat in the field. Just promise me once you make it to the top you will wipe out every last one of those freaking mutants up there!</text>
+	</string>
+
+	<!-- Actor offers to pay Noah for information -->
+	<string id="drx_ql_str_noah_plateau_task_dialog_14">
+		<text>Enough of this nonsense. I'll pay you if you can tell me how to get to the top of the plateau.</text>
+	</string>
+	<!-- Noah -->
+	<string id="drx_ql_str_noah_plateau_task_dialog_141">
+		<text>Fine, give to me money.</text>
+	</string>
+	<!-- Actor -->
+	<string id="drx_ql_str_noah_plateau_task_dialog_1431">
+		<text>Here, now tell me what you know.</text>
+	</string>
+	<!-- Noah -->
+	<string id="drx_ql_str_noah_plateau_task_dialog_14311">
+		<text>I have no idea what you're talking about.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- NPC Local Warning Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 20, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- NPC warns player of mutants in the area (%s = direction to enemy) -->
+	<string id="drx_ql_str_local_warning_mutant_1">
+		<text>Be careful if you're traveling %s of here. There has been a lot of mutant activity reported in the area.</text>
+	</string>
+	<string id="drx_ql_str_local_warning_mutant_2">
+		<text>I heard some strange noises coming from the %s. I'm staying the hell away from there for a while.</text>
+	</string>
+	<string id="drx_ql_str_local_warning_mutant_3">
+		<text>There's word of mutant activity to the %s of here. Be careful if you're going that way.</text>
+	</string>
+
+	<!-- NPC warns player of enemies in the area (%s1 = enemy faction plural name, %s2 = direction to enemy) -->
+	<string id="drx_ql_str_local_warning_faction_1">
+		<text>There have been reports of %s %s of here. You might want to stay away from that area.</text>
+	</string>
+	<string id="drx_ql_str_local_warning_faction_2">
+		<text>I spotted some %s to the %s not too long ago. Hope they're not heading this way.</text>
+	</string>
+	<string id="drx_ql_str_local_warning_faction_3">
+		<text>Some %s have been sighted %s of here. Watch yourself if you're planning on heading that way.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- River Guide Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 29, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Name of the southern river guide -->
+	<string id="drx_ql_str_rg_south_name">
+		<text>Gonta</text>
+	</string>
+
+	<!-- Map spot name of the southern river guide -->
+	<string id="drx_ql_str_rg_south_map_name">
+		<text>River Guide</text>
+	</string>
+
+	<!-- Name of the northern river guide -->
+	<string id="drx_ql_str_rg_north_name">
+		<text>Gonta</text>
+	</string>
+
+	<!-- Map spot name of the northern river guide -->
+	<string id="drx_ql_str_rg_north_map_name">
+		<text>River Guide</text>
+	</string>
+
+	<!-- Request transport from river guide dialog text -->
+	<string id="drx_ql_str_rg_transport_dialog">
+		<text>I'm looking for transport.</text>
+	</string>
+
+	<!-- River guide reply if no boat available -->
+	<string id="drx_ql_str_rg_no_boat_dialog">
+		<text>Sorry buddy, some asshole stole my boat.</text>
+	</string>
+
+	<!-- Southern river guide dialog text (%s = River guide fee) -->
+	<string id="drx_ql_str_rg_south_dialog">
+		<text>You want to go north? I have a boat I managed to get running not far from here, I can take you up river to the Outskirts if you like... for a fee. %s RU should cover it.</text>
+	</string>
+
+	<!-- Northern river guide dialog text (%s = River guide fee) -->
+	<string id="drx_ql_str_rg_north_dialog">
+		<text>I have a small boat stashed away in the reeds over there. If you're willing to pay me %s RU, I'll take you down to the Truck Cemetery.</text>
+	</string>
+
+	<!-- Actor reply acceptance -->
+	<string id="drx_ql_str_rg_accept_dialog">
+		<text>Ok. Let's go.</text>
+	</string>
+
+	<!-- Actor reply not enough money -->
+	<string id="drx_ql_str_rg_broke_dialog">
+		<text>I don't have enough money.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Stingray 4 Pilot Dialog Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 30, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor asks pilot what happened -->
+	<string id="drx_ql_pilot_interrogation_dialog_0">
+		<text>What happened here?</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_1">
+		<text>I'm the pilot of a helicopter that crashed into the Jupiter Plant. There were several of us, we were the front end of a mission called "Operation Fairway". All of our helicopters experienced simultaneous failures and either crashed or had to perform an emergency landing. The few of us that survived gathered at this rendezvous point while we waited to be rescued. The Monolith cultists found us within a few days and overran the tunnel, taking us all hostage and using us as bait with the intent to slaughter the rescue teams when they arrived. When help didn't come, they started killing us off one by one. I was the last one left. They would have killed me too if you hadn't shown up when you did.</text>
+	</string>
+
+	<!-- About Operation Fairway -->
+	<string id="drx_ql_pilot_interrogation_dialog_11">
+		<text>Tell me about Operation Fairway.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_111">
+		<text>I was part of a 5-ship flight in the operation, callsign "Stingray". We were to be the leading edge of a massive assault on the Chernobyl Nuclear Power Plant. You see stalker, the situation at the center of the Zone is far more dire than anyone knows, including many people in the Military. The truth is, the Military has lost control of the Zone to a formidable and well-entrenched enemy. The Monolith are more than just a fringe cult, they are a full-out army that is well armed and far larger in number than anyone had ever guessed. They completely occupy the NPP and grow more powerful with each day. Operation Fairway was intended to eliminate the Monolith force and regain control of the heart of the Zone. Now that it has failed, I fear there is nothing left to stop the onslaught of the Monolith army.</text>
+	</string>
+
+	<!-- About other helicopters -->
+	<string id="drx_ql_pilot_interrogation_dialog_12">
+		<text>Can you tell me about the helicopters?</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_121">
+		<text>Which one do you want to know about?</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_1231">
+		<text>Tell me what happened to Stingray 1.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_12311">
+		<text>One of the guys on their flight said he could feel the chopper take a hit and then smelled something burning; the engine had caught fire. The pilots managed to get to the helipads near the Jupiter Plant but they were both killed on impact. They lost a few more guys when it turned out that the approach to the helipads was full of landmines.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_1232">
+		<text>Tell me what happened to Stingray 2.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_12321">
+		<text>We lost comms with them right before our flight went down. Some of the men reported seeing them crash into the towers at the Iron Forest substation and burst into flames. There were no survivors.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_1233">
+		<text>Tell me what happened to Stingray 3.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_12331">
+		<text>The pilot told me he suddenly lost both engines and they had to set down on top of the Southern Plateau in Zaton. They were lucky in that they had a soft landing, but they were attacked by a pack of snorks and lost a few men. The others decided not to stick around - they contacted the survivors from Stingray 5 and went to meet up with them.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_1234">
+		<text>Tell me what happened to Stingray 4.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_12341">
+		<text>That was my flight. I had a bad feeling about the whole thing. We were enroute to the IP, the equipment was fine, and then a second later we were flying in a piece of scrap metal with all the electronics disabled. Me and the copilot tried to reach flat ground but the controls were totally unresponsive. We fell straight through the the roof of the main workshop of the Jupiter plant. I was the only one who made it out alive. I got some help from a couple scientists that have a bunker nearby. They patched me up, and then I made my way over here to link up with the other survivors and wait for the extraction team.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_1235">
+		<text>Tell me what happened to Stingray 5.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_12351">
+		<text>The electronics malfunctioned and they dropped straight into a swamp in Zaton. A few of the men survived the crash. They linked up with the survivors from Stingray 3 at a nearby barge. It was reported to me that the man who lived there was crazy as a loon; when the men tried to detain him, he tried to detain them! They made their way over here to the designated extraction point, the place we were supposed to be rescued from in the event of total mission failure, which this ultimately was. But help never came, at least not until you got here.</text>
+	</string>
+
+	<!-- About helicopters crashing -->
+	<string id="drx_ql_pilot_interrogation_dialog_13">
+		<text>What caused the failure of the mission?</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_131">
+		<text>That's the scariest thing, man. We were flying along just fine, no issues, should have been a short flight to the LZ near the power plant. One of the guys on my flight had an anomaly detector on him - all of a sudden the thing starts going crazy, and then I lost all control of the aircraft. The crews from the other flights reported the same thing, we all simultaneously flew into an anomaly. What do you think the odds are of that happening, each of us hitting a separate anomaly at the same exact time? And look up; when was the last time you saw an anomaly form in the middle of the sky? It's like the Zone itself knew we were coming, and it swatted us down like flies.</text>
+	</string>
+
+	<!-- Defection dialog -->
+	<string id="drx_ql_pilot_interrogation_dialog_14">
+		<text>That's all I needed to know. Come with me, I'll take you back to Agroprom and you can link back up with the Military.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_141">
+		<text>Are you kidding me? There's no way I'm going back to the Military. They sent us on a suicide mission and then couldn't bail us out when it went to shit! I've spent days as a prisoner, watching my comrades be executed one after another, wondering when it would be my turn. I've had enough of the Zone, I want to get as far away from it as possible.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_1411">
+		<text>You're deserting?</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_14111">
+		<text>I can't continue to put my life on the line for this cause. This war is unwinnable, the Monolith are unstoppable monsters that will never be defeated. I've heard there is a stalker in the Pripyat Outskirts that has a boat. I'm going to find him and steal his boat and sail as far away from here as it will take me. Please don't try to stop me. The Zone has broken me, I can't take this place anymore. I just want to leave.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_1411121">
+		<text>Go. Good luck to you.</text>
+	</string>
+	<string id="drx_ql_pilot_interrogation_dialog_1411122">
+		<text>You're coming with me. I need you to corroborate your story.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Quest Item Descriptions
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- PDA: -->
+	<string id="drx_ql_quest_item_pda_name">
+		<text>PDA</text>
+	</string>
+	<string id="drx_ql_quest_item_pda_desc">
+		<text>An encrypted PDA. You have been promised a reward for its return.</text>
+	</string>
+
+	<!-- Pilot's PDA: -->
+	<string id="drx_ql_quest_item_pilot_pda_name">
+		<text>Pilot's PDA</text>
+	</string>
+	<string id="drx_ql_quest_item_pilot_pda_desc">
+		<text>A PDA found at the Jupiter Plant crash site. The map shows the location of a rally point, perhaps the survivors may be gathered there.</text>
+	</string>
+
+	<!-- ID Card: -->
+	<string id="drx_ql_quest_item_id_card_name">
+		<text>ID Card</text>
+	</string>
+	<string id="drx_ql_quest_item_id_card_desc">
+		<text>An ID card, presumably containing information about it's former owner.</text>
+	</string>
+
+	<!-- Code Card - X-18 Kalugen: -->
+	<string id="drx_ql_quest_item_code_card_kalugin_name">
+		<text>Code Card</text>
+	</string>
+	<string id="drx_ql_quest_item_code_card_kalugin_desc">
+		<text>Excellent, Colleague. I'm glad that you've received 2nd level access. At last you will find out what goes on in our laboratory. Your access code is 1243. Chief of Laboratory X-18, Piotr Ilyitch Kalugin.</text>
+	</string>
+
+	<!-- Code Card - X-18 Ecologist Guard: -->
+	<string id="drx_ql_quest_item_code_card_guard_name">
+		<text>Code Card</text>
+	</string>
+	<string id="drx_ql_quest_item_code_card_guard_desc">
+		<text>Dear colleague, may I remind you that starting tomorrow you will attend to the container in the central laboratory room. You must inspect the containers every two hours. Report everything directly to me. The code to the central laboratory room is 9524. Chief of Laboratory X-18, Piotr Ilyitch Kalugin.</text>
+	</string>
+
+	<!-- Access Card: -->
+	<string id="drx_ql_quest_item_access_card_name">
+		<text>Access Card</text>
+	</string>
+	<string id="drx_ql_quest_item_access_card_desc">
+		<text>An access card for an electronic lock.</text>
+	</string>
+
+	<!-- Papers: -->
+	<string id="drx_ql_quest_item_papers_name">
+		<text>Documents</text>
+	</string>
+	<string id="drx_ql_quest_item_papers_desc">
+		<text>Important papers. Return them for your reward.</text>
+	</string>
+
+	<!-- Flight Plan: -->
+	<string id="drx_ql_quest_item_flight_plan_name">
+		<text>Flight Plan</text>
+	</string>
+	<string id="drx_ql_quest_item_flight_plan_desc">
+		<text>The tattered remains of a pilot's flight plan found next to a crashed helicopter.</text>
+	</string>
+
+	<!-- Notebook: -->
+	<string id="drx_ql_quest_item_notebook_name">
+		<text>Notebook</text>
+	</string>
+	<string id="drx_ql_quest_item_notebook_desc">
+		<text>A weatherproof journal containing research data.</text>
+	</string>
+
+	<!-- Document Case: -->
+	<string id="drx_ql_quest_item_document_case_name">
+		<text>Document Case</text>
+	</string>
+	<string id="drx_ql_quest_item_document_case_desc">
+		<text>These documents look important. They could be worth money to the right buyer.</text>
+	</string>
+
+	<!-- Plateau Case: -->
+	<string id="drx_ql_quest_item_plateau_case_name">
+		<text>Plateau Case</text>
+	</string>
+	<string id="drx_ql_quest_item_plateau_case_desc">
+		<text>A case found in a cave on the top of the Southern Plateau.</text>
+	</string>
+
+	<!-- Locked Case: -->
+	<string id="drx_ql_quest_item_case_name">
+		<text>Locked Case</text>
+	</string>
+	<string id="drx_ql_quest_item_case_desc">
+		<text>A locked case. Not sure what's inside but it's heavy. Better be worth it lugging this thing around.</text>
+	</string>
+
+	<!-- Anomalous Plant: -->
+	<string id="drx_ql_quest_item_plant_name">
+		<text>Anomalous Plant</text>
+	</string>
+	<string id="drx_ql_quest_item_plant_desc">
+		<text>A strange plant that was found growing near an anomaly.</text>
+	</string>
+
+	<!-- Black Box: -->
+	<string id="drx_ql_quest_item_blackbox_name">
+		<text>Black Box</text>
+	</string>
+	<string id="drx_ql_quest_item_blackbox_desc">
+		<text>The flight data recorder recovered from a crashed helicopter.</text>
+	</string>
+
+	<!-- Memory Module: -->
+	<string id="drx_ql_quest_item_memory_module_name">
+		<text>UAV Memory Module</text>
+	</string>
+	<string id="drx_ql_quest_item_memory_module_desc">
+		<text>The memory module from the crashed spy drone.</text>
+	</string>
+
+	<!-- Data Module: -->
+	<string id="drx_ql_quest_item_data_module_name">
+		<text>Data Module</text>
+	</string>
+	<string id="drx_ql_quest_item_data_module_desc">
+		<text>The data module from a crashed helicopter.</text>
+	</string>
+
+	<!-- Transistors: -->
+	<string id="drx_ql_quest_item_transistors_name">
+		<text>Transistors</text>
+	</string>
+	<string id="drx_ql_quest_item_transistors_desc">
+		<text>A box of transistors.</text>
+	</string>
+
+	<!-- Capacitors: -->
+	<string id="drx_ql_quest_item_capacitors_name">
+		<text>Capacitors</text>
+	</string>
+	<string id="drx_ql_quest_item_capacitors_desc">
+		<text>A bank of high-voltage capacitors.</text>
+	</string>
+
+	<!-- Wire: -->
+	<string id="drx_ql_quest_item_wire_name">
+		<text>Wire</text>
+	</string>
+	<string id="drx_ql_quest_item_wire_desc">
+		<text>A spool of nichrome wire.</text>
+	</string>
+
+	<!-- Circuit Boards: -->
+	<string id="drx_ql_quest_item_pcb_name">
+		<text>Circuit Boards</text>
+	</string>
+	<string id="drx_ql_quest_item_pcb_desc">
+		<text>Some basic electronic circuit boards. They are in remarkably good condition for the Zone, they may still be useable.</text>
+	</string>
+
+	<!-- Level 1 Toolkit: -->
+	<string id="drx_ql_quest_item_toolkit_1_name">
+		<text>Gunsmith Toolkit</text>
+	</string>
+	<string id="drx_ql_quest_item_toolkit_1_desc">
+		<text>A set of basic gunsmith tools.</text>
+	</string>
+
+	<!-- Level 2 Toolkit: -->
+	<string id="drx_ql_quest_item_toolkit_2_name">
+		<text>Technician Toolkit</text>
+	</string>
+	<string id="drx_ql_quest_item_toolkit_2_desc">
+		<text>A decent set of specialized tools. Some of the gunsmiths in the Zone would certainly be willing to pay for these.</text>
+	</string>
+
+	<!-- Level 3 Toolkit: -->
+	<string id="drx_ql_quest_item_toolkit_3_name">
+		<text>Armorer's Toolkit</text>
+	</string>
+	<string id="drx_ql_quest_item_toolkit_3_desc">
+		<text>A complete set of military grade armorer's tools. In the proper hands, these tools could be utilized to conduct nearly any type of equipment upgrade.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Restored CoP Quest Item Descriptions
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Zaton Bridge Convoy Key 1 -->
+	<string id="st_zat_b12_key_1">
+		<text>Convoy Key 1</text>
+	</string>
+	<string id="st_zat_b12_key_1_descr">
+		<text>One of two keys needed to open a locked container.</text>
+	</string>
+
+	<!-- Zaton Bridge Convoy Key 2 -->
+	<string id="st_zat_b12_key_2">
+		<text>Convoy Key 2</text>
+	</string>
+	<string id="st_zat_b12_key_2_descr">
+		<text>The second of two keys needed to open a locked container.</text>
+	</string>
+
+	<!-- Zaton Bridge Convoy Gas Canister -->
+	<string id="st_zat_b57_gas_name">
+		<text>Perin B3 Gas</text>
+	</string>
+	<string id="st_zat_b57_gas_desc">
+		<text>A canister of a dangerous chemical nerve agent.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Switcher Tip Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Activate BrainScorcher Switch Tip -->
+	<string id="drx_ql_tips_activate_brain_scorcher">
+		<text>Activate the Brain Scorcher ($$ACTION_USE$$)</text>
+	</string>
+
+	<!-- Message to display while Generators switch is blocked  -->
+	<string id="drx_ql_str_switch_locked">
+		<text>Something is holding the switch</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Access Card Required Tip Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	July 27, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Access Card Required Tip -->
+
+	<string id="drx_ql_tips_access_card_required">
+		<text>Access card required to open door</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Level Changer Map Icon Names
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	July 30, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Level changer to NPP South text: -->
+	<string id="drx_ql_str_map_spot_to_npp_south">
+		<text>To Chernobyl NPP (South)</text>
+	</string>
+
+	<!-- Level changer to NPP North text: -->
+	<string id="drx_ql_str_map_spot_to_npp_north">
+		<text>To Chernobyl NPP (North)</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Compass Direction Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	February 24, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Compass Directions -->
+	<string id="drx_ql_str_direction_close">
+		<text>nearby</text>
+	</string>
+	<string id="drx_ql_str_direction_east">
+		<text>east</text>
+	</string>
+	<string id="drx_ql_str_direction_northeast">
+		<text>northeast</text>
+	</string>
+	<string id="drx_ql_str_direction_north">
+		<text>north</text>
+	</string>
+	<string id="drx_ql_str_direction_northwest">
+		<text>northwest</text>
+	</string>
+	<string id="drx_ql_str_direction_west">
+		<text>west</text>
+	</string>
+	<string id="drx_ql_str_direction_southwest">
+		<text>southwest</text>
+	</string>
+	<string id="drx_ql_str_direction_south">
+		<text>south</text>
+	</string>
+	<string id="drx_ql_str_direction_southeast">
+		<text>southeast</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Main Menu Text
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	December 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Default character name: -->
+	<string id="drx_ql_str_default_char_name">
+		<text>Marked One</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Faction Plural Names
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 04, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Faction names used when referring to a faction as a whole: -->
+	<string id="drx_ql_str_stalker_plural">
+		<text>Loners</text>
+	</string>
+	<string id="drx_ql_str_dolg_plural">
+		<text>Dutiers</text>
+	</string>
+	<string id="drx_ql_str_freedom_plural">
+		<text>Freedomers</text>
+	</string>
+	<string id="drx_ql_str_csky_plural">
+		<text>Clear Sky members</text>
+	</string>
+	<string id="drx_ql_str_ecolog_plural">
+		<text>Ecologists</text>
+	</string>
+	<string id="drx_ql_str_killer_plural">
+		<text>Mercenaries</text>
+	</string>
+	<string id="drx_ql_str_army_plural">
+		<text>Military soldiers</text>
+	</string>
+	<string id="drx_ql_str_bandit_plural">
+		<text>Bandits</text>
+	</string>
+	<string id="drx_ql_str_monolith_plural">
+		<text>Monolith cultists</text>
+	</string>
+	<string id="drx_ql_str_zombied_plural">
+		<text>Zombies</text>
+	</string>
+	<string id="drx_ql_str_trader_plural">
+		<text>Stalkers</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Faction Collective Names
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	July 26, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Faction names used when referring to a character as part of its group: -->
+	<string id="drx_ql_str_stalker_collective">
+		<text>a Loner</text>
+	</string>
+	<string id="drx_ql_str_dolg_collective">
+		<text>a Dutier</text>
+	</string>
+	<string id="drx_ql_str_freedom_collective">
+		<text>a Freedomer</text>
+	</string>
+	<string id="drx_ql_str_csky_collective">
+		<text>a Clear Sky member</text>
+	</string>
+	<string id="drx_ql_str_ecolog_collective">
+		<text>an Ecologist</text>
+	</string>
+	<string id="drx_ql_str_killer_collective">
+		<text>a Mercenary</text>
+	</string>
+	<string id="drx_ql_str_army_collective">
+		<text>a Soldier</text>
+	</string>
+	<string id="drx_ql_str_bandit_collective">
+		<text>a Bandit</text>
+	</string>
+	<string id="drx_ql_str_monolith_collective">
+		<text>a Monolithian</text>
+	</string>
+	<string id="drx_ql_str_zombied_collective">
+		<text>a Zombie</text>
+	</string>
+	<string id="drx_ql_str_trader_collective">
+		<text>a stalker</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

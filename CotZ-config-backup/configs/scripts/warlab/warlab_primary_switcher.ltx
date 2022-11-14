@@ -1,0 +1,41 @@
+;==============================================================
+;
+; warlab_primary_switcher.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: October 08, 2019
+;
+;==============================================================
+
+
+[logic]
+active = ph_button@gen_on
+
+[ph_button@gen_on]
+anim_blend  = true
+anim        = lab_primary_switcher_idle
+tooltip     = tips_warlab_switcher_press
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Turning Off Generators Switch
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; on_press    = {+sar_monolith_off} ph_button@gen_off %+warlab_deactivate_generators_done%
+; on_press = {+sar_monolith_off} ph_button@gen_off %=drx_ql_kill_osoznanie_protectors() +warlab_deactivate_generators_done%
+on_press = {=counter_greater(mon_destroy_generator:6)} ph_button@gen_off %=drx_ql_kill_osoznanie_protectors() +warlab_deactivate_generators_done%, %=drx_ql_display_switched_locked_msg()%
+%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[ph_button@gen_off]
+anim_blend  = true
+anim        = lab_primary_switcher_off

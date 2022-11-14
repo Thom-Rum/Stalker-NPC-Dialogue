@@ -1,0 +1,57 @@
+<!--===========================================================
+<
+< HUD Minimap Layout (zone_map.xml)
+<	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+<
+<	Modified by: DoctorX
+<	Last revised: August 20, 2017
+<
+<===========================================================-->
+
+
+<window>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Minimap Layout
+	<!--
+	<!--	Modified by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	February 06, 2017
+	<!--
+	<!--	- Values used from No Mini-Map Mod v2 by DeadlyTigger (Clear Sky mod)
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<minimap>
+		<level_frame x="-200" y="014" width="150" height="140"/>
+
+		<background x="-900" y="005" width="150" height="140">
+			<texture>ui_inGame2_Radar_main_window</texture>
+		</background>
+
+	    <clock_wnd x="-600" y="0.209" width="39" height="16" alignment="c">
+	        <text x="0" y="0" font="letterica16" r="179" g="152" b="109" align="c" vert_align="c"/>
+	    </clock_wnd>
+
+		<compass x="3144" y="3170" width="030" height="030" heading="1">
+			<texture>ui_inGame2_Radar_compass</texture>
+		</compass>
+
+		<center width="-400" height="004" alignment="c" stretch="1">
+			<texture a="0">ui_minimap_point</texture>
+		</center>
+
+		<static_counter x="159" y="167" width="35" height="29" alignment="c">
+			<text_static x="8" y="7" width="14" height="14">
+				<text  align="c" font="letterica16"  r="179" g="152" b="109" />
+			</text_static>
+		</static_counter>
+
+	</minimap>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</window>

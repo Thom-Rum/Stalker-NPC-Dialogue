@@ -1,0 +1,2512 @@
+;==============================================================
+;
+; Special Squads (squad_descr_special.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: November 07, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Raid Companion Squads
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 07, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Loner Raid Companions-
+
+[drx_ql_raid_companion_squad_stalker_1]:online_offline_group
+faction = stalker
+relationship = friend
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 1, 2
+story_id = drx_ql_raid_companion_squad_stalker_1
+
+[drx_ql_raid_companion_squad_stalker_2]:online_offline_group
+faction = stalker
+relationship = friend
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_3
+npc_in_squad = 2, 3
+story_id = drx_ql_raid_companion_squad_stalker_2
+
+;------------------------------------------------
+; Duty Raid Companions-
+
+[drx_ql_raid_companion_squad_dolg_1]:online_offline_group
+faction = dolg
+relationship = friend
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 1, 2
+story_id = drx_ql_raid_companion_squad_dolg_1
+
+[drx_ql_raid_companion_squad_dolg_2]:online_offline_group
+faction = dolg
+relationship = friend
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2, sim_default_duty_3
+npc_in_squad = 2, 3
+story_id = drx_ql_raid_companion_squad_dolg_2
+
+;------------------------------------------------
+; Freedom Raid Companions-
+
+[drx_ql_raid_companion_squad_freedom_1]:online_offline_group
+faction = freedom
+relationship = friend
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 2
+story_id = drx_ql_raid_companion_squad_freedom_1
+
+[drx_ql_raid_companion_squad_freedom_2]:online_offline_group
+faction = freedom
+relationship = friend
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2, sim_default_freedom_3
+npc_in_squad = 2, 3
+story_id = drx_ql_raid_companion_squad_freedom_2
+
+;------------------------------------------------
+; Clear Sky Raid Companions-
+
+[drx_ql_raid_companion_squad_csky_1]:online_offline_group
+faction = csky
+relationship = friend
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2
+npc_in_squad = 1, 2
+story_id = drx_ql_raid_companion_squad_csky_1
+
+[drx_ql_raid_companion_squad_csky_2]:online_offline_group
+faction = csky
+relationship = friend
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2, sim_default_csky_3
+npc_in_squad = 2, 3
+story_id = drx_ql_raid_companion_squad_csky_2
+
+;------------------------------------------------
+; Ecologist Raid Companions-
+
+[drx_ql_raid_companion_squad_ecolog_1]:online_offline_group
+faction = ecolog
+relationship = friend
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2
+npc_in_squad = 1, 2
+story_id = drx_ql_raid_companion_squad_ecolog_1
+
+[drx_ql_raid_companion_squad_ecolog_2]:online_offline_group
+faction = ecolog
+relationship = friend
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2, sim_default_ecolog_3
+npc_in_squad = 2, 3
+story_id = drx_ql_raid_companion_squad_ecolog_2
+
+;------------------------------------------------
+; Mercenary Raid Companions-
+
+[drx_ql_raid_companion_squad_killer_1]:online_offline_group
+faction = killer
+relationship = friend
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 1, 2
+story_id = drx_ql_raid_companion_squad_killer_1
+
+[drx_ql_raid_companion_squad_killer_2]:online_offline_group
+faction = killer
+relationship = friend
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2, sim_default_killer_3
+npc_in_squad = 2, 3
+story_id = drx_ql_raid_companion_squad_killer_2
+
+;------------------------------------------------
+; Military Raid Companions-
+
+[drx_ql_raid_companion_squad_army_1]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 1, 2
+story_id = drx_ql_raid_companion_squad_army_1
+
+[drx_ql_raid_companion_squad_army_2]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2, sim_default_military_3
+npc_in_squad = 2, 3
+story_id = drx_ql_raid_companion_squad_army_2
+
+;------------------------------------------------
+; Bandit Raid Companions-
+
+[drx_ql_raid_companion_squad_bandit_1]:online_offline_group
+faction = bandit
+relationship = friend
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 1, 2
+story_id = drx_ql_raid_companion_squad_bandit_1
+
+[drx_ql_raid_companion_squad_bandit_2]:online_offline_group
+faction = bandit
+relationship = friend
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2, sim_default_bandit_3
+npc_in_squad = 2, 3
+story_id = drx_ql_raid_companion_squad_bandit_2
+
+;------------------------------------------------
+; Monolith Raid Companions-
+
+[drx_ql_raid_companion_squad_monolith_1]:online_offline_group
+faction = monolith
+relationship = friend
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 1, 2
+story_id = drx_ql_raid_companion_squad_monolith_1
+
+[drx_ql_raid_companion_squad_monolith_2]:online_offline_group
+faction = monolith
+relationship = friend
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3
+npc_in_squad = 2, 3
+story_id = drx_ql_raid_companion_squad_monolith_2
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Free Roaming Target Squads
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 09, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Loner Free Roaming Target Squad-
+[drx_ql_designated_target_squad_stalker]:online_offline_group
+faction = stalker
+relationship = enemy
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_stalker
+
+; Duty Free Roaming Target Squad-
+[drx_ql_designated_target_squad_dolg]:online_offline_group
+faction = dolg
+relationship = enemy
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_dolg
+
+; Freedom Free Roaming Target Squad-
+[drx_ql_designated_target_squad_freedom]:online_offline_group
+faction = freedom
+relationship = enemy
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_freedom
+
+; Clear Sky Free Roaming Target Squad-
+[drx_ql_designated_target_squad_csky]:online_offline_group
+faction = csky
+relationship = enemy
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_csky
+
+; Ecologist Free Roaming Target Squad-
+[drx_ql_designated_target_squad_ecolog]:online_offline_group
+faction = ecolog
+relationship = enemy
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_ecolog
+
+; Mercenary Free Roaming Target Squad-
+[drx_ql_designated_target_squad_killer]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_killer
+
+; Military Free Roaming Target Squad-
+[drx_ql_designated_target_squad_army]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_army
+
+; Bandit Free Roaming Target Squad-
+[drx_ql_designated_target_squad_bandit]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_bandit
+
+; Monolith Free Roaming Target Squad-
+[drx_ql_designated_target_squad_monolith]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_monolith
+
+; Zombied Free Roaming Target Squad-
+[drx_ql_designated_target_squad_zombied]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 1, 3
+story_id = drx_ql_designated_target_squad_zombied
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Assassin Squads
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 16, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Loner Assassin Squad-
+[drx_ql_assassin_squad_stalker]:online_offline_group
+faction = stalker
+relationship = enemy
+npc_random = sim_default_stalker_3, sim_default_stalker_4
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_stalker
+
+; Duty Assassin Squad-
+[drx_ql_assassin_squad_dolg]:online_offline_group
+faction = dolg
+relationship = enemy
+npc_random = sim_default_duty_3, sim_default_duty_4
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_dolg
+
+; Freedom Assassin Squad-
+[drx_ql_assassin_squad_freedom]:online_offline_group
+faction = freedom
+relationship = enemy
+npc_random = sim_default_freedom_3, sim_default_freedom_4
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_freedom
+
+; Clear Sky Assassin Squad-
+[drx_ql_assassin_squad_csky]:online_offline_group
+faction = csky
+relationship = enemy
+npc_random = sim_default_csky_3, sim_default_csky_4
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_csky
+
+; Ecologist Assassin Squad-
+[drx_ql_assassin_squad_ecolog]:online_offline_group
+faction = ecolog
+relationship = enemy
+npc_random = sim_default_ecolog_2, sim_default_ecolog_3
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_ecolog
+
+; Mercenary Assassin Squad-
+[drx_ql_assassin_squad_killer]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_3, sim_default_killer_4
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_killer
+
+; Military Assassin Squad-
+[drx_ql_assassin_squad_army]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_3, sim_default_military_4, sim_default_military_3_sniper
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_army
+
+; Bandit Assassin Squad-
+[drx_ql_assassin_squad_bandit]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_3, sim_default_bandit_4
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_bandit
+
+; Monolith Assassin Squad-
+[drx_ql_assassin_squad_monolith]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_3, sim_default_monolith_4, sim_monolith_sniper_gauss
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_monolith
+
+; Zombied Assassin Squad-
+[drx_ql_assassin_squad_zombied]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 1
+story_id = drx_ql_assassin_squad_zombied
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Big Mutant Squads
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 24, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Big Mutant Chimera Squad-
+[drx_ql_big_mutant_squad_1]:online_offline_group
+faction = monster
+npc_random = chimera_normal, chimera_weak, chimera_strong, chimera_normal2, chimera_normal3, chimera_strong2, chimera_strong3, chimera_strong4
+npc_in_squad = 1, 2
+story_id = drx_ql_big_mutant_squad_1
+
+; Big Mutant Flesh Squad-
+[drx_ql_big_mutant_squad_2]:online_offline_group
+faction = monster
+npc_random = flesh_01a_weak, flesh_01a_weak, flesh_normal, flesh_02a_normal, flesh_01a_strong, flesh_02a_strong
+npc_in_squad = 16, 24
+story_id = drx_ql_big_mutant_squad_2
+
+; Big Mutant Bloodsucker Squad-
+[drx_ql_big_mutant_squad_3]:online_offline_group
+faction = monster
+npc_random = bloodsucker_red_weak, bloodsucker_green_weak, bloodsucker_black_weak, bloodsucker_red_normal, bloodsucker_green_normal, bloodsucker_black_normal, bloodsucker_red_strong, bloodsucker_green_strong, bloodsucker_black_strong, psysucker_weak, psysucker_normal, psysucker_strong
+npc_in_squad = 4, 6
+story_id = drx_ql_big_mutant_squad_3
+
+; Big Mutant Zombie Squad-
+[drx_ql_big_mutant_squad_4]:online_offline_group
+faction = monster
+npc_random = zombie_weak, zombie_normal, zombie_strong, zombie_ghost
+npc_in_squad = 16, 24
+story_id = drx_ql_big_mutant_squad_4
+
+; Big Mutant Snork Squad-
+[drx_ql_big_mutant_squad_5]:online_offline_group
+faction = monster
+npc_random = snork_weak, snork_weak2, snork_weak3, snork_normal3, snork_normal, snork_normal2, snork_strong, snork_strong2, snork_strong3
+npc_in_squad = 6, 8
+story_id = drx_ql_big_mutant_squad_5
+
+; Big Mutant Tushkano Squad-
+[drx_ql_big_mutant_squad_6]:online_offline_group
+faction = monster
+npc_random = tushkano_normal, tushkano_normal_a, tushkano_normal_b, tushkano_normal_c, tushkano_weak, tushkano_weak_a, tushkano_weak_b, tushkano_weak_c, tushkano_strong, tushkano_strong_a, tushkano_strong_b, tushkano_strong_c
+npc_in_squad = 10, 16
+story_id = drx_ql_big_mutant_squad_6
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Designated Target Squads
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 07, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Agroprom Underground Bandits-
+[drx_ql_designated_target_squad_bandit_agroprom_u]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_agroprom_u
+target_smart = agr_u_bandits
+always_arrived = true
+
+; Cordon Tunnel Bandits-
+[drx_ql_designated_target_squad_bandit_cordon_tunnel]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_2, sim_default_bandit_3, sim_default_bandit_4
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_cordon_tunnel
+target_smart = esc_smart_terrain_9_7
+always_arrived = true
+
+; Dark Valley X-18 Military Guards-
+[drx_ql_designated_target_squad_army_valley_x18]:online_offline_group
+faction = army
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2, sim_default_military_3
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_army_valley_x18
+target_smart = val_smart_terrain_1_2
+always_arrived = true
+
+; Jupiter Monolith Hostage Takers 2-
+[drx_ql_designated_target_squad_monolith_hostage_takers_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 3, 5
+story_id = drx_ql_designated_target_squad_monolith_hostage_takers_1
+target_smart = jup_b1
+always_arrived = true
+
+; Jupiter Monolith Hostage Takers 2-
+[drx_ql_designated_target_squad_monolith_hostage_takers_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 3, 5
+story_id = drx_ql_designated_target_squad_monolith_hostage_takers_2
+target_smart = jup_b1
+always_arrived = true
+
+; NPC North Monolith Guards 1-
+[drx_ql_designated_target_squad_monolith_npp_north_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_monolith_npp_north_1
+target_smart = aes2_monolith_camp3
+always_arrived = true
+
+; NPC North Monolith Guards 2-
+[drx_ql_designated_target_squad_monolith_npp_north_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_monolith_npp_north_2
+target_smart = aes2_monolith_snipers_1
+always_arrived = true
+
+; NPC North Monolith Guards 3-
+[drx_ql_designated_target_squad_monolith_npp_north_3]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_monolith_npp_north_3
+target_smart = aes2_monolith_snipers_2
+always_arrived = true
+
+; NPC North Monolith Guards 4-
+[drx_ql_designated_target_squad_monolith_npp_north_4]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_monolith_npp_north_4
+target_smart = aes2_monolith_snipers_3
+always_arrived = true
+
+; NPP South Monolith Guards 1-
+[drx_ql_designated_target_squad_monolith_npp_south_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_monolith_npp_south_1
+target_smart = aes_smart_terrain_monolit_blockpost
+always_arrived = true
+
+; NPP South Monolith Guards 2-
+[drx_ql_designated_target_squad_monolith_npp_south_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_monolith_npp_south_2
+target_smart = aes_smart_terrain_monolit_blockpost2
+always_arrived = true
+
+; NPP South Monolith Guards 3-
+[drx_ql_designated_target_squad_monolith_npp_south_3]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_monolith_npp_south_3
+target_smart = aes_smart_terrain_monolit_blockpost4
+always_arrived = true
+
+; Outskirts X-8 Monolith Guards 1-
+[drx_ql_designated_target_squad_monolith_outskirts_x8_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_monolith_outskirts_x8_1
+target_smart = pri_b306
+always_arrived = true
+
+; Outskirts X-8 Monolith Guards 2-
+[drx_ql_designated_target_squad_monolith_outskirts_x8_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 5
+story_id = drx_ql_designated_target_squad_monolith_outskirts_x8_2
+target_smart = pri_b306
+always_arrived = true
+
+; Pripyat Hotel Polissya Monolith Guards-
+[drx_ql_designated_target_squad_monolith_pripyat_hotel]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 3, 5
+story_id = drx_ql_designated_target_squad_monolith_pripyat_hotel
+target_smart = pri_smart_tushkano_lair1
+always_arrived = true
+
+; Pripyat Stadium Monolith Guards-
+[drx_ql_designated_target_squad_monolith_pripyat_stadium]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 3, 5
+story_id = drx_ql_designated_target_squad_monolith_pripyat_stadium
+target_smart = pri_smart_monolith_stalker6
+always_arrived = true
+
+; Yantar Bandits-
+[drx_ql_designated_target_squad_bandit_yantar]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_yantar
+target_smart = yan_smart_terrain_6_2
+always_arrived = true
+
+; Zaton Dredge Bandits-
+[drx_ql_designated_target_squad_bandit_zaton_dredge]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_bandit_zaton_dredge
+target_smart = zat_b14_smart_terrain
+always_arrived = true
+
+; Zaton Distorted Swamp Snorks-
+[drx_ql_designated_target_squad_mutant_zaton_swamp]:online_offline_group
+faction = monster
+npc_random = snork_weak, snork_weak2, snork_weak3, snork_normal3, snork_normal, snork_normal2, snork_strong, snork_strong2, snork_strong3
+npc_in_squad = 4, 6
+story_id = drx_ql_designated_target_squad_mutant_zaton_swamp
+target_smart = zat_sim_6
+always_arrived = true
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Brawl Squads
+;
+;	- All factions should have same number of squads available
+;	- Update [brawl_settings] max_squad_count in drx_ql_config.ltx if adding or removing squads
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 25, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Loner Brawl Squads-
+
+[drx_ql_brawl_squad_stalker_1]:online_offline_group
+faction = stalker
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_stalker_1
+
+[drx_ql_brawl_squad_stalker_2]:online_offline_group
+faction = stalker
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_stalker_2
+
+[drx_ql_brawl_squad_stalker_3]:online_offline_group
+faction = stalker
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_stalker_3
+
+[drx_ql_brawl_squad_stalker_4]:online_offline_group
+faction = stalker
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_stalker_4
+
+;------------------------------------------------
+; Duty Brawl Squads-
+
+[drx_ql_brawl_squad_dolg_1]:online_offline_group
+faction = dolg
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_dolg_1
+
+[drx_ql_brawl_squad_dolg_2]:online_offline_group
+faction = dolg
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_dolg_2
+
+[drx_ql_brawl_squad_dolg_3]:online_offline_group
+faction = dolg
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_dolg_3
+
+[drx_ql_brawl_squad_dolg_4]:online_offline_group
+faction = dolg
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_dolg_4
+
+;------------------------------------------------
+; Freedom Brawl Squads-
+
+[drx_ql_brawl_squad_freedom_1]:online_offline_group
+faction = freedom
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_freedom_1
+
+[drx_ql_brawl_squad_freedom_2]:online_offline_group
+faction = freedom
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_freedom_2
+
+[drx_ql_brawl_squad_freedom_3]:online_offline_group
+faction = freedom
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_freedom_3
+
+[drx_ql_brawl_squad_freedom_4]:online_offline_group
+faction = freedom
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_freedom_4
+
+;------------------------------------------------
+; Clear Sky Brawl Squads-
+
+[drx_ql_brawl_squad_csky_1]:online_offline_group
+faction = csky
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_csky_1
+
+[drx_ql_brawl_squad_csky_2]:online_offline_group
+faction = csky
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_csky_2
+
+[drx_ql_brawl_squad_csky_3]:online_offline_group
+faction = csky
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_csky_3
+
+[drx_ql_brawl_squad_csky_4]:online_offline_group
+faction = csky
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_csky_4
+
+;------------------------------------------------
+; Ecologist Brawl Squads-
+
+[drx_ql_brawl_squad_ecolog_1]:online_offline_group
+faction = ecolog
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_ecolog_1
+
+[drx_ql_brawl_squad_ecolog_2]:online_offline_group
+faction = ecolog
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_ecolog_2
+
+[drx_ql_brawl_squad_ecolog_3]:online_offline_group
+faction = ecolog
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_ecolog_3
+
+[drx_ql_brawl_squad_ecolog_4]:online_offline_group
+faction = ecolog
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_ecolog_4
+
+;------------------------------------------------
+; Mercenary Brawl Squads-
+
+[drx_ql_brawl_squad_killer_1]:online_offline_group
+faction = killer
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_killer_1
+
+[drx_ql_brawl_squad_killer_2]:online_offline_group
+faction = killer
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_killer_2
+
+[drx_ql_brawl_squad_killer_3]:online_offline_group
+faction = killer
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_killer_3
+
+[drx_ql_brawl_squad_killer_4]:online_offline_group
+faction = killer
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_killer_4
+
+;------------------------------------------------
+; Military Brawl Squads-
+
+[drx_ql_brawl_squad_army_1]:online_offline_group
+faction = army
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_army_1
+
+[drx_ql_brawl_squad_army_2]:online_offline_group
+faction = army
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_army_2
+
+[drx_ql_brawl_squad_army_3]:online_offline_group
+faction = army
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_army_3
+
+[drx_ql_brawl_squad_army_4]:online_offline_group
+faction = army
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_army_4
+
+;------------------------------------------------
+; Bandit Brawl Squads-
+
+[drx_ql_brawl_squad_bandit_1]:online_offline_group
+faction = bandit
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_bandit_1
+
+[drx_ql_brawl_squad_bandit_2]:online_offline_group
+faction = bandit
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_bandit_2
+
+[drx_ql_brawl_squad_bandit_3]:online_offline_group
+faction = bandit
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_bandit_3
+
+[drx_ql_brawl_squad_bandit_4]:online_offline_group
+faction = bandit
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_bandit_4
+
+;------------------------------------------------
+; Monolith Brawl Squads-
+
+[drx_ql_brawl_squad_monolith_1]:online_offline_group
+faction = monolith
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_monolith_1
+
+[drx_ql_brawl_squad_monolith_2]:online_offline_group
+faction = monolith
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_monolith_2
+
+[drx_ql_brawl_squad_monolith_3]:online_offline_group
+faction = monolith
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_monolith_3
+
+[drx_ql_brawl_squad_monolith_4]:online_offline_group
+faction = monolith
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_monolith_4
+
+;------------------------------------------------
+; Zombied Brawl Squads-
+
+[drx_ql_brawl_squad_zombied_1]:online_offline_group
+faction = zombied
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_zombied_1
+
+[drx_ql_brawl_squad_zombied_2]:online_offline_group
+faction = zombied
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_zombied_2
+
+[drx_ql_brawl_squad_zombied_3]:online_offline_group
+faction = zombied
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_zombied_3
+
+[drx_ql_brawl_squad_zombied_4]:online_offline_group
+faction = zombied
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 1, 4
+story_id = drx_ql_brawl_squad_zombied_4
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Agroprom Brawl Squads - Military vs Mercs
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 14, 2017
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Military Defending Squad 1-
+[drx_ql_attack_squad_army_agroprom_1]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_army_agroprom_1
+target_smart = agr_smart_terrain_7_5
+
+; Military Defending Squad 2-
+[drx_ql_attack_squad_army_agroprom_2]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_army_agroprom_2
+target_smart = agr_smart_terrain_7_5
+
+;------------------------------------------------
+; Attack Squads-
+
+; Merc Attack Squad 1-
+[drx_ql_designated_target_squad_killer_agroprom_1]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_killer_agroprom_1
+target_smart = agr_smart_terrain_4_6
+
+; Merc Attack Squad 2-
+[drx_ql_designated_target_squad_killer_agroprom_2]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_killer_agroprom_2
+target_smart = agr_smart_terrain_4_6
+
+; Merc Attack Squad 3-
+[drx_ql_designated_target_squad_killer_agroprom_3]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_killer_agroprom_3
+target_smart = agr_smart_terrain_4_6
+
+; Merc Attack Squad 4-
+[drx_ql_designated_target_squad_killer_agroprom_4]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_killer_agroprom_4
+target_smart = agr_smart_terrain_4_6
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Army Warehouses Barrier Brawl Squads - Freedom vs Monolith
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 14, 2017
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Freedom Defending Squad 1-
+[drx_ql_attack_squad_freedom_warehouses_blockade_1]:online_offline_group
+faction = freedom
+relationship = friend
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_freedom_warehouses_blockade_1
+target_smart = mil_smart_terrain_4_7
+
+; Freedom Defending Squad 2-
+[drx_ql_attack_squad_freedom_warehouses_blockade_2]:online_offline_group
+faction = freedom
+relationship = friend
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_freedom_warehouses_blockade_2
+target_smart = mil_smart_terrain_4_7
+
+;------------------------------------------------
+; Attack Squads-
+
+; Monolith Attack Squad 1-
+[drx_ql_designated_target_squad_monolith_warehouses_blockade_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_warehouses_blockade_1
+target_smart = mil_smart_terrain_4_7
+
+; Monolith Attack Squad 2-
+[drx_ql_designated_target_squad_monolith_warehouses_blockade_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_warehouses_blockade_2
+target_smart = mil_smart_terrain_4_7
+
+; Monolith Attack Squad 3-
+[drx_ql_designated_target_squad_monolith_warehouses_blockade_3]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_warehouses_blockade_3
+target_smart = mil_smart_terrain_4_7
+
+; Monolith Attack Squad 4-
+[drx_ql_designated_target_squad_monolith_warehouses_blockade_4]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_warehouses_blockade_4
+target_smart = mil_smart_terrain_4_7
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Army Warehouses Village Brawl Squads - Freedom vs Monolith
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 20, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Freedom Defending Squad 1-
+[drx_ql_attack_squad_freedom_whses_village_1]:online_offline_group
+faction = freedom
+relationship = friend
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_freedom_whses_village_1
+target_smart = mil_smart_terrain_4_3
+
+; Freedom Defending Squad 2-
+[drx_ql_attack_squad_freedom_whses_village_2]:online_offline_group
+faction = freedom
+relationship = friend
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_freedom_whses_village_2
+target_smart = mil_smart_terrain_4_3
+
+;------------------------------------------------
+; Attack Squads-
+
+; Monolith Attack Squad 1-
+[drx_ql_designated_target_squad_monolith_whses_village_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_whses_village_1
+target_smart = mil_smart_terrain_4_2
+
+; Monolith Attack Squad 2-
+[drx_ql_designated_target_squad_monolith_whses_village_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_whses_village_2
+target_smart = mil_smart_terrain_4_3
+
+; Monolith Attack Squad 3-
+[drx_ql_designated_target_squad_monolith_whses_village_3]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_whses_village_3
+target_smart = mil_smart_terrain_4_2
+
+; Monolith Attack Squad 4-
+[drx_ql_designated_target_squad_monolith_whses_village_4]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_whses_village_4
+target_smart = mil_smart_terrain_4_3
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Cordon Brawl Squads - Loners vs Bandits
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 14, 2017
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Loner Defending Squad 1-
+[drx_ql_attack_squad_stalker_cordon_1]:online_offline_group
+faction = stalker
+relationship = friend
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_3
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_stalker_cordon_1
+target_smart = esc_smart_terrain_4_11
+
+; Loner Defending Squad 2-
+[drx_ql_attack_squad_stalker_cordon_2]:online_offline_group
+faction = stalker
+relationship = friend
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_3
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_stalker_cordon_2
+target_smart = esc_smart_terrain_4_11
+
+;------------------------------------------------
+; Attack Squads-
+
+; Bandit Attack Squad 1-
+[drx_ql_designated_target_squad_bandit_cordon_1]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_bandit_cordon_1
+target_smart = esc_smart_terrain_4_11
+
+; Bandit Attack Squad 2-
+[drx_ql_designated_target_squad_bandit_cordon_2]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_cordon_2
+target_smart = esc_smart_terrain_4_11
+
+; Bandit Attack Squad 3-
+[drx_ql_designated_target_squad_bandit_cordon_3]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_bandit_cordon_3
+target_smart = esc_smart_terrain_4_11
+
+; Bandit Attack Squad 4-
+[drx_ql_designated_target_squad_bandit_cordon_4]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_cordon_4
+target_smart = esc_smart_terrain_4_11
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dark Valley Brawl Squads - Bandits vs Military
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 14, 2017
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Bandit Defending Squad 1-
+[drx_ql_attack_squad_bandit_valley_1]:online_offline_group
+faction = bandit
+relationship = friend
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_bandit_valley_1
+target_smart = val_smart_terrain_8_7
+
+; Bandit Defending Squad 2-
+[drx_ql_attack_squad_bandit_valley_2]:online_offline_group
+faction = bandit
+relationship = friend
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_bandit_valley_2
+target_smart = val_smart_terrain_8_7
+
+;------------------------------------------------
+; Attack Squads-
+
+; Military Attack Squad 1-
+[drx_ql_designated_target_squad_army_valley_1]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_designated_target_squad_army_valley_1
+target_smart = val_smart_terrain_8_7
+
+; Military Attack Squad 2-
+[drx_ql_designated_target_squad_army_valley_2]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_designated_target_squad_army_valley_2
+target_smart = val_smart_terrain_8_7
+
+; Military Attack Squad 3-
+[drx_ql_designated_target_squad_army_valley_3]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_designated_target_squad_army_valley_3
+target_smart = val_smart_terrain_8_7
+
+; Military Attack Squad 4-
+[drx_ql_designated_target_squad_army_valley_4]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_designated_target_squad_army_valley_4
+target_smart = val_smart_terrain_8_7
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dark Valley Compound Brawl Squads - Military vs Bandit
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 20, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Military Defending Squad 1-
+[drx_ql_attack_squad_army_valley_compound_1]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_army_valley_compound_1
+target_smart = val_smart_terrain_4_0
+
+; Military Defending Squad 2-
+[drx_ql_attack_squad_army_valley_compound_2]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_army_valley_compound_2
+target_smart = val_smart_terrain_4_0
+
+;------------------------------------------------
+; Attack Squads-
+
+; Bandit Attack Squad 1-
+[drx_ql_designated_target_squad_bandit_valley_compound_1]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_bandit_valley_compound_1
+target_smart = val_smart_terrain_4_0
+
+; Bandit Attack Squad 2-
+[drx_ql_designated_target_squad_bandit_valley_compound_2]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_valley_compound_2
+target_smart = val_smart_terrain_4_0
+
+; Bandit Attack Squad 3-
+[drx_ql_designated_target_squad_bandit_valley_compound_3]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_bandit_valley_compound_3
+target_smart = val_smart_terrain_4_0
+
+; Bandit Attack Squad 4-
+[drx_ql_designated_target_squad_bandit_valley_compound_4]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_valley_compound_4
+target_smart = val_smart_terrain_4_0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Darkscape Forest Brawl Squads - Military vs Bandit
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 31, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Military Defending Squad 1-
+[drx_ql_attack_squad_army_darkscape_forest_1]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_army_darkscape_forest_1
+target_smart = ds2_st_dogs
+
+; Military Defending Squad 2-
+[drx_ql_attack_squad_army_darkscape_forest_2]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_army_darkscape_forest_2
+target_smart = ds2_st_dogs
+
+;------------------------------------------------
+; Attack Squads-
+
+; Bandit Attack Squad 1-
+[drx_ql_designated_target_squad_bandit_darkscape_forest_1]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_bandit_darkscape_forest_1
+target_smart = ds2_st_dogs
+
+; Bandit Attack Squad 2-
+[drx_ql_designated_target_squad_bandit_darkscape_forest_2]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_darkscape_forest_2
+target_smart = ds2_st_dogs
+
+; Bandit Attack Squad 3-
+[drx_ql_designated_target_squad_bandit_darkscape_forest_3]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_bandit_darkscape_forest_3
+target_smart = ds2_st_dogs
+
+; Bandit Attack Squad 4-
+[drx_ql_designated_target_squad_bandit_darkscape_forest_4]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_darkscape_forest_4
+target_smart = ds2_st_dogs
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dead City Brawl Squads - Mercenary vs Military
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 22, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Mercenary Defending Squad 1-
+[drx_ql_attack_squad_killer_dead_city_1]:online_offline_group
+faction = killer
+relationship = friend
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_killer_dead_city_1
+target_smart = cit_killers_vs_bandits
+
+; Mercenary Defending Squad 2-
+[drx_ql_attack_squad_killer_dead_city_2]:online_offline_group
+faction = killer
+relationship = friend
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_killer_dead_city_2
+target_smart = cit_killers_vs_bandits
+
+;------------------------------------------------
+; Attack Squads-
+
+; Military Attack Squad 1-
+[drx_ql_designated_target_squad_army_dead_city_1]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_army_dead_city_1
+target_smart = cit_bandits_2
+
+; Military Attack Squad 2-
+[drx_ql_designated_target_squad_army_dead_city_2]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_designated_target_squad_army_dead_city_2
+target_smart = cit_bandits_2
+
+; Military Attack Squad 3-
+[drx_ql_designated_target_squad_army_dead_city_3]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_army_dead_city_3
+target_smart = cit_bandits
+
+; Military Attack Squad 4-
+[drx_ql_designated_target_squad_army_dead_city_4]:online_offline_group
+faction = army
+relationship = enemy
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_designated_target_squad_army_dead_city_4
+target_smart = cit_bandits
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Jupiter Brawl Squads - Freedom vs Zombied
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 31, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Freedom Defending Squad 1-
+[drx_ql_attack_squad_freedom_jupiter_1]:online_offline_group
+faction = freedom
+relationship = friend
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_freedom_jupiter_1
+target_smart = jup_sim_3
+
+; Freedom Defending Squad 2-
+[drx_ql_attack_squad_freedom_jupiter_2]:online_offline_group
+faction = freedom
+relationship = friend
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_freedom_jupiter_2
+target_smart = jup_sim_3
+
+;------------------------------------------------
+; Attack Squads-
+
+; Zombied Attack Squad 1-
+[drx_ql_designated_target_squad_zombied_jupiter_1]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_zombied_jupiter_1
+target_smart = jup_sim_3
+
+; Zombied Attack Squad 2-
+[drx_ql_designated_target_squad_zombied_jupiter_2]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_zombied_jupiter_2
+target_smart = jup_sim_3
+
+; Zombied Attack Squad 3-
+[drx_ql_designated_target_squad_zombied_jupiter_3]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_zombied_jupiter_3
+target_smart = jup_sim_3
+
+; Zombied Attack Squad 4-
+[drx_ql_designated_target_squad_zombied_jupiter_4]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_zombied_jupiter_4
+target_smart = jup_sim_3
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Jupiter Container Yard Brawl Squads - Loner vs Bandit
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 21, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Loner Defending Squad 1-
+[drx_ql_attack_squad_stalker_jupiter_containers_1]:online_offline_group
+faction = stalker
+relationship = friend
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 3, 4
+story_id = drx_ql_attack_squad_stalker_jupiter_containers_1
+target_smart = jup_a12
+
+; Loner Defending Squad 2-
+[drx_ql_attack_squad_stalker_jupiter_containers_2]:online_offline_group
+faction = stalker
+relationship = friend
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 3, 4
+story_id = drx_ql_attack_squad_stalker_jupiter_containers_2
+target_smart = jup_a12
+
+;------------------------------------------------
+; Attack Squads-
+
+; Bandit Attack Squad 1-
+[drx_ql_designated_target_squad_bandit_jupiter_containers_1]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_bandit_jupiter_containers_1
+target_smart = jup_a12
+always_arrived = true
+
+; Bandit Attack Squad 2-
+[drx_ql_designated_target_squad_bandit_jupiter_containers_2]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_jupiter_containers_2
+target_smart = jup_a12
+always_arrived = true
+
+; Bandit Attack Squad 3-
+[drx_ql_designated_target_squad_bandit_jupiter_containers_3]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_bandit_jupiter_containers_3
+target_smart = jup_a12
+always_arrived = true
+
+; Bandit Attack Squad 4-
+[drx_ql_designated_target_squad_bandit_jupiter_containers_4]:online_offline_group
+faction = bandit
+relationship = enemy
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_bandit_jupiter_containers_4
+target_smart = jup_a12
+always_arrived = true
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Limansk Bridge Brawl Squads - Mercenary vs Monolith
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 19, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Mercenary Defending Squad 1-
+[drx_ql_attack_squad_killer_limansk_bridge_1]:online_offline_group
+faction = killer
+relationship = friend
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_killer_limansk_bridge_1
+target_smart = lim_smart_terrain_5
+
+; Mercenary Defending Squad 2-
+[drx_ql_attack_squad_killer_limansk_bridge_2]:online_offline_group
+faction = killer
+relationship = friend
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_killer_limansk_bridge_2
+target_smart = lim_smart_terrain_5
+
+;------------------------------------------------
+; Attack Squads-
+
+; Monolith Attack Squad 1-
+[drx_ql_designated_target_squad_monolith_limansk_bridge_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_limansk_bridge_1
+target_smart = lim_smart_terrain_5
+
+; Monolith Attack Squad 2-
+[drx_ql_designated_target_squad_monolith_limansk_bridge_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_limansk_bridge_2
+target_smart = lim_smart_terrain_5
+
+; Monolith Attack Squad 3-
+[drx_ql_designated_target_squad_monolith_limansk_bridge_3]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_limansk_bridge_3
+target_smart = lim_smart_terrain_5
+
+; Monolith Attack Squad 4-
+[drx_ql_designated_target_squad_monolith_limansk_bridge_4]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_limansk_bridge_4
+target_smart = lim_smart_terrain_5
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Limansk Sweep Brawl Squads - Military vs Monolith
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 19, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Military Defending Squad 1-
+[drx_ql_attack_squad_army_limansk_sweep_1]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_army_limansk_sweep_1
+target_smart = lim_smart_terrain_9
+
+; Military Defending Squad 2-
+[drx_ql_attack_squad_army_limansk_sweep_2]:online_offline_group
+faction = army
+relationship = friend
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2
+npc_in_squad = 2, 3
+story_id = drx_ql_attack_squad_army_limansk_sweep_2
+target_smart = lim_smart_terrain_9
+
+;------------------------------------------------
+; Attack Squads-
+
+; Monolith Attack Squad 1-
+[drx_ql_designated_target_squad_monolith_limansk_sweep_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_limansk_sweep_1
+target_smart = lim_smart_terrain_1
+
+; Monolith Attack Squad 2-
+[drx_ql_designated_target_squad_monolith_limansk_sweep_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_limansk_sweep_2
+target_smart = lim_smart_terrain_1
+
+; Monolith Attack Squad 3-
+[drx_ql_designated_target_squad_monolith_limansk_sweep_3]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_limansk_sweep_3
+target_smart = lim_smart_terrain_1
+
+; Monolith Attack Squad 4-
+[drx_ql_designated_target_squad_monolith_limansk_sweep_4]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_limansk_sweep_4
+target_smart = lim_smart_terrain_1
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Outskirts Hospital Brawl Squads - Loner vs Monolith
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 18, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Loner Defending Squad 1-
+[drx_ql_attack_squad_stalker_outskirts_hospital_1]:online_offline_group
+faction = stalker
+relationship = friend
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 3, 4
+story_id = drx_ql_attack_squad_stalker_outskirts_hospital_1
+target_smart = pri_a17
+
+; Loner Defending Squad 2-
+[drx_ql_attack_squad_stalker_outskirts_hospital_2]:online_offline_group
+faction = stalker
+relationship = friend
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2
+npc_in_squad = 3, 4
+story_id = drx_ql_attack_squad_stalker_outskirts_hospital_2
+target_smart = pri_a17
+
+;------------------------------------------------
+; Attack Squads-
+
+; Monolith Attack Squad 1-
+[drx_ql_designated_target_squad_monolith_outskirts_hospital_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_outskirts_hospital_1
+target_smart = pri_a17
+always_arrived = true
+
+; Monolith Attack Squad 2-
+[drx_ql_designated_target_squad_monolith_outskirts_hospital_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_monolith_specnaz_rg6, sim_monolith_sniper, sim_monolith_sniper_gauss
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_outskirts_hospital_2
+target_smart = pri_a17
+always_arrived = true
+
+; Monolith Attack Squad 3-
+[drx_ql_designated_target_squad_monolith_outskirts_hospital_3]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_outskirts_hospital_3
+target_smart = pri_a17
+always_arrived = true
+
+; Monolith Attack Squad 4-
+[drx_ql_designated_target_squad_monolith_outskirts_hospital_4]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_monolith_specnaz_rg6, sim_monolith_sniper, sim_monolith_sniper_gauss
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_outskirts_hospital_4
+target_smart = pri_a17
+always_arrived = true
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Truck Cemetery Brawl Squads - Duty vs Monolith
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Duty Defending Squad 1-
+[drx_ql_attack_squad_dolg_truck_cem_1]:online_offline_group
+faction = dolg
+relationship = friend
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 3, 4
+story_id = drx_ql_attack_squad_dolg_truck_cem_1
+target_smart = trc_sim_15
+
+; Duty Defending Squad 2-
+[drx_ql_attack_squad_dolg_truck_cem_2]:online_offline_group
+faction = dolg
+relationship = friend
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 2, 2
+story_id = drx_ql_attack_squad_dolg_truck_cem_2
+target_smart = trc_sim_15
+
+;------------------------------------------------
+; Attack Squads-
+
+; Monolith Attack Squad 1-
+[drx_ql_designated_target_squad_monolith_truck_cem_1]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_truck_cem_1
+target_smart = trc_sim_8
+always_arrived = true
+
+; Monolith Attack Squad 2-
+[drx_ql_designated_target_squad_monolith_truck_cem_2]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_truck_cem_2
+target_smart = trc_sim_8
+always_arrived = true
+
+; Monolith Attack Squad 3-
+[drx_ql_designated_target_squad_monolith_truck_cem_3]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_monolith_truck_cem_3
+target_smart = trc_sim_15
+always_arrived = true
+
+; Monolith Attack Squad 4-
+[drx_ql_designated_target_squad_monolith_truck_cem_4]:online_offline_group
+faction = monolith
+relationship = enemy
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_monolith_truck_cem_4
+target_smart = trc_sim_15
+always_arrived = true
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Yantar Brawl Squads - Ecologists vs Zombied
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 14, 2017
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Ecologist Defending Squad 1-
+[drx_ql_attack_squad_ecolog_yantar_1]:online_offline_group
+faction = ecolog
+relationship = friend
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2, sim_default_ecolog_3
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_ecolog_yantar_1
+target_smart = yan_smart_terrain_6_6
+
+; Ecologist Defending Squad 2-
+[drx_ql_attack_squad_ecolog_yantar_2]:online_offline_group
+faction = ecolog
+relationship = friend
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2, sim_default_ecolog_3
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_ecolog_yantar_2
+target_smart = yan_smart_terrain_5_5
+
+;------------------------------------------------
+; Attack Squads-
+
+; Zombied Attack Squad 1-
+[drx_ql_designated_target_squad_zombied_yantar_1]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_zombied_yantar_1
+target_smart = yan_smart_terrain_6_4
+
+; Zombied Attack Squad 2-
+[drx_ql_designated_target_squad_zombied_yantar_2]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_zombied_yantar_2
+target_smart = yan_smart_terrain_6_4
+
+; Zombied Attack Squad 3-
+[drx_ql_designated_target_squad_zombied_yantar_3]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_zombied_yantar_3
+target_smart = yan_smart_terrain_5_5
+
+; Zombied Attack Squad 4-
+[drx_ql_designated_target_squad_zombied_yantar_4]:online_offline_group
+faction = zombied
+relationship = enemy
+npc_random = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3, sim_default_zombied_4
+npc_in_squad = 2, 4
+story_id = drx_ql_designated_target_squad_zombied_yantar_4
+target_smart = yan_smart_terrain_5_5
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Wild Territory Brawl Squads - Duty vs Mercs
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 09, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Defending Squads-
+
+; Duty Defending Squad 1-
+[drx_ql_attack_squad_dolg_wild_terr_1]:online_offline_group
+faction = dolg
+relationship = friend
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_dolg_wild_terr_1
+target_smart = ros_smart_stalker1
+
+; Duty Defending Squad 2-
+[drx_ql_attack_squad_dolg_wild_terr_2]:online_offline_group
+faction = dolg
+relationship = friend
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2
+npc_in_squad = 1, 3
+story_id = drx_ql_attack_squad_dolg_wild_terr_2
+target_smart = ros_smart_stalker1
+
+;------------------------------------------------
+; Attack Squads-
+
+; Merc Attack Squad 1-
+[drx_ql_designated_target_squad_killer_wild_terr_1]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_killer_wild_terr_1
+target_smart = ros_smart_killers1
+
+; Merc Attack Squad 2-
+[drx_ql_designated_target_squad_killer_wild_terr_2]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 2, 3
+story_id = drx_ql_designated_target_squad_killer_wild_terr_2
+target_smart = ros_smart_killers1
+
+; Merc Attack Squad 3-
+[drx_ql_designated_target_squad_killer_wild_terr_3]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 3, 4
+story_id = drx_ql_designated_target_squad_killer_wild_terr_3
+target_smart = ros_smart_stalker_killers1
+
+; Merc Attack Squad 4-
+[drx_ql_designated_target_squad_killer_wild_terr_4]:online_offline_group
+faction = killer
+relationship = enemy
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2
+npc_in_squad = 2, 3
+story_id = drx_ql_designated_target_squad_killer_wild_terr_4
+target_smart = ros_smart_stalker_killers1
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Monolith Infiltrator Task Squads
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Monolith Defender Squads-
+
+; Monolith Defender Squad 1-
+[drx_ql_mon_inf_defending_squad_monolith_1]:online_offline_group
+faction = monolith
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2
+story_id = drx_ql_mon_inf_defending_squad_monolith_1
+target_smart = rad_antenna_patrol
+always_arrived = true
+
+; Monolith Defender Squad 2-
+[drx_ql_mon_inf_defending_squad_monolith_2]:online_offline_group
+faction = monolith
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2
+story_id = drx_ql_mon_inf_defending_squad_monolith_2
+target_smart = rad_antenna_patrol
+always_arrived = true
+
+; Monolith Defender Squad 3-
+[drx_ql_mon_inf_defending_squad_monolith_3]:online_offline_group
+faction = monolith
+npc_random = sim_default_monolith_0, sim_default_monolith_1, sim_default_monolith_2, sim_default_monolith_3, sim_default_monolith_4
+npc_in_squad = 2
+story_id = drx_ql_mon_inf_defending_squad_monolith_3
+target_smart = rad_antenna_patrol
+always_arrived = true
+
+;------------------------------------------------
+; Loner Extraction Squads-
+
+; Loner Extraction Squad 1-
+[drx_ql_mon_inf_extraction_squad_stalker_1]:online_offline_group
+faction = stalker
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_3, sim_default_stalker_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_csky_1
+target_smart = rad_antenna_patrol
+
+; Loner Extraction Squad 2-
+[drx_ql_mon_inf_extraction_squad_stalker_2]:online_offline_group
+faction = stalker
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_3, sim_default_stalker_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_csky_2
+target_smart = rad_antenna_patrol
+
+; Loner Extraction Squad 3-
+[drx_ql_mon_inf_extraction_squad_stalker_3]:online_offline_group
+faction = stalker
+npc_random = sim_default_stalker_0, sim_default_stalker_1, sim_default_stalker_2, sim_default_stalker_3, sim_default_stalker_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_csky_3
+target_smart = rad_antenna_patrol
+
+;------------------------------------------------
+; Duty Extraction Squads-
+
+; Duty Extraction Squad 1-
+[drx_ql_mon_inf_extraction_squad_dolg_1]:online_offline_group
+faction = dolg
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2, sim_default_duty_3, sim_default_duty_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_dolg_1
+target_smart = rad_antenna_patrol
+
+; Duty Extraction Squad 2-
+[drx_ql_mon_inf_extraction_squad_dolg_2]:online_offline_group
+faction = dolg
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2, sim_default_duty_3, sim_default_duty_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_dolg_2
+target_smart = rad_antenna_patrol
+
+; Duty Extraction Squad 3-
+[drx_ql_mon_inf_extraction_squad_dolg_3]:online_offline_group
+faction = dolg
+npc_random = sim_default_duty_0, sim_default_duty_1, sim_default_duty_2, sim_default_duty_3, sim_default_duty_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_dolg_3
+target_smart = rad_antenna_patrol
+
+;------------------------------------------------
+; Freedom Extraction Squads-
+
+; Freedom Extraction Squad 1-
+[drx_ql_mon_inf_extraction_squad_freedom_1]:online_offline_group
+faction = freedom
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2, sim_default_freedom_3, sim_default_freedom_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_freedom_1
+target_smart = rad_antenna_patrol
+
+; Freedom Extraction Squad 2-
+[drx_ql_mon_inf_extraction_squad_freedom_2]:online_offline_group
+faction = freedom
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2, sim_default_freedom_3, sim_default_freedom_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_freedom_2
+target_smart = rad_antenna_patrol
+
+; Freedom Extraction Squad 3-
+[drx_ql_mon_inf_extraction_squad_freedom_3]:online_offline_group
+faction = freedom
+npc_random = sim_default_freedom_0, sim_default_freedom_1, sim_default_freedom_2, sim_default_freedom_3, sim_default_freedom_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_freedom_3
+target_smart = rad_antenna_patrol
+
+;------------------------------------------------
+; Clear Sky Extraction Squads-
+
+; Clear Sky Extraction Squad 1-
+[drx_ql_mon_inf_extraction_squad_csky_1]:online_offline_group
+faction = csky
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2, sim_default_csky_3, sim_default_csky_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_csky_1
+target_smart = rad_antenna_patrol
+
+; Clear Sky Extraction Squad 2-
+[drx_ql_mon_inf_extraction_squad_csky_2]:online_offline_group
+faction = csky
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2, sim_default_csky_3, sim_default_csky_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_csky_2
+target_smart = rad_antenna_patrol
+
+; Clear Sky Extraction Squad 3-
+[drx_ql_mon_inf_extraction_squad_csky_3]:online_offline_group
+faction = csky
+npc_random = sim_default_csky_0, sim_default_csky_1, sim_default_csky_2, sim_default_csky_3, sim_default_csky_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_csky_3
+target_smart = rad_antenna_patrol
+
+;------------------------------------------------
+; Ecologist Extraction Squads-
+
+; Ecologist Extraction Squad 1-
+[drx_ql_mon_inf_extraction_squad_ecolog_1]:online_offline_group
+faction = ecolog
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2, sim_default_ecolog_3
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_ecolog_1
+target_smart = rad_antenna_patrol
+
+; Ecologist Extraction Squad 2-
+[drx_ql_mon_inf_extraction_squad_ecolog_2]:online_offline_group
+faction = ecolog
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2, sim_default_ecolog_3
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_ecolog_2
+target_smart = rad_antenna_patrol
+
+; Ecologist Extraction Squad 3-
+[drx_ql_mon_inf_extraction_squad_ecolog_3]:online_offline_group
+faction = ecolog
+npc_random = sim_default_ecolog_0, sim_default_ecolog_1, sim_default_ecolog_2, sim_default_ecolog_3
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_ecolog_3
+target_smart = rad_antenna_patrol
+
+;------------------------------------------------
+; Mercenary Extraction Squads-
+
+; Mercenary Extraction Squad 1-
+[drx_ql_mon_inf_extraction_squad_killer_1]:online_offline_group
+faction = killer
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2, sim_default_killer_3, sim_default_killer_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_killer_1
+target_smart = rad_antenna_patrol
+
+; Mercenary Extraction Squad 2-
+[drx_ql_mon_inf_extraction_squad_killer_2]:online_offline_group
+faction = killer
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2, sim_default_killer_3, sim_default_killer_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_killer_2
+target_smart = rad_antenna_patrol
+
+; Mercenary Extraction Squad 3-
+[drx_ql_mon_inf_extraction_squad_killer_3]:online_offline_group
+faction = killer
+npc_random = sim_default_killer_0, sim_default_killer_1, sim_default_killer_2, sim_default_killer_3, sim_default_killer_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_killer_3
+target_smart = rad_antenna_patrol
+
+;------------------------------------------------
+; Military Extraction Squads-
+
+; Military Extraction Squad 1-
+[drx_ql_mon_inf_extraction_squad_army_1]:online_offline_group
+faction = army
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2, sim_default_military_3, sim_default_military_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_army_1
+target_smart = rad_antenna_patrol
+
+; Military Extraction Squad 2-
+[drx_ql_mon_inf_extraction_squad_army_2]:online_offline_group
+faction = army
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2, sim_default_military_3, sim_default_military_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_army_2
+target_smart = rad_antenna_patrol
+
+; Military Extraction Squad 3-
+[drx_ql_mon_inf_extraction_squad_army_3]:online_offline_group
+faction = army
+npc_random = sim_default_military_0, sim_default_military_1, sim_default_military_2, sim_default_military_3, sim_default_military_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_army_3
+target_smart = rad_antenna_patrol
+
+;------------------------------------------------
+; Bandit Extraction Squads-
+
+; Bandit Extraction Squad 1-
+[drx_ql_mon_inf_extraction_squad_bandit_1]:online_offline_group
+faction = bandit
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2, sim_default_bandit_3, sim_default_bandit_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_bandit_1
+target_smart = rad_antenna_patrol
+
+; Bandit Extraction Squad 2-
+[drx_ql_mon_inf_extraction_squad_bandit_2]:online_offline_group
+faction = bandit
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2, sim_default_bandit_3, sim_default_bandit_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_bandit_2
+target_smart = rad_antenna_patrol
+
+; Bandit Extraction Squad 3-
+[drx_ql_mon_inf_extraction_squad_bandit_3]:online_offline_group
+faction = bandit
+npc_random = sim_default_bandit_0, sim_default_bandit_1, sim_default_bandit_2, sim_default_bandit_3, sim_default_bandit_4
+npc_in_squad = 3
+story_id = drx_ql_mon_inf_extraction_squad_bandit_3
+target_smart = rad_antenna_patrol
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[ecolog_companion_task_1]:online_offline_group
+faction = ecolog
+relationship = friend
+npc_random = companion_task_ecolog_0, companion_task_ecolog_0
+npc_in_squad = 1, 2
+story_id = ecolog_companion_task_1
+
+[ecolog_companion_task_2]:online_offline_group
+faction = ecolog
+relationship = friend
+npc_random = companion_task_ecolog_0, companion_task_ecolog_0, companion_task_ecolog_0
+npc_in_squad = 2, 3
+story_id = ecolog_companion_task_2
+
+[bandit_companion_task_1]:online_offline_group
+faction = bandit
+relationship = friend
+npc_random = companion_task_bandit_0, companion_task_bandit_0, companion_task_bandit_0
+npc_in_squad = 2, 3
+story_id = bandit_companion_task_1
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Military Stingray 4 Pilot Hostage Squad
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 28, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+[drx_ql_stingray_pilot_hostage_squad]:online_offline_group
+faction = army
+relationship = friend
+npc = pri_a15_sokolov
+story_id = hostage_companion_task_1
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[hostage_companion_task_1_stalker]:online_offline_group
+faction = stalker
+relationship = friend
+npc_random = sim_default_stalker_0
+npc_in_squad = 1
+story_id = hostage_companion_task_1
+
+[hostage_companion_task_1_ecolog]:online_offline_group
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Ecologist Hostage Companion Squad Faction
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 14, 2017
+;
+;--------------------------------------------------------------------------------------------------
+
+; faction = stalker
+faction = ecolog
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+relationship = friend
+npc_random = sim_default_ecolog_0
+npc_in_squad = 1
+story_id = hostage_companion_task_1
+
+[hostage_companion_task_1_bandit]:online_offline_group
+faction = bandit
+relationship = friend
+npc_random = sim_default_bandit_0
+npc_in_squad = 1
+story_id = hostage_companion_task_1
+
+[hostage_companion_task_1_csky]:online_offline_group
+faction = csky
+relationship = friend
+npc_random = sim_default_csky_0
+npc_in_squad = 1
+story_id = hostage_companion_task_1
+
+[hostage_companion_task_1_dolg]:online_offline_group
+faction = dolg
+relationship = friend
+npc_random = sim_default_duty_0
+npc_in_squad = 1
+story_id = hostage_companion_task_1
+
+[hostage_companion_task_1_freedom]:online_offline_group
+faction = freedom
+relationship = friend
+npc_random = sim_default_freedom_0
+npc_in_squad = 1
+story_id = hostage_companion_task_1
+
+[hostage_companion_task_1_killer]:online_offline_group
+faction = killer
+relationship = friend
+npc_random = sim_default_killer_0
+npc_in_squad = 1
+story_id = hostage_companion_task_1
+
+;--------------------------------
+
+[survival_squad_stalker]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = stalker
+npc = companion_survival_stalker, companion_survival_stalker, sim_default_stalker_3
+
+[survival_squad_bandit]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = bandit
+npc = companion_survival_bandit, companion_survival_bandit, companion_survival_bandit
+
+[survival_squad_killer]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = killer
+npc = companion_survival_killer, companion_survival_killer, companion_survival_killer
+
+[survival_squad_dolg]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = dolg
+npc = companion_survival_duty, companion_survival_duty, companion_survival_duty
+
+[survival_squad_freedom]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = freedom
+npc = companion_survival_freedom, companion_survival_freedom, companion_survival_freedom
+
+[survival_squad_army]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = army
+npc = companion_survival_army, companion_survival_army, companion_survival_army
+
+[survival_squad_ecolog]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = ecolog
+npc = companion_survival_ecolog, companion_survival_ecolog, companion_survival_ecolog
+
+[survival_squad_csky]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = csky
+npc = companion_survival_csky, companion_survival_csky, companion_survival_csky
+
+[survival_squad_monolith]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = monolith
+npc = companion_survival_monolith, companion_survival_monolith, companion_survival_monolith
+
+[survival_squad_zombied]:online_offline_group
+story_id = survival_squad
+relationship = friend
+faction = csky
+npc = sim_default_zombied_1, sim_default_zombied_2, sim_default_zombied_3

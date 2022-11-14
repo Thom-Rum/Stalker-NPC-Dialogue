@@ -1,0 +1,97 @@
+;==============================================================
+;
+; Dynamic Faction Relations Settings (drx_dfr_config.ltx)
+;	CoC 1.5b r4 - DoctorX Dynamic Faction Relations 2.0
+;
+;	Created by: DoctorX
+;	Last revised: July 27, 2018
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Changeable Factions List
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Faction Relations 2.0
+;	May 14, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; List of factions that can change relations (string, faction names):
+[changeable_factions]
+stalker
+dolg
+freedom
+csky
+ecolog
+killer
+army
+bandit
+; monolith
+; zombied
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Relation Change Values
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Faction Relations 2.0
+;	July 10, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Faction relation change values:
+[relation_change_values]
+
+; Maximum magnitude of relation change (float):
+max_value = 200
+
+; Maximum magnitude value multiplier if killer was not actor (float, decimal percent):
+npc_modifier = 1.0  ; 100%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Offline Battle Simulator Settings
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Faction Relations 2.0
+;	July 27, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Faction relation change values:
+[battle_sim]
+
+; Whether or not to simulate offline battles (bool):
+enable_offline_battles = true
+
+; Whether or not to show news updates about offline battles (bool):
+show_news = false
+
+; Relation change value multiplier for offline kills (float, decimal percent):
+offline_modifier = 1.0  ; 100%
+
+; Length of time between updates for potential offline battles (int, seconds):
+update_time = 7200  ; 2 hours
+
+; Max allowable deviation from update time (float, decimal percent):
+deviation = 0.5  ; +-50%
+
+; Percent chance an offline battle will occur at update (float, decimal percent):
+battle_chance = 0.3  ; 30%
+
+; Maximum number of troops on each side per battle (int):
+max_troops = 5
+
+; Percent chance per round a battle will end in a draw or surrender (float, decimal percent):
+stalemate_chance = 0.1  ; 10%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

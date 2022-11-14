@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Ecologist Task Strings (drx_ql_strings_ecolog.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: November 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Ecologist Storyline Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Infiltrate Lab X-18 (Dark Valley) Storyline Task (LINKS TO: Wait For Psi Helmet)-->
+
+	<string id="drx_ql_ecolog_sl_task_1_name">
+		<text>Infiltrate Lab X-18</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_1_text">
+		<text>{npc_name} needs research documents contained within Lab X-18 in Dark Valley.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_1_about_pre_npc_1">
+		<text>Yes, what can I do for you?</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_1_about_pre_actor_1">
+		<text>Tell me about that building on the hill.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_1_about_pre_npc_2">
+		<text>Ah, yes, well, that building is why we are here. The building itself is nothing special, a defunct production complex from the Soviet era. What is facinating about it however is the effect the building has on people's minds. Anyone who goes near the complex experiences strange phenomena ranging from hallucinations, to crippling pain, to death. However the most common side effect is more horrific. The victims inexplicably lose all of their humanity and cognative abilities. They operate with only one instinct, to kill anything in sight. The effect is permanent and as far as we have been able to determine, irreversible.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_1_about_pre_actor_2">
+		<text>What's inside there?</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_1_about_pre_npc_3">
+		<text>Well, that's the big question, isn't it? We theorize it is some sort of transmitter, but we have been unable to identify any external power source. The only way to shut it off appears to be from the inside, but there's no way to get inside without succumbing to the effects of the transmitter. The building has rather brilliantly protected itself; anyone who tries to infiltrate it is either killed outright, or brainwashed into becoming it's defender. Whether by design or by accident, that building on the hill has become the most inherently inaccessible and perfectly defended plot of land on earth.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_1_about_pre_actor_3">
+		<text>I want to find out what's in there. There has to be a way in.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_1_about">
+		<text>Well, there could be. We have been working on a device that is showing potential for providing protection against the field emanating from the building, but we have been unable to calibrate it properly. The data that we need is reported to exist in an abandoned lab in Dark Valley, but the Military has sealed it off for some unknown reason and won't even let us in there. If someone could find a way to retrieve that data for us, I am confident I could have the device operational in a matter of days.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_1_finish">
+		<text>Thank you, sir. This will help immensely in our goal to gain access to the building.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Wait For Psi Helmet Storyline Task (LINKS FROM: Infiltrate Lab X-18) (LINKS TO: Disable the Miracle Machine)-->
+
+	<string id="drx_ql_ecolog_sl_task_2_name">
+		<text>Wait for Psi Helmet Calibration</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_2_text">
+		<text>{npc_name} needs a few days to calibrate the device. He will contact you when it is ready.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_2_about">
+		<text>Ah, excellent! You have done it! Let me see those documents... Oh my, the experiments that were being conducted in that laboratory were monsterous. Completely unethical and illegal, I can see why the Military had sealed it off. What else did you find in there? I can only imagine given the nature of the experiments. This level of genetic manipulation and psychological field bombardmend performed on living subjects is inexcusable. Nevertheless, the data those experiments produced is exactly what I need to make the final calibrations of the device that may protect you against the field emanating from the production complex. Give me a few days to finalize the device. I will contact you when it is ready.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_2_message">
+		<text>The device is ready. Come see me when you can.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_2_finish">
+		<text>The device is ready. This helmet will protect you against the effects of the psi field.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Disable the Miracle Machine Storyline Task (LINKS FROM: Wait For Psi Helmet)-->
+
+	<string id="drx_ql_ecolog_sl_task_3_name">
+		<text>Disable the Miracle Machine</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_3_text">
+		<text>Gain access to Lab X-16 and find a way to disable the transmitter. {npc_name} has promised a reward if you succeed.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_3_about">
+		<text>Ah, yes, I have good news for you stalker. The device has been completed and is ready for you. This will protect you from the effects of the psi field to allow you to gain access to the building. Once you locate the transmitter, the field in it's immediate vicinity will most likely be too strong for the helmet to withstand indefinately. You will only have a short period of time to find a way to deactivate the transmitter once you locate it. Stalker, if you are successful in this, it will finally allow us access to the complex to study the device. We are prepared to reward you well for it. Good luck to you.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_3_finish">
+		<text>Ah, wonderful, you have survived! A successful result. Thank you so much for your assistance. Please accept this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Eliminate Agroprom Underground Bandits Storyline Task -->
+
+	<string id="drx_ql_ecolog_sl_task_4_name">
+		<text>Rid Bandits from Agroprom Underground</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_4_text">
+		<text>Clear out the group of Bandits that have moved into the Agroprom Underground so {npc_name} may conduct his research.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_4_about">
+		<text>I have been conducting an experiment in the tunnels beneath Agroprom, but a group of Bandits have moved in there and are preventing me from completing my research. Will you go down there and convince them to leave?</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_4_finish">
+		<text>Thank you sir, you have been a great help to me.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Search Jupiter Underground Storyline Task -->
+
+	<string id="drx_ql_ecolog_sl_task_5_name">
+		<text>Search Jupiter Underground</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_5_text">
+		<text>A scientist has uncovered important information regarding the source of the blowouts, but has perished in the passage that runs below Pripyat before he could return them for analysis. Search the Jupiter Underground to recover the documents he may have left behind.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_5_about">
+		<text>I have a very important job for you. A colleague of mine radioed ahead that he had made an important discovery regarding the source of the emissions, and he was immediately enroute to relay his findings. That was two days ago, and I suspect he is dead. Stalker, if the documents he found are what he says they are it could be the most important discovery in the Zone, and it is critical that we retrieve them. He was traveling through the underground passage from the Outskirts when he last contacted me, and I suspect the documents he discovered are still down there. I need you to find them and bring them back to me.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_5_finish">
+		<text>Excellent work. This information is very important indeed. It seems whoever was responsible for constructing the emitters in Yantar and Radar had begun construction of a successor, a far larger and more powerful device than the Miracle Machine and Brain Scorcher combined. This report is from the planning stages of the project, but it hints that construction was already underway. Do you know what this means? This could be the source of the emissions that have been plaguing the Zone! Now we must find the location of this new device and, if there is any hope left, find a way to disable it.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Infiltrate Lab X-8 (Outskirts) Storyline Task (LINKS TO: Build Gauss Gun Task) -->
+
+	<string id="drx_ql_ecolog_sl_task_6_name">
+		<text>Infiltrate Lab X-8</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_6_text">
+		<text>Search Lab X-8 in the Outskirts for any information pertaining to the Item 62 project.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_6_about_pre_npc_1">
+		<text>Yes? What do you want?</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_6_about_pre_actor_1">
+		<text>I have seen some Monolith using a very powerful weapon, I have never seen such a thing. What can you tell me about it?</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_6_about_pre_npc_2">
+		<text>You must be speaking of the Gauss rifle. I would like to know more about it myself. It was developed here in the Zone, given the codename "Item 62" by its covert designers. They were rumored to be working out of a secret bunker in the Outskirts. I would pay anything to have a chance to investigate their lab, but so far it has proven to be impenetrable.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_6_about_pre_actor_2">
+		<text>I'll give it a go if the price is right.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_6_about">
+		<text>Be careful what you are getting into. Almost everyone who has tried to get into that lab has been killed before they get there, and those few that have managed to get inside never came back out. But I promise you stalker, any information found in there that could be brought back to me would be very well rewarded indeed.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_6_finish">
+		<text>Thank you stalker! Here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Build Gauss Gun Storyline Task (LINKS FROM: Infiltrate Lab X-8) (LINKS TO: Wait for Gauss Gun Task) -->
+
+	<string id="drx_ql_ecolog_sl_task_7_name">
+		<text>Gauss Gun Components</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_7_text">
+		<text>Professor Hermann need capacitors, wire, and a Flash artefact to build the Gauss Gun.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_7_about_pre_npc_1">
+		<text>Let's see what you have recovered... Oh my, this is very valuable indeed. I couldn't have asked for more, these are very detailed plans of the Item 62 prototypes. This is an amazing find stalker, I must be honest it is worth much more than the reward I was expecting to pay you.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_7_about_pre_actor_1">
+		<text>The reward isn't important, just give me what you can. I am more interested in learning more about the capabilities of the weapon.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_7_about_pre_npc_2">
+		<text>You know... with these plans, Tukarev and I could probably reconstruct the original prototype. Yes, most of the components we would need I have here in the bunker, the rest I'm sure could be found in the local area. Tell you what; if you can get the materials, I will build you a Gauss rifle for your reward.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_7_about_pre_actor_2">
+		<text>That will do nicely. What do you need me to get?</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_7_about">
+		<text>I will need some capacitors and coil wire. I can show you where you might be able to find some. The difficult part will be finding a Flash artefact, that seems to be the power source. Bring me those three items, and I will build your rifle.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_7_finish">
+		<text>Thank you. I will get to work right away.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Wait For Gauss Gun Storyline Task (LINKS FROM: Build Gauss Gun Task) -->
+
+	<string id="drx_ql_ecolog_sl_task_8_name">
+		<text>Wait for Gauss Gun Completion</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_8_text">
+		<text>{npc_name} is working on completing the Gauss Gun and has promised it will be ready within the next day or two. He will contact you when it is finished.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_8_about">
+		<text>Yes, those are just what I need. Very well, we will get started on construction right away. I anticipate ite should only take Tukarev and I a day or two to build the weapon. I will contact you when it is ready.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_8_message">
+		<text>Your rifle is ready. Come see me when you can.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_8_finish">
+		<text>Here is your Gauss rifle. I hope this is worth as much to you as the information you found is worth to me.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Find Missing Scientist Storyline Task -->
+
+	<string id="drx_ql_ecolog_sl_task_9_name">
+		<text>Find Missing Scientist</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_9_text">
+		<text>Search for the missing scientist.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_9_about">
+		<text>One of my scientists is missing. He went out on a research expedition and never returned. Here is the area he was researching, search there and see if you can find him.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_9_finish">
+		<text>Thank you stalker.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Find Artefact Storyline Task -->
+
+	<string id="drx_ql_ecolog_sl_task_10_name">
+		<text>Find %s Sample</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_10_text">
+		<text>Find a sample of the %s artefact and bring it back to {npc_name} so he can research it.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_10_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_10_fetch_about">
+		<text>I am researching the Anomilis Strugatskus, commonly known as the %s. Find one for me and I will gladly reward you for it. You will need to take this detector with you, it will help you in locating the artefact.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_10_fetch_finish">
+		<text>Yes, good, good! Now my research can begin! Thank you stalker. You have done well.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Recover Stolen Documents Task -->
+
+	<string id="drx_ql_ecolog_sl_task_11_name">
+		<text>Recover Semenov's Stolen Documents</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_11_text">
+		<text>A group of Bandits have stolen research documents from Assistant Semenov. Get the documents back from them.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_11_about">
+		<text>I was mugged by a group of rogue Bandits. They hit me over the head and took everything I had on me. I don't care about the equipment, but I was carrying a case with all of my research documents in them. I need that research back, otherwise all of my time here in the Zone will be for nothing. Please speak to them and see if you can convince them to give me my research documents back. If you can, I will reward you well.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_11_finish">
+		<text>Thank you stalker, you don't know how vital this research is. Here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Meet With Kruglov Storyline Task (LINKS TO: Ecologist Kruglov Deactivate Brain Scorcher) -->
+
+	<string id="drx_ql_ecolog_sl_task_12_name">
+		<text>Meet with Professor Kruglov</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_12_text">
+		<text>Ecologists have developed a serum that will allow you to infiltrate the Monolith cult and gain access to the Brain Scorcher. You should finish up any outstanding tasks and find a place to stash your gear before meeting with Professor Kruglov to receive the treatment.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_12_about_pre_npc_1">
+		<text>Yes stalker, I wanted to thank you for deactivating the Miracle Machine. We have already learned much about the device now that we are able to access the complex. The emitter is an incredibly dangerous device when it is active, even more so than we imagined. It could be used as a very powerful weapon if someone would be inclined to use it as such. It is imperitive we shut down the emitter in Radar as well - the Brain Scorcher. You are the only one who could accomplish this, with your psi device you would be immune to the field it is emitting.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_12_about_pre_actor_1">
+		<text>The problem with the Brain Scorcher isn't just the massive psi field. Monolith cultists control the area, there are hordes of them there. I couldn't pull off that big of an assault single-handedly.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_12_about_pre_npc_2">
+		<text>Ah yes, well, perhaps I have a way around that. We have developed a serum that can mimic the effects of extended exposure to a psi field, but without doing any harm. If we were to administer it to you and leave you for the Monolith cultists to find, they will think that you were a victim of the Brain Scorcher. Once they believe you are one of them you will more easily be able to gain access to the bunker where the Brain Scorcher is hidden.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_12_about_pre_actor_2">
+		<text>If they believe it, otherwise I'm dead. Better brush up on my acting skills.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_12_about">
+		<text>Good. When the Monolith find you they will surely strip you of all your equipment so you may want to leave your gear here before you go. Also, take some time to finish up any other business you may still have. Once you embark upon this mission, everyone will think you have actually become a Monolith cultist and won't be as friendly to you as they used to be. When you are ready, go see Professor Kruglov and he will administer the treatment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Kruglov Deactivate Brain Scorcher Storyline Task (LINKS FROM: Ecologist Meet With Kruglov) -->
+
+	<string id="drx_ql_ecolog_sl_task_13_name">
+		<text>Deactivate the Brain Scorcher</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_13_text">
+		<text>Infiltrate the Monolith faction and gain access to Lab X-19. Find a way to deactivate the massive psi emitter known as the "Brain Scorcher" that is located there.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_13_about">
+		<text>You are ready? Good. Once I administer this serum you will lose consciousness temporarily. The guards will transport you to a location where the Monolith can find you and think you fell victim to the Brain Scorcher. Once you have convinced them you are a convert to their faction, find a way into the Brain Scorcher and deactivate the emitter. Come see me again when you have succeeded. We are prepared to offer you generous compensation for allowing us access to research the emitter.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_13_finish">
+		<text>Excellent. Now that the Brain Scorcher is deactivated we can gain access to research the device. More importantly, a very large blight to the Zone has been eliminated. The more we find out about the Miracle Machine the more we learn how horrific of a device it truely is, and the Brain Scorcher was orders of magnitude more powerful. Who could have conceived of such monsterous devices and for what reasons I can only imagine. Thank you stalker, please take this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Hermann Investigate Stingray 1 (Jupiter, Helipad) Storyline Task -->
+
+	<string id="drx_ql_ecolog_sl_task_14_name">
+		<text>Investigate Stingray 1 Crash Site</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_14_text">
+		<text>Navigate through the minefield surrounding the Stingray 1 crash site and locate any information you can find at the wreckage.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_14_about">
+		<text>The pilot of one of the Military helicopters that crashed near here came to us for assistance not long ago. He had some fairly critical injuries, we are not doctors but we did what we could to help him. He ran off before we could finish treating him, and I am concerned that he will not survive long if he does not receive proper medical attention. One of my researchers has told me they spotted some maps on the ground near one of the other crashed helicopters. They might give a clue as to where he went, but the area where the helicopter came down at is surrounded by a minefield. Stalker, we need to find the pilot to get him the treatment he needs. If you are willing to help us by getting those maps, we would be willing to reward you.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_14_finish">
+		<text>Thank you stalker. Show me what you found... Ah, it's the flight plan for the mission. The helicopter you just came from was part of a mission called "Operation Fairway". The target waypoint was the Chernobyl NPP itself. Why would the Military launch an all-out assault on the nuclear plant? Well, unfortunately there is nothing on here that gives any clue as to where the pilot went. Please keep an eye out for him. If you see him, send him to us and we will get him the help he needs.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Sakharov Assault Storyline Task -->
+
+	<string id="drx_ql_ecolog_sl_task_15_name">
+		<text>Remove From Premises</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_15_text">
+		<text>{npc_name} needs a group of %s removed from an area he is trying to research.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_15_about">
+		<text>Ah yes, good! Stalker, I am in need of your services. There is an area we need to conduct our research in, but it is currently occupied by %s and they won't let us set up our equipment. Could you speak with them and convince them to move along? I have heard you are good at dealing with such matters.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_15_finish">
+		<text>Oh yes, good, good! Now my researchers can continue with their work. Thank you stalker, please take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Hermann Assault Storyline Task -->
+
+	<string id="drx_ql_ecolog_sl_task_16_name">
+		<text>Site Preparation</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_16_text">
+		<text>{npc_name} needs a group of %s removed from an area so his scientists can research the site.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_16_about">
+		<text>Stalker, there is an area I must conduct very important research in but every time my scientists try to go there, they are shot at by %s and have to turn back. I am desperate for assistance in this matter. If you can open up that area for us we would be willing to reward you for the effort.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_16_finish">
+		<text>Thank you stalker, you have allowed us to continue our vital research. Please take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Semenov Find Transistors Storyline Task -->
+
+	<string id="drx_ql_ecolog_sl_task_17_name">
+		<text>Find Transistors for Seminov</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_17_text">
+		<text>Search the area to find the transistors {npc_name} needs to repair his equipment.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_17_about">
+		<text>Would you mind searching an area for me? I need some transistors to repair one of my detectors, but there are none to be found in camp. I am checking a few of the abandoned buildings in the hopes I might be able to find some old ones lying around. Here is a location for you to search, I will reward you if you can find any transistors there.</text>
+	</string>
+	<string id="drx_ql_ecolog_sl_task_17_finish">
+		<text>Thank you stalker. Please take this as your reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Ecologist Simulation Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 02, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Ransom Simulation Task -->
+
+	<string id="drx_ql_simulation_task_ecolog_1_name">
+		<text>Ecologist Ransom</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_1_text">
+		<text>Speak to Bandits and pay the ransom for the release of an Ecologist they are holding hostage.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_1_about">
+		<text>Yes, please help! One of my colleagues was kidnapped by bandits. They are demanding to be paid a ransom. Please, take this to them and bring my colleage back.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_1_finish">
+		<text>Thank you, stalker. It's good to see my colleague back! Please accept this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Clear Research Area for Ecologist Simulation Task -->
+
+	<string id="drx_ql_simulation_task_ecolog_2_name">
+		<text>Clear the Research Area</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_2_text">
+		<text>A group of %s have been harassing a scientist. Clear them out of the area so he may conduct his research.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_2_about">
+		<text>There is an area that I must conduct some important research on but there is a group of %s who have moved in there and they shoot at me anytime I go near there. I must perform this research stalker. Can you convince them to move along?</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_2_finish">
+		<text>Thank you stalker, you have aided me immensely. Please take this as a token of my gratitude.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find the Anomalous Plant for Ecologist Simulation Task -->
+
+	<string id="drx_ql_simulation_task_ecolog_3_name">
+		<text>Find the Anomalous Plant</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_3_text">
+		<text>{npc_name} is studying a rare and peculiar plant that is rumored to grow in anomalous areas. He has offered a reward if you should happen to find one.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_3_about">
+		<text>I am searching for a specimen of an unusual species of plant that has been reported to grow near anomalous areas. There are a few locations I am investigating where it may be found, I can give you one to check. If you happen to find one of the plants bring it back to me and I'll reward you for it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_3_finish">
+		<text>Ah, wonderful. You have done well. Please, take this for your trouble.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Ecologist Guide Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_ecolog_4_name">
+		<text>Ecologist Guide</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_4_text">
+		<text>{npc_name} has hired you to protect him and lead him to his destination.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_4_about">
+		<text>I'm heading out to conduct some research in %s. I would be very grateful if you would accompany me and keep me safe along the journey. I will compensate you for the trouble when we reach our destination.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_4_message">
+		<text>Ok, this is the place. Come see me and I'll give you something for the trouble.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_4_finish">
+		<text>Thank you, I don't think I could have made it here without your help. Here is your fee.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Collect Mutant Tissue Sample for Ecologist Simulation Task -->
+
+	<string id="drx_ql_simulation_task_ecolog_5_name">
+		<text>Collect %s Tissue Sample</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_5_text">
+		<text>An Ecologist needs a tissue sample from a %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_5_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_5_fetch_about">
+		<text>If you could hunt one down for me, I need a sample of %s brought back to me. I can pay you for your trouble and, of course, the considerable risk involved.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_5_fetch_finish">
+		<text>Thank you, sir. This will help immensely in my research.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Missing Notebook for Ecologist Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_ecolog_6_name">
+		<text>Find Missing Research Documents</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_6_text">
+		<text>{npc_name} dropped a journal containing valuable research data after he was attacked. He is offering a reward for its return.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_6_about">
+		<text>I was conducting some important research out in the field when I came under attack. I lost a journal containing valuable data during the battle. If you can find it for me I will reward you well.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_6_finish">
+		<text>Oh, thank you stalker! You can't imagine how important this data is to me. Please, take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Mutant Hunt with Ecologist Simulation Task -->
+
+	<string id="drx_ql_simulation_task_ecolog_7_name">
+		<text>Ecologist Escort</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_7_text">
+		<text>Escort {npc_name} to the research area and clear out any mutants that might be there.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_7_about">
+		<text>I'm on my way to conduct some research in an area not far from here, but there are always violent mutants there. Will you escort me to the area and clear out any mutants for me? I will gladly pay you for the trouble.</text>
+	</string>
+	<string id="drx_ql_simulation_task_ecolog_7_finish">
+		<text>Thank you stalker, I can finally perform my research. Please, take this in gratitude.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

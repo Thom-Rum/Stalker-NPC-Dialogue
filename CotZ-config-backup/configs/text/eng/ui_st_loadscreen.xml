@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Load Screen Tips (ui_st_loadscreen.xml)
+<	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+<
+<	- Update tip_count in loadscreen.script if adding or removing strings
+<
+<	Modified by: DoctorX
+<	Last revised: November 12, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+	<string id="ls_header">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Header Text
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>NIMBLE'S HANDBOOK</text> -->
+		<text>ZONE SURVIVAL GUIDE</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_number">
+		<text>Excerpt #</text>
+	</string>
+
+	<string id="ls_tip_1">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #1
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Rank has eight different levels starting at 'Rookie' and finishing at 'Legend'. It can be increased through almost any in-game activity, and certain features may require reaching a high rank before they can be used.</text> -->
+		<text>The Zone is a living organism. It chooses who it allows inside of it and when. To survive in the Zone, you must learn to respect it, learn to listen to it, and learn to never trust it.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_2">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #2
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Achievements can be unlocked through certain in-game accomplishments or by reaching statistical milestones. Every achievement is unlocked with an appropriate reward which can be viewed in the PDA.</text> -->
+		<text>Blowouts are deadly emissions that occur regularly in the Zone and are believed to emanate from the heart of Chernobyl NPP itself. While no one has yet located their true source, it is known they are more intense and come with less warning the further north you go. Seek shelter immediately when one approaches.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_3">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #3
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	September 28, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Basic, advanced and expert tools are required by most mechanics in order to perform certain upgrades on weapons and outfits. Such items can often be found in stashes received as rewards for completing tasks.</text> -->
+		<text>The Zone is full of anomalies; small pockets of space and time where the known laws of physics seem to break down. These bizarre quirks of reality can be awesome to behold, but are deadly traps to stalkers caught unaware. They move and shift throughout the Zone, disappearing in certain areas and appearing in others whenever there is a blowout.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_4">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #4
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Sleep deprivation is an optional feature where the passage of time and using consumables will gradually drain the player - eventually requiring them to rest when prompted. Failing to do so may have dire consequences.</text> -->
+		<text>Make sure to talk to any friendly stalkers you should come across in the field. In addition to trading supplies with you, they will often give advice or news of threats in the area. They may even have information that might help you with your current task.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_5">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #5
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Helicopter gunships can be seen patrolling many of the Zone's locations. When engaged in combat members of the helicopter's faction may often call on it for air support to help destroy attacking or defending forces.</text> -->
+		<text>Seek out cover and concealment when engaged in a battle. Utilizing the terrain to your advantage will give you a higher survival rate than a headlong suicide charge into enemy fire.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_6">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #6
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Ironman mode gives a true sense of mortality. When the player is killed all saves for that specific character are deleted and can never be restored. Pick your faction and starting location wisely.</text> -->
+		<text>Be aware of the amount of noise you are making when you are in enemy territory, even your footsteps can give away your position. A stealthy approach can often let you gain an advantageous position against your adversary, or perhaps even allow you to accomplish your task while avoiding a conflict entirely.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_7">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #7
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 02, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Gunsmith and sewing kits are used to repair your weapons and outfits respectively when out in the field. Each allows up to three uses and are best used to repair items of greater value than the kits themselves.</text> -->
+		<text>How the Zone itself came into existence is not yet fully understood. Some claim the prolonged exposure to the extremely high levels of radiation created the Zone, while others believe in a supernatural or otherworldly intervention. Still others suspect the phenomenon is man-made, the result of secret experimental research projects that went awry.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_8">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #8
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 09, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Backpacks can be bought or found and then used to create a custom stash. Stashes created by the player are never de-spawned nor are they ever looted by other stalkers. They are permanent until all items are removed.</text> -->
+		<text>Artefacts are small crystal-like substances that are unique to the Zone and thought to be produced within the altered physics of an anomaly field during an emission. There are several different types, each of which have properties that can be beneficial or harmful to the user. They are highly desirable and some of the more rare specimens can command a high price from a willing buyer.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_9">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #9
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	September 21, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Sleeping bags are a great way to rest in the Zone if you are unable to find a decent bed to sleep in. They can be purchased from most major traders or potentially found in another stalker's stash.</text> -->
+		<text>Radiation poisoning is the most insidious and omnipresent threat in the Zone. Pay attention to your geiger counter and alway carry some sort of protection against exposure. Seek treatment immediately if you become contaminated.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_10">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #10
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 07, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Truck Cemetery is a large graveyard of irradiated agricultural, civilian and military vehicles. As a great place to hide a stash, an eagle-eyed stalker may find many valuables among the wreckage.</text> -->
+		<text>Gonta has managed to cobble together a small electric motor boat from the wreckage in Zaton. He uses it to ferry stalkers along the river between the Truck Cemetery and the Outskirts of Pripyat, if they are willing to pay his fee.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_11">
+		<text>Artefact types are indicative of the anomalies they are found in. Want one that boosts your burn resistance? Search for a 'Burner' or 'Comet' anomaly and go hunting with your detector.</text>
+	</string>
+
+	<string id="ls_tip_12">
+		<text>Completing tasks for factions will increase your goodwill with them. As it increases their traders will gradually offer you greater discounts on their goods and services.</text>
+	</string>
+
+	<string id="ls_tip_13">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #13
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>As you achieve more in-game your rank will increase, the available ranks are as follows: 'Rookie', 'Trainee', 'Experienced', 'Professional', 'Veteran', 'Expert', 'Master' and 'Legend'.</text> -->
+		<text>In addition to the physical threats found throughout the Zone, there are also strange psi fields that seem to affect people's minds. Anyone that enters these fields meets a horrible fate, one where death is the more favorable outcome.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_14">
+		<text>Most tasks can be cancelled after you agree to complete them. You can do this by speaking with the stalker who gave you the task. Just remember that cancelling a task will decrease your reputation and goodwill.</text>
+	</string>
+
+	<string id="ls_tip_15">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #15
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 02, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Reputation is a representation of how a stalker is viewed by their faction. It is gained and lost by helping or harming non-hostile stalkers respectively.</text> -->
+		<text>Although Pripyat itself is inaccessible due to its proximity to a massive psi field, travel to the eastern Outskirts is still possible through an underground passageway that runs beneath Pripyat. The entrance to the tunnel can be found in Jupiter.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_16">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #16
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Reputation is dynamic and can frequently change, the available reputations are as follows: 'Terrible', 'Dreary', 'Awful', 'Bad', 'Neutral', 'Good', 'Great', 'Brilliant' and 'Excellent'.</text> -->
+		<text>You can change factions at any time by meeting with one of the leaders of the friendly faction you want to join. They will typically require you to do some work for them or pay a fee to allow you to join them.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_17">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #17
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	September 09, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Darkscape is a large forest between Cordon and Dark Valley. While there are few reasons to visit, it is frequently used as a hideout by loners and bandits with a bounty placed on their heads.</text> -->
+		<text>The special properties artefacts possess seem to break down with time and use, eventually rendering them completely sterile and worthless. Stalkers who utilize artefacts in their special suits should continually monitor the condition of their slotted artefacts, and be aware the protection they offer degrades with every use.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_18">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #18
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	September 27, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Remember to ask regular stalkers if they have any jobs available. Just because they aren't anybody important doesn't mean they won't be willing to pay you to do their dirty work.</text> -->
+		<text>Your PDA is capable of intercepting signals from other PDAs in the immediate area. Sneaking up on a building and not sure if it's friend or foe inside? Check your PDA for any friendly contacts before tossing that grenade.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_19">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #19
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	September 10, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Rostok's arena hosts two types of competitions: the traditional fights where stalkers battle each other for cash rewards, or challenges where they attempt to kill increasingly harder mutants.</text> -->
+		<text>Arnie hosts arena fights in Rostok for entertainment and profit. Daring stalkers can wager their skills in timed events against captured mutants for cash rewards, while the more desperate or bloodthirsty may find themselves pitted in a winner-take-all battle to the death against other stalkers.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_20">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #20
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 02, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Online exclusion radius can be set via the game options and defaults to 25m. It creates a no-spawn area around the player preventing mutants and other stalkers spawning unfairly and dangerously close.</text> -->
+		<text>The Wish Granter has lured many a stalker to the Zone in search of its promise to grant whatever wish your heart truly desires. Those who believe it exists are so committed to finding it they are willing to die trying, and most of them do.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_21">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #21
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>Freedom completely occupies Yanov Station in Jupiter after a mysterious stalker assisted them several years ago. Some of their well-known members have since relocated to their new northern base.</text> -->
+		<text>If you want to be a bounty hunter in the Zone you have to be quick. If there is a price on a stalker's head, you can bet you are not the only one looking for him; and if someone else gets to him first, you're not getting paid.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_22">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #22
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>The 'Completionist' achievement is received for unlocking all other available achievements. How many achievements are available to you depends on your faction and whether or not story mode is enabled.</text> -->
+		<text>Having trouble finding something? Recruit a stalker to help you. Some might be willing to come along with you to help search an area if they aren't too busy... and if the price is right.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_23">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #23
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>It is much easier to avoid detection when travelling during the night or through heavy rain. However, you risk encountering fierce nocturnal mutants.</text> -->
+		<text>It is much easier to avoid detection when traveling during the night or through heavy rain. However, you risk encountering fierce nocturnal mutants.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+	<string id="ls_tip_24">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Tip #24
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Call of The Zone 1.0
+		<!--	August 01, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <text>You won't be able to issue orders to companions if you leave them behind. Companions in Wait or Patrol modes will not travel with you to new map locations.</text> -->
+		<text>There are many glorious wonders in the Zone, and all of them are trying to kill you.</text>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	</string>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Tip #25
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	October 05, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="ls_tip_25">
+		<text>Artefacts are nearly impossible to detect by sight alone. Special detectors have been invented by Zone scientists to help artefact hunters locate their quarry. The more expensive models are capable of detecting a wider range of artefacts.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Tip #26
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	October 05, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="ls_tip_26">
+		<text>Your flashlight is vital to your survival at night, but it also serves as a beacon to your position for any enemies in the area. Use your flashlight sparingly if you are trying to avoid detection.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Tip #27
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	October 05, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="ls_tip_27">
+		<text>You won't survive in the Zone for long armed only with a pistol. Avoid any major conflicts if you can until you can buy or scrounge some stronger firepower.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Tip #28
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	November 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="ls_tip_28">
+		<text>Check the condition of your companion's gear when you visit a mechanic. The extra money spent to repair thier equipment as well may be well worth the investment to prevent their weapons jamming while they are trying to defend you.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Tip #29
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	November 12, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<string id="ls_tip_29">
+		<text>Make sure to carry the appropriate ammo for the threats you expect to encounter. Buckshot and hunting rounds will inflict maximum damage against small mutants and lightly armored targets, but a thick hide or body armor is going to require slugs or armor-piercing rounds to be effective.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

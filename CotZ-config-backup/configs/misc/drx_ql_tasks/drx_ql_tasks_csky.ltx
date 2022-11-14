@@ -1,0 +1,538 @@
+;==============================================================
+;
+; Tasks Provided By Clear Sky (drx_ql_tasks_csky.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_csky.xml
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: November 07, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Clear Sky Storyline Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 07, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Clear Sky Search Agroprom Underground Storyline Task-
+
+[drx_ql_csky_sl_task_1]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_main_task_agr_u_done} true, false
+
+title = drx_ql_csky_sl_task_1_name
+descr = drx_ql_csky_sl_task_1_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_csky_sl_task_1_about
+task_complete_descr = drx_ql_csky_sl_task_1_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = agr_space_restrictor_to_agr_ug_2
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_csky_sl_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_1)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_csky_sl_task_1:main_story_1_quest_case) =drx_ql_activate_teleport(agr_space_restrictor_to_agr_ug_1:agr_space_restrictor_to_agr_ug_2:agr_space_restrictor_to_agr_ug_4)%
+
+on_complete = %=drx_ql_reward_item(6000:8000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =drx_ql_release_story_item(main_story_1_quest_case) =inc_task_stage(drx_ql_csky_sl_task_1) +drx_ql_info_main_task_agr_u_done =drx_ql_reset_task(drx_ql_csky_sl_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_csky_sl_task_1) =drx_ql_reset_task(drx_ql_csky_sl_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_csky_sl_task_1) =drx_ql_reset_task(drx_ql_csky_sl_task_1)%
+
+;------------------------------------------------
+; Clear Sky Meet With Ivan Trodnik Storyline Task (LINKS TO: Clear Sky Ivan Trodnik Deactivate Brain Scorcher)-
+
+[drx_ql_csky_sl_task_2]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_trodnik_bs_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(mar_smart_terrain_base_stalker_leader_marsh) =drx_ql_is_alive(mar_smart_terrain_base_doctor) -drx_ql_info_mon_inf_task_started +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_csky_sl_task_2_name
+descr = drx_ql_csky_sl_task_2_text
+job_descr = drx_ql_csky_sl_task_2_about
+
+target = mar_smart_terrain_base_doctor
+condlist_0 = {!drx_ql_is_alive(mar_smart_terrain_base_doctor)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_2)} fail
+condlist_3 = {-drx_ql_meet_honcho_mar_smart_terrain_base_doctor} complete
+on_init = %+drx_ql_meet_honcho_mar_smart_terrain_base_doctor +drx_ql_trodnik_bs_sl_task_link%
+
+on_complete = %=drx_ql_reset_task(drx_ql_csky_sl_task_2)%
+on_fail = %-drx_ql_meet_honcho_mar_smart_terrain_base_doctor -drx_ql_trodnik_bs_sl_task_link =drx_ql_fail_task(drx_ql_csky_sl_task_2) =drx_ql_reset_task(drx_ql_csky_sl_task_2)%
+on_cancel = %-drx_ql_meet_honcho_mar_smart_terrain_base_doctor -drx_ql_trodnik_bs_sl_task_link =drx_ql_fail_task(drx_ql_csky_sl_task_2) =drx_ql_reset_task(drx_ql_csky_sl_task_2)%
+
+;------------------------------------------------
+; Clear Sky Ivan Trodnik Deactivate Brain Scorcher Storyline Task (LINKS FROM: Clear Sky Meet With Ivan Trodnik)-
+
+[drx_ql_csky_sl_task_3]
+
+icon = ui_iconsTotal_bar_radar_deactivate
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_trodnik_bs_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mar_smart_terrain_base_doctor) =drx_ql_actor_faction() -drx_ql_info_mon_inf_task_started +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_csky_sl_task_3_name
+descr = drx_ql_csky_sl_task_3_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_csky_sl_task_3_about
+task_complete_descr = drx_ql_csky_sl_task_3_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = rad_space_restrictor_to_bunker
+status_functor = drx_ql_brain_scorcher_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_csky_sl_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(csky) -drx_ql_mon_inf_is_infiltrator} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_3)} fail
+on_init = %+drx_ql_info_spawn_bs_extraction_squads +drx_ql_info_mon_inf_task_started -drx_ql_meet_honcho_mar_smart_terrain_base_doctor -drx_ql_trodnik_bs_sl_task_link =drx_ql_setup_mon_inf_task() =drx_ql_activate_teleport(rad_space_restrictor_to_bunker)%
+
+on_complete = %=drx_ql_reward_random(9000:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =inc_task_stage(drx_ql_csky_sl_task_3) +drx_ql_info_main_task_x19_done -drx_ql_info_mon_inf_task_started -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_csky_sl_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_csky_sl_task_3) -drx_ql_info_mon_inf_task_started -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_csky_sl_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_csky_sl_task_3) -drx_ql_info_mon_inf_task_started -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_csky_sl_task_3)%
+
+;------------------------------------------------
+; Clear Sky Meet With Novikov Storyline Task (LINKS TO: Clear Sky Novikov Infiltrate Lab X-16)-
+
+[drx_ql_csky_sl_task_4]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_novikov_x16_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_alive(mar_base_stalker_tech) +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx18_done -drx_ql_info_main_task_labx16_done} true, false
+
+title = drx_ql_csky_sl_task_4_name
+descr = drx_ql_csky_sl_task_4_text
+job_descr = drx_ql_csky_sl_task_4_about
+
+target = mar_base_stalker_tech
+condlist_0 = {!drx_ql_is_alive(mar_base_stalker_tech)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_4)} fail
+condlist_3 = {-drx_ql_meet_honcho_mar_base_stalker_tech} complete
+on_init = %+drx_ql_meet_honcho_mar_base_stalker_tech +drx_ql_novikov_x16_sl_task_link%
+
+on_complete = %=drx_ql_reset_task(drx_ql_csky_sl_task_4)%
+on_fail = %-drx_ql_meet_honcho_mar_base_stalker_tech -drx_ql_novikov_x16_sl_task_link =drx_ql_fail_task(drx_ql_csky_sl_task_4) =drx_ql_reset_task(drx_ql_csky_sl_task_4)%
+on_cancel = %-drx_ql_meet_honcho_mar_base_stalker_tech -drx_ql_novikov_x16_sl_task_link =drx_ql_fail_task(drx_ql_csky_sl_task_4) =drx_ql_reset_task(drx_ql_csky_sl_task_4)%
+
+; -----------------------------------------------
+; Clear Sky Novikov Infiltrate Lab X-16 Storyline Task (LINKS FROM: Clear Sky Meet With Novikov )-
+
+[drx_ql_csky_sl_task_5]
+
+icon = ui_iconsTotal_yan_kill_brain_task
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_novikov_x16_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mar_base_stalker_tech) =drx_ql_actor_faction() -drx_ql_info_main_task_labx16_done} true, false
+
+title = drx_ql_csky_sl_task_5_name
+descr = drx_ql_csky_sl_task_5_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_csky_sl_task_5_about
+task_complete_descr = drx_ql_csky_sl_task_5_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = yan_space_restrictor_to_x16
+status_functor = drx_ql_miracle_machine_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_csky_sl_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_5)} fail
+on_init = %-drx_ql_meet_honcho_mar_base_stalker_tech =drx_ql_reward_psi_helmet() =drx_ql_activate_teleport(yan_space_restrictor_to_x16)%
+
+on_complete = %=drx_ql_reward_random(6500:9500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =inc_task_stage(drx_ql_csky_sl_task_5) +drx_ql_info_main_task_labx16_done =drx_ql_reset_task(drx_ql_csky_sl_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_csky_sl_task_5) =drx_ql_reset_task(drx_ql_csky_sl_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_csky_sl_task_5) =drx_ql_reset_task(drx_ql_csky_sl_task_5)%
+
+; -----------------------------------------------
+; Clear Sky Infiltrate Lab X-18 (Dark Valley) Storyline Task-
+
+[drx_ql_csky_sl_task_6]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done -drx_ql_info_main_task_labx18_done} true, false
+
+title = drx_ql_csky_sl_task_6_name
+descr = drx_ql_csky_sl_task_6_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_csky_sl_task_6_about
+task_complete_descr = drx_ql_csky_sl_task_6_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = val_space_restrictor_to_labx18
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_csky_sl_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_6)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_csky_sl_task_6:main_story_2_lab_x18_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_army_valley_x18:val_smart_terrain_1_2) =drx_ql_activate_teleport(val_space_restrictor_to_labx18)%
+
+on_complete = %=drx_ql_reward_random(6500:9000) =complete_task_inc_goodwill(50:csky) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =inc_task_stage(drx_ql_csky_sl_task_6) +drx_ql_info_main_task_labx18_done =drx_ql_reset_task(drx_ql_csky_sl_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_csky_sl_task_6) =drx_ql_reset_task(drx_ql_csky_sl_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_csky_sl_task_6) =drx_ql_reset_task(drx_ql_csky_sl_task_6)%
+
+;------------------------------------------------
+; Clear Sky Protect Clear Sky Base Storyline Task-
+
+[drx_ql_csky_sl_task_7]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 185
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(mar_smart_terrain_base_stalker_leader_marsh) =drx_ql_find_occupied_smart_local(csky:drx_ql_csky_sl_task_7)} true, false
+
+title = drx_ql_csky_sl_task_7_name
+descr = drx_ql_csky_sl_task_7_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_csky_sl_task_7_about
+task_complete_descr = drx_ql_csky_sl_task_7_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_csky_sl_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_7)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_csky_sl_task_7)%
+
+on_complete = %=drx_ql_reward_random(3000:6500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =inc_task_stage(drx_ql_csky_sl_task_7) =drx_ql_reset_task(drx_ql_csky_sl_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_csky_sl_task_7) =drx_ql_reset_task(drx_ql_csky_sl_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_csky_sl_task_7) =drx_ql_reset_task(drx_ql_csky_sl_task_7)%
+
+;------------------------------------------------
+; Clear Sky Rescue Missing Operative Storyline Task-
+
+[drx_ql_csky_sl_task_8]
+
+icon = ui_inGame2_Zalozhnik
+storyline = true
+prior = 195
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mar_base_owl_stalker_trader) =drx_ql_actor_faction() -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(csky:drx_ql_csky_sl_task_8) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_csky_sl_task_8_name
+descr = drx_ql_csky_sl_task_8_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_csky_sl_task_8_about
+task_complete_descr = drx_ql_csky_sl_task_8_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_csky_sl_task_8)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_8)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_csky_sl_task_8) =drx_ql_setup_hostage_task(hostage_companion_task_1_csky:nil:drx_ql_csky_sl_task_8_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_item(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_csky_sl_task_8) =unlock_smart(drx_ql_csky_sl_task_8_id) =drx_ql_reset_task(drx_ql_csky_sl_task_8)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_csky_sl_task_8_id) =drx_ql_fail_task(drx_ql_csky_sl_task_8) =drx_ql_reset_task(drx_ql_csky_sl_task_8)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_csky_sl_task_8_id) =drx_ql_fail_task(drx_ql_csky_sl_task_8) =drx_ql_reset_task(drx_ql_csky_sl_task_8)%
+
+;------------------------------------------------
+; Clear Sky Dynamic Brawl Storyline Task-
+
+[drx_ql_csky_sl_task_9]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(mar_base_owl_stalker_trader) =drx_ql_find_brawl_terrain(csky:drx_ql_csky_sl_task_9)} true, false
+
+title = drx_ql_csky_sl_task_9_name
+descr = drx_ql_csky_sl_task_9_text
+descr_1 = drx_ql_csky_sl_task_9_text_1
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_csky_sl_task_9_about
+message = drx_ql_csky_sl_task_9_message
+task_complete_descr = drx_ql_csky_sl_task_9_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_csky_sl_task_9)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_9)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_csky_sl_task_9:4:2)%
+
+on_complete = %=drx_ql_reward_random(6500:9500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =inc_task_stage(drx_ql_csky_sl_task_9) =drx_ql_end_brawl_task(drx_ql_csky_sl_task_9) =drx_ql_reset_task(drx_ql_csky_sl_task_9)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_end_brawl_task(drx_ql_csky_sl_task_9) =drx_ql_fail_task(drx_ql_csky_sl_task_9) =drx_ql_reset_task(drx_ql_csky_sl_task_9)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_end_brawl_task(drx_ql_csky_sl_task_9) =drx_ql_fail_task(drx_ql_csky_sl_task_9) =drx_ql_reset_task(drx_ql_csky_sl_task_9)%
+
+; -----------------------------------------------
+; Clear Sky Sniper Storyline Task-
+
+[drx_ql_csky_sl_task_10]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mar_smart_terrain_base_stalker_leader_marsh) =drx_ql_actor_faction() =drx_ql_find_assassination_target(csky:drx_ql_csky_sl_task_10)} true, false
+sniper_task = true
+
+title = drx_ql_csky_sl_task_10_name
+descr = drx_ql_csky_sl_task_10_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_csky_sl_task_10_about
+task_complete_descr = drx_ql_csky_sl_task_10_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_csky_sl_task_10)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_csky_sl_task_10)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_csky_sl_task_10)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_csky_sl_task_10)%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =inc_task_stage(drx_ql_csky_sl_task_10) =drx_ql_reset_task(drx_ql_csky_sl_task_10)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_csky_sl_task_10) =drx_ql_reset_task(drx_ql_csky_sl_task_10)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_csky_sl_task_10) =drx_ql_reset_task(drx_ql_csky_sl_task_10)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Clear Sky Simulation Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Eliminate Dangerous Mutants for Clear Sky Simulation Task -
+
+[drx_ql_simulation_task_csky_1]
+
+icon = ui_inGame2_Nochnaya_ohota
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(stalker:drx_ql_simulation_task_csky_1:monster)} true, false
+
+title = drx_ql_simulation_task_csky_1_name
+descr = drx_ql_simulation_task_csky_1_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_simulation_task_csky_1_about
+task_complete_descr = drx_ql_simulation_task_csky_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monster
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_csky_1)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_csky_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_csky_1)%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =inc_task_stage(drx_ql_simulation_task_csky_1) =drx_ql_reset_task(drx_ql_simulation_task_csky_1)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_simulation_task_csky_1) =drx_ql_reset_task(drx_ql_simulation_task_csky_1)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_simulation_task_csky_1) =drx_ql_reset_task(drx_ql_simulation_task_csky_1)%
+
+;------------------------------------------------
+; Mutant Meat Stew for Clear Sky Simulation Task-
+
+[drx_ql_simulation_task_csky_2]
+
+icon = ui_inGame2_Pripasi
+storyline = false
+prior = 30
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_csky_2_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_csky_2_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_csky_2_about
+fetch_descr = drx_ql_simulation_task_csky_2_fetch_about
+task_complete_descr = drx_ql_simulation_task_csky_2_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_csky_2)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_csky_2)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_simulation_task_csky_2:120:300:1:6:0:items_mutant_meat_list)%
+
+on_complete = %=drx_ql_fetch_reward_random(drx_ql_simulation_task_csky_2:7) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =inc_task_stage(drx_ql_simulation_task_csky_2) =drx_ql_reset_task(drx_ql_simulation_task_csky_2)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_simulation_task_csky_2) =drx_ql_reset_task(drx_ql_simulation_task_csky_2)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_simulation_task_csky_2) =drx_ql_reset_task(drx_ql_simulation_task_csky_2)%
+
+;------------------------------------------------
+; Retrieve Notebook for Clear Sky Simulation Task-
+
+[drx_ql_simulation_task_csky_3]
+
+icon = ui_inGame2_PD_Torgovets_informatsiey
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_notebook_task_started} true, false
+
+title = drx_ql_simulation_task_csky_3_name
+descr = drx_ql_simulation_task_csky_3_text
+descr_functor = drx_ql_quest_stash_task_target
+job_descr = drx_ql_simulation_task_csky_3_about
+task_complete_descr = drx_ql_simulation_task_csky_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_quest_stash_task_target
+target_functor_params = drx_ql_quest_item_notebook
+status_functor = drx_ql_quest_stash_task_status
+status_functor_params = drx_ql_quest_item_notebook
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_csky_3)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_csky_3)} fail
+on_init = %=drx_ql_create_quest_stash(drx_ql_quest_item_notebook) +drx_ql_quest_item_notebook_task_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =remove_item(drx_ql_quest_item_notebook) =inc_task_stage(drx_ql_simulation_task_csky_3) -drx_ql_quest_item_notebook_task_started =pstor_reset(drx_ql_quest_item_notebook_stash_id) =drx_ql_reset_task(drx_ql_simulation_task_csky_3)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_remove_quest_stash(drx_ql_quest_item_notebook) -drx_ql_quest_item_notebook_task_started =pstor_reset(drx_ql_quest_item_notebook_stash_id) =drx_ql_fail_task(drx_ql_simulation_task_csky_3) =drx_ql_reset_task(drx_ql_simulation_task_csky_3)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_remove_quest_stash(drx_ql_quest_item_notebook) -drx_ql_quest_item_notebook_task_started =pstor_reset(drx_ql_quest_item_notebook_stash_id) =drx_ql_fail_task(drx_ql_simulation_task_csky_3) =drx_ql_reset_task(drx_ql_simulation_task_csky_3)%
+
+;------------------------------------------------
+; HAVFetch Reward Assault for Clear Sky Simulation Task-
+
+[drx_ql_simulation_task_csky_4]
+
+icon = ui_inGame2_Propavshaya_razvedgruppa
+storyline = false
+prior = 65
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_havfetch_reward_task_started =drx_ql_has_havfetch_task(drx_ql_simulation_task_csky_4) =drx_ql_find_occupied_smart_ext(csky:drx_ql_simulation_task_csky_4)} true, false
+
+title = drx_ql_simulation_task_csky_4_name
+descr = drx_ql_simulation_task_csky_4_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_simulation_task_csky_4_about
+task_complete_descr = drx_ql_simulation_task_csky_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_csky_4)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_csky_4)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_csky_4)%
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_csky_4) +drx_ql_havfetch_reward_task_started%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_csky_4) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =inc_task_stage(drx_ql_simulation_task_csky_4) -drx_ql_havfetch_reward_task_started =drx_ql_reset_task(drx_ql_simulation_task_csky_4)%
+on_fail = %=fail_task_dec_goodwill(50:csky) -drx_ql_havfetch_reward_task_started =drx_ql_fail_task(drx_ql_simulation_task_csky_4) =drx_ql_reset_task(drx_ql_simulation_task_csky_4)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) -drx_ql_havfetch_reward_task_started =drx_ql_fail_task(drx_ql_simulation_task_csky_4) =drx_ql_reset_task(drx_ql_simulation_task_csky_4)%
+
+; -----------------------------------------------
+; Find Lost PDA for Clear Sky Simulation Task-
+
+[drx_ql_simulation_task_csky_5]
+
+icon = ui_inGame2_PD_Torgovets_informatsiey
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_pda_task_started =drx_ql_find_unoccupied_smart_terrain(drx_ql_simulation_task_csky_5)} true, false
+
+title = drx_ql_simulation_task_csky_5_name
+descr = drx_ql_simulation_task_csky_5_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_csky_5_about
+task_complete_descr = drx_ql_simulation_task_csky_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_csky_5)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_csky_5)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_csky_5:drx_ql_quest_item_pda:50) +drx_ql_quest_item_pda_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =remove_item(drx_ql_quest_item_pda) =inc_task_stage(drx_ql_simulation_task_csky_5) -drx_ql_quest_item_pda_task_started =drx_ql_reset_task(drx_ql_simulation_task_csky_5)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_release_float_item(drx_ql_simulation_task_csky_5) -drx_ql_quest_item_pda_task_started =drx_ql_fail_task(drx_ql_simulation_task_csky_5) =drx_ql_reset_task(drx_ql_simulation_task_csky_5)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_release_float_item(drx_ql_simulation_task_csky_5) -drx_ql_quest_item_pda_task_started =drx_ql_fail_task(drx_ql_simulation_task_csky_5) =drx_ql_reset_task(drx_ql_simulation_task_csky_5)%
+
+;------------------------------------------------
+; Item Swap with Clear Sky Simulation Task-
+
+[drx_ql_simulation_task_csky_6]
+
+icon = ui_inGame2_D_Vipolnil_4_zadaniya_dlya_Swobodi
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_csky_6_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_csky_6_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_csky_6_about
+fetch_descr = drx_ql_simulation_task_csky_6_fetch_about
+task_complete_descr = drx_ql_simulation_task_csky_6_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_csky_6)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_csky_6)} fail
+fetch_func = %=drx_ql_setup_swap_task(drx_ql_simulation_task_csky_6:3000:15000:0.8)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_simulation_task_csky_6)%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_csky_6) =remove_fetch_item(drx_ql_simulation_task_csky_6_fetch) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:csky) =inc_task_stage(drx_ql_simulation_task_csky_6) =drx_ql_reset_task(drx_ql_simulation_task_csky_6)%
+on_fail = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_simulation_task_csky_6) =drx_ql_reset_task(drx_ql_simulation_task_csky_6)%
+on_cancel = %=fail_task_dec_goodwill(50:csky) =drx_ql_fail_task(drx_ql_simulation_task_csky_6) =drx_ql_reset_task(drx_ql_simulation_task_csky_6)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

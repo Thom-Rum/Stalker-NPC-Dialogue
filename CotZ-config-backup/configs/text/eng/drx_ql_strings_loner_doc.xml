@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Doc (Loner Honcho, Great Swamp) (drx_ql_strings_loner_doc.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_loner_doc.ltx
+<
+<	Created by: DoctorX
+<	Last revised: January 31, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 24, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Supplies for Doc Task -->
+
+	<string id="drx_ql_mar_smart_terrain_doc_doctor_task_1_name">
+		<text>%s for a Stalker</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_doc_doctor_task_1_text">
+		<text>An elderly stalker needs %s brought to him.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_doc_doctor_task_1_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_doc_doctor_task_1_fetch_about">
+		<text>Can you help an old man? I'm in need of %s. Bring me some and I will give you a few coins.</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_doc_doctor_task_1_fetch_finish">
+		<text>Thank you, son. You have done a good deed.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

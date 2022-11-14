@@ -1,0 +1,46 @@
+;==============================================================
+;
+; jup_a6_sr_noweap.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: October 16, 2019
+;
+;==============================================================
+
+
+[logic]
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Ashot - Yar PDA banter
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 16, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Restrictor active:
+active = sr_idle@wait
+
+; Wait for actor to enter Yanov station:
+[sr_idle@wait]
+on_info = {=actor_in_zone(jup_surge_hide_a6)} sr_idle@delay
+
+; Delay before deciding whether or not to play a banter sequence:
+[sr_idle@delay]
+on_timer = 120000 | sr_idle@decide  ; 2 minutes
+on_info = {!actor_in_zone(jup_surge_hide_a6)} sr_idle@wait
+
+; Determine whether or not to play a banter sequence:
+[sr_idle@decide]
+on_info = {!actor_in_zone(jup_surge_hide_a6)} sr_idle@wait
+on_info2 = {~20} sr_idle@reset %=drx_ql_banter(drx_ql_bnt_ashot_yar)%, sr_idle@wait  ; 20% chance
+
+; Delay before resetting after a banter sequence was successfully played:
+[sr_idle@reset]
+on_timer = 43200000 | sr_idle@wait  ; 12 hours
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

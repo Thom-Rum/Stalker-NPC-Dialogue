@@ -1,0 +1,122 @@
+;==============================================================
+;
+; Tasks Given by Skinflint (Freedom Trader, Army Warehouses) (drx_ql_tasks_freedom_skinflint.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_freedom_skinflint.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: March 13, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	March 13, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Skinflint (Freedom Trader) Find Mutant Meat Task-
+
+[drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1]
+
+icon = ui_inGame2_Pripasi
+storyline = false
+prior = 30
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_about
+fetch_descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_fetch_about
+task_complete_descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1:200:400:4:10:0:items_mutant_meat_list)%
+
+on_complete = %=drx_ql_fetch_reward_item(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1:8:items_ammo_list:items_attachments_list:items_outfits_list:items_pistols_list:items_rifles_list:items_supplies_list) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_1)%
+
+; -----------------------------------------------
+; Skinflint (Freedom Trader) Warehouses Crashed Helicopter Black Box Task-
+
+[drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2]
+
+icon = ui_inGame2_Skat_1
+storyline = false
+prior = 40
+weight = 2
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_whses_helicopter_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_blackbox_task_started} true, false
+
+title = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2_name
+descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2_about
+task_complete_descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2)} fail
+on_init = %=reward_random_item(af_cristall_flower) =drx_ql_setup_float_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2:drx_ql_quest_item_blackbox:0:drx_ql_location_whses_helicopter_blackbox) +drx_ql_quest_item_blackbox_task_started%
+
+on_complete = %=drx_ql_reward_money(2500:5000) =complete_task_inc_goodwill(50:freedom) =remove_item(drx_ql_quest_item_blackbox) =inc_task_stage(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2) -drx_ql_quest_item_blackbox_task_started +drx_ql_info_whses_helicopter_done =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_float_item(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2) -drx_ql_quest_item_blackbox_task_started =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_float_item(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2) -drx_ql_quest_item_blackbox_task_started =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_2)%
+
+;------------------------------------------------
+; Skinflint (Freedom Trader) Deliver Equipment Dynamic Task-
+
+[drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_case_task_started} true, false
+
+title = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3_name
+descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3_text
+descr_functor = drx_ql_quest_stash_task_target
+job_descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3_about
+task_complete_descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_quest_stash_task_target
+target_functor_params = drx_ql_quest_item_case
+status_functor = drx_ql_quest_stash_task_status
+status_functor_params = drx_ql_quest_item_case
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3)} fail
+on_init = %=drx_ql_create_quest_stash(drx_ql_quest_item_case) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_item(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3) -drx_ql_quest_item_case_task_started =pstor_reset(drx_ql_quest_item_case_stash_id) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_quest_stash(drx_ql_quest_item_case) -drx_ql_quest_item_case_task_started =pstor_reset(drx_ql_quest_item_case_stash_id) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_quest_stash(drx_ql_quest_item_case) -drx_ql_quest_item_case_task_started =pstor_reset(drx_ql_quest_item_case_stash_id) =drx_ql_fail_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3) =drx_ql_reset_task(drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_task_3)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -1,0 +1,274 @@
+;==============================================================
+;
+; Tasks Given by Owl (Loner Trader, Zaton) (drx_ql_tasks_loner_owl.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_loner_owl.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: November 08, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; -----------------------------------------------
+; Owl (Loner Trader) Retrieve Locked Case from Snork Tunnels Task-
+
+[drx_ql_zat_b30_owl_stalker_trader_task_1]
+
+icon = ui_inGame2_Nedostupniy_taynik
+storyline = false
+prior = 39
+weight = 2
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_snork_tunnel_stash_task_started -drx_ql_quest_item_case_task_started} true, false
+
+title = drx_ql_zat_b30_owl_stalker_trader_task_1_name
+descr = drx_ql_zat_b30_owl_stalker_trader_task_1_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_zat_b30_owl_stalker_trader_task_1_about
+task_complete_descr = drx_ql_zat_b30_owl_stalker_trader_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b30_owl_stalker_trader_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b30_owl_stalker_trader_task_1)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_zat_b30_owl_stalker_trader_task_1:drx_ql_quest_item_case:0:drx_ql_location_snork_tunnel_stash) +drx_ql_quest_item_case_task_started +drx_ql_info_snork_tunnel_stash_task_started%
+
+on_complete = %=drx_ql_reward_money(3500:5000) =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_zat_b30_owl_stalker_trader_task_1) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_1) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_1) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_1) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_1) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_1)%
+
+;------------------------------------------------
+; Owl (Loner Trader) Eliminate Zaton Dredge Bandits Task-
+
+[drx_ql_zat_b30_owl_stalker_trader_task_2]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_enemy(bandit) =is_factions_enemies(stalker:bandit) !squad_exist(drx_ql_designated_target_squad_bandit_zaton_dredge)} true, false
+
+title = drx_ql_zat_b30_owl_stalker_trader_task_2_name
+descr = drx_ql_zat_b30_owl_stalker_trader_task_2_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_zat_b30_owl_stalker_trader_task_2_about
+task_complete_descr = drx_ql_zat_b30_owl_stalker_trader_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_designated_target_task_target
+target_functor_params = drx_ql_designated_target_squad_bandit_zaton_dredge
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_bandit_zaton_dredge
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b30_owl_stalker_trader_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b30_owl_stalker_trader_task_2)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_bandit_zaton_dredge:zat_b14_smart_terrain)%
+
+on_complete = %=drx_ql_reward_item(3000:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_zat_b30_owl_stalker_trader_task_2) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_zaton_dredge) =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_2) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_zaton_dredge) =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_2) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_2)%
+
+;------------------------------------------------
+; Owl (Loner Trader) Interceptor Task-
+
+[drx_ql_zat_b30_owl_stalker_trader_task_3]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_case_task_started =drx_ql_is_enemy(bandit) =is_factions_enemies(stalker:bandit) !squad_exist(drx_ql_designated_target_squad_bandit) =drx_ql_find_unoccupied_smart_terrain(drx_ql_zat_b30_owl_stalker_trader_task_3)} true, false
+
+title = drx_ql_zat_b30_owl_stalker_trader_task_3_name
+descr = drx_ql_zat_b30_owl_stalker_trader_task_3_text
+descr_functor = drx_ql_interceptor_task_target
+job_descr = drx_ql_zat_b30_owl_stalker_trader_task_3_about
+task_complete_descr = drx_ql_zat_b30_owl_stalker_trader_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_interceptor_task_target
+status_functor = drx_ql_interceptor_task_status
+status_functor_params = drx_ql_quest_item_case
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b30_owl_stalker_trader_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b30_owl_stalker_trader_task_3)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_zat_b30_owl_stalker_trader_task_3) =drx_ql_create_interceptor_squad(drx_ql_zat_b30_owl_stalker_trader_task_3:drx_ql_designated_target_squad_bandit) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_money(3000:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit) =inc_task_stage(drx_ql_zat_b30_owl_stalker_trader_task_3) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_3) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_3) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_3)%
+
+;------------------------------------------------
+; Owl (Loner Trader) PDA Float Fetch Task-
+
+[drx_ql_zat_b30_owl_stalker_trader_task_4]
+
+icon = ui_inGame2_PD_Torgovets_informatsiey
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_pda_task_started =drx_ql_find_unoccupied_smart_terrain(drx_ql_zat_b30_owl_stalker_trader_task_4)} true, false
+
+title = drx_ql_zat_b30_owl_stalker_trader_task_4_name
+descr = drx_ql_zat_b30_owl_stalker_trader_task_4_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_zat_b30_owl_stalker_trader_task_4_about
+task_complete_descr = drx_ql_zat_b30_owl_stalker_trader_task_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b30_owl_stalker_trader_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b30_owl_stalker_trader_task_4)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_zat_b30_owl_stalker_trader_task_4:drx_ql_quest_item_pda:50) +drx_ql_quest_item_pda_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_pda) =inc_task_stage(drx_ql_zat_b30_owl_stalker_trader_task_4) -drx_ql_quest_item_pda_task_started =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_4) -drx_ql_quest_item_pda_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_4) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_4) -drx_ql_quest_item_pda_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_4) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_4)%
+
+; -----------------------------------------------
+; Owl (Loner Trader) Jupiter UAV Memory Module Task-
+
+[drx_ql_zat_b30_owl_stalker_trader_task_5]
+
+icon = ui_inGame2_Bespilotniy_razvedchik
+storyline = false
+prior = 39
+weight = 2
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_uav_module_task_finished -drx_ql_quest_item_memory_module_task_started} true, false
+
+title = drx_ql_zat_b30_owl_stalker_trader_task_5_name
+descr = drx_ql_zat_b30_owl_stalker_trader_task_5_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_zat_b30_owl_stalker_trader_task_5_about
+task_complete_descr = drx_ql_zat_b30_owl_stalker_trader_task_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b30_owl_stalker_trader_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b30_owl_stalker_trader_task_5)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_zat_b30_owl_stalker_trader_task_5:drx_ql_quest_item_memory_module:0:drx_ql_location_uav_memory_module) +drx_ql_quest_item_memory_module_task_started%
+
+on_complete = %=drx_ql_reward_random(4500:7000) =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_memory_module) =inc_task_stage(drx_ql_zat_b30_owl_stalker_trader_task_5) -drx_ql_quest_item_memory_module_task_started +drx_ql_info_uav_module_task_finished =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_5) -drx_ql_quest_item_memory_module_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_5) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_5) -drx_ql_quest_item_memory_module_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_5) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_5)%
+
+;------------------------------------------------
+; Owl (Loner Trader) Retrieve PDA Task-
+
+[drx_ql_zat_b30_owl_stalker_trader_task_6]
+
+icon = ui_inGame2_Temniy_biznes
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_pda_task_started} true, false
+
+title = drx_ql_zat_b30_owl_stalker_trader_task_6_name
+descr = drx_ql_zat_b30_owl_stalker_trader_task_6_text
+descr_functor = drx_ql_quest_stash_task_target
+job_descr = drx_ql_zat_b30_owl_stalker_trader_task_6_about
+task_complete_descr = drx_ql_zat_b30_owl_stalker_trader_task_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_quest_stash_task_target
+target_functor_params = drx_ql_quest_item_pda
+status_functor = drx_ql_quest_stash_task_status
+status_functor_params = drx_ql_quest_item_pda
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b30_owl_stalker_trader_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b30_owl_stalker_trader_task_6)} fail
+on_init = %=drx_ql_create_quest_stash(drx_ql_quest_item_pda) +drx_ql_quest_item_pda_task_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_pda) =inc_task_stage(drx_ql_zat_b30_owl_stalker_trader_task_6) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_quest_stash(drx_ql_quest_item_pda) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_6) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_quest_stash(drx_ql_quest_item_pda) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_6) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_6)%
+
+; -----------------------------------------------
+; Owl (Loner Trader) Bloodsucker Lair Task-
+
+[drx_ql_zat_b30_owl_stalker_trader_task_7]
+
+icon = ui_inGame2_Logovo_krovososov
+storyline = false
+prior = 39
+weight = 2
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_bloodsucker_lair_task_started -drx_ql_quest_item_pcb_task_started} true, false
+
+title = drx_ql_zat_b30_owl_stalker_trader_task_7_name
+descr = drx_ql_zat_b30_owl_stalker_trader_task_7_text
+descr_functor = drx_ql_bloodsucker_lair_task_target
+job_descr = drx_ql_zat_b30_owl_stalker_trader_task_7_about
+task_complete_descr = drx_ql_zat_b30_owl_stalker_trader_task_7_finish
+
+stage_complete = 1
+target_functor = drx_ql_bloodsucker_lair_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b30_owl_stalker_trader_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b30_owl_stalker_trader_task_7)} fail
+condlist_3 = {-drx_ql_info_bloodsucker_lair_killed +zat_b57_gas_running_stop} %=kill_squad(zat_b38_bloodsuckers_sleepers) +drx_ql_info_bloodsucker_lair_killed%
+on_init = %=drx_ql_setup_float_task(drx_ql_zat_b30_owl_stalker_trader_task_7:drx_ql_quest_item_pcb:25:zat_b38u) =spawn_object_in(zat_b12_key_1:zat_b12_key_1_box) =spawn_object_in(zat_b12_key_2:zat_b12_key_2_box) =spawn_object_in(zat_b57_gas:zat_b57_gas_box) =clear_smart_terrain(zat_b38) =drx_ql_create_squad(zat_b38_bloodsuckers_sleepers:zat_b38) +drx_ql_quest_item_pcb_task_started +drx_ql_info_bloodsucker_lair_task_started%
+
+on_complete = %=drx_ql_reward_money(5000:7500) =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_pcb) =destroy_object(story:zat_b12_key_1_box) =destroy_object(story:zat_b12_key_2_box) =destroy_object(story:zat_b57_gas_box) =drx_ql_release_story_item(zat_b12_key_1) =drx_ql_release_story_item(zat_b12_key_2) =drx_ql_release_story_item(zat_b57_gas) =inc_task_stage(drx_ql_zat_b30_owl_stalker_trader_task_7) =drx_ql_remove_story_squad(zat_b38_bloodsuckers_sleepers) -drx_ql_quest_item_pcb_task_started -drx_ql_info_got_both_convoy_keys -zat_b57_gas_running_play =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_7) =destroy_object(story:zat_b12_key_1_box) =destroy_object(story:zat_b12_key_2_box) =destroy_object(story:zat_b57_gas_box) =drx_ql_release_story_item(zat_b12_key_1) =drx_ql_release_story_item(zat_b12_key_2) =drx_ql_release_story_item(zat_b57_gas) =drx_ql_remove_story_squad(zat_b38_bloodsuckers_sleepers) -drx_ql_quest_item_pcb_task_started -drx_ql_info_got_both_convoy_keys -zat_b57_gas_running_play =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_7) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_7) =destroy_object(story:zat_b12_key_1_box) =destroy_object(story:zat_b12_key_2_box) =destroy_object(story:zat_b57_gas_box) =drx_ql_release_story_item(zat_b12_key_1) =drx_ql_release_story_item(zat_b12_key_2) =drx_ql_release_story_item(zat_b57_gas) =drx_ql_remove_story_squad(zat_b38_bloodsuckers_sleepers) -drx_ql_quest_item_pcb_task_started -drx_ql_info_got_both_convoy_keys -zat_b57_gas_running_play =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_7) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_7)%
+
+;------------------------------------------------
+; Owl (Loner Trader) Waste Processing Station Mercs Task-
+
+[drx_ql_zat_b30_owl_stalker_trader_task_8]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_enemy(killer) -drx_ql_quest_item_case_task_started} true, false
+
+title = drx_ql_zat_b30_owl_stalker_trader_task_8_name
+descr = drx_ql_zat_b30_owl_stalker_trader_task_8_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_zat_b30_owl_stalker_trader_task_8_about
+task_complete_descr = drx_ql_zat_b30_owl_stalker_trader_task_8_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b30_owl_stalker_trader_task_8)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b30_owl_stalker_trader_task_8)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_zat_b30_owl_stalker_trader_task_8:drx_ql_quest_item_case:50:zat_b40_smart_terrain) +drx_ql_quest_item_case_task_started =drx_ql_create_squad(zat_b40_merc_squad:zat_b40_smart_terrain) %
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_zat_b30_owl_stalker_trader_task_8) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_8)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_8) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_8) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_8)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_zat_b30_owl_stalker_trader_task_8) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_zat_b30_owl_stalker_trader_task_8) =drx_ql_reset_task(drx_ql_zat_b30_owl_stalker_trader_task_8)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Hog (Mercenary Mechanic, Dead City) (drx_ql_strings_merc_hog.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_merc_hog.ltx
+<
+<	Created by: DoctorX
+<	Last revised: November 08, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hog (Merc Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_1_name">
+		<text>Retrieve Gunsmith Toolkit for Hog</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_1_text">
+		<text>Retrieve a set of gunsmith tools for Hog so he can perform basic upgrades to your equipment.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_1_about">
+		<text>Do you need any upgrades done to your gear? I can do some if you want to pick up a set of gunsmith tools I have stashed away.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_1_finish">
+		<text>Excellent, thanks. Bring me your gear if you want me to do any basic upgrades for you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hog (Merc Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_2_name">
+		<text>Find Technician Toolkit for Hog</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_2_text">
+		<text>Search for a set of technician tools for Hog so he can perform advanced upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_2_about">
+		<text>Want to try to find some technician's tools for me? If you can find some I'll be able to perform more advanced upgrades on your gear. I'll show you a place where you might be able to find some.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_2_finish">
+		<text>Ah, great, you found some. Just what I needed. Let me know if you would like me to do any advanced upgrades to your gear.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hog (Merc Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_3_name">
+		<text>Intercept Armorer's Toolkit for Hog</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_3_text">
+		<text>Bandits have stolen a set of armorer's tools from a Military depot. Find them and capture the tools for Hog so he can perform expert upgrades on your equipment.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_3_about">
+		<text>I got some intel that a small group of Bandits broke into a Military supply depot and made off with a set of armorer's tools. They're still on the loose; if you can find them before the Military does, get those tools and bring them to me. With a set of tools like that I'll be able to do almost any type of upgrade to your equipment.</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_task_3_finish">
+		<text>Great job, these are some sweet tools. Let me know if you need any work done, I'll be able to perform almost any type of equipment upgrades now.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

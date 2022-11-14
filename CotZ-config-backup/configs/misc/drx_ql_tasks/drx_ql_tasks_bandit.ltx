@@ -1,0 +1,706 @@
+;==============================================================
+;
+; Tasks Provided By Bandits (drx_ql_tasks_bandit.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_bandit.xml
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: March 26, 2020
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Bandit Storyline Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	March 26, 2020
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Bandit Dark Valley Military Brawl Storyline Task-
+
+[drx_ql_bandit_sl_task_1]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(val_smart_terrain_7_4_bandit_trader_stalker) =drx_ql_actor_faction() =drx_ql_is_enemy(army) =is_factions_enemies(bandit:army) !squad_exist(drx_ql_designated_target_squad_army_valley_1) !squad_exist(drx_ql_designated_target_squad_army_valley_2) !squad_exist(drx_ql_designated_target_squad_army_valley_3) !squad_exist(drx_ql_designated_target_squad_army_valley_4) !squad_exist(drx_ql_attack_squad_bandit_valley_1) !squad_exist(drx_ql_attack_squad_bandit_valley_2)} true, false
+
+title = drx_ql_bandit_sl_task_1_name
+descr = drx_ql_bandit_sl_task_1_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_bandit_sl_task_1_about
+task_complete_descr = drx_ql_bandit_sl_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_designated_target_task_target
+target_functor_params = drx_ql_designated_target_squad_army_valley_1, drx_ql_designated_target_squad_army_valley_2, drx_ql_designated_target_squad_army_valley_3, drx_ql_designated_target_squad_army_valley_4
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_army_valley_1, drx_ql_designated_target_squad_army_valley_2, drx_ql_designated_target_squad_army_valley_3, drx_ql_designated_target_squad_army_valley_4
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_1)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_army_valley_1:val_smart_terrain_8_7) =create_squad(drx_ql_designated_target_squad_army_valley_2:val_smart_terrain_8_7) =create_squad(drx_ql_designated_target_squad_army_valley_3:val_smart_terrain_8_7) =create_squad(drx_ql_designated_target_squad_army_valley_4:val_smart_terrain_8_7) =create_squad(drx_ql_attack_squad_bandit_valley_1:val_smart_terrain_9_6) =create_squad(drx_ql_attack_squad_bandit_valley_2:val_smart_terrain_8_6)%
+
+on_complete = %=drx_ql_reward_random(4000:8500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_bandit_sl_task_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_bandit_valley_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_bandit_valley_2) =drx_ql_reset_task(drx_ql_bandit_sl_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_bandit_valley_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_bandit_valley_2) =drx_ql_fail_task(drx_ql_bandit_sl_task_1) =drx_ql_reset_task(drx_ql_bandit_sl_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_bandit_valley_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_bandit_valley_2) =drx_ql_fail_task(drx_ql_bandit_sl_task_1) =drx_ql_reset_task(drx_ql_bandit_sl_task_1)%
+
+; -----------------------------------------------
+; Bandit Investigate Stingray 3 (Zaton, Southern Plateau) Storyline Task-
+
+[drx_ql_bandit_sl_task_2]
+
+icon = ui_inGame2_Put_na_plato
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(val_smart_terrain_7_4_bandit_trader_stalker) =drx_ql_actor_faction() !drx_ql_is_enemy(stalker) =drx_ql_is_alive(zat_b18_noah) +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_3_done -drx_ql_info_stingray_4_done} true, false
+
+title = drx_ql_bandit_sl_task_2_name
+descr = drx_ql_bandit_sl_task_2_text
+descr_1 = drx_ql_bandit_sl_task_2_text_1
+descr_functor = drx_ql_plateau_task_target
+job_descr = drx_ql_bandit_sl_task_2_about
+task_complete_descr = drx_ql_bandit_sl_task_2_finish
+
+stage_complete = 3
+target_functor = drx_ql_plateau_task_target
+target_functor_params = zat_b20_smart_terrain
+status_functor = drx_ql_plateau_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=check_task_stage(0) !drx_ql_is_alive(zat_b18_noah)} fail  ; Before meeting with Noah
+condlist_3 = {=check_task_stage(0) =drx_ql_is_enemy(stalker)} fail  ; Before meeting with Noah
+condlist_4 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_2)} fail
+condlist_5 = {-drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_noah_fireball_given -drx_ql_info_pissed_off_noah} %=reward_random_item(af_fireball) +drx_ql_info_noah_fireball_given%
+condlist_6 = {=actor_in_zone(zat_b20_sr_actor_cross_the_teleport)} %+drx_ql_info_plateau_teleport_completed%
+on_init = %+drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_plateau_teleport_completed -drx_ql_info_noah_fireball_given -drx_ql_info_pissed_off_noah =drx_ql_setup_float_task(drx_ql_bandit_sl_task_2:drx_ql_quest_item_plateau_case:0:zat_b28)%
+
+on_complete = %=drx_ql_reward_money(10000:10000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) +drx_ql_info_stingray_3_done -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =remove_item(drx_ql_quest_item_plateau_case) =inc_task_stage(drx_ql_bandit_sl_task_2) =drx_ql_reset_task(drx_ql_bandit_sl_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =drx_ql_release_float_item(drx_ql_bandit_sl_task_2) =drx_ql_fail_task(drx_ql_bandit_sl_task_2) =drx_ql_reset_task(drx_ql_bandit_sl_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =drx_ql_release_float_item(drx_ql_bandit_sl_task_2) =drx_ql_fail_task(drx_ql_bandit_sl_task_2) =drx_ql_reset_task(drx_ql_bandit_sl_task_2)%
+
+;------------------------------------------------
+; Bandit Meet With Limpid Storyline Task (LINKS TO: Bandit Limpid Infiltrate Lab X-18)-
+
+[drx_ql_bandit_sl_task_3]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_limpid_x18_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_alive(val_smart_terrain_7_3_bandit_mechanic_stalker) +drx_ql_info_main_task_agr_u_done -drx_ql_info_main_task_labx18_done -drx_ql_info_main_task_labx16_done -drx_ql_actor_has_psi_helmet} true, false
+
+title = drx_ql_bandit_sl_task_3_name
+descr = drx_ql_bandit_sl_task_3_text
+job_descr = drx_ql_bandit_sl_task_3_about
+
+target = val_smart_terrain_7_3_bandit_mechanic_stalker
+condlist_0 = {!drx_ql_is_alive(val_smart_terrain_7_3_bandit_mechanic_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_3)} fail
+condlist_3 = {-drx_ql_meet_honcho_val_smart_terrain_7_3_bandit_mechanic_stalker} complete
+on_init = %+drx_ql_meet_honcho_val_smart_terrain_7_3_bandit_mechanic_stalker +drx_ql_limpid_x18_sl_task_link%
+
+on_complete = %=drx_ql_reset_task(drx_ql_bandit_sl_task_3)%
+on_fail = %-drx_ql_meet_honcho_val_smart_terrain_7_3_bandit_mechanic_stalker -drx_ql_limpid_x18_sl_task_link =drx_ql_fail_task(drx_ql_bandit_sl_task_3) =drx_ql_reset_task(drx_ql_bandit_sl_task_3)%
+on_cancel = %-drx_ql_meet_honcho_val_smart_terrain_7_3_bandit_mechanic_stalker -drx_ql_limpid_x18_sl_task_link =drx_ql_fail_task(drx_ql_bandit_sl_task_3) =drx_ql_reset_task(drx_ql_bandit_sl_task_3)%
+
+; -----------------------------------------------
+; Bandit Limpid Infiltrate Lab X-18 (Dark Valley) Storyline Task (LINKS FROM: Bandit Meet with Limpid) (LINKS TO: Bandit Limpid Wait For Psi Helmet)-
+
+[drx_ql_bandit_sl_task_4]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_limpid_x18_sl_task_link
+link_info = drx_ql_limpid_psi_helmet_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(val_smart_terrain_7_3_bandit_mechanic_stalker) =drx_ql_actor_faction() -drx_ql_info_main_task_labx18_done -drx_ql_info_main_task_labx16_done -drx_ql_actor_has_psi_helmet} true, false
+
+title = drx_ql_bandit_sl_task_4_name
+descr = drx_ql_bandit_sl_task_4_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_bandit_sl_task_4_about
+task_complete_descr = drx_ql_bandit_sl_task_4_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = val_space_restrictor_to_labx18
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_4)} fail
+on_init = %-drx_ql_meet_honcho_val_smart_terrain_7_3_bandit_mechanic_stalker -drx_ql_limpid_x18_sl_task_link =drx_ql_setup_story_item_task(drx_ql_bandit_sl_task_4:main_story_2_lab_x18_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_army_valley_x18:val_smart_terrain_1_2) =drx_ql_activate_teleport(val_space_restrictor_to_labx18)%
+
+on_complete = %=complete_task_inc_goodwill(50:bandit) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =inc_task_stage(drx_ql_bandit_sl_task_4) +drx_ql_info_main_task_labx18_done =drx_ql_reset_task(drx_ql_bandit_sl_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_bandit_sl_task_4) =drx_ql_reset_task(drx_ql_bandit_sl_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_bandit_sl_task_4) =drx_ql_reset_task(drx_ql_bandit_sl_task_4)%
+
+; -----------------------------------------------
+; Bandit Limpid Wait For Psi Helmet Storyline Task (LINKS FROM: Bandit Limpid Infiltrate Lab X-18) (LINKS TO: Bandit Limpid Disable the Miracle Machine)-
+
+[drx_ql_bandit_sl_task_5]
+
+icon = ui_inGame2_Peremennoe_psi_izluchenie
+storyline = true
+prior = 14
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_limpid_psi_helmet_sl_task_link
+link_info = drx_ql_limpid_miracle_machine_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_bandit_sl_task_5_name
+descr = drx_ql_bandit_sl_task_5_text
+descr_functor = drx_ql_wait_task_target
+job_descr = drx_ql_bandit_sl_task_5_about
+message = drx_ql_bandit_sl_task_5_message
+task_complete_descr = drx_ql_bandit_sl_task_5_finish
+
+stage_complete = 2
+target_functor = drx_ql_wait_task_target
+status_functor = drx_ql_wait_task_status
+status_functor_params = 172800  ;2 days
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_5)} fail
+on_init = %=drx_ql_save_pstor_ctime(drx_ql_bandit_sl_task_5)%
+
+on_complete = %=drx_ql_reward_psi_helmet() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_bandit_sl_task_5) =erase_pstor_ctime(drx_ql_bandit_sl_task_5) =drx_ql_reset_task(drx_ql_bandit_sl_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =erase_pstor_ctime(drx_ql_bandit_sl_task_5) =drx_ql_fail_task(drx_ql_bandit_sl_task_5) =drx_ql_reset_task(drx_ql_bandit_sl_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =erase_pstor_ctime(drx_ql_bandit_sl_task_5) =drx_ql_fail_task(drx_ql_bandit_sl_task_5) =drx_ql_reset_task(drx_ql_bandit_sl_task_5)%
+
+; -----------------------------------------------
+; Bandit Limpid Disable the Miracle Machine Storyline Task (LINKS FROM: Bandit Limpid Wait For Psi Helmet)-
+
+[drx_ql_bandit_sl_task_6]
+
+icon = ui_iconsTotal_yan_kill_brain_task
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_limpid_miracle_machine_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(val_smart_terrain_7_3_bandit_mechanic_stalker) =drx_ql_actor_faction() -drx_ql_info_main_task_labx16_done} true, false
+
+title = drx_ql_bandit_sl_task_6_name
+descr = drx_ql_bandit_sl_task_6_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_bandit_sl_task_6_about
+task_complete_descr = drx_ql_bandit_sl_task_6_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = yan_space_restrictor_to_x16
+status_functor = drx_ql_miracle_machine_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_6)} fail
+on_init = %=drx_ql_activate_teleport(yan_space_restrictor_to_x16)%
+
+on_complete = %=drx_ql_reward_money(6500:9500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_bandit_sl_task_6) +drx_ql_info_main_task_labx16_done =drx_ql_reset_task(drx_ql_bandit_sl_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_bandit_sl_task_6) =drx_ql_reset_task(drx_ql_bandit_sl_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_bandit_sl_task_6) =drx_ql_reset_task(drx_ql_bandit_sl_task_6)%
+
+; -----------------------------------------------
+; Bandit Search Agroprom Underground Storyline Task-
+
+[drx_ql_bandit_sl_task_7]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_main_task_agr_u_done} true, false
+
+title = drx_ql_bandit_sl_task_7_name
+descr = drx_ql_bandit_sl_task_7_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_bandit_sl_task_7_about
+task_complete_descr = drx_ql_bandit_sl_task_7_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = agr_space_restrictor_to_agr_ug_2
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_7)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_bandit_sl_task_7:main_story_1_quest_case) =drx_ql_activate_teleport(agr_space_restrictor_to_agr_ug_1:agr_space_restrictor_to_agr_ug_2:agr_space_restrictor_to_agr_ug_4)%
+
+on_complete = %=drx_ql_reward_money(6000:8000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =drx_ql_release_story_item(main_story_1_quest_case) =inc_task_stage(drx_ql_bandit_sl_task_7) +drx_ql_info_main_task_agr_u_done =drx_ql_reset_task(drx_ql_bandit_sl_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_bandit_sl_task_7) =drx_ql_reset_task(drx_ql_bandit_sl_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_bandit_sl_task_7) =drx_ql_reset_task(drx_ql_bandit_sl_task_7)%
+
+;------------------------------------------------
+; Bandit Hidden Target Storyline Task-
+
+[drx_ql_bandit_sl_task_8]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(zat_b7_bandit_boss_sultan) =drx_ql_find_assassination_target(bandit:drx_ql_bandit_sl_task_8:bandit)} true, false
+
+title = drx_ql_bandit_sl_task_8_name
+descr = drx_ql_bandit_sl_task_8_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_bandit_sl_task_8_about
+task_complete_descr = drx_ql_bandit_sl_task_8_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_8)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_8)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_bandit_sl_task_8)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_bandit_sl_task_8) =drx_ql_add_hidden_target(drx_ql_bandit_sl_task_8)%
+
+on_complete = %=drx_ql_reward_random(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_bandit_sl_task_8) =drx_ql_reset_task(drx_ql_bandit_sl_task_8)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_bandit_sl_task_8) =drx_ql_reset_task(drx_ql_bandit_sl_task_8)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_bandit_sl_task_8) =drx_ql_reset_task(drx_ql_bandit_sl_task_8)%
+
+;------------------------------------------------
+; Bandit Double-Crosser Storyline Task-
+
+[drx_ql_bandit_sl_task_9]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(val_smart_terrain_7_4_bandit_trader_stalker) =drx_ql_find_assassination_target(bandit:drx_ql_bandit_sl_task_9:army)} true, false
+
+title = drx_ql_bandit_sl_task_9_name
+descr = drx_ql_bandit_sl_task_9_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_bandit_sl_task_9_about
+task_complete_descr = drx_ql_bandit_sl_task_9_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_9)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_9)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_bandit_sl_task_9)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_bandit_sl_task_9)%
+
+on_complete = %=drx_ql_reward_random(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_bandit_sl_task_9) =drx_ql_fail_task(drx_ql_bandit_sl_task_9) =drx_ql_reset_task(drx_ql_bandit_sl_task_9)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_reset_task(drx_ql_bandit_sl_task_9)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_bandit_sl_task_9) =drx_ql_reset_task(drx_ql_bandit_sl_task_9)%
+
+;------------------------------------------------
+; Bandit Sultan's Enemy Storyline Task-
+
+[drx_ql_bandit_sl_task_10]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(zat_b7_bandit_boss_sultan) =drx_ql_find_assassination_target(bandit:drx_ql_bandit_sl_task_10:stalker:dolg:freedom:csky:ecolog:killer:army:bandit)} true, false
+
+title = drx_ql_bandit_sl_task_10_name
+descr = drx_ql_bandit_sl_task_10_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_bandit_sl_task_10_about
+task_complete_descr = drx_ql_bandit_sl_task_10_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_10)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_10)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_bandit_sl_task_10)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_bandit_sl_task_10) =drx_ql_add_hidden_target(drx_ql_bandit_sl_task_10)%
+
+on_complete = %=drx_ql_reward_random(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_bandit_sl_task_10) =drx_ql_reset_task(drx_ql_bandit_sl_task_10)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_bandit_sl_task_10) =drx_ql_reset_task(drx_ql_bandit_sl_task_10)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_bandit_sl_task_10) =drx_ql_reset_task(drx_ql_bandit_sl_task_10)%
+
+;------------------------------------------------
+; Bandit Dynamic Brawl Storyline Task-
+
+[drx_ql_bandit_sl_task_11]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(val_smart_terrain_7_4_bandit_trader_stalker) =drx_ql_find_brawl_terrain(bandit:drx_ql_bandit_sl_task_11)} true, false
+
+title = drx_ql_bandit_sl_task_11_name
+descr = drx_ql_bandit_sl_task_11_text
+descr_1 = drx_ql_bandit_sl_task_11_text_1
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_bandit_sl_task_11_about
+message = drx_ql_bandit_sl_task_11_message
+task_complete_descr = drx_ql_bandit_sl_task_11_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_11)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_11)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_bandit_sl_task_11:4:2)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_bandit_sl_task_11) =drx_ql_end_brawl_task(drx_ql_bandit_sl_task_11) =drx_ql_reset_task(drx_ql_bandit_sl_task_11)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_end_brawl_task(drx_ql_bandit_sl_task_11) =drx_ql_fail_task(drx_ql_bandit_sl_task_11) =drx_ql_reset_task(drx_ql_bandit_sl_task_11)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_end_brawl_task(drx_ql_bandit_sl_task_11) =drx_ql_fail_task(drx_ql_bandit_sl_task_11) =drx_ql_reset_task(drx_ql_bandit_sl_task_11)%
+
+;------------------------------------------------
+; Bandit Sultan Prisoner Snatch Storyline Task-
+
+[drx_ql_bandit_sl_task_12]
+
+icon = ui_inGame2_Zalozhnik
+storyline = true
+prior = 147
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(zat_b7_bandit_boss_sultan) =drx_ql_find_assassination_target(bandit:drx_ql_bandit_sl_task_12)} true, false
+prisoner_task = true
+
+title = drx_ql_bandit_sl_task_12_name
+descr = drx_ql_bandit_sl_task_12_text
+descr_functor = drx_ql_prisoner_task_target
+job_descr = drx_ql_bandit_sl_task_12_about
+task_complete_descr = drx_ql_bandit_sl_task_12_finish
+
+stage_complete = 2
+target_functor = drx_ql_prisoner_task_target
+status_functor = drx_ql_prisoner_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_bandit_sl_task_12)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_bandit_sl_task_12)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_bandit_sl_task_12)%
+on_init = %=drx_ql_give_prisoner_target(drx_ql_bandit_sl_task_12)%
+
+on_complete = %=drx_ql_reward_money(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_bandit_sl_task_12) =drx_ql_reset_prisoner_task(drx_ql_bandit_sl_task_12) =drx_ql_remove_prisoner(drx_ql_bandit_sl_task_12) =drx_ql_reset_task(drx_ql_bandit_sl_task_12)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_bandit_sl_task_12) =drx_ql_reset_prisoner_task(drx_ql_bandit_sl_task_12) =drx_ql_reset_task(drx_ql_bandit_sl_task_12)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_bandit_sl_task_12) =drx_ql_reset_prisoner_task(drx_ql_bandit_sl_task_12) =drx_ql_reset_task(drx_ql_bandit_sl_task_12)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Bandit Simulation Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Find Supplies for Bandit Simulation Task-
+
+[drx_ql_simulation_task_bandit_1]
+
+icon = ui_inGame2_D_Sisshik
+storyline = false
+prior = 20
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_bandit_1_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_bandit_1_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_bandit_1_about
+fetch_descr = drx_ql_simulation_task_bandit_1_fetch_about
+task_complete_descr = drx_ql_simulation_task_bandit_1_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_bandit_1)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_bandit_1)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_simulation_task_bandit_1:800:1600:2:12:0:items_ammo_list:items_supplies_list)%
+
+on_complete = %=drx_ql_fetch_reward_money(drx_ql_simulation_task_bandit_1:1.5) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_simulation_task_bandit_1) =drx_ql_reset_task(drx_ql_simulation_task_bandit_1)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_1) =drx_ql_reset_task(drx_ql_simulation_task_bandit_1)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_1) =drx_ql_reset_task(drx_ql_simulation_task_bandit_1)%
+
+;------------------------------------------------
+; Weapon Straw Purchase for Bandit Simulation Task-
+
+[drx_ql_simulation_task_bandit_2]
+
+icon = ui_inGame2_Neizvestnoe_oruzhie
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_bandit_2_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_bandit_2_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_bandit_2_about
+fetch_descr = drx_ql_simulation_task_bandit_2_fetch_about
+task_complete_descr = drx_ql_simulation_task_bandit_2_fetch_finish
+
+stage_complete = 2
+status_functor = drx_ql_fetch_task_status
+target_functor = drx_ql_fetch_task_target
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_bandit_2)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_bandit_2)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_simulation_task_bandit_2:1000:4500:1:1:0.5:items_rifles_list)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_simulation_task_bandit_2)%
+
+on_complete = %=drx_ql_fetch_reward_money(drx_ql_simulation_task_bandit_2:1.5) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_simulation_task_bandit_2) =drx_ql_reset_task(drx_ql_simulation_task_bandit_2)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_2) =drx_ql_reset_task(drx_ql_simulation_task_bandit_2)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_2) =drx_ql_reset_task(drx_ql_simulation_task_bandit_2)%
+
+;------------------------------------------------
+; Bandit Guide Simulation Task-
+
+[drx_ql_simulation_task_bandit_3]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = false
+prior = 50
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_guide_task_started =drx_ql_find_guide_target(drx_ql_simulation_task_bandit_3)} true, false
+guide_task = true
+
+title = drx_ql_simulation_task_bandit_3_name
+descr = drx_ql_simulation_task_bandit_3_text
+descr_functor = drx_ql_guide_task_target
+job_descr = drx_ql_simulation_task_bandit_3_about
+message = drx_ql_simulation_task_bandit_3_message
+task_complete_descr = drx_ql_simulation_task_bandit_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_guide_task_target
+status_functor = drx_ql_guide_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_bandit_3)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_bandit_3)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_simulation_task_bandit_3) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_bandit_3) +drx_ql_guide_task_started%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_bandit_3) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_simulation_task_bandit_3) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_bandit_3) -drx_ql_guide_task_started =drx_ql_reset_task(drx_ql_simulation_task_bandit_3)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_bandit_3) -drx_ql_guide_task_started =drx_ql_fail_task(drx_ql_simulation_task_bandit_3) =drx_ql_reset_task(drx_ql_simulation_task_bandit_3)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_bandit_3) -drx_ql_guide_task_started =drx_ql_fail_task(drx_ql_simulation_task_bandit_3) =drx_ql_reset_task(drx_ql_simulation_task_bandit_3)%
+
+;------------------------------------------------
+; Item Swap with Bandit Simulation Task-
+
+[drx_ql_simulation_task_bandit_4]
+
+icon = ui_iconsTotal_bar_hunter_rifle
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_bandit_4_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_bandit_4_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_bandit_4_about
+fetch_descr = drx_ql_simulation_task_bandit_4_fetch_about
+task_complete_descr = drx_ql_simulation_task_bandit_4_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_bandit_4)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_bandit_4)} fail
+fetch_func = %=drx_ql_setup_swap_task(drx_ql_simulation_task_bandit_4:1000:6000:0.8)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_simulation_task_bandit_4)%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_bandit_4) =remove_fetch_item(drx_ql_simulation_task_bandit_4_fetch) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_simulation_task_bandit_4) =drx_ql_reset_task(drx_ql_simulation_task_bandit_4)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_4) =drx_ql_reset_task(drx_ql_simulation_task_bandit_4)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_4) =drx_ql_reset_task(drx_ql_simulation_task_bandit_4)%
+
+;------------------------------------------------
+; Bandit Assassination Team Task-
+
+[drx_ql_simulation_task_bandit_5]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_assassination_target(bandit:drx_ql_simulation_task_bandit_5)} true, false
+
+title = drx_ql_simulation_task_bandit_5_name
+descr = drx_ql_simulation_task_bandit_5_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_simulation_task_bandit_5_about
+task_complete_descr = drx_ql_simulation_task_bandit_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_bandit_5)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_bandit_5)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_bandit_5)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_simulation_task_bandit_5) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_bandit_5)%
+
+on_complete = %=drx_ql_reward_money(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_simulation_task_bandit_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_bandit_5) =drx_ql_reset_task(drx_ql_simulation_task_bandit_5)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_bandit_5) =drx_ql_reset_task(drx_ql_simulation_task_bandit_5)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_bandit_5) =drx_ql_reset_task(drx_ql_simulation_task_bandit_5)%
+
+;------------------------------------------------
+; Bandit Roll the Marks Task-
+
+[drx_ql_simulation_task_bandit_6]
+
+icon = ui_inGame2_PD_Lider
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(bandit:drx_ql_simulation_task_bandit_6)} true, false
+
+title = drx_ql_simulation_task_bandit_6_name
+descr = drx_ql_simulation_task_bandit_6_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_simulation_task_bandit_6_about
+task_complete_descr = drx_ql_simulation_task_bandit_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_bandit_6)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_bandit_6)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_bandit_6) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_bandit_6)%
+
+on_complete = %=drx_ql_reward_item(4000:7500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_simulation_task_bandit_6) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_bandit_6) =drx_ql_reset_task(drx_ql_simulation_task_bandit_6)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_6) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_bandit_6) =drx_ql_reset_task(drx_ql_simulation_task_bandit_6)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_6) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_bandit_6) =drx_ql_reset_task(drx_ql_simulation_task_bandit_6)%
+
+;------------------------------------------------
+; Bounty Hunt for Bandit Simulation Task-
+
+[drx_ql_simulation_task_bandit_7]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_assassination_target(bandit:drx_ql_simulation_task_bandit_7)} true, false
+
+title = drx_ql_simulation_task_bandit_7_name
+descr = drx_ql_simulation_task_bandit_7_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_simulation_task_bandit_7_about
+task_complete_descr = drx_ql_simulation_task_bandit_7_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_bandit_7)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_bandit_7)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_bandit_7)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_simulation_task_bandit_7)%
+
+on_complete = %=drx_ql_reward_money(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_simulation_task_bandit_7) =drx_ql_reset_task(drx_ql_simulation_task_bandit_7)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_7) =drx_ql_reset_task(drx_ql_simulation_task_bandit_7)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_7) =drx_ql_reset_task(drx_ql_simulation_task_bandit_7)%
+
+;------------------------------------------------
+; Bandit Hidden Target Simulation Task-
+
+[drx_ql_simulation_task_bandit_8]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_assassination_target(bandit:drx_ql_simulation_task_bandit_8:bandit)} true, false
+
+title = drx_ql_simulation_task_bandit_8_name
+descr = drx_ql_simulation_task_bandit_8_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_simulation_task_bandit_8_about
+task_complete_descr = drx_ql_simulation_task_bandit_8_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_bandit_8)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_bandit_8)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_bandit_8)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_simulation_task_bandit_8) =drx_ql_add_hidden_target(drx_ql_simulation_task_bandit_8)%
+
+on_complete = %=drx_ql_reward_random(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_simulation_task_bandit_8) =drx_ql_reset_task(drx_ql_simulation_task_bandit_8)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_8) =drx_ql_reset_task(drx_ql_simulation_task_bandit_8)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_simulation_task_bandit_8) =drx_ql_reset_task(drx_ql_simulation_task_bandit_8)%
+
+; -----------------------------------------------
+; Bandit Steal the Case Simulation Task-
+
+[drx_ql_simulation_task_bandit_9]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_case_task_started =drx_ql_find_occupied_smart_ext(bandit:drx_ql_simulation_task_bandit_9)} true, false
+
+title = drx_ql_simulation_task_bandit_9_name
+descr = drx_ql_simulation_task_bandit_9_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_bandit_9_about
+task_complete_descr = drx_ql_simulation_task_bandit_9_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_bandit_9)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_bandit_9)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_bandit_9:drx_ql_quest_item_case:50) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_item(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_simulation_task_bandit_9) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_simulation_task_bandit_9)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_release_float_item(drx_ql_simulation_task_bandit_9) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_bandit_9) =drx_ql_reset_task(drx_ql_simulation_task_bandit_9)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_release_float_item(drx_ql_simulation_task_bandit_9) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_bandit_9) =drx_ql_reset_task(drx_ql_simulation_task_bandit_9)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

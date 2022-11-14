@@ -1,0 +1,55 @@
+;==============================================================
+;
+; bunker_primary_switcher.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: January 12, 2018
+;
+;==============================================================
+
+
+[logic]
+active = ph_button@rad_on
+
+[ph_button@rad_on]
+anim_blend  = true
+anim        = lab_primary_switcher_idle
+tooltip     = tips_rad_switcher_press
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Switch Brain Scorcher Off Action:
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	January 12, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; on_press    = ph_button@rad_off % +bar_deactivate_radar_done%
+on_press = ph_button@rad_off %+drx_ql_brain_scorcher_switch_off +bar_deactivate_radar_done%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[ph_button@rad_off]
+anim_blend  = true
+anim        = lab_primary_switcher_off
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Switch Brain Scorcher On Action:
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	January 12, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+tooltip = drx_ql_tips_activate_brain_scorcher
+on_press = ph_button@rad_on %-drx_ql_brain_scorcher_switch_off%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

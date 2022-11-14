@@ -1,0 +1,287 @@
+;==============================================================
+;
+; Tasks Given by Dushman (Mercenary Trader, Dead City) (drx_ql_tasks_merc_dushman.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_merc_dushman.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: November 17, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Change Factions Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 06, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Dushman (Mercenary Trader) Payoff Change Factions Task-
+
+[drx_ql_cit_killers_merc_trader_stalker_cf_task_1]
+
+icon = ui_inGame2_Sdelka
+storyline = true
+prior = 197
+weight = 1
+repeat_timeout = 0
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_cit_killers_merc_trader_stalker_cf_task_1_name
+descr = drx_ql_cit_killers_merc_trader_stalker_cf_task_1_text
+descr_functor = drx_ql_money_task_target
+job_descr = drx_ql_cit_killers_merc_trader_stalker_cf_task_1_about
+task_complete_descr = drx_ql_cit_killers_merc_trader_stalker_cf_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_money_task_target
+status_functor = drx_ql_money_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_cit_killers_merc_trader_stalker_cf_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_cit_killers_merc_trader_stalker_cf_task_1)} fail
+on_init = %=pstor_set(drx_ql_cit_killers_merc_trader_stalker_cf_task_1_fetch:12000) +drx_ql_on_cf_task%
+
+on_complete = %=drx_ql_money_task_payment(drx_ql_cit_killers_merc_trader_stalker_cf_task_1) =drx_ql_change_factions(killer) =inc_task_stage(drx_ql_cit_killers_merc_trader_stalker_cf_task_1) -drx_ql_on_cf_task =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_cf_task_1)%
+on_fail = %-drx_ql_on_cf_task =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_cf_task_1) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_cf_task_1)%
+on_cancel = %-drx_ql_on_cf_task =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_cf_task_1) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_cf_task_1)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 17, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Dushman (Mercenary Trader) Contract Killing Task-
+
+[drx_ql_cit_killers_merc_trader_stalker_task_1]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_assassination_target(killer:drx_ql_cit_killers_merc_trader_stalker_task_1)} true, false
+
+title = drx_ql_cit_killers_merc_trader_stalker_task_1_name
+descr = drx_ql_cit_killers_merc_trader_stalker_task_1_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_cit_killers_merc_trader_stalker_task_1_about
+task_complete_descr = drx_ql_cit_killers_merc_trader_stalker_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_cit_killers_merc_trader_stalker_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_cit_killers_merc_trader_stalker_task_1)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_cit_killers_merc_trader_stalker_task_1)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_cit_killers_merc_trader_stalker_task_1)%
+
+on_complete = %=drx_ql_reward_money(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_cit_killers_merc_trader_stalker_task_1) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_1) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_1) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_1)%
+
+;------------------------------------------------
+; Dushman (Mercenary Trader) Assault Enemy Territory Task-
+
+[drx_ql_cit_killers_merc_trader_stalker_task_2]
+
+icon = ui_inGame2_PD_Lider
+storyline = false
+prior = 75
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(killer:drx_ql_cit_killers_merc_trader_stalker_task_2) !squad_exist(drx_ql_raid_companion_squad_killer_2)} true, false
+
+title = drx_ql_cit_killers_merc_trader_stalker_task_2_name
+descr = drx_ql_cit_killers_merc_trader_stalker_task_2_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_cit_killers_merc_trader_stalker_task_2_about
+task_complete_descr = drx_ql_cit_killers_merc_trader_stalker_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_cit_killers_merc_trader_stalker_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_cit_killers_merc_trader_stalker_task_2)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_cit_killers_merc_trader_stalker_task_2) =drx_ql_give_escort_task_companions(drx_ql_raid_companion_squad_killer_2)%
+
+on_complete = %=drx_ql_reward_random(7500:9000) =complete_task_inc_goodwill(50:killer) =drx_ql_reward_stash() =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_killer_2) =inc_task_stage(drx_ql_cit_killers_merc_trader_stalker_task_2) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_killer_2) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_2) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_killer_2) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_2) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_2)%
+
+;------------------------------------------------
+; Dushman (Mercenary Trader) Interceptor Task-
+
+[drx_ql_cit_killers_merc_trader_stalker_task_3]
+
+icon = ui_iconsTotal_bar_darklab_documents
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_document_case_task_started =drx_ql_is_enemy(army) =is_factions_enemies(killer:army) !squad_exist(drx_ql_designated_target_squad_army) =drx_ql_find_unoccupied_smart_terrain(drx_ql_cit_killers_merc_trader_stalker_task_3)} true, false
+
+title = drx_ql_cit_killers_merc_trader_stalker_task_3_name
+descr = drx_ql_cit_killers_merc_trader_stalker_task_3_text
+descr_functor = drx_ql_interceptor_task_target
+job_descr = drx_ql_cit_killers_merc_trader_stalker_task_3_about
+task_complete_descr = drx_ql_cit_killers_merc_trader_stalker_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_interceptor_task_target
+status_functor = drx_ql_interceptor_task_status
+status_functor_params = drx_ql_quest_item_document_case
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_cit_killers_merc_trader_stalker_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_cit_killers_merc_trader_stalker_task_3)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_cit_killers_merc_trader_stalker_task_3) =drx_ql_create_interceptor_squad(drx_ql_cit_killers_merc_trader_stalker_task_3:drx_ql_designated_target_squad_army) +drx_ql_quest_item_document_case_task_started%
+
+on_complete = %=drx_ql_reward_random(3000:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_document_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army) =inc_task_stage(drx_ql_cit_killers_merc_trader_stalker_task_3) -drx_ql_quest_item_document_case_task_started =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =remove_item(drx_ql_quest_item_document_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army) -drx_ql_quest_item_document_case_task_started =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_3) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =remove_item(drx_ql_quest_item_document_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army) -drx_ql_quest_item_document_case_task_started =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_3) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_3)%
+
+;------------------------------------------------
+; Dushman (Mercenary Trader) Dynamic Brawl Task-
+
+[drx_ql_cit_killers_merc_trader_stalker_task_4]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 94
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_brawl_terrain(killer:drx_ql_cit_killers_merc_trader_stalker_task_4)} true, false
+
+title = drx_ql_cit_killers_merc_trader_stalker_task_4_name
+descr = drx_ql_cit_killers_merc_trader_stalker_task_4_text
+descr_1 = drx_ql_cit_killers_merc_trader_stalker_task_4_text_1
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_cit_killers_merc_trader_stalker_task_4_about
+message = drx_ql_cit_killers_merc_trader_stalker_task_4_message
+task_complete_descr = drx_ql_cit_killers_merc_trader_stalker_task_4_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_cit_killers_merc_trader_stalker_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_cit_killers_merc_trader_stalker_task_4)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_cit_killers_merc_trader_stalker_task_4:4:2)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_cit_killers_merc_trader_stalker_task_4) =drx_ql_end_brawl_task(drx_ql_cit_killers_merc_trader_stalker_task_4) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_end_brawl_task(drx_ql_cit_killers_merc_trader_stalker_task_4) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_4) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_end_brawl_task(drx_ql_cit_killers_merc_trader_stalker_task_4) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_4) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_4)%
+
+;------------------------------------------------
+; Dushman (Mercenary Trader) Extract Mercenary Prisoner Task-
+
+[drx_ql_cit_killers_merc_trader_stalker_task_5]
+
+icon = ui_inGame2_Zalozhnik
+storyline = false
+prior = 95
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_enemy(army) =is_factions_enemies(killer:army) -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(killer:drx_ql_cit_killers_merc_trader_stalker_task_5:army) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_cit_killers_merc_trader_stalker_task_5_name
+descr = drx_ql_cit_killers_merc_trader_stalker_task_5_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_cit_killers_merc_trader_stalker_task_5_about
+task_complete_descr = drx_ql_cit_killers_merc_trader_stalker_task_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_cit_killers_merc_trader_stalker_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_cit_killers_merc_trader_stalker_task_5)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_cit_killers_merc_trader_stalker_task_5) =drx_ql_setup_hostage_task(hostage_companion_task_1_killer:nil:drx_ql_cit_killers_merc_trader_stalker_task_5_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_cit_killers_merc_trader_stalker_task_5) =unlock_smart(drx_ql_cit_killers_merc_trader_stalker_task_5_id) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_cit_killers_merc_trader_stalker_task_5_id) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_5) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_cit_killers_merc_trader_stalker_task_5_id) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_5) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_5)%
+
+; -----------------------------------------------
+; Dushman (Mercenary Trader) Capture Enemy Documents Task-
+
+[drx_ql_cit_killers_merc_trader_stalker_task_6]
+
+icon = ui_inGame2_Poslednie_razrabotki
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_papers_task_started =drx_ql_find_special_smart_terrain(drx_ql_cit_killers_merc_trader_stalker_task_6:building_smarts)} true, false
+
+title = drx_ql_cit_killers_merc_trader_stalker_task_6_name
+descr = drx_ql_cit_killers_merc_trader_stalker_task_6_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_cit_killers_merc_trader_stalker_task_6_about
+task_complete_descr = drx_ql_cit_killers_merc_trader_stalker_task_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_cit_killers_merc_trader_stalker_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_cit_killers_merc_trader_stalker_task_6)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_cit_killers_merc_trader_stalker_task_6:drx_ql_quest_item_papers:25) +drx_ql_quest_item_papers_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_papers) =inc_task_stage(drx_ql_cit_killers_merc_trader_stalker_task_6) -drx_ql_quest_item_papers_task_started =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_cit_killers_merc_trader_stalker_task_6) -drx_ql_quest_item_papers_task_started =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_6) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_cit_killers_merc_trader_stalker_task_6) -drx_ql_quest_item_papers_task_started =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_6) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_6)%
+
+;------------------------------------------------
+; Dushman (Mercenary Trader) Prisoner Snatch Task-
+
+[drx_ql_cit_killers_merc_trader_stalker_task_7]
+
+icon = ui_inGame2_Zalozhnik
+storyline = false
+prior = 47
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_assassination_target(killer:drx_ql_cit_killers_merc_trader_stalker_task_7)} true, false
+prisoner_task = true
+
+title = drx_ql_cit_killers_merc_trader_stalker_task_7_name
+descr = drx_ql_cit_killers_merc_trader_stalker_task_7_text
+descr_functor = drx_ql_prisoner_task_target
+job_descr = drx_ql_cit_killers_merc_trader_stalker_task_7_about
+task_complete_descr = drx_ql_cit_killers_merc_trader_stalker_task_7_finish
+
+stage_complete = 2
+target_functor = drx_ql_prisoner_task_target
+status_functor = drx_ql_prisoner_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_cit_killers_merc_trader_stalker_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_cit_killers_merc_trader_stalker_task_7)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_cit_killers_merc_trader_stalker_task_7)%
+on_init = %=drx_ql_give_prisoner_target(drx_ql_cit_killers_merc_trader_stalker_task_7)%
+
+on_complete = %=drx_ql_reward_money(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_cit_killers_merc_trader_stalker_task_7) =drx_ql_reset_prisoner_task(drx_ql_cit_killers_merc_trader_stalker_task_7) =drx_ql_remove_prisoner(drx_ql_cit_killers_merc_trader_stalker_task_7) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_7) =drx_ql_reset_prisoner_task(drx_ql_cit_killers_merc_trader_stalker_task_7) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_cit_killers_merc_trader_stalker_task_7) =drx_ql_reset_prisoner_task(drx_ql_cit_killers_merc_trader_stalker_task_7) =drx_ql_reset_task(drx_ql_cit_killers_merc_trader_stalker_task_7)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

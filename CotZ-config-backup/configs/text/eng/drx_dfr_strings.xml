@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Dynamic Faction Relations Strings (drx_dfr_strings.xml)
+<	CoC 1.5b r4 - DoctorX Dynamic Faction Relations 2.0
+<
+<	Created by: DoctorX
+<	Last revised: July 27, 2018
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Faction War Footing Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Dynamic Faction Relations 2.0
+	<!--	October 15, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Factions turn hostile (%s 1 = faction 1, %s 2 = faction 2): -->
+	<string id="drx_dfr_str_neutral_to_hostile">
+		<text>%s and %s factions have declared war on each other.</text>
+	</string>
+
+	<!-- Factions form an alliance (%s 1 = faction 1, %s 2 = faction 2): -->
+	<string id="drx_dfr_str_neutral_to_allied">
+		<text>%s and %s factions have formed an alliance.</text>
+	</string>
+
+	<!-- Factions go from allied to neutral (%s 1 = faction 1, %s 2 = faction 2): -->
+	<string id="drx_dfr_str_allied_to_neutral">
+		<text>%s - %s relations are deteriorating.</text>
+	</string>
+
+	<!-- Factions go from hostile to neutral (%s 1 = faction 1, %s 2 = faction 2): -->
+	<string id="drx_dfr_str_hostile_to_neutral">
+		<text>%s and %s factions have declared a cease-fire.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Offline Battle Simulator Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Dynamic Faction Relations 2.0
+	<!--	July 27, 2018
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Newsmanager update to send when an offline battle is occurring (%s 1 = faction 1, %s 2 = faction 2): -->
+	<string id="drx_dfr_str_offline_battle_started">
+		<text>Members of the %s and %s factions are engaged in a firefight.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

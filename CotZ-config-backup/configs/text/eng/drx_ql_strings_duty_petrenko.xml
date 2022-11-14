@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks  Given by Colonel Petrenko (Duty Trader, Rostok) (drx_ql_strings_duty_petrenko.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_duty_petrenko.ltx
+<
+<	Created by: DoctorX
+<	Last revised: August 04, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Petrenko (Duty Trader) Payoff Change Factions Task -->
+
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_cf_task_1_name">
+		<text>Duty Initiation Fee</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_cf_task_1_text">
+		<text>Colonel Petrenko will let you join Duty for a fee of 12,000 RU.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_cf_task_1_about">
+		<text>We would be more than happy to have you join Duty. There is an initiation fee, of course. If you can bring me 12,000 RU I will get you in.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_cf_task_1_finish">
+		<text>Excellent. Welcome to Duty, stalker. Do us proud.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 04, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Petrenko (Duty Trader) Intervention Task -->
+
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_1_name">
+		<text>Intervention</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_1_text">
+		<text>Hostile %s are planning an attack on a Duty camp. Colonel Petrenko has asked you to intercept and eliminate the threat.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_1_about">
+		<text>I have received intel that a small task force of %s are planning a raid on one of our outposts. If we move quickly we can catch them by surprise before they are able to start their assault.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_1_finish">
+		<text>Excellent work. You are a fine warrior.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Petrenko (Duty Trader) Capture Territory Task -->
+
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_2_name">
+		<text>Reclaim Duty Territory</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_2_text">
+		<text>You have been tasked to recapture territory for Duty. Report back to Colonel Petrenko after the job is done.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_2_about">
+		<text>I have an important mission available. Freedom has taken over one of our camps and I need a specialist to reclaim it.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_2_finish">
+		<text>You have done well. Good job.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Petrenko (Duty Trader) Assassination Task -->
+
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_3_name">
+		<text>Assassinate VIP for Petrenko</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_3_text">
+		<text>Colonel Petrenko has ordered you to find and eliminate %s known as %s.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_3_about">
+		<text>I have a list of high-ranking individuals that need to be... taken care of. Some are informants, squad leaders, tacticians, or just plain scum. Extract information if you can, otherwise kill on sight.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_3_finish">
+		<text>Excellent! You do us proud. Here is what I promised.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Petrenko (Duty Trader) Raid Enemy Camp Task- -->
+
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_4_name">
+		<text>Expedition Assault</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_4_text">
+		<text>Colonel Petrenko has discovered the location of an enemy camp. Lead the assault party to the target and return them safely when the threat has been eliminated.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_4_about">
+		<text>We're preparing a raid on a remote enemy encampment of %s. My men are excellent fighters but they couldn't find the tip of their nose even if they were cross eyed. I want you to lead the expedition and guide the men to the target area. Eliminate the enemy presence and return my men safely.</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_task_4_finish">
+		<text>Is that how many men you left with? Ah well, close enough. Excellent work. Here is your reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Yar (Freedom Broker, Jupiter) (drx_ql_strings_freedom_yar.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_freedom_yar.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 02, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 02, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Yar (Freedom Broker) Retrieve Locked Case from Snork Tunnels Task -->
+
+	<string id="drx_ql_jup_b19_freedom_yar_task_1_name">
+		<text>Sinkhole Stash</text>
+	</string>
+	<string id="drx_ql_jup_b19_freedom_yar_task_1_text">
+		<text>Yar lost a valuable stash when it fell into a chasm. He is willing to pay well for its return.</text>
+	</string>
+	<string id="drx_ql_jup_b19_freedom_yar_task_1_about">
+		<text>There is a safe that I had hidden in the trunk of an old Zaporozhetz up in Zaton. Would you believe my luck, a chasm opened up in the ground beneath it and swallowed up the damn car. My safe is somewhere down in those tunnels, but I'm in no condition to go down there. I'm not going to tell you what I had in there, but I will say it is very valuable to me and I would be willing to pay handsomely if you can find it.</text>
+	</string>
+	<string id="drx_ql_jup_b19_freedom_yar_task_1_finish">
+		<text>Excellent! Thank you stalker.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Yar (Freedom Broker) Retrieve PDA Task -->
+
+	<string id="drx_ql_jup_b19_freedom_yar_task_2_name">
+		<text>Retrieve Stashed PDA for Yar</text>
+	</string>
+	<string id="drx_ql_jup_b19_freedom_yar_task_2_text">
+		<text>Yar has given the location of a valuable stash that may contain a PDA. He has offered to pay you to bring it back to him, anything else in the stash is yours.</text>
+	</string>
+	<string id="drx_ql_jup_b19_freedom_yar_task_2_about">
+		<text>You want to make a couple bucks and maybe get some nice loot? I know of a stash that might have, amongst other things, a PDA I would like to get my hands on. If you're interested I'll pay you for the PDA, and you can keep anything else you might find in there.</text>
+	</string>
+	<string id="drx_ql_jup_b19_freedom_yar_task_2_finish">
+		<text>Thanks.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Yar (Freedom Broker) Interceptor Task -->
+
+	<string id="drx_ql_jup_b19_freedom_yar_task_3_name">
+		<text>Recapture PDA</text>
+	</string>
+	<string id="drx_ql_jup_b19_freedom_yar_task_3_text">
+		<text>Retrieve the PDA that was taken by the Monolith cultists after they killed Yar's courier.</text>
+	</string>
+	<string id="drx_ql_jup_b19_freedom_yar_task_3_about">
+		<text>One of my couriers was killed by Monolith cultists who looted his body and took a PDA he was transporting for me. I need that PDA stalker, the information it contained is very valuable to me. If you can get it back from them, I will reward you well.</text>
+	</string>
+	<string id="drx_ql_jup_b19_freedom_yar_task_3_finish">
+		<text>Thank you stalker. Here is your reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Novikov (Clear Sky Mechanic, Great Swamp) (drx_ql_strings_csky_novikov.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_csky_novikov.ltx
+<
+<	Created by: DoctorX
+<	Last revised: November 08, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Novikov  (Clear Sky Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_mar_base_stalker_tech_task_1_name">
+		<text>Find Gunsmith Toolkit for Novikov</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_tech_task_1_text">
+		<text>Find a set of gunsmith tools for Novikov so he can perform basic upgrades on your gear.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_tech_task_1_about">
+		<text>Duct tape and chewing gum can only get me so far around here. If I had some better tools I would be able to do upgrades to your gear. I can give you a location to search if you want to try finding some for me.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_tech_task_1_finish">
+		<text>Ah good, you found the tools. Thank you stalker. Take this as a reward and let me know if you would like me to do any upgrades to your eqipment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Novikov  (Clear Sky Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_mar_base_stalker_tech_task_2_name">
+		<text>Retrieve Technician Toolkit for Novikov</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_tech_task_2_text">
+		<text>Retrieve the set of technician tools that Novikov has stashed away so he can perform advanced upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_tech_task_2_about">
+		<text>There is an old set of technician's tools that I have stashed away from a long time ago. I nearly forgot about them, if you want to get them for me I'll pay you for the trouble, and I'll be able to perform more advanced upgrades on your equipment.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_tech_task_2_finish">
+		<text>Great, thanks for getting these. Here's something for the effort. Let me know if you would like me to do any work to your gear, I'll be able to perform more advanced upgrades now that I have the right tools.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Novikov  (Clear Sky Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_mar_base_stalker_tech_task_3_name">
+		<text>Retrieve Armorer's Toolkit for Novikov</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_tech_task_3_text">
+		<text>Find the Bandit that raided Novikov's shop and get his set of armorer's tools back.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_tech_task_3_about">
+		<text>A Bandit snuck into the camp last night and raided my shop. He made out with a brand new set of armorer's tools I had just gotten. I need those tools to be able to fully upgrade equipment. Find the bastard and get my tools back.</text>
+	</string>
+	<string id="drx_ql_mar_base_stalker_tech_task_3_finish">
+		<text>Thank you stalker. Let me know if you need any upgrades installed on your gear, I'll be able to do pretty much anything now.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

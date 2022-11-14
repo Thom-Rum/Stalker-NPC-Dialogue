@@ -1,0 +1,40 @@
+;==============================================================
+;
+; Blowout Settings (drx_ql_blowout.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Created by: DoctorX
+;	Last revised: July 28, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Blowout Settings
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 28, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Blowout settings:
+[blowout_settings]
+
+; Whether or not to have blowout progression dependent on distance to source (bool):
+dist_mult_enabled = true
+
+; Reference distance from source where distance multiplier is 1 (float, meters):
+reference_dist = 7000
+
+; Minimum distance multiplier for blowout progression when closest to source (float, decimal percent):
+min_mult = 0.2  ; 20%
+
+; Amount of time after surge passes until surge end not subject to distance multiplier (float, game seconds):
+offset_time = 40
+
+; Source smart terrain name (string, smart terrain name):
+source_smart = gen_smart_terrain_urod
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

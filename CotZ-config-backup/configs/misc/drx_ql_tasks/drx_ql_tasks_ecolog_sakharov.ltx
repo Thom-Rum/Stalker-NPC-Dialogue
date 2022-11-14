@@ -1,0 +1,195 @@
+;==============================================================
+;
+; Tasks Given by Professor Sakharov (Ecologist Trader, Yantar) (drx_ql_tasks_ecolog_sakharov.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_ecolog_sakharov.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: November 08, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Change Factions Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 05, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; -----------------------------------------------
+; Sakharov (Ecologist Trader) Payoff Change Factions Task-
+
+[drx_ql_yan_stalker_sakharov_cf_task_1]
+
+icon = ui_inGame2_Sdelka
+storyline = true
+prior = 197
+weight = 1
+repeat_timeout = 0
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_yan_stalker_sakharov_cf_task_1_name
+descr = drx_ql_yan_stalker_sakharov_cf_task_1_text
+descr_functor = drx_ql_money_task_target
+job_descr = drx_ql_yan_stalker_sakharov_cf_task_1_about
+task_complete_descr = drx_ql_yan_stalker_sakharov_cf_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_money_task_target
+status_functor = drx_ql_money_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_yan_stalker_sakharov_cf_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_yan_stalker_sakharov_cf_task_1)} fail
+on_init = %=pstor_set(drx_ql_yan_stalker_sakharov_cf_task_1_fetch:17000) +drx_ql_on_cf_task%
+
+on_complete = %=drx_ql_money_task_payment(drx_ql_yan_stalker_sakharov_cf_task_1) =drx_ql_change_factions(ecolog) =inc_task_stage(drx_ql_yan_stalker_sakharov_cf_task_1) -drx_ql_on_cf_task =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_cf_task_1)%
+on_fail = %-drx_ql_on_cf_task =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_cf_task_1) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_cf_task_1)%
+on_cancel = %-drx_ql_on_cf_task =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_cf_task_1) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_cf_task_1)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Sakharov (Ecologist Trader) Tissue Sample Task-
+
+[drx_ql_yan_stalker_sakharov_task_1]
+
+icon = ui_inGame2_Logovo_krovososov
+storyline = false
+prior = 35
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_yan_stalker_sakharov_task_1_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_yan_stalker_sakharov_task_1_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_yan_stalker_sakharov_task_1_about
+fetch_descr = drx_ql_yan_stalker_sakharov_task_1_fetch_about
+task_complete_descr = drx_ql_yan_stalker_sakharov_task_1_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_yan_stalker_sakharov_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_yan_stalker_sakharov_task_1)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_yan_stalker_sakharov_task_1:500:1250:1:1:0:items_mutant_parts_list)%
+
+on_complete = %=drx_ql_fetch_reward_money(drx_ql_yan_stalker_sakharov_task_1:4) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_yan_stalker_sakharov_task_1) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_task_1) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_task_1) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_1)%
+
+;------------------------------------------------
+; Sakharov (Ecologist Trader) Zombie Outbreak Task-
+
+[drx_ql_yan_stalker_sakharov_task_2]
+
+icon = ui_inGame2_Fallout_acid
+storyline = false
+prior = 75
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -yan_labx16_switcher_primary_off =drx_ql_is_enemy(zombied) =is_factions_enemies(ecolog:zombied) !squad_exist(drx_ql_designated_target_squad_zombied_yantar_1) !squad_exist(drx_ql_designated_target_squad_zombied_yantar_2) !squad_exist(drx_ql_designated_target_squad_zombied_yantar_3) !squad_exist(drx_ql_designated_target_squad_zombied_yantar_4) !squad_exist(drx_ql_attack_squad_ecolog_yantar_1) !squad_exist(drx_ql_attack_squad_ecolog_yantar_2)} true, false
+
+title = drx_ql_yan_stalker_sakharov_task_2_name
+descr = drx_ql_yan_stalker_sakharov_task_2_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_yan_stalker_sakharov_task_2_about
+task_complete_descr = drx_ql_yan_stalker_sakharov_task_2_finish
+
+stage_complete = 1
+target = {=check_task_stage(drx_ql_yan_stalker_sakharov_task_2:1)} yan_stalker_sakharov, {=squad_exist(drx_ql_designated_target_squad_zombied_yantar_1)} drx_ql_designated_target_squad_zombied_yantar_1, {=squad_exist(drx_ql_designated_target_squad_zombied_yantar_2)} drx_ql_designated_target_squad_zombied_yantar_2, {=squad_exist(drx_ql_designated_target_squad_zombied_yantar_3)} drx_ql_designated_target_squad_zombied_yantar_3, {=squad_exist(drx_ql_designated_target_squad_zombied_yantar_4)} drx_ql_designated_target_squad_zombied_yantar_4
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_zombied_yantar_1, drx_ql_designated_target_squad_zombied_yantar_2, drx_ql_designated_target_squad_zombied_yantar_3, drx_ql_designated_target_squad_zombied_yantar_4
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_yan_stalker_sakharov_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_yan_stalker_sakharov_task_2)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_zombied_yantar_1:yan_smart_terrain_4_4) =create_squad(drx_ql_designated_target_squad_zombied_yantar_2:yan_smart_terrain_4_4) =create_squad(drx_ql_designated_target_squad_zombied_yantar_3:yan_smart_terrain_4_4) =create_squad(drx_ql_designated_target_squad_zombied_yantar_4:yan_smart_terrain_4_4) =create_squad(drx_ql_attack_squad_ecolog_yantar_1:yan_smart_terrain_6_6) =create_squad(drx_ql_attack_squad_ecolog_yantar_2:yan_smart_terrain_5_5)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_yan_stalker_sakharov_task_2) =drx_ql_remove_story_squad(drx_ql_attack_squad_ecolog_yantar_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_ecolog_yantar_2) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_yantar_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_yantar_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_yantar_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_yantar_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_ecolog_yantar_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_ecolog_yantar_2) =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_task_2) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_yantar_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_yantar_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_yantar_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_zombied_yantar_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_ecolog_yantar_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_ecolog_yantar_2) =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_task_2) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_2)%
+
+;------------------------------------------------
+; Sakharov (Ecologist Trader) Eliminate Mutant Threat Task-
+
+[drx_ql_yan_stalker_sakharov_task_3]
+
+icon = ui_inGame2_Nochnaya_ohota
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(stalker:drx_ql_yan_stalker_sakharov_task_3:monster)} true, false
+
+title = drx_ql_yan_stalker_sakharov_task_3_name
+descr = drx_ql_yan_stalker_sakharov_task_3_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_yan_stalker_sakharov_task_3_about
+task_complete_descr = drx_ql_yan_stalker_sakharov_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monster
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_yan_stalker_sakharov_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_yan_stalker_sakharov_task_3)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_yan_stalker_sakharov_task_3)%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_yan_stalker_sakharov_task_3) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_task_3) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_task_3) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_3)%
+
+;------------------------------------------------
+; Sakharov (Ecologist Trader) Research Documents Task-
+
+[drx_ql_yan_stalker_sakharov_task_4]
+
+icon = ui_iconsTotal_agroprom_get_military_documents
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_notebook_task_started =drx_ql_find_unoccupied_smart_terrain(drx_ql_yan_stalker_sakharov_task_4)} true, false
+
+title = drx_ql_yan_stalker_sakharov_task_4_name
+descr = drx_ql_yan_stalker_sakharov_task_4_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_yan_stalker_sakharov_task_4_about
+task_complete_descr = drx_ql_yan_stalker_sakharov_task_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_yan_stalker_sakharov_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_yan_stalker_sakharov_task_4)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_yan_stalker_sakharov_task_4:drx_ql_quest_item_notebook:50) +drx_ql_quest_item_notebook_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_notebook) =inc_task_stage(drx_ql_yan_stalker_sakharov_task_4) -drx_ql_quest_item_notebook_task_started =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_yan_stalker_sakharov_task_4) -drx_ql_quest_item_notebook_task_started =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_task_4) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_yan_stalker_sakharov_task_4) -drx_ql_quest_item_notebook_task_started =drx_ql_fail_task(drx_ql_yan_stalker_sakharov_task_4) =drx_ql_reset_task(drx_ql_yan_stalker_sakharov_task_4)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

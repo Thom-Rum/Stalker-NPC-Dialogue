@@ -1,0 +1,121 @@
+;==============================================================
+;
+; Tasks Given by Lieutenant Kirilov (Military Mechanic, Agroprom) (drx_ql_tasks_military_kirilov.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_military_kirilov.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: August 06, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Mechanic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 06, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Kirilov (Military Mechanic) Find Level 1 Toolkit Task-
+
+[drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1]
+
+icon = ui_inGame2_Instrumenti
+storyline = false
+prior = 41
+weight = 1
+repeat_timeout = 0
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -agr_smart_terrain_1_6_army_mechanic_stalker_upgrade_tier_1 -drx_ql_quest_item_toolkit_1_task_started} true, false
+
+title = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1_name
+descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1_text
+descr_functor = drx_ql_quest_stash_task_target
+job_descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1_about
+task_complete_descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_quest_stash_task_target
+target_functor_params = drx_ql_quest_item_toolkit_1
+status_functor = drx_ql_quest_stash_task_status
+status_functor_params = drx_ql_quest_item_toolkit_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(army)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1)} fail
+on_init = %=drx_ql_create_quest_stash(drx_ql_quest_item_toolkit_1) +drx_ql_quest_item_toolkit_1_task_started%
+
+on_complete = %=drx_ql_reward_money(1000:1500) +agr_smart_terrain_1_6_army_mechanic_stalker_upgrade_tier_1 =complete_task_inc_goodwill(50:army) =remove_item(drx_ql_quest_item_toolkit_1) =drx_ql_save_pstor_ctime(drx_ql_last_upgrade_time_agr_smart_terrain_1_6_army_mechanic_stalker) =inc_task_stage(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1) -drx_ql_quest_item_toolkit_1_task_started =pstor_reset(drx_ql_quest_item_toolkit_1_stash_id) =drx_ql_reset_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:army) =drx_ql_remove_quest_stash(drx_ql_quest_item_toolkit_1) -drx_ql_quest_item_toolkit_1_task_started =pstor_reset(drx_ql_quest_item_toolkit_1_stash_id) =drx_ql_fail_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1) =drx_ql_reset_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:army) =drx_ql_remove_quest_stash(drx_ql_quest_item_toolkit_1) -drx_ql_quest_item_toolkit_1_task_started =pstor_reset(drx_ql_quest_item_toolkit_1_stash_id) =drx_ql_fail_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1) =drx_ql_reset_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1)%
+
+;------------------------------------------------
+; Kirilov (Military Mechanic) Find Level 2 Toolkit Task-
+
+[drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2]
+
+icon = ui_inGame2_Instrumenti
+storyline = false
+prior = 42
+weight = 1
+repeat_timeout = 0
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +agr_smart_terrain_1_6_army_mechanic_stalker_upgrade_tier_1 -agr_smart_terrain_1_6_army_mechanic_stalker_upgrade_tier_2 -drx_ql_quest_item_toolkit_2_task_started =drx_ql_find_special_smart_terrain(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2:building_smarts)} true, false
+
+title = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_name
+descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_about
+task_complete_descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(army)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2:drx_ql_quest_item_toolkit_2:25) +drx_ql_quest_item_toolkit_2_task_started%
+
+on_complete = %=drx_ql_reward_money(1000:1500) +agr_smart_terrain_1_6_army_mechanic_stalker_upgrade_tier_2 =complete_task_inc_goodwill(50:army) =remove_item(drx_ql_quest_item_toolkit_2) =drx_ql_save_pstor_ctime(drx_ql_last_upgrade_time_agr_smart_terrain_1_6_army_mechanic_stalker) =inc_task_stage(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2) -drx_ql_quest_item_toolkit_2_task_started =drx_ql_reset_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:army) =drx_ql_release_float_item(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2) -drx_ql_quest_item_toolkit_2_task_started =drx_ql_fail_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2) =drx_ql_reset_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:army) =drx_ql_release_float_item(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2) -drx_ql_quest_item_toolkit_2_task_started =drx_ql_fail_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2) =drx_ql_reset_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2)%
+
+;------------------------------------------------
+; Kirilov (Military Mechanic) Find Level 3 Toolkit Task-
+
+[drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3]
+
+icon = ui_inGame2_Instrumenti
+storyline = false
+prior = 43
+weight = 1
+repeat_timeout = 0
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +agr_smart_terrain_1_6_army_mechanic_stalker_upgrade_tier_2 -agr_smart_terrain_1_6_army_mechanic_stalker_upgrade_tier_3 -drx_ql_quest_item_toolkit_3_task_started !squad_exist(drx_ql_designated_target_squad_stalker) =drx_ql_find_unoccupied_smart_terrain(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3)} true, false
+
+title = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3_name
+descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3_text
+descr_functor = drx_ql_interceptor_task_target
+job_descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3_about
+task_complete_descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_interceptor_task_target
+status_functor = drx_ql_interceptor_task_status
+status_functor_params = drx_ql_quest_item_toolkit_3
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(army)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3) =drx_ql_create_interceptor_squad(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3:drx_ql_designated_target_squad_stalker) +drx_ql_quest_item_toolkit_3_task_started%
+
+on_complete = %=drx_ql_reward_money(1000:1500) +agr_smart_terrain_1_6_army_mechanic_stalker_upgrade_tier_3 =complete_task_inc_goodwill(50:army) =remove_item(drx_ql_quest_item_toolkit_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_stalker) =drx_ql_save_pstor_ctime(drx_ql_last_upgrade_time_agr_smart_terrain_1_6_army_mechanic_stalker) =inc_task_stage(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3) -drx_ql_quest_item_toolkit_3_task_started =drx_ql_reset_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:army) =remove_item(drx_ql_quest_item_toolkit_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_stalker) -drx_ql_quest_item_toolkit_3_task_started =drx_ql_fail_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3) =drx_ql_reset_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:army) =remove_item(drx_ql_quest_item_toolkit_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_stalker) -drx_ql_quest_item_toolkit_3_task_started =drx_ql_fail_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3) =drx_ql_reset_task(drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

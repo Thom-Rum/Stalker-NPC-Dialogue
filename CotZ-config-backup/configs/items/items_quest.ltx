@@ -1,0 +1,1241 @@
+;==============================================================
+;
+; items_quest.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Add item name to [protected_items] in configs\drx\drx_ql_blackout.ltx to prevent item being taken if player is mugged
+;
+;	Modified by: DoctorX
+;	Last revised: November 01, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Questlines Items
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 01, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; PDA-
+
+[drx_ql_quest_item_pda]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_pda"
+visual = dynamics\devices\dev_pda\dev_pda.ogf
+story_id = drx_ql_quest_item_pda
+quest_item = true
+
+inv_weight = 0.1
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 7
+inv_grid_y = 3
+
+inv_name = drx_ql_quest_item_pda_name
+inv_name_short = drx_ql_quest_item_pda_name
+description = drx_ql_quest_item_pda_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Pilot's PDA-
+
+[drx_ql_quest_item_pilot_pda]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_pilot_pda"
+visual = dynamics\devices\dev_pda\dev_pda.ogf
+story_id = drx_ql_quest_item_pilot_pda
+quest_item = true
+
+inv_weight = 0.1
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 7
+inv_grid_y = 3
+
+inv_name = drx_ql_quest_item_pilot_pda_name
+inv_name_short = drx_ql_quest_item_pilot_pda_name
+description = drx_ql_quest_item_pilot_pda_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; ID Card-
+
+[drx_ql_quest_item_id_card]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_id_card"
+visual = dynamics\equipments\quest\identity_card.ogf
+story_id = drx_ql_quest_item_id_card
+quest_item = true
+
+inv_weight = 0.05
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 16
+inv_grid_y = 7
+
+inv_name = drx_ql_quest_item_id_card_name
+inv_name_short = drx_ql_quest_item_id_card_name
+description = drx_ql_quest_item_id_card_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Code Card - X-18 Kalugin-
+
+[drx_ql_quest_item_code_card_kalugin]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_code_card_kalugin"
+visual = dynamics\equipments\quest\identity_card.ogf
+story_id = drx_ql_quest_item_code_card_kalugin
+quest_item = true
+
+inv_weight = 0.05
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 16
+inv_grid_y = 7
+
+inv_name = drx_ql_quest_item_code_card_kalugin_name
+inv_name_short = drx_ql_quest_item_code_card_kalugin_name
+description = drx_ql_quest_item_code_card_kalugin_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Code Card - X-18 Ecologist Guard-
+
+[drx_ql_quest_item_code_card_guard]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_code_card_guard"
+visual = dynamics\equipments\quest\identity_card.ogf
+story_id = drx_ql_quest_item_code_card_guard
+quest_item = true
+
+inv_weight = 0.05
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 16
+inv_grid_y = 7
+
+inv_name = drx_ql_quest_item_code_card_guard_name
+inv_name_short = drx_ql_quest_item_code_card_guard_name
+description = drx_ql_quest_item_code_card_guard_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Access Card-
+
+[drx_ql_quest_item_access_card]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_access_card"
+visual = dynamics\equipments\quest\access_card.ogf
+story_id = drx_ql_quest_item_access_card
+quest_item = true
+
+inv_weight = 0.05
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 11
+inv_grid_y = 3
+
+inv_name = drx_ql_quest_item_access_card_name
+inv_name_short = drx_ql_quest_item_access_card_name
+description = drx_ql_quest_item_access_card_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Papers-
+
+[drx_ql_quest_item_papers]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_papers"
+visual = dynamics\equipments\quest\notes_paper_1.ogf
+story_id = drx_ql_quest_item_papers
+quest_item = true
+
+inv_weight = 0.05
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 11
+inv_grid_y = 6
+
+inv_name = drx_ql_quest_item_papers_name
+inv_name_short = drx_ql_quest_item_papers_name
+description = drx_ql_quest_item_papers_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Flight Plan-
+
+[drx_ql_quest_item_flight_plan]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_flight_plan"
+visual = dynamics\equipments\quest\notes_paper_1.ogf
+story_id = drx_ql_quest_item_flight_plan
+quest_item = true
+
+inv_weight = 0.05
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 11
+inv_grid_y = 6
+
+inv_name = drx_ql_quest_item_flight_plan_name
+inv_name_short = drx_ql_quest_item_flight_plan_name
+description = drx_ql_quest_item_flight_plan_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Notebook-
+
+[drx_ql_quest_item_notebook]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_notebook"
+visual = dynamics\equipments\quest\notes_writing_book_2.ogf
+story_id = drx_ql_quest_item_notebook
+quest_item = true
+
+inv_weight = 0.05
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 5
+inv_grid_y = 6
+
+inv_name = drx_ql_quest_item_notebook_name
+inv_name_short = drx_ql_quest_item_notebook_name
+description = drx_ql_quest_item_notebook_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Document Case-
+
+[drx_ql_quest_item_document_case]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_document_case"
+visual = dynamics\equipments\quest\notes_document_case_2.ogf
+story_id = drx_ql_quest_item_document_case
+quest_item = true
+
+inv_weight = 0.05
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 4
+inv_grid_y = 7
+
+inv_name = drx_ql_quest_item_document_case_name
+inv_name_short = drx_ql_quest_item_document_case_name
+description = drx_ql_quest_item_document_case_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Locked Case-
+
+[drx_ql_quest_item_case]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_case"
+visual = dynamics\equipments\quest\safe_container.ogf
+story_id = drx_ql_quest_item_case
+quest_item = true
+
+inv_weight = 12.0
+inv_grid_width = 2
+inv_grid_height = 2
+inv_grid_x = 4
+inv_grid_y = 11
+
+inv_name = drx_ql_quest_item_case_name
+inv_name_short = drx_ql_quest_item_case_name
+description = drx_ql_quest_item_case_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Southern Plateau Case-
+
+[drx_ql_quest_item_plateau_case]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_plateau_case"
+visual = dynamics\equipments\quest\safe_container.ogf
+story_id = drx_ql_quest_item_plateau_case
+quest_item = true
+
+inv_weight = 5.0
+inv_grid_width = 2
+inv_grid_height = 2
+inv_grid_x = 4
+inv_grid_y = 11
+
+inv_name = drx_ql_quest_item_plateau_case_name
+inv_name_short = drx_ql_quest_item_plateau_case_name
+description = drx_ql_quest_item_plateau_case_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Anomalous Plant-
+
+[drx_ql_quest_item_plant]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_plant"
+$prefetch = 16
+visual = dynamics\equipments\quest\anomaly_plant.ogf
+custom_data = models\objects\ignore_static.ltx
+startup_animation = idle
+story_id = drx_ql_quest_item_plant
+quest_item = true
+
+inv_weight = 0.5
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 6
+inv_grid_y = 3
+
+inv_name = drx_ql_quest_item_plant_name
+inv_name_short = drx_ql_quest_item_plant_name
+description = drx_ql_quest_item_plant_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Black Box-
+
+[drx_ql_quest_item_blackbox]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_blackbox"
+visual = dynamics\equipments\quest\box_black.ogf
+story_id = drx_ql_quest_item_blackbox
+quest_item = true
+
+inv_weight = 3
+inv_grid_width = 2
+inv_grid_height = 2
+inv_grid_x = 2
+inv_grid_y = 11
+
+inv_name = drx_ql_quest_item_blackbox_name
+inv_name_short = drx_ql_quest_item_blackbox_name
+description = drx_ql_quest_item_blackbox_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Memory Module-
+
+[drx_ql_quest_item_memory_module]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_memory_module"
+visual = dynamics\equipments\quest\memory_module.ogf
+story_id = drx_ql_quest_item_memory_module
+quest_item = true
+
+inv_weight = 3.5
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 17
+inv_grid_y = 6
+
+inv_name = drx_ql_quest_item_memory_module_name
+inv_name_short = drx_ql_quest_item_memory_module_name
+description = drx_ql_quest_item_memory_module_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Data Module-
+
+[drx_ql_quest_item_data_module]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_data_module"
+visual = dynamics\equipments\quest\memory_module.ogf
+story_id = drx_ql_quest_item_data_module
+quest_item = true
+
+inv_weight = 3.5
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 17
+inv_grid_y = 6
+
+inv_name = drx_ql_quest_item_data_module_name
+inv_name_short = drx_ql_quest_item_data_module_name
+description = drx_ql_quest_item_data_module_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Transistors-
+
+[drx_ql_quest_item_transistors]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_transistors"
+visual = dynamics\equipments\quest\box_transistors.ogf
+story_id = drx_ql_quest_item_transistors
+quest_item = true
+
+inv_weight = 0.5
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 4
+inv_grid_y = 3
+
+inv_name = drx_ql_quest_item_transistors_name
+inv_name_short = drx_ql_quest_item_transistors_name
+description = drx_ql_quest_item_transistors_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Capacitors-
+
+[drx_ql_quest_item_capacitors]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_capacitors"
+visual = dynamics\equipments\quest\box_condensers.ogf
+story_id = drx_ql_quest_item_capacitors
+quest_item = true
+
+inv_weight = 1
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 2
+inv_grid_y = 3
+
+inv_name = drx_ql_quest_item_capacitors_name
+inv_name_short = drx_ql_quest_item_capacitors_name
+description = drx_ql_quest_item_capacitors_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Wire-
+
+[drx_ql_quest_item_wire]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_wire"
+visual = dynamics\equipments\quest\materials_wire.ogf
+story_id = drx_ql_quest_item_wire
+quest_item = true
+
+inv_weight = 1
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 5
+inv_grid_y = 3
+
+inv_name = drx_ql_quest_item_wire_name
+inv_name_short = drx_ql_quest_item_wire_name
+description = drx_ql_quest_item_wire_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Circuit Boards-
+
+[drx_ql_quest_item_pcb]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_pcb"
+visual = dynamics\equipments\quest\materials_textolite.ogf
+story_id = drx_ql_quest_item_pcb
+quest_item = true
+
+inv_weight = 0.1
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 3
+inv_grid_y = 3
+
+inv_name = drx_ql_quest_item_pcb_name
+inv_name_short = drx_ql_quest_item_pcb_name
+description = drx_ql_quest_item_pcb_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Level 1 Toolkit-
+
+[drx_ql_quest_item_toolkit_1]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_toolkit_1"
+visual = dynamics\equipments\quest\box_toolkit_1.ogf
+story_id = drx_ql_quest_item_toolkit_1
+quest_item = true
+
+inv_weight = 3.5
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 6
+inv_grid_y = 7
+
+inv_name = drx_ql_quest_item_toolkit_1_name
+inv_name_short = drx_ql_quest_item_toolkit_1_name
+description = drx_ql_quest_item_toolkit_1_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Level 2 Toolkit-
+
+[drx_ql_quest_item_toolkit_2]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_toolkit_2"
+visual = dynamics\equipments\quest\box_toolkit_2.ogf
+story_id = drx_ql_quest_item_toolkit_2
+quest_item = true
+
+inv_weight = 3
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 8
+inv_grid_y = 7
+
+inv_name = drx_ql_quest_item_toolkit_2_name
+inv_name_short = drx_ql_quest_item_toolkit_2_name
+description = drx_ql_quest_item_toolkit_2_desc
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Level 3 Toolkit-
+
+[drx_ql_quest_item_toolkit_3]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\drx_ql_quest_item_toolkit_3"
+visual = dynamics\equipments\quest\box_toolkit_3.ogf
+story_id = drx_ql_quest_item_toolkit_3
+quest_item = true
+
+inv_weight = 2.5
+inv_grid_width = 2
+inv_grid_height = 1
+inv_grid_x = 10
+inv_grid_y = 7
+
+inv_name = drx_ql_quest_item_toolkit_3_name
+inv_name_short = drx_ql_quest_item_toolkit_3_name
+description = drx_ql_quest_item_toolkit_3_desc
+
+can_trade = false
+cost = 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Restored CoP Quest Items
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 01, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Zaton Bridge Convoy Key 1-
+
+[zat_b12_key_1]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\zat_b12_key_1"
+visual = dynamics\equipments\quest\key.ogf
+story_id = zat_b12_key_1
+quest_item = true
+
+inv_weight = 0.1
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 13
+inv_grid_y = 3
+
+inv_name = st_zat_b12_key_1
+inv_name_short = st_zat_b12_key_1
+description = st_zat_b12_key_1_descr
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Zaton Bridge Convoy Key 2-
+
+[zat_b12_key_2]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\zat_b12_key_2"
+visual = dynamics\equipments\quest\key.ogf
+story_id = zat_b12_key_2
+quest_item = true
+
+inv_weight = 0.1
+inv_grid_width = 1
+inv_grid_height = 1
+inv_grid_x = 13
+inv_grid_y = 3
+
+inv_name = st_zat_b12_key_2
+inv_name_short = st_zat_b12_key_2
+description = st_zat_b12_key_2_descr
+
+can_trade = false
+cost = 0
+
+;------------------------------------------------
+; Zaton Bridge Convoy Gas Canister-
+
+[zat_b57_gas]:identity_immunities
+
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+$spawn = "quest_items\zat_b57_gas"
+$prefetch = 16
+visual = dynamics\equipments\quest\balloon_poison_gas.ogf
+story_id = zat_b57_gas
+quest_item = true
+
+inv_weight = 10
+inv_grid_width = 1
+inv_grid_height = 2
+inv_grid_x = 8
+inv_grid_y = 11
+
+inv_name = st_zat_b57_gas_name
+inv_name_short = st_zat_b57_gas_name
+description = st_zat_b57_gas_desc
+
+can_trade = false
+cost = 0
+
+custom_data = models\objects\ignore_static.ltx
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;	Scientist Escort
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[anomaly_scaner]:identity_immunities
+GroupControlSection                      = spawn_group
+discovery_dependency                     =
+$spawn                                   = "equipment\anomaly_scaner"
+cform                                    = skeleton
+class                                    = II_ATTCH
+visual                                   = dynamics\devices\dev_datchik_2\dev_datchik_2.ogf
+cost                                     = 0
+inv_name                                 = "hand_radio"
+inv_name_short                           = "hand_radio"
+inv_weight                               = 0.5
+inv_grid_width                           = 2
+inv_grid_height                          = 1
+inv_grid_x                               = 14
+inv_grid_y                               = 7
+attach_angle_offset                      = -1.571,-1.308,-1.458 ;onoaiaaeeaaaons a ?aaeaiao Angle*PI/180
+attach_position_offset                   = 0.105, -0.004, 0.003
+attach_bone_name                         = bip01_l_hand
+auto_attach                              = false
+can_trade                                = false
+;*************************************************************************
+;**					Marsh
+;*************************************************************************
+[mar_base_owl_stalker_trader_task_1_pda]:device_pda
+$spawn                                   = "quest_items\mar_base_owl_stalker_trader_task_1_pda"
+inv_name                                 = st_pda_spore_name
+inv_name_short                           = st_pda_spore_name
+visual                                   = dynamics\devices\dev_pda\dev_pda.ogf
+can_trade                                = false
+cost                                     = 0
+quest_item                               = true
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Brain Scorcher
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[good_psy_helmet]:identity_immunities
+GroupControlSection                      = spawn_group
+discovery_dependency                     =
+$spawn                                   = "devices\good_psy_helmet"
+;$prefetch 			= 32
+class                                    = II_ATTCH
+cform                                    = skeleton
+visual                                   = dynamics\equipments\item_psi_helmet.ogf
+radius                                   = 1
+;script_binding		= stalker.object_init
+quest_item                               = true
+
+description                              = good_psy_helmet_desc
+
+inv_name                                 = good_psy_helmet_name
+inv_name_short                           = good_psy_helmet_name
+inv_weight                               = 0
+inv_grid_width                           = 1
+inv_grid_height                          = 1
+inv_grid_x                               = 15
+inv_grid_y                               = 3
+cost                                     = 17500
+
+[bad_psy_helmet]:identity_immunities
+GroupControlSection                      = spawn_group
+discovery_dependency                     =
+$spawn                                   = "devices\bad_psy_helmet"
+;$prefetch 			= 32
+class                                    = II_ATTCH
+cform                                    = skeleton
+visual                                   = dynamics\equipments\item_psi_helmet.ogf
+radius                                   = 1
+;script_binding		= stalker.object_init
+quest_item                               = true
+
+description                              = bad_psy_helmet_desc
+
+inv_name                                 = bad_psy_helmet_name
+inv_name_short                           = bad_psy_helmet_name
+inv_weight                               = 0
+inv_grid_width                           = 1
+inv_grid_height                          = 1
+inv_grid_x                               = 15
+inv_grid_y                               = 3
+cost                                     = 10000
+
+[pri_decoder_documents]:identity_immunities
+GroupControlSection                      = spawn_group
+discovery_dependency                     =
+$spawn                                   = "devices\quest_items\decoder_documents"
+;$prefetch 			= 32
+class                                    = II_ATTCH
+cform                                    = skeleton
+visual                                   = equipments\item_document_01.ogf
+radius                                   = 1
+;script_binding		= stalker.object_init
+quest_item                               = true
+story_id                                 = pri_decoder_documents
+
+description                              = pri_decoder_docs_conclusion_txt
+
+inv_name                                 = item_docs_hiden_pri_name
+inv_name_short                           = item_docs_hiden_pri_desc
+inv_weight                               = 0
+
+inv_grid_width                           = 2
+inv_grid_height                          = 1
+inv_grid_x                               = 18
+inv_grid_y                               = 24
+cost                                     = 0
+
+[cit_doctors_key]:identity_immunities
+GroupControlSection                      = spawn_group
+discovery_dependency                     =
+$spawn                                   = "devices\quest_items\cit_doctors_key"
+;$prefetch 			= 32
+class                                    = II_ATTCH
+cform                                    = skeleton
+visual                                   = dynamics\equipments\quest\key.ogf
+radius                                   = 1
+;script_binding		= stalker.object_init
+quest_item                               = true
+story_id                                 = cit_doctors_key
+
+inv_name                                 = cit_doctors_key_name
+inv_name_short                           = cit_doctors_key_short_desc
+inv_weight                               = 0
+description                              = cit_doctors_key_desc
+
+inv_grid_width                           = 1
+inv_grid_height                          = 1
+inv_grid_x                               = 13
+inv_grid_y                               = 3
+cost                                     = 0
+
+[cit_doctors_pda]:device_pda
+$spawn                                   = "quest_items\cit_doctors_pda"
+visual                                   = dynamics\equipments\quest\notes_letter_2.ogf
+inv_weight                               = 0.05
+inv_grid_width                           = 2
+inv_grid_height                          = 1
+inv_grid_x                               = 7
+inv_grid_y                               = 6
+description                              = cit_doctors_pda_desc
+inv_name                                 = cit_doctors_pda_name
+inv_name_short                           = cit_doctors_pda_name
+can_trade                                = false
+cost                                     = 0
+quest_item     							 = true
+story_id                                 = cit_doctors_pda
+
+[decoder]:identity_immunities
+GroupControlSection                      = spawn_group
+discovery_dependency                     =
+$spawn                                   = "devices\quest_items\decoder"
+;$prefetch 			= 32
+class                                    = II_ATTCH
+cform                                    = skeleton
+visual                                   = equipments\item_decoder.ogf
+radius                                   = 1
+;script_binding		= stalker.object_init
+quest_item                               = true
+story_id                                 = decoder
+
+description                              = item_decoder_desc
+
+inv_name                                 = item_decoder_name
+inv_name_short                           = item_decoder_name
+inv_weight                               = 0
+inv_grid_width                           = 1
+inv_grid_height                          = 1
+inv_grid_x                               = 19
+inv_grid_y                               = 6
+cost                                     = 50
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;			7 canonical documents
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[main_story_1_quest_case]:identity_immunities
+GroupControlSection	= spawn_group
+discovery_dependency =
+$spawn 				= "devices\quest_items\agr_ug_quest_case"
+;$prefetch 			= 32
+class				= II_ATTCH
+cform				= skeleton
+visual				= equipments\item_merger.ogf
+radius				= 1
+;script_binding		= stalker.object_init
+quest_item			= true
+can_trade           = false
+
+description         = item_quest_case_02_desc
+inv_name			= item_quest_case_02_name
+inv_name_short		= item_quest_case_02_name
+inv_weight			= 0
+inv_grid_width     = 2
+inv_grid_height    = 1
+inv_grid_x         = 14
+inv_grid_y         = 31
+cost				= 1000
+story_id			= main_story_1_quest_case
+
+[main_story_2_lab_x18_documents]:identity_immunities
+GroupControlSection	= spawn_group
+discovery_dependency =
+$spawn 				= "devices\quest_items\dar_x18_documents"
+;$prefetch 			= 32
+class				= II_ATTCH
+cform				= skeleton
+visual				= equipments\item_document_1.ogf
+radius				= 1
+quest_item			= true
+can_trade           = false
+
+description			= item_doc_x18_desc
+
+inv_name			= item_doc_x18_name
+inv_name_short		= item_doc_x18_name
+inv_weight			= 0
+
+inv_grid_width     = 2
+inv_grid_height    = 1
+inv_grid_x         = 18
+inv_grid_y         = 24
+cost				= 0
+story_id			= main_story_2_lab_x18_documents
+
+[main_story_3_lab_x16_documents]:identity_immunities
+GroupControlSection	= spawn_group
+discovery_dependency =
+$spawn 				= "devices\quest_items\yan_x16_documents"
+;$prefetch 			= 32
+class				= II_ATTCH
+cform				= skeleton
+visual				= equipments\item_document_2.ogf
+radius				= 1
+;script_binding		= stalker.object_init
+quest_item			= true
+can_trade           = false
+
+description			= item_doc_x16_desc
+
+inv_name			= item_doc_x16_name
+inv_name_short		= item_doc_x16_name
+inv_weight			= 0
+
+inv_grid_width     = 2
+inv_grid_height    = 1
+inv_grid_x         = 12
+inv_grid_y         = 31
+cost				= 0
+story_id			= main_story_3_lab_x16_documents
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Lab X-19 Documents
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 22, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; [main_story_4_lab_x10_documents]:device_pda
+[main_story_4_lab_x10_documents]:identity_immunities
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+$spawn                                   = "devices\quest_items\bun_x10_documents"
+visual                                   = dynamics\equipments\quest\notes_document_case_2.ogf
+inv_weight                               = 0.05
+description                              = item_doc_x10_desc
+inv_name                                 = item_doc_x10_name
+inv_name_short                           = item_doc_x10_name
+can_trade                                = false
+quest_item								 = true
+cost                                     = 0
+inv_grid_width                           = 2
+inv_grid_height                          = 1
+inv_grid_x                               = 12
+inv_grid_y                               = 7
+story_id								 = main_story_4_lab_x10_documents
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Lab X-8 Documents
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 22, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; [main_story_5_lab_x8_documents]:device_pda
+[main_story_5_lab_x8_documents]:identity_immunities
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+$spawn                                   = "devices\quest_items\pri_x8_documents"
+visual                                   = dynamics\equipments\quest\notes_document_case_3.ogf
+inv_weight                               = 0.05
+description                              = item_doc_x8_desc
+inv_name                                 = item_doc_x8_name
+inv_name_short                           = item_doc_x8_name
+can_trade                                = false
+quest_item     							 = true
+cost                                     = 0
+inv_grid_width                           = 2
+inv_grid_height                          = 1
+inv_grid_x                               = 9
+inv_grid_y                               = 6
+story_id								 = main_story_5_lab_x8_documents
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Jupiter Underground Documents
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 22, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; [main_story_6_jup_ug_documents]:device_pda
+[main_story_6_jup_ug_documents]:identity_immunities
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+$spawn                                   = "devices\quest_items\jup_ug_documents"
+inv_weight                               = 0.02
+visual                                   = dynamics\equipments\quest\notes_writing_book_1.ogf
+$prefetch                                = 16
+description                              = item_doc_jup_ug_desc
+inv_name                                 = item_doc_jup_ug_name
+inv_name_short                           = item_doc_jup_ug_name
+can_trade                                = false
+quest_item     							 = true
+cost                                     = 0
+inv_grid_width                           = 2
+inv_grid_height                          = 1
+inv_grid_x                               = 2
+inv_grid_y                               = 7
+story_id								 = main_story_6_jup_ug_documents
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; MCC Documents
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 22, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; [main_story_7_mon_con_documents]:device_pda
+[main_story_7_mon_con_documents]:identity_immunities
+GroupControlSection = spawn_group
+discovery_dependency =
+class = II_ATTCH
+cform = skeleton
+radius = 1
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+$spawn                                   = "devices\quest_items\mon_con_documents"
+visual                                   = dynamics\equipments\quest\notes_document_case_2.ogf
+inv_weight                               = 0.05
+description                              = item_doc_mon_con_name_desc
+inv_name                                 = item_doc_mon_con_name
+inv_name_short                           = item_doc_mon_con_name
+inv_grid_width                           = 2
+inv_grid_height                          = 1
+inv_grid_x                               = 12
+inv_grid_y                               = 7
+can_trade                                = false
+quest_item     							 = true
+cost                                     = 0
+story_id								 = main_story_7_mon_con_documents
+
+[yantar_deployable_mgun]:identity_immunities,weapon_probability,default_weapon_params
+$spawn                                   = "quest_items\yantar_deployable_mgun"
+GroupControlSection                      = spawn_group
+ammo_class                               = ammo_pkm_100
+bullet_speed                             = 725
+cam_dispersion                           = 0.2
+cam_max_angle                            = 8
+cam_max_angle_horz                       = 9.0
+cam_relax_speed                          = 5.0
+cam_step_angle_horz                      = 1.8
+cform                                    = skeleton
+class                                    = W_STMGUN
+fire_dispersion_base                     = 0.5
+fire_dispersion_null                     = 0.5
+fire_distance                            = 1000
+flame_particles                          = weapons\generic_weapon05
+hit_impulse                              = 100
+hit_power                                = 0.1
+inv_name                                 = Mounted Weapon
+inv_name_short                           = Mounted Weapon
+light_color                              = 0.9,0.9,0.5
+light_range                              = 6
+light_time                               = 0.3
+light_var_color                          = 0.05
+light_var_range                          = 0.5
+rpm                                      = 900
+shell_particles                          = weapons\generic_shells
+shell_point                              = 0.0, 0.0, 0.0
+smoke_particles                          = weapons\generic_shoot_00
+snd_shoot                                = weapons\pkm_shot
+tracer_start_length                      = 2
+tracer_trail_scale                       = 0.15
+tracer_width                             = 0.07
+use_aim_bullet                           = false
+visual                                   = dynamics\weapons\wpn_mounted\wpn_mounted_pkm_trenoga.ogf
+
+overheat_enabled 						= true
+overheat_time_quant 					= 0.90
+overheat_decr_quant 					= 0.18
+overheat_threshold 						= 150.00
+overheat_particles 						= industrial_particles\exhaust_workshop_1_small

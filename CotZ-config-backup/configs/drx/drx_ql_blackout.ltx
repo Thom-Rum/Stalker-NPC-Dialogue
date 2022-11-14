@@ -1,0 +1,243 @@
+;==============================================================
+;
+; Actor Blackout Settings (drx_ql_blackout.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Created by: DoctorX
+;	Last revised: November 01, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Actor Blackout Settings
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 20, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Actor blackout settings:
+[blackout_settings]
+
+; Whether or not to enable the blackout feature (bool):
+blackout_enabled = true
+
+; Percent chance player will experience a blackout after hit on low health (float, decimal percent):
+blackout_chance = 0.4  ; 40%
+
+; Health level below which player has chance of blacking out (float, decimal percent):
+health_threshold = 0.3  ; 30%
+
+; Percent chance player will get mugged by attacker while unconscious (float, decimal percent):
+mugging_chance = 1.0  ; 100%
+
+; Percent chance player companion will be kidnapped while player unconcious (float, decimal percent):
+kidnap_chance = 0.5  ; 50%
+
+; Minimum percent of player total money a mugger will take (float, decimal percent):
+money_taken_min = 0.5  ; 50%
+
+; Maximum percent of player total money a mugger will take (float, decimal percent):
+money_taken_max = 1.0  ; 100%
+
+; Percent chance a nearby companion with a medkit will revive the player (float, decimal percent):
+companion_revive_chance = 1.0  ; 100%
+
+; Percent health to give player upon regaining consciousness if not revived by companion (float, decimal percent):
+wakeup_health = 0.2  ; 20%
+
+; Maximum companion distance from player to be considered eligible to revive the player (float, distance_to_sqr units)
+companion_local_max_dist = 900  ; 30 meters
+
+; Minimum distance from player before revive companion will start reviving the player (float, distance_to_sqr units)
+minimum_revive_dist = 5  ; 2.2 meters
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Revenge Task Settings
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 14, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Revenge task settings:
+[revenge_task_settings]
+
+; Percent chance player will be given a revenge manhunt task after being mugged (float, decimal percent):
+revenge_task_chance = 1.0  ; 100%
+
+; Task id of the revenge manhunt task to give (string, task id):
+revenge_task = drx_ql_special_task_blackout_revenge
+
+; Task id of the rescue kidnapped companion task (string, task id):
+kidnapped_task = drx_ql_special_task_blackout_kidnapped
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Blackout Factions
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 14, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Factions that will mug player on blackout:
+[blackout_factions]
+stalker = true
+dolg = true
+freedom = true
+csky = true
+; ecolog = false
+killer = true
+army = true
+bandit = true
+; monolith = false
+; zombied = false
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Protected Items
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 01, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; List of items attackers will not take if player gets mugged (string, item section names):
+[protected_items]
+anim_binoc
+anim_knife
+bad_psy_helmet
+bolt
+cit_doctors_key
+cit_doctors_pda
+decoder
+device_torch
+drx_ql_quest_item_access_card
+drx_ql_quest_item_blackbox
+drx_ql_quest_item_capacitors
+drx_ql_quest_item_case
+drx_ql_quest_item_code_card_guard
+drx_ql_quest_item_code_card_kalugin
+drx_ql_quest_item_data_module
+drx_ql_quest_item_document_case
+drx_ql_quest_item_flight_plan
+drx_ql_quest_item_id_card
+drx_ql_quest_item_memory_module
+drx_ql_quest_item_notebook
+drx_ql_quest_item_papers
+drx_ql_quest_item_pcb
+drx_ql_quest_item_pda
+drx_ql_quest_item_pilot_pda
+drx_ql_quest_item_plant
+drx_ql_quest_item_plateau_case
+drx_ql_quest_item_toolkit_1
+drx_ql_quest_item_toolkit_2
+drx_ql_quest_item_toolkit_3
+drx_ql_quest_item_transistors
+drx_ql_quest_item_wire
+good_psy_helmet
+guitar_a
+guitar_a2
+hand_radio
+hand_radio_r
+harmonica_a
+main_story_1_quest_case
+main_story_2_lab_x18_documents
+main_story_3_lab_x16_documents
+main_story_4_lab_x10_documents
+main_story_5_lab_x8_documents
+main_story_6_jup_ug_documents
+main_story_7_mon_con_documents
+mar_base_owl_stalker_trader_task_1_pda
+medkit_script
+pri_decoder_documents
+stick_bred
+stick_kolbasa
+stick_kolbasa_bred
+wpn_knife
+wpn_knife_colt
+wpn_knife_extrema
+wpn_knife_hunting
+wpn_knife_spetsnaz
+wpn_knife_survival
+wpn_knife_tanto
+zat_b12_key_1
+zat_b12_key_2
+zat_b57_gas
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Blackout Progression Settings
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 14, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Blackout progression settings:
+[blackout_progression]
+
+; Maximum length of time for player to be invulnerable from when blackout starts (float, seconds):
+invulnerable_time = 30
+
+; Length of time player will be lightheaded before fully blacking out (float, seconds):
+lightheaded_time = 1
+
+; Length of time player will be fully blacked out before attacker message is displayed (float, seconds):
+unconscious_time = 2
+
+; Length of time after displaying companion kidnapped message before attacker reply is displayed (float, seconds):
+kidnapper_reply_time = 3
+
+; Length of time player will be fully blacked out after attacker message is displayed(float, seconds):
+unconscious_message_time = 7
+
+; Length of time to continue to check for companion to arrive on scene to revive the player (float, seconds):
+companion_check_time = 2
+
+; Maximum length of time to wait for a companion to arrive to revive the player (float, seconds):
+companion_wait_max_time = 15
+
+; Length of time after revive companion arrives at player before administering medkit (float, seconds):
+administer_medkit_delay = 3
+
+; Length of time for a medkit to be administered by a companion (float, seconds):
+apply_medkit_time = 3
+
+; Length of time after companion finishes administering medkit before restoring player controls (float, seconds):
+player_restore_delay = 1
+
+; Length of time to wait after restoring player controls before player stands up (float, seconds):
+player_stand_up_delay = 0.1
+
+; Length of time to wait after player stands up before giving revenge task (float, seconds):
+give_task_delay = 5
+
+; Length of time to wait after giving revenge task before ending blackout sequence (float, seconds):
+end_sequence_delay = 0.1
+
+; Length of time player will stay immobilized after opening eyes if not revived by companion (float, seconds):
+wakeup_time = 3
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

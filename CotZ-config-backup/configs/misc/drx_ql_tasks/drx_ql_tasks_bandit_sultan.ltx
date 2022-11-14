@@ -1,0 +1,258 @@
+;==============================================================
+;
+; Tasks Given by Sultan (Bandit Honcho, Dark Valley) (drx_ql_tasks_bandit_sultan.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_bandit_sultan.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: September 10, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Change Factions Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Sultan (Bandit Honcho) Payoff Change Factions Task-
+
+[drx_ql_zat_b7_bandit_boss_sultan_cf_task_1]
+
+icon = ui_inGame2_Sdelka
+storyline = true
+prior = 197
+repeat_timeout = 0
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_zat_b7_bandit_boss_sultan_cf_task_1_name
+descr = drx_ql_zat_b7_bandit_boss_sultan_cf_task_1_text
+descr_functor = drx_ql_money_task_target
+job_descr = drx_ql_zat_b7_bandit_boss_sultan_cf_task_1_about
+task_complete_descr = drx_ql_zat_b7_bandit_boss_sultan_cf_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_money_task_target
+status_functor = drx_ql_money_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b7_bandit_boss_sultan_cf_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b7_bandit_boss_sultan_cf_task_1)} fail
+on_init = %=pstor_set(drx_ql_zat_b7_bandit_boss_sultan_cf_task_1_fetch:5000) +drx_ql_on_cf_task%
+
+on_complete = %=drx_ql_money_task_payment(drx_ql_zat_b7_bandit_boss_sultan_cf_task_1) =drx_ql_change_factions(bandit) =inc_task_stage(drx_ql_zat_b7_bandit_boss_sultan_cf_task_1) -drx_ql_on_cf_task =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_cf_task_1)%
+on_fail = %-drx_ql_on_cf_task =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_cf_task_1)%
+on_cancel = %-drx_ql_on_cf_task =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_cf_task_1)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Sultan (Bandit Honcho) Mob Hit Task-
+
+[drx_ql_zat_b7_bandit_boss_sultan_task_1]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_assassination_target(bandit:drx_ql_zat_b7_bandit_boss_sultan_task_1)} true, false
+
+title = drx_ql_zat_b7_bandit_boss_sultan_task_1_name
+descr = drx_ql_zat_b7_bandit_boss_sultan_task_1_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_zat_b7_bandit_boss_sultan_task_1_about
+task_complete_descr = drx_ql_zat_b7_bandit_boss_sultan_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b7_bandit_boss_sultan_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b7_bandit_boss_sultan_task_1)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_zat_b7_bandit_boss_sultan_task_1)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_zat_b7_bandit_boss_sultan_task_1)%
+
+on_complete = %=drx_ql_reward_money(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_zat_b7_bandit_boss_sultan_task_1) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_1) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_1)%
+on_cancel = %fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_1) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_1)%
+
+;------------------------------------------------
+; Sultan (Bandit Honcho) Dynamic Brawl Task-
+
+[drx_ql_zat_b7_bandit_boss_sultan_task_2]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 94
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_brawl_terrain(bandit:drx_ql_zat_b7_bandit_boss_sultan_task_2)} true, false
+
+title = drx_ql_zat_b7_bandit_boss_sultan_task_2_name
+descr = drx_ql_zat_b7_bandit_boss_sultan_task_2_text
+descr_1 = drx_ql_zat_b7_bandit_boss_sultan_task_2_text_1
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_zat_b7_bandit_boss_sultan_task_2_about
+message = drx_ql_zat_b7_bandit_boss_sultan_task_2_message
+task_complete_descr = drx_ql_zat_b7_bandit_boss_sultan_task_2_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b7_bandit_boss_sultan_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b7_bandit_boss_sultan_task_2)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_zat_b7_bandit_boss_sultan_task_2:4:1) =drx_ql_give_escort_task_companions(drx_ql_brawl_squad_bandit_2)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_zat_b7_bandit_boss_sultan_task_2) =drx_ql_end_brawl_task(drx_ql_zat_b7_bandit_boss_sultan_task_2) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_end_brawl_task(drx_ql_zat_b7_bandit_boss_sultan_task_2) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_2) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_end_brawl_task(drx_ql_zat_b7_bandit_boss_sultan_task_2) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_2) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_2)%
+
+;------------------------------------------------
+; Sultan (Bandit Honcho) Eliminate Military Presence Task-
+
+[drx_ql_zat_b7_bandit_boss_sultan_task_3]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_enemy(army) =is_factions_enemies(bandit:army) =drx_ql_find_occupied_smart_local(bandit:drx_ql_zat_b7_bandit_boss_sultan_task_3:army)} true, false
+
+title = drx_ql_zat_b7_bandit_boss_sultan_task_3_name
+descr = drx_ql_zat_b7_bandit_boss_sultan_task_3_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_zat_b7_bandit_boss_sultan_task_3_about
+task_complete_descr = drx_ql_zat_b7_bandit_boss_sultan_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = army
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b7_bandit_boss_sultan_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b7_bandit_boss_sultan_task_3)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_zat_b7_bandit_boss_sultan_task_3)%
+
+on_complete = %=drx_ql_reward_random(4000:7500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_zat_b7_bandit_boss_sultan_task_3) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_3) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_3) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_3)%
+
+;------------------------------------------------
+; Sultan (Bandit Honcho) Turf War Task-
+
+[drx_ql_zat_b7_bandit_boss_sultan_task_4]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = false
+prior = 65
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_ext(bandit:drx_ql_zat_b7_bandit_boss_sultan_task_4)} true, false
+
+title = drx_ql_zat_b7_bandit_boss_sultan_task_4_name
+descr = drx_ql_zat_b7_bandit_boss_sultan_task_4_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_zat_b7_bandit_boss_sultan_task_4_about
+task_complete_descr = drx_ql_zat_b7_bandit_boss_sultan_task_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b7_bandit_boss_sultan_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b7_bandit_boss_sultan_task_4)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_zat_b7_bandit_boss_sultan_task_4)%
+
+on_complete = %=drx_ql_reward_random(5500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_zat_b7_bandit_boss_sultan_task_4) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_4) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_4) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_4)%
+
+;------------------------------------------------
+; Sultan (Bandit Honcho) Rescue Prisoner Task-
+
+[drx_ql_zat_b7_bandit_boss_sultan_task_5]
+
+icon = ui_inGame2_Zalozhnik
+storyline = false
+prior = 95
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(bandit:drx_ql_zat_b7_bandit_boss_sultan_task_5) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_zat_b7_bandit_boss_sultan_task_5_name
+descr = drx_ql_zat_b7_bandit_boss_sultan_task_5_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_zat_b7_bandit_boss_sultan_task_5_about
+task_complete_descr = drx_ql_zat_b7_bandit_boss_sultan_task_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b7_bandit_boss_sultan_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b7_bandit_boss_sultan_task_5)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_zat_b7_bandit_boss_sultan_task_5) =drx_ql_setup_hostage_task(hostage_companion_task_1_bandit:nil:drx_ql_zat_b7_bandit_boss_sultan_task_5_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_zat_b7_bandit_boss_sultan_task_5) =unlock_smart(drx_ql_zat_b7_bandit_boss_sultan_task_5_id) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_zat_b7_bandit_boss_sultan_task_5_id) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_5) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_zat_b7_bandit_boss_sultan_task_5_id) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_5) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_5)%
+
+;------------------------------------------------
+; Sultan (Bandit Honcho) Retrieve Lock Box Task-
+
+[drx_ql_zat_b7_bandit_boss_sultan_task_6]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_case_task_started} true, false
+
+title = drx_ql_zat_b7_bandit_boss_sultan_task_6_name
+descr = drx_ql_zat_b7_bandit_boss_sultan_task_6_text
+descr_functor = drx_ql_quest_stash_task_target
+job_descr = drx_ql_zat_b7_bandit_boss_sultan_task_6_about
+task_complete_descr = drx_ql_zat_b7_bandit_boss_sultan_task_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_quest_stash_task_target
+target_functor_params = drx_ql_quest_item_case
+status_functor = drx_ql_quest_stash_task_status
+status_functor_params = drx_ql_quest_item_case
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_zat_b7_bandit_boss_sultan_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_zat_b7_bandit_boss_sultan_task_6)} fail
+on_init = %=drx_ql_create_quest_stash(drx_ql_quest_item_case) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_item(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_zat_b7_bandit_boss_sultan_task_6) -drx_ql_quest_item_case_task_started =pstor_reset(drx_ql_quest_item_case_stash_id) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_quest_stash(drx_ql_quest_item_case) -drx_ql_quest_item_case_task_started =pstor_reset(drx_ql_quest_item_case_stash_id) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_6) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_quest_stash(drx_ql_quest_item_case) -drx_ql_quest_item_case_task_started =pstor_reset(drx_ql_quest_item_case_stash_id) =drx_ql_fail_task(drx_ql_zat_b7_bandit_boss_sultan_task_6) =drx_ql_reset_task(drx_ql_zat_b7_bandit_boss_sultan_task_6)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

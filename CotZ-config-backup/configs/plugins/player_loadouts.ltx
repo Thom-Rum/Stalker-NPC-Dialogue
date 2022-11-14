@@ -1,0 +1,195 @@
+;==============================================================
+;
+; Player Starting Loadouts (player_loadouts.ltx)
+;	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+;
+;	Modified by: DoctorX
+;	Last revised: September 22, 2019
+;
+;==============================================================
+
+
+; This plugin determines the items a player spawns with when they create their character.
+
+; A custom loadout can be used if the "custom_loadout" value in axr_options.ltx is set to true.
+; Multiple weapons can be spawned at once by separating each section name with a comma.
+[custom]
+device_torch
+medkit = 3, 3
+money = 1000
+novice_outfit
+weapons = wpn_abakan, wpn_pb
+wpn_abakan
+wpn_binoc
+wpn_knife
+
+[shared]
+device_torch
+wpn_binoc
+wpn_knife
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Start with sleeping bag
+;
+;	Added by DoctorX
+;	for DoctorX Call of The Zone 1.0
+;	March 11, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Sleeping bag:
+itm_sleepbag
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[stalker]:shared
+money = 300, 500, 700
+novice_outfit
+
+[bandit]:shared
+bandit_novice_outfit
+money = 400, 600, 800
+
+[ecolog]:shared
+ecolog_guard_outfit
+money = 300, 500, 700, 1000
+
+[dolg]:shared
+dolg_novice_outfit
+money = 300, 500, 700, 1000
+
+[freedom]:shared
+money = 300, 500, 700, 1000
+svoboda_novice_outfit
+
+[killer]:shared
+merc_outfit
+money = 1000, 1500, 2000
+
+[army]:shared
+army_outfit
+money = 300, 500, 700, 1000
+
+[monolith]:shared
+money = 300, 500, 700, 1000
+monolith_outfit
+
+[csky]:shared
+cs_novice_outfit
+money = 300, 500, 700
+
+[zombied]:stalker
+
+[1]
+antirad = 0, 1
+bandage = 0, 3
+bread = 0, 2
+conserva = 0, 2
+kolbasa = 0, 2
+medkit = 0, 2
+psy_blockade = 0, 1
+vodka = 0, 2
+wpn_addon_scope = 0, 1
+
+[2]
+antirad = 0, 1
+bread = 0, 1
+dectector_simple = 0, 1
+kolbasa = 0, 2
+medkit = 0, 4
+vodka = 0, 2
+wpn_mine = 0, 2
+
+[3]
+antirad = 0, 1
+bread = 0, 2
+conserva = 0, 2
+energy_drink = 0, 1
+grenade_f1 = 0, 2
+kolbasa = 0, 1
+medkit = 0, 1
+wpn_addon_silencer = 0, 1
+
+[4]
+bandage = 0, 3
+bread = 0, 1
+energy_drink = 0, 2
+grenade_f1 = 0, 1
+itm_backpack = 0, 1
+kolbasa = 0, 1
+medkit = 0, 2
+pda_common = 0, 1
+psy_blockade = 0, 1
+wpn_mine = 0, 1
+
+[5]
+antirad = 0, 1
+antirad = 0, 1
+bread = 0, 1
+conserva = 0, 2
+grenade_f1 = 0, 1
+itm_gunsmith_toolkit = 0, 1
+kolbasa = 0, 1
+medkit = 0, 2
+vodka = 0, 2
+wpn_mine = 0, 1
+
+[choose_only_one]
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Starting weapons
+;
+;	Modified by DoctorX
+;	for DoctorX Call of The Zone 1.0
+;	September 22, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Starting weapons:
+; wpn_ak74u
+wpn_beretta
+; wpn_bm16
+wpn_colt1911
+; wpn_desert_eagle
+wpn_fort
+; wpn_groza
+wpn_hpsa
+; wpn_mp5
+; wpn_pb
+wpn_pm
+; wpn_protecta
+wpn_sig220
+; wpn_sig550
+; wpn_spas12
+; wpn_toz34
+wpn_usp
+wpn_walther
+; wpn_wincheaster1300
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[choose_only_one_stalker]:choose_only_one
+
+[choose_only_one_bandit]:choose_only_one
+
+[choose_only_one_killer]:choose_only_one
+
+[choose_only_one_army]:choose_only_one
+
+[choose_only_one_dolg]:choose_only_one
+
+[choose_only_one_freedom]:choose_only_one
+
+[choose_only_one_ecolog]:choose_only_one
+
+[choose_only_one_csky]:choose_only_one
+
+[choose_only_one_monolith]:choose_only_one
+
+[choose_only_one_zombied]:choose_only_one

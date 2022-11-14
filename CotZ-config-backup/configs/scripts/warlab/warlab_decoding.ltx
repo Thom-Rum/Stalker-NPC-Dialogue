@@ -1,0 +1,117 @@
+;==============================================================
+;
+; warlab_decoding.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: October 09, 2019
+
+;==============================================================
+
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Bypass Osoznanie Door Guards
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; on_info = {+warlab_access_decoding} sr_timer %+warlab_start_teleport%
+on_info = {+warlab_access_decoding} sr_idle@scene1 %=remove_item(decoder)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[sr_timer]
+type = dec
+start_value = 30000
+on_value = 0 | sr_idle@check_death
+
+[sr_idle@check_death]
+on_info = {+warlab_stalker_monolith_1_killed +warlab_stalker_monolith_2_killed +warlab_stalker_monolith_3_killed +warlab_stalker_monolith_4_killed +warlab_stalker_monolith_5_killed +warlab_stalker_monolith_6_killed +warlab_stalker_monolith_7_killed +warlab_stalker_monolith_8_killed} sr_idle@scene1
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Earth Tremor After Activating Decoder
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 28, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+[sr_idle@scene1]
+; on_timer = 1000 | sr_idle@scene2 %=run_cam_effector(radar_stop:2506:false)%
+on_info = sr_idle@scene2 %=play_sound(brain_scorcher_rumble) =run_cam_effector(radar_stop:2506:false)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Actor Passes Out
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+[sr_idle@scene2]
+; on_timer = 9000 | sr_idle@scene3 %=run_postprocess(agr_u_fade)%
+on_timer = 9000 | sr_idle@scene3 %=run_postprocess(deimos1:3009:true) =run_postprocess(agr_u_fade) =spawn_object(osoznanie:oso_walk:0)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Brainwashing Cut Scene
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+[sr_idle@scene3]
+; on_timer = 3000 | sr_idle@scene4 %=run_tutorial(warlab_dream) =disable_ui%
+on_timer = 3000 | sr_idle@scene4 %=run_tutorial(warlab_dream)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Actor Wakes Up, Door Opens
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+[sr_idle@scene4]
+; on_info  = {+end_warlab_dream} sr_idle@scene5 %=run_cam_effector(prison_1:2508:false)%
+on_info  = {+end_warlab_dream} sr_idle@nil %=run_cam_effector(prison_1:2508:false) +warlab_finish_decoding +warlab_door_opened%
+
+; [sr_idle@scene5]
+; on_timer = 4000 | sr_idle@oso_spawner %=enable_ui +warlab_finish_decoding%
+
+; [sr_idle@oso_spawner]
+; on_info = {+warlab_finish_decoding +warlab_door_opened +warlab_actor_teleported} sr_idle@nil %=spawn_object(osoznanie:oso_walk:0)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[sr_idle@nil]

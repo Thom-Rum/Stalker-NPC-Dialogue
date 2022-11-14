@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Lieutenant Kirilov (Military Mechanic, Agroprom) (drx_ql_strings_military_kirilov.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_military_kirilov.ltx
+<
+<	Created by: DoctorX
+<	Last revised: August 06, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 06, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kirilov (Freedom Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1_name">
+		<text>Retrieve Gunsmith Toolkit for Kirilov</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1_text">
+		<text>Retrieve a set of gunsmith tools for Kirilov so he can perform basic upgrades to your equipment.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1_about">
+		<text>Can you pick up a set of tools for me? Some Private was delivering them here but he was called into a battle and had to stash them. I'll show you where he hid them. If you can get them for me I'll be able to upgrade your gear.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_1_finish">
+		<text>Excellent. Bring me your gear if you want me to do any basic upgrades for you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kirilov (Freedom Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_name">
+		<text>Find Technician Toolkit for Kirilov</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_text">
+		<text>Search for a set of technician tools for Kirilov so he can perform advanced upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_about_pre_npc_1">
+		<text>I'm afraid I can't do much more for your equipment with the tools I have. I put in a requisition for for some technician's tools but it could be a very long time before I get some.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_about_pre_actor_1">
+		<text>There's a lot of junk lying around here. I'll keep an eye out for you when I'm out in the field. Maybe someone left a set behind when they evacuated.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_about">
+		<text>It's possible, they're fairly common. In fact, I have an idea where you might be able to find some. If you do, bring them back to me. I'll give you some cash and I'll be able to do more advanced upgrades to your equipment.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_2_finish">
+		<text>You found some, great work. Come see me anytime you want me to do some additional upgrades to your gear.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Kirilov (Freedom Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3_name">
+		<text>Recover Armorer's Toolkit for Kirilov</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3_text">
+		<text>Thieves have stolen a set of armorer's tools from a Military depot. Find the criminals and recover the tools.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3_about">
+		<text>I have a mission for you. A group of trespassers broke into one of our depots and stole a set of armorer's tools. Track them down and bring back our tools.</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_task_3_finish">
+		<text>Well executed. With these tools I'll be able to fully upgrade your equipment. Bring me your gear if you need any work done to it.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

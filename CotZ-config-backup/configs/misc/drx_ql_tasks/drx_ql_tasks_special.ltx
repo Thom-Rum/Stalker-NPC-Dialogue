@@ -1,0 +1,398 @@
+;==============================================================
+;
+; Special Tasks (drx_ql_tasks_special.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_special.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: November 14, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Special Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 14, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Blackout Revenge Task (given after being mugged by blackout attacker)-
+
+[drx_ql_special_task_blackout_revenge]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 198
+
+title = drx_ql_special_task_blackout_revenge_name
+descr = drx_ql_special_task_blackout_revenge_text
+descr_functor = drx_ql_assassination_task_target
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {=check_task_stage(drx_ql_special_task_blackout_revenge:1)} complete
+condlist_1 = {!drx_ql_actor_on_revenge_target_level(drx_ql_special_task_blackout_revenge)} fail
+
+on_complete = %=inc_task_stage(drx_ql_special_task_blackout_revenge) =drx_ql_reset_task(drx_ql_special_task_blackout_revenge)%
+on_fail = %=drx_ql_reset_task(drx_ql_special_task_blackout_revenge)%
+on_cancel = %=drx_ql_reset_task(drx_ql_special_task_blackout_revenge)%
+
+;------------------------------------------------
+; Rescue Kidnapped Companion Task (given after companion being kidnapped by blackout attacker)-
+
+[drx_ql_special_task_blackout_kidnapped]
+
+icon = ui_inGame2_Zalozhnik
+storyline = false
+prior = 198
+
+title = drx_ql_special_task_blackout_kidnapped_name
+descr = drx_ql_special_task_blackout_kidnapped_text
+descr_functor = drx_ql_kidnapped_companion_task_target
+
+stage_complete = 1
+target_functor = drx_ql_kidnapped_companion_task_target
+status_functor = drx_ql_kidnapped_companion_task_status
+condlist_0 = {=check_task_stage(drx_ql_special_task_blackout_kidnapped:1)} complete
+
+on_complete = %-hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_special_task_blackout_kidnapped) =unlock_smart(drx_ql_special_task_blackout_kidnapped_id) =pstor_reset(drx_ql_bo_kidnapped_id) =drx_ql_reset_task(drx_ql_special_task_blackout_kidnapped)%
+on_fail = %-hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_special_task_blackout_kidnapped_id) =pstor_reset(drx_ql_bo_kidnapped_id) =drx_ql_reset_task(drx_ql_special_task_blackout_kidnapped)%
+on_cancel = %-hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_special_task_blackout_kidnapped_id) =pstor_reset(drx_ql_bo_kidnapped_id) =drx_ql_reset_task(drx_ql_special_task_blackout_kidnapped)%
+
+;------------------------------------------------
+; Hunted Task (given during npc dialog)-
+
+[drx_ql_special_task_hunted]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 198
+
+title = drx_ql_special_task_hunted_name
+descr = drx_ql_special_task_hunted_text
+descr_functor = drx_ql_hunted_task_target
+
+stage_complete = 1
+target_functor = drx_ql_hunted_task_target
+status_functor = drx_ql_hunted_task_status
+condlist_0 = {=check_task_stage(drx_ql_special_task_hunted:1)} complete
+
+on_complete = %=inc_task_stage(drx_ql_special_task_hunted) -drx_ql_info_has_hunted_task -drx_ql_info_assassin_known =pstor_reset(drx_ql_assassin_squad_id) =pstor_reset(drx_ql_assassin_npc_id) =pstor_reset(drx_ql_hunted_task_giver_id) =pstor_reset(drx_ql_last_assassination_name) =erase_pstor_ctime(drx_ql_last_assassination_time) =drx_ql_reset_task(drx_ql_special_task_hunted)%
+on_fail = %=drx_ql_remove_assassin_squad() -drx_ql_info_has_hunted_task -drx_ql_info_assassin_known =pstor_reset(drx_ql_assassin_squad_id) =pstor_reset(drx_ql_assassin_npc_id) =pstor_reset(drx_ql_hunted_task_giver_id) =pstor_reset(drx_ql_last_assassination_name) =erase_pstor_ctime(drx_ql_last_assassination_time) =drx_ql_reset_task(drx_ql_special_task_hunted)%
+on_cancel = %=drx_ql_remove_assassin_squad() -drx_ql_info_has_hunted_task -drx_ql_info_assassin_known =pstor_reset(drx_ql_assassin_squad_id) =pstor_reset(drx_ql_assassin_npc_id) =pstor_reset(drx_ql_hunted_task_giver_id) =pstor_reset(drx_ql_last_assassination_name) =erase_pstor_ctime(drx_ql_last_assassination_time) =drx_ql_reset_task(drx_ql_special_task_hunted)%
+
+;------------------------------------------------
+; Find Gauss Gun Flash Task (given at start of Gauss Gun Components Task)-
+
+[drx_ql_special_task_find_gauss_flash]
+
+icon = ui_inGame2_Gauss_pushka
+storyline = true
+prior = 125
+
+title = drx_ql_special_task_find_gauss_flash_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_special_task_find_gauss_flash_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_special_task_find_gauss_flash_about
+fetch_descr = drx_ql_special_task_find_gauss_flash_fetch_about
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {=actor_has_item(af_electra_flash)} complete
+on_init = %=setup_generic_fetch_task(drx_ql_special_task_find_gauss_flash_fetch:1:af_electra_flash) =drx_ql_add_havfetch_task(drx_ql_special_task_find_gauss_flash)%
+
+on_complete = %=inc_task_stage(drx_ql_special_task_find_gauss_flash) =drx_ql_reset_task(drx_ql_special_task_find_gauss_flash)%
+on_fail = %=drx_ql_reset_task(drx_ql_special_task_find_gauss_flash)%
+on_cancel = %=drx_ql_reset_task(drx_ql_special_task_find_gauss_flash)%
+
+;------------------------------------------------
+; Find Gauss Gun Capacitors Task (given at start of Gauss Gun Components Task)-
+
+[drx_ql_special_task_find_gauss_capacitors]
+
+icon = ui_inGame2_Gauss_pushka
+storyline = true
+prior = 139
+
+title = drx_ql_special_task_find_gauss_capacitors_name
+descr = drx_ql_special_task_find_gauss_capacitors_text
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {=actor_has_item(drx_ql_quest_item_capacitors)} complete
+on_init = %=drx_ql_setup_float_task(drx_ql_special_task_find_gauss_capacitors:drx_ql_quest_item_capacitors:50) %
+
+on_complete = %=inc_task_stage(drx_ql_special_task_find_gauss_capacitors) =drx_ql_reset_task(drx_ql_special_task_find_gauss_capacitors)%
+on_fail = %=drx_ql_release_float_item(drx_ql_special_task_find_gauss_capacitors) =drx_ql_reset_task(drx_ql_special_task_find_gauss_capacitors)%
+on_cancel = %=drx_ql_release_float_item(drx_ql_special_task_find_gauss_capacitors) =drx_ql_reset_task(drx_ql_special_task_find_gauss_capacitors)%
+
+;------------------------------------------------
+; Find Gauss Gun Wire Task (given at start of Gauss Gun Components Task)-
+
+[drx_ql_special_task_find_gauss_wire]
+
+icon = ui_inGame2_Gauss_pushka
+storyline = true
+prior = 139
+
+title = drx_ql_special_task_find_gauss_wire_name
+descr = drx_ql_special_task_find_gauss_wire_text
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {=actor_has_item(drx_ql_quest_item_wire)} complete
+on_init = %=drx_ql_setup_float_task(drx_ql_special_task_find_gauss_wire:drx_ql_quest_item_wire:50)%
+
+on_complete = %=inc_task_stage(drx_ql_special_task_find_gauss_wire) =drx_ql_reset_task(drx_ql_special_task_find_gauss_wire)%
+on_fail = %=drx_ql_release_float_item(drx_ql_special_task_find_gauss_wire) =drx_ql_reset_task(drx_ql_special_task_find_gauss_wire)%
+on_cancel = %=drx_ql_release_float_item(drx_ql_special_task_find_gauss_wire) =drx_ql_reset_task(drx_ql_special_task_find_gauss_wire)%
+
+; -----------------------------------------------
+; Find Wish Granter (NPP South) Task  (False Ending) (given after disabling Brain Scorcher)-
+
+[drx_ql_special_task_find_wish_granter]
+
+icon = ui_inGame2_PD_Otmecheniy_zonoy
+storyline = true
+prior = 10
+
+title = drx_ql_special_task_find_wish_granter_name
+descr = drx_ql_special_task_find_wish_granter_text
+
+; target = aes_space_restrictor_to_sarcofag
+target = nil
+condlist_0 = {+drx_ql_wish_granter_found} complete
+condlist_1 = {+sar2_monolith_end} complete
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {=drx_ql_actor_faction(monolith) -drx_ql_mon_inf_is_infiltrator} fail
+condlist_4 = {+drx_ql_info_osoznanie_bad_ending} fail
+
+; -----------------------------------------------
+; Find the Oasis Task  (given during dialog)-
+
+[drx_ql_special_task_find_oasis]
+
+icon = ui_inGame2_Oazis
+storyline = true
+prior = 11
+
+title = drx_ql_special_task_find_oasis_name
+descr = drx_ql_special_task_find_oasis_text
+
+target_functor = drx_ql_oasis_task_target
+target_functor_params = jup_b203
+condlist_0 = {+save_jup_b16_passed_labyrinth} complete
+condlist_1 = {+actor_made_wish} fail
+on_init = %+drx_ql_find_oasis_task_started%
+
+on_complete = %-drx_ql_find_oasis_task_started%
+on_fail = %-drx_ql_find_oasis_task_started%
+on_cancel = %-drx_ql_find_oasis_task_started%
+
+;------------------------------------------------
+; Monolith Defector Task (given on meet honcho after Monolith actor switching off Brain Scorcher)-
+
+[drx_ql_defector_sl_task_1]
+
+icon = ui_inGame2_PD_WishfulThinking
+storyline = true
+prior = 165
+
+title = drx_ql_defector_sl_task_1_name
+descr = drx_ql_defector_sl_task_1_text
+job_descr = drx_ql_defector_sl_task_1_about
+
+target = nil
+condlist_0 = {!drx_ql_actor_faction(monolith)} complete
+condlist_1 = {+actor_made_wish} fail
+
+on_complete = %=drx_ql_meet_random_honcho() =drx_ql_reset_task(drx_ql_defector_sl_task_1)%
+on_fail = %=drx_ql_meet_random_honcho() =drx_ql_reset_task(drx_ql_defector_sl_task_1)%
+on_cancel = %=drx_ql_meet_random_honcho() =drx_ql_reset_task(drx_ql_defector_sl_task_1)%
+
+;------------------------------------------------
+; Find Doc (Loner Honcho, Great Swamp) Task (given at start of endgame questline) (LINKS TO: Search Hotel Polissya (Pripyat) Task)-
+
+[drx_ql_special_task_meet_task_find_doc]
+
+icon = ui_iconsNpc_doctor
+storyline = true
+prior = 165
+
+title = drx_ql_special_task_meet_task_find_doc_name
+descr = drx_ql_special_task_meet_task_find_doc_text
+
+target_functor = drx_ql_manhunt_task_target
+target_functor_params = mar_smart_terrain_doc_doctor
+condlist_0 = {!drx_ql_is_alive(mar_smart_terrain_doc_doctor)} fail
+condlist_1 = {+actor_made_wish} fail
+condlist_2 = {=drx_ql_actor_faction(monolith)} fail
+condlist_3 = {-drx_ql_meet_honcho_mar_smart_terrain_doc_doctor} complete
+on_init = %=drx_ql_add_hidden_target(drx_ql_special_task_meet_task_find_doc:mar_smart_terrain_doc_doctor)%
+
+on_complete = %=drx_ql_remove_hidden_target(drx_ql_special_task_meet_task_find_doc)%
+on_fail = %=drx_ql_remove_hidden_target(drx_ql_special_task_meet_task_find_doc) =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_remove_hidden_target(drx_ql_special_task_meet_task_find_doc) =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; -----------------------------------------------
+; Search Hotel Polissya (Pripyat) Storyline Task (LINKS FROM: Find Doc Task) (LINKS TO: Search Monolith Control Center (NPP) Task)-
+
+[drx_ql_doc_sl_task_1]
+
+icon = ui_inGame2_Pripyat_1
+storyline = true
+prior = 165
+weight = 1
+precondition = {=drx_ql_actor_faction()} true, false
+
+title = drx_ql_doc_sl_task_1_name
+descr = drx_ql_doc_sl_task_1_text
+job_descr = drx_ql_doc_sl_task_1_about
+
+target = pri_decoder_room_door
+condlist_0 = {=drx_ql_actor_faction(monolith)} fail
+condlist_1 = {+actor_made_wish} fail
+condlist_2 = {=actor_has_item(decoder) =actor_has_item(pri_decoder_documents)} complete
+on_init = %=reward_random_item(cit_doctors_key) =drx_ql_setup_story_item_task(drx_ql_doc_sl_task_1:pri_decoder_documents) =drx_ql_setup_story_item_task(drx_ql_doc_sl_task_1:decoder) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_pripyat_hotel:pri_smart_tushkano_lair1) +cit_jail_doctor_pryp_task%
+
+on_complete = %=give_task(drx_ql_special_task_search_mcc) =drx_ql_reset_task(drx_ql_doc_sl_task_1)%
+on_fail = %=remove_item(cit_doctors_key) =drx_ql_release_story_item(pri_decoder_documents) =drx_ql_release_story_item(decoder) -cit_jail_doctor_pryp_task =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho() =drx_ql_reset_task(drx_ql_doc_sl_task_1)%
+on_cancel = %=remove_item(cit_doctors_key) =drx_ql_release_story_item(pri_decoder_documents) =drx_ql_release_story_item(decoder) -cit_jail_doctor_pryp_task =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho() =drx_ql_reset_task(drx_ql_doc_sl_task_1)%
+
+;------------------------------------------------
+; Search Monolith Control Center (NPP North) Task (LINKS FROM: Search Hotel Polissya (Pripyat) Task) (LINKS TO: Find Warlab Task)-
+
+[drx_ql_special_task_search_mcc]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+
+title = drx_ql_special_task_search_mcc_name
+descr = drx_ql_special_task_search_mcc_text
+
+; target = aes2_space_restrictor_to_secret_lab
+target = aes_space_restrictor_to_sarcofag
+condlist_0 = {+actor_made_wish} fail
+condlist_1 = {=drx_ql_actor_faction(monolith)} fail
+condlist_2 = {=actor_has_item(main_story_7_mon_con_documents)} complete
+on_init = %=drx_ql_setup_story_item_task(drx_ql_special_task_search_mcc:main_story_7_mon_con_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_pripyat_stadium:pri_smart_monolith_stalker6) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_npp_south_1:aes_smart_terrain_monolit_blockpost) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_npp_south_2:aes_smart_terrain_monolit_blockpost2) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_npp_south_3:aes_smart_terrain_monolit_blockpost4) =drx_ql_activate_teleport(aes_space_restrictor_to_sarcofag)%
+
+on_complete = %+warlab_password_info +drx_ql_info_main_task_mcc_done =give_task(drx_ql_special_task_find_warlab)%
+on_fail = %=remove_item(cit_doctors_key) =drx_ql_release_story_item(main_story_7_mon_con_documents) =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=remove_item(cit_doctors_key) =drx_ql_release_story_item(main_story_7_mon_con_documents) =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Find Warlab (Generators) Task (LINKS FROM: Search Monolith Control Center Task)-
+
+[drx_ql_special_task_find_warlab]
+
+icon = ui_iconsTotal_sar_secret_lab
+storyline = true
+prior = 165
+
+title = drx_ql_special_task_find_warlab_name
+descr = drx_ql_special_task_find_warlab_text
+
+target = gen_space_restrictor_to_warlab
+condlist_0 = {+actor_made_wish} fail
+condlist_1 = {=drx_ql_actor_faction(monolith)} fail
+condlist_2 = {+warlab_door_opened} complete
+on_init = %=drx_ql_create_squad(drx_ql_designated_target_squad_monolith_npp_north_1:aes2_monolith_camp3) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_npp_north_2:aes2_monolith_snipers_1) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_npp_north_3:aes2_monolith_snipers_2) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_npp_north_4:aes2_monolith_snipers_3) =drx_ql_activate_teleport(aes2_space_restrictor_to_gen:gen_space_restrictor_to_aes2:gen_space_restrictor_to_warlab)%
+
+on_fail = %=remove_item(cit_doctors_key) =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=remove_item(cit_doctors_key) =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Find Warlab Access Card Task (given on using Warlab poltergeist door)-
+
+[drx_ql_special_task_find_warlab_access]
+
+icon = ui_iconsTotal_dar_codedoor_1
+storyline = true
+prior = 166
+
+title = drx_ql_special_task_find_warlab_access_name
+descr = drx_ql_special_task_find_warlab_access_text
+
+target = nil
+condlist_0 = {+actor_made_wish} fail
+condlist_1 = {=drx_ql_actor_faction(monolith)} fail
+condlist_2 = {=actor_has_item(drx_ql_quest_item_access_card)} complete
+on_init = %=drx_ql_setup_story_item_task(drx_ql_special_task_find_warlab_access:drx_ql_quest_item_access_card) +warlab_kill_crazy_entity_task_started%
+
+on_complete = %+drx_ql_has_warlab_access_card%
+on_fail = %=drx_ql_release_story_item(drx_ql_quest_item_access_card) -drx_ql_has_warlab_access_card -warlab_kill_crazy_entity_task_started%
+on_cancel = %=drx_ql_release_story_item(drx_ql_quest_item_access_card) -drx_ql_has_warlab_access_card -warlab_kill_crazy_entity_task_started%
+
+;------------------------------------------------
+; Destroy Generators Task (given after meeting Osoznanie)-
+
+[drx_ql_special_task_destroy_generators]
+
+icon = ui_iconsTotal_sar_monolith_destroy
+storyline = true
+prior = 165
+
+title = drx_ql_special_task_destroy_generators_name
+descr = drx_ql_special_task_destroy_generators_text
+
+target = warlab_primary_switcher_id
+condlist_0 = {+actor_made_wish} fail
+condlist_1 = {=drx_ql_actor_faction(monolith)} fail
+condlist_2 = {+warlab_deactivate_generators_done} complete
+
+on_fail = %=remove_item(cit_doctors_key) =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=remove_item(cit_doctors_key) =drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Base Defense Tasks
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 29, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Faction Base Defense Task (moved from misc\tm_dynamic.ltx)-
+
+[faction_base_defense]
+
+icon = ui_iconsTotal_defend_lager
+; prior = 35
+prior = 198
+storyline = false
+
+title = {-yantar_faction_base_defense_quest_started} faction_base_defense_name, {+yantar_faction_base_defense_quest_started} faction_base_defense_yantar_name
+descr = {-yantar_faction_base_defense_quest_started} faction_base_defense_text, {+yantar_faction_base_defense_quest_started} faction_base_defense_yantar_text
+
+target_functor = faction_base_defense_target
+condlist_0 = {+faction_base_defense_enemy_killed +faction_base_defense_2nd_enemy_killed} complete
+condlist_1 = {+yantar_faction_base_defense_quest_started -faction_base_defense_enemy_killed -faction_base_defense_2nd_enemy_killed !actor_on_level(l08_yantar)} fail
+on_init = %+faction_base_defense_active%
+
+on_complete = %-faction_base_defense_active =actor_surge_immuned(false)%
+on_fail = %-faction_base_defense_active =actor_surge_immuned(false)%
+on_cancel = %-faction_base_defense_active =actor_surge_immuned(false)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

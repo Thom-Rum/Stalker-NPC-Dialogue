@@ -1,0 +1,197 @@
+;==============================================================
+;
+; Tasks Given by Sidorovich (Loner Trader, Cordon) (drx_ql_tasks_loner_sidorovich.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_loner_sidorovich.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: September 10, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Change Factions Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 06, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Sidorovich (Loner Trader) Payoff Change Factions Task-
+
+[drx_ql_esc_m_trader_cf_task_1]
+
+icon = ui_inGame2_Sdelka
+storyline = true
+prior = 197
+weight = 1
+repeat_timeout = 0
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_esc_m_trader_cf_task_1_name
+descr = drx_ql_esc_m_trader_cf_task_1_text
+descr_functor = drx_ql_money_task_target
+job_descr = drx_ql_esc_m_trader_cf_task_1_about
+task_complete_descr = drx_ql_esc_m_trader_cf_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_money_task_target
+status_functor = drx_ql_money_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_esc_m_trader_cf_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_esc_m_trader_cf_task_1)} fail
+on_init = %=pstor_set(drx_ql_esc_m_trader_cf_task_1_fetch:10000) +drx_ql_on_cf_task%
+
+on_complete = %=drx_ql_money_task_payment(drx_ql_esc_m_trader_cf_task_1) =drx_ql_change_factions(stalker) =inc_task_stage(drx_ql_esc_m_trader_cf_task_1) -drx_ql_on_cf_task =drx_ql_reset_task(drx_ql_esc_m_trader_cf_task_1)%
+on_fail = %-drx_ql_on_cf_task =drx_ql_fail_task(drx_ql_esc_m_trader_cf_task_1) =drx_ql_reset_task(drx_ql_esc_m_trader_cf_task_1)%
+on_cancel = %-drx_ql_on_cf_task =drx_ql_fail_task(drx_ql_esc_m_trader_cf_task_1) =drx_ql_reset_task(drx_ql_esc_m_trader_cf_task_1)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Sidorovich (Loner Trader) Eliminate Car Park Bandits Task-
+
+[drx_ql_esc_m_trader_task_1]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_enemy(bandit) =sim_avail(esc_smart_terrain_7_11) =smart_stayed_squad_count_ge_by_faction(esc_smart_terrain_7_11:1:nil:false:bandit)} true, false
+
+title = drx_ql_esc_m_trader_task_1_name
+descr = drx_ql_esc_m_trader_task_1_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_esc_m_trader_task_1_about
+task_complete_descr = drx_ql_esc_m_trader_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = bandit
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_esc_m_trader_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_esc_m_trader_task_1)} fail
+condlist_3 = {!sim_avail(esc_smart_terrain_7_11)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_esc_m_trader_task_1:esc_smart_terrain_7_11) +drx_ql_on_esc_m_trader_car_park_task%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_task_companion(esc_2_12_stalker_fanat_squad) =inc_task_stage(drx_ql_esc_m_trader_task_1) -drx_ql_fanatic_is_companion -drx_ql_on_esc_m_trader_car_park_task =drx_ql_reset_task(drx_ql_esc_m_trader_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =remove_task_companion(esc_2_12_stalker_fanat_squad) -drx_ql_fanatic_is_companion -drx_ql_on_esc_m_trader_car_park_task =drx_ql_fail_task(drx_ql_esc_m_trader_task_1) =drx_ql_reset_task(drx_ql_esc_m_trader_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =remove_task_companion(esc_2_12_stalker_fanat_squad) -drx_ql_fanatic_is_companion -drx_ql_on_esc_m_trader_car_park_task =drx_ql_fail_task(drx_ql_esc_m_trader_task_1) =drx_ql_reset_task(drx_ql_esc_m_trader_task_1)%
+
+;------------------------------------------------
+; Sidorovich (Loner Trader) Contract Killer Task-
+
+[drx_ql_esc_m_trader_task_2]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_assassination_target(stalker:drx_ql_esc_m_trader_task_2:stalker:killer:bandit)} true, false
+
+title = drx_ql_esc_m_trader_task_2_name
+descr = drx_ql_esc_m_trader_task_2_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_esc_m_trader_task_2_about
+task_complete_descr = drx_ql_esc_m_trader_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_esc_m_trader_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_esc_m_trader_task_2)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_esc_m_trader_task_2)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_esc_m_trader_task_2)%
+
+on_complete = %=drx_ql_reward_random(2000:5500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_esc_m_trader_task_2) =drx_ql_reset_task(drx_ql_esc_m_trader_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_esc_m_trader_task_2) =drx_ql_reset_task(drx_ql_esc_m_trader_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_esc_m_trader_task_2) =drx_ql_reset_task(drx_ql_esc_m_trader_task_2)%
+
+;------------------------------------------------
+;  Sidorovich (Loner Trader) Rookie Initiation Task-
+
+[drx_ql_esc_m_trader_task_3]
+
+icon = ui_inGame2_Issledovatelskaya_gruppa
+storyline = false
+prior = 75
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_ext(stalker:drx_ql_esc_m_trader_task_3) !squad_exist(drx_ql_raid_companion_squad_stalker_2)} true, false
+
+title = drx_ql_esc_m_trader_task_3_name
+descr = drx_ql_esc_m_trader_task_3_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_esc_m_trader_task_3_about
+task_complete_descr = drx_ql_esc_m_trader_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_esc_m_trader_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_esc_m_trader_task_3)} fail
+condlist_3 = {!squad_exist(drx_ql_raid_companion_squad_stalker_2)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_esc_m_trader_task_3) =drx_ql_give_escort_task_companions(drx_ql_raid_companion_squad_stalker_2)%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_stalker_2) =inc_task_stage(drx_ql_esc_m_trader_task_3) =drx_ql_reset_task(drx_ql_esc_m_trader_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_stalker_2) =drx_ql_fail_task(drx_ql_esc_m_trader_task_3) =drx_ql_reset_task(drx_ql_esc_m_trader_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_stalker_2) =drx_ql_fail_task(drx_ql_esc_m_trader_task_3) =drx_ql_reset_task(drx_ql_esc_m_trader_task_3)%
+
+;------------------------------------------------
+; Sidorovich (Loner Trader) Mutant Safari Task-
+
+[drx_ql_esc_m_trader_task_4]
+
+icon = ui_inGame2_PD_Ohotnik_na_mutantov
+storyline = false
+prior = 58
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(stalker:drx_ql_esc_m_trader_task_4:monster) !squad_exist(drx_ql_raid_companion_squad_stalker_1)} true, false
+
+title = drx_ql_esc_m_trader_task_4_name
+descr = drx_ql_esc_m_trader_task_4_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_esc_m_trader_task_4_about
+task_complete_descr = drx_ql_esc_m_trader_task_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monster
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_esc_m_trader_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_esc_m_trader_task_4)} fail
+condlist_3 = {!squad_exist(drx_ql_raid_companion_squad_stalker_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_esc_m_trader_task_4) =drx_ql_give_escort_task_companions(drx_ql_raid_companion_squad_stalker_1)%
+
+on_complete = %=drx_ql_reward_random(2000:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_stalker_1) =inc_task_stage(drx_ql_esc_m_trader_task_4) =drx_ql_reset_task(drx_ql_esc_m_trader_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_stalker_10) =drx_ql_fail_task(drx_ql_stalker_sl_task_1) =drx_ql_reset_task(drx_ql_esc_m_trader_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_stalker_10) =drx_ql_fail_task(drx_ql_stalker_sl_task_1) =drx_ql_reset_task(drx_ql_esc_m_trader_task_4)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

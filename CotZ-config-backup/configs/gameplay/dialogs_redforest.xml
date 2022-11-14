@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Dialog Manager For Red Forest Map (dialogs_redforest.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Modified by: DoctorX
+<	Last revised: October 27, 2019
+<
+<===========================================================-->
+
+
+<game_dialogs>
+
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Forester Info Dialogs
+	<!--
+	<!--	Modified by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 27, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Hello dialog -->
+	<dialog id="red_forester_hello_dialog">
+		<phrase_list>
+			<phrase id="0">
+				<text>red_forester_hello_dialog_0</text>
+				<precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+				<action>dialog_manager.action_disable_phrase</action>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- About Forester -->
+	<dialog id="red_forester_who_are_you">
+		<dont_has_info>red_forester_who_are_you</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+			<text>red_forester_who_are_you_0</text>
+				<action>dialog_manager.action_disable_phrase</action>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>red_forester_who_are_you_1</text>
+				<next>11</next>
+			</phrase>
+			<phrase id="11">
+				<text>red_forester_who_are_you_11</text>
+				<next>111</next>
+			</phrase>
+			<phrase id="111">
+				<text>red_forester_who_are_you_11111</text>
+				<give_info>red_forester_who_are_you</give_info>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- About Red Forest -->
+	<dialog id="red_forester_about_forest">
+		<precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+		<has_info>red_forester_who_are_you</has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>red_forester_about_forest_0</text>
+				<action>dialog_manager.action_disable_phrase</action>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>red_forester_about_forest_1</text>
+				<next>11</next>
+			</phrase>
+			<phrase id="11">
+				<text>red_forester_about_forest_2</text>
+				<next>111</next>
+			</phrase>
+			<phrase id="111">
+				<text>red_forester_who_are_you_111</text>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- About Zone -->
+	<dialog id="red_forester_about_zone">
+		<precondition>dialog_manager.precondition_is_phrase_disabled</precondition>
+		<has_info>red_forester_who_are_you</has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>red_forester_about_zone_0</text>
+				<action>dialog_manager.action_disable_phrase</action>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>red_forester_about_zone_1</text>
+				<next>11</next>
+			</phrase>
+			<phrase id="11">
+				<text>red_forester_about_zone_11</text>
+				<next>111</next>
+			</phrase>
+			<phrase id="111">
+				<text>red_forester_about_zone_111</text>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</game_dialogs>

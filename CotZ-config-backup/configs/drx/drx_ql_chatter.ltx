@@ -1,0 +1,132 @@
+;==============================================================
+;
+; DoctorX Questlines Companion Chatter Settings (drx_ql_chatter.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Created by: DoctorX
+;	Last revised: August 04, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Chatter Settings
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 04, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+[chatter_settings]
+
+; -----------------------------------------------
+; General Settings:
+
+; Enable companion chatter (bool):
+enable_chatter = true
+
+; Percent chance an NPC will use alternate phrases if specific phrases are available for that npc (float, decimal percent):
+alt_text_chance = 0.5  ; 50%
+
+; Minimum length of time between updates (float, game seconds):
+update_interval = 10
+
+; Maximum distance from npc to allow chatter (float, meters):
+max_dist = 20
+
+; Minimum message display time (float, miliseconds):
+msg_time = 5000  ; 5 seconds
+
+; Message characters at minimum display time (int):
+max_chars = 100
+
+; -----------------------------------------------
+; Enemy Warning Settings:
+
+; Enable enemy warning chatter (bool):
+enable_enemy_warning_chatter = true
+
+; -----------------------------------------------
+; Companion Wounded Settings:
+
+; Enable wounded chatter (bool):
+enable_wounded_chatter = true
+
+; -----------------------------------------------
+; Companion Injured Settings:
+
+; Enable injured chatter (bool):
+enable_injured_chatter = true
+
+; Maximum health level to consider a companion injured (float, decimal percent):
+injured_health = 0.35  ; 35%
+
+; Delay from when combat ended when companion became injured to companion sending injured message (float, game seconds):
+injured_delay = 300  ; 5 minutes
+
+; -----------------------------------------------
+; Actor Kill Compliment Settings:
+
+; Enable compliment chatter (bool):
+enable_compliment_chatter = true
+
+; Percent chance a companion will give a compliment (float, decimal percent):
+compliment_chance = 0.3  ; 30%
+
+; Delay after actor kill before displaying message (float, game seconds):
+compliment_delay = 20
+
+; -----------------------------------------------
+; Companion Kill Settings:
+
+; Enable companion kill chatter (bool):
+enable_companion_kill_chatter = true
+
+; Percent chance a companion will talk about last kill (float, decimal percent):
+companion_kill_chance = 1  ; 100%
+
+; Delay after companion kill before displaying message (float, game seconds):
+companion_kill_delay = 15
+
+; -----------------------------------------------
+; Building Chatter Settings:
+
+; Enable building chatter (bool):
+enable_building_chatter = true
+
+; Percent chance a companion will make building chatter (float, decimal percent):
+building_chance = 0.5  ; 50%
+
+; Minimum time between building chatter messages (float, game seconds):
+building_repeat = 14400  ; 4 hours
+
+; Maximum distance from building smart terrain (float, meters):
+building_dist = 15
+
+; -----------------------------------------------
+; Idle Chatter Settings:
+
+; Enable idle chatter (bool):
+enable_idle_chatter = true
+
+; Percent chance a companion will make idle chatter (float, decimal percent):
+idle_chance = 1  ; 100%
+
+; Time from last chatter to idle chatter message (float, game seconds):
+idle_min_delay = 900  ; 15 minutes
+idle_max_delay = 3600  ; 1 hour
+
+; Time from last chatter to idle chatter message during a blowout (float, game seconds):
+surge_idle_min_delay = 300  ; 5 minutes
+surge_idle_max_delay = 450  ; 7.5 minutes
+
+; Time from last chatter to idle chatter message at a campfire (float, game seconds):
+campfire_idle_min_delay = 450  ; 7.5 minutes
+campfire_idle_max_delay = 600  ; 10 minutes
+
+; Maximum distance from a campfire (float, meters):
+campfire_dist = 5
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Military Task Strings (drx_ql_strings_military.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: November 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Military Storyline Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Investigate Stingray 5 (Zaton, Distorted Swamp) Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_1_name">
+		<text>Investigate Stingray 5 Crash Site</text>
+	</string>
+	<string id="drx_ql_army_sl_task_1_text">
+		<text>A Military helicopter was downed by an unknown force in Zaton. Recover the black box from the wreckage so Military Intelligence can analyze the data.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_1_about">
+		<text>One of our helicopters reported an encounter with some sort of strange phenomenon in Zaton a few days ago, and crashed shortly thereafter. A search party was dispatched to secure and sanitize the area, but they were unable to reach the crash site due to extreme chemical and paranormal contamination levels. I'm issuing you a special outfit that will provide protection against the conditions at the crash site. Now listen, don't just go selling that on the black market on the way up there, you're going to need it. Get up there and recover the flight data recorder from the wreckage. We need to find out what took our helicopter down.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_1_finish">
+		<text>Excellent. Well done. Let's see what we can find out... Well, the data from the flight recorder shows all systems were normal up until the time of the crash, but the recorder cuts out for a moment just before the crash occurs. There were no signs of malfunction or the pilot taking evasive maneuvers to avoid ground fire, something big must have happened in that instant to completely disable the aircraft and cause it to go down. That wasn't the only helicopter that ran into trouble up there. I've heard from regiment we lost a few birds up there all at once, and so far no one's been able to determine what brought them down, either.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Battle Plans Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_2_name">
+		<text>Battle Plans</text>
+	</string>
+	<string id="drx_ql_army_sl_task_2_text">
+		<text>{npc_name} has learned the location of enemy battle plans and needs them captured.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_2_about">
+		<text>An informant has revealed the location of the enemy's battle plans. I need you to infiltrate the area and retrieve the plans.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_2_finish">
+		<text>Well done! You may have saved many lives with this.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Search Agroprom Underground Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_3_name">
+		<text>Search Agroprom Underground</text>
+	</string>
+	<string id="drx_ql_army_sl_task_3_text">
+		<text>Classified information has gone missing and must be recovered at all costs. Search the tunnels below Agroprom and find the documents before they fall into enemy hands.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_3_about">
+		<text>Sensitive information has gone missing. We believe it may be stashed somewhere in the tunnels below Agroprom. I currently have a detachment down there looking for the documents, I want you to head down there and join the search. The brass wants this intel recovered so bad they are offering a big reward to the first soldier who finds it.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_3_finish">
+		<text>Excellent work, you have impressed me with your recent successes. I assume you've read the documents. The information you have seen is highly classified, you must not divulge the contents to anyone. Now that you have seen them however, I can fill you in on our true mission. We have learned that secret experiments were being conducted at several underground locations throughout the Zone. We don't know who was conducting them, but we do know what they were researching; biological manipulation, genetic alteration, even experiments involving mind control and brainwashing. We have been tasked with recovering any and all evidence of these secret programs before they fall into enemy hands. The data from the experiments must never be allowed to leave the Zone.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Dark Valley Compound Brawl Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_4_name">
+		<text>Dark Valley Compound</text>
+	</string>
+	<string id="drx_ql_army_sl_task_4_text">
+		<text>Non-Military personnel have occupied a farmstead in Dark Valley and are reportedly using it as a compound to stockpile weapons and train anarchist soldiers. Meet up with the scout squad that has been surveilling the compound.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_4_text_1">
+		<text>Storm the compound and eliminate all resistance.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_4_about">
+		<text>A group of trespassers have moved in on an abandoned farmstead in Dark Valley. Command is concerned they might be amassing weapons and training for battle within this compound. This is considered to be a very high-risk threat and your mission is to eliminate it. I have a recon squad on scene now with eyes on the compound. Lead your squad there and link up with the advance team. Breach the compound and use whatever force is necessary to dislodge the trespassers.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_4_message">
+		<text>%s, over here! The compound is just ahead to the south. Take point, we'll cover you.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_4_finish">
+		<text>Your elimination of the paramilitary presence was impressive. This will help in our fight to regain control of the Zone.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Darkscape Forest Brawl Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_5_name">
+		<text>Forest Fire</text>
+	</string>
+	<string id="drx_ql_army_sl_task_5_text">
+		<text>Intelligence reports indicate a group of criminals may have snuck into the Zone through Darkscape. Lead your squad there and link up with the rest of the patrol force.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_5_text_1">
+		<text>Patrol the forest and eliminate any trespassers.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_5_about">
+		<text>We have received word a band of killers may have penetrated into the Zone through Darkscape. These are not our ordinary trespassers, they are notorious murderers, thieves, and rapists. We cannot allow this scum to use the Zone as their hideout. Major Kuznetsov has already dispatched a squad to the area, take your men and meet up with them and conduct a patrol of the forest. Eliminate any and all resistance you encounter.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_5_message">
+		<text>Good, Lieutenant Kirilov sent %s to reinforce us. Let's fan out and sweep north through the forest.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_5_finish">
+		<text>Expertly executed mission. Your purge of the Zone has helped us greatly.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Defend the Base Storyline Task- -->
+
+	<string id="drx_ql_army_sl_task_6_name">
+		<text>Defend Agroprom</text>
+	</string>
+	<string id="drx_ql_army_sl_task_6_text">
+		<text>Mercenaries have invaded the area and are advancing on the Military base in Agroprom. Prevent the attackers from reaching their target.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_6_about">
+		<text>A large Mercenary assault force has been spotted moving in on our location. Get out there on the front line and hold them off.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_6_finish">
+		<text>Fine work indeed!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Jupiter UAV Memory Module Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_7_name">
+		<text>Retrieve the Spy Drone Memory Module</text>
+	</string>
+	<string id="drx_ql_army_sl_task_7_text">
+		<text>An unauthorized surveillance drone may have crashed in the area around the Jupiter plant. Lead your team in finding and recovering the memory module from the wreckage.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_7_about">
+		<text>An unmanned surveillance aircraft of unknown origin is reported to have crashed somewhere up near the Jupiter plant. I want you to lead a recovery squad up there to search the crash site. Find out whatever you can, but the target of prime importance is the memory module. The data contained on that is of great interest to us, and surely to whoever the UAV belonged to as well. Get up there and find it before they do. Report back to me when you have succeeded.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_7_finish">
+		<text>Very well done indeed. It seems that UAV was being operated by the Mercenaries. Looks like their force is more advanced than we gave them credit for. Too bad the idiots weren't that good at flying it. With their overwatch gone we may well have gained the upper hand in reclaiming the Zone.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Sniper Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_8_name">
+		<text>Sniper</text>
+	</string>
+	<string id="drx_ql_army_sl_task_8_text">
+		<text>Major Kuznetsov has ordered you to eliminate %s called %s. Only the target can be taken out, any companions he may be traveling with must not be harmed.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_8_about_pre_npc_1">
+		<text>A very high-value target has been located. He is not going to be easy to get to so I need someone who is masterful at executing a stealth approach and is an extremely accurate precision shooter. I have chosen you. Are you up for the task?</text>
+	</string>
+	<string id="drx_ql_army_sl_task_8_about_pre_actor_1">
+		<text>You can count on me, sir.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_8_about">
+		<text>Good. Now listen, this is very important; the target may be traveling with a few individuals that we don't want harmed. Under no circumstances are you to engage anyone else in the target's group other than the target himself, even if they open fire on you. Understood? Your best bet will be to stalk them silently, get just close enough to positively identify the target, take your shot without giving away your position, then run like hell.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_8_finish">
+		<text>Excellent marksmanship. Well done.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Limansk Outpost Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_9_name">
+		<text>Battle for Limansk</text>
+	</string>
+	<string id="drx_ql_army_sl_task_9_text">
+		<text>A Monolith platoon is occupying Limansk, preventing the Military from establishing an outpost there. Lead a squad to the target area and link up with the advance team.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_9_text_1">
+		<text>Sweep north through Limansk and eradicate the Monolith presence.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_9_about">
+		<text>Command wants us to establish an outpost in Limansk. Our scouting team reported back a sizeable Monolith presence is occupying the area. Take a squad up there and link up with the recon team. Push through the town and eliminate any and all resistance.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_9_message">
+		<text>About time you showed up, %s. Let's push on up north and wipe out these cultists.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_9_finish">
+		<text>Excellent work. Our control of Limansk is crucial to our victory.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Infiltrate Lab X-18 (Dark Valley) Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_10_name">
+		<text>Secure Lab X-18</text>
+	</string>
+	<string id="drx_ql_army_sl_task_10_text">
+		<text>An accident has occurred in a Military controlled research laboratory in the Dark Valley. Local troops have been unwilling to enter the lab to asses the extent of the damage. Gain access to the lab and secure the scene. Search for and recover any surviving documentation on the research that was being conducted there.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_10_about_pre_npc_1">
+		<text>We have just received word that a fatal accident has occurred in the underground laboratory in the Dark Valley. This is one of the last active laboratories in the Zone that is still under our control. The local squad has locked down the perimeter but they have been unable to gain access to the lab itself.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_10_about_pre_actor_1">
+		<text>What's preventing the Dark Valley squad from going down there?</text>
+	</string>
+	<string id="drx_ql_army_sl_task_10_about">
+		<text>Unknown. I keep getting conflicting reports from them, some have said there is a gas leak, there was a report of a massive inferno that was later refuted, I've even heard claims of monsters and ghosts. I don't know what the eggheads were working on down there, but whatever happened seems to be bad enough to have turned some of my best men into a bunch of sniveling cowards. Head over there and take control of the scene. Gain access to the lab to gain a handle on what transpired down there. Sanitize the area and recover any documentation on the research that was being conducted at that location.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_10_finish">
+		<text>Outstanding, you have done well. Looks like the experiments that were being conducted down there went horribly wrong. I can't say I'm surprised, I'm no scientist but from what I can tell from these documents the experiments they were conducting were a horror show. Now whatever they started down there is unleashed to the Zone and we've lost one of our last active research sites. Our situation here in the Zone is rapidly going to shit. We're going to need to step up our tactics if we have any hope of maintaining control of this place. Excellent work, here's some combat pay for doing what none of the other men could accomplish.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Disable the Miracle Machine Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_11_name">
+		<text>Recapture Lab X-16</text>
+	</string>
+	<string id="drx_ql_army_sl_task_11_text">
+		<text>Infiltrate the Lab X-16 complex in Yantar using the psi helmet you were issued to penetrate the dangerous psi fields in the area. Locate and deactivate the emitter located there.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_11_about">
+		<text>Our scientists were able to recreate a device that was being developed in the Dark Valley laboratory from the documents you recovered there. This device will allow the user to enter harmful psi fields without succumbing to their effects. This is a major breakthrough for us, and may help us regain control of the Zone. I'm issuing the device to you. Your mission is to recapture the Lab X-16 complex in Yantar and find a way to deactivate the psi field emitter located there.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_11_finish">
+		<text>Excellent! You have done well. With the emitter deactivated we have regained control of the local territory and can push further into the Zone. Great job.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Investigate Stingray 3 (Zaton, Southern Plateau) Storyline Task- -->
+
+	<string id="drx_ql_army_sl_task_12_name">
+		<text>Investigate Stingray 3 Crash Site</text>
+	</string>
+	<string id="drx_ql_army_sl_task_12_text">
+		<text>A Military helicopter has crashed on top of the inaccessible Southern Plateau in Zaton. Meet with a stalker called Noah and convince him to tell you his secret way of reaching it.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_12_text_1">
+		<text>According to Noah, the top of the Southern Plateau can somehow be reached from inside the Burnt Village. His instructions are as follows: Enter the village via the road leading in from the southwest and cross the thermal field to the right to find the opening in the fence on the other side. Jump off the edge of the cliff to be transported to the plateau.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_12_text_2">
+		<text>Find the equipment case the surviving Stingray 3 crew members stashed on top of the plateau.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_12_about">
+		<text>One of our helicopters, Stingray 3, experienced an unknown emergency and came down hard in Zaton. Most of our boys made it out of the wreckage okay, although they lost a couple guys to the mutants in the area. The crew was unable to transport some of the classified equipment from the helicopter with them when they evacuated, so they hid it in a cave up there. The problem is, the plateau they set down on has proven to be unclimbable. There is no way to get back to the top to retrieve the equipment without sending another helicopter, and HQ doesn't want to risk it without knowing what brought down Stingray 3. Our surveillance team recently spotted a stalker known as Noah at the crash site. Go interrogate him and find out how he got up there. Retrieve the equipment that was hidden up there and bring it back here.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_12_finish">
+		<text>Excellent work. This is advanced equipment the troops aboard the helicopter were to deploy during a covert assault operation, had the flight not crashed. Stingray 3 was part of a larger operation that ended in failure, and we have yet to find out why. The more information we can retrieve from these crash sites, the better our understanding will be as to what went wrong.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Investigate Stingray 4 (Jupiter, Jupiter Plant) Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_13_name">
+		<text>Investigate Stingray 4 Crash Site</text>
+	</string>
+	<string id="drx_ql_army_sl_task_13_text">
+		<text>A distress signal was received from the crew of the Stingray 4 flight. Find the source of the signal and locate the survivors.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_13_text_1">
+		<text>The wreckage of Stingray 4 has been found, but there are no survivors in the area. Search for any clues they may have left behind.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_13_text_2">
+		<text>The map on the PDA found at the crash site shows the location of a potential rally point. Head to the location to see if any survivors have gathered there.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_13_text_3">
+		<text>Interrogate the pilot for information about the failed operation.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_13_about">
+		<text>We've tracked a distress beacon coming from inside the Jupiter plant. We believe it was triggered by the survivors of one of the crashed Stingray helicopters. Head up there and locate the source of the signal. Once you have found the survivors, bring them back to me immediately for questioning. I need to know what was going on with this operation and if the higher ups won't tell me, they sure as hell will.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_13_finish">
+		<text>Well done. It's a shame about Lieutenant Sokolov; I knew him well, never would have pegged him as a deserter. Well, all I can say is everyone gets what is coming to them in the end. Excellent job getting to the bottom of this.The information you gathered confirms the Monolith army is far more powerful than we planned for, and they have full control of the center of the Zone. It is concerning the higher ups didn't want to share this information with our unit. By hiding the true extent of the enemy force and the spectacular failure of the mission designed to eliminate them, it is evident that the situation is out of control by anyone outside the Zone. There is no one left but us now to contain the threat and reclaim the Zone. Looks like this job just got a whole lot harder.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Dynamic Brawl Storyline Task -->
+
+	<string id="drx_ql_army_sl_task_14_name">
+		<text>Military Counter Assault</text>
+	</string>
+	<string id="drx_ql_army_sl_task_14_text">
+		<text>A Military squad is pinned down by a large group of %s. Link up with them and lead them in a counter assault.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_14_text_1">
+		<text>Push forward and eliminate the hostile %s from the area.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_14_about">
+		<text>Some of our troops have made contact with a large group of %s that have them pinned down. Take a squad over there and link up with them. Organize a counter assault and eliminate the hostile force.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_14_message">
+		<text>%s, you came just in time! It's quiet right now but the enemy is not far from here. You take lead on the counter assault.</text>
+	</string>
+	<string id="drx_ql_army_sl_task_14_finish">
+		<text>Excellent work, you are a fine warrior. These trespassers grow more violent with each passing day. We must continue to prevent them from becoming a militant force.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Military Simulation Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 02, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Equipment Swap with Military Simulation Task -->
+
+	<string id="drx_ql_simulation_task_army_1_name">
+		<text>%s Trade with Military</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_1_text">
+		<text>{npc_name} is willing to trade some equipment for a %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_1_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_1_fetch_about">
+		<text>You have any supplies you want to trade? Tell you what, if you can get me a %s, I've got a nice %s I can give you.</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_1_fetch_finish">
+		<text>Great man, thanks!</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Contraband Artefact for Military Simulation Task -->
+
+	<string id="drx_ql_simulation_task_army_2_name">
+		<text>Contraband %s</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_2_text">
+		<text>{npc_name} is offering a rifle in exchange for the %s artefact.</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_2_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_2_fetch_about">
+		<text>Hey, listen man. I know this is against regulations, but I'm going to be rotating home soon and I want to bring back a souvenir. If you can find a %s for me I'll give you my rifle.</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_2_fetch_finish">
+		<text>Awesome! Here's what I promised you. Don't let the commander know I have this.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Assassination on a Dare for Military Simulation Task -->
+
+	<string id="drx_ql_simulation_task_army_3_name">
+		<text>Assassination on a Dare</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_3_text">
+		<text>A fellow soldier has bet his rifle that you can't assassinate %s called %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_3_about">
+		<text>What, are you trying to climb the ranks or something? Tell you what hotshot, I happen to know the location of a certain high-value target the brass wants eliminated. I'll bet you my rifle you can't even get close to him.</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_3_finish">
+		<text>For real? You really did it? Damn, if I though you had any chance I never would have made this bet. Well, a deal's a deal. Here's my rifle. But you better be covering my ass with it in the next firefight.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Dangerous Mutant Sweep with Military Simulation Task -->
+
+	<string id="drx_ql_simulation_task_army_4_name">
+		<text>Dangerous Mutant Sweep</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_4_text">
+		<text>Eliminate dangerous mutants reported to be in the area.</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_4_about">
+		<text>We're going out to investigate a report of dangerous mutants in the area. Want to come along and provide backup?</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_4_finish">
+		<text>We earned our combat pay today, boys. Thanks for the help.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Military Interdiction Simulation Task -->
+
+	<string id="drx_ql_simulation_task_army_5_name">
+		<text>Apprehend the Trespassers</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_5_text">
+		<text>Unauthorized %s have been spotted in the area. Lead your team to apprehend the trespassers.</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_5_about">
+		<text>We're on our way to check out a report of some armed trespassers in the area. Want to take point?</text>
+	</string>
+	<string id="drx_ql_simulation_task_army_5_finish">
+		<text>Excellent work. Here's your cut of the combat pay.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

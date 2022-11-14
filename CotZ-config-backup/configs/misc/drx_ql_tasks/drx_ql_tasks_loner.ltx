@@ -1,0 +1,1336 @@
+;==============================================================
+;
+; Tasks Provided By Loners (drx_ql_tasks_loner.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_loner.xml
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: December 06, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Loner Storyline Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	December 06, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Loner Barkeep's Bounty Storyline Task-
+
+[drx_ql_stalker_sl_task_1]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(bar_visitors_barman_stalker_trader) =drx_ql_actor_faction() =drx_ql_find_assassination_target(stalker:drx_ql_stalker_sl_task_1:stalker)} true, false
+
+title = drx_ql_stalker_sl_task_1_name
+descr = drx_ql_stalker_sl_task_1_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_stalker_sl_task_1_about
+task_complete_descr = drx_ql_stalker_sl_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_1)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_stalker_sl_task_1)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_stalker_sl_task_1) =drx_ql_add_hidden_target(drx_ql_stalker_sl_task_1)%
+
+on_complete = %=drx_ql_reward_random(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_1) =drx_ql_reset_task(drx_ql_stalker_sl_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_1) =drx_ql_reset_task(drx_ql_stalker_sl_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_1) =drx_ql_reset_task(drx_ql_stalker_sl_task_1)%
+
+; -----------------------------------------------
+; Loner Search Jupiter Underground Storyline Task-
+
+[drx_ql_stalker_sl_task_2]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(zat_a2_stalker_barmen) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_x19_done -drx_ql_info_main_task_jup_u_done !squad_exist(drx_ql_raid_companion_squad_stalker_1)} true, false
+
+title = drx_ql_stalker_sl_task_2_name
+descr = drx_ql_stalker_sl_task_2_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_stalker_sl_task_2_about
+task_complete_descr = drx_ql_stalker_sl_task_2_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = jupiter_space_restrictor_to_jupiter_ug
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_2)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_stalker_sl_task_2:main_story_6_jup_ug_documents) =drx_ql_give_escort_task_companions(drx_ql_raid_companion_squad_stalker_2:wpn_ak74u:ammo_5.45x39_fmj:medkit)%
+
+on_complete = %=drx_ql_reward_random(7500:12000) =reward_random_item(vodka) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_stalker_1) =inc_task_stage(drx_ql_stalker_sl_task_2) +drx_ql_info_main_task_jup_u_done =drx_ql_reset_task(drx_ql_stalker_sl_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_stalker_1) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =drx_ql_fail_task(drx_ql_stalker_sl_task_2) =drx_ql_reset_task(drx_ql_stalker_sl_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_stalker_1) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =drx_ql_fail_task(drx_ql_stalker_sl_task_2) =drx_ql_reset_task(drx_ql_stalker_sl_task_2)%
+
+;------------------------------------------------
+; Loner Outskirts Hospital Brawl Storyline Task-
+
+[drx_ql_stalker_sl_task_3]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(zat_a2_stalker_barmen) =drx_ql_actor_faction() =drx_ql_is_enemy(monolith) =is_factions_enemies(stalker:monolith) !squad_exist(drx_ql_designated_target_squad_monolith_outskirts_hospital_1) !squad_exist(drx_ql_designated_target_squad_monolith_outskirts_hospital_2) !squad_exist(drx_ql_designated_target_squad_monolith_outskirts_hospital_3) !squad_exist(drx_ql_designated_target_squad_monolith_outskirts_hospital_4) !squad_exist(drx_ql_attack_squad_stalker_outskirts_hospital_1) !squad_exist(drx_ql_attack_squad_stalker_outskirts_hospital_2)} true, false
+
+title = drx_ql_stalker_sl_task_3_name
+descr = drx_ql_stalker_sl_task_3_text
+descr_1 = drx_ql_stalker_sl_task_3_text_1
+descr_2 = drx_ql_stalker_sl_task_3_text_2
+descr_functor = drx_ql_bab_task_target
+job_descr = drx_ql_stalker_sl_task_3_about
+message = drx_ql_stalker_sl_task_3_message
+task_complete_descr = drx_ql_stalker_sl_task_3_finish
+
+stage_complete = 2
+target_functor = drx_ql_bab_task_target
+status_functor = drx_ql_bab_task_status
+status_functor_params = drx_ql_designated_target_squad_monolith_outskirts_hospital_1, drx_ql_designated_target_squad_monolith_outskirts_hospital_2, drx_ql_designated_target_squad_monolith_outskirts_hospital_3, drx_ql_designated_target_squad_monolith_outskirts_hospital_4
+status_functor_rendezvous = pri_a28_arch
+status_functor_rendezvous_dist = 100
+status_functor_allied_squads = drx_ql_attack_squad_stalker_outskirts_hospital_1, pri_a28_arch
+status_functor_enemy_squads = drx_ql_designated_target_squad_monolith_outskirts_hospital_1, pri_a17, drx_ql_designated_target_squad_monolith_outskirts_hospital_2, pri_a17, drx_ql_designated_target_squad_monolith_outskirts_hospital_3, pri_a17, drx_ql_designated_target_squad_monolith_outskirts_hospital_4, pri_a17
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_3)} fail
+on_init = %=drx_ql_give_escort_task_companions(drx_ql_attack_squad_stalker_outskirts_hospital_2)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =reward_random_item(vodka) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_3) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_outskirts_hospital_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_outskirts_hospital_2) =drx_ql_reset_task(drx_ql_stalker_sl_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_hospital_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_hospital_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_hospital_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_hospital_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_outskirts_hospital_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_outskirts_hospital_2) =drx_ql_fail_task(drx_ql_stalker_sl_task_3) =drx_ql_reset_task(drx_ql_stalker_sl_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_hospital_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_hospital_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_hospital_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_hospital_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_outskirts_hospital_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_outskirts_hospital_2) =drx_ql_fail_task(drx_ql_stalker_sl_task_3) =drx_ql_reset_task(drx_ql_stalker_sl_task_3)%
+
+;------------------------------------------------
+; Loner Jupiter Container Yard Brawl Storyline Task-
+
+[drx_ql_stalker_sl_task_4]
+
+icon = ui_iconsTotal_bar_crazy_veterans_quest
+storyline = true
+prior = 194
+weight = 2
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(zat_a2_stalker_barmen) =drx_ql_actor_faction() -drx_ql_info_container_bandits_task_complete =drx_ql_is_enemy(bandit) =is_factions_enemies(stalker:bandit) !squad_exist(drx_ql_designated_target_squad_bandit_jupiter_containers_1) !squad_exist(drx_ql_designated_target_squad_bandit_jupiter_containers_2) !squad_exist(drx_ql_designated_target_squad_bandit_jupiter_containers_3) !squad_exist(drx_ql_designated_target_squad_bandit_jupiter_containers_4) !squad_exist(drx_ql_attack_squad_stalker_jupiter_containers_1) !squad_exist(drx_ql_attack_squad_stalker_jupiter_containers_2)} true, false
+
+title = drx_ql_stalker_sl_task_4_name
+descr = drx_ql_stalker_sl_task_4_text
+descr_functor = drx_ql_bab_task_target
+job_descr = drx_ql_stalker_sl_task_4_about
+message = drx_ql_stalker_sl_task_4_message
+task_complete_descr = drx_ql_stalker_sl_task_4_finish
+
+stage_complete = 2
+target_functor = drx_ql_bab_task_target
+status_functor = drx_ql_bab_task_status
+status_functor_params = drx_ql_designated_target_squad_bandit_jupiter_containers_1, drx_ql_designated_target_squad_bandit_jupiter_containers_2, drx_ql_designated_target_squad_bandit_jupiter_containers_3, drx_ql_designated_target_squad_bandit_jupiter_containers_4
+status_functor_rendezvous = jup_a12_merc
+status_functor_rendezvous_dist = 100
+status_functor_allied_squads = drx_ql_attack_squad_stalker_jupiter_containers_1, jup_a12_merc, drx_ql_attack_squad_stalker_jupiter_containers_2, jup_a12_merc
+status_functor_enemy_squads = drx_ql_designated_target_squad_bandit_jupiter_containers_1, jup_a12, drx_ql_designated_target_squad_bandit_jupiter_containers_2, jup_a12, drx_ql_designated_target_squad_bandit_jupiter_containers_3, jup_a12, drx_ql_designated_target_squad_bandit_jupiter_containers_4, jup_a12
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_4)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_4)} fail
+condlist_2 = {+actor_made_wish} fail
+
+on_complete = %=drx_ql_reward_random(5000:9000) =reward_random_item(vodka) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_jupiter_containers_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_jupiter_containers_2) +drx_ql_info_container_bandits_task_complete =drx_ql_reset_task(drx_ql_stalker_sl_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_jupiter_containers_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_jupiter_containers_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_jupiter_containers_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_jupiter_containers_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_jupiter_containers_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_jupiter_containers_2) =drx_ql_fail_task(drx_ql_stalker_sl_task_4) =drx_ql_reset_task(drx_ql_stalker_sl_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_jupiter_containers_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_jupiter_containers_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_jupiter_containers_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_jupiter_containers_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_jupiter_containers_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_jupiter_containers_2) =drx_ql_fail_task(drx_ql_stalker_sl_task_4) =drx_ql_reset_task(drx_ql_stalker_sl_task_4)%
+
+;------------------------------------------------
+; Loner Cordon Rumble Storyline Task-
+
+[drx_ql_stalker_sl_task_5]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(esc_2_12_stalker_nimble) =drx_ql_actor_faction() =drx_ql_is_enemy(bandit) =is_factions_enemies(stalker:bandit) !squad_exist(drx_ql_designated_target_squad_bandit_cordon_1) !squad_exist(drx_ql_designated_target_squad_bandit_cordon_2) !squad_exist(drx_ql_designated_target_squad_bandit_cordon_3) !squad_exist(drx_ql_designated_target_squad_bandit_cordon_4) !squad_exist(drx_ql_attack_squad_stalker_cordon_1) !squad_exist(drx_ql_attack_squad_stalker_cordon_2)} true, false
+
+title = drx_ql_stalker_sl_task_5_name
+descr = drx_ql_stalker_sl_task_5_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_stalker_sl_task_5_about
+task_complete_descr = drx_ql_stalker_sl_task_5_finish
+
+stage_complete = 1
+target = {=check_task_stage(drx_ql_stalker_sl_task_5:1)} esc_2_12_stalker_nimble, {=squad_exist(drx_ql_designated_target_squad_bandit_cordon_1)} drx_ql_designated_target_squad_bandit_cordon_1, {=squad_exist(drx_ql_designated_target_squad_bandit_cordon_2)} drx_ql_designated_target_squad_bandit_cordon_2, {=squad_exist(drx_ql_designated_target_squad_bandit_cordon_3)} drx_ql_designated_target_squad_bandit_cordon_3, {=squad_exist(drx_ql_designated_target_squad_bandit_cordon_4)} drx_ql_designated_target_squad_bandit_cordon_4
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_bandit_cordon_1, drx_ql_designated_target_squad_bandit_cordon_2, drx_ql_designated_target_squad_bandit_cordon_3, drx_ql_designated_target_squad_bandit_cordon_4
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_5)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_bandit_cordon_1:esc_smart_terrain_5_9) =create_squad(drx_ql_designated_target_squad_bandit_cordon_2:esc_smart_terrain_5_9) =create_squad(drx_ql_designated_target_squad_bandit_cordon_3:esc_smart_terrain_5_12) =create_squad(drx_ql_designated_target_squad_bandit_cordon_4:esc_smart_terrain_5_12) =create_squad(drx_ql_attack_squad_stalker_cordon_1:esc_smart_terrain_4_11) =create_squad(drx_ql_attack_squad_stalker_cordon_2:esc_smart_terrain_4_11)%
+
+on_complete = %=drx_ql_reward_item(5000:9000:items_rifles_list) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_5) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_cordon_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_cordon_2) =drx_ql_reset_task(drx_ql_stalker_sl_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_cordon_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_cordon_2) =drx_ql_fail_task(drx_ql_stalker_sl_task_5) =drx_ql_reset_task(drx_ql_stalker_sl_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_cordon_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_stalker_cordon_2) =drx_ql_fail_task(drx_ql_stalker_sl_task_5) =drx_ql_reset_task(drx_ql_stalker_sl_task_5)%
+
+;------------------------------------------------
+; Loner Assassination Storyline Task-
+
+[drx_ql_stalker_sl_task_6]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(esc_smart_terrain_5_7_loner_mechanic_stalker) =drx_ql_find_assassination_target(stalker:drx_ql_stalker_sl_task_6)} true, false
+
+title = drx_ql_stalker_sl_task_6_name
+descr = drx_ql_stalker_sl_task_6_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_stalker_sl_task_6_about
+task_complete_descr = drx_ql_stalker_sl_task_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_6)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_stalker_sl_task_6)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_stalker_sl_task_6)%
+
+on_complete = %=drx_ql_reward_money(2000:5500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_6) =drx_ql_reset_task(drx_ql_stalker_sl_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_6) =drx_ql_reset_task(drx_ql_stalker_sl_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_6) =drx_ql_reset_task(drx_ql_stalker_sl_task_6)%
+
+; -----------------------------------------------
+; Loner Investigate Stingray 3 (Zaton, Southern Plateau) Storyline Task-
+
+[drx_ql_stalker_sl_task_7]
+
+icon = ui_inGame2_Put_na_plato
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(bar_visitors_barman_stalker_trader:zat_a2_stalker_barmen:zat_b30_owl_stalker_trader) =drx_ql_is_alive(zat_b18_noah) +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_3_done -drx_ql_info_stingray_4_done} true, false
+
+title = drx_ql_stalker_sl_task_7_name
+descr = drx_ql_stalker_sl_task_7_text
+descr_1 = drx_ql_stalker_sl_task_7_text_1
+descr_functor = drx_ql_plateau_task_target
+job_descr = drx_ql_stalker_sl_task_7_about
+task_complete_descr = drx_ql_stalker_sl_task_7_finish
+
+stage_complete = 3
+target_functor = drx_ql_plateau_task_target
+target_functor_params = zat_b20_smart_terrain
+status_functor = drx_ql_plateau_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=check_task_stage(0) !drx_ql_is_alive(zat_b18_noah)} fail  ; Before meeting with Noah
+condlist_3 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_7)} fail
+condlist_4 = {-drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_noah_fireball_given -drx_ql_info_pissed_off_noah} %=reward_random_item(af_fireball) +drx_ql_info_noah_fireball_given%
+condlist_5 = {=actor_in_zone(zat_b20_sr_actor_cross_the_teleport)} %+drx_ql_info_plateau_teleport_completed%
+on_init = %+drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_plateau_teleport_completed -drx_ql_info_noah_fireball_given -drx_ql_info_pissed_off_noah =drx_ql_setup_float_task(drx_ql_stalker_sl_task_7:drx_ql_quest_item_plateau_case:0:zat_b28)%
+
+on_complete = %=drx_ql_reward_random(8500:11000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) +drx_ql_info_stingray_3_done -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =remove_item(drx_ql_quest_item_plateau_case) =inc_task_stage(drx_ql_stalker_sl_task_7) =drx_ql_reset_task(drx_ql_stalker_sl_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =drx_ql_release_float_item(drx_ql_stalker_sl_task_7) =drx_ql_fail_task(drx_ql_stalker_sl_task_7) =drx_ql_reset_task(drx_ql_stalker_sl_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =drx_ql_release_float_item(drx_ql_stalker_sl_task_7) =drx_ql_fail_task(drx_ql_stalker_sl_task_7) =drx_ql_reset_task(drx_ql_stalker_sl_task_7)%
+
+;------------------------------------------------
+; Loner Manhunt Storyline Task-
+
+[drx_ql_stalker_sl_task_8]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(esc_m_trader) =drx_ql_find_assassination_target(stalker:drx_ql_stalker_sl_task_8)} true, false
+
+title = drx_ql_stalker_sl_task_8_name
+descr = drx_ql_stalker_sl_task_8_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_stalker_sl_task_8_about
+task_complete_descr = drx_ql_stalker_sl_task_8_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_8)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_8)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_stalker_sl_task_8)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_stalker_sl_task_8) =drx_ql_add_hidden_target(drx_ql_stalker_sl_task_8)%
+
+on_complete = %=drx_ql_reward_random(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_8) =drx_ql_reset_task(drx_ql_stalker_sl_task_8)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_8) =drx_ql_reset_task(drx_ql_stalker_sl_task_8)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_8) =drx_ql_reset_task(drx_ql_stalker_sl_task_8)%
+
+;------------------------------------------------
+; Loner Rescue Missing Stalker Storyline Task-
+
+[drx_ql_stalker_sl_task_9]
+
+icon = ui_inGame2_Reputatsiya
+storyline = true
+prior = 195
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(esc_2_12_stalker_nimble:esc_smart_terrain_5_7_loner_mechanic_stalker) =drx_ql_actor_faction() -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(stalker:drx_ql_stalker_sl_task_9) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_stalker_sl_task_9_name
+descr = drx_ql_stalker_sl_task_9_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_stalker_sl_task_9_about
+task_complete_descr = drx_ql_stalker_sl_task_9_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_9)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_9)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_stalker_sl_task_9) =drx_ql_setup_hostage_task(hostage_companion_task_1_stalker:nil:drx_ql_stalker_sl_task_9_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_item(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_stalker_sl_task_9) =unlock_smart(drx_ql_stalker_sl_task_9_id) =drx_ql_reset_task(drx_ql_stalker_sl_task_9)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_stalker_sl_task_9_id) =drx_ql_fail_task(drx_ql_stalker_sl_task_9) =drx_ql_reset_task(drx_ql_stalker_sl_task_9)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_stalker_sl_task_9_id) =drx_ql_fail_task(drx_ql_stalker_sl_task_9) =drx_ql_reset_task(drx_ql_stalker_sl_task_9)%
+
+; -----------------------------------------------
+; Loner Search Agroprom Underground Storyline Task-
+
+[drx_ql_stalker_sl_task_10]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(esc_smart_terrain_5_7_loner_mechanic_stalker) =drx_ql_actor_faction() -drx_ql_info_main_task_agr_u_done} true, false
+
+title = drx_ql_stalker_sl_task_10_name
+descr = drx_ql_stalker_sl_task_10_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_stalker_sl_task_10_about
+task_complete_descr = drx_ql_stalker_sl_task_10_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = agr_space_restrictor_to_agr_ug_2
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_10)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_10)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_stalker_sl_task_10:main_story_1_quest_case) =drx_ql_activate_teleport(agr_space_restrictor_to_agr_ug_1:agr_space_restrictor_to_agr_ug_2:agr_space_restrictor_to_agr_ug_4)%
+
+on_complete = %=drx_ql_reward_random(4000:6000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =drx_ql_release_story_item(main_story_1_quest_case) =inc_task_stage(drx_ql_stalker_sl_task_10) +drx_ql_info_main_task_agr_u_done =drx_ql_reset_task(drx_ql_stalker_sl_task_10)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_stalker_sl_task_10) =drx_ql_reset_task(drx_ql_stalker_sl_task_10)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_stalker_sl_task_10) =drx_ql_reset_task(drx_ql_stalker_sl_task_10)%
+
+;------------------------------------------------
+; Loner Eliminate Train Tunnel Bandits Storyline Task-
+
+[drx_ql_stalker_sl_task_11]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 185
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(esc_smart_terrain_5_7_loner_mechanic_stalker) =drx_ql_actor_faction() =drx_ql_is_enemy(bandit) !squad_exist(drx_ql_designated_target_squad_bandit_cordon_tunnel)} true, false
+
+title = drx_ql_stalker_sl_task_11_name
+descr = drx_ql_stalker_sl_task_11_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_stalker_sl_task_11_about
+task_complete_descr = drx_ql_stalker_sl_task_11_finish
+
+stage_complete = 1
+target = {=check_task_stage(drx_ql_stalker_sl_task_11:1)} esc_smart_terrain_5_7_loner_mechanic_stalker, drx_ql_designated_target_squad_bandit_cordon_tunnel
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_bandit_cordon_tunnel
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_11)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_11)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_bandit_cordon_tunnel:esc_smart_terrain_9_7)%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_11) =drx_ql_reset_task(drx_ql_stalker_sl_task_11)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_tunnel) =drx_ql_fail_task(drx_ql_stalker_sl_task_11) =drx_ql_reset_task(drx_ql_stalker_sl_task_11)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_cordon_tunnel) =drx_ql_fail_task(drx_ql_stalker_sl_task_11) =drx_ql_reset_task(drx_ql_stalker_sl_task_11)%
+
+;------------------------------------------------
+; Loner Track Wounded Attacker Storyline Task-
+
+[drx_ql_stalker_sl_task_12]
+
+icon = ui_inGame2_Propavshiy_chasovoy
+storyline = true
+prior = 185
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(esc_smart_terrain_5_7_loner_mechanic_stalker) =drx_ql_actor_faction() =drx_ql_is_enemy(army) =drx_ql_find_occupied_smart_local(stalker:drx_ql_stalker_sl_task_12:army)} true, false
+
+title = drx_ql_stalker_sl_task_12_name
+descr = drx_ql_stalker_sl_task_12_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_stalker_sl_task_12_about
+task_complete_descr = drx_ql_stalker_sl_task_12_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_12)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_12)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_stalker_sl_task_12)%
+
+on_complete = %=drx_ql_reward_item(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_12) =drx_ql_reset_task(drx_ql_stalker_sl_task_12)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_12) =drx_ql_reset_task(drx_ql_stalker_sl_task_12)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_12) =drx_ql_reset_task(drx_ql_stalker_sl_task_12)%
+
+; -----------------------------------------------
+; Loner Nimble Infiltrate Lab X-18 (Dark Valley) Storyline Task-
+
+[drx_ql_stalker_sl_task_13]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(esc_2_12_stalker_nimble) +drx_ql_info_main_task_agr_u_done -drx_ql_info_main_task_labx18_done +drx_ql_mar_base_owl_stalker_trader_pda_task_complete} true, false
+
+title = drx_ql_stalker_sl_task_13_name
+descr = drx_ql_stalker_sl_task_13_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_stalker_sl_task_13_about
+task_complete_descr = drx_ql_stalker_sl_task_13_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = val_space_restrictor_to_labx18
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_13)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_13)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_stalker_sl_task_13:main_story_2_lab_x18_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_army_valley_x18:val_smart_terrain_1_2) =drx_ql_activate_teleport(val_space_restrictor_to_labx18)%
+
+on_complete = %=drx_ql_reward_random(6500:9000) =complete_task_inc_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =inc_task_stage(drx_ql_stalker_sl_task_13) +drx_ql_info_main_task_labx18_done =drx_ql_reset_task(drx_ql_stalker_sl_task_13)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_stalker_sl_task_13) =drx_ql_reset_task(drx_ql_stalker_sl_task_13)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_stalker_sl_task_13) =drx_ql_reset_task(drx_ql_stalker_sl_task_13)%
+
+;------------------------------------------------
+; Loner Owl Meet With Cardan Storyline Task (LINKS TO: Loner Cardan Infiltrate Lab X-8)-
+
+[drx_ql_stalker_sl_task_14]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_cardan_x8_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(zat_b30_owl_stalker_trader) =drx_ql_actor_faction() =drx_ql_is_alive(zat_a2_stalker_mechanic) +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_x19_done -drx_ql_info_main_task_labx8_done} true, false
+
+title = drx_ql_stalker_sl_task_14_name
+descr = drx_ql_stalker_sl_task_14_text
+job_descr = drx_ql_stalker_sl_task_14_about
+
+target = zat_a2_stalker_mechanic
+condlist_0 = {!drx_ql_is_alive(zat_a2_stalker_mechanic)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_14)} fail
+condlist_3 = {-drx_ql_meet_honcho_zat_a2_stalker_mechanic} complete
+on_init = %+drx_ql_meet_honcho_zat_a2_stalker_mechanic +drx_ql_cardan_x8_sl_task_link%
+
+on_complete = %=drx_ql_reset_task(drx_ql_stalker_sl_task_14)%
+on_fail = %-drx_ql_meet_honcho_zat_a2_stalker_mechanic -drx_ql_cardan_x8_sl_task_link =drx_ql_fail_task(drx_ql_stalker_sl_task_14) =drx_ql_reset_task(drx_ql_stalker_sl_task_14)%
+on_cancel = %-drx_ql_meet_honcho_zat_a2_stalker_mechanic -drx_ql_cardan_x8_sl_task_link =drx_ql_fail_task(drx_ql_stalker_sl_task_14) =drx_ql_reset_task(drx_ql_stalker_sl_task_14)%
+
+; -----------------------------------------------
+; Loner Cardan Infiltrate Lab X-8 (Outskirts) Storyline Task (LINKS FROM: Meet With Cardan) (LINKS TO: Build Gauss Gun Task)-
+
+[drx_ql_stalker_sl_task_15]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_cardan_x8_sl_task_link
+link_info = drx_ql_cardan_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(zat_a2_stalker_mechanic) =drx_ql_actor_faction() -drx_ql_info_main_task_labx8_done} true, false
+
+title = drx_ql_stalker_sl_task_15_name
+descr = drx_ql_stalker_sl_task_15_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_stalker_sl_task_15_about
+task_complete_descr = drx_ql_stalker_sl_task_15_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = pri_space_restrictor_to_labx8
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_15)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_15)} fail
+on_init = %-drx_ql_meet_honcho_zat_a2_stalker_mechanic -drx_ql_cardan_x8_sl_task_link =drx_ql_setup_story_item_task(drx_ql_stalker_sl_task_15:main_story_5_lab_x8_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1:pri_b306) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2:pri_b306) =drx_ql_activate_teleport(pri_space_restrictor_to_labx8)%
+
+on_complete = %=complete_task_inc_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =inc_task_stage(drx_ql_stalker_sl_task_15) +drx_ql_info_main_task_labx8_done =drx_ql_reset_task(drx_ql_stalker_sl_task_15)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =drx_ql_fail_task(drx_ql_stalker_sl_task_15) =drx_ql_reset_task(drx_ql_stalker_sl_task_15)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =drx_ql_fail_task(drx_ql_stalker_sl_task_15) =drx_ql_reset_task(drx_ql_stalker_sl_task_15)%
+
+; -----------------------------------------------
+; Loner Cardan Build Gauss Gun Storyline Task (LINKS FROM: Infiltrate Lab X-8) (LINKS TO: Wait for Gauss Gun Task)-
+
+[drx_ql_stalker_sl_task_16]
+
+icon = ui_inGame2_Gauss_pushka
+storyline = true
+prior = 140
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_cardan_wait_for_gauss_gun_sl_task_link
+link_back_info = drx_ql_cardan_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(zat_a2_stalker_mechanic) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_stalker_sl_task_16_name
+descr = drx_ql_stalker_sl_task_16_text
+descr_functor = drx_ql_gather_items_task_target
+job_descr = drx_ql_stalker_sl_task_16_about
+task_complete_descr = drx_ql_stalker_sl_task_16_finish
+
+stage_complete = 1
+target_functor = drx_ql_gather_items_task_target
+status_functor = drx_ql_gather_items_task_status
+status_functor_params = drx_ql_quest_item_capacitors, drx_ql_quest_item_wire, af_electra_flash
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_16)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_16)} fail
+on_init = %=give_task(drx_ql_special_task_find_gauss_capacitors) =give_task(drx_ql_special_task_find_gauss_wire) =give_task(drx_ql_special_task_find_gauss_flash)%
+
+on_complete = %=complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_capacitors) =remove_item(drx_ql_quest_item_wire) =remove_item(af_electra_flash) =inc_task_stage(drx_ql_stalker_sl_task_16) =drx_ql_reset_task(drx_ql_stalker_sl_task_16)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =set_task_failed(drx_ql_special_task_find_gauss_flash) =set_task_failed(drx_ql_special_task_find_gauss_capacitors) =set_task_failed(drx_ql_special_task_find_gauss_wire) =drx_ql_fail_task(drx_ql_stalker_sl_task_16) =drx_ql_reset_task(drx_ql_stalker_sl_task_16)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =set_task_failed(drx_ql_special_task_find_gauss_flash) =set_task_failed(drx_ql_special_task_find_gauss_capacitors) =set_task_failed(drx_ql_special_task_find_gauss_wire) =drx_ql_fail_task(drx_ql_stalker_sl_task_16) =drx_ql_reset_task(drx_ql_stalker_sl_task_16)%
+
+; -----------------------------------------------
+; Loner Cardan Wait For Gauss Gun Storyline Task (LINKS FROM: Build Gauss Gun Task)-
+
+[drx_ql_stalker_sl_task_17]
+
+icon = ui_inGame2_Izdelie_N62
+storyline = true
+prior = 14
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_cardan_wait_for_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(zat_a2_stalker_mechanic) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_stalker_sl_task_17_name
+descr = drx_ql_stalker_sl_task_17_text
+descr_functor = drx_ql_wait_task_target
+job_descr = drx_ql_stalker_sl_task_17_about
+message = drx_ql_stalker_sl_task_17_message
+task_complete_descr = drx_ql_stalker_sl_task_17_finish
+
+stage_complete = 2
+target_functor = drx_ql_wait_task_target
+status_functor = drx_ql_wait_task_status
+status_functor_params = 86400  ; 1 day
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_17)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_17)} fail
+on_init = %=drx_ql_save_pstor_ctime(drx_ql_stalker_sl_task_17)%
+
+on_complete = %=reward_random_item(wpn_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_17) =erase_pstor_ctime(drx_ql_stalker_sl_task_17) =drx_ql_reset_task(drx_ql_stalker_sl_task_17)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =erase_pstor_ctime(drx_ql_stalker_sl_task_17) =drx_ql_fail_task(drx_ql_stalker_sl_task_17) =drx_ql_reset_task(drx_ql_stalker_sl_task_17)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =erase_pstor_ctime(drx_ql_stalker_sl_task_17) =drx_ql_fail_task(drx_ql_stalker_sl_task_17) =drx_ql_reset_task(drx_ql_stalker_sl_task_17)%
+
+;------------------------------------------------
+; Loner Bonesetter Deactivate Brain Scorcher Storyline Task (LINKS FROM: Freedom Meet With Bonesetter)-
+
+[drx_ql_stalker_sl_task_18]
+
+icon = ui_iconsTotal_bar_radar_deactivate
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_bonesetter_bs_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(jup_a6_stalker_medik) =drx_ql_actor_faction() -drx_ql_info_mon_inf_task_started +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_stalker_sl_task_18_name
+descr = drx_ql_stalker_sl_task_18_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_stalker_sl_task_18_about
+task_complete_descr = drx_ql_stalker_sl_task_18_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = rad_space_restrictor_to_bunker
+status_functor = drx_ql_brain_scorcher_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_18)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker) -drx_ql_mon_inf_is_infiltrator} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_18)} fail
+on_init = %+drx_ql_info_mon_inf_task_started -drx_ql_meet_honcho_jup_a6_stalker_medik -drx_ql_bonesetter_bs_sl_task_link =drx_ql_setup_mon_inf_task() =drx_ql_activate_teleport(rad_space_restrictor_to_bunker)%
+
+on_complete = %=drx_ql_reward_money(9000:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker:freedom) =inc_task_stage(drx_ql_stalker_sl_task_18) +drx_ql_info_main_task_x19_done -drx_ql_info_mon_inf_task_started =drx_ql_reset_task(drx_ql_stalker_sl_task_18)%
+on_fail = %=fail_task_dec_goodwill(50:stalker:freedom) =drx_ql_fail_task(drx_ql_stalker_sl_task_18) -drx_ql_info_mon_inf_task_started =drx_ql_reset_task(drx_ql_stalker_sl_task_18)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker:freedom) =drx_ql_fail_task(drx_ql_stalker_sl_task_18) -drx_ql_info_mon_inf_task_started =drx_ql_reset_task(drx_ql_stalker_sl_task_18)%
+
+; -----------------------------------------------
+; Loner Barkeep Infiltrate Lab X-18 (Dark Valley) Storyline Task-
+
+[drx_ql_stalker_sl_task_19]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(bar_visitors_barman_stalker_trader) +drx_ql_info_main_task_agr_u_done -drx_ql_info_main_task_labx18_done} true, false
+
+title = drx_ql_stalker_sl_task_19_name
+descr = drx_ql_stalker_sl_task_19_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_stalker_sl_task_19_about
+task_complete_descr = drx_ql_stalker_sl_task_19_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = val_space_restrictor_to_labx18
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_19)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_19)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_stalker_sl_task_19:main_story_2_lab_x18_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_army_valley_x18:val_smart_terrain_1_2) =drx_ql_activate_teleport(val_space_restrictor_to_labx18)%
+
+on_complete = %=drx_ql_reward_random(6500:9000) =complete_task_inc_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =inc_task_stage(drx_ql_stalker_sl_task_19) +drx_ql_info_main_task_labx18_done =drx_ql_reset_task(drx_ql_stalker_sl_task_19)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_stalker_sl_task_19) =drx_ql_reset_task(drx_ql_stalker_sl_task_19)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_stalker_sl_task_19) =drx_ql_reset_task(drx_ql_stalker_sl_task_19)%
+
+; -----------------------------------------------
+; Loner Disable the Miracle Machine Storyline Task-
+
+[drx_ql_stalker_sl_task_20]
+
+icon = ui_iconsTotal_yan_kill_brain_task
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(bar_visitors_barman_stalker_trader:esc_m_trader:esc_smart_terrain_5_7_loner_mechanic_stalker) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx18_done -drx_ql_info_main_task_labx16_done} true, false
+
+title = drx_ql_stalker_sl_task_20_name
+descr = drx_ql_stalker_sl_task_20_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_stalker_sl_task_20_about
+task_complete_descr = drx_ql_stalker_sl_task_20_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = yan_space_restrictor_to_x16
+status_functor = drx_ql_miracle_machine_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_20)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_20)} fail
+on_init = %=drx_ql_reward_psi_helmet() =drx_ql_activate_teleport(yan_space_restrictor_to_x16)%
+
+on_complete = %=drx_ql_reward_random(6500:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_20) +drx_ql_info_main_task_labx16_done =drx_ql_reset_task(drx_ql_stalker_sl_task_20)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_20) =drx_ql_reset_task(drx_ql_stalker_sl_task_20)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_20) =drx_ql_reset_task(drx_ql_stalker_sl_task_20)%
+
+; -----------------------------------------------
+; Loner Barkeep Deactivate Brain Scorcher Storyline Task-
+
+[drx_ql_stalker_sl_task_21]
+
+icon = ui_iconsTotal_bar_radar_deactivate
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(bar_visitors_barman_stalker_trader) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_stalker_sl_task_21_name
+descr = drx_ql_stalker_sl_task_21_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_stalker_sl_task_21_about
+task_complete_descr = drx_ql_stalker_sl_task_21_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = rad_space_restrictor_to_bunker
+status_functor = drx_ql_brain_scorcher_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_21)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_21)} fail
+on_init = %+drx_ql_info_spawn_bs_extraction_squads =drx_ql_activate_teleport(rad_space_restrictor_to_bunker)%
+
+on_complete = %=drx_ql_reward_random(9000:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_21) +drx_ql_info_main_task_x19_done -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_stalker_sl_task_21)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_21) -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_stalker_sl_task_21)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_21) -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_stalker_sl_task_21)%
+
+;------------------------------------------------
+; Loner Owl Dynamic Brawl Storyline Task-
+
+[drx_ql_stalker_sl_task_22]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(zat_b30_owl_stalker_trader) =drx_ql_find_brawl_terrain(stalker:drx_ql_stalker_sl_task_22)} true, false
+
+title = drx_ql_stalker_sl_task_22_name
+descr = drx_ql_stalker_sl_task_22_text
+descr_1 = drx_ql_stalker_sl_task_22_text_1
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_stalker_sl_task_22_about
+message = drx_ql_stalker_sl_task_22_message
+task_complete_descr = drx_ql_stalker_sl_task_22_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_22)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_22)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_stalker_sl_task_22:4:2)%
+
+on_complete = %=drx_ql_reward_money(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_22) =drx_ql_end_brawl_task(drx_ql_stalker_sl_task_22) =drx_ql_reset_task(drx_ql_stalker_sl_task_22)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_end_brawl_task(drx_ql_stalker_sl_task_22) =drx_ql_fail_task(drx_ql_stalker_sl_task_22) =drx_ql_reset_task(drx_ql_stalker_sl_task_22)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_end_brawl_task(drx_ql_stalker_sl_task_22) =drx_ql_fail_task(drx_ql_stalker_sl_task_22) =drx_ql_reset_task(drx_ql_stalker_sl_task_22)%
+
+;------------------------------------------------
+; Loner Sidorovich Recover Stolen Shipment Task-
+
+[drx_ql_stalker_sl_task_23]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = true
+prior = 180
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(esc_m_trader) -drx_ql_quest_item_case_task_started !squad_exist(drx_ql_designated_target_squad_bandit) =drx_ql_find_unoccupied_smart_terrain(drx_ql_stalker_sl_task_23)} true, false
+
+title = drx_ql_stalker_sl_task_23_name
+descr = drx_ql_stalker_sl_task_23_text
+descr_functor = drx_ql_interceptor_task_target
+job_descr = drx_ql_stalker_sl_task_23_about
+task_complete_descr = drx_ql_stalker_sl_task_23_finish
+
+stage_complete = 1
+target_functor = drx_ql_interceptor_task_target
+status_functor = drx_ql_interceptor_task_status
+status_functor_params = drx_ql_quest_item_case
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_23)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_23)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_stalker_sl_task_23) =drx_ql_create_interceptor_squad(drx_ql_stalker_sl_task_23:drx_ql_designated_target_squad_bandit) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_random(3000:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit) =inc_task_stage(drx_ql_stalker_sl_task_23) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_stalker_sl_task_23)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_23) =drx_ql_reset_task(drx_ql_stalker_sl_task_23)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_23) =drx_ql_reset_task(drx_ql_stalker_sl_task_23)%
+
+;------------------------------------------------
+; Loner Beard Big Mutant Hunt Storyline Task-
+
+[drx_ql_stalker_sl_task_24]
+
+icon = ui_inGame2_PD_Ohotnik_na_mutantov
+storyline = true
+prior = 155
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(zat_a2_stalker_barmen) -drx_ql_big_mutant_task_started =drx_ql_find_unoccupied_lair_local(drx_ql_stalker_sl_task_24)} true, false
+
+title = drx_ql_stalker_sl_task_24_name
+descr = drx_ql_stalker_sl_task_24_text
+descr_functor = drx_ql_big_mutant_task_target
+job_descr = drx_ql_stalker_sl_task_24_about
+task_complete_descr = drx_ql_stalker_sl_task_24_finish
+
+stage_complete = 1
+target_functor = drx_ql_big_mutant_task_target
+status_functor = drx_ql_big_mutant_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_24)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_24)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_stalker_sl_task_24) =drx_ql_create_big_mutant_squad(drx_ql_stalker_sl_task_24) +drx_ql_big_mutant_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =reward_random_item(vodka) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_24) -drx_ql_big_mutant_task_started =drx_ql_reset_task(drx_ql_stalker_sl_task_24)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_24) =drx_ql_reset_task(drx_ql_stalker_sl_task_24)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_24) =drx_ql_reset_task(drx_ql_stalker_sl_task_24)%
+
+; -----------------------------------------------
+; Loner Beard Investigate Stingray 4 (Jupiter, Jupiter Plant) Storyline Task-
+
+[drx_ql_stalker_sl_task_25]
+
+icon = ui_inGame2_Skat_1
+storyline = true
+prior = 195
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(zat_a2_stalker_barmen) +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_pilot_pda_task_started =drx_ql_min_stingrays_done() -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_stalker_sl_task_25_name
+descr = drx_ql_stalker_sl_task_25_text
+descr_functor = drx_ql_rescue_pilot_task_target
+job_descr = drx_ql_stalker_sl_task_25_about
+task_complete_descr = drx_ql_stalker_sl_task_25_finish
+
+stage_complete = 3
+target_functor = drx_ql_rescue_pilot_task_target
+status_functor = drx_ql_rescue_pilot_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_25)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_25)} fail
+condlist_3 = {+drx_ql_info_pilot_pda_found -drx_ql_info_pilot_interrogated !squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_stalker_sl_task_25:drx_ql_quest_item_pilot_pda:25:jup_b8_smart_terrain) =reward_random_item(medkit) =reward_random_item(medkit) =reward_random_item(vodka) =reward_random_item(vodka) +drx_ql_quest_item_pilot_pda_task_started +hostage_companion_task_1_started -drx_ql_info_stingray_4_found -drx_ql_info_pilot_pda_found -drx_ql_info_pilot_interrogated -drx_ql_info_pilot_enemy -drx_ql_info_pilot_defected%
+
+on_complete = %=drx_ql_reward_random(9000:11000) =reward_random_item(vodka) =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_pilot_pda) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_stalker_sl_task_25) =unlock_smart(drx_ql_stalker_sl_task_25_id) -drx_ql_quest_item_pilot_pda_task_started +drx_ql_info_stingray_4_done =drx_ql_reset_task(drx_ql_stalker_sl_task_25)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_stalker_sl_task_25) -drx_ql_quest_item_pilot_pda_task_started =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_stalker_sl_task_25_id) =drx_ql_fail_task(drx_ql_stalker_sl_task_25) =drx_ql_reset_task(drx_ql_stalker_sl_task_25)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_stalker_sl_task_25) -drx_ql_quest_item_pilot_pda_task_started =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_stalker_sl_task_25_id) =drx_ql_fail_task(drx_ql_stalker_sl_task_25) =drx_ql_reset_task(drx_ql_stalker_sl_task_25)%
+
+; -----------------------------------------------
+; Loner Owl Investigate Stingray 2 (Zaton, Iron Forest) Storyline Task-
+
+[drx_ql_stalker_sl_task_26]
+
+icon = ui_inGame2_Skat_1
+storyline = true
+prior = 139
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(zat_b30_owl_stalker_trader) +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_2_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_data_module_task_started} true, false
+
+title = drx_ql_stalker_sl_task_26_name
+descr = drx_ql_stalker_sl_task_26_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_stalker_sl_task_26_about
+task_complete_descr = drx_ql_stalker_sl_task_26_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_26)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_26)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_stalker_sl_task_26:drx_ql_quest_item_data_module:0:drx_ql_location_stingray_2_data_module) =drx_ql_create_squad(zat_b100_poltergeist_squad_01:zat_b100) +drx_ql_quest_item_data_module_task_started%
+
+on_complete = %=drx_ql_reward_random(7500:9500) =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_data_module) =inc_task_stage(drx_ql_stalker_sl_task_26) -drx_ql_quest_item_data_module_task_started +drx_ql_info_stingray_2_done =drx_ql_reset_task(drx_ql_stalker_sl_task_26)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_stalker_sl_task_26) -drx_ql_quest_item_data_module_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_26) =drx_ql_reset_task(drx_ql_stalker_sl_task_26)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_stalker_sl_task_26) -drx_ql_quest_item_data_module_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_26) =drx_ql_reset_task(drx_ql_stalker_sl_task_26)%
+
+;------------------------------------------------
+; Loner Owl Big Mutant Hunt Storyline Task-
+
+[drx_ql_stalker_sl_task_27]
+
+icon = ui_inGame2_PD_Ohotnik_na_mutantov
+storyline = true
+prior = 155
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(zat_b30_owl_stalker_trader) -drx_ql_big_mutant_task_started =drx_ql_find_unoccupied_lair_local(drx_ql_stalker_sl_task_27)} true, false
+
+title = drx_ql_stalker_sl_task_27_name
+descr = drx_ql_stalker_sl_task_27_text
+descr_functor = drx_ql_big_mutant_task_target
+job_descr = drx_ql_stalker_sl_task_27_about
+task_complete_descr = drx_ql_stalker_sl_task_27_finish
+
+stage_complete = 1
+target_functor = drx_ql_big_mutant_task_target
+status_functor = drx_ql_big_mutant_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_27)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_27)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_stalker_sl_task_27) =drx_ql_create_big_mutant_squad(drx_ql_stalker_sl_task_27) +drx_ql_big_mutant_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_27) -drx_ql_big_mutant_task_started =drx_ql_reset_task(drx_ql_stalker_sl_task_27)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_27) =drx_ql_reset_task(drx_ql_stalker_sl_task_27)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_27) =drx_ql_reset_task(drx_ql_stalker_sl_task_27)%
+
+; -----------------------------------------------
+; Loner Sidorovich Sniper Storyline Task-
+
+[drx_ql_stalker_sl_task_28]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(esc_m_trader) =drx_ql_actor_faction() =drx_ql_find_assassination_target(stalker:drx_ql_stalker_sl_task_28:bandit:stalker)} true, false
+sniper_task = true
+
+title = drx_ql_stalker_sl_task_28_name
+descr = drx_ql_stalker_sl_task_28_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_stalker_sl_task_28_about
+task_complete_descr = drx_ql_stalker_sl_task_28_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_28)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_28)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_stalker_sl_task_28)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_stalker_sl_task_28)%
+
+on_complete = %=drx_ql_reward_money(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_28) =drx_ql_reset_task(drx_ql_stalker_sl_task_28)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_28) =drx_ql_reset_task(drx_ql_stalker_sl_task_28)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_stalker_sl_task_28) =drx_ql_reset_task(drx_ql_stalker_sl_task_28)%
+
+;------------------------------------------------
+; Loner Nimble Big Mutant Hunt Storyline Task-
+
+[drx_ql_stalker_sl_task_29]
+
+icon = ui_inGame2_PD_Ohotnik_na_mutantov
+storyline = true
+prior = 155
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(esc_2_12_stalker_nimble) -drx_ql_big_mutant_task_started =drx_ql_find_unoccupied_lair_local(drx_ql_stalker_sl_task_29)} true, false
+
+title = drx_ql_stalker_sl_task_29_name
+descr = drx_ql_stalker_sl_task_29_text
+descr_functor = drx_ql_big_mutant_task_target
+job_descr = drx_ql_stalker_sl_task_29_about
+task_complete_descr = drx_ql_stalker_sl_task_29_finish
+
+stage_complete = 1
+target_functor = drx_ql_big_mutant_task_target
+status_functor = drx_ql_big_mutant_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_29)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_29)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_stalker_sl_task_29) =drx_ql_create_big_mutant_squad(drx_ql_stalker_sl_task_29) +drx_ql_big_mutant_task_started%
+
+on_complete = %=drx_ql_reward_random(1500:2500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_stalker_sl_task_29) -drx_ql_big_mutant_task_started =drx_ql_reset_task(drx_ql_stalker_sl_task_29)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_29) =drx_ql_reset_task(drx_ql_stalker_sl_task_29)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_29) =drx_ql_reset_task(drx_ql_stalker_sl_task_29)%
+
+; -----------------------------------------------
+; Loner Barkeep Find Case Storyline Task-
+
+[drx_ql_stalker_sl_task_30]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = true
+prior = 139
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(bar_visitors_barman_stalker_trader) -drx_ql_quest_item_case_task_started =drx_ql_find_special_smart_terrain(drx_ql_stalker_sl_task_30:building_smarts)} true, false
+
+title = drx_ql_stalker_sl_task_30_name
+descr = drx_ql_stalker_sl_task_30_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_stalker_sl_task_30_about
+task_complete_descr = drx_ql_stalker_sl_task_30_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_stalker_sl_task_30)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_stalker_sl_task_30)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_stalker_sl_task_30:drx_ql_quest_item_case:50) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_stalker_sl_task_30) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_stalker_sl_task_30)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_stalker_sl_task_30) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_30) =drx_ql_reset_task(drx_ql_stalker_sl_task_30)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_stalker_sl_task_30) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_stalker_sl_task_30) =drx_ql_reset_task(drx_ql_stalker_sl_task_30)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Loner Simulation Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Rifle for an Artefact for Loner Simulation Task-
+
+[drx_ql_simulation_task_stalker_1]
+
+icon = ui_inGame2_Kontrakt_s_uchenimi
+storyline = false
+prior = 25
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_stalker_1_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_stalker_1_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_stalker_1_about
+fetch_descr = drx_ql_simulation_task_stalker_1_fetch_about
+task_complete_descr = drx_ql_simulation_task_stalker_1_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_1)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_1)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_simulation_task_stalker_1:2500:10000:1:1:0:items_artefacts_list)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_simulation_task_stalker_1)%
+
+on_complete = %=drx_ql_fetch_reward_item(drx_ql_simulation_task_stalker_1:1:items_rifles_list) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_simulation_task_stalker_1) =drx_ql_reset_task(drx_ql_simulation_task_stalker_1)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_1) =drx_ql_reset_task(drx_ql_simulation_task_stalker_1)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_1) =drx_ql_reset_task(drx_ql_simulation_task_stalker_1)%
+
+;------------------------------------------------
+; Replace Looted Weapon for Loner Simulation Task-
+
+[drx_ql_simulation_task_stalker_2]
+
+icon = ui_inGame2_Neizvestnoe_oruzhie
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_stalker_2_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_stalker_2_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_stalker_2_about
+fetch_descr = drx_ql_simulation_task_stalker_2_fetch_about
+task_complete_descr = drx_ql_simulation_task_stalker_2_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_2)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_2)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_simulation_task_stalker_2:5000:10000:1:1:0.5:items_rifles_list)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_simulation_task_stalker_2)%
+
+on_complete = %=drx_ql_fetch_reward_money(drx_ql_simulation_task_stalker_2:1.2) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_simulation_task_stalker_2) =drx_ql_reset_task(drx_ql_simulation_task_stalker_2)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_2) =drx_ql_reset_task(drx_ql_simulation_task_stalker_2)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_2) =drx_ql_reset_task(drx_ql_simulation_task_stalker_2)%
+
+;------------------------------------------------
+; Find Missing Loner Simulation Task-
+
+[drx_ql_simulation_task_stalker_3]
+
+icon = ui_inGame2_V_poiskah_Soroki
+storyline = false
+prior = 95
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(stalker:drx_ql_simulation_task_stalker_3) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_simulation_task_stalker_3_name
+descr = drx_ql_simulation_task_stalker_3_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_simulation_task_stalker_3_about
+task_complete_descr = drx_ql_simulation_task_stalker_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_3)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_3)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_stalker_3) =drx_ql_setup_hostage_task(hostage_companion_task_1_stalker:nil:drx_ql_simulation_task_stalker_3_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_simulation_task_stalker_3) =unlock_smart(drx_ql_simulation_task_stalker_3_id) =drx_ql_reset_task(drx_ql_simulation_task_stalker_3)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_simulation_task_stalker_3_id) =drx_ql_fail_task(drx_ql_simulation_task_stalker_3) =drx_ql_reset_task(drx_ql_simulation_task_stalker_3)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_simulation_task_stalker_3_id) =drx_ql_fail_task(drx_ql_simulation_task_stalker_3) =drx_ql_reset_task(drx_ql_simulation_task_stalker_3)%
+
+;------------------------------------------------
+; Reverse Bounty Hunt for Loner Simulation Task-
+
+[drx_ql_simulation_task_stalker_4]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_assassination_target(stalker:drx_ql_simulation_task_stalker_4:killer:army:bandit)} true, false
+
+title = drx_ql_simulation_task_stalker_4_name
+descr = drx_ql_simulation_task_stalker_4_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_simulation_task_stalker_4_about
+task_complete_descr = drx_ql_simulation_task_stalker_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_4)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_4)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_stalker_4)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_simulation_task_stalker_4)%
+
+on_complete = %=drx_ql_reward_money(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_simulation_task_stalker_4) =drx_ql_reset_task(drx_ql_simulation_task_stalker_4)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_4) =drx_ql_reset_task(drx_ql_simulation_task_stalker_4)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_4) =drx_ql_reset_task(drx_ql_simulation_task_stalker_4)%
+
+;------------------------------------------------
+; Vengeance for Stalker Simulation Task-
+
+[drx_ql_simulation_task_stalker_5]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_is_enemy(bandit) =drx_ql_find_assassination_target(stalker:drx_ql_simulation_task_stalker_5:bandit)} true, false
+
+title = drx_ql_simulation_task_stalker_5_name
+descr = drx_ql_simulation_task_stalker_5_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_simulation_task_stalker_5_about
+task_complete_descr = drx_ql_simulation_task_stalker_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_5)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_5)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_stalker_5)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_simulation_task_stalker_5)%
+
+on_complete = %=drx_ql_reward_item(2000:6000:items_rifles_list) =reward_random_item(vodka) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_simulation_task_stalker_5) =drx_ql_reset_task(drx_ql_simulation_task_stalker_5)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_5) =drx_ql_reset_task(drx_ql_simulation_task_stalker_5)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_5) =drx_ql_reset_task(drx_ql_simulation_task_stalker_5)%
+
+;------------------------------------------------
+; Search the Stash for Loner Simulation Task-
+
+[drx_ql_simulation_task_stalker_6]
+
+icon = ui_inGame2_PD_Torgovets_informatsiey
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_pda_task_started} true, false
+
+title = drx_ql_simulation_task_stalker_6_name
+descr = drx_ql_simulation_task_stalker_6_text
+descr_functor = drx_ql_quest_stash_task_target
+job_descr = drx_ql_simulation_task_stalker_6_about
+task_complete_descr = drx_ql_simulation_task_stalker_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_quest_stash_task_target
+target_functor_params = drx_ql_quest_item_pda
+status_functor = drx_ql_quest_stash_task_status
+status_functor_params = drx_ql_quest_item_pda
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_6)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_6)} fail
+on_init = %=drx_ql_create_quest_stash(drx_ql_quest_item_pda) +drx_ql_quest_item_pda_task_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_pda) =inc_task_stage(drx_ql_simulation_task_stalker_6) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_reset_task(drx_ql_simulation_task_stalker_6)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_quest_stash(drx_ql_quest_item_pda) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_fail_task(drx_ql_simulation_task_stalker_6) =drx_ql_reset_task(drx_ql_simulation_task_stalker_6)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_quest_stash(drx_ql_quest_item_pda) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_fail_task(drx_ql_simulation_task_stalker_6) =drx_ql_reset_task(drx_ql_simulation_task_stalker_6)%
+
+;------------------------------------------------
+; HAVFetch Reward Assassination for Loner Simulation Task-
+
+[drx_ql_simulation_task_stalker_7]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_havfetch_reward_task_started =drx_ql_has_havfetch_task(drx_ql_simulation_task_stalker_7) =drx_ql_find_assassination_target(stalker:drx_ql_simulation_task_stalker_7)} true, false
+
+title = drx_ql_simulation_task_stalker_7_name
+descr = drx_ql_simulation_task_stalker_7_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_simulation_task_stalker_7_about
+task_complete_descr = drx_ql_simulation_task_stalker_7_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_7)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_7)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_stalker_7)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_simulation_task_stalker_7) +drx_ql_havfetch_reward_task_started%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_stalker_7) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_simulation_task_stalker_7) -drx_ql_havfetch_reward_task_started =drx_ql_reset_task(drx_ql_simulation_task_stalker_7)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) -drx_ql_havfetch_reward_task_started =drx_ql_fail_task(drx_ql_simulation_task_stalker_7) =drx_ql_reset_task(drx_ql_simulation_task_stalker_7)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) -drx_ql_havfetch_reward_task_started =drx_ql_fail_task(drx_ql_simulation_task_stalker_7) =drx_ql_reset_task(drx_ql_simulation_task_stalker_7)%
+
+;------------------------------------------------
+; Loner Guide Simulation Task-
+
+[drx_ql_simulation_task_stalker_8]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = false
+prior = 50
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_guide_task_started =drx_ql_find_guide_target(drx_ql_simulation_task_stalker_8)} true, false
+guide_task = true
+
+title = drx_ql_simulation_task_stalker_8_name
+descr = drx_ql_simulation_task_stalker_8_text
+descr_functor = drx_ql_guide_task_target
+job_descr = drx_ql_simulation_task_stalker_8_about
+message = drx_ql_simulation_task_stalker_8_message
+task_complete_descr = drx_ql_simulation_task_stalker_8_finish
+
+stage_complete = 1
+target_functor = drx_ql_guide_task_target
+status_functor = drx_ql_guide_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_8)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_8)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_simulation_task_stalker_8) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_stalker_8) +drx_ql_guide_task_started%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_stalker_8) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_simulation_task_stalker_8) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_stalker_8) -drx_ql_guide_task_started =drx_ql_reset_task(drx_ql_simulation_task_stalker_8)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_stalker_8) -drx_ql_guide_task_started =drx_ql_fail_task(drx_ql_simulation_task_stalker_8) =drx_ql_reset_task(drx_ql_simulation_task_stalker_8)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_stalker_8) -drx_ql_guide_task_started =drx_ql_fail_task(drx_ql_simulation_task_stalker_8) =drx_ql_reset_task(drx_ql_simulation_task_stalker_8)%
+
+;------------------------------------------------
+; Find Supplies for Loner Simulation Task-
+
+[drx_ql_simulation_task_stalker_9]
+
+icon = ui_inGame2_D_Sisshik
+storyline = false
+prior = 20
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_stalker_9_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_stalker_9_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_stalker_9_about
+fetch_descr = drx_ql_simulation_task_stalker_9_fetch_about
+task_complete_descr = drx_ql_simulation_task_stalker_9_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_9)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_9)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_simulation_task_stalker_9:600:2000:1:12:0:items_supplies_list)%
+
+on_complete = %=drx_ql_fetch_reward_money(drx_ql_simulation_task_stalker_9:1.6) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_simulation_task_stalker_9) =drx_ql_reset_task(drx_ql_simulation_task_stalker_9)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_9) =drx_ql_reset_task(drx_ql_simulation_task_stalker_9)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_9) =drx_ql_reset_task(drx_ql_simulation_task_stalker_9)%
+
+;------------------------------------------------
+; Mutant Hunt with Loner Simulation Task -
+
+[drx_ql_simulation_task_stalker_10]
+
+icon = ui_inGame2_Nochnaya_ohota
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(stalker:drx_ql_simulation_task_stalker_10:monster)} true, false
+
+title = drx_ql_simulation_task_stalker_10_name
+descr = drx_ql_simulation_task_stalker_10_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_simulation_task_stalker_10_about
+task_complete_descr = drx_ql_simulation_task_stalker_10_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monster
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_10)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_10)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_stalker_10) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_stalker_10)%
+
+on_complete = %=drx_ql_reward_item(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_simulation_task_stalker_10) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_stalker_10) =drx_ql_reset_task(drx_ql_simulation_task_stalker_10)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_10) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_stalker_10) =drx_ql_reset_task(drx_ql_simulation_task_stalker_10)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_stalker_10) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_stalker_10) =drx_ql_reset_task(drx_ql_simulation_task_stalker_10)%
+
+; -----------------------------------------------
+; Loner Reverse Float Fetch Simulation Task-
+
+[drx_ql_simulation_task_stalker_11]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_case_task_started =drx_ql_find_occupied_smart_ext(stalker:drx_ql_simulation_task_stalker_11)} true, false
+
+title = drx_ql_simulation_task_stalker_11_name
+descr = drx_ql_simulation_task_stalker_11_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_stalker_11_about
+task_complete_descr = drx_ql_simulation_task_stalker_11_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_stalker_11)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_stalker_11)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_stalker_11:drx_ql_quest_item_case:50) +drx_ql_quest_item_case_task_started =drx_ql_add_task_giver_companion(drx_ql_simulation_task_stalker_11)%
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_simulation_task_stalker_11) -drx_ql_quest_item_case_task_started =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_stalker_11) =drx_ql_reset_task(drx_ql_simulation_task_stalker_11)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_simulation_task_stalker_11) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_stalker_11) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_stalker_11) =drx_ql_reset_task(drx_ql_simulation_task_stalker_11)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_simulation_task_stalker_11) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_stalker_11) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_stalker_11) =drx_ql_reset_task(drx_ql_simulation_task_stalker_11)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

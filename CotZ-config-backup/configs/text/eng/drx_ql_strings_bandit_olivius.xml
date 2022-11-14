@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Olivius (Bandit Trader, Dark Valley) (drx_ql_strings_bandit_olivius.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_bandit_olivius.ltx
+<
+<	Created by: DoctorX
+<	Last revised: August 04, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 04, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Olivius (Bandit Trader) Eliminate Mutants Task- -->
+
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1_name">
+		<text>Eliminate Mutant Threat in Dark Valley</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1_text">
+		<text>Mutants have been spotted near this location making the area dangerous. You have been tasked to eliminate the mutant threat within the area. Report back to Olivius after the job is done.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1_about">
+		<text>We've been looking for someone with enough balls to clear out mutants in a few places. Stalkers aren't coming around here because they are too afraid. If we don't do something about it we won't have anyone left to 'borrow' any goods from, then we will have to move out of this territory.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1_finish">
+		<text>Fantastic! Here is your payment. I'll make sure to put a good word in for you with the boss.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Olivius (Bandit Trader) Eliminate Territorial Threat Task -->
+
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2_name">
+		<text>Eliminate Territorial Threat</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2_text">
+		<text>You have been tasked to eliminate the %s encroaching on Bandit territory. Report back to Olivius after the job is done.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2_about">
+		<text>%s are moving into some of our territories. The boss gave me orders to recruit a low life with enough balls to reclaim some of these camps. What do you say? Do you have enough hair on your chest?</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2_finish">
+		<text>Ah, good. Here, take this as payment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Olivius (Bandit Trader) Dark Valley Raiders Task -->
+
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3_name">
+		<text>Dark Valley Raiders</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3_text">
+		<text>Loot at least %s more stalkers.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3_about">
+		<text>A few of the guys are looking for a scout to take them out to find some prime targets. We all take an equal cut of the loot at the end. You interested?</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3_finish">
+		<text>Not a bad haul. Here's your cut of the loot.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Olivius (Bandit Trader) Hit Man Task -->
+
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4_name">
+		<text>Hit Man</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4_text">
+		<text>Olivius has contracted you to run a hit on %s called %s.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4_about">
+		<text>There are a few people who have rubbed me the wrong way. I want you to rub them out. What do you say?</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4_finish">
+		<text>Good, you got rid of that asshole! Here is what I promised.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Olivius (Bandit Trader) Interceptor Task -->
+
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5_name">
+		<text>Intercept the Supply Delivery</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5_text">
+		<text>Olivius has given you the location of a courier delivering valuable supplies. Hijack the shipment and bring it to Olivius.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5_about">
+		<text>Listen, I just got a tip that Sidorovich is transferring some inventory to another trader. I want you to intercept the courier and redirect that shipment to me, get what I'm saying? I'll pay you well if you succeed, but don't take too long. If the Zone gets to him before you do then we'll both lose out.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5_finish">
+		<text>Ah, well done. Here's your cut.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

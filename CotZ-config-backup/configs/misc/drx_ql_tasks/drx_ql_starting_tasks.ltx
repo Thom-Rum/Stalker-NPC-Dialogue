@@ -1,0 +1,416 @@
+;==============================================================
+;
+; Start Questline Tasks (drx_ql_starting_tasks.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_starting_tasks.xml  (text for task titles and descriptions)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: September 02, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Loner Start Game Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Sidorovich (Loner Trader, Cordon) Start Game Task 1-
+
+[drx_ql_esc_m_trader_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_esc_m_trader_start_game_1_name
+descr = drx_ql_esc_m_trader_start_game_1_text
+
+target = esc_m_trader
+condlist_0 = {!drx_ql_is_alive(esc_m_trader)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {-drx_ql_start_game_esc_m_trader} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Barkeep (Loner Barman, Rostok) Start Game Task 1-
+
+[drx_ql_bar_visitors_barman_stalker_trader_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_bar_visitors_barman_stalker_trader_start_game_1_name
+descr = drx_ql_bar_visitors_barman_stalker_trader_start_game_1_text
+
+target = bar_visitors_barman_stalker_trader
+condlist_0 = {!drx_ql_is_alive(bar_visitors_barman_stalker_trader)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {-drx_ql_start_game_bar_visitors_barman_stalker_trader} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Beard (Loner Barman, Zaton) Start Game Task 1-
+
+[drx_ql_zat_a2_stalker_barmen_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_zat_a2_stalker_barmen_start_game_1_name
+descr = drx_ql_zat_a2_stalker_barmen_start_game_1_text
+
+target = zat_a2_stalker_barmen
+condlist_0 = {!drx_ql_is_alive(zat_a2_stalker_barmen)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {-drx_ql_start_game_zat_a2_stalker_barmen} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Duty Start Game Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Petrenko (Duty Trader, Rostok) Start Game Task 1-
+
+[drx_ql_bar_dolg_general_petrenko_stalker_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_bar_dolg_general_petrenko_stalker_start_game_1_name
+descr = drx_ql_bar_dolg_general_petrenko_stalker_start_game_1_text
+
+target = bar_dolg_general_petrenko_stalker
+condlist_0 = {!drx_ql_is_alive(bar_dolg_general_petrenko_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {-drx_ql_start_game_bar_dolg_general_petrenko_stalker} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Freedom Start Game Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Lukash (Freedom Honcho, Army Warehouses) Start Game Task 1-
+
+[drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_name
+descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_start_game_1_text
+
+target = mil_smart_terrain_7_7_freedom_leader_stalker
+condlist_0 = {!drx_ql_is_alive(mil_smart_terrain_7_7_freedom_leader_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {-drx_ql_start_game_mil_smart_terrain_7_7_freedom_leader_stalker} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Loki (Freedom Trader) Start Game Task 1-
+
+[drx_ql_jup_a6_freedom_leader_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_jup_a6_freedom_leader_start_game_1_name
+descr = drx_ql_jup_a6_freedom_leader_start_game_1_text
+
+target = jup_a6_freedom_leader
+condlist_0 = {!drx_ql_is_alive(jup_a6_freedom_leader)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {-drx_ql_start_game_jup_a6_freedom_leader} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Clear Sky Start Game Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Cold (Clear Sky Honcho, Great Swamp) Start Game Task 1-
+
+[drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_name
+descr = drx_ql_mar_smart_terrain_base_stalker_leader_marsh_start_game_1_text
+
+target = mar_smart_terrain_base_stalker_leader_marsh
+condlist_0 = {!drx_ql_is_alive(mar_smart_terrain_base_stalker_leader_marsh)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {-drx_ql_start_game_mar_smart_terrain_base_stalker_leader_marsh} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Ecologist Start Game Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 02, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Sakharov (Ecologist Trader, Yantar) Start Game Task 1-
+
+[drx_ql_yan_stalker_sakharov_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_yan_stalker_sakharov_start_game_1_name
+descr = drx_ql_yan_stalker_sakharov_start_game_1_text
+
+target = yan_stalker_sakharov
+condlist_0 = {!drx_ql_is_alive(yan_stalker_sakharov)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {-drx_ql_start_game_yan_stalker_sakharov} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Hermann (Ecologist Trader, Jupiter) Start Game Task 1-
+
+[drx_ql_jup_b6_scientist_nuclear_physicist_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_jup_b6_scientist_nuclear_physicist_start_game_1_name
+descr = drx_ql_jup_b6_scientist_nuclear_physicist_start_game_1_text
+
+target = jup_b6_scientist_nuclear_physicist
+condlist_0 = {!drx_ql_is_alive(jup_b6_scientist_nuclear_physicist)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {-drx_ql_start_game_jup_b6_scientist_nuclear_physicist} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Mercenary Start Game Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Dushman (Mercenary Trader, Dead City) Start Game Task 1-
+
+[drx_ql_cit_killers_merc_trader_stalker_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_cit_killers_merc_trader_stalker_start_game_1_name
+descr = drx_ql_cit_killers_merc_trader_stalker_start_game_1_text
+
+target = cit_killers_merc_trader_stalker
+condlist_0 = {!drx_ql_is_alive(cit_killers_merc_trader_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {-drx_ql_start_game_cit_killers_merc_trader_stalker} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Military Start Game Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Kuznetsov (Military Honcho, Agroprom) Start Game Task 1-
+
+[drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_start_game_1_name
+descr = drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_start_game_1_text
+
+target = agr_smart_terrain_1_6_near_2_military_colonel_kovalski
+condlist_0 = {!drx_ql_is_alive(agr_smart_terrain_1_6_near_2_military_colonel_kovalski)} fail
+condlist_1 = {=drx_ql_is_enemy(army)} fail
+condlist_2 = {-drx_ql_start_game_agr_smart_terrain_1_6_near_2_military_colonel_kovalski} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Bandit Start Game Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Sultan (Bandit Honcho, Dark Valley) Start Game Task 1-
+
+[drx_ql_zat_b7_bandit_boss_sultan_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_zat_b7_bandit_boss_sultan_start_game_1_name
+descr = drx_ql_zat_b7_bandit_boss_sultan_start_game_1_text
+
+target = zat_b7_bandit_boss_sultan
+condlist_0 = {!drx_ql_is_alive(zat_b7_bandit_boss_sultan)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {-drx_ql_start_game_zat_b7_bandit_boss_sultan} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Monolith Start Game Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Krolik (Monolith Trader, Pripyat) Start Game Task 1-
+
+[drx_ql_pri_monolith_monolith_trader_stalker_start_game_1]
+
+icon = ui_inGame2_PD_Diplomat
+storyline = true
+prior = 195
+weight = 1
+
+title = drx_ql_pri_monolith_monolith_trader_stalker_start_game_1_name
+descr = drx_ql_pri_monolith_monolith_trader_stalker_start_game_1_text
+
+target = pri_monolith_monolith_trader_stalker
+condlist_0 = {!drx_ql_is_alive(pri_monolith_monolith_trader_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {-drx_ql_start_game_pri_monolith_monolith_trader_stalker} complete
+
+on_complete = %=drx_ql_meet_random_honcho()%
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Meet Honcho Task Text Strings (drx_ql_strings_sl_meet_tasks.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_sl_meet_tasks.ltx
+<
+<	Created by: DoctorX
+<	Last revised: October 21, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Generic Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 15, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Universal meet honcho task dialog -->
+	<string id="drx_ql_meet_task_about">
+		<text>I need you to pay a visit to someone who is in need of your services. Ask what you can do for him, he will pay you well. I've marked his location on your map.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Loner Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 21, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Sidorovich (Loner Trader, Cordon) Task 1 -->
+
+	<string id="drx_ql_esc_m_trader_meet_task_1_name">
+		<text>Meet with Sidorovich</text>
+	</string>
+	<string id="drx_ql_esc_m_trader_meet_task_1_text">
+		<text>Sidorovich in Cordon is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Nimble (Loner Trader, Cordon) Task 1 -->
+
+	<string id="drx_ql_esc_2_12_stalker_nimble_meet_task_1_name">
+		<text>Meet with Nimble</text>
+	</string>
+	<string id="drx_ql_esc_2_12_stalker_nimble_meet_task_1_text">
+		<text>Nimble in Cordon is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Xenotech (Loner Mechanic, Cordon) Task 1 -->
+
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_meet_task_1_name">
+		<text>Meet with Xenotech</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_meet_task_1_text">
+		<text>Xenotech in Cordon is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Barkeep (Loner Barman, Rostok) Task 1 -->
+
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_meet_task_1_name">
+		<text>Meet with Barkeep</text>
+	</string>
+	<string id="drx_ql_bar_visitors_barman_stalker_trader_meet_task_1_text">
+		<text>The Barkeep at 100 Rads Bar is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Beard (Loner Barman, Zaton) Task 1 -->
+
+	<string id="drx_ql_zat_a2_stalker_barmen_meet_task_1_name">
+		<text>Meet with Beard</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_barmen_meet_task_1_text">
+		<text>Beard aboard the Skadovsk is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Owl (Loner Trader, Zaton) Task 1 -->
+
+	<string id="drx_ql_zat_b30_owl_stalker_trader_meet_task_1_name">
+		<text>Meet with Owl</text>
+	</string>
+	<string id="drx_ql_zat_b30_owl_stalker_trader_meet_task_1_text">
+		<text>Owl in Zaton is your next destination.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Duty Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	December 17, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Veronin (Duty Honcho, Rostok) Task 1 -->
+
+	<string id="drx_ql_bar_dolg_leader_meet_task_1_name">
+		<text>Meet with General Voronin</text>
+	</string>
+	<string id="drx_ql_bar_dolg_leader_meet_task_1_text">
+		<text>General Voronin in Rostok is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Petrenko (Duty Trader, Rostok) Task 1 -->
+
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_meet_task_1_name">
+		<text>Meet with Colonel Petrenko</text>
+	</string>
+	<string id="drx_ql_bar_dolg_general_petrenko_stalker_meet_task_1_text">
+		<text>Colonel Petrenko in Rostok is your next destination.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Freedom Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	December 17, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Lukash (Freedom Honcho, Army Warehouses) Task 1 -->
+
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_meet_task_1_name">
+		<text>Meet with Lukash</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_meet_task_1_text">
+		<text>Lukash in the Army Warehouses is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Skinflint (Freedom Trader, Army Warehouses) Task 1 -->
+
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_meet_task_1_name">
+		<text>Meet with Skinflint</text>
+	</string>
+	<string id="drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_meet_task_1_text">
+		<text>Skinflint in the Army Warehouses is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Loki (Freedom Trader, Jupiter) Task 1 -->
+
+	<string id="drx_ql_jup_a6_freedom_leader_meet_task_1_name">
+		<text>Meet with Loki</text>
+	</string>
+	<string id="drx_ql_jup_a6_freedom_leader_meet_task_1_text">
+		<text>Loki in Yanov Station is your next destination.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Clear Sky Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	May 23, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Cold (Clear Sky Honcho, Great Swamp) Task 1 -->
+
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_meet_task_1_name">
+		<text>Meet with Cold</text>
+	</string>
+	<string id="drx_ql_mar_smart_terrain_base_stalker_leader_marsh_meet_task_1_text">
+		<text>Cold in the Great Swamp is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Spore (Clear Sky Barman, Great Swamp) Task 1 -->
+
+	<string id="drx_ql_mar_base_owl_stalker_trader_meet_task_1_name">
+		<text>Meet with Spore</text>
+	</string>
+	<string id="drx_ql_mar_base_owl_stalker_trader_meet_task_1_text">
+		<text>Spore in the Great Swamp is your next destination.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Ecologist Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 02, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Sakharov (Ecologist Trader, Yantar) Task 1 -->
+
+	<string id="drx_ql_yan_stalker_sakharov_meet_task_1_name">
+		<text>Meet with Professor Sakharov</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_meet_task_1_text">
+		<text>Professor Sakharov in Yantar is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Seminov (Ecologist Honcho, Yantar) Task 1 -->
+
+	<string id="drx_ql_yan_ecolog_semenov_meet_task_1_name">
+		<text>Meet with Assistant Seminov</text>
+	</string>
+	<string id="drx_ql_yan_ecolog_semenov_meet_task_1_text">
+		<text>Assistant Seminov in Yantar is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Hermann (Ecologist Trader, Jupiter) Task 1 -->
+
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_meet_task_1_name">
+		<text>Meet with Professor Hermann</text>
+	</string>
+	<string id="drx_ql_jup_b6_scientist_nuclear_physicist_meet_task_1_text">
+		<text>Professor Hermann in the mobile lab in Jupiter is your next destination.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mercenary Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 09, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Dushman (Mercenary Trader, Dead City) Task 1 -->
+
+	<string id="drx_ql_cit_killers_merc_trader_stalker_meet_task_1_name">
+		<text>Meet with Dushman</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_trader_stalker_meet_task_1_text">
+		<text>Dushman in Dead City is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Hog (Mercenary Mechanic, Dead City) Task 1 -->
+
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_meet_task_1_name">
+		<text>Meet with Hog</text>
+	</string>
+	<string id="drx_ql_cit_killers_merc_mechanic_stalker_meet_task_1_text">
+		<text>Hog in Dead City is your next destination.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Military Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 09, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Kuznetsov (Military Honcho, Agroprom) Task 1 -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_meet_task_1_name">
+		<text>Meet with Major Kuznetsov</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_meet_task_1_text">
+		<text>Major Kuznetsov in Agoroprom is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Kirilov (Military Mechanic, Agroprom) Task 1 -->
+
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_meet_task_1_name">
+		<text>Meet with Lieutenant Kirilov</text>
+	</string>
+	<string id="drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_meet_task_1_text">
+		<text>Lieutenant Kirilov in Agoroprom is your next destination.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Bandit Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 09, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Sultan (Bandit Honcho, Dark Valley) Task 1 -->
+
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_meet_task_1_name">
+		<text>Meet with Sultan</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_meet_task_1_text">
+		<text>Sultan in Dark Valley is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Olivius (Bandit Trader, Dark Valley) Task 1 -->
+
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_meet_task_1_name">
+		<text>Meet with Olivius</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_meet_task_1_text">
+		<text>Olivius in Dark Valley is your next destination.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Monolith Meet Honcho Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 09, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Krolik (Monolith Trader, Pripyat) Task 1 -->
+
+	<string id="drx_ql_pri_monolith_monolith_trader_stalker_meet_task_1_name">
+		<text>Meet with Krolik</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_trader_stalker_meet_task_1_text">
+		<text>Krolik in Pripyat is your next destination.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Meet With Cleric (Monolith Mechanic, Pripyat) Task 1 -->
+
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_meet_task_1_name">
+		<text>Meet with Cleric</text>
+	</string>
+	<string id="drx_ql_pri_monolith_monolith_mechanic_stalker_meet_task_1_text">
+		<text>Cleric in Pripyat is your next destination.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

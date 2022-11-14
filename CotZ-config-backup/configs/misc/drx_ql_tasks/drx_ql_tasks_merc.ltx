@@ -1,0 +1,767 @@
+;==============================================================
+;
+; Tasks Provided By Mercenaries (drx_ql_tasks_merc.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_merc.xml
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: November 12, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Mercenary Storyline Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	November 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; -----------------------------------------------
+; Mercenary Jupiter UAV Memory Module Storyline Task-
+
+[drx_ql_killer_sl_task_1]
+
+icon = ui_inGame2_Bespilotniy_razvedchik
+storyline = true
+prior = 139
+weight = 2
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_uav_module_task_finished -drx_ql_quest_item_memory_module_task_started} true, false
+
+title = drx_ql_killer_sl_task_1_name
+descr = drx_ql_killer_sl_task_1_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_killer_sl_task_1_about
+task_complete_descr = drx_ql_killer_sl_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_1)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_killer_sl_task_1:drx_ql_quest_item_memory_module:0:drx_ql_location_uav_memory_module) +drx_ql_quest_item_memory_module_task_started%
+
+on_complete = %=drx_ql_reward_money(4500:7000) =complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_memory_module) =inc_task_stage(drx_ql_killer_sl_task_1) -drx_ql_quest_item_memory_module_task_started +drx_ql_info_uav_module_task_finished =drx_ql_reset_task(drx_ql_killer_sl_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_1) -drx_ql_quest_item_memory_module_task_started =drx_ql_fail_task(drx_ql_killer_sl_task_1) =drx_ql_reset_task(drx_ql_killer_sl_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_1) -drx_ql_quest_item_memory_module_task_started =drx_ql_fail_task(drx_ql_killer_sl_task_1) =drx_ql_reset_task(drx_ql_killer_sl_task_1)%
+
+; -----------------------------------------------
+; Mercenary Wild Territory Electrified Tunnel Storyline Task-
+
+[drx_ql_killer_sl_task_2]
+
+icon = ui_inGame2_Poslednie_razrabotki
+storyline = true
+prior = 139
+weight = 2
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_shock_tunnel_task_finished -drx_ql_quest_item_document_case_task_started -drx_ql_info_main_task_labx8_done} true, false
+
+title = drx_ql_killer_sl_task_2_name
+descr = drx_ql_killer_sl_task_2_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_killer_sl_task_2_about
+task_complete_descr = drx_ql_killer_sl_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_2)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_killer_sl_task_2:drx_ql_quest_item_document_case:0:drx_ql_location_shock_tunnel_documents) +drx_ql_quest_item_document_case_task_started%
+
+on_complete = %=drx_ql_reward_money(4500:7000) =complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_document_case) =inc_task_stage(drx_ql_killer_sl_task_2) +drx_ql_shock_tunnel_task_finished -drx_ql_quest_item_document_case_task_started =drx_ql_reset_task(drx_ql_killer_sl_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_2) -drx_ql_quest_item_document_case_task_started =drx_ql_fail_task(drx_ql_killer_sl_task_2) =drx_ql_reset_task(drx_ql_killer_sl_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_2) -drx_ql_quest_item_document_case_task_started =drx_ql_fail_task(drx_ql_killer_sl_task_2) =drx_ql_reset_task(drx_ql_killer_sl_task_2)%
+
+;------------------------------------------------
+; Mercenary Limansk Bridge Brawl Storyline Task-
+
+[drx_ql_killer_sl_task_3]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(cit_killers_merc_trader_stalker) =drx_ql_is_enemy(monolith) =is_factions_enemies(killer:monolith) !squad_exist(drx_ql_designated_target_squad_monolith_limansk_bridge_1) !squad_exist(drx_ql_designated_target_squad_monolith_limansk_bridge_2) !squad_exist(drx_ql_designated_target_squad_monolith_limansk_bridge_3) !squad_exist(drx_ql_designated_target_squad_monolith_limansk_bridge_4) !squad_exist(drx_ql_attack_squad_killer_limansk_bridge_1) !squad_exist(drx_ql_attack_squad_killer_limansk_bridge_2)} true, false
+
+title = drx_ql_killer_sl_task_3_name
+descr = drx_ql_killer_sl_task_3_text
+descr_functor = drx_ql_bab_task_target
+job_descr = drx_ql_killer_sl_task_3_about
+message = drx_ql_killer_sl_task_3_message
+task_complete_descr = drx_ql_killer_sl_task_3_finish
+
+stage_complete = 2
+target_functor = drx_ql_bab_task_target
+status_functor = drx_ql_bab_task_status
+status_functor_params = drx_ql_designated_target_squad_monolith_limansk_bridge_1, drx_ql_designated_target_squad_monolith_limansk_bridge_2, drx_ql_designated_target_squad_monolith_limansk_bridge_3, drx_ql_designated_target_squad_monolith_limansk_bridge_4
+status_functor_rendezvous = lim_smart_terrain_5
+status_functor_rendezvous_dist = 50
+status_functor_allied_squads = drx_ql_attack_squad_killer_limansk_bridge_1, lim_smart_terrain_5, drx_ql_attack_squad_killer_limansk_bridge_2, lim_smart_terrain_5
+status_functor_enemy_squads = drx_ql_designated_target_squad_monolith_limansk_bridge_1, lim_smart_terrain_6, drx_ql_designated_target_squad_monolith_limansk_bridge_2, lim_smart_terrain_6, drx_ql_designated_target_squad_monolith_limansk_bridge_3, lim_smart_terrain_7, drx_ql_designated_target_squad_monolith_limansk_bridge_4, lim_smart_terrain_7
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_3)} fail
+
+on_complete = %=drx_ql_reward_money(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_killer_sl_task_3) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_limansk_bridge_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_limansk_bridge_2) =drx_ql_reset_task(drx_ql_killer_sl_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_limansk_bridge_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_limansk_bridge_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_limansk_bridge_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_limansk_bridge_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_limansk_bridge_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_limansk_bridge_2) =drx_ql_fail_task(drx_ql_killer_sl_task_3) =drx_ql_reset_task(drx_ql_killer_sl_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_limansk_bridge_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_limansk_bridge_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_limansk_bridge_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_limansk_bridge_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_limansk_bridge_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_limansk_bridge_2) =drx_ql_fail_task(drx_ql_killer_sl_task_3) =drx_ql_reset_task(drx_ql_killer_sl_task_3)%
+
+;------------------------------------------------
+; Mercenary Dead City Brawl Storyline Task-
+
+[drx_ql_killer_sl_task_4]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(cit_killers_merc_trader_stalker) =drx_ql_actor_faction() -drx_ql_info_merc_dc_brawl_finished =drx_ql_is_enemy(army) =is_factions_enemies(killer:army) !squad_exist(drx_ql_designated_target_squad_army_dead_city_1) !squad_exist(drx_ql_designated_target_squad_army_dead_city_2) !squad_exist(drx_ql_designated_target_squad_army_dead_city_3) !squad_exist(drx_ql_designated_target_squad_army_dead_city_4) !squad_exist(drx_ql_attack_squad_killer_dead_city_1) !squad_exist(drx_ql_attack_squad_killer_dead_city_2)} true, false
+
+title = drx_ql_killer_sl_task_4_name
+descr = drx_ql_killer_sl_task_4_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_killer_sl_task_4_about
+task_complete_descr = drx_ql_killer_sl_task_4_finish
+
+stage_complete = 1
+target = {=check_task_stage(drx_ql_killer_sl_task_4:1)} cit_killers_merc_trader_stalker, {=squad_exist(drx_ql_designated_target_squad_army_dead_city_1)} drx_ql_designated_target_squad_army_dead_city_1, {=squad_exist(drx_ql_designated_target_squad_army_dead_city_2)} drx_ql_designated_target_squad_army_dead_city_2, {=squad_exist(drx_ql_designated_target_squad_army_dead_city_3)} drx_ql_designated_target_squad_army_dead_city_3, {=squad_exist(drx_ql_designated_target_squad_army_dead_city_4)} drx_ql_designated_target_squad_army_dead_city_4
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_army_dead_city_1, drx_ql_designated_target_squad_army_dead_city_2, drx_ql_designated_target_squad_army_dead_city_3, drx_ql_designated_target_squad_army_dead_city_4
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_4)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_army_dead_city_1:cit_bandits) =create_squad(drx_ql_designated_target_squad_army_dead_city_2:cit_bandits) =create_squad(drx_ql_designated_target_squad_army_dead_city_3:cit_bandits_2) =create_squad(drx_ql_designated_target_squad_army_dead_city_4:cit_bandits_2) =create_squad(drx_ql_attack_squad_killer_dead_city_1:cit_killers) =drx_ql_give_escort_task_companions(drx_ql_attack_squad_killer_dead_city_2:cit_killers)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_killer_sl_task_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_dead_city_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_dead_city_2) +drx_ql_info_merc_dc_brawl_finished =drx_ql_reset_task(drx_ql_killer_sl_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_dead_city_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_dead_city_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_dead_city_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_dead_city_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_dead_city_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_dead_city_2) =drx_ql_fail_task(drx_ql_killer_sl_task_4) =drx_ql_reset_task(drx_ql_killer_sl_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_dead_city_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_dead_city_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_dead_city_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_dead_city_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_dead_city_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_killer_dead_city_2) =drx_ql_fail_task(drx_ql_killer_sl_task_4) =drx_ql_reset_task(drx_ql_killer_sl_task_4)%
+
+; -----------------------------------------------
+; Mercenary Investigate Stingray 5 (Zaton, Distorted Swamp) Storyline Task-
+
+[drx_ql_killer_sl_task_5]
+
+icon = ui_inGame2_Skat_1
+storyline = true
+prior = 139
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(cit_killers_merc_trader_stalker) =drx_ql_actor_faction() +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_5_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_blackbox_task_started} true, false
+
+title = drx_ql_killer_sl_task_5_name
+descr = drx_ql_killer_sl_task_5_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_killer_sl_task_5_about
+task_complete_descr = drx_ql_killer_sl_task_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_5)} fail
+condlist_3 = {=actor_has_item(drx_ql_quest_item_blackbox) -drx_ql_info_stingray_5_snorks_spawned} %=drx_ql_create_squad(drx_ql_designated_target_squad_mutant_zaton_swamp:zat_sim_6) +drx_ql_info_stingray_5_snorks_spawned%
+on_init = %=drx_ql_setup_float_task(drx_ql_killer_sl_task_5:drx_ql_quest_item_blackbox:0:drx_ql_location_stingray_5_blackbox) +drx_ql_quest_item_blackbox_task_started%
+
+on_complete = %=drx_ql_reward_money(6500:8500) =complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_blackbox) =inc_task_stage(drx_ql_killer_sl_task_5) -drx_ql_quest_item_blackbox_task_started +drx_ql_info_stingray_5_done -drx_ql_info_stingray_5_snorks_spawned =drx_ql_reset_task(drx_ql_killer_sl_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_5) -drx_ql_quest_item_blackbox_task_started -drx_ql_info_stingray_5_snorks_spawned =drx_ql_fail_task(drx_ql_killer_sl_task_5) =drx_ql_reset_task(drx_ql_killer_sl_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_5) -drx_ql_quest_item_blackbox_task_started -drx_ql_info_stingray_5_snorks_spawned =drx_ql_fail_task(drx_ql_killer_sl_task_5) =drx_ql_reset_task(drx_ql_killer_sl_task_5)%
+
+; -----------------------------------------------
+; Mercenary Search Agroprom Underground Storyline Task-
+
+[drx_ql_killer_sl_task_6]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_main_task_agr_u_done} true, false
+
+title = drx_ql_killer_sl_task_6_name
+descr = drx_ql_killer_sl_task_6_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_killer_sl_task_6_about
+task_complete_descr = drx_ql_killer_sl_task_6_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = agr_space_restrictor_to_agr_ug_2
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_6)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_killer_sl_task_6:main_story_1_quest_case) =drx_ql_activate_teleport(agr_space_restrictor_to_agr_ug_1:agr_space_restrictor_to_agr_ug_2:agr_space_restrictor_to_agr_ug_4)%
+
+on_complete = %=drx_ql_reward_money(6000:8000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =drx_ql_release_story_item(main_story_1_quest_case) =inc_task_stage(drx_ql_killer_sl_task_6) +drx_ql_info_main_task_agr_u_done =drx_ql_reset_task(drx_ql_killer_sl_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_killer_sl_task_6) =drx_ql_reset_task(drx_ql_killer_sl_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_killer_sl_task_6) =drx_ql_reset_task(drx_ql_killer_sl_task_6)%
+
+; -----------------------------------------------
+; Mercenary Disable the Miracle Machine Storyline Task-
+
+[drx_ql_killer_sl_task_7]
+
+icon = ui_iconsTotal_yan_kill_brain_task
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(cit_killers_merc_mechanic_stalker) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx18_done -drx_ql_info_main_task_labx16_done} true, false
+
+title = drx_ql_killer_sl_task_7_name
+descr = drx_ql_killer_sl_task_7_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_killer_sl_task_7_about
+task_complete_descr = drx_ql_killer_sl_task_7_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = yan_space_restrictor_to_x16
+status_functor = drx_ql_miracle_machine_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_7)} fail
+on_init = %=drx_ql_reward_psi_helmet() =drx_ql_activate_teleport(yan_space_restrictor_to_x16)%
+
+on_complete = %=drx_ql_reward_money(6500:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_killer_sl_task_7) +drx_ql_info_main_task_labx16_done =drx_ql_reset_task(drx_ql_killer_sl_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_killer_sl_task_7) =drx_ql_reset_task(drx_ql_killer_sl_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_killer_sl_task_7) =drx_ql_reset_task(drx_ql_killer_sl_task_7)%
+
+; -----------------------------------------------
+; Mercenary Infiltrate Lab X-18 (Dark Valley) Storyline Task-
+
+[drx_ql_killer_sl_task_8]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done -drx_ql_info_main_task_labx18_done} true, false
+
+title = drx_ql_killer_sl_task_8_name
+descr = drx_ql_killer_sl_task_8_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_killer_sl_task_8_about
+task_complete_descr = drx_ql_killer_sl_task_8_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = val_space_restrictor_to_labx18
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_8)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_8)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_killer_sl_task_8:main_story_2_lab_x18_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_army_valley_x18:val_smart_terrain_1_2) =drx_ql_activate_teleport(val_space_restrictor_to_labx18)%
+
+on_complete = %=drx_ql_reward_money(6500:9000) =complete_task_inc_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =inc_task_stage(drx_ql_killer_sl_task_8) +drx_ql_info_main_task_labx18_done =drx_ql_reset_task(drx_ql_killer_sl_task_8)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_killer_sl_task_8) =drx_ql_reset_task(drx_ql_killer_sl_task_8)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_killer_sl_task_8) =drx_ql_reset_task(drx_ql_killer_sl_task_8)%
+
+; -----------------------------------------------
+; Mercenary Deactivate Brain Scorcher Storyline Task-
+
+[drx_ql_killer_sl_task_9]
+
+icon = ui_iconsTotal_bar_radar_deactivate
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_killer_sl_task_9_name
+descr = drx_ql_killer_sl_task_9_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_killer_sl_task_9_about
+task_complete_descr = drx_ql_killer_sl_task_9_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = rad_space_restrictor_to_bunker
+status_functor = drx_ql_brain_scorcher_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_9)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_9)} fail
+on_init = %+drx_ql_info_spawn_bs_extraction_squads =drx_ql_activate_teleport(rad_space_restrictor_to_bunker)%
+
+on_complete = %=drx_ql_reward_money(9000:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_killer_sl_task_9) +drx_ql_info_main_task_x19_done -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_killer_sl_task_9)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_killer_sl_task_9) -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_killer_sl_task_9)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_killer_sl_task_9) -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_killer_sl_task_9)%
+
+; -----------------------------------------------
+; Mercenary Search Jupiter Underground Storyline Task-
+
+[drx_ql_killer_sl_task_10]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_x19_done -drx_ql_info_main_task_jup_u_done} true, false
+
+title = drx_ql_killer_sl_task_10_name
+descr = drx_ql_killer_sl_task_10_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_killer_sl_task_10_about
+task_complete_descr = drx_ql_killer_sl_task_10_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = jupiter_space_restrictor_to_jupiter_ug
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_10)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_10)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_killer_sl_task_10:main_story_6_jup_ug_documents)%
+
+on_complete = %=drx_ql_reward_random(7500:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =inc_task_stage(drx_ql_killer_sl_task_10) +drx_ql_info_main_task_jup_u_done =drx_ql_reset_task(drx_ql_killer_sl_task_10)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =drx_ql_fail_task(drx_ql_killer_sl_task_10) =drx_ql_reset_task(drx_ql_killer_sl_task_10)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =drx_ql_fail_task(drx_ql_killer_sl_task_10) =drx_ql_reset_task(drx_ql_killer_sl_task_10)%
+
+; -----------------------------------------------
+; Mercenary Infiltrate Lab X-8 (Outskirts) Storyline Task (LINKS TO: Build Gauss Gun Task)-
+
+[drx_ql_killer_sl_task_11]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_hog_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(cit_killers_merc_mechanic_stalker) +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_x19_done -drx_ql_info_main_task_labx8_done} true, false
+
+title = drx_ql_killer_sl_task_11_name
+descr = drx_ql_killer_sl_task_11_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_killer_sl_task_11_about
+task_complete_descr = drx_ql_killer_sl_task_11_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = pri_space_restrictor_to_labx8
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_11)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_11)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_killer_sl_task_11:main_story_5_lab_x8_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1:pri_b306) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2:pri_b306) =drx_ql_activate_teleport(pri_space_restrictor_to_labx8)%
+
+on_complete = %=complete_task_inc_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =inc_task_stage(drx_ql_killer_sl_task_11) +drx_ql_info_main_task_labx8_done =drx_ql_reset_task(drx_ql_killer_sl_task_11)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =drx_ql_fail_task(drx_ql_killer_sl_task_11) =drx_ql_reset_task(drx_ql_killer_sl_task_11)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =drx_ql_fail_task(drx_ql_killer_sl_task_11) =drx_ql_reset_task(drx_ql_killer_sl_task_11)%
+
+; -----------------------------------------------
+; Mercenary Build Gauss Gun Storyline Task (LINKS FROM: Infiltrate Lab X-8) (LINKS TO: Wait for Gauss Gun Task)-
+
+[drx_ql_killer_sl_task_12]
+
+icon = ui_inGame2_Gauss_pushka
+storyline = true
+prior = 140
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_hog_wait_for_gauss_gun_sl_task_link
+link_back_info = drx_ql_hog_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(cit_killers_merc_mechanic_stalker)} true, false
+
+title = drx_ql_killer_sl_task_12_name
+descr = drx_ql_killer_sl_task_12_text
+descr_functor = drx_ql_gather_items_task_target
+job_descr = drx_ql_killer_sl_task_12_about
+task_complete_descr = drx_ql_killer_sl_task_12_finish
+
+stage_complete = 1
+target_functor = drx_ql_gather_items_task_target
+status_functor = drx_ql_gather_items_task_status
+status_functor_params = drx_ql_quest_item_capacitors, drx_ql_quest_item_wire, af_electra_flash
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_12)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_12)} fail
+on_init = %=give_task(drx_ql_special_task_find_gauss_capacitors) =give_task(drx_ql_special_task_find_gauss_wire) =give_task(drx_ql_special_task_find_gauss_flash)%
+
+on_complete = %=complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_capacitors) =remove_item(drx_ql_quest_item_wire) =remove_item(af_electra_flash) =inc_task_stage(drx_ql_killer_sl_task_12) =drx_ql_reset_task(drx_ql_killer_sl_task_12)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =set_task_failed(drx_ql_special_task_find_gauss_flash) =set_task_failed(drx_ql_special_task_find_gauss_capacitors) =set_task_failed(drx_ql_special_task_find_gauss_wire) =drx_ql_fail_task(drx_ql_killer_sl_task_12) =drx_ql_reset_task(drx_ql_killer_sl_task_12)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =set_task_failed(drx_ql_special_task_find_gauss_flash) =set_task_failed(drx_ql_special_task_find_gauss_capacitors) =set_task_failed(drx_ql_special_task_find_gauss_wire) =drx_ql_fail_task(drx_ql_killer_sl_task_12) =drx_ql_reset_task(drx_ql_killer_sl_task_12)%
+
+; -----------------------------------------------
+; Mercenary Wait For Gauss Gun Storyline Task (LINKS FROM: Build Gauss Gun Task)-
+
+[drx_ql_killer_sl_task_13]
+
+icon = ui_inGame2_Izdelie_N62
+storyline = true
+prior = 14
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_hog_wait_for_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(cit_killers_merc_mechanic_stalker)} true, false
+
+title = drx_ql_killer_sl_task_13_name
+descr = drx_ql_killer_sl_task_13_text
+descr_functor = drx_ql_wait_task_target
+job_descr = drx_ql_killer_sl_task_13_about
+message = drx_ql_killer_sl_task_13_message
+task_complete_descr = drx_ql_killer_sl_task_13_finish
+
+stage_complete = 2
+target_functor = drx_ql_wait_task_target
+status_functor = drx_ql_wait_task_status
+status_functor_params = 86400  ; 1 day
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_13)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_13)} fail
+on_init = %=drx_ql_save_pstor_ctime(drx_ql_killer_sl_task_13)%
+
+on_complete = %=reward_random_item(wpn_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_killer_sl_task_13) =erase_pstor_ctime(drx_ql_killer_sl_task_13) =drx_ql_reset_task(drx_ql_killer_sl_task_13)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =erase_pstor_ctime(drx_ql_killer_sl_task_13) =drx_ql_fail_task(drx_ql_killer_sl_task_13) =drx_ql_reset_task(drx_ql_killer_sl_task_13)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =erase_pstor_ctime(drx_ql_killer_sl_task_13) =drx_ql_fail_task(drx_ql_killer_sl_task_13) =drx_ql_reset_task(drx_ql_killer_sl_task_13)%
+
+; -----------------------------------------------
+; Mercenary Scientist ID Storyline Task-
+
+[drx_ql_killer_sl_task_14]
+
+icon = ui_iconsNpc_ecolog
+storyline = true
+prior = 139
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(cit_killers_merc_mechanic_stalker) -drx_ql_quest_item_id_card_task_started =drx_ql_find_unoccupied_smart_terrain(drx_ql_killer_sl_task_14)} true, false
+
+title = drx_ql_killer_sl_task_14_name
+descr = drx_ql_killer_sl_task_14_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_killer_sl_task_14_about
+task_complete_descr = drx_ql_killer_sl_task_14_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_14)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_14)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_killer_sl_task_14:drx_ql_quest_item_id_card:50) +drx_ql_quest_item_id_card_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_id_card) =inc_task_stage(drx_ql_killer_sl_task_14) -drx_ql_quest_item_id_card_task_started =drx_ql_reset_task(drx_ql_killer_sl_task_14)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_14) -drx_ql_quest_item_id_card_task_started =drx_ql_fail_task(drx_ql_killer_sl_task_14) =drx_ql_reset_task(drx_ql_killer_sl_task_14)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_14) -drx_ql_quest_item_id_card_task_started =drx_ql_fail_task(drx_ql_killer_sl_task_14) =drx_ql_reset_task(drx_ql_killer_sl_task_14)%
+
+; -----------------------------------------------
+; Mercenary Investigate Stingray 3 (Zaton, Southern Plateau) Storyline Task-
+
+[drx_ql_killer_sl_task_15]
+
+icon = ui_inGame2_Put_na_plato
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() !drx_ql_is_enemy(stalker) =drx_ql_is_alive(zat_b18_noah) +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_3_done -drx_ql_info_stingray_4_done} true, false
+
+title = drx_ql_killer_sl_task_15_name
+descr = drx_ql_killer_sl_task_15_text
+descr_1 = drx_ql_killer_sl_task_15_text_1
+descr_functor = drx_ql_plateau_task_target
+job_descr = drx_ql_killer_sl_task_15_about
+task_complete_descr = drx_ql_killer_sl_task_15_finish
+
+stage_complete = 3
+target_functor = drx_ql_plateau_task_target
+target_functor_params = zat_b20_smart_terrain
+status_functor = drx_ql_plateau_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_15)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=check_task_stage(0) !drx_ql_is_alive(zat_b18_noah)} fail  ; Before meeting with Noah
+condlist_3 = {=check_task_stage(0) =drx_ql_is_enemy(stalker)} fail  ; Before meeting with Noah
+condlist_4 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_15)} fail
+condlist_5 = {-drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_noah_fireball_given -drx_ql_info_pissed_off_noah} %=reward_random_item(af_fireball) +drx_ql_info_noah_fireball_given%
+condlist_6 = {=actor_in_zone(zat_b20_sr_actor_cross_the_teleport)} %+drx_ql_info_plateau_teleport_completed%
+on_init = %+drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_plateau_teleport_completed -drx_ql_info_noah_fireball_given -drx_ql_info_pissed_off_noah =drx_ql_setup_float_task(drx_ql_killer_sl_task_15:drx_ql_quest_item_plateau_case:0:zat_b28)%
+
+on_complete = %=drx_ql_reward_random(8500:11000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) +drx_ql_info_stingray_3_done -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =remove_item(drx_ql_quest_item_plateau_case) =inc_task_stage(drx_ql_killer_sl_task_15) =drx_ql_reset_task(drx_ql_killer_sl_task_15)%
+on_fail = %=fail_task_dec_goodwill(50:killer) -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =drx_ql_release_float_item(drx_ql_killer_sl_task_15) =drx_ql_fail_task(drx_ql_killer_sl_task_15) =drx_ql_reset_task(drx_ql_killer_sl_task_15)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =drx_ql_release_float_item(drx_ql_killer_sl_task_15) =drx_ql_fail_task(drx_ql_killer_sl_task_15) =drx_ql_reset_task(drx_ql_killer_sl_task_15)%
+
+; -----------------------------------------------
+; Mercenary Investigate Stingray 4 (Jupiter, Jupiter Plant) Storyline Task-
+
+[drx_ql_killer_sl_task_16]
+
+icon = ui_inGame2_Skat_1
+storyline = true
+prior = 195
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_pilot_pda_task_started =drx_ql_min_stingrays_done() -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_killer_sl_task_16_name
+descr = drx_ql_killer_sl_task_16_text
+descr_functor = drx_ql_rescue_pilot_task_target
+job_descr = drx_ql_killer_sl_task_16_about
+task_complete_descr = drx_ql_killer_sl_task_16_finish
+
+stage_complete = 3
+target_functor = drx_ql_rescue_pilot_task_target
+status_functor = drx_ql_rescue_pilot_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_16)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_16)} fail
+condlist_3 = {+drx_ql_info_pilot_pda_found -drx_ql_info_pilot_interrogated !squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_killer_sl_task_16:drx_ql_quest_item_pilot_pda:25:jup_b8_smart_terrain) +drx_ql_quest_item_pilot_pda_task_started +hostage_companion_task_1_started -drx_ql_info_stingray_4_found -drx_ql_info_pilot_pda_found -drx_ql_info_pilot_interrogated -drx_ql_info_pilot_enemy -drx_ql_info_pilot_defected%
+
+on_complete = %=drx_ql_reward_money(9500:11000) =complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_pilot_pda) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_killer_sl_task_16) =unlock_smart(drx_ql_killer_sl_task_16_id) -drx_ql_quest_item_pilot_pda_task_started +drx_ql_info_stingray_4_done =drx_ql_reset_task(drx_ql_killer_sl_task_16)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_16) -drx_ql_quest_item_pilot_pda_task_started =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_killer_sl_task_16_id) =drx_ql_fail_task(drx_ql_killer_sl_task_16) =drx_ql_reset_task(drx_ql_killer_sl_task_16)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_killer_sl_task_16) -drx_ql_quest_item_pilot_pda_task_started =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_killer_sl_task_16_id) =drx_ql_fail_task(drx_ql_killer_sl_task_16) =drx_ql_reset_task(drx_ql_killer_sl_task_16)%
+
+;------------------------------------------------
+; Mercenary Dushman Dynamic Brawl Storyline Task-
+
+[drx_ql_killer_sl_task_17]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(cit_killers_merc_trader_stalker) =drx_ql_find_brawl_terrain(killer:drx_ql_killer_sl_task_17)} true, false
+
+title = drx_ql_killer_sl_task_17_name
+descr = drx_ql_killer_sl_task_17_text
+descr_1 = drx_ql_killer_sl_task_17_text_1
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_killer_sl_task_17_about
+message = drx_ql_killer_sl_task_17_message
+task_complete_descr = drx_ql_killer_sl_task_17_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_17)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_17)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_killer_sl_task_17:4:1) =drx_ql_give_escort_task_companions(drx_ql_brawl_squad_killer_2)%
+
+on_complete = %=drx_ql_reward_money(6500:9500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_killer_sl_task_17) =drx_ql_end_brawl_task(drx_ql_killer_sl_task_17) =drx_ql_reset_task(drx_ql_killer_sl_task_17)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_end_brawl_task(drx_ql_killer_sl_task_17) =drx_ql_fail_task(drx_ql_killer_sl_task_17) =drx_ql_reset_task(drx_ql_killer_sl_task_17)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_end_brawl_task(drx_ql_killer_sl_task_17) =drx_ql_fail_task(drx_ql_killer_sl_task_17) =drx_ql_reset_task(drx_ql_killer_sl_task_17)%
+
+;------------------------------------------------
+; Mercenary Hog Manhunt Storyline Task-
+
+[drx_ql_killer_sl_task_18]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(cit_killers_merc_mechanic_stalker) =drx_ql_actor_faction() =drx_ql_find_assassination_target(killer:drx_ql_killer_sl_task_18)} true, false
+
+title = drx_ql_killer_sl_task_18_name
+descr = drx_ql_killer_sl_task_18_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_killer_sl_task_18_about
+task_complete_descr = drx_ql_killer_sl_task_18_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_killer_sl_task_18)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_killer_sl_task_18)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_killer_sl_task_18)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_killer_sl_task_18) =drx_ql_add_hidden_target(drx_ql_killer_sl_task_18)%
+
+on_complete = %=drx_ql_reward_money(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_killer_sl_task_18) =drx_ql_reset_task(drx_ql_killer_sl_task_18)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_killer_sl_task_18) =drx_ql_reset_task(drx_ql_killer_sl_task_18)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_killer_sl_task_18) =drx_ql_reset_task(drx_ql_killer_sl_task_18)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Mercenary Simulation Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Subcontractor for Merc Simulation Task-
+
+[drx_ql_simulation_task_killer_1]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_assassination_target(killer:drx_ql_simulation_task_killer_1)} true, false
+
+title = drx_ql_simulation_task_killer_1_name
+descr = drx_ql_simulation_task_killer_1_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_simulation_task_killer_1_about
+task_complete_descr = drx_ql_simulation_task_killer_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_killer_1)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_killer_1)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_killer_1)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_simulation_task_killer_1)%
+
+on_complete = %=drx_ql_reward_money(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_simulation_task_killer_1) =drx_ql_reset_task(drx_ql_simulation_task_killer_1)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_simulation_task_killer_1) =drx_ql_reset_task(drx_ql_simulation_task_killer_1)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_simulation_task_killer_1) =drx_ql_reset_task(drx_ql_simulation_task_killer_1)%
+
+; -----------------------------------------------
+; Search Buildings for Merc Simulation Task-
+
+[drx_ql_simulation_task_killer_2]
+
+icon = ui_inGame2_Kopachi
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_document_case_task_started =drx_ql_find_special_smart_terrain(drx_ql_simulation_task_killer_2:building_smarts)} true, false
+
+title = drx_ql_simulation_task_killer_2_name
+descr = drx_ql_simulation_task_killer_2_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_killer_2_about
+task_complete_descr = drx_ql_simulation_task_killer_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_killer_2)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_killer_2)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_killer_2:drx_ql_quest_item_document_case:25) +drx_ql_quest_item_document_case_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_document_case) =inc_task_stage(drx_ql_simulation_task_killer_2) -drx_ql_quest_item_document_case_task_started =drx_ql_reset_task(drx_ql_simulation_task_killer_2)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_simulation_task_killer_2) -drx_ql_quest_item_document_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_killer_2) =drx_ql_reset_task(drx_ql_simulation_task_killer_2)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_simulation_task_killer_2) -drx_ql_quest_item_document_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_killer_2) =drx_ql_reset_task(drx_ql_simulation_task_killer_2)%
+
+;------------------------------------------------
+; Item Swap with Mercenary Simulation Task-
+
+[drx_ql_simulation_task_killer_3]
+
+icon = ui_iconsTotal_weapons
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_killer_3_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_killer_3_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_killer_3_about
+fetch_descr = drx_ql_simulation_task_killer_3_fetch_about
+task_complete_descr = drx_ql_simulation_task_killer_3_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_killer_3)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_killer_3)} fail
+fetch_func = %=drx_ql_setup_swap_task(drx_ql_simulation_task_killer_3:3000:12000:0.8)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_simulation_task_killer_3)%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_killer_3) =remove_fetch_item(drx_ql_simulation_task_killer_3_fetch) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_simulation_task_killer_3) =drx_ql_reset_task(drx_ql_simulation_task_killer_3)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_simulation_task_killer_3) =drx_ql_reset_task(drx_ql_simulation_task_killer_3)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_simulation_task_killer_3) =drx_ql_reset_task(drx_ql_simulation_task_killer_3)%
+
+; -----------------------------------------------
+; HAVFetch Reward - Find Documents for Mercenary Simulation Task-
+
+[drx_ql_simulation_task_killer_4]
+
+icon = ui_iconsTotal_bar_darklab_documents
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_havfetch_reward_task_started =drx_ql_has_havfetch_task(drx_ql_simulation_task_killer_4) -drx_ql_quest_item_papers_task_started =drx_ql_find_unoccupied_smart_terrain(drx_ql_simulation_task_killer_4)} true, false
+
+title = drx_ql_simulation_task_killer_4_name
+descr = drx_ql_simulation_task_killer_4_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_killer_4_about
+task_complete_descr = drx_ql_simulation_task_killer_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_killer_4)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_killer_4)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_killer_4:drx_ql_quest_item_papers:50) +drx_ql_quest_item_papers_task_started +drx_ql_havfetch_reward_task_started%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_killer_4) =complete_task_inc_goodwill(50:killer) =remove_item(drx_ql_quest_item_papers) =inc_task_stage(drx_ql_simulation_task_killer_4) -drx_ql_quest_item_papers_task_started -drx_ql_havfetch_reward_task_started =drx_ql_reset_task(drx_ql_simulation_task_killer_4)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_simulation_task_killer_4) -drx_ql_quest_item_papers_task_started -drx_ql_havfetch_reward_task_started =drx_ql_fail_task(drx_ql_simulation_task_killer_4) =drx_ql_reset_task(drx_ql_simulation_task_killer_4)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_release_float_item(drx_ql_simulation_task_killer_4) -drx_ql_quest_item_papers_task_started -drx_ql_havfetch_reward_task_started =drx_ql_fail_task(drx_ql_simulation_task_killer_4) =drx_ql_reset_task(drx_ql_simulation_task_killer_4)%
+
+;------------------------------------------------
+; Mercenary Assassination Team Task-
+
+[drx_ql_simulation_task_killer_5]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_assassination_target(killer:drx_ql_simulation_task_killer_5)} true, false
+
+title = drx_ql_simulation_task_killer_5_name
+descr = drx_ql_simulation_task_killer_5_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_simulation_task_killer_5_about
+task_complete_descr = drx_ql_simulation_task_killer_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_killer_5)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_killer_5)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_killer_5)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_simulation_task_killer_5) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_killer_5)%
+
+on_complete = %=drx_ql_reward_money(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:killer) =inc_task_stage(drx_ql_simulation_task_killer_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_killer_5) =drx_ql_reset_task(drx_ql_simulation_task_killer_5)%
+on_fail = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_simulation_task_killer_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_killer_5) =drx_ql_reset_task(drx_ql_simulation_task_killer_5)%
+on_cancel = %=fail_task_dec_goodwill(50:killer) =drx_ql_fail_task(drx_ql_simulation_task_killer_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_killer_5) =drx_ql_reset_task(drx_ql_simulation_task_killer_5)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

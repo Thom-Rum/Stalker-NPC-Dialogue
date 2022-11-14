@@ -1,0 +1,60 @@
+;==============================================================
+;
+; alife.ltx
+;	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+;
+;	Modified by: DoctorX
+;	Last revised: May 09, 2020
+;
+;==============================================================
+
+
+[alife]
+    schedule_min				= 1										; milliseconds
+    schedule_max				= 1										; milliseconds
+    process_time				= 900									; microseconds
+    update_monster_factor		= 0.1
+    time_factor					= 10;	1;	;396.0;скорость для демонстрации смены дня и ночи
+    normal_time_factor			= 10;	животные в оффлайне перемещаются со скоростью, делённой на этот фактор (чтобы не бегали очень быстро)
+
+
+	;/////////////////////////////////////////////////////////////////////////////////////////////////
+	;
+	; Switch Distance
+	;
+	;	Modified by DoctorX
+	;	for DoctorX Call of The Zone 1.0
+	;	September 23, 2019
+	;
+	;-------------------------------------------------------------------------------------------------
+
+; 	switch_distance = 250  ; metres
+	switch_distance = 450
+
+	;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+    switch_factor				= 0.1											;
+    start_time					= 07:00:00
+
+
+	;/////////////////////////////////////////////////////////////////////////////////////////////////
+	;
+	; Start Date
+	;
+	;	Modified by DoctorX
+	;	for DoctorX Call of The Zone 1.0
+	;	May 09, 2020
+	;
+	;-------------------------------------------------------------------------------------------------
+
+;     start_date					= 27.05.2015
+    start_date = 01.06.2020
+
+	;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+    autosave_interval			= 01:05:00
+    delay_autosave_interval		= 00:00:30
+	objects_per_update = 20
+	start_game_callback			= _G.start_game_callback					; on starting new game or loading saved one

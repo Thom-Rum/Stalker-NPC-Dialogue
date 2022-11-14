@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Duty Task Strings (drx_ql_strings_duty.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: October 31, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Duty Storyline Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 31, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Defend Rostok Storyline Task -->
+
+	<string id="drx_ql_dolg_sl_task_1_name">
+		<text>Defend Rostok</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_1_text">
+		<text>Mercenaries are moving in on Rostok. Link up with the defenders Colonel Petrenko has dispatched and repel the attack.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_1_about">
+		<text>Mercenaries are attacking from the west through Wild Territory, get over there quickly! Reinforce the defenders and push back the assault. Rostok must be defended at all costs.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_1_finish">
+		<text>You have saved many lives. Please accept this in gratitude.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Investigate Stingray 2 (Zaton, Iron Forest) Storyline Task -->
+
+	<string id="drx_ql_dolg_sl_task_2_name">
+		<text>Investigate Stingray 2 Crash Site</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_2_text">
+		<text>{npc_name} needs the data module recovered from a crashed Military helicopter in the Iron Forest substation in Zaton. Previous expeditions into the area have been thwarted by a supposed supernatural force.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_2_about">
+		<text>A helicopter has crashed into the towers of the Iron Forest in Zaton, killing the pilots and the crew. The Military has asked us to recover the helicopter's data module from the wreckage. I've dispatched two squads, both of them have returned empty-handed, claiming the area is haunted. They say they heard an evil cackling, saw flames appear out of nowhere, and witnessed objects levitating and flying through the air, sometimes being violently hurled at them as if by some malevolent invisible force. I fear my men may have been hitting the vodka too hard. We need to recover that data module, stalker. I'm counting on you not to fail me like they did.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_2_finish">
+		<text>You have done well. The Military will be pleased to get this back, but first I want to find out what they were so keen on recovering. I should be able to access the data on here, lets see... Encrypted, but I can see they had some advanced equipment installed on that helicopter... Really advanced; stealth technology, radiation shielding, emission detectors... this was no ordinary patrol mission. There's references indicating this was only one ship out of a larger operation. What the hell were they doing up there? Excellent work recovering this. Here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Petrenko's Most Wanted Storyline Task -->
+
+	<string id="drx_ql_dolg_sl_task_3_name">
+		<text>Petrenko's Most Wanted</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_3_text">
+		<text>A %s known as %s has risen to the top of General Petrenko's most wanted list. Track him down and execute him.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_3_about">
+		<text>There is a member of a certain faction who has caused me more trouble than anyone else in the Zone. So far none of my men have been able to find him. If you can track him down and kill him, I will reward you well.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_3_finish">
+		<text>Good, you got rid of that asshole! Good job. Here is your payment.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Deactivate Brain Scorcher Storyline Task -->
+
+	<string id="drx_ql_dolg_sl_task_4_name">
+		<text>Deactivate the Brain Scorcher</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_4_text">
+		<text>Gain access to Lab X-19 and find a way to disable the massive psi emitter located there.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_4_about_pre_npc_1">
+		<text>I have heard you are in possession of a device that allows you to pass through psi fields without harm. I believe such a device could be used to infiltrate Radar and gain access to the emitter there. Perhaps you can find a way to shut off the Brain Scorcher.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_4_about_pre_actor_1">
+		<text>Are you kidding me? I barely made it out of the Miracle Machine alive.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_4_about_pre_npc_2">
+		<text>Stalker, believe me I know the risks; I'm asking you to infiltrate an area teeming with mutants and Monolith, and a psi field ten times larger than the one in Yantar...</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_4_about_pre_actor_2">
+		<text>And you're asking me to do it alone because I'm the only one with a psi helmet.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_4_about_pre_npc_3">
+		<text>Exactly my point. You are the only one who could do this. The Brain Scorcher is a scourge, a curse upon this planet that must be destroyed. Even Freedom wouldn't argue this. You are the only one who has the technology to approach the Brain Scorcher without succumbing to it. If it could be deactivated it would open the path to the north.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_4_about_pre_actor_3">
+		<text>I can get north just fine. The Brain Scorcher isn't strong enough to penetrate the Red Forest, and I'm not afraid of the monsters in the woods.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_4_about">
+		<text>It's more important than that, stalker. The Brain Scorcher is more than just a barrier. The field it produces permanently effects the minds of anyone caught inside of it. I believe the Monolith are using the emitter to brainwash stalkers into joining their faction as mindless slaves. This cannot be allowed to continue. You are the only one who has a chance of putting an end to this madness.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_4_finish">
+		<text>Stalker, you have done a great service to all of mankind and I cannot thank you enough. By deactivating the Brain Scorcher you have opened the path to the north and dealt a significant blow to the Monolith and to the Zone itself. You are a hero. Please, take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Truck Cemetery Brawl Storyline Task- -->
+
+	<string id="drx_ql_dolg_sl_task_5_name">
+		<text>Junkyard Brawl</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_5_text">
+		<text>A Duty patrol is pinned down by a sizeable Monolith invasion force in the Truck Cemetery. Reinforce the Duty squad and repel the Monolith incursion.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_5_text_1">
+		<text>Sweep the area to the east and eliminate any Monolith invaders.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_5_text_2">
+		<text>Return for your reward.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_5_about">
+		<text>A patrol in the Truck Cemetery has made contact with a large group of Monolith and need backup. Take a squad and head over there immediately to reinforce the attack. We must not allow the cultists to capture any territory this far south.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_5_message">
+		<text>Okay, the reinforcements have arrived. Let's push east, boys! Watch for silhouettes on the horizon!</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_5_finish">
+		<text>Excellent work repelling the Monolith invasion. Please accept this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Search Agroprom Underground Storyline Task -->
+
+	<string id="drx_ql_dolg_sl_task_6_name">
+		<text>Search Agroprom Underground</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_6_text">
+		<text>Classified documents were stolen from the Military and are belived to be stashed in the Agroprom Underground. {npc_name} has offered a reward if you can find them.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_6_about">
+		<text>The Military has asked for our assistance in locating some classified documents that were stolen from them and are believed to be hidden in the tunnels below Agroprom. Must be something pretty important, they've put out a huge reward for the return of those documents and they don't seem to care who brings them in. I've sent two men down there already, and they've returned empty-handed. If you can find the documents before some Bandit or lucky guard does, bring them to me. I'll give you most of the reward, I just want to see what it is in those documents.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_6_finish">
+		<text>Excellent, you recovered the documents! Now let's see what the Military was so keen on keeping hidden... These appear to be evidence of covert research operations that were being conducted in the Zone. Looks like they were conducting experiments ranging from biological engineering, to field research, to mind control. Who could have been behind this? If the research conducted in these secret labs led to the creation of the Zone, they must be located and destroyed lest anyone attempt to further the research. You have done well bringing these to me stalker, here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Investigate Stingray 3 (Zaton, Southern Plateau) Storyline Task- -->
+
+	<string id="drx_ql_dolg_sl_task_7_name">
+		<text>Investigate Stingray 3 Crash Site</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_7_text">
+		<text>A Military helicopter has crashed on top of the inaccessible Southern Plateau in Zaton. Meet with a stalker called Noah and convince him to tell you his secret way of reaching it.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_7_text_1">
+		<text>According to Noah, the top of the Southern Plateau can somehow be reached from inside the Burnt Village. His instructions are as follows: Enter the village via the road leading in from the southwest and cross the thermal field to the right to find the opening in the fence on the other side. Jump off the edge of the cliff to be transported to the plateau.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_7_text_2">
+		<text>Find the equipment case the surviving Stingray 3 crew members stashed on top of the plateau.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_7_about">
+		<text>The Military has contracted us to recover some equipment from one of their helicopters that crashed up in Zaton. It came down on the top of a plateau, and so far no one has found a way to get up there without risking another helicopter. One of my sources say there is a crazy Loner called Noah that lives up there who might know how to get to the crash site. Go meet with him and find a way to recover the equipment.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_7_finish">
+		<text>Excellent work, the Military will be pleased to get this back. Not sure what the damn fools were doing sending a helicopter that far north, and they don't seem very eager to tell me about it. Let's see what they were hauling... Wow, this is a lot of advanced gear; weapons, anomaly detectors, radiation protection, the crew of this helicopter must have been a pretty big assault team. From what I've heard, that wasn't the only one that crashed up there, either. Great job, here's your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Investigate Stingray 4 (Jupiter, Jupiter Plant) Storyline Task -->
+
+	<string id="drx_ql_dolg_sl_task_8_name">
+		<text>Investigate Stingray 4 Crash Site</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_8_text">
+		<text>A distress signal was received from the crew of the Stingray 4 flight. Find the source of the signal and locate the survivors.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_8_text_1">
+		<text>The wreckage of Stingray 4 has been found, but there are no survivors in the area. Search for any clues they may have left behind.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_8_text_2">
+		<text>The map on the PDA found at the crash site shows the location of a potential rally point. Head to the location to see if any survivors have gathered there.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_8_text_3">
+		<text>Interrogate the pilot for information about the failed operation.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_8_about">
+		<text>We picked up a transmission from Jupiter. The signal was weak, but it appears to be a distress signal from the pilot of the missing Stingray 4 helicopter. We've triangulated the signal, it seems to be coming from inside the Jupiter Plant. Head up there and see if you can locate the survivors. Offer them any assistance you can, but above all find out any information you can about what the purpose of their operation was.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_8_finish">
+		<text>Excellent work. It's too bad you weren't able to bring the pilot back, but no matter. The information you got from him was everything we needed to know. If what he said is true, this does not bode well for us. The Monolith force is not just a nuisance cult, they are a full-blown army occupying the entire heart of the Zone. Not only that, but if the Zone itself is somehow capable of defending itself against a perceived attack, our hopes of defeating it are few. This is a dark day for Duty. Thank you for getting to the bottom of this, please take this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Assault Storyline Task -->
+
+	<string id="drx_ql_dolg_sl_task_9_name">
+		<text>Stop the Killing Spree</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_9_text">
+		<text>A pack of psychotic %s have been murdering Dutiers and innocent stalkers in the area. Eliminate the threat and collect the reward from {npc_name}.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_9_about">
+		<text>I want to give you a warning stalker, before you head back out into the field. A band of %s have been terrorizing the area and have killed several of our men. I'll mark the location on your map where they seem to be the most active. Avoid the area at all costs if you can. These thugs are brutal killers and have slaughtered anyone who has attempted to apprehend them. I would be willing to pay a hefty reward to bring these assholes to justice, but I dare not send another squad to their doom. Just stay away from them if you don't want to get hurt.</text>
+	</string>
+	<string id="drx_ql_dolg_sl_task_9_finish">
+		<text>You really have a set of balls on you, stalker. Those lunatics had wiped out full squads that I sent after them, I never would have expected a lone stalker to stop their rampage. You have done a great service. Please, take this as a reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Duty Simulation Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 02, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find a Reliable Weapon for Duty Simulation Task -->
+
+	<string id="drx_ql_simulation_task_dolg_1_name">
+		<text>Find a Reliable %s for Duty</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_1_text">
+		<text>Procure a reliable %s for {npc_name}.</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_1_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_1_fetch_about">
+		<text>This rifle I was issued is shit. I need one that won't jam on me in every firefight. Can you find a new %s for me? I'll make it worth your while.</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_1_fetch_finish">
+		<text>Excellent! She's a beauty. Here, take this for your trouble.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Free the Duty Hostage Simulation Task -->
+
+	<string id="drx_ql_simulation_task_dolg_2_name">
+		<text>Free the Duty Prisoner</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_2_text">
+		<text>You've been tasked to rescue a member of Duty who is being held prisoner by some %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_2_about">
+		<text>Stalker, our comrade was wounded and taken prisoner by %s! I'm in desperate need of someone capable enough to stage a rescue operation. Can you help us out and save our friend?</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_2_finish">
+		<text>Thank you stalker, you saved our fellow comrade! Here, for your trouble:</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Missing Case for Duty Simulation Task- -->
+
+	<string id="drx_ql_simulation_task_dolg_3_name">
+		<text>Lost Case</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_3_text">
+		<text>{npc_name} suspects a case containing important information was lost during a recent battle. He is offering a reward if you can recover it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_3_about">
+		<text>Our squad just returned after making contact with an enemy platoon. We suspect they were transporting a case containing some valuable information. We defeated them, but were unable to locate the case on any of the bodies. I suspect they either stashed it or dropped it somewhere during the battle. If you can find it, I'll reward you well to bring it back to me.</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_3_finish">
+		<text>You have done well stalker. Thank you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Investigate Strange Noise with Duty Simulation Task -->
+
+	<string id="drx_ql_simulation_task_dolg_4_name">
+		<text>Investigate Strange Noise</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_4_text">
+		<text>{npc_name} heard some strange noises coming from nearby and wants you to investigate the source with him.</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_4_about">
+		<text>I heard some strange noises coming from nearby. Want to come check it out with me?</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_4_finish">
+		<text>Hell, if I knew it was going to be like that I would have stayed back at base! Thanks for your help, here's something for your trouble.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Duty Patrol Simulation Task -->
+
+	<string id="drx_ql_simulation_task_dolg_5_name">
+		<text>Patrol the Local Area</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_5_text">
+		<text>Lead the Duty patrol to clear the area of any hostiles.</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_5_about">
+		<text>We're heading out on a patrol of the local area. Want to come along and take point?</text>
+	</string>
+	<string id="drx_ql_simulation_task_dolg_5_finish">
+		<text>Appreciate your help. Here's something in return.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

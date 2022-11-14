@@ -1,0 +1,38 @@
+;==============================================================
+;
+; warlab_monolith_gen_particle_1.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: October 08, 2019
+;
+;==============================================================
+
+
+[logic]
+active = sr_particle
+
+[sr_particle]
+name = anomaly2\plasma_generator
+path = monolith_generator_way1
+mode = 2
+looped = true
+on_info = {+sar_monolith_destroy} sr_idle@nil
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Shut off pod light when destroyed
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+on_info2 = {+drx_ql_info_pod_5_killed} sr_idle@nil
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[sr_idle@nil]

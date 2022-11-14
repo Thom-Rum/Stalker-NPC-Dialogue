@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Cardan (Loner Mechanic, Zaton) (drx_ql_strings_loner_cardan.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_strings_loner_cardan.ltx
+<
+<	Created by: DoctorX
+<	Last revised: May 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	May 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cardan (Loner Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_1_name">
+		<text>Find Gunsmith Toolkit for Cardan</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_1_text">
+		<text>Locate a set of gunsmith tools for Cardan so he can perform basic upgrades on your gear.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_1_about_pre_npc_1">
+		<text>I need some new tools. The shit I have to work with was scavenged and rusted out to begin with, and now they're pretty much useless. If I could get at least a basic gunsmith toolkit, I could continue to repair weapons and gear and maybe even do some upgrades.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_1_about_pre_actor_1">
+		<text>I'll keep an eye out for you.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_1_about">
+		<text>I know somewhere you might be able to find some, if you don't mind digging through a bunch of scrap and rubble. I'll mark the location on your map. If you find any tools there, bring them back to me. I'll pay you for the trouble and I'll be able to upgrade your gear.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_1_finish">
+		<text>Great, these are just what I need. Thanks stalker. Take this as a reward, and come see me if you want to upgrade your gear. With these tools I'll be able to do a lot more than I used to.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cardan (Loner Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_2_name">
+		<text>Find Technician Toolkit for Cardan</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_2_text">
+		<text>Cardan needs a set of technician's tools to perform advanced upgrades to your gear. He knows the location of a stash where some may be hidden.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_2_about_pre_npc_1">
+		<text>Your gear has a lot of potential. I know how to upgrade it but I would need the right tools. If you can find me a set of technician's tools I could do you a lot of good.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_2_about_pre_actor_1">
+		<text>It's the middle of the Zone man, technician's tools don't just spawn in anomalies.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_2_about">
+		<text>Sasha Hunter has a set stashed away. I don't know what the hell he's holding on to them for, he couldn't fix a bent noodle. The bastard never paid me for some repairs I did for him, why don't you go collect his tools for me to settle the debt. I'll pay you for the service and I'll be able to upgrade your gear even further.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_2_finish">
+		<text>Fantastic! Feel free to stop by any time for a drink or if you need me to take a look at your gear.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Cardan (Loner Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_3_name">
+		<text>Find Armorer's Toolkit for Cardan</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_3_text">
+		<text>Cardan can fully upgrade your gear if you can bring him a set of armorer's tools. A certain Bandit is currently known to be in possession of some.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_3_about_pre_npc_1">
+		<text>I have a lot of parts around here that could fully upgrade your gear but I would need a set of armorer's tools to install them. I know where you might be able to find such tools, if you don't mind getting your hands a little dirty.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_3_about_pre_actor_1">
+		<text>So where can I find them?</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_3_about">
+		<text>I got word a group of Bandits just raided a Military supply depot and one of them found a full set of armorer's tools. I can show you where they were headed. Now, I doubt they're going to just hand over such valuable loot because you asked nicely, but if you should find a way to get them for me, I'll pay you for them and be able to fully upgrade your gear.</text>
+	</string>
+	<string id="drx_ql_zat_a2_stalker_mechanic_task_3_finish">
+		<text>Great! Now I'll be able to perform almost any upgrade to any piece of equipment. Thanks stalker, take this as a reward.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

@@ -1,0 +1,486 @@
+;==============================================================
+;
+; Tasks Provided By Duty (drx_ql_tasks_duty.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_duty.xml
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: October 31, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Duty Storyline Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 31, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Duty Defend Rostok Storyline Task-
+
+[drx_ql_dolg_sl_task_1]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(bar_dolg_general_petrenko_stalker) =drx_ql_actor_faction() =drx_ql_is_enemy(killer) =is_factions_enemies(dolg:killer) !squad_exist(drx_ql_designated_target_squad_killer_wild_terr_1) !squad_exist(drx_ql_designated_target_squad_killer_wild_terr_2) !squad_exist(drx_ql_designated_target_squad_killer_wild_terr_3) !squad_exist(drx_ql_designated_target_squad_killer_wild_terr_4) !squad_exist(drx_ql_attack_squad_dolg_wild_terr_1) !squad_exist(drx_ql_attack_squad_dolg_wild_terr_2)} true, false
+
+title = drx_ql_dolg_sl_task_1_name
+descr = drx_ql_dolg_sl_task_1_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_dolg_sl_task_1_about
+task_complete_descr = drx_ql_dolg_sl_task_1_finish
+
+stage_complete = 1
+target = {=check_task_stage(drx_ql_dolg_sl_task_1:1)} bar_dolg_general_petrenko_stalker, {=squad_exist(drx_ql_designated_target_squad_killer_wild_terr_1)} drx_ql_designated_target_squad_killer_wild_terr_1, {=squad_exist(drx_ql_designated_target_squad_killer_wild_terr_2)} drx_ql_designated_target_squad_killer_wild_terr_2, {=squad_exist(drx_ql_designated_target_squad_killer_wild_terr_3)} drx_ql_designated_target_squad_killer_wild_terr_3, {=squad_exist(drx_ql_designated_target_squad_killer_wild_terr_4)} drx_ql_designated_target_squad_killer_wild_terr_4
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_killer_wild_terr_1, drx_ql_designated_target_squad_killer_wild_terr_2, drx_ql_designated_target_squad_killer_wild_terr_3, drx_ql_designated_target_squad_killer_wild_terr_4
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_dolg_sl_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_dolg_sl_task_1)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_killer_wild_terr_1:ros_smart_killers1) =create_squad(drx_ql_designated_target_squad_killer_wild_terr_2:ros_smart_killers1) =create_squad(drx_ql_designated_target_squad_killer_wild_terr_3:ros_smart_stalker_killers1) =create_squad(drx_ql_designated_target_squad_killer_wild_terr_4:ros_smart_stalker_killers1) =create_squad(drx_ql_attack_squad_dolg_wild_terr_1:ros_smart_stalker1) =create_squad(drx_ql_attack_squad_dolg_wild_terr_2:ros_smart_stalker1)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =inc_task_stage(drx_ql_dolg_sl_task_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_wild_terr_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_wild_terr_2) =drx_ql_reset_task(drx_ql_dolg_sl_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_killer_wild_terr_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_killer_wild_terr_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_killer_wild_terr_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_killer_wild_terr_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_wild_terr_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_wild_terr_2) =drx_ql_fail_task(drx_ql_dolg_sl_task_1) =drx_ql_reset_task(drx_ql_dolg_sl_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_killer_wild_terr_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_killer_wild_terr_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_killer_wild_terr_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_killer_wild_terr_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_wild_terr_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_wild_terr_2) =drx_ql_fail_task(drx_ql_dolg_sl_task_1) =drx_ql_reset_task(drx_ql_dolg_sl_task_1)%
+
+; -----------------------------------------------
+; Duty Investigate Stingray 2 (Zaton, Iron Forest) Storyline Task-
+
+[drx_ql_dolg_sl_task_2]
+
+icon = ui_inGame2_Skat_1
+storyline = true
+prior = 139
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_2_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_data_module_task_started} true, false
+
+title = drx_ql_dolg_sl_task_2_name
+descr = drx_ql_dolg_sl_task_2_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_dolg_sl_task_2_about
+task_complete_descr = drx_ql_dolg_sl_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_dolg_sl_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_dolg_sl_task_2)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_dolg_sl_task_2:drx_ql_quest_item_data_module:0:drx_ql_location_stingray_2_data_module) =drx_ql_create_squad(zat_b100_poltergeist_squad_01:zat_b100) +drx_ql_quest_item_data_module_task_started%
+
+on_complete = %=drx_ql_reward_random(7500:9500) =complete_task_inc_goodwill(50:dolg) =remove_item(drx_ql_quest_item_data_module) =inc_task_stage(drx_ql_dolg_sl_task_2) -drx_ql_quest_item_data_module_task_started +drx_ql_info_stingray_2_done =drx_ql_reset_task(drx_ql_dolg_sl_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_release_float_item(drx_ql_dolg_sl_task_2) -drx_ql_quest_item_data_module_task_started =drx_ql_fail_task(drx_ql_dolg_sl_task_2) =drx_ql_reset_task(drx_ql_dolg_sl_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_release_float_item(drx_ql_dolg_sl_task_2) -drx_ql_quest_item_data_module_task_started =drx_ql_fail_task(drx_ql_dolg_sl_task_2) =drx_ql_reset_task(drx_ql_dolg_sl_task_2)%
+
+;------------------------------------------------
+; Duty Petrenko's Most Wanted Storyline Task-
+
+[drx_ql_dolg_sl_task_3]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(bar_dolg_general_petrenko_stalker) =drx_ql_actor_faction() =drx_ql_find_assassination_target(dolg:drx_ql_dolg_sl_task_3)} true, false
+
+title = drx_ql_dolg_sl_task_3_name
+descr = drx_ql_dolg_sl_task_3_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_dolg_sl_task_3_about
+task_complete_descr = drx_ql_dolg_sl_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_dolg_sl_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_dolg_sl_task_3)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_dolg_sl_task_3)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_dolg_sl_task_3) =drx_ql_add_hidden_target(drx_ql_dolg_sl_task_3)%
+
+on_complete = %=drx_ql_reward_random(3000:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =inc_task_stage(drx_ql_dolg_sl_task_3) =drx_ql_reset_task(drx_ql_dolg_sl_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_dolg_sl_task_3) =drx_ql_reset_task(drx_ql_dolg_sl_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_dolg_sl_task_3) =drx_ql_reset_task(drx_ql_dolg_sl_task_3)%
+
+; -----------------------------------------------
+; Duty Deactivate Brain Scorcher Storyline Task-
+
+[drx_ql_dolg_sl_task_4]
+
+icon = ui_iconsTotal_bar_radar_deactivate
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_dolg_sl_task_4_name
+descr = drx_ql_dolg_sl_task_4_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_dolg_sl_task_4_about
+task_complete_descr = drx_ql_dolg_sl_task_4_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = rad_space_restrictor_to_bunker
+status_functor = drx_ql_brain_scorcher_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_dolg_sl_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_dolg_sl_task_4)} fail
+on_init = %=drx_ql_activate_teleport(rad_space_restrictor_to_bunker)%
+
+on_complete = %=drx_ql_reward_random(9000:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =inc_task_stage(drx_ql_dolg_sl_task_4) +drx_ql_info_main_task_x19_done =drx_ql_reset_task(drx_ql_dolg_sl_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_dolg_sl_task_4) =drx_ql_reset_task(drx_ql_dolg_sl_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_dolg_sl_task_4) =drx_ql_reset_task(drx_ql_dolg_sl_task_4)%
+
+;------------------------------------------------
+; Duty Truck Cemetery Brawl Storyline Task-
+
+[drx_ql_dolg_sl_task_5]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =actor_on_level(l05_bar) =drx_ql_is_enemy(monolith) =is_factions_enemies(dolg:monolith) !squad_exist(drx_ql_designated_target_squad_monolith_truck_cem_1) !squad_exist(drx_ql_designated_target_squad_monolith_truck_cem_2) !squad_exist(drx_ql_designated_target_squad_monolith_truck_cem_3) !squad_exist(drx_ql_designated_target_squad_monolith_truck_cem_4) !squad_exist(drx_ql_attack_squad_dolg_truck_cem_1) !squad_exist(drx_ql_attack_squad_dolg_truck_cem_2)} true, false
+
+title = drx_ql_dolg_sl_task_5_name
+descr = drx_ql_dolg_sl_task_5_text
+descr_1 = drx_ql_dolg_sl_task_5_text_1
+descr_2 = drx_ql_dolg_sl_task_5_text_2
+descr_functor = drx_ql_bab_task_target
+job_descr = drx_ql_dolg_sl_task_5_about
+message = drx_ql_dolg_sl_task_5_message
+task_complete_descr = drx_ql_dolg_sl_task_5_finish
+
+stage_complete = 2
+target_functor = drx_ql_bab_task_target
+status_functor = drx_ql_bab_task_status
+status_functor_params = drx_ql_designated_target_squad_monolith_truck_cem_1, drx_ql_designated_target_squad_monolith_truck_cem_2, drx_ql_designated_target_squad_monolith_truck_cem_3, drx_ql_designated_target_squad_monolith_truck_cem_4
+status_functor_rendezvous = trc_sim_8
+status_functor_rendezvous_dist = 50
+status_functor_allied_squads = drx_ql_attack_squad_dolg_truck_cem_1, trc_sim_8
+status_functor_enemy_squads = drx_ql_designated_target_squad_monolith_truck_cem_1, trc_sim_15, drx_ql_designated_target_squad_monolith_truck_cem_2, trc_sim_15, drx_ql_designated_target_squad_monolith_truck_cem_3, trc_sim_6, drx_ql_designated_target_squad_monolith_truck_cem_4, trc_sim_6
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_dolg_sl_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_dolg_sl_task_5)} fail
+on_init = %=drx_ql_give_escort_task_companions(drx_ql_attack_squad_dolg_truck_cem_2)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =inc_task_stage(drx_ql_dolg_sl_task_5) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_truck_cem_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_truck_cem_2) =drx_ql_reset_task(drx_ql_dolg_sl_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_truck_cem_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_truck_cem_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_truck_cem_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_truck_cem_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_truck_cem_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_truck_cem_2) =drx_ql_fail_task(drx_ql_dolg_sl_task_5) =drx_ql_reset_task(drx_ql_dolg_sl_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_truck_cem_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_truck_cem_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_truck_cem_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_truck_cem_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_truck_cem_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_dolg_truck_cem_2) =drx_ql_fail_task(drx_ql_dolg_sl_task_5) =drx_ql_reset_task(drx_ql_dolg_sl_task_5)%
+
+; -----------------------------------------------
+; Duty Search Agroprom Underground Storyline Task-
+
+[drx_ql_dolg_sl_task_6]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_main_task_agr_u_done} true, false
+
+title = drx_ql_dolg_sl_task_6_name
+descr = drx_ql_dolg_sl_task_6_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_dolg_sl_task_6_about
+task_complete_descr = drx_ql_dolg_sl_task_6_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = agr_space_restrictor_to_agr_ug_2
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_dolg_sl_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_dolg_sl_task_6)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_dolg_sl_task_6:main_story_1_quest_case) =drx_ql_activate_teleport(agr_space_restrictor_to_agr_ug_1:agr_space_restrictor_to_agr_ug_2:agr_space_restrictor_to_agr_ug_4)%
+
+on_complete = %=drx_ql_reward_random(6000:8000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =drx_ql_release_story_item(main_story_1_quest_case) =inc_task_stage(drx_ql_dolg_sl_task_6) +drx_ql_info_main_task_agr_u_done =drx_ql_reset_task(drx_ql_dolg_sl_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_dolg_sl_task_6) =drx_ql_reset_task(drx_ql_dolg_sl_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_dolg_sl_task_6) =drx_ql_reset_task(drx_ql_dolg_sl_task_6)%
+
+; -----------------------------------------------
+; Duty Investigate Stingray 3 (Zaton, Southern Plateau) Storyline Task-
+
+[drx_ql_dolg_sl_task_7]
+
+icon = ui_inGame2_Put_na_plato
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() !drx_ql_is_enemy(stalker) =drx_ql_is_alive(zat_b18_noah) +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_3_done -drx_ql_info_stingray_4_done} true, false
+
+title = drx_ql_dolg_sl_task_7_name
+descr = drx_ql_dolg_sl_task_7_text
+descr_1 = drx_ql_dolg_sl_task_7_text_1
+descr_functor = drx_ql_plateau_task_target
+job_descr = drx_ql_dolg_sl_task_7_about
+task_complete_descr = drx_ql_dolg_sl_task_7_finish
+
+stage_complete = 3
+target_functor = drx_ql_plateau_task_target
+target_functor_params = zat_b20_smart_terrain
+status_functor = drx_ql_plateau_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_dolg_sl_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=check_task_stage(0) !drx_ql_is_alive(zat_b18_noah)} fail  ; Before meeting with Noah
+condlist_3 = {=check_task_stage(0) =drx_ql_is_enemy(stalker)} fail  ; Before meeting with Noah
+condlist_4 = {=drx_ql_wg_fail(drx_ql_dolg_sl_task_7)} fail
+condlist_5 = {-drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_noah_fireball_given -drx_ql_info_pissed_off_noah} %=reward_random_item(af_fireball) +drx_ql_info_noah_fireball_given%
+condlist_6 = {=actor_in_zone(zat_b20_sr_actor_cross_the_teleport)} %+drx_ql_info_plateau_teleport_completed%
+on_init = %+drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_plateau_teleport_completed -drx_ql_info_noah_fireball_given -drx_ql_info_pissed_off_noah =drx_ql_setup_float_task(drx_ql_dolg_sl_task_7:drx_ql_quest_item_plateau_case:0:zat_b28)%
+
+on_complete = %=drx_ql_reward_random(8500:11000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) +drx_ql_info_stingray_3_done -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =remove_item(drx_ql_quest_item_plateau_case) =inc_task_stage(drx_ql_dolg_sl_task_7) =drx_ql_reset_task(drx_ql_dolg_sl_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =drx_ql_release_float_item(drx_ql_dolg_sl_task_7) =drx_ql_fail_task(drx_ql_dolg_sl_task_7) =drx_ql_reset_task(drx_ql_dolg_sl_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) -drx_ql_info_play_noah_plateau_task_dialog -drx_ql_info_pissed_off_noah =drx_ql_release_float_item(drx_ql_dolg_sl_task_7) =drx_ql_fail_task(drx_ql_dolg_sl_task_7) =drx_ql_reset_task(drx_ql_dolg_sl_task_7)%
+
+; -----------------------------------------------
+; Duty Investigate Stingray 4 (Jupiter, Jupiter Plant) Storyline Task-
+
+[drx_ql_dolg_sl_task_8]
+
+icon = ui_inGame2_Skat_1
+storyline = true
+prior = 195
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_pilot_pda_task_started =drx_ql_min_stingrays_done() -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_dolg_sl_task_8_name
+descr = drx_ql_dolg_sl_task_8_text
+descr_functor = drx_ql_rescue_pilot_task_target
+job_descr = drx_ql_dolg_sl_task_8_about
+task_complete_descr = drx_ql_dolg_sl_task_8_finish
+
+stage_complete = 3
+target_functor = drx_ql_rescue_pilot_task_target
+status_functor = drx_ql_rescue_pilot_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_dolg_sl_task_8)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_dolg_sl_task_8)} fail
+condlist_3 = {+drx_ql_info_pilot_pda_found -drx_ql_info_pilot_interrogated !squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_dolg_sl_task_8:drx_ql_quest_item_pilot_pda:25:jup_b8_smart_terrain) +drx_ql_quest_item_pilot_pda_task_started +hostage_companion_task_1_started -drx_ql_info_stingray_4_found -drx_ql_info_pilot_pda_found -drx_ql_info_pilot_interrogated -drx_ql_info_pilot_enemy -drx_ql_info_pilot_defected%
+
+on_complete = %=drx_ql_reward_random(9500:11000) =complete_task_inc_goodwill(50:dolg) =remove_item(drx_ql_quest_item_pilot_pda) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_dolg_sl_task_8) =unlock_smart(drx_ql_dolg_sl_task_8_id) -drx_ql_quest_item_pilot_pda_task_started +drx_ql_info_stingray_4_done =drx_ql_reset_task(drx_ql_dolg_sl_task_8)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_release_float_item(drx_ql_dolg_sl_task_8) -drx_ql_quest_item_pilot_pda_task_started =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_dolg_sl_task_8_id) =drx_ql_fail_task(drx_ql_dolg_sl_task_8) =drx_ql_reset_task(drx_ql_dolg_sl_task_8)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_release_float_item(drx_ql_dolg_sl_task_8) -drx_ql_quest_item_pilot_pda_task_started =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_dolg_sl_task_8_id) =drx_ql_fail_task(drx_ql_dolg_sl_task_8) =drx_ql_reset_task(drx_ql_dolg_sl_task_8)%
+
+;------------------------------------------------
+; Duty Assault Storyline Task-
+
+[drx_ql_dolg_sl_task_9]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = true
+prior = 165
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(bar_dolg_leader) =drx_ql_find_occupied_smart_ext(dolg:drx_ql_dolg_sl_task_9)} true, false
+
+title = drx_ql_dolg_sl_task_9_name
+descr = drx_ql_dolg_sl_task_9_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_dolg_sl_task_9_about
+task_complete_descr = drx_ql_dolg_sl_task_9_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_dolg_sl_task_9)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_dolg_sl_task_9)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_dolg_sl_task_9)%
+
+on_complete = %=drx_ql_reward_random(3500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =inc_task_stage(drx_ql_dolg_sl_task_9) =drx_ql_reset_task(drx_ql_dolg_sl_task_9)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_dolg_sl_task_9) =drx_ql_reset_task(drx_ql_dolg_sl_task_9)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_dolg_sl_task_9) =drx_ql_reset_task(drx_ql_dolg_sl_task_9)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Duty Simulation Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Find a Reliable Weapon for Duty Simulation Task-
+
+[drx_ql_simulation_task_dolg_1]
+
+icon = ui_inGame2_Neizvestnoe_oruzhie
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_dolg_1_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_dolg_1_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_dolg_1_about
+fetch_descr = drx_ql_simulation_task_dolg_1_fetch_about
+task_complete_descr = drx_ql_simulation_task_dolg_1_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_dolg_1)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_dolg_1)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_simulation_task_dolg_1:3000:6000:1:1:0.8:items_rifles_list)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_simulation_task_dolg_1)%
+
+on_complete = %=drx_ql_fetch_reward_random(drx_ql_simulation_task_dolg_1:1.2) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =inc_task_stage(drx_ql_simulation_task_dolg_1) =drx_ql_reset_task(drx_ql_simulation_task_dolg_1)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_simulation_task_dolg_1) =drx_ql_reset_task(drx_ql_simulation_task_dolg_1)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_simulation_task_dolg_1) =drx_ql_reset_task(drx_ql_simulation_task_dolg_1)%
+
+;------------------------------------------------
+; Free the Duty Hostage Simulation Task-
+
+[drx_ql_simulation_task_dolg_2]
+
+icon = ui_inGame2_Zalozhnik
+storyline = false
+prior = 95
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_is_enemy(freedom) =is_factions_enemies(dolg:freedom) -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(dolg:drx_ql_simulation_task_dolg_2:freedom) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_simulation_task_dolg_2_name
+descr = drx_ql_simulation_task_dolg_2_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_simulation_task_dolg_2_about
+task_complete_descr = drx_ql_simulation_task_dolg_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_dolg_2)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_dolg_2)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_dolg_2) =drx_ql_setup_hostage_task(hostage_companion_task_1_dolg:nil:drx_ql_simulation_task_dolg_2_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_simulation_task_dolg_2) =unlock_smart(drx_ql_simulation_task_dolg_2_id) =drx_ql_reset_task(drx_ql_simulation_task_dolg_2)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_simulation_task_dolg_2_id) =drx_ql_fail_task(drx_ql_simulation_task_dolg_2) =drx_ql_reset_task(drx_ql_simulation_task_dolg_2)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_simulation_task_dolg_2_id) =drx_ql_fail_task(drx_ql_simulation_task_dolg_2) =drx_ql_reset_task(drx_ql_simulation_task_dolg_2)%
+
+; -----------------------------------------------
+; Find Missing Case for Duty Simulation Task-
+
+[drx_ql_simulation_task_dolg_3]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_case_task_started} true, false
+
+title = drx_ql_simulation_task_dolg_3_name
+descr = drx_ql_simulation_task_dolg_3_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_dolg_3_about
+task_complete_descr = drx_ql_simulation_task_dolg_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_dolg_3)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_dolg_3)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_dolg_3:drx_ql_quest_item_case:50:mar_smart_terrain_12_2:esc_smart_terrain_6_6:gar_smart_terrain_6_3:ds_kem2:val_smart_terrain_4_0:ros_smart_monster4:yan_smart_terrain_3_6:mil_smart_terrain_4_2:lim_smart_terrain_6:katacomb_smart_terrain:cit_bandits_2:zat_b106_smart_terrain:jup_b46) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_simulation_task_dolg_3) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_simulation_task_dolg_3)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_release_float_item(drx_ql_simulation_task_dolg_3) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_dolg_3) =drx_ql_reset_task(drx_ql_simulation_task_dolg_3)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_release_float_item(drx_ql_simulation_task_dolg_3) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_dolg_3) =drx_ql_reset_task(drx_ql_simulation_task_dolg_3)%
+
+;------------------------------------------------
+; Investigate Strange Noise with Duty Simulation Task-
+
+[drx_ql_simulation_task_dolg_4]
+
+icon = ui_inGame2_Mesta_evakuatsii
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =is_night() -drx_ql_big_mutant_task_started =drx_ql_find_unoccupied_lair_local(drx_ql_simulation_task_dolg_4)} true, false
+
+title = drx_ql_simulation_task_dolg_4_name
+descr = drx_ql_simulation_task_dolg_4_text
+descr_functor = drx_ql_big_mutant_task_target
+job_descr = drx_ql_simulation_task_dolg_4_about
+task_complete_descr = drx_ql_simulation_task_dolg_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_big_mutant_task_target
+status_functor = drx_ql_big_mutant_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_dolg_4)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_dolg_4)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_dolg_4) =drx_ql_create_big_mutant_squad(drx_ql_simulation_task_dolg_4) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_dolg_4) +drx_ql_big_mutant_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =inc_task_stage(drx_ql_simulation_task_dolg_4) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_dolg_4) -drx_ql_big_mutant_task_started =drx_ql_reset_task(drx_ql_simulation_task_dolg_4)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_dolg_4) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_simulation_task_dolg_4) =drx_ql_reset_task(drx_ql_simulation_task_dolg_4)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_dolg_4) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_simulation_task_dolg_4) =drx_ql_reset_task(drx_ql_simulation_task_dolg_4)%
+
+;------------------------------------------------
+; Duty Patrol Simulation Task-
+
+[drx_ql_simulation_task_dolg_5]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(dolg:drx_ql_simulation_task_dolg_5)} true, false
+
+title = drx_ql_simulation_task_dolg_5_name
+descr = drx_ql_simulation_task_dolg_5_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_simulation_task_dolg_5_about
+task_complete_descr = drx_ql_simulation_task_dolg_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_dolg_5)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_dolg_5)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_dolg_5) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_dolg_5)%
+
+on_complete = %=drx_ql_reward_random(4000:7500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:dolg) =inc_task_stage(drx_ql_simulation_task_dolg_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_dolg_5) =drx_ql_reset_task(drx_ql_simulation_task_dolg_5)%
+on_fail = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_simulation_task_dolg_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_dolg_5) =drx_ql_reset_task(drx_ql_simulation_task_dolg_5)%
+on_cancel = %=fail_task_dec_goodwill(50:dolg) =drx_ql_fail_task(drx_ql_simulation_task_dolg_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_dolg_5) =drx_ql_reset_task(drx_ql_simulation_task_dolg_5)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

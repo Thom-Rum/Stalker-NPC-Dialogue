@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Xenotech (Loner Mechanic, Cordon) (drx_ql_strings_loner_xenotech.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_loner_xenotech.ltx
+<
+<	Created by: DoctorX
+<	Last revised: May 11, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	May 11, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Xenotech (Loner Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_1_name">
+		<text>Recover Gunsmith Toolkit for Xenotech</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_1_text">
+		<text>A Bandit has stolen Xenotech's gunsmith tools. Find the thief and get his tools back.</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_1_about">
+		<text>A Bandit raided my shop while I was out and stole some of my tools. I can't perform any weapon upgrades without them. I think I know who it was too, if you can track the bastard down and get my gunsmith tools back, I'll reward you and I'll be able to perform basic upgrades to your gear.</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_1_finish">
+		<text>Excellent. Now that I have my tools back I can perform basic upgrades to your gear. Please, take this as a reward.</text>
+	</string>
+
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Xenotech (Loner Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_2_name">
+		<text>Find Technician Toolkit for Xenotech</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_2_text">
+		<text>Xenotech's shipment of technician tools never arrived. Find the tools and return them to Xenotech.</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_2_about">
+		<text>I was expecting a delivery of some specialized tools that will allow me to do more advanced upgrades on your gear. It is long overdue, I suspect the courier was either killed or got drunk and wandered off. I think I know where he might have left them. If you want to pick them up for me I'll pay you and I'll be able to upgrade your gear even further.</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_2_finish">
+		<text>Thanks, here's your payment. Let me know if there are any upgrades you would like me to do.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Xenotech (Loner Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_3_name">
+		<text>Find Armorer's Toolkit for Xenotech</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_3_text">
+		<text>Search for a set of armorer's tools so Xenotech can fully upgrade your gear.</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_3_about">
+		<text>If you want me upgrade your gear fully, I'm going to need a set of armorer's tools. I have an idea where you might be able to find some, but you'll have to search around for them. If you can find a set, bring them to me. I'll pay you for them and I'll be able to perform almost any upgrade on your equipment.</text>
+	</string>
+	<string id="drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_task_3_finish">
+		<text>Ah, good, you found some. Now I can perform almost any equipment upgrade. Thank you stalker.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

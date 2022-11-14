@@ -1,0 +1,682 @@
+;==============================================================
+;
+; Meet Honcho Tasks (drx_ql_sl_meet_tasks.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_sl_meet_tasks.xml  (text for task titles and descriptions)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: October 21, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Loner Meet Honcho Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 21, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Meet With Sidorovich (Loner Trader, Cordon) Task 1-
+
+[drx_ql_esc_m_trader_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_esc_m_trader_meet_task_1_name
+descr = drx_ql_esc_m_trader_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = esc_m_trader
+condlist_0 = {!drx_ql_is_alive(esc_m_trader)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_esc_m_trader} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Nimble (Loner Trader, Cordon) Task 1-
+
+[drx_ql_esc_2_12_stalker_nimble_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_esc_2_12_stalker_nimble_meet_task_1_name
+descr = drx_ql_esc_2_12_stalker_nimble_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = esc_2_12_stalker_nimble
+condlist_0 = {!drx_ql_is_alive(esc_2_12_stalker_nimble)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_esc_2_12_stalker_nimble} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Xenotech (Loner Mechanic, Cordon) Task 1-
+
+[drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_meet_task_1_name
+descr = drx_ql_esc_smart_terrain_5_7_loner_mechanic_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = esc_smart_terrain_5_7_loner_mechanic_stalker
+condlist_0 = {!drx_ql_is_alive(esc_smart_terrain_5_7_loner_mechanic_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_esc_smart_terrain_5_7_loner_mechanic_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Barkeep (Loner Barman, Rostok) Task 1-
+
+[drx_ql_bar_visitors_barman_stalker_trader_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_bar_visitors_barman_stalker_trader_meet_task_1_name
+descr = drx_ql_bar_visitors_barman_stalker_trader_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = bar_visitors_barman_stalker_trader
+condlist_0 = {!drx_ql_is_alive(bar_visitors_barman_stalker_trader)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_bar_visitors_barman_stalker_trader} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Beard (Loner Barman, Zaton) Task 1-
+
+[drx_ql_zat_a2_stalker_barmen_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_zat_a2_stalker_barmen_meet_task_1_name
+descr = drx_ql_zat_a2_stalker_barmen_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = zat_a2_stalker_barmen
+condlist_0 = {!drx_ql_is_alive(zat_a2_stalker_barmen)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_zat_a2_stalker_barmen} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Owl (Loner Trader, Zaton) Task 1-
+
+[drx_ql_zat_b30_owl_stalker_trader_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_zat_b30_owl_stalker_trader_meet_task_1_name
+descr = drx_ql_zat_b30_owl_stalker_trader_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = zat_b30_owl_stalker_trader_id
+condlist_0 = {!drx_ql_is_alive(zat_b30_owl_stalker_trader)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_zat_b30_owl_stalker_trader} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Duty Meet Honcho Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Meet With Voronin (Duty Honcho, Rostok) Task 1-
+
+[drx_ql_bar_dolg_leader_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_bar_dolg_leader_meet_task_1_name
+descr = drx_ql_bar_dolg_leader_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = bar_dolg_leader
+condlist_0 = {!drx_ql_is_alive(bar_dolg_leader)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_bar_dolg_leader} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Petrenko (Duty Trader, Rostok) Task 1-
+
+[drx_ql_bar_dolg_general_petrenko_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_bar_dolg_general_petrenko_stalker_meet_task_1_name
+descr = drx_ql_bar_dolg_general_petrenko_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = bar_dolg_general_petrenko_stalker
+condlist_0 = {!drx_ql_is_alive(bar_dolg_general_petrenko_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(dolg)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_bar_dolg_general_petrenko_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Freedom Meet Honcho Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Meet With Lukash (Freedom Honcho, Army Warehouses) Task 1-
+
+[drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_meet_task_1_name
+descr = drx_ql_mil_smart_terrain_7_7_freedom_leader_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = mil_smart_terrain_7_7_freedom_leader_stalker
+condlist_0 = {!drx_ql_is_alive(mil_smart_terrain_7_7_freedom_leader_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_mil_smart_terrain_7_7_freedom_leader_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Skinflint (Freedom Trader, Army Warehouses) Task 1-
+
+[drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_meet_task_1_name
+descr = drx_ql_mil_smart_terrain_7_10_freedom_trader_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = mil_smart_terrain_7_10_freedom_trader_stalker
+condlist_0 = {!drx_ql_is_alive(mil_smart_terrain_7_10_freedom_trader_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_mil_smart_terrain_7_10_freedom_trader_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Loki (Freedom Trader, Jupiter) Task 1-
+
+[drx_ql_jup_a6_freedom_leader_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_jup_a6_freedom_leader_meet_task_1_name
+descr = drx_ql_jup_a6_freedom_leader_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = jup_a6_freedom_leader
+condlist_0 = {!drx_ql_is_alive(jup_a6_freedom_leader)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_jup_a6_freedom_leader} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Clear Sky Meet Honcho Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 23, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Meet With Cold (Clear Sky Honcho, Great Swamp) Task 1-
+
+[drx_ql_mar_smart_terrain_base_stalker_leader_marsh_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_mar_smart_terrain_base_stalker_leader_marsh_meet_task_1_name
+descr = drx_ql_mar_smart_terrain_base_stalker_leader_marsh_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = mar_smart_terrain_base_stalker_leader_marsh
+condlist_0 = {!drx_ql_is_alive(mar_smart_terrain_base_stalker_leader_marsh)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_mar_smart_terrain_base_stalker_leader_marsh} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Spore (Clear Sky Trader, Great Swamp) Task 1-
+
+[drx_ql_mar_base_owl_stalker_trader_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_mar_base_owl_stalker_trader_meet_task_1_name
+descr = drx_ql_mar_base_owl_stalker_trader_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = mar_base_owl_stalker_trader
+condlist_0 = {!drx_ql_is_alive(mar_base_owl_stalker_trader)} fail
+condlist_1 = {=drx_ql_is_enemy(csky)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_mar_base_owl_stalker_trader} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Ecologist Meet Honcho Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 02, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Meet With Sakharov (Ecologist Trader, Yantar) Task 1-
+
+[drx_ql_yan_stalker_sakharov_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_yan_stalker_sakharov_meet_task_1_name
+descr = drx_ql_yan_stalker_sakharov_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = yan_stalker_sakharov
+condlist_0 = {!drx_ql_is_alive(yan_stalker_sakharov)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_yan_stalker_sakharov} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Seminov (Ecologist Honcho, Yantar) Task 1-
+
+[drx_ql_yan_ecolog_semenov_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_yan_ecolog_semenov_meet_task_1_name
+descr = drx_ql_yan_ecolog_semenov_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = yan_ecolog_semenov
+condlist_0 = {!drx_ql_is_alive(yan_ecolog_semenov)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_yan_ecolog_semenov} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Hermann (Ecologist Trader, Jupiter) Task 1-
+
+[drx_ql_jup_b6_scientist_nuclear_physicist_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_jup_b6_scientist_nuclear_physicist_meet_task_1_name
+descr = drx_ql_jup_b6_scientist_nuclear_physicist_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = jup_b6_scientist_nuclear_physicist
+condlist_0 = {!drx_ql_is_alive(jup_b6_scientist_nuclear_physicist)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_jup_b6_scientist_nuclear_physicist} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Mercenary Meet Honcho Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Meet With Dushman (Mercenary Trader, Dead City) Task 1-
+
+[drx_ql_cit_killers_merc_trader_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_cit_killers_merc_trader_stalker_meet_task_1_name
+descr = drx_ql_cit_killers_merc_trader_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = cit_killers_merc_trader_stalker
+condlist_0 = {!drx_ql_is_alive(cit_killers_merc_trader_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_cit_killers_merc_trader_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Hog (Mercenary Mechanic, Dead City) Task 1-
+
+[drx_ql_cit_killers_merc_mechanic_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_cit_killers_merc_mechanic_stalker_meet_task_1_name
+descr = drx_ql_cit_killers_merc_mechanic_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = cit_killers_merc_mechanic_stalker
+condlist_0 = {!drx_ql_is_alive(cit_killers_merc_mechanic_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(killer)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_cit_killers_merc_mechanic_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Military Meet Honcho Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Meet With Kuznetsov (Military Honcho, Agroprom) Task 1-
+
+[drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_meet_task_1_name
+descr = drx_ql_agr_smart_terrain_1_6_near_2_military_colonel_kovalski_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = agr_smart_terrain_1_6_near_2_military_colonel_kovalski
+condlist_0 = {!drx_ql_is_alive(agr_smart_terrain_1_6_near_2_military_colonel_kovalski)} fail
+condlist_1 = {=drx_ql_is_enemy(army)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_agr_smart_terrain_1_6_near_2_military_colonel_kovalski} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Kirilov (Military Mechanic, Agroprom) Task 1-
+
+[drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_meet_task_1_name
+descr = drx_ql_agr_smart_terrain_1_6_army_mechanic_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = agr_smart_terrain_1_6_army_mechanic_stalker
+condlist_0 = {!drx_ql_is_alive(agr_smart_terrain_1_6_army_mechanic_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(army)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_agr_smart_terrain_1_6_army_mechanic_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Bandit Meet Honcho Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Meet With Sultan (Bandit Honcho, Dark Valley) Task 1-
+
+[drx_ql_zat_b7_bandit_boss_sultan_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_zat_b7_bandit_boss_sultan_meet_task_1_name
+descr = drx_ql_zat_b7_bandit_boss_sultan_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = zat_b7_bandit_boss_sultan
+condlist_0 = {!drx_ql_is_alive(zat_b7_bandit_boss_sultan)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_zat_b7_bandit_boss_sultan} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Olivius (Bandit Trader, Dark Valley) Task 1-
+
+[drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_meet_task_1_name
+descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = val_smart_terrain_7_4_bandit_trader_stalker
+condlist_0 = {!drx_ql_is_alive(val_smart_terrain_7_4_bandit_trader_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_val_smart_terrain_7_4_bandit_trader_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Monolith Meet Honcho Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Meet With Krolik (Monolith Trader, Pripyat) Task 1-
+
+[drx_ql_pri_monolith_monolith_trader_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_pri_monolith_monolith_trader_stalker_meet_task_1_name
+descr = drx_ql_pri_monolith_monolith_trader_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = pri_monolith_monolith_trader_stalker
+condlist_0 = {!drx_ql_is_alive(pri_monolith_monolith_trader_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_pri_monolith_monolith_trader_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+;------------------------------------------------
+; Meet With Cleric (Monolith Mechanic, Pripyat) Task 1-
+
+[drx_ql_pri_monolith_monolith_mechanic_stalker_meet_task_1]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 1
+
+title = drx_ql_pri_monolith_monolith_mechanic_stalker_meet_task_1_name
+descr = drx_ql_pri_monolith_monolith_mechanic_stalker_meet_task_1_text
+job_descr = drx_ql_meet_task_about
+
+target = pri_monolith_monolith_mechanic_stalker
+condlist_0 = {!drx_ql_is_alive(pri_monolith_monolith_mechanic_stalker)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {+actor_made_wish} fail
+condlist_3 = {-drx_ql_meet_honcho_pri_monolith_monolith_mechanic_stalker} complete
+
+on_fail = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+on_cancel = %=drx_ql_decrease_sl_tasks_count() =drx_ql_meet_random_honcho()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

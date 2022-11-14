@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Limpid (Bandit Mechanic, Dark Valley) (drx_ql_strings_bandit_limpid.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_bandit_impid.ltx
+<
+<	Created by: DoctorX
+<	Last revised: May 19, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Mechanic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	May 19, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Limpid (Bandit Mechanic) Find Level 1 Toolkit Task -->
+
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_1_name">
+		<text>Find Gunsmith Toolkit for Limpid</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_1_text">
+		<text>Limpid is capable of doing basic upgrades for your equipment but he needs the proper tools. Find a set of gunsmith tools and bring them back to him.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_1_about_pre_npc_1">
+		<text>Hey buddy, I have a proposition for you that might be in both our best interests. I need to make some more cash around here doing repairs and upgrades, but I need better tools. You need someone to upgrade your equipment. If you can find me a set of gunsmith tools I'll be able to do basic upgrades for you and I'll give you some cash to boot.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_1_about_pre_actor_1">
+		<text>Sounds good, but where the hell am I supposed to find a set of gunsmith tools in the middle of the Zone?</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_1_about">
+		<text>There is a place you might be able to find some if you dig around a bit. I'll mark the location on your map. If you find any tools, bring them back to me.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_1_finish">
+		<text>Ah, great work. These are just what I need, here's something for your trouble. Let me know if you want me to do any upgrades for you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Limpid (Bandit Mechanic) Find Level 2 Toolkit Task -->
+
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_2_name">
+		<text>Steal Technician Tools for Limpid</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_2_text">
+		<text>Limpid has asked you to raid a Freedomer's stash for a technician toolkit so he can better upgrade your equipment.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_2_about">
+		<text>Hey, you ever heard of Screw? He's that dimwitted hippie up in the Freedom base that thinks he's a mechanic. I know where he keeps a set of technician tools stashed away. Go liberate them for me, he's too dumb to know what to do with them anyway. If you bring them back for me I'll give you some cash and I'll be able to do better upgrades on your gear.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_2_finish">
+		<text>Hey, great job buddy. Drop by if you want any work done on your gear. I'll be able to do a lot more with these tools.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Limpid (Bandit Mechanic) Find Level 3 Toolkit Task -->
+
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_3_name">
+		<text>Retrieve Armorer's Toolkit for Limpid</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_3_text">
+		<text>A stalker has a set of armorer's tools that Limpid needs to be able to fully upgrade your gear. Find the stalker and convince him to hand over the tools.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_3_about_pre_npc_1">
+		<text>Hey buddy, you want me to take your gear to the next level? I could fully upgrade your equipment if I had a set of armorer's tools.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_3_about_pre_actor_1">
+		<text>That's great, but I'm not about to stage an all-out assault on the Military base just to get you some screwdrivers, if that's what you're getting at.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_3_about">
+		<text>Heh, no, that would be incredibly stupid. Lucky for us there is a stalker that was that stupid. He managed to swipe a set of armorer's tools from a Military depot. He wouldn't sell them to me, but if you can convince him to hand them over I'll give you the cash I was going to give him, and I'll be able to perform almost any upgrade to your gear.</text>
+	</string>
+	<string id="drx_ql_val_smart_terrain_7_3_bandit_mechanic_stalker_task_3_finish">
+		<text>Hah, you have done it! With these tools I'll be able to do any kind of equipment upgrades. Thanks buddy, here's your payment.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

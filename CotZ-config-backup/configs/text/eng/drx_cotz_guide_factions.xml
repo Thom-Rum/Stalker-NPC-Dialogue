@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< PDA Encyclopedia Guide Articles - Factions (drx_cotz_guide_factions.xml)
+<	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+<
+<		- String ID's must be formatted as follows:
+<			drx_cotz_str_guide_{x}
+<				- Text to display for current guide article section name ({x} = sequential int starting with 1)
+<			drx_cotz_str_guide_{x}_{y}
+<				- Text to display for current article title ({y} = sequential int starting with 1)
+<			drx_cotz_str_guide_{x}_{y}_text
+<				- The body of the guide article text
+<
+<	Created by: DoctorX
+<	Last revised: September 30, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Factions
+	<!--
+	<!--	- Modification of string_table_enc_social.xml (ShoC 1.0005)
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Call of The Zone 1.0
+	<!--	September 30, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Factions section name -->
+	<string id="drx_cotz_str_guide_3">
+		<text>Factions</text>
+	</string>
+
+	<!-- Loners -->
+	<string id="drx_cotz_str_guide_3_1">
+		<text>Loners</text>
+	</string>
+	<string id="drx_cotz_str_guide_3_1_text">
+		<text>Stalkers exploring the Zone on their own. Most stalkers work this way since being a member of a group takes precious time, and part of the loot. Then there are some who simply prefer solitude and independence. There are several camps and trading outposts that cater to Loners; including the Rookie Village in Cordon, 100 Rads Bar in Rostok, and the Skadovsk shipwreck in Zaton.</text>
+	</string>
+
+	<!-- Duty -->
+	<string id="drx_cotz_str_guide_3_2">
+		<text>Duty</text>
+	</string>
+	<string id="drx_cotz_str_guide_3_2_text">
+		<text>A paramilitary group known for its discipline, whose members live according to a strict code. Duty members are the only group to refuse to trade unique items from the Zone with the outside world. According to rumors, all artefacts found by the group are passed on to scientists. Its members consider protecting the outside world from the Zone's dangers their primary objective. Most of the group's operations concern destroying monsters, hence Duty raids often save normal stalkers from serious trouble. The faction is often at odds with Freedom, who's views are largely on the opposite end of the spectrum. Duty occupies and polices the area around Rostok, and rarely ventures much farther into the Zone.</text>
+	</string>
+
+	<!-- Freedom -->
+	<string id="drx_cotz_str_guide_3_3">
+		<text>Freedom</text>
+	</string>
+	<string id="drx_cotz_str_guide_3_3_text">
+		<text>Anarchists and daredevils who declare themselves fighters for a free access to the Zone and consequently find themselves in constant conflict with the Military and the Duty faction. These so-called Freedom warriors believe in sharing all information about the Zone with the rest of the world and challenge the state's monopoly over the Zone's secrets and wonders. They have established a base in the Army Warehouses where they defend the barrier against the Monolith threat in Radar. There is also rumored to be a small group of Freedomers surviving in Yanov station in Jupiter, trapped in the north and cut off from the rest of their faction when the Brain Scorcher was switched on.</text>
+	</string>
+
+	<!-- Clear Sky -->
+	<string id="drx_cotz_str_guide_3_4">
+		<text>Clear Sky</text>
+	</string>
+	<string id="drx_cotz_str_guide_3_4_text">
+		<text>Clear Sky is a now defunct faction composed mainly of former researchers and engineers. Their propensity to be rather secretive about their operations, coupled with the allegations against former high-ranking members of their faction, has caused many stalkers to regard them with suspicion. They claim to be searching for evidence of clandestine experiments that were rumored to have been transpiring within the Zone, however there is debate as to whether their motivation is to expose a conspiracy or to cover one up. The faction is thought to have been completely wiped out, although it is rumored there is still a small group that continues to operate out of a hidden base somewhere in the Great Swamp.</text>
+	</string>
+
+	<!-- Ecologists -->
+	<string id="drx_cotz_str_guide_3_5">
+		<text>Ecologists</text>
+	</string>
+	<string id="drx_cotz_str_guide_3_5_text">
+		<text>Ecologists are scientists and researchers employed by the Ukrainian government to study and catalog the unique wildlife and unexplained mysteries found within the Zone. Aside from the Military, they are the only other group that is legally authorized to operate within the area. The researchers use deep-immersion techniques to conduct their operations, with their deployments lasting a month or longer inside the Zone. They operate out of two mobile science labs that were airlifted in; one in Yantar and the other in Jupiter.</text>
+	</string>
+
+	<!-- Mercenaries -->
+	<string id="drx_cotz_str_guide_3_6">
+		<text>Mercenaries</text>
+	</string>
+	<string id="drx_cotz_str_guide_3_6_text">
+		<text>The most clandestine and secretive faction in the Zone; some don't even believe in its existence. There are those who regularly use the Mercs' services as they are true pros, able to quickly deal with any stalker and even annihilate a small group of opponents. Their services do not come cheap - the Mercs demand a king's ransom for their services in money or artefacts. They appeared suddenly in the Zone through a series of overnight airdrops, and have hastily set up their base of operations in the Dead City, which has become a nearly constant battleground as they struggle to gain their foothold there. Who their employer is and what their motivation is for being dispatched to the Zone is known only to them.</text>
+	</string>
+
+	<!-- Military -->
+	<string id="drx_cotz_str_guide_3_7">
+		<text>Military</text>
+	</string>
+	<string id="drx_cotz_str_guide_3_7_text">
+		<text>Regular Ukrainian army soldiers that guard all roads into the Zone, patrol its perimeter, kill mutants and hunt down looters, and Spetsnaz - elite army troops, usually dispatched to the Zone to conduct rescue operations and other special missions. The Military has stepped up its operations inside the Zone lately, and have established an outpost at the Research Institute in Agroprom.</text>
+	</string>
+
+	<!-- Bandits -->
+	<string id="drx_cotz_str_guide_3_8">
+		<text>Bandits</text>
+	</string>
+	<string id="drx_cotz_str_guide_3_8_text">
+		<text>Members of the criminal underworld who came to the Zone for different reasons: to make money by selling artefacts, hide from the law or trade in weapons. The Zone is full of Bandits, ranging from common thugs to serious criminals, most of whom are members of one gang or another. Although the Zone gangs frequently fight among themselves, the criminal element still poses a serious problem for normal stalkers. They are loosely organized under a Bandit called Sultan, who has set up shop in the Factory Complex in the Dark Valley.</text>
+	</string>
+
+	<!-- Monolith -->
+	<string id="drx_cotz_str_guide_3_9">
+		<text>Monolith</text>
+	</string>
+	<string id="drx_cotz_str_guide_3_9_text">
+		<text>This group displays many features of a religious cult. Its members believe in the existence of a complex alien crystal, the Monolith, located somewhere in the center of the Zone. Most stalkers regard the cultists with contempt and consider them as lunatics. From its inception the group strives to block all progress towards the center of the Zone, protecting the Monolith from other stalkers. Rumor has it that the group has a large base deep in the Zone, but its exact location is known only to the members.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

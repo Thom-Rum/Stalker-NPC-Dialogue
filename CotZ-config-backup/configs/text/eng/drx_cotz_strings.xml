@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< DoctorX Call of The Zone Strings (drx_cotz_strings.xml)
+<	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+<
+<	Created by: DoctorX
+<	Last revised: May 09, 2020
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- UI Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for Call of The Zone 1.0
+	<!--	May 09, 2020
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Main menu game version preface (%s = CoTZ version number): -->
+	<string id="drx_cotz_ui_ver_pref">
+		<text>DoctorX Call of The Zone %s</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- PDA News Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for Call of The Zone 1.0
+	<!--	September 22, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- PDA message to display after a friendly fire event: -->
+	<string id="drx_cotz_friendly_fire_news">
+		<text>Friendly Fire! You just killed an innocent stalker!</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

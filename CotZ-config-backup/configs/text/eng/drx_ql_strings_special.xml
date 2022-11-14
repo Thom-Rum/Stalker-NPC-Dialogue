@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Special Task Strings (drx_ql_strings_special.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: August 04, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Special Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 04, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Blackout Revenge Task -->
+
+	<string id="drx_ql_special_task_blackout_revenge_name">
+		<text>Vendetta</text>
+	</string>
+	<string id="drx_ql_special_task_blackout_revenge_text">
+		<text>You were attacked, looted, and left for dead by %s called %s. If you have any hope of getting your gear back, find him before he has a chance to stash it.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Rescue Kidnapped Companion Task -->
+
+	<string id="drx_ql_special_task_blackout_kidnapped_name">
+		<text>Rescue Your Companion</text>
+	</string>
+	<string id="drx_ql_special_task_blackout_kidnapped_text">
+		<text>Your companion has been taken prisoner by your attackers. Find them and rescue your friend.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hunted Task -->
+
+	<string id="drx_ql_special_task_hunted_name">
+		<text>Hunted</text>
+	</string>
+	<string id="drx_ql_special_task_hunted_text">
+		<text>You are wanted in connection with the death of %s. A highly trained assassin has been dispatched to track you down. Find the bounty hunter before he finds you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Gauss Gun Flash Task -->
+
+	<string id="drx_ql_special_task_find_gauss_flash_name">
+		<text>Gauss Gun Components: Flash</text>
+	</string>
+	<string id="drx_ql_special_task_find_gauss_flash_text">
+		<text>A Flash artefact is needed to power the Gauss Rifle.</text>
+	</string>
+	<string id="drx_ql_special_task_find_gauss_flash_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_special_task_find_gauss_flash_fetch_about">
+		<text>None</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Gauss Gun Capacitors Task -->
+
+	<string id="drx_ql_special_task_find_gauss_capacitors_name">
+		<text>Gauss Gun Components: Capacitors</text>
+	</string>
+	<string id="drx_ql_special_task_find_gauss_capacitors_text">
+		<text>Find a bank of capacitors that can be used to build the Gauss Rifle.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Gauss Gun Wire Task -->
+
+	<string id="drx_ql_special_task_find_gauss_wire_name">
+		<text>Gauss Gun Components: Wire</text>
+	</string>
+	<string id="drx_ql_special_task_find_gauss_wire_text">
+		<text>The construction of the Gauss Rifle will require a spool of magnetic coil wire.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Wish Granter (NPP South) Task  (False Ending) -->
+
+	<string id="drx_ql_special_task_find_wish_granter_name">
+		<text>Find the Wish Granter</text>
+	</string>
+	<string id="drx_ql_special_task_find_wish_granter_text">
+		<text>A voice called to you in a very lucid dream. It was as though the Wish Granter itself has beckoned you, daring you to find it.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find the Oasis Task -->
+
+	<string id="drx_ql_special_task_find_oasis_name">
+		<text>Find the Oasis</text>
+	</string>
+	<string id="drx_ql_special_task_find_oasis_text">
+		<text>The Oasis is a legendary place within the Zone that is free from radiation and has the power to heal and rejuvenate stalkers. It is rumored to contain a very powerful artefact, unlike any other found in the Zone.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Monolith Defector Task -->
+
+	<string id="drx_ql_defector_sl_task_1_name">
+		<text>Defector</text>
+	</string>
+	<string id="drx_ql_defector_sl_task_1_text">
+		<text>You have overcome the brainwashing of the Monolith and parted from their faction, shutting off the Brain Scorcher and opening the path to the North. Find someone to help in your defection.</text>
+	</string>
+	<string id="drx_ql_defector_sl_task_1_about_pre_npc_1">
+		<text>Yes, what can I... Hey, holy shit! You're a Monolith! Guys, get over here! Help me out!</text>
+	</string>
+	<string id="drx_ql_defector_sl_task_1_about_pre_actor_1">
+		<text>Calm down, I just defected from the Monolith and I need your help.</text>
+	</string>
+	<string id="drx_ql_defector_sl_task_1_about_pre_npc_2">
+		<text>Bullshit. No one has ever left the control of the Monolith and lived to tell about it. Ah, but look at your eyes... those are the eyes of a man who's will has been put to the ultimate test. You must be the one everyone is talking about, the one who shut off the Brain Scorcher.</text>
+	</string>
+	<string id="drx_ql_defector_sl_task_1_about_pre_actor_2">
+		<text>Yes, and now my former brothers are out to kill me. Everyone else here still thinks I want to kill them. I have overcome the attempts by the Monolith to control my thoughts but my mind is still not quite right. Can you help me?</text>
+	</string>
+	<string id="drx_ql_defector_sl_task_1_about">
+		<text>Yes, I see your dilemma. You are a hero, you have escaped the Monolith and opened the path to the north. Only no one knows that yet. They still see you as the man who was shooting at them and killing their friends. You have a long road ahead of you to regain the stalker's trust. Here is what I will do for you, I know some people who can help you. Go to them and befriend them, do some work for them. They will help spread the word of your good deeds and you will soon be welcomed back into the community with open arms. And let me be just the first to say thank you. What you have done took a great deal of courage and strength.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Doc (Loner Honcho, Great Swamp) Task -->
+
+	<string id="drx_ql_special_task_meet_task_find_doc_name">
+		<text>Find Doc</text>
+	</string>
+	<string id="drx_ql_special_task_meet_task_find_doc_text">
+		<text>A reclusive stalker known as Doc may have the answers you seek. You must find him.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Search Hotel Polissya Storyline Task -->
+
+	<string id="drx_ql_doc_sl_task_1_name">
+		<text>Hotel Polissya</text>
+	</string>
+	<string id="drx_ql_doc_sl_task_1_text">
+		<text>Doc has given you the key to a room in the Hotel Polissya in Pripyat, the former hideout of an old friend of his.</text>
+	</string>
+	<string id="drx_ql_doc_sl_task_1_about_pre_npc_1">
+		<text>I don't have any money, son. You can shoot me if you want but I think by now the Zone is the one who has earned the right to decide when I die.</text>
+	</string>
+	<string id="drx_ql_doc_sl_task_1_about_pre_actor_1">
+		<text>Relax old man, I'm not here to rob you. I was told you might have information pertaining to the source of the emissions.</text>
+	</string>
+	<string id="drx_ql_doc_sl_task_1_about_pre_npc_2">
+		<text>Me? No, I'm afraid you were misinformed, I have no such knowledge... There once was a man who might have been able to give you those answers, he was a very close friend of mine. I haven't seen him in quite some time now. I hope he is still amongst the living, but in my heart I know that most likely isn't so.</text>
+	</string>
+	<string id="drx_ql_doc_sl_task_1_about_pre_actor_2">
+		<text>I need to find him. If he has the answers and there is any hope he his still alive I must track him down. Where was he last?</text>
+	</string>
+	<string id="drx_ql_doc_sl_task_1_about">
+		<text>He went to the north. He believed he had located the source of the emissions, and he intended to penetrate deep into the heart of the Sarcophagus in Chernobyl. I told him he was mad... Perhaps he truly was. He left me a key to his hideout in Pripyat, but these bones have grown too weary to make that journey. You should take it, maybe he left behind some clues to the answers you seek.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Search Monolith Control Center (NPP North) Task -->
+
+	<string id="drx_ql_special_task_search_mcc_name">
+		<text>Search the Reactor Control Room</text>
+	</string>
+	<string id="drx_ql_special_task_search_mcc_text">
+		<text>The diary found in the Hotel Polissya tells of a failed expedition into the heart of Reactor #4 at the Chernobyl Nuclear Power Plant. Vital information about the true location of the emitter causing the blowouts in the Zone may be found within the Sarcophagus. Search the ruins of the reactor for any information that may give clues to the true source of the emissions.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Warlab (Generators) Task -->
+
+	<string id="drx_ql_special_task_find_warlab_name">
+		<text>Find the Hidden Lab</text>
+	</string>
+	<string id="drx_ql_special_task_find_warlab_text">
+		<text>The documents found in the reactor control room allude to a hidden lab that was being constructed to the north of the power plant. Could this be the source of the emissions?</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Find Warlab Access Card Task -->
+
+	<string id="drx_ql_special_task_find_warlab_access_name">
+		<text>Find Access Card</text>
+	</string>
+	<string id="drx_ql_special_task_find_warlab_access_text">
+		<text>An access card is required to penetrate further into the lab. Search the bunker to see if you can find one.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Destroy Generators Task -->
+
+	<string id="drx_ql_special_task_destroy_generators_name">
+		<text>Destroy the Generators</text>
+	</string>
+	<string id="drx_ql_special_task_destroy_generators_text">
+		<text>Find a way to disable the generators.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

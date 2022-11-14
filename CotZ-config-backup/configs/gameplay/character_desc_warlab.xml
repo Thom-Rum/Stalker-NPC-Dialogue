@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< Character Descriptions For Warlab Map (character_desc_warlab.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Modified by: DoctorX
+<	Last revised: October 10, 2019
+<
+<===========================================================-->
+
+
+<xml>
+    <!-------------------------- OSOZNANIE REPRESENTATIVE ---------------------- -->
+    <specific_character id="osoznanie" team_default = "1">
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Osoznanie Name
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Questlines 2.0
+		<!--	October 08, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <name>warlab_osoznanie_name</name> -->
+		<name>drx_ql_str_osoznanie_name</name>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Osoznanie Icon
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Questlines 2.0
+		<!--	October 10, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <icon>ui_inGame2_sakharov_pepe</icon> -->
+		<icon>ui_iconsNpc_stalker_osoznanie</icon>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+    <map_icon x="1" y="0"></map_icon>
+    <bio>The representative of the project "Awareness".</bio>
+    <class>trader</class>
+    <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>522</rank>
+    <reputation>127</reputation>
+    <visual>actors\ucheniy\ucheniy_1_strong</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+    </supplies>
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Osoznanie Dialogs
+		<!--
+		<!--	- Dialogs ID's declared in configs\gameplay\dialogs*.xml
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Questlines 2.0
+		<!--	October 08, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<!-- <start_dialog>oso_osoznanie_start</start_dialog>
+		<actor_dialog>oso_who_are_you</actor_dialog>
+		<actor_dialog>oso_what_is_the_zone</actor_dialog>
+		<actor_dialog>oso_what_about_me</actor_dialog>
+		<actor_dialog>oso_why_chernobyl</actor_dialog>
+		<actor_dialog>oso_chernobyl_crush</actor_dialog>
+		<actor_dialog>oso_stalker</actor_dialog>
+		<actor_dialog>oso_death_truck</actor_dialog>
+		<actor_dialog>oso_what_next</actor_dialog>
+		<actor_dialog>oso_yes</actor_dialog>
+		<actor_dialog>oso_no</actor_dialog> -->
+
+		<start_dialog>drx_ql_osoz_meet_dialog</start_dialog>
+		<actor_dialog>drx_ql_osoz_who_dialog</actor_dialog> -->
+		<actor_dialog>drx_ql_osoz_chernobyl_dialog</actor_dialog> -->
+		<actor_dialog>drx_ql_osoz_mm_dialog</actor_dialog> -->
+		<actor_dialog>drx_ql_osoz_bs_dialog</actor_dialog> -->
+		<actor_dialog>drx_ql_osoz_wg_dialog</actor_dialog> -->
+		<actor_dialog>drx_ql_osoz_gen_dialog</actor_dialog> -->
+		<actor_dialog>drx_ql_osoz_refuse_dialog</actor_dialog> -->
+		<actor_dialog>drx_ql_osoz_agree_dialog</actor_dialog> -->
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+    </specific_character>
+
+    <!-------------------------- 7 OSOZNANIE VOLUNTEERS ---------------------- -->
+    <specific_character id="warlab_pod_1_stalker" team_default = "1">
+    <name>warlab_volunteer_name</name>
+    <icon>ui_inGame2_monolit_1</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio>A volunteer of the project "Awareness".</bio>
+    <class>trader</class>
+    <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>14488</rank>
+    <reputation>2157</reputation>
+    <visual>actors\stalker_osoznanie\stalker_osoznanie_1</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+    </supplies>
+    </specific_character>
+
+    <specific_character id="warlab_pod_2_stalker" team_default = "1">
+    <name>warlab_volunteer_name</name>
+    <icon>ui_inGame2_monolit_2</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio>A volunteer of the project "Awareness".</bio>
+    <class>trader</class>
+    <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>2750</rank>
+    <reputation>-740</reputation>
+    <visual>actors\stalker_osoznanie\stalker_osoznanie_2</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+    </supplies>
+    </specific_character>
+
+    <specific_character id="warlab_pod_3_stalker" team_default = "1">
+    <name>warlab_volunteer_name</name>
+    <icon>ui_inGame2_monolit_3</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio>A volunteer of the project "Awareness".</bio>
+    <class>trader</class>
+    <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>20666</rank>
+    <reputation>-864</reputation>
+    <visual>actors\stalker_osoznanie\stalker_osoznanie_3</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+    </supplies>
+    </specific_character>
+
+    <specific_character id="warlab_pod_4_stalker" team_default = "1">
+    <name>warlab_volunteer_name</name>
+    <icon>ui_inGame2_monolit_4</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio>A volunteer of the project "Awareness".</bio>
+    <class>trader</class>
+    <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>25098</rank>
+    <reputation>275</reputation>
+    <visual>actors\stalker_osoznanie\stalker_osoznanie_4</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+    </supplies>
+    </specific_character>
+
+    <specific_character id="warlab_pod_5_stalker" team_default = "1">
+    <name>warlab_volunteer_name</name>
+    <icon>ui_inGame2_monolit_1</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio>A volunteer of the project "Awareness".</bio>
+    <class>trader</class>
+    <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>12612</rank>
+    <reputation>-694</reputation>
+    <visual>actors\stalker_osoznanie\stalker_osoznanie_1</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+    </supplies>
+    </specific_character>
+
+    <specific_character id="warlab_pod_6_stalker" team_default = "1">
+    <name>warlab_volunteer_name</name>
+    <icon>ui_inGame2_monolit_2</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio>A volunteer of the project "Awareness".</bio>
+    <class>trader</class>
+    <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>1268</rank>
+    <reputation>-1820</reputation>
+    <visual>actors\stalker_osoznanie\stalker_osoznanie_2</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+    </supplies>
+    </specific_character>
+
+    <specific_character id="warlab_pod_7_stalker" team_default = "1">
+    <name>warlab_volunteer_name</name>
+    <icon>ui_inGame2_monolit_3</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio>A volunteer of the project "Awareness".</bio>
+    <class>trader</class>
+    <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>17984</rank>
+    <reputation>-2388</reputation>
+    <visual>actors\stalker_osoznanie\stalker_osoznanie_3</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+    </supplies>
+    </specific_character>
+
+    <specific_character id="warlab_invisible_stalker" team_default = "1">
+    <name>warlab_entity_name</name>
+    <icon>ui_inGame2_Hero</icon>
+    <map_icon x="1" y="0"></map_icon>
+    <bio>Unexpected side effect of the project "Awareness".</bio>
+    <class>trader</class>
+    <community>trader</community> <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>346</rank>
+    <reputation>234</reputation>
+    <visual>actors\stalker_invisible\stalker_invisible</visual>
+    <snd_config>characters_voice\human_01\stalker\</snd_config>
+    <supplies>
+    </supplies>
+    <start_dialog>warlab_entity_start</start_dialog>
+    </specific_character>
+
+</xml>

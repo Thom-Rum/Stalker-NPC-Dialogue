@@ -1,0 +1,284 @@
+;==============================================================
+;
+; bun_deactivate_radar.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: April 12, 2019
+;
+;==============================================================
+
+
+[logic]
+active = sr_idle@check_story
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@check_story
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	January 13, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+[sr_idle@check_story]
+
+; on_info = {+story_mode_disabled} sr_idle@nil, sr_idle@wait
+on_info = sr_idle@wait
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@wait
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Brain Scorcher switch on:
+[sr_idle@wait]
+
+; Brain Scorcher being switched off for first time by non-Monolith:
+; on_info = {=actor_community(actor_monolith)} sr_idle@nil
+on_info = {-drq_ql_info_bs_first_pull_done +drx_ql_brain_scorcher_switch_off !actor_community(actor_monolith)} sr_idle@psy_sound %=run_cam_effector(radar_stop:2506:false) =play_sound(brain_scorcher_rumble) =disable_ui +drq_ql_info_bs_first_pull_done%
+
+; Brain Scorcher being switched off after first time by non-Monolith:
+; on_info2 = {+bar_deactivate_radar_done} sr_idle@psy_sound %=run_cam_effector(radar_stop:2506:false) =play_sound(brain_scorcher_rumble) =disable_ui%
+on_info2 = {+drq_ql_info_bs_first_pull_done +drx_ql_brain_scorcher_switch_off !actor_community(actor_monolith)} sr_idle@passive1 %=run_cam_effector(radar_stop:2506:false) =play_sound(brain_scorcher_rumble) =disable_ui%
+
+; Brain Scorcher being switched off for first time by Monolith:
+on_info3 = {-drq_ql_info_bs_first_pull_done +drx_ql_brain_scorcher_switch_off =actor_community(actor_monolith) -drx_ql_info_mon_inf_task_started} sr_idle@passive2 %=run_cam_effector(radar_stop:2506:false) =play_sound(brain_scorcher_rumble) =disable_ui +drq_ql_info_bs_first_pull_done%
+
+; Brain Scorcher being switched off after first time by Monolith:
+on_info4 = {+drq_ql_info_bs_first_pull_done +drx_ql_brain_scorcher_switch_off =actor_community(actor_monolith) -drx_ql_info_mon_inf_task_started} sr_idle@passive3 %=run_cam_effector(radar_stop:2506:false) =play_sound(brain_scorcher_rumble) =disable_ui%
+
+; Brain Scorcher being switched off by Monolith infiltrator:
+on_info5 = {+drx_ql_brain_scorcher_switch_off =actor_community(actor_monolith) +drx_ql_info_mon_inf_task_started} sr_idle@psy_sound %=run_cam_effector(radar_stop:2506:false) =play_sound(brain_scorcher_rumble) =disable_ui +drq_ql_info_bs_first_pull_done%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@psy_sound
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Actor passing out:
+[sr_idle@psy_sound]
+
+; on_info = %=play_sound(psy_blackout)%
+
+; Play actor passing out effect:
+; on_timer  = 10500| {-bun_actor_fall} %=disable_ui +bun_actor_fall =run_postprocess(agr_u_fade)%
+on_signal = sound_end | {-bun_actor_fall} %=disable_ui +bun_actor_fall =run_postprocess(agr_u_fade)%
+
+; Run Radar dream cutscene:
+; on_signal = sound_end | sr_idle@sleep %=run_tutorial(radar_dream) +sar_monolith_call +bun_antenna_off%
+on_timer  = 15000 | sr_idle@sleep %=run_tutorial(radar_dream) +sar_monolith_call +bun_antenna_off%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[sr_idle@sleep]
+on_info  = {+bun_patrol_start} sr_idle@monolith_call %=run_cam_effector(prison_1:2506:false)%
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@monolith_call
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Actor waking up:
+[sr_idle@monolith_call]
+
+; Play call of the Monolith sound:
+; on_info = %=play_sound(bun_monolith_call_1)%
+on_timer = 100 | %=play_sound(bun_monolith_call_1)%
+
+; Give Find Wishgranter task:
+; on_signal = sound_end|sr_idle@patrol_sound %=enable_ui%
+on_signal = sound_end | sr_idle@monolith_task %=enable_ui%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@monolith_task
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Actor waking up:
+[sr_idle@monolith_task]
+
+; Give Find Wishgranter task:
+on_timer = 1000 | sr_idle@revert_faction %=give_task(drx_ql_special_task_find_wish_granter) +sar_monolith_quest_started%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@revert_faction
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Revert actor faction after Monolith Infiltration task:
+[sr_idle@revert_faction]
+
+; Revert Monolith infiltrator faction:
+on_timer = 2000 | sr_idle@patrol_sound %+drx_ql_info_mon_inf_stop%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@patrol_sound
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Monolith defenders radio call:
+[sr_idle@patrol_sound]
+
+; Play Monolith defenders radio call:
+; on_timer = 5000 | %=play_sound(bun_patrol_prikaz)%
+on_timer = 2000 | sr_idle@nil %=play_sound(bun_patrol_prikaz)%
+
+; on_signal = sound_end|sr_idle@give_task
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[sr_idle@give_task]
+on_timer = 5000 | sr_idle@nil %=give_task(sar_monolith) +sar_monolith_quest_started%
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@nil
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	January 13, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Brain Scorcher switch off:
+[sr_idle@nil]
+on_info = {-drx_ql_brain_scorcher_switch_off} sr_idle@passive %=run_cam_effector(radar_stop:2506:false) =play_sound(brain_scorcher_rumble) =disable_ui%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@passive
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	January 13, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Brain Scorcher switch turning on:
+[sr_idle@passive]
+on_signal = cameff_end | %=enable_ui =drx_ql_change_factions(monolith)% sr_idle@wait
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@passive1
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	January 13, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Brain Scorcher switch turning off:
+[sr_idle@passive1]
+on_signal = cameff_end | %=enable_ui% sr_idle@nil
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@passive2
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Brain Scorcher switch turning off by Monolith for first time:
+[sr_idle@passive2]
+on_signal = cameff_end | %=enable_ui +drx_ql_info_defected_monolith =drx_ql_change_factions(stalker)% sr_idle@defector_sound
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@defector_sound
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Brain Scorcher switch turning off by Monolith for first time:
+[sr_idle@defector_sound]
+on_timer = 3000 | sr_idle@nil %=play_sound(bun_patrol_prikaz)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; sr_idle@passive3
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	April 12, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Brain Scorcher switch turning off by Monolith after first time:
+[sr_idle@passive3]
+on_signal = cameff_end | %=enable_ui +drx_ql_info_defected_monolith =drx_ql_change_factions(stalker)% sr_idle@nil
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

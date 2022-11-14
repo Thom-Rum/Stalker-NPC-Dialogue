@@ -1,0 +1,45 @@
+;==============================================================
+;
+; x10_timer_restrictor.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: August 11, 2019
+;
+;==============================================================
+
+
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_info = {+bar_deactivate_radar_done} sr_idle@nil
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; No psi effect if actor Zombified or Monolith and not on Monolith Infiltration task
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	August 11, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; on_info2 = {=actor_community(actor_monolith)} sr_idle@nil
+on_info2 = {=actor_community(actor_monolith) -drx_ql_info_mon_inf_task_started} sr_idle@nil
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+on_actor_inside = sr_timer@1 %=play_sound(rad_hat_1)%
+
+[sr_timer@1]
+type = dec
+start_value = 360000
+on_value = 5 | %=play_sound(rad_hat_2)% | 0 | sr_idle@nil %=kill_actor%
+;on_actor_outside = sr_idle
+on_info = {+bar_deactivate_radar_done} sr_idle@nil
+string = st_helmet_countdown
+
+[sr_idle@nil]

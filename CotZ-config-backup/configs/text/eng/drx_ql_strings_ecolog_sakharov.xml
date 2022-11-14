@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Professor Sakharov (Ecologist Trader, Yantar) (drx_ql_strings_ecolog_sakharov.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_ecolog_sakharov.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 01, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sakharov (Ecologist Trader) Payoff Change Factions Task -->
+
+	<string id="drx_ql_yan_stalker_sakharov_cf_task_1_name">
+		<text>Raise Funds to Become an Ecologist</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_cf_task_1_text">
+		<text>Sakharov wants me to raise 17,000 RU to help the Ecologists if I want to join them.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_cf_task_1_about">
+		<text>Ah, well, we don't normally recruit stalkers to become Ecologists. However, we just happen to currently be in a bit of a bind. We are running out of funding for our current research project. We need at least 17,000 RU to keep it going. If you are willing to raise the money for us, you can join our camp.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_cf_task_1_finish">
+		<text>Wonderful! Excellent! Thank you! Please, make yourself at home here, fellow Ecologist.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sakharov (Ecologist Trader) Tissue Sample Task -->
+
+	<string id="drx_ql_yan_stalker_sakharov_task_1_name">
+		<text>%s Tissue Sample for Sakharov</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_1_text">
+		<text>Sakharov needs a tissue sample from a %s.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_1_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_1_fetch_about">
+		<text>I need to collect tissue samples from a %s. I don't care how you get it, just make sure it's fresh. Get here A.S.A.P. as soon as you recover what I need from the mutant.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_1_fetch_finish">
+		<text>Thank you, sir. This will help immensely in my research.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sakharov (Ecologist Trader) Zombie Outbreak Task- -->
+
+	<string id="drx_ql_yan_stalker_sakharov_task_2_name">
+		<text>Contain the Zombie Outbreak</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_2_text">
+		<text>A large horde of zombified stalkers has escaped the production complex in Yantar. Help the Ecologists contain the outbreak.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_2_about">
+		<text>A large mass of zombified stalkers has been sighted emerging from the production complex and they are heading this way. My colleagues have taken up defensive positions outside but they are lightly armed and not very well trained for combat. Please go out and help them contain the outbreak before it spreads!</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_2_finish">
+		<text>You have done well. Please accept this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sakharov (Ecologist Trader) Eliminate Mutant Threat Task -->
+
+	<string id="drx_ql_yan_stalker_sakharov_task_3_name">
+		<text>Eliminate Yantar Mutant Threat</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_3_text">
+		<text>Professor Sakharov is concerned about the safety of his fellow researchers. Eliminate the mutant threat in Yantar to keep the scientists from being attacked.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_3_about">
+		<text>Oh yes, good, good! I have a job for you indeed. My researchers have been getting harassed by some of the local wildlife. Would you mind clearing out the area before these rouge mutants hurt someone?</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_3_finish">
+		<text>Thank you stalker. Please accept this as payment for your services.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sakharov (Ecologist Trader) Research Documents Storyline Task -->
+
+	<string id="drx_ql_yan_stalker_sakharov_task_4_name">
+		<text>Sakharov Research Documents</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_4_text">
+		<text>Some of Professor Sakharov's research papers were left behind when his scientist fled from a mutant attack. Retrieve the documents and return them to Sakharov.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_4_about">
+		<text>Ah, yes, I'm glad you asked. One of my researchers just returned from the field. He had to abandon his notes after being attacked by mutants. He is terrified to go back there. I need that research, stalker. Please retrieve it for me, I will gladly compensate you for your trouble.</text>
+	</string>
+	<string id="drx_ql_yan_stalker_sakharov_task_4_finish">
+		<text>Thank you stalker! Please, take this as your payment.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

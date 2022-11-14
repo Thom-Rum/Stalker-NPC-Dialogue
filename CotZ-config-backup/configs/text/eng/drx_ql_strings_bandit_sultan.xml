@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Text Strings for Tasks Given by Sultan (Bandit Honcho, Dark Valley) (drx_ql_strings_bandit_sultan.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<		- Tasks file: configs\misc\drx_ql_tasks\drx_ql_tasks_bandit_sultan.ltx
+<
+<	Created by: DoctorX
+<	Last revised: September 01, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Change Factions Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sultan (Bandit Honcho) Payoff Change Factions Task -->
+
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_cf_task_1_name">
+		<text>Pay Tribute to Sultan to Join Bandits</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_cf_task_1_text">
+		<text>Sultan will let you join the Bandits but first you must pay him a 5,000 RU tribute.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_cf_task_1_about">
+		<text>You want to be a Bandit? Well, first you must pay tribute to Sultan... 5,000 RU. I don't trust you so I want it up front.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_cf_task_1_finish">
+		<text>Very good. Grab a vodka and go meet your fellow Bandits. They're the finest scumbags in the Zone.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Dynamic Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 01, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sultan (Bandit Honcho) Mob Hit Task -->
+
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_1_name">
+		<text>Mob Hit</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_1_text">
+		<text>Find and eliminate %s called %s then return to Sultan for payment.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_1_about">
+		<text>There are many people in the Zone who have rubbed me the wrong way or shown me disrespect. Some of these pricks either owe me money or fucked up some deal. These people are nothing but rats that need stomped out. If you are up for the task, I will give you their information so that you can track them through GPS.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_1_finish">
+		<text>Great work! Here's a little something for your trouble:</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sultan (Bandit Honcho) Dynamic Brawl Task -->
+
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_2_name">
+		<text>Elimination</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_2_text">
+		<text>Meet up with the bandits that were attacked by %s and lead them in the counter-assault.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_2_text_1">
+		<text>Eliminate the %s that attacked a fellow bandit.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_2_about">
+		<text>A group of %s took a shot at one of our boys. Go take a couple guys and teach those pieces of shit a lesson.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_2_message">
+		<text>Hey, %s! Over here, those pricks that shot at us are this way.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_2_finish">
+		<text>Done? Good.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sultan (Bandit Honcho) Eliminate Military Presence Task -->
+
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_3_name">
+		<text>Eliminate the Military Presence</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_3_text">
+		<text>Sultan wants you to eliminate any Military personnel in the area.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_3_about">
+		<text>Those Military fucks are creeping around here again. Go take care of them.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_3_finish">
+		<text>Excellent work. You have done well.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sultan (Bandit Honcho) Turf War Task -->
+
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_4_name">
+		<text>Turf War</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_4_text">
+		<text>Wipe out the %s that have been threatening Sultan's business.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_4_about">
+		<text>A group of %s have been trying to muscle their way in on one of my operations. Go show them who has the bigger muscles.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_4_finish">
+		<text>Good work.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sultan (Bandit Honcho) Rescue Prisoner Task -->
+
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_5_name">
+		<text>Rescue the Bandit Prisoner</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_5_text">
+		<text>A group of %s have captured a Bandit and are holding him for ransom. Free the prisoner and eliminate his captors.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_5_about">
+		<text>Some bastard %s are holding one of our boys prisoner and demanding we pay a ransom. Go over there and give them their payment... in lead. Nobody fucks with the Bandits.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_5_finish">
+		<text>You killed them? All of them? Good. Ah, and the hostage is still alive too. Even better.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Sultan (Bandit Honcho) Retrieve Lock Box Task- -->
+
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_6_name">
+		<text>Retrieve Lock Box for Sultan</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_6_text">
+		<text>Sultan needs the contents of a lock box returned to him.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_6_about">
+		<text>I need you to retrieve a case for me. It's hidden in a stash. Whatever else is in that stash is yours, but the case is mine. Deal? I will give you the rest of your reward when you have brought it back to me.</text>
+	</string>
+	<string id="drx_ql_zat_b7_bandit_boss_sultan_task_6_finish">
+		<text>Excellent! You have done well.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

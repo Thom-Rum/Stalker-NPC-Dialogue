@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Freedom Task Strings (drx_ql_strings_freedom.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: November 07, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Freedom Storyline Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 07, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Infiltrate Lab X-8 (Outskirts) Storyline Task (LINKS TO: Build Gauss Gun Task) -->
+
+	<string id="drx_ql_freedom_sl_task_1_name">
+		<text>Infiltrate Lab X-8</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_1_text">
+		<text>Search Lab X-8 in the Outskirts to see if the blueprints still exist to build a Gauss Gun.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_1_about_pre_npc_1">
+		<text>What's up?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_1_about_pre_actor_1">
+		<text>I need some better weaponry. I've run up against some Monolith who have an incredibly powerful rifle, the likes of which I have never seen. Do you know where I can get one?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_1_about_pre_npc_2">
+		<text>Yes, that is superior weapon. It's called a Gauss Rifle, otherwise known as "Item 62". It was apparently being developed in secret here in the Zone by military researchers years ago. Unfortunately the Monolith have since managed to capture all of the examples that were built. The only way to get your hands on one now is to pry it from the cold dead hands of a Monolith sniper, or to build one yourself.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_1_about_pre_actor_2">
+		<text>So let's build one. Do you know how?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_1_about_pre_npc_3">
+		<text>I don't. No one left in the Zone does. It's rumored that the research on the prototype was being conducted in a bunker in the Outskirts, but that place has been inaccessible for years.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_1_about_pre_actor_3">
+		<text>I can try to get in there. Maybe I can find some of the original plans.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_1_about">
+		<text>If you do, bring them back here. If I have the blueprints and we can find the materials, I'll help you build your gun.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_1_finish">
+		<text>Great job. Give me some time to examine the plans.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Build Gauss Gun Storyline Task (LINKS FROM: Infiltrate Lab X-8) (LINKS TO: Wait for Gauss Gun Task) -->
+
+	<string id="drx_ql_freedom_sl_task_2_name">
+		<text>Gauss Gun Components</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_2_text">
+		<text>{npc_name} can build a Gauss Gun if you can find some capacitors, wire, and a Flash artefact.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_2_about">
+		<text>You found something? Yes, this is it! These are the plans we need to build the Gauss Gun! Let me see... I can find most of the materials we will need around here. There are only a few components I will need you to search for; capacitors, some coil wire... and it looks like it's powered by a Flash artefact. I think I know where you can find the capacitors and the wire, but you're on your own as far as finding a Flash. If you manage to find all of the components, bring them to me and I'll get started on the construction.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_2_finish">
+		<text>Thanks bro. This gets up one step closer to building a Gauss Rifle.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Wait For Gauss Gun Storyline Task (LINKS FROM: Build Gauss Gun Task) -->
+
+	<string id="drx_ql_freedom_sl_task_3_name">
+		<text>Wait for Gauss Gun Completion</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_3_text">
+		<text>{npc_name} is working on completing the Gauss Gun and has promised it will be ready within the next day or two. He will contact you when it is finished.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_3_about">
+		<text>Ah good, you were able to find the components. I've already started construction of the rifle, with these parts I should have it ready in a couple days. I'll let you know when it's complete.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_3_message">
+		<text>I've finished constructing the weapon. Come see me when you can.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_3_finish">
+		<text>The Gauss Rifle is complete, here you go. If you want to repay the favor, just make sure the first thing you kill with it is a Monolith.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Defend the Barrier Storyline Task- -->
+
+	<string id="drx_ql_freedom_sl_task_4_name">
+		<text>Defend the Barrier</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_4_text">
+		<text>A Monolith assault force is trying to penetrate the barrier between Radar and Army Warehouses. Prevent them from breaking through.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_4_about">
+		<text>We are on red alert! A large Monolith attack force has been sighted advancing toward the barrier on the road to Radar. Get down there immediately and help hold them off! We must not allow them to gain any ground!</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_4_finish">
+		<text>You have done well for us. Please take this as reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Search Agroprom Underground Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_5_name">
+		<text>Search Agroprom Underground</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_5_text">
+		<text>Skinflint believes the Military is hiding important information in the tunnels below Agroprom. Covertly infiltrate the complex and return any information you find to him.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_5_about_pre_npc_1">
+		<text>I know. I requested to see you specifically. You seem to be good at slipping into areas that should be impenetrable. I have a need for such a talent and would be willing to reward you well, if you are interested.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_5_about_pre_actor_1">
+		<text>What's the job?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_5_about">
+		<text>The Military has taken a rather inexplicable interest in making sure no one goes down into the tunnels below Agroprom, and I know why. There is information down there, information that is so incriminating that the government will do anything to keep it from getting out. Only they don't know where it is yet. I need you to find it before they do.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_5_finish">
+		<text>You are a legend, my friend. Look at this, did you read it? These documents confirm there were secret experiments that were being conducted at various locations right here in the Zone. Man, they were up to some spooky shit; genetic experimentation, biological alteration, mind control... Damned exploitation of this wonderful place. This is big, man. There is much more to this story and we've just scratched the surface. Whoever was conducting these experiments is the real monster in the Zone, we need to get to the bottom of this. Thanks for bringing this to me stalker, here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Manhunt Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_6_name">
+		<text>Kill the Puppet Master</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_6_text">
+		<text>Skinflint has evidence that %s known as %s is the mastermind behind the recent attacks against Freedom. Interrogate local stalkers to try to track him down.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_6_about_pre_npc_1">
+		<text>My investigations into the recent attacks around here has uncovered that they have not been just random skirmishes like we thought. The attacking faction does not have a very well-defined leadership structure to speak of, however there is one name that keeps coming up over and over. There is one man who seems to be the one organizing and planning these attacks.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_6_about_pre_actor_1">
+		<text>Who is he? Can we get to him?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_6_about_pre_npc_2">
+		<text>I don't have much intel on him other than a name and a blurry photograph. But he is most definitely the mastermind behind the slaughter of our Freedom brothers. I believe he is an influencer, that he is gaining the will of small squads like a cult leader and goading them into attacking us. If we can eliminate him, we will be one step closer to ending this bloodshed.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_6_about_pre_actor_2">
+		<text>How can we find him?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_6_about">
+		<text>He may be a charismatic leader, but he is a stalker all the same. Everyone leaves footprints. He must have had dealings with other stalkers along his journey into the Zone. Talk to them, see if you can put the pieces together to find out how to get to him.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_6_finish">
+		<text>You have done a great deed stalker. Thank you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Infiltrate Lab X-18 (Dark Valley) Storyline Task (LINKS TO: Wait For Psi Helmet)-->
+
+	<string id="drx_ql_freedom_sl_task_7_name">
+		<text>Infiltrate Lab X-18</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_7_text">
+		<text>Search Lab X-18 in Dark Valley for evidence of a conspiracy and a Military cover-up.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_7_about_pre_npc_1">
+		<text>My sources have made me aware of the location of a hidden underground bunker in Dark Valley that is currently being guarded by the Military. Apparently whatever is down there is so sensitive that they won't even let their own men go down in there. I believe this could be related to the secret experiments that were described in the documents you found in Agroprom.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_7_about_pre_actor_1">
+		<text>What do you think is down there?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_7_about_pre_npc_2">
+		<text>They're trying to hide something, and we need to find out what it is. If there is evidence of the experiments down there, this could be huge. We could be on the verge of uncovering a massive conspiracy.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_7_about_pre_actor_2">
+		<text>What do you need me to do?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_7_about">
+		<text>Sneak in there, see what it is they don't want anyone else to see. Search around for any clues as to what it is they were doing down there. We're about to blow this thing wide open, man.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_7_finish">
+		<text>Thanks man. This is a great find.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Wait For Psi Helmet Storyline Task (LINKS FROM: Infiltrate Lab X-18) (LINKS TO: Disable the Miracle Machine)-->
+
+	<string id="drx_ql_freedom_sl_task_8_name">
+		<text>Wait for Experimental Device</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_8_text">
+		<text>{npc_name} has asked Screw to try to construct the device described in the notes discovered in Lab X-18. He will contact you when it is finished.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_8_about_pre_npc_1">
+		<text>You did it? You are the man. Let me see what you found... Damn, no wonder they were trying to hide this. The experiments they were conducting down there were horrific; immoral and illegal. Look at this; experimenting on living organisms to alter their genetic and biological makeup, exposing them to mind-altering fields, disecting their brains while they were still alive... This is huge, man.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_8_about_pre_actor_1">
+		<text>Look at the last few pages, it looks like technical drawings on a device they were trying to build.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_8_about">
+		<text>Yes, you're right. I wonder what this could be for? Let me show this to Screw, he might actually be able to build one from these plans and then maybe we can find out what it was being developed for. This was a great find stalker, I'll be in touch with you in the next day or two after Screw is done constructing the device.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_8_message">
+		<text>Hey man, come see me. Screw finished building the device and you'll never believe what it is! Get over here quick!</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_8_finish">
+		<text>This helmet will protect you against the effects of the psi fields.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Disable the Miracle Machine Storyline Task (LINKS FROM: Wait For Psi Helmet)-->
+
+	<string id="drx_ql_freedom_sl_task_9_name">
+		<text>Infiltrate the Miracle Machine</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_9_text">
+		<text>Test the psi helmet by using it to gain access to Lab X-16. Find a way to disable the emitter causing the localized psi field there.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_9_about_pre_npc_1">
+		<text>Hey man, check it out! Screw was able to build the device described in the documents you recovered from Lab X-18. Do you know what this is?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_9_about_pre_actor_1">
+		<text>A tinfoil helmet. You've finally lost it, Skinflint.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_9_about_pre_npc_2">
+		<text>It's a little more sophisticated than that. This, my friend, is a device they were developing to counter the effects of a psi field. With it the wearer should be protected from harmful psi fields like the one in Radar, allowing access for a limited amount of time.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_9_about_pre_actor_2">
+		<text>Are you saying I could enter Radar with this thing?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_9_about">
+		<text>The helmet is still untested. The field in Radar is massive, it could be too powerful for the device. I suggest you test it on a smaller target first. There is an abandoned lab in Yantar that is surrounded by a similar, but far weaker field. See if this helmet will allow you to approach the complex. If at any point you start getting the urge to eat brains then turn back around immediately. But if this does actually work, then find a way into the bunker and see if you can find a way to disable the emitter. If we can find a way to defeat the emitter in Yantar perhaps it will get us one step closer to deactivating the Brain Scorcher and opening the path to the North.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_9_finish">
+		<text>Hey, you made it! The device actually worked! You have done a great job stalker, please accept this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Meet With Bonesetter Storyline Task (LINKS TO: Loner Bonesetter Deactivate Brain Scorcher) -->
+
+	<string id="drx_ql_freedom_sl_task_10_name">
+		<text>Meet with Bonesetter</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_10_text">
+		<text>Bonesetter can administer a serum that will allow you to infiltrate the Monolith cult and gain access to the Brain Scorcher. You should finish up any outstanding tasks and find a place to stash your gear before meeting with him.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_10_about_pre_npc_1">
+		<text>Our situation has become very grim up here. We are the only force north of the Brain Scorcher working to protect the Zone and stop the spread of the Monolith. We dare not abandon our only foothold in the north, but our supplies are running thin and we are down to just a handful of troops. As long as the Brain Scorcher remains active, we are cut off from the rest of the Zone, unable to be resupplied or reinforced, and meanwhile countless innocent lives continue to be lost to the emissions the Scorcher puts out. We must put an end to this. The time to act is now.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_10_about_pre_actor_1">
+		<text>What can I do to help?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_10_about_pre_npc_2">
+		<text>I understand you are in possession of a device that will allow you to harmlessly pass through psi fields that would kill the rest of us, or convert us into Monolith cultists or mindless zombies. You could use your device to gain access to the compound in Radar that houses the Brain Scorcher emitter array and possibly find a way to deactivate it.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_10_about_pre_actor_2">
+		<text>That's easier said than done. The compound is crawling with Monolith cultists that are fanatically devoted to killing anything that enters there and isn't converted by the psi field. It would take a small army to penetrate their defenses, and I only have one psi helmet.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_10_about_pre_npc_3">
+		<text>There might be another way. We have discovered a serum that was being developed by the researchers here that mimics the effects of exposure to a psi field without altering the user's mind. We will administer the serum to you and my men will smuggle you aboard one of the Monolith's death trucks that they use to ferry victims of the Brain Scorcher to be converted into their ranks. To them, you will seem like another hapless new recruit. Infiltrate their organization and gain their trust. Gain access to the Brain Scorcher compound and find a way to shut it down.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_10_about_pre_actor_3">
+		<text>Even if this serum works, and I can successfully fool the Monolith into accepting me into their cult, what's stopping everyone else from thinking I'm a Monolith and shooting at me?</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_10_about">
+		<text>Nothing. In order for this to work everyone will have to believe you have become a Monolith member. Your own former allies will believe you are their enemy. The Monolith will strip you of all your gear when they load you on the death truck so you'll have to go in unarmed and build up your supplies while you are in the cult. We will be unable to follow you into Monolith controlled areas affected by the psi fields so you will be completely alone on this. I know this is asking a lot, but right now you are our only hope. Take some time to finish up any outstanding business you might have, say goodbye to your friends, and find a place to stash your gear. When you are ready, go see Bonesetter and he will administer the serum.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Bloodsucker Village Brawl Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_11_name">
+		<text>Clear the Village</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_11_text">
+		<text>A scouting patrol has spotted a few Monolith troops taking up position within Bloodsucker Village. Link up with the scouts and lead the assault to clear the village.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_11_text_1">
+		<text>Push through the village and eliminate the Monolith invaders.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_11_about">
+		<text>A patrol has just radioed in a sighting of Monolith cultists that are currently taking up positions within the abandoned village to the northwest of here. Take a few of the men and link up with the scouts. Push through the village and wipe out any of the Monolith invaders. We must contain the spread of the cultists.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_11_message">
+		<text>Hey %s, over here! We've sighted a few Monolith in the village, not sure how large the force is. You're on point for the attack.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_11_finish">
+		<text>Great work. If the Monolith were to have gained control of that village there would have been no stopping them from spreading further south. Take this as your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Investigate Stingray 1 (Jupiter, Helipad) Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_12_name">
+		<text>Investigate Stingray 1 Crash Site</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_12_text">
+		<text>Navigate through the minefield surrounding the Stingray 1 crash site and locate any information you can find at the wreckage.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_12_about">
+		<text>We saw a couple Military helicopters crash up here a while ago. One of them came down due south of here. I want to find out what the hell they were doing up here, the Military doesn't usually send their birds this far north without a good reason. The area they set down in happens to be right in the middle of a minefield, and so far none of my guys have had the balls to try to navigate their way through to the crash site. If you want to give it a shot, I'll reward you well for any information you can recover from the wreckage.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_12_finish">
+		<text>Damn buddy, you must have balls made of iron. What did you find? Let me see... Ah, a flight plan. So that helicopter was an element of a larger flight, part of something codenamed "Operation Fairway". According to the flight plan their destination was the Chernobyl NPP. Why would they be sending an entire squadron of assault helicopters up to the NPP? It doesn't make any sense, there's nothing up there. Thanks for recovering this information. Here is your reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Monolith Raid Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_13_name">
+		<text>Freedom Assault on Monolith</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_13_text">
+		<text>{npc_name} has asked you to lead Freedom in an assault against the Monolith.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_13_about">
+		<text>I have had enough of the Monolith cultists continually raiding our turf and nibbling away at our forces. I want to take the fight to them for once. I've recruited an assault squad and want you to lead them in an invasion of Monolith territory. Take them out.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_13_finish">
+		<text>Man, you've got a set on you. Great job.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Lukash Deactivate Brain Scorcher Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_14_name">
+		<text>Deactivate the Brain Scorcher</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_14_text">
+		<text>Gain access to Lab X-19 find a way to disable the massive psi emitter located there.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_14_about_pre_npc_1">
+		<text>Stalker, we are ready to take the fight to the Monolith cultists, to invade them on their turf and drive them out, but we cannot do so while the Brain Scorcher continues to operate. You have the power to change that. With your psi device, you are protected from the harmful effects of the field the emitter produces. You must penetrate Radar, infiltrate the bunker located there, and find a way to disable the emitter.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_14_about_pre_actor_1">
+		<text>Surely you don't expect me to take on the platoon of Monolith cultists that are stationed there all alone. I only have one psi helmet, I won't be able to bring anyone to back me up.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_14_about">
+		<text>All you have to do is get in there, once you have disabled the emitter we will be able to storm in and help you fight your way back out. Sneak past the guards at the bunker complex, they won't be expecting anyone to have penetrated that far into Radar so you should stand a chance if you're careful. My men will be stationed in the Red Forest waiting for you to shut off the emitter and will help you make your escape.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_14_finish">
+		<text>Well done. Now that the path to the north is no longer blocked we are that much closer to making the Zone freely accessible to everyone, and to continue our fight against the Monolith cultists.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Investigate Stingray 4 (Jupiter, Jupiter Plant) Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_15_name">
+		<text>Investigate Stingray 4 Crash Site</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_15_text">
+		<text>A distress signal was received from the crew of the Stingray 4 flight. Find the source of the signal and locate the survivors.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_15_text_1">
+		<text>The wreckage of Stingray 4 has been found, but there are no survivors in the area. Search for any clues they may have left behind.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_15_text_2">
+		<text>The map on the PDA found at the crash site shows the location of a potential rally point. Head to the location to see if any survivors have gathered there.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_15_text_3">
+		<text>Interrogate the pilot for information about the failed operation.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_15_about">
+		<text>We intercepted the signal from a distress beacon coming from inside the Jupiter plant. Looks like there were some survivors from the Military's failed mission to send helicopters into the area. I don't think the Military received the signal yet, this could be our chance to find out what they were up to. Head up there and locate the source of the signal before the Military arrives. Find the survivors and interview them to get whatever information they have on the operation and what caused it to fail.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_15_finish">
+		<text>Great job. The information you got out of that pilot was just what we needed to know, although now I wish I never knew it. If the Monolith cult is actually an entire army occupying the center of the Zone it's going to take more firepower than we got to dislodge them. Gotta love the part about anomalies engulfing all of the helicopters at once, though. Score one for the Zone.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Search Jupiter Underground Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_16_name">
+		<text>Search Jupiter Underground</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_16_text">
+		<text>A researcher reportedly has made a major discovery pertaining to the source of the blowouts that have been plaguing the Zone, but he was killed in the Jupiter Underground before he could bring his discovery to light. Search the tunnels to find the evidence he stashed away down there.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_16_about">
+		<text>I received information that a researcher had made a discovery in the Pripyat Outskirts that could hold information as to what the source of the blowouts could be. He was making his way back to Jupiter through the underground passageway, but he was killed before he could return. He may have stashed the evidence down there somewhere. Search the tunnels and see if you can find the information he uncovered.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_16_finish">
+		<text>Ah, what did you find in the tunnels? Let me see... Did you read this? Do you know what this means? This is proof that construction had begun of a third emitter, more powerful than the Brain Scorcher and the Miracle Machine combined! This must be the source of the blowouts, now we must find where it is located. Great job stalker, take this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Loki Dynamic Brawl Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_17_name">
+		<text>Freedom Assault</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_17_text">
+		<text>Meet with the Freedom scouts and lead them in an assault against a large gathering of %s in the area.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_17_text_1">
+		<text>Lead the attack against the %s.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_17_about">
+		<text>A scouting team just reported a sighting of a large group of %s in the area. Go meet up with the scouts and give them a hand. I've ordered them to hold off the assault until you get there, but these boys are always itching for a fight so you'd better hurry.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_17_message">
+		<text>About time you showed up, %s! The enemy is not far from here, let's get 'em!</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_17_finish">
+		<text>Great job. We could not have succeeded without your help. Have this as a reward.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Skinflint Rescue Hostage Storyline Task -->
+
+	<string id="drx_ql_freedom_sl_task_18_name">
+		<text>Free the Freedomer</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_18_text">
+		<text>A Freedomer is being held prisoner by %s. Mount a rescue operation to free him.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_18_about">
+		<text>One of our men was captured by some %s and is being held prisoner. I need you to take out his captors and rescue our comrade.</text>
+	</string>
+	<string id="drx_ql_freedom_sl_task_18_finish">
+		<text>Thank you stalker, you have done a great deed.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Freedom Simulation Task Text Strings
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	September 02, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Investigate Mutant Report with Freedom Simulation Task -->
+
+	<string id="drx_ql_simulation_task_freedom_1_name">
+		<text>Investigate Mutant Report</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_1_text">
+		<text>Team up with {npc_name} to check out a report of mutants in the area.</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_1_about">
+		<text>I'm on my way to investigate a report of some mutants in the area. Want to come check it out with me?</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_1_finish">
+		<text>Damn, I would have been torn to shreds if it weren't for you. Thanks for the help.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Hostage Rescue for Freedom Simulation Task -->
+
+	<string id="drx_ql_simulation_task_freedom_2_name">
+		<text>Freedom Hostage Rescue</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_2_text">
+		<text>The Monolith have taken a member of Freedom prisoner. Eliminate the guards and return him to safety.</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_2_about_pre_npc_1">
+		<text>Please help me! My friend was captured by the Monolith and they are holding him for ransom! Help me raise the money to get them to release him!</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_2_about_pre_actor_1">
+		<text>It's a trap. The Monolith aren't going to set your friend free when you bring them the money. They will shoot you and your friend, then loot the money off your corpse if they really want it.</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_2_about">
+		<text>Then save him! Please, I beg of you. I will show you on your map where he is being held. Please rescue him!</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_2_finish">
+		<text>You did it! Thank you, stalker. It's good to see my friend back and alive! Here, for your trouble:</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Item Swap with Freedom Simulation Task -->
+
+	<string id="drx_ql_simulation_task_freedom_3_name">
+		<text>%s Swap with Freedom</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_3_text">
+		<text>{npc_name} is offering to trade some equipment for a %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_3_about">
+		<text>None</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_3_fetch_about">
+		<text>Hey man, want to swap some equipment? If you can find me a %s in good condition I'll give you my %s.</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_3_fetch_finish">
+		<text>Awesome, you found one! Here you go man, nice doing business with you.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Freedom Stop Enemy Incursion Task -->
+
+	<string id="drx_ql_simulation_task_freedom_4_name">
+		<text>Freedom Patrol</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_4_text">
+		<text>%s have been spotted in the area. Lead your team to clear them out.</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_4_about">
+		<text>We spotted some enemy %s in the area. Want to come with us and help clear them out?</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_4_finish">
+		<text>Thanks for the help, man. Take this in gratitude.</text>
+	</string>
+
+	<!-- ----------------------------------------------------------------------------------------- -->
+	<!-- Search Buildings for Freedom Simulation Task -->
+
+	<string id="drx_ql_simulation_task_freedom_5_name">
+		<text>Failed Delivery</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_5_text">
+		<text>{npc_name} has asked you to locate his missing supplies.</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_5_about">
+		<text>Hey man, I've been expecting a delivery of some, ah, "medical supplies". I don't know what happened to the guy, he should have been here hours ago. Can you go check his hideout to see if he left my supplies in there?</text>
+	</string>
+	<string id="drx_ql_simulation_task_freedom_5_finish">
+		<text>Thanks buddy, here's something for the trouble.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

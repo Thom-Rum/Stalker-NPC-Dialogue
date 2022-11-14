@@ -1,0 +1,475 @@
+;==============================================================
+;
+; Tasks Provided By Monolith (drx_ql_tasks_monolith.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_monolith.xml
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: October 03, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Monolith Storyline Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Monolith Big Mutant Hunt Storyline Task-
+
+[drx_ql_monolith_sl_task_1]
+
+icon = ui_inGame2_PD_Ohotnik_na_mutantov
+storyline = true
+prior = 155
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =actor_on_level(l11_pripyat) =drx_ql_actor_faction() -drx_ql_big_mutant_task_started =drx_ql_find_unoccupied_lair_local(drx_ql_monolith_sl_task_1)} true, false
+
+title = drx_ql_monolith_sl_task_1_name
+descr = drx_ql_monolith_sl_task_1_text
+descr_functor = drx_ql_big_mutant_task_target
+job_descr = drx_ql_monolith_sl_task_1_about
+task_complete_descr = drx_ql_monolith_sl_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_big_mutant_task_target
+status_functor = drx_ql_big_mutant_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_monolith_sl_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_monolith_sl_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_monolith_sl_task_1) =drx_ql_create_big_mutant_squad(drx_ql_monolith_sl_task_1) +drx_ql_big_mutant_task_started%
+
+on_complete = %=drx_ql_reward_random(1500:2500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =inc_task_stage(drx_ql_monolith_sl_task_1) -drx_ql_big_mutant_task_started =drx_ql_reset_task(drx_ql_monolith_sl_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_monolith_sl_task_1) =drx_ql_reset_task(drx_ql_monolith_sl_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_monolith_sl_task_1) =drx_ql_reset_task(drx_ql_monolith_sl_task_1)%
+
+;------------------------------------------------
+; Monolith Raid Enemy Camp Storyline Task-
+
+[drx_ql_monolith_sl_task_2]
+
+icon = ui_inGame2_PD_Lider
+storyline = true
+prior = 175
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(pri_monolith_monolith_trader_stalker) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_ext(monolith:drx_ql_monolith_sl_task_2) !squad_exist(drx_ql_raid_companion_squad_monolith_2)} true, false
+
+title = drx_ql_monolith_sl_task_2_name
+descr = drx_ql_monolith_sl_task_2_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_monolith_sl_task_2_about
+task_complete_descr = drx_ql_monolith_sl_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_monolith_sl_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_monolith_sl_task_2)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_monolith_sl_task_2) =drx_ql_give_escort_task_companions(drx_ql_raid_companion_squad_monolith_2)%
+
+on_complete = %=drx_ql_reward_random(3000:5000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_monolith_2) =inc_task_stage(drx_ql_monolith_sl_task_2) =drx_ql_reset_task(drx_ql_monolith_sl_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_monolith_2) =drx_ql_fail_task(drx_ql_monolith_sl_task_2) =drx_ql_reset_task(drx_ql_monolith_sl_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_monolith_2) =drx_ql_fail_task(drx_ql_monolith_sl_task_2) =drx_ql_reset_task(drx_ql_monolith_sl_task_2)%
+
+;------------------------------------------------
+; Monolith Hunt for Food Storyline Task-
+
+[drx_ql_monolith_sl_task_3]
+
+icon = ui_inGame2_PD_Ohotnik_na_mutantov
+storyline = true
+prior = 158
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(monolith:drx_ql_monolith_sl_task_3:monster) !squad_exist(drx_ql_raid_companion_squad_monolith_1)} true, false
+
+title = drx_ql_monolith_sl_task_3_name
+descr = drx_ql_monolith_sl_task_3_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_monolith_sl_task_3_about
+task_complete_descr = drx_ql_monolith_sl_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monster
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_monolith_sl_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_monolith_sl_task_3)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_monolith_sl_task_3) =drx_ql_give_escort_task_companions(drx_ql_raid_companion_squad_monolith_1)%
+
+on_complete = %=drx_ql_reward_random(2000:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_monolith_1) =inc_task_stage(drx_ql_monolith_sl_task_3) =drx_ql_reset_task(drx_ql_monolith_sl_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_monolith_10) =drx_ql_fail_task(drx_ql_stalker_sl_task_1) =drx_ql_reset_task(drx_ql_monolith_sl_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_monolith_10) =drx_ql_fail_task(drx_ql_stalker_sl_task_1) =drx_ql_reset_task(drx_ql_monolith_sl_task_3)%
+
+; -----------------------------------------------
+; Monolith Search Agroprom Underground Storyline Task-
+
+[drx_ql_monolith_sl_task_4]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(25) =drx_ql_actor_faction() -drx_ql_info_main_task_agr_u_done} true, false
+
+title = drx_ql_monolith_sl_task_4_name
+descr = drx_ql_monolith_sl_task_4_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_monolith_sl_task_4_about
+task_complete_descr = drx_ql_monolith_sl_task_4_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = agr_space_restrictor_to_agr_ug_2
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_monolith_sl_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_monolith_sl_task_4)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_monolith_sl_task_4:main_story_1_quest_case) =drx_ql_activate_teleport(agr_space_restrictor_to_agr_ug_1:agr_space_restrictor_to_agr_ug_2:agr_space_restrictor_to_agr_ug_4)%
+
+on_complete = %=drx_ql_reward_item(6000:8000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =drx_ql_release_story_item(main_story_1_quest_case) =inc_task_stage(drx_ql_monolith_sl_task_4) +drx_ql_info_main_task_agr_u_done =drx_ql_reset_task(drx_ql_monolith_sl_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_monolith_sl_task_4) =drx_ql_reset_task(drx_ql_monolith_sl_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_monolith_sl_task_4) =drx_ql_reset_task(drx_ql_monolith_sl_task_4)%
+
+;------------------------------------------------
+; Monolith Dynamic Brawl Storyline Task-
+
+[drx_ql_monolith_sl_task_5]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_brawl_terrain(monolith:drx_ql_monolith_sl_task_5)} true, false
+
+title = drx_ql_monolith_sl_task_5_name
+descr = drx_ql_monolith_sl_task_5_text
+descr_1 = drx_ql_monolith_sl_task_5_text_1
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_monolith_sl_task_5_about
+message = drx_ql_monolith_sl_task_5_message
+task_complete_descr = drx_ql_monolith_sl_task_5_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_monolith_sl_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_monolith_sl_task_5)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_monolith_sl_task_5:4:2)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =inc_task_stage(drx_ql_monolith_sl_task_5) =drx_ql_end_brawl_task(drx_ql_monolith_sl_task_5) =drx_ql_reset_task(drx_ql_monolith_sl_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_end_brawl_task(drx_ql_monolith_sl_task_5) =drx_ql_fail_task(drx_ql_monolith_sl_task_5) =drx_ql_reset_task(drx_ql_monolith_sl_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_end_brawl_task(drx_ql_monolith_sl_task_5) =drx_ql_fail_task(drx_ql_monolith_sl_task_5) =drx_ql_reset_task(drx_ql_monolith_sl_task_5)%
+
+;------------------------------------------------
+; Monolith Destroy the Non-Believers Storyline Task-
+
+[drx_ql_monolith_sl_task_6]
+
+icon = ui_inGame2_PD_Lider
+storyline = true
+prior = 175
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_ext(monolith:drx_ql_monolith_sl_task_6) !squad_exist(drx_ql_raid_companion_squad_monolith_1)} true, false
+
+title = drx_ql_monolith_sl_task_6_name
+descr = drx_ql_monolith_sl_task_6_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_monolith_sl_task_6_about
+task_complete_descr = drx_ql_monolith_sl_task_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_monolith_sl_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_monolith_sl_task_6)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_monolith_sl_task_6) =drx_ql_give_escort_task_companions(drx_ql_raid_companion_squad_monolith_1)%
+
+on_complete = %=drx_ql_reward_random(3000:5000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_monolith_1) =inc_task_stage(drx_ql_monolith_sl_task_6) =drx_ql_reset_task(drx_ql_monolith_sl_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_monolith_1) =drx_ql_fail_task(drx_ql_monolith_sl_task_6) =drx_ql_reset_task(drx_ql_monolith_sl_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_monolith_1) =drx_ql_fail_task(drx_ql_monolith_sl_task_6) =drx_ql_reset_task(drx_ql_monolith_sl_task_6)%
+
+;------------------------------------------------
+; Monolith Venture into the Zone Storyline Task-
+
+[drx_ql_monolith_sl_task_7]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = true
+prior = 165
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_ext(monolith:drx_ql_monolith_sl_task_7)} true, false
+
+title = drx_ql_monolith_sl_task_7_name
+descr = drx_ql_monolith_sl_task_7_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_monolith_sl_task_7_about
+task_complete_descr = drx_ql_monolith_sl_task_7_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_monolith_sl_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_monolith_sl_task_7)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_monolith_sl_task_7)%
+
+on_complete = %=drx_ql_reward_random(3500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =inc_task_stage(drx_ql_monolith_sl_task_7) =drx_ql_reset_task(drx_ql_monolith_sl_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_monolith_sl_task_7) =drx_ql_reset_task(drx_ql_monolith_sl_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_monolith_sl_task_7) =drx_ql_reset_task(drx_ql_monolith_sl_task_7)%
+
+;------------------------------------------------
+; Monolith Recover Stolen Equipment Task-
+
+[drx_ql_monolith_sl_task_8]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = true
+prior = 180
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_case_task_started =drx_ql_is_enemy(stalker) =is_factions_enemies(monolith:stalker) !squad_exist(drx_ql_designated_target_squad_stalker) =drx_ql_find_unoccupied_smart_terrain(drx_ql_monolith_sl_task_8)} true, false
+
+title = drx_ql_monolith_sl_task_8_name
+descr = drx_ql_monolith_sl_task_8_text
+descr_functor = drx_ql_interceptor_task_target
+job_descr = drx_ql_monolith_sl_task_8_about
+task_complete_descr = drx_ql_monolith_sl_task_8_finish
+
+stage_complete = 1
+target_functor = drx_ql_interceptor_task_target
+status_functor = drx_ql_interceptor_task_status
+status_functor_params = drx_ql_quest_item_case
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_monolith_sl_task_8)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_monolith_sl_task_8)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_monolith_sl_task_8) =drx_ql_create_interceptor_squad(drx_ql_monolith_sl_task_8:drx_ql_designated_target_squad_stalker) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_money(3000:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_stalker) =inc_task_stage(drx_ql_monolith_sl_task_8) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_monolith_sl_task_8)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_stalker) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_monolith_sl_task_8) =drx_ql_reset_task(drx_ql_monolith_sl_task_8)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_stalker) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_monolith_sl_task_8) =drx_ql_reset_task(drx_ql_monolith_sl_task_8)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Monolith Simulation Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Bring Supplies for Monolith Simulation Task-
+
+[drx_ql_simulation_task_monolith_1]
+
+icon = ui_inGame2_D_Sisshik
+storyline = false
+prior = 20
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_monolith_1_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_monolith_1_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_monolith_1_about
+fetch_descr = drx_ql_simulation_task_monolith_1_fetch_about
+task_complete_descr = drx_ql_simulation_task_monolith_1_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_monolith_1)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_monolith_1)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_simulation_task_monolith_1:500:900:1:4:0:items_supplies_list)%
+
+on_complete = %=drx_ql_fetch_reward_random(drx_ql_simulation_task_monolith_1:1.5) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =inc_task_stage(drx_ql_simulation_task_monolith_1) =drx_ql_reset_task(drx_ql_simulation_task_monolith_1)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_simulation_task_monolith_1) =drx_ql_reset_task(drx_ql_simulation_task_monolith_1)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_simulation_task_monolith_1) =drx_ql_reset_task(drx_ql_simulation_task_monolith_1)%
+
+;------------------------------------------------
+; Redemption for Monolith Simulation Task-
+
+[drx_ql_simulation_task_monolith_2]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_assassination_target(monolith:drx_ql_simulation_task_monolith_2)} true, false
+
+title = drx_ql_simulation_task_monolith_2_name
+descr = drx_ql_simulation_task_monolith_2_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_simulation_task_monolith_2_about
+task_complete_descr = drx_ql_simulation_task_monolith_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_monolith_2)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_monolith_2)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_simulation_task_monolith_2)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_simulation_task_monolith_2)%
+
+on_complete = %=drx_ql_reward_random(2500:3500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =inc_task_stage(drx_ql_simulation_task_monolith_2) =drx_ql_reset_task(drx_ql_simulation_task_monolith_2)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_simulation_task_monolith_2) =drx_ql_reset_task(drx_ql_simulation_task_monolith_2)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_simulation_task_monolith_2) =drx_ql_reset_task(drx_ql_simulation_task_monolith_2)%
+
+;------------------------------------------------
+; Eliminate Dangerous Mutants for Monolith Simulation Task -
+
+[drx_ql_simulation_task_monolith_3]
+
+icon = ui_inGame2_Nochnaya_ohota
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(stalker:drx_ql_simulation_task_monolith_3:monster)} true, false
+
+title = drx_ql_simulation_task_monolith_3_name
+descr = drx_ql_simulation_task_monolith_3_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_simulation_task_monolith_3_about
+task_complete_descr = drx_ql_simulation_task_monolith_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monster
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_monolith_3)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_monolith_3)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_monolith_3)%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =inc_task_stage(drx_ql_simulation_task_monolith_3) =drx_ql_reset_task(drx_ql_simulation_task_monolith_3)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_simulation_task_monolith_3) =drx_ql_reset_task(drx_ql_simulation_task_monolith_3)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_simulation_task_monolith_3) =drx_ql_reset_task(drx_ql_simulation_task_monolith_3)%
+
+;------------------------------------------------
+; Item Swap with Monolith Simulation Task-
+
+[drx_ql_simulation_task_monolith_4]
+
+icon = ui_iconsTotal_bar_hunter_rifle
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_monolith_4_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_monolith_4_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_monolith_4_about
+fetch_descr = drx_ql_simulation_task_monolith_4_fetch_about
+task_complete_descr = drx_ql_simulation_task_monolith_4_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_monolith_4)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_monolith_4)} fail
+fetch_func = %=drx_ql_setup_swap_task(drx_ql_simulation_task_monolith_4:1000:6000:0.8)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_simulation_task_monolith_4)%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_monolith_4) =remove_fetch_item(drx_ql_simulation_task_monolith_4_fetch) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =inc_task_stage(drx_ql_simulation_task_monolith_4) =drx_ql_reset_task(drx_ql_simulation_task_monolith_4)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_simulation_task_monolith_4) =drx_ql_reset_task(drx_ql_simulation_task_monolith_4)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_fail_task(drx_ql_simulation_task_monolith_4) =drx_ql_reset_task(drx_ql_simulation_task_monolith_4)%
+
+;------------------------------------------------
+; Monolith Guide Simulation Task-
+
+[drx_ql_simulation_task_monolith_5]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = false
+prior = 50
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_guide_task_started =drx_ql_find_guide_target(drx_ql_simulation_task_monolith_5)} true, false
+guide_task = true
+
+title = drx_ql_simulation_task_monolith_5_name
+descr = drx_ql_simulation_task_monolith_5_text
+descr_functor = drx_ql_guide_task_target
+job_descr = drx_ql_simulation_task_monolith_5_about
+message = drx_ql_simulation_task_monolith_5_message
+task_complete_descr = drx_ql_simulation_task_monolith_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_guide_task_target
+status_functor = drx_ql_guide_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_monolith_5)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_monolith_5)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_simulation_task_monolith_5) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_monolith_5) +drx_ql_guide_task_started%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_monolith_5) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =inc_task_stage(drx_ql_simulation_task_monolith_5) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_monolith_5) -drx_ql_guide_task_started =drx_ql_reset_task(drx_ql_simulation_task_monolith_5)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_monolith_5) -drx_ql_guide_task_started =drx_ql_fail_task(drx_ql_simulation_task_monolith_5) =drx_ql_reset_task(drx_ql_simulation_task_monolith_5)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_monolith_5) -drx_ql_guide_task_started =drx_ql_fail_task(drx_ql_simulation_task_monolith_5) =drx_ql_reset_task(drx_ql_simulation_task_monolith_5)%
+
+; -----------------------------------------------
+; Find Lost PDA for Monolith Simulation Task-
+
+[drx_ql_simulation_task_monolith_6]
+
+icon = ui_inGame2_PD_Torgovets_informatsiey
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_pda_task_started =drx_ql_find_unoccupied_smart_terrain(drx_ql_simulation_task_monolith_6)} true, false
+
+title = drx_ql_simulation_task_monolith_6_name
+descr = drx_ql_simulation_task_monolith_6_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_monolith_6_about
+task_complete_descr = drx_ql_simulation_task_monolith_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_monolith_6)} fail
+condlist_1 = {=drx_ql_is_enemy(monolith)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_monolith_6)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_monolith_6:drx_ql_quest_item_pda:50) +drx_ql_quest_item_pda_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:monolith) =remove_item(drx_ql_quest_item_pda) =inc_task_stage(drx_ql_simulation_task_monolith_6) -drx_ql_quest_item_pda_task_started =drx_ql_reset_task(drx_ql_simulation_task_monolith_6)%
+on_fail = %=fail_task_dec_goodwill(50:monolith) =drx_ql_release_float_item(drx_ql_simulation_task_monolith_6) -drx_ql_quest_item_pda_task_started =drx_ql_fail_task(drx_ql_simulation_task_monolith_6) =drx_ql_reset_task(drx_ql_simulation_task_monolith_6)%
+on_cancel = %=fail_task_dec_goodwill(50:monolith) =drx_ql_release_float_item(drx_ql_simulation_task_monolith_6) -drx_ql_quest_item_pda_task_started =drx_ql_fail_task(drx_ql_simulation_task_monolith_6) =drx_ql_reset_task(drx_ql_simulation_task_monolith_6)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

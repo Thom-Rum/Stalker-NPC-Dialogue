@@ -1,0 +1,770 @@
+;==============================================================
+;
+; Tasks Provided By Freedom (drx_ql_tasks_freedom.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_freedom.xml
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: March 26, 2020
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Freedom Storyline Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	March 26, 2020
+;
+;--------------------------------------------------------------------------------------------------
+
+; -----------------------------------------------
+; Freedom Infiltrate Lab X-8 (Outskirts) Storyline Task (LINKS TO: Build Gauss Gun Task)-
+
+[drx_ql_freedom_sl_task_1]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_loki_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_x19_done -drx_ql_info_main_task_labx8_done} true, false
+
+title = drx_ql_freedom_sl_task_1_name
+descr = drx_ql_freedom_sl_task_1_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_freedom_sl_task_1_about
+task_complete_descr = drx_ql_freedom_sl_task_1_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = pri_space_restrictor_to_labx8
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_1)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_freedom_sl_task_1:main_story_5_lab_x8_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1:pri_b306) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2:pri_b306) =drx_ql_activate_teleport(pri_space_restrictor_to_labx8)%
+
+on_complete = %=complete_task_inc_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =inc_task_stage(drx_ql_freedom_sl_task_1) +drx_ql_info_main_task_labx8_done =drx_ql_reset_task(drx_ql_freedom_sl_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =drx_ql_fail_task(drx_ql_freedom_sl_task_1) =drx_ql_reset_task(drx_ql_freedom_sl_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =drx_ql_fail_task(drx_ql_freedom_sl_task_1) =drx_ql_reset_task(drx_ql_freedom_sl_task_1)%
+
+; -----------------------------------------------
+; Freedom Build Gauss Gun Storyline Task (LINKS FROM: Infiltrate Lab X-8) (LINKS TO: Wait for Gauss Gun Task)-
+
+[drx_ql_freedom_sl_task_2]
+
+icon = ui_inGame2_Gauss_pushka
+storyline = true
+prior = 140
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_loki_wait_for_gauss_gun_sl_task_link
+link_back_info = drx_ql_loki_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_freedom_sl_task_2_name
+descr = drx_ql_freedom_sl_task_2_text
+descr_functor = drx_ql_gather_items_task_target
+job_descr = drx_ql_freedom_sl_task_2_about
+task_complete_descr = drx_ql_freedom_sl_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_gather_items_task_target
+status_functor = drx_ql_gather_items_task_status
+status_functor_params = drx_ql_quest_item_capacitors, drx_ql_quest_item_wire, af_electra_flash
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_2)} fail
+on_init = %=give_task(drx_ql_special_task_find_gauss_capacitors) =give_task(drx_ql_special_task_find_gauss_wire) =give_task(drx_ql_special_task_find_gauss_flash)%
+
+on_complete = %=complete_task_inc_goodwill(50:freedom) =remove_item(drx_ql_quest_item_capacitors) =remove_item(drx_ql_quest_item_wire) =remove_item(af_electra_flash) =inc_task_stage(drx_ql_freedom_sl_task_2) =drx_ql_reset_task(drx_ql_freedom_sl_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =set_task_failed(drx_ql_special_task_find_gauss_flash) =set_task_failed(drx_ql_special_task_find_gauss_capacitors) =set_task_failed(drx_ql_special_task_find_gauss_wire) =drx_ql_fail_task(drx_ql_freedom_sl_task_2) =drx_ql_reset_task(drx_ql_freedom_sl_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =set_task_failed(drx_ql_special_task_find_gauss_flash) =set_task_failed(drx_ql_special_task_find_gauss_capacitors) =set_task_failed(drx_ql_special_task_find_gauss_wire) =drx_ql_fail_task(drx_ql_freedom_sl_task_2) =drx_ql_reset_task(drx_ql_freedom_sl_task_2)%
+
+; -----------------------------------------------
+; Freedom Wait For Gauss Gun Storyline Task (LINKS FROM: Build Gauss Gun Task)-
+
+[drx_ql_freedom_sl_task_3]
+
+icon = ui_inGame2_Izdelie_N62
+storyline = true
+prior = 14
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_loki_wait_for_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_freedom_sl_task_3_name
+descr = drx_ql_freedom_sl_task_3_text
+descr_functor = drx_ql_wait_task_target
+job_descr = drx_ql_freedom_sl_task_3_about
+message = drx_ql_freedom_sl_task_3_message
+task_complete_descr = drx_ql_freedom_sl_task_3_finish
+
+stage_complete = 2
+target_functor = drx_ql_wait_task_target
+status_functor = drx_ql_wait_task_status
+status_functor_params = 172800  ; 2 days
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_3)} fail
+on_init = %=drx_ql_save_pstor_ctime(drx_ql_freedom_sl_task_3)%
+
+on_complete = %=reward_random_item(wpn_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_freedom_sl_task_3) =erase_pstor_ctime(drx_ql_freedom_sl_task_3) =drx_ql_reset_task(drx_ql_freedom_sl_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =erase_pstor_ctime(drx_ql_freedom_sl_task_3) =drx_ql_fail_task(drx_ql_freedom_sl_task_3) =drx_ql_reset_task(drx_ql_freedom_sl_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =erase_pstor_ctime(drx_ql_freedom_sl_task_3) =drx_ql_fail_task(drx_ql_freedom_sl_task_3) =drx_ql_reset_task(drx_ql_freedom_sl_task_3)%
+
+;------------------------------------------------
+; Freedom Defend the Barrier Storyline Task-
+
+[drx_ql_freedom_sl_task_4]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mil_smart_terrain_7_7_freedom_leader_stalker) =drx_ql_actor_faction() =drx_ql_is_enemy(monolith) =is_factions_enemies(freedom:monolith) !squad_exist(drx_ql_designated_target_squad_monolith_warehouses_blockade_1) !squad_exist(drx_ql_designated_target_squad_monolith_warehouses_blockade_2) !squad_exist(drx_ql_designated_target_squad_monolith_warehouses_blockade_3) !squad_exist(drx_ql_designated_target_squad_monolith_warehouses_blockade_4) !squad_exist(drx_ql_attack_squad_freedom_warehouses_blockade_1) !squad_exist(drx_ql_attack_squad_freedom_warehouses_blockade_2)} true, false
+
+title = drx_ql_freedom_sl_task_4_name
+descr = drx_ql_freedom_sl_task_4_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_freedom_sl_task_4_about
+task_complete_descr = drx_ql_freedom_sl_task_4_finish
+
+stage_complete = 1
+target = {=check_task_stage(drx_ql_freedom_sl_task_4:1)} mil_smart_terrain_7_7_freedom_leader_stalker, {=squad_exist(drx_ql_designated_target_squad_monolith_warehouses_blockade_1)} drx_ql_designated_target_squad_monolith_warehouses_blockade_1, {=squad_exist(drx_ql_designated_target_squad_monolith_warehouses_blockade_2)} drx_ql_designated_target_squad_monolith_warehouses_blockade_2, {=squad_exist(drx_ql_designated_target_squad_monolith_warehouses_blockade_3)} drx_ql_designated_target_squad_monolith_warehouses_blockade_3, {=squad_exist(drx_ql_designated_target_squad_monolith_warehouses_blockade_4)} drx_ql_designated_target_squad_monolith_warehouses_blockade_4
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_monolith_warehouses_blockade_1, drx_ql_designated_target_squad_monolith_warehouses_blockade_2, drx_ql_designated_target_squad_monolith_warehouses_blockade_3, drx_ql_designated_target_squad_monolith_warehouses_blockade_4
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_4)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_1:mil_smart_terrain_3_8) =create_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_2:mil_smart_terrain_3_8) =create_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_3:mil_smart_terrain_3_8) =create_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_4:mil_smart_terrain_3_8) =create_squad(drx_ql_attack_squad_freedom_warehouses_blockade_1:mil_smart_terrain_4_7) =create_squad(drx_ql_attack_squad_freedom_warehouses_blockade_2:mil_smart_terrain_2_6)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_freedom_sl_task_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_warehouses_blockade_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_warehouses_blockade_2) =drx_ql_reset_task(drx_ql_freedom_sl_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_warehouses_blockade_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_warehouses_blockade_2) =drx_ql_fail_task(drx_ql_freedom_sl_task_4) =drx_ql_reset_task(drx_ql_freedom_sl_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_warehouses_blockade_4) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_warehouses_blockade_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_warehouses_blockade_2) =drx_ql_fail_task(drx_ql_freedom_sl_task_4) =drx_ql_reset_task(drx_ql_freedom_sl_task_4)%
+
+; -----------------------------------------------
+; Freedom Search Agroprom Underground Storyline Task-
+
+[drx_ql_freedom_sl_task_5]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mil_smart_terrain_7_10_freedom_trader_stalker) =drx_ql_actor_faction() -drx_ql_info_main_task_agr_u_done} true, false
+
+title = drx_ql_freedom_sl_task_5_name
+descr = drx_ql_freedom_sl_task_5_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_freedom_sl_task_5_about
+task_complete_descr = drx_ql_freedom_sl_task_5_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = agr_space_restrictor_to_agr_ug_2
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_5)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_freedom_sl_task_5:main_story_1_quest_case) =drx_ql_activate_teleport(agr_space_restrictor_to_agr_ug_1:agr_space_restrictor_to_agr_ug_2:agr_space_restrictor_to_agr_ug_4)%
+
+on_complete = %=drx_ql_reward_item(6000:8000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =drx_ql_release_story_item(main_story_1_quest_case) =inc_task_stage(drx_ql_freedom_sl_task_5) +drx_ql_info_main_task_agr_u_done =drx_ql_reset_task(drx_ql_freedom_sl_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_freedom_sl_task_5) =drx_ql_reset_task(drx_ql_freedom_sl_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_story_item(main_story_1_quest_case) =drx_ql_fail_task(drx_ql_freedom_sl_task_5) =drx_ql_reset_task(drx_ql_freedom_sl_task_5)%
+
+;------------------------------------------------
+; Freedom Manhunt Storyline Task-
+
+[drx_ql_freedom_sl_task_6]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = true
+prior = 145
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mil_smart_terrain_7_10_freedom_trader_stalker) =drx_ql_actor_faction() =drx_ql_find_assassination_target(freedom:drx_ql_freedom_sl_task_6)} true, false
+
+title = drx_ql_freedom_sl_task_6_name
+descr = drx_ql_freedom_sl_task_6_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_freedom_sl_task_6_about
+task_complete_descr = drx_ql_freedom_sl_task_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_6)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_freedom_sl_task_6)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_freedom_sl_task_6) =drx_ql_add_hidden_target(drx_ql_freedom_sl_task_6)%
+
+on_complete = %=drx_ql_reward_random(4500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_freedom_sl_task_6) =drx_ql_reset_task(drx_ql_freedom_sl_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_freedom_sl_task_6) =drx_ql_reset_task(drx_ql_freedom_sl_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_freedom_sl_task_6) =drx_ql_reset_task(drx_ql_freedom_sl_task_6)%
+
+; -----------------------------------------------
+; Freedom Infiltrate Lab X-18 (Dark Valley) Storyline Task (LINKS TO: Wait For Psi Helmet)-
+
+[drx_ql_freedom_sl_task_7]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_skinflint_x18_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mil_smart_terrain_7_10_freedom_trader_stalker) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done -drx_ql_info_main_task_labx18_done -drx_ql_info_main_task_labx16_done} true, false
+
+title = drx_ql_freedom_sl_task_7_name
+descr = drx_ql_freedom_sl_task_7_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_freedom_sl_task_7_about
+task_complete_descr = drx_ql_freedom_sl_task_7_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = val_space_restrictor_to_labx18
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_7)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_freedom_sl_task_7:main_story_2_lab_x18_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_army_valley_x18:val_smart_terrain_1_2) =drx_ql_activate_teleport(val_space_restrictor_to_labx18)%
+
+on_complete = %=complete_task_inc_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =inc_task_stage(drx_ql_freedom_sl_task_7) +drx_ql_info_main_task_labx18_done =drx_ql_reset_task(drx_ql_freedom_sl_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_freedom_sl_task_7) =drx_ql_reset_task(drx_ql_freedom_sl_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_freedom_sl_task_7) =drx_ql_reset_task(drx_ql_freedom_sl_task_7)%
+
+; -----------------------------------------------
+; Freedom Wait For Psi Helmet Storyline Task (LINKS FROM: Infiltrate Lab X-18) (LINKS TO: Disable the Miracle Machine)-
+
+[drx_ql_freedom_sl_task_8]
+
+icon = ui_inGame2_Peremennoe_psi_izluchenie
+storyline = true
+prior = 14
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_skinflint_x18_sl_task_link
+link_info = drx_ql_skinflint_psi_helmet_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_freedom_sl_task_8_name
+descr = drx_ql_freedom_sl_task_8_text
+descr_functor = drx_ql_wait_task_target
+job_descr = drx_ql_freedom_sl_task_8_about
+message = drx_ql_freedom_sl_task_8_message
+task_complete_descr = drx_ql_freedom_sl_task_8_finish
+
+stage_complete = 2
+target_functor = drx_ql_wait_task_target
+status_functor = drx_ql_wait_task_status
+status_functor_params = 86400  ; 1 day
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_8)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_8)} fail
+on_init = %=drx_ql_save_pstor_ctime(drx_ql_freedom_sl_task_8)%
+
+on_complete = %=drx_ql_reward_psi_helmet() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_freedom_sl_task_8) =erase_pstor_ctime(drx_ql_freedom_sl_task_8) =drx_ql_reset_task(drx_ql_freedom_sl_task_8)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =erase_pstor_ctime(drx_ql_freedom_sl_task_8) =drx_ql_fail_task(drx_ql_freedom_sl_task_8) =drx_ql_reset_task(drx_ql_freedom_sl_task_8)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =erase_pstor_ctime(drx_ql_freedom_sl_task_8) =drx_ql_fail_task(drx_ql_freedom_sl_task_8) =drx_ql_reset_task(drx_ql_freedom_sl_task_8)%
+
+; -----------------------------------------------
+; Freedom Disable the Miracle Machine Storyline Task (LINKS FROM: Wait For Psi Helmet)-
+
+[drx_ql_freedom_sl_task_9]
+
+icon = ui_iconsTotal_yan_kill_brain_task
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_skinflint_psi_helmet_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mil_smart_terrain_7_10_freedom_trader_stalker) =drx_ql_actor_faction() -drx_ql_info_main_task_labx16_done} true, false
+
+title = drx_ql_freedom_sl_task_9_name
+descr = drx_ql_freedom_sl_task_9_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_freedom_sl_task_9_about
+task_complete_descr = drx_ql_freedom_sl_task_9_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = yan_space_restrictor_to_x16
+status_functor = drx_ql_miracle_machine_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_9)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_9)} fail
+on_init = %=drx_ql_activate_teleport(yan_space_restrictor_to_x16)%
+
+on_complete = %=drx_ql_reward_item(7500:10000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_freedom_sl_task_9) +drx_ql_info_main_task_labx16_done =drx_ql_reset_task(drx_ql_freedom_sl_task_9)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_freedom_sl_task_9) =drx_ql_reset_task(drx_ql_freedom_sl_task_9)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_freedom_sl_task_9) =drx_ql_reset_task(drx_ql_freedom_sl_task_9)%
+
+;------------------------------------------------
+; Freedom Meet With Bonesetter Storyline Task (LINKS TO: Loner Bonesetter Deactivate Brain Scorcher)-
+
+[drx_ql_freedom_sl_task_10]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_bonesetter_bs_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(jup_a6_freedom_leader) =drx_ql_is_alive(jup_a6_stalker_medik) !drx_ql_is_enemy(stalker) -drx_ql_info_mon_inf_task_started +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_freedom_sl_task_10_name
+descr = drx_ql_freedom_sl_task_10_text
+job_descr = drx_ql_freedom_sl_task_10_about
+
+target = jup_a6_stalker_medik
+condlist_0 = {!drx_ql_is_alive(jup_a6_stalker_medik)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail  ; stalker because Bonesetter is a Loner
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_10)} fail
+condlist_3 = {-drx_ql_meet_honcho_jup_a6_stalker_medik} complete
+on_init = %+drx_ql_meet_honcho_jup_a6_stalker_medik +drx_ql_bonesetter_bs_sl_task_link%
+
+on_complete = %=drx_ql_reset_task(drx_ql_freedom_sl_task_10)%
+on_fail = %-drx_ql_meet_honcho_jup_a6_stalker_medik -drx_ql_bonesetter_bs_sl_task_link =drx_ql_fail_task(drx_ql_freedom_sl_task_10) =drx_ql_reset_task(drx_ql_freedom_sl_task_10)%
+on_cancel = %-drx_ql_meet_honcho_jup_a6_stalker_medik -drx_ql_bonesetter_bs_sl_task_link =drx_ql_fail_task(drx_ql_freedom_sl_task_10) =drx_ql_reset_task(drx_ql_freedom_sl_task_10)%
+
+;------------------------------------------------
+; Freedom Bloodsucker Village Brawl Storyline Task-
+
+[drx_ql_freedom_sl_task_11]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(mil_smart_terrain_7_7_freedom_leader_stalker) =drx_ql_is_enemy(monolith) =is_factions_enemies(freedom:monolith) !squad_exist(drx_ql_designated_target_squad_monolith_whses_village_1) !squad_exist(drx_ql_designated_target_squad_monolith_whses_village_2) !squad_exist(drx_ql_designated_target_squad_monolith_whses_village_3) !squad_exist(drx_ql_designated_target_squad_monolith_whses_village_4) !squad_exist(drx_ql_attack_squad_freedom_whses_village_1) !squad_exist(drx_ql_attack_squad_freedom_whses_village_2)} true, false
+
+title = drx_ql_freedom_sl_task_11_name
+descr = drx_ql_freedom_sl_task_11_text
+descr_1 = drx_ql_freedom_sl_task_11_text_1
+descr_functor = drx_ql_bab_task_target
+job_descr = drx_ql_freedom_sl_task_11_about
+message = drx_ql_freedom_sl_task_11_message
+task_complete_descr = drx_ql_freedom_sl_task_11_finish
+
+stage_complete = 2
+target_functor = drx_ql_bab_task_target
+status_functor = drx_ql_bab_task_status
+status_functor_params = drx_ql_designated_target_squad_monolith_whses_village_1, drx_ql_designated_target_squad_monolith_whses_village_2, drx_ql_designated_target_squad_monolith_whses_village_3, drx_ql_designated_target_squad_monolith_whses_village_4
+status_functor_rendezvous = mil_smart_terrain_2_10
+status_functor_rendezvous_dist = 40
+status_functor_allied_squads = drx_ql_attack_squad_freedom_whses_village_2, mil_smart_terrain_2_10
+status_functor_enemy_squads = drx_ql_designated_target_squad_monolith_whses_village_1, mil_smart_terrain_4_3, drx_ql_designated_target_squad_monolith_whses_village_2, mil_smart_terrain_4_2, drx_ql_designated_target_squad_monolith_whses_village_3, mil_smart_terrain_4_3, drx_ql_designated_target_squad_monolith_whses_village_4, mil_smart_terrain_4_2
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_11)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_11)} fail
+on_init = %=drx_ql_give_escort_task_companions(drx_ql_attack_squad_freedom_whses_village_1)%
+
+on_complete = %=drx_ql_reward_random(5000:9000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_freedom_sl_task_11) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_whses_village_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_whses_village_2) =drx_ql_reset_task(drx_ql_freedom_sl_task_11)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_whses_village_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_whses_village_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_whses_village_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_whses_village_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_whses_village_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_whses_village_4) =drx_ql_fail_task(drx_ql_freedom_sl_task_11) =drx_ql_reset_task(drx_ql_freedom_sl_task_11)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_whses_village_1) =drx_ql_remove_story_squad(drx_ql_attack_squad_freedom_whses_village_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_whses_village_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_whses_village_2) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_whses_village_3) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_whses_village_4) =drx_ql_fail_task(drx_ql_freedom_sl_task_11) =drx_ql_reset_task(drx_ql_freedom_sl_task_11)%
+
+; -----------------------------------------------
+; Freedom Investigate Stingray 1 (Jupiter, Helipad) Storyline Task-
+
+[drx_ql_freedom_sl_task_12]
+
+icon = ui_inGame2_Skat_1
+storyline = true
+prior = 139
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(jup_a6_freedom_leader) =drx_ql_actor_faction() +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_1_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_flight_plan_task_started} true, false
+
+title = drx_ql_freedom_sl_task_12_name
+descr = drx_ql_freedom_sl_task_12_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_freedom_sl_task_12_about
+task_complete_descr = drx_ql_freedom_sl_task_12_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_12)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_12)} fail
+condlist_3 = {=actor_has_item(drx_ql_quest_item_flight_plan) -drx_ql_info_stingray_1_boars_spawned} %=drx_ql_spawn_horde(drx_ql_location_stingray_1_boars_spawn:12:boar_normal:boar_strong:boar_02a_strong:boar_01a_hard:boar_02a_hard:boar_01a_weak:boar_02a_weak) +drx_ql_info_stingray_1_boars_spawned%
+on_init = %=drx_ql_setup_float_task(drx_ql_freedom_sl_task_12:drx_ql_quest_item_flight_plan:0:drx_ql_location_stingray_1_flight_plan) -drx_ql_info_stingray_1_boars_spawned +drx_ql_quest_item_flight_plan_task_started%
+
+on_complete = %=drx_ql_reward_random(6500:8500) =complete_task_inc_goodwill(50:freedom) =remove_item(drx_ql_quest_item_flight_plan) =inc_task_stage(drx_ql_freedom_sl_task_12) -drx_ql_info_stingray_1_boars_spawned -drx_ql_quest_item_flight_plan_task_started +drx_ql_info_stingray_1_done =drx_ql_reset_task(drx_ql_freedom_sl_task_12)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_float_item(drx_ql_freedom_sl_task_12) -drx_ql_info_stingray_1_boars_spawned -drx_ql_quest_item_flight_plan_task_started =drx_ql_fail_task(drx_ql_freedom_sl_task_12) =drx_ql_reset_task(drx_ql_freedom_sl_task_12)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_float_item(drx_ql_freedom_sl_task_12) -drx_ql_info_stingray_1_boars_spawned -drx_ql_quest_item_flight_plan_task_started =drx_ql_fail_task(drx_ql_freedom_sl_task_12) =drx_ql_reset_task(drx_ql_freedom_sl_task_12)%
+
+;------------------------------------------------
+; Freedom Monolith Raid Storyline Task-
+
+[drx_ql_freedom_sl_task_13]
+
+icon = ui_inGame2_PD_Lider
+storyline = true
+prior = 175
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(mil_smart_terrain_7_7_freedom_leader_stalker:jup_a6_freedom_leader) =drx_ql_actor_faction() =drx_ql_is_enemy(monolith) =is_factions_enemies(freedom:monolith) !squad_exist(drx_ql_raid_companion_squad_freedom_2) =drx_ql_find_occupied_smart_ext(freedom:drx_ql_freedom_sl_task_13:monolith)} true, false
+
+title = drx_ql_freedom_sl_task_13_name
+descr = drx_ql_freedom_sl_task_13_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_freedom_sl_task_13_about
+task_complete_descr = drx_ql_freedom_sl_task_13_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monolith
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_13)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_13)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_freedom_sl_task_13) =drx_ql_give_escort_task_companions(drx_ql_raid_companion_squad_freedom_2)%
+
+on_complete = %=drx_ql_reward_random(4500:6500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_freedom_2) =inc_task_stage(drx_ql_freedom_sl_task_13) =drx_ql_reset_task(drx_ql_freedom_sl_task_13)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_freedom_2) =drx_ql_fail_task(drx_ql_freedom_sl_task_13) =drx_ql_reset_task(drx_ql_freedom_sl_task_13)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_freedom_2) =drx_ql_fail_task(drx_ql_freedom_sl_task_13) =drx_ql_reset_task(drx_ql_freedom_sl_task_13)%
+
+; -----------------------------------------------
+; Freedom Lukash Deactivate Brain Scorcher Storyline Task-
+
+[drx_ql_freedom_sl_task_14]
+
+icon = ui_iconsTotal_bar_radar_deactivate
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(mil_smart_terrain_7_7_freedom_leader_stalker) +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_freedom_sl_task_14_name
+descr = drx_ql_freedom_sl_task_14_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_freedom_sl_task_14_about
+task_complete_descr = drx_ql_freedom_sl_task_14_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = rad_space_restrictor_to_bunker
+status_functor = drx_ql_brain_scorcher_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_14)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_14)} fail
+on_init = %+drx_ql_info_spawn_bs_extraction_squads =drx_ql_activate_teleport(rad_space_restrictor_to_bunker)%
+
+on_complete = %=drx_ql_reward_random(9000:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_freedom_sl_task_14) +drx_ql_info_main_task_x19_done -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_freedom_sl_task_14)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_freedom_sl_task_14) -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_freedom_sl_task_14)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_freedom_sl_task_14) -drx_ql_info_spawn_bs_extraction_squads =drx_ql_reset_task(drx_ql_freedom_sl_task_14)%
+
+; -----------------------------------------------
+; Freedom Investigate Stingray 4 (Jupiter, Jupiter Plant) Storyline Task-
+
+[drx_ql_freedom_sl_task_15]
+
+icon = ui_inGame2_Skat_1
+storyline = true
+prior = 195
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(mil_smart_terrain_7_7_freedom_leader_stalker:jup_a6_freedom_leader) +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_pilot_pda_task_started =drx_ql_min_stingrays_done() -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_freedom_sl_task_15_name
+descr = drx_ql_freedom_sl_task_15_text
+descr_functor = drx_ql_rescue_pilot_task_target
+job_descr = drx_ql_freedom_sl_task_15_about
+task_complete_descr = drx_ql_freedom_sl_task_15_finish
+
+stage_complete = 3
+target_functor = drx_ql_rescue_pilot_task_target
+status_functor = drx_ql_rescue_pilot_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_15)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_15)} fail
+condlist_3 = {+drx_ql_info_pilot_pda_found -drx_ql_info_pilot_interrogated !squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_freedom_sl_task_15:drx_ql_quest_item_pilot_pda:25:jup_b8_smart_terrain) +drx_ql_quest_item_pilot_pda_task_started +hostage_companion_task_1_started -drx_ql_info_stingray_4_found -drx_ql_info_pilot_pda_found -drx_ql_info_pilot_interrogated -drx_ql_info_pilot_enemy -drx_ql_info_pilot_defected%
+
+on_complete = %=drx_ql_reward_random(9500:11000) =complete_task_inc_goodwill(50:freedom) =remove_item(drx_ql_quest_item_pilot_pda) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_freedom_sl_task_15) =unlock_smart(drx_ql_freedom_sl_task_15_id) -drx_ql_quest_item_pilot_pda_task_started +drx_ql_info_stingray_4_done =drx_ql_reset_task(drx_ql_freedom_sl_task_15)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_float_item(drx_ql_freedom_sl_task_15) -drx_ql_quest_item_pilot_pda_task_started =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_freedom_sl_task_15_id) =drx_ql_fail_task(drx_ql_freedom_sl_task_15) =drx_ql_reset_task(drx_ql_freedom_sl_task_15)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_float_item(drx_ql_freedom_sl_task_15) -drx_ql_quest_item_pilot_pda_task_started =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_freedom_sl_task_15_id) =drx_ql_fail_task(drx_ql_freedom_sl_task_15) =drx_ql_reset_task(drx_ql_freedom_sl_task_15)%
+
+; -----------------------------------------------
+; Freedom Search Jupiter Underground Storyline Task-
+
+[drx_ql_freedom_sl_task_16]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(mil_smart_terrain_7_10_freedom_trader_stalker:jup_a6_freedom_leader) +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_x19_done -drx_ql_info_main_task_jup_u_done} true, false
+
+title = drx_ql_freedom_sl_task_16_name
+descr = drx_ql_freedom_sl_task_16_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_freedom_sl_task_16_about
+task_complete_descr = drx_ql_freedom_sl_task_16_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = jupiter_space_restrictor_to_jupiter_ug
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_16)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_16)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_freedom_sl_task_16:main_story_6_jup_ug_documents)%
+
+on_complete = %=drx_ql_reward_random(7500:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =inc_task_stage(drx_ql_freedom_sl_task_16) +drx_ql_info_main_task_jup_u_done =drx_ql_reset_task(drx_ql_freedom_sl_task_16)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =drx_ql_fail_task(drx_ql_freedom_sl_task_16) =drx_ql_reset_task(drx_ql_freedom_sl_task_16)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =drx_ql_fail_task(drx_ql_freedom_sl_task_16) =drx_ql_reset_task(drx_ql_freedom_sl_task_16)%
+
+;------------------------------------------------
+; Freedom Loki Dynamic Brawl Storyline Task-
+
+[drx_ql_freedom_sl_task_17]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 194
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(jup_a6_freedom_leader) =drx_ql_find_brawl_terrain(freedom:drx_ql_freedom_sl_task_17)} true, false
+
+title = drx_ql_freedom_sl_task_17_name
+descr = drx_ql_freedom_sl_task_17_text
+descr_1 = drx_ql_freedom_sl_task_17_text_1
+descr_functor = drx_ql_brawl_task_target
+job_descr = drx_ql_freedom_sl_task_17_about
+message = drx_ql_freedom_sl_task_17_message
+task_complete_descr = drx_ql_freedom_sl_task_17_finish
+
+stage_complete = 2
+target_functor = drx_ql_brawl_task_target
+status_functor = drx_ql_brawl_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_17)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_17)} fail
+on_init = %=drx_ql_setup_brawl_task(drx_ql_freedom_sl_task_17:4:2)%
+
+on_complete = %=drx_ql_reward_random(6500:9500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_freedom_sl_task_17) =drx_ql_end_brawl_task(drx_ql_freedom_sl_task_17) =drx_ql_reset_task(drx_ql_freedom_sl_task_17)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_end_brawl_task(drx_ql_freedom_sl_task_17) =drx_ql_fail_task(drx_ql_freedom_sl_task_17) =drx_ql_reset_task(drx_ql_freedom_sl_task_17)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_end_brawl_task(drx_ql_freedom_sl_task_17) =drx_ql_fail_task(drx_ql_freedom_sl_task_17) =drx_ql_reset_task(drx_ql_freedom_sl_task_17)%
+
+;------------------------------------------------
+; Freedom Skinflint Rescue Hostage Storyline Task-
+
+[drx_ql_freedom_sl_task_18]
+
+icon = ui_inGame2_Zalozhnik
+storyline = true
+prior = 195
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(mil_smart_terrain_7_10_freedom_trader_stalker) -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(freedom:drx_ql_freedom_sl_task_18) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_freedom_sl_task_18_name
+descr = drx_ql_freedom_sl_task_18_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_freedom_sl_task_18_about
+task_complete_descr = drx_ql_freedom_sl_task_18_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_freedom_sl_task_18)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_freedom_sl_task_18)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_freedom_sl_task_18) =drx_ql_setup_hostage_task(hostage_companion_task_1_freedom:nil:drx_ql_freedom_sl_task_18_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_item(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_freedom_sl_task_18) =unlock_smart(drx_ql_freedom_sl_task_18_id) =drx_ql_reset_task(drx_ql_freedom_sl_task_18)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_freedom_sl_task_18_id) =drx_ql_fail_task(drx_ql_freedom_sl_task_18) =drx_ql_reset_task(drx_ql_freedom_sl_task_18)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_freedom_sl_task_18_id) =drx_ql_fail_task(drx_ql_freedom_sl_task_18) =drx_ql_reset_task(drx_ql_freedom_sl_task_18)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Freedom Simulation Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Investigate Mutant Report with Freedom Simulation Task-
+
+[drx_ql_simulation_task_freedom_1]
+
+icon = ui_inGame2_PD_Ohotnik_na_mutantov
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =is_night() -drx_ql_big_mutant_task_started =drx_ql_find_unoccupied_lair_local(drx_ql_simulation_task_freedom_1)} true, false
+
+title = drx_ql_simulation_task_freedom_1_name
+descr = drx_ql_simulation_task_freedom_1_text
+descr_functor = drx_ql_big_mutant_task_target
+job_descr = drx_ql_simulation_task_freedom_1_about
+task_complete_descr = drx_ql_simulation_task_freedom_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_big_mutant_task_target
+status_functor = drx_ql_big_mutant_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_freedom_1)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_freedom_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_freedom_1) =drx_ql_create_big_mutant_squad(drx_ql_simulation_task_freedom_1) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_freedom_1) +drx_ql_big_mutant_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_simulation_task_freedom_1) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_freedom_1) -drx_ql_big_mutant_task_started =drx_ql_reset_task(drx_ql_simulation_task_freedom_1)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_freedom_1) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_simulation_task_freedom_1) =drx_ql_reset_task(drx_ql_simulation_task_freedom_1)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_freedom_1) -drx_ql_big_mutant_task_started =drx_ql_fail_task(drx_ql_simulation_task_freedom_1) =drx_ql_reset_task(drx_ql_simulation_task_freedom_1)%
+
+;------------------------------------------------
+; Hostage Rescue for Freedom Simulation Task-
+
+[drx_ql_simulation_task_freedom_2]
+
+icon = ui_inGame2_Zalozhnik
+storyline = false
+prior = 95
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_is_enemy(monolith) =is_factions_enemies(freedom:monolith) -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(freedom:drx_ql_simulation_task_freedom_2:monolith) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_simulation_task_freedom_2_name
+descr = drx_ql_simulation_task_freedom_2_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_simulation_task_freedom_2_about
+task_complete_descr = drx_ql_simulation_task_freedom_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_freedom_2)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_freedom_2)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_freedom_2) =drx_ql_setup_hostage_task(hostage_companion_task_1_freedom:nil:drx_ql_simulation_task_freedom_2_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_simulation_task_freedom_2) =unlock_smart(drx_ql_simulation_task_freedom_2_id) =drx_ql_reset_task(drx_ql_simulation_task_freedom_2)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_simulation_task_freedom_2_id) =drx_ql_fail_task(drx_ql_simulation_task_freedom_2) =drx_ql_reset_task(drx_ql_simulation_task_freedom_2)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_simulation_task_freedom_2_id) =drx_ql_fail_task(drx_ql_simulation_task_freedom_2) =drx_ql_reset_task(drx_ql_simulation_task_freedom_2)%
+
+;------------------------------------------------
+; Item Swap with Freedom Simulation Task-
+
+[drx_ql_simulation_task_freedom_3]
+
+icon = ui_inGame2_D_Vipolnil_4_zadaniya_dlya_Swobodi
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_freedom_3_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_freedom_3_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_freedom_3_about
+fetch_descr = drx_ql_simulation_task_freedom_3_fetch_about
+task_complete_descr = drx_ql_simulation_task_freedom_3_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_freedom_3)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_freedom_3)} fail
+fetch_func = %=drx_ql_setup_swap_task(drx_ql_simulation_task_freedom_3:3000:6000:0.8)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_simulation_task_freedom_3)%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_freedom_3) =remove_fetch_item(drx_ql_simulation_task_freedom_3_fetch) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_simulation_task_freedom_3) =drx_ql_reset_task(drx_ql_simulation_task_freedom_3)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_simulation_task_freedom_3) =drx_ql_reset_task(drx_ql_simulation_task_freedom_3)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_simulation_task_freedom_3) =drx_ql_reset_task(drx_ql_simulation_task_freedom_3)%
+
+;------------------------------------------------
+; Freedom Stop Enemy Incursion Task-
+
+[drx_ql_simulation_task_freedom_4]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(freedom:drx_ql_simulation_task_freedom_4)} true, false
+
+title = drx_ql_simulation_task_freedom_4_name
+descr = drx_ql_simulation_task_freedom_4_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_simulation_task_freedom_4_about
+task_complete_descr = drx_ql_simulation_task_freedom_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_freedom_4)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_freedom_4)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_freedom_4) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_freedom_4)%
+
+on_complete = %=drx_ql_reward_random(4000:7500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:freedom) =inc_task_stage(drx_ql_simulation_task_freedom_4) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_freedom_4) =drx_ql_reset_task(drx_ql_simulation_task_freedom_4)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_simulation_task_freedom_4) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_freedom_4) =drx_ql_reset_task(drx_ql_simulation_task_freedom_4)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_fail_task(drx_ql_simulation_task_freedom_4) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_freedom_4) =drx_ql_reset_task(drx_ql_simulation_task_freedom_4)%
+
+; -----------------------------------------------
+; Search Buildings for Freedom Simulation Task-
+
+[drx_ql_simulation_task_freedom_5]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_case_task_started =drx_ql_find_special_smart_terrain(drx_ql_simulation_task_freedom_5:building_smarts)} true, false
+
+title = drx_ql_simulation_task_freedom_5_name
+descr = drx_ql_simulation_task_freedom_5_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_freedom_5_about
+task_complete_descr = drx_ql_simulation_task_freedom_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_freedom_5)} fail
+condlist_1 = {=drx_ql_is_enemy(freedom)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_freedom_5)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_freedom_5:drx_ql_quest_item_case:25) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =complete_task_inc_goodwill(50:freedom) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_simulation_task_freedom_5) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_simulation_task_freedom_5)%
+on_fail = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_float_item(drx_ql_simulation_task_freedom_5) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_freedom_5) =drx_ql_reset_task(drx_ql_simulation_task_freedom_5)%
+on_cancel = %=fail_task_dec_goodwill(50:freedom) =drx_ql_release_float_item(drx_ql_simulation_task_freedom_5) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_simulation_task_freedom_5) =drx_ql_reset_task(drx_ql_simulation_task_freedom_5)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

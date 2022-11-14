@@ -1,0 +1,186 @@
+;==============================================================
+;
+; Tasks Given by Nimble (Loner Trader, Cordon) (drx_ql_tasks_loner_nimble.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_loner_nimble.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: September 08, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Nimble (Loner Trader) Find Weapon Task-
+
+[drx_ql_esc_2_12_stalker_nimble_task_1]
+
+icon = ui_inGame2_Neizvestnoe_oruzhie
+storyline = false
+prior = 28
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_esc_2_12_stalker_nimble_task_1_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_esc_2_12_stalker_nimble_task_1_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_esc_2_12_stalker_nimble_task_1_about
+fetch_descr = drx_ql_esc_2_12_stalker_nimble_task_1_fetch_about
+task_complete_descr = drx_ql_esc_2_12_stalker_nimble_task_1_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_esc_2_12_stalker_nimble_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_esc_2_12_stalker_nimble_task_1)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_esc_2_12_stalker_nimble_task_1:5000:20000:1:1:0.9:items_rifles_list)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_esc_2_12_stalker_nimble_task_1)%
+
+on_complete = %=drx_ql_fetch_reward_money(drx_ql_esc_2_12_stalker_nimble_task_1:1.3) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =inc_task_stage(drx_ql_esc_2_12_stalker_nimble_task_1) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_esc_2_12_stalker_nimble_task_1) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_esc_2_12_stalker_nimble_task_1) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_1)%
+
+;------------------------------------------------
+; Nimble (Loner Trader) Retrieve PDA Task-
+
+[drx_ql_esc_2_12_stalker_nimble_task_2]
+
+icon = ui_inGame2_PD_Torgovets_informatsiey
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_pda_task_started} true, false
+
+title = drx_ql_esc_2_12_stalker_nimble_task_2_name
+descr = drx_ql_esc_2_12_stalker_nimble_task_2_text
+descr_functor = drx_ql_quest_stash_task_target
+job_descr = drx_ql_esc_2_12_stalker_nimble_task_2_about
+task_complete_descr = drx_ql_esc_2_12_stalker_nimble_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_quest_stash_task_target
+target_functor_params = drx_ql_quest_item_pda
+status_functor = drx_ql_quest_stash_task_status
+status_functor_params = drx_ql_quest_item_pda
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_esc_2_12_stalker_nimble_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_esc_2_12_stalker_nimble_task_2)} fail
+on_init = %=drx_ql_create_quest_stash(drx_ql_quest_item_pda) +drx_ql_quest_item_pda_task_started%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_pda) =inc_task_stage(drx_ql_esc_2_12_stalker_nimble_task_2) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_quest_stash(drx_ql_quest_item_pda) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_fail_task(drx_ql_esc_2_12_stalker_nimble_task_2) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_remove_quest_stash(drx_ql_quest_item_pda) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_fail_task(drx_ql_esc_2_12_stalker_nimble_task_2) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_2)%
+
+;------------------------------------------------
+; Nimble (Loner Trader) PDA Float Fetch Task-
+
+[drx_ql_esc_2_12_stalker_nimble_task_3]
+
+icon = ui_inGame2_PD_Torgovets_informatsiey
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_pda_task_started =drx_ql_find_unoccupied_smart_terrain(drx_ql_esc_2_12_stalker_nimble_task_3)} true, false
+
+title = drx_ql_esc_2_12_stalker_nimble_task_3_name
+descr = drx_ql_esc_2_12_stalker_nimble_task_3_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_esc_2_12_stalker_nimble_task_3_about
+task_complete_descr = drx_ql_esc_2_12_stalker_nimble_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_esc_2_12_stalker_nimble_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_esc_2_12_stalker_nimble_task_3)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_esc_2_12_stalker_nimble_task_3:drx_ql_quest_item_pda:50) +drx_ql_quest_item_pda_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_pda) =inc_task_stage(drx_ql_esc_2_12_stalker_nimble_task_3) -drx_ql_quest_item_pda_task_started =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_esc_2_12_stalker_nimble_task_3) -drx_ql_quest_item_pda_task_started =drx_ql_fail_task(drx_ql_esc_2_12_stalker_nimble_task_3) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_esc_2_12_stalker_nimble_task_3) -drx_ql_quest_item_pda_task_started =drx_ql_fail_task(drx_ql_esc_2_12_stalker_nimble_task_3) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_3)%
+
+; -----------------------------------------------
+; Nimble (Loner Trader) Checkpoint Infiltration Task-
+
+[drx_ql_esc_2_12_stalker_nimble_task_4]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(50) =drx_ql_actor_faction() =drx_ql_is_enemy(army) -drx_ql_quest_item_case_task_started} true, false
+
+title = drx_ql_esc_2_12_stalker_nimble_task_4_name
+descr = drx_ql_esc_2_12_stalker_nimble_task_4_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_esc_2_12_stalker_nimble_task_4_about
+task_complete_descr = drx_ql_esc_2_12_stalker_nimble_task_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_esc_2_12_stalker_nimble_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_esc_2_12_stalker_nimble_task_4)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_esc_2_12_stalker_nimble_task_4:drx_ql_quest_item_case:50:esc_smart_terrain_3_16) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_item(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:stalker) =remove_item(drx_ql_quest_item_case) =inc_task_stage(drx_ql_esc_2_12_stalker_nimble_task_4) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_esc_2_12_stalker_nimble_task_4) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_esc_2_12_stalker_nimble_task_4) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_release_float_item(drx_ql_esc_2_12_stalker_nimble_task_4) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_esc_2_12_stalker_nimble_task_4) =drx_ql_reset_task(drx_ql_esc_2_12_stalker_nimble_task_4)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Trader Tasks
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	February 05, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Nimble (Loner Trader) Wait for Order Task (moved from misc\tm_escape.ltx):
+
+[esc_2_12_nimble_items]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+; prior = 35
+prior = 13
+
+title = {-esc_2_12_order_ready_task} esc_2_12_nimble_items_wait_order_name, esc_2_12_nimble_items_get_order_name
+descr = {-esc_2_12_order_ready_task} esc_2_12_nimble_items_wait_order_text, esc_2_12_nimble_items_get_order_text
+
+target = {-esc_2_12_order_ready_task} nil, esc_2_12_stalker_nimble
+condlist_0 = {!drx_ql_task_giver_alive(esc_2_12_nimble_items)} fail
+condlist_1 = {=drx_ql_is_enemy(stalker)} fail
+condlist_2 = {=drx_ql_wg_fail(esc_2_12_nimble_items)} fail
+condlist_3 = {-esc_2_12_order_in_process -esc_2_12_order_refused} complete
+condlist_4 = {-esc_2_12_order_in_process +esc_2_12_order_refused} reversed
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

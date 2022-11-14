@@ -1,0 +1,187 @@
+;==============================================================
+;
+; Tasks Given by Hermann (Ecologist Trader, Jupiter) (drx_ql_tasks_ecolog_hermann.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_ecolog_tukarev.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: September 08, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 08, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Hermann (Ecologist Trader) Escort Jupiter Scientists Task-
+
+[drx_ql_jup_b6_scientist_nuclear_physicist_task_1]
+
+icon = ui_inGame2_Anomalnaya_aktivnost
+storyline = false
+prior = 92
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() !squad_exist(ecolog_companion_task_1) !squad_exist(ecolog_companion_task_2)} true, false
+
+title = drx_ql_jup_b6_scientist_nuclear_physicist_task_1_name
+descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_1_text
+descr_functor = drx_ql_anomaly_task_target
+job_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_1_about
+task_complete_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_anomaly_task_target
+target_functor_params = ecolog_companion_task_2
+status_functor = drx_ql_anomaly_task_status
+status_functor_params = ecolog_companion_task_2
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_jup_b6_scientist_nuclear_physicist_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_jup_b6_scientist_nuclear_physicist_task_1)} fail
+condlist_3 = {!squad_exist(ecolog_companion_task_2)} fail
+on_init = %=drx_ql_give_escort_task_companions(ecolog_companion_task_2) =setup_task_target_anomaly -ecolog_companion_task_2_started -ecolog_companion_task_2_force_started%
+
+on_complete = %=reward_random_item(af_fire:af_eye:af_fireball:af_blood:af_cristall:detector_elite) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =drx_ql_remove_story_squad(ecolog_companion_task_2) =inc_task_stage(drx_ql_jup_b6_scientist_nuclear_physicist_task_1) -drx_ql_info_ecolog_companion_task_2_ended =reset_task_target_anomaly =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(ecolog_companion_task_2) -drx_ql_info_ecolog_companion_task_2_ended =reset_task_target_anomaly =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_1) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(ecolog_companion_task_2) -drx_ql_info_ecolog_companion_task_2_ended =reset_task_target_anomaly =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_1) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_1)%
+
+;------------------------------------------------
+; Hermann (Ecologist Trader) Find Artefact Task-
+
+[drx_ql_jup_b6_scientist_nuclear_physicist_task_2]
+
+icon = ui_inGame2_Kontrakt_s_uchenimi
+storyline = false
+prior = 25
+weight = 1
+repeat_timeout = 604800
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_jup_b6_scientist_nuclear_physicist_task_2_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_2_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_2_about
+fetch_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_2_fetch_about
+task_complete_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_2_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_jup_b6_scientist_nuclear_physicist_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_jup_b6_scientist_nuclear_physicist_task_2)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_2:10000:25000:1:1:0:items_artefacts_list)%
+on_init = %=drx_ql_add_havfetch_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_2)%
+
+on_complete = %=reward_random_item(scientific_outfit:ecolog_outfit_orange:ecolog_outfit_green) =remove_fetch_item(drx_ql_jup_b6_scientist_nuclear_physicist_task_2_fetch) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_jup_b6_scientist_nuclear_physicist_task_2) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_2) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_2) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_2)%
+
+; -----------------------------------------------
+; Hermann (Ecologist Trader) Find Transistors Task-
+
+[drx_ql_jup_b6_scientist_nuclear_physicist_task_3]
+
+icon = ui_inGame2_PD_Ecologist
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_transistors_task_started =drx_ql_find_special_smart_terrain(drx_ql_jup_b6_scientist_nuclear_physicist_task_3:building_smarts)} true, false
+
+title = drx_ql_jup_b6_scientist_nuclear_physicist_task_3_name
+descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_3_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_3_about
+task_complete_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_jup_b6_scientist_nuclear_physicist_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_jup_b6_scientist_nuclear_physicist_task_3)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_3:drx_ql_quest_item_transistors:50) +drx_ql_quest_item_transistors_task_started%
+
+on_complete = %=drx_ql_reward_money(2500:4500) =complete_task_inc_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_transistors) =inc_task_stage(drx_ql_jup_b6_scientist_nuclear_physicist_task_3) -drx_ql_quest_item_transistors_task_started =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_jup_b6_scientist_nuclear_physicist_task_3) -drx_ql_quest_item_transistors_task_started =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_3) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_jup_b6_scientist_nuclear_physicist_task_3) -drx_ql_quest_item_transistors_task_started =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_3) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_3)%
+
+;------------------------------------------------
+; Hermann  (Ecologist Trader) Recover Stolen PDA Task-
+
+[drx_ql_jup_b6_scientist_nuclear_physicist_task_4]
+
+icon = ui_inGame2_PD_Torgovets_informatsiey
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_pda_task_started} true, false
+
+title = drx_ql_jup_b6_scientist_nuclear_physicist_task_4_name
+descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_4_text
+descr_functor = drx_ql_quest_stash_task_target
+job_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_4_about
+task_complete_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_quest_stash_task_target
+target_functor_params = drx_ql_quest_item_pda
+status_functor = drx_ql_quest_stash_task_status
+status_functor_params = drx_ql_quest_item_pda
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_jup_b6_scientist_nuclear_physicist_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_jup_b6_scientist_nuclear_physicist_task_4)} fail
+on_init = %=drx_ql_create_quest_stash(drx_ql_quest_item_pda) +drx_ql_quest_item_pda_task_started%
+
+on_complete = %=drx_ql_reward_money(1200:2000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_pda) =inc_task_stage(drx_ql_jup_b6_scientist_nuclear_physicist_task_4) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_quest_stash(drx_ql_quest_item_pda) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_4) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_quest_stash(drx_ql_quest_item_pda) -drx_ql_quest_item_pda_task_started =pstor_reset(drx_ql_quest_item_pda_stash_id) =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_4) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_4)%
+
+;------------------------------------------------
+; Hermann (Ecog Mechanic) Brains vs Brawn Task-
+
+[drx_ql_jup_b6_scientist_nuclear_physicist_task_5]
+
+icon = ui_inGame2_PD_Lider
+storyline = false
+prior = 85
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_enemy(bandit) =is_factions_enemies(ecolog:bandit) =drx_ql_find_occupied_smart_local(ecolog:drx_ql_jup_b6_scientist_nuclear_physicist_task_5:bandit) !squad_exist(drx_ql_raid_companion_squad_ecolog_2)} true, false
+
+title = drx_ql_jup_b6_scientist_nuclear_physicist_task_5_name
+descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_5_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_5_about
+task_complete_descr = drx_ql_jup_b6_scientist_nuclear_physicist_task_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = bandit
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_jup_b6_scientist_nuclear_physicist_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_jup_b6_scientist_nuclear_physicist_task_5)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_jup_b6_scientist_nuclear_physicist_task_5) =drx_ql_give_escort_task_companions(drx_ql_raid_companion_squad_ecolog_2)%
+
+on_complete = %=drx_ql_reward_random(1500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_ecolog_2) =inc_task_stage(drx_ql_jup_b6_scientist_nuclear_physicist_task_5) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_ecolog_2) =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_5) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_raid_companion_squad_ecolog_2) =drx_ql_fail_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_5) =drx_ql_reset_task(drx_ql_jup_b6_scientist_nuclear_physicist_task_5)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

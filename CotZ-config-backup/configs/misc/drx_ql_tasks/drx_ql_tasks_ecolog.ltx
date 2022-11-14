@@ -1,0 +1,793 @@
+;==============================================================
+;
+; Tasks Provided By Ecologists (drx_ql_tasks_ecolog.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_ecolog.xml
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: March 26, 2020
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Ecologist Storyline Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	March 26, 2020
+;
+;--------------------------------------------------------------------------------------------------
+
+; -----------------------------------------------
+; Ecologist Infiltrate Lab X-18 (Dark Valley) Storyline Task (LINKS TO: Wait For Psi Helmet)-
+
+[drx_ql_ecolog_sl_task_1]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_sakharov_x18_sl_task_link
+precondition = {=drx_ql_random_chance(100) =actor_on_level(l08_yantar) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done -drx_ql_info_main_task_labx18_done -drx_ql_info_main_task_labx16_done} true, false
+
+title = drx_ql_ecolog_sl_task_1_name
+descr = drx_ql_ecolog_sl_task_1_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_ecolog_sl_task_1_about
+task_complete_descr = drx_ql_ecolog_sl_task_1_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = val_space_restrictor_to_labx18
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_1)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_ecolog_sl_task_1:main_story_2_lab_x18_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_army_valley_x18:val_smart_terrain_1_2) =drx_ql_activate_teleport(val_space_restrictor_to_labx18)%
+
+on_complete = %=complete_task_inc_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =inc_task_stage(drx_ql_ecolog_sl_task_1) +drx_ql_info_main_task_labx18_done =drx_ql_reset_task(drx_ql_ecolog_sl_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_ecolog_sl_task_1) =drx_ql_reset_task(drx_ql_ecolog_sl_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_army_valley_x18) =drx_ql_release_story_item(main_story_2_lab_x18_documents) =drx_ql_fail_task(drx_ql_ecolog_sl_task_1) =drx_ql_reset_task(drx_ql_ecolog_sl_task_1)%
+
+; -----------------------------------------------
+; Ecologist Wait For Psi Helmet Storyline Task (LINKS FROM: Infiltrate Lab X-18) (LINKS TO: Disable the Miracle Machine)-
+
+[drx_ql_ecolog_sl_task_2]
+
+icon = ui_inGame2_Peremennoe_psi_izluchenie
+storyline = true
+prior = 14
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_sakharov_x18_sl_task_link
+link_info = drx_ql_sakharov_psi_helmet_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_ecolog_sl_task_2_name
+descr = drx_ql_ecolog_sl_task_2_text
+descr_functor = drx_ql_wait_task_target
+job_descr = drx_ql_ecolog_sl_task_2_about
+message = drx_ql_ecolog_sl_task_2_message
+task_complete_descr = drx_ql_ecolog_sl_task_2_finish
+
+stage_complete = 2
+target_functor = drx_ql_wait_task_target
+status_functor = drx_ql_wait_task_status
+status_functor_params = 172800  ;2 days
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_2)} fail
+on_init = %=drx_ql_save_pstor_ctime(drx_ql_ecolog_sl_task_2) +yan_stalker_sakharov_psi_helmet_upgrade%
+
+on_complete = %=drx_ql_reward_psi_helmet() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_ecolog_sl_task_2) =erase_pstor_ctime(drx_ql_ecolog_sl_task_2) -yan_stalker_sakharov_psi_helmet_upgrade =drx_ql_reset_task(drx_ql_ecolog_sl_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =erase_pstor_ctime(drx_ql_ecolog_sl_task_2) -yan_stalker_sakharov_psi_helmet_upgrade =drx_ql_fail_task(drx_ql_ecolog_sl_task_2) =drx_ql_reset_task(drx_ql_ecolog_sl_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =erase_pstor_ctime(drx_ql_ecolog_sl_task_2) -yan_stalker_sakharov_psi_helmet_upgrade =drx_ql_fail_task(drx_ql_ecolog_sl_task_2) =drx_ql_reset_task(drx_ql_ecolog_sl_task_2)%
+
+; -----------------------------------------------
+; Ecologist Disable the Miracle Machine Storyline Task (LINKS FROM: Wait For Psi Helmet)-
+
+[drx_ql_ecolog_sl_task_3]
+
+icon = ui_iconsTotal_yan_kill_brain_task
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_sakharov_psi_helmet_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_info_main_task_labx16_done} true, false
+
+title = drx_ql_ecolog_sl_task_3_name
+descr = drx_ql_ecolog_sl_task_3_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_ecolog_sl_task_3_about
+task_complete_descr = drx_ql_ecolog_sl_task_3_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = yan_space_restrictor_to_x16
+status_functor = drx_ql_miracle_machine_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_3)} fail
+on_init = %=drx_ql_activate_teleport(yan_space_restrictor_to_x16)%
+
+on_complete = %=drx_ql_reward_random(7500:10000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_ecolog_sl_task_3) +drx_ql_info_main_task_labx16_done =drx_ql_reset_task(drx_ql_ecolog_sl_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_3) =drx_ql_reset_task(drx_ql_ecolog_sl_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_3) =drx_ql_reset_task(drx_ql_ecolog_sl_task_3)%
+
+;------------------------------------------------
+; Ecologist Eliminate Agroprom Underground Bandits Storyline Task-
+
+[drx_ql_ecolog_sl_task_4]
+
+icon = ui_inGame2_Issledovanie_anomaliy
+storyline = true
+prior = 185
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(yan_ecolog_semenov) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done =drx_ql_is_enemy(bandit) !squad_exist(drx_ql_designated_target_squad_bandit_agroprom_u)} true, false
+
+title = drx_ql_ecolog_sl_task_4_name
+descr = drx_ql_ecolog_sl_task_4_text
+descr_functor = drx_ql_designated_target_task_target
+job_descr = drx_ql_ecolog_sl_task_4_about
+task_complete_descr = drx_ql_ecolog_sl_task_4_finish
+
+stage_complete = 1
+target = {=check_task_stage(drx_ql_ecolog_sl_task_4:1)} yan_ecolog_semenov, {=drx_ql_squad_on_level(drx_ql_designated_target_squad_bandit_agroprom_u:l03u_agr_underground)} agr_space_restrictor_to_agr_ug_2, drx_ql_designated_target_squad_bandit_agroprom_u
+status_functor = drx_ql_designated_target_task_status
+status_functor_params = drx_ql_designated_target_squad_bandit_agroprom_u
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_4)} fail
+on_init = %=create_squad(drx_ql_designated_target_squad_bandit_agroprom_u:agr_u_bandits)%
+
+on_complete = %=drx_ql_reward_random(4500:6500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_ecolog_sl_task_4) =drx_ql_reset_task(drx_ql_ecolog_sl_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_agroprom_u) =drx_ql_fail_task(drx_ql_ecolog_sl_task_4) =drx_ql_reset_task(drx_ql_ecolog_sl_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit_agroprom_u) =drx_ql_fail_task(drx_ql_ecolog_sl_task_4) =drx_ql_reset_task(drx_ql_ecolog_sl_task_4)%
+
+; -----------------------------------------------
+; Ecologist Search Jupiter Underground Storyline Task-
+
+[drx_ql_ecolog_sl_task_5]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(jup_b6_scientist_nuclear_physicist) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_x19_done -drx_ql_info_main_task_jup_u_done} true, false
+
+title = drx_ql_ecolog_sl_task_5_name
+descr = drx_ql_ecolog_sl_task_5_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_ecolog_sl_task_5_about
+task_complete_descr = drx_ql_ecolog_sl_task_5_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = jupiter_space_restrictor_to_jupiter_ug
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_5)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_ecolog_sl_task_5:main_story_6_jup_ug_documents)%
+
+on_complete = %=drx_ql_reward_random(7500:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =inc_task_stage(drx_ql_ecolog_sl_task_5) +drx_ql_info_main_task_jup_u_done =drx_ql_reset_task(drx_ql_ecolog_sl_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =drx_ql_fail_task(drx_ql_ecolog_sl_task_5) =drx_ql_reset_task(drx_ql_ecolog_sl_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_story_item(main_story_6_jup_ug_documents) =drx_ql_fail_task(drx_ql_ecolog_sl_task_5) =drx_ql_reset_task(drx_ql_ecolog_sl_task_5)%
+
+; -----------------------------------------------
+; Ecologist Infiltrate Lab X-8 (Outskirts) Storyline Task (LINKS TO: Build Gauss Gun Task)-
+
+[drx_ql_ecolog_sl_task_6]
+
+icon = ui_inGame2_Laboratoriya_X8
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_hermann_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(jup_b6_scientist_nuclear_physicist) =drx_ql_actor_faction() +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_x19_done -drx_ql_info_main_task_labx8_done} true, false
+
+title = drx_ql_ecolog_sl_task_6_name
+descr = drx_ql_ecolog_sl_task_6_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_ecolog_sl_task_6_about
+task_complete_descr = drx_ql_ecolog_sl_task_6_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = pri_space_restrictor_to_labx8
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_6)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_6)} fail
+on_init = %=drx_ql_setup_story_item_task(drx_ql_ecolog_sl_task_6:main_story_5_lab_x8_documents) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1:pri_b306) =drx_ql_create_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2:pri_b306) =drx_ql_activate_teleport(pri_space_restrictor_to_labx8)%
+
+on_complete = %=complete_task_inc_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =inc_task_stage(drx_ql_ecolog_sl_task_6) +drx_ql_info_main_task_labx8_done =drx_ql_reset_task(drx_ql_ecolog_sl_task_6)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =drx_ql_fail_task(drx_ql_ecolog_sl_task_6) =drx_ql_reset_task(drx_ql_ecolog_sl_task_6)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_1) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_monolith_outskirts_x8_2) =drx_ql_release_story_item(main_story_5_lab_x8_documents) =drx_ql_fail_task(drx_ql_ecolog_sl_task_6) =drx_ql_reset_task(drx_ql_ecolog_sl_task_6)%
+
+; -----------------------------------------------
+; Ecologist Build Gauss Gun Storyline Task (LINKS FROM: Infiltrate Lab X-8) (LINKS TO: Wait for Gauss Gun Task)-
+
+[drx_ql_ecolog_sl_task_7]
+
+icon = ui_inGame2_Gauss_pushka
+storyline = true
+prior = 140
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_hermann_wait_for_gauss_gun_sl_task_link
+link_back_info = drx_ql_hermann_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(jup_b6_scientist_nuclear_physicist) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_ecolog_sl_task_7_name
+descr = drx_ql_ecolog_sl_task_7_text
+descr_functor = drx_ql_gather_items_task_target
+job_descr = drx_ql_ecolog_sl_task_7_about
+task_complete_descr = drx_ql_ecolog_sl_task_7_finish
+
+stage_complete = 1
+target_functor = drx_ql_gather_items_task_target
+status_functor = drx_ql_gather_items_task_status
+status_functor_params = drx_ql_quest_item_capacitors, drx_ql_quest_item_wire, af_electra_flash
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_7)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_7)} fail
+on_init = %=give_task(drx_ql_special_task_find_gauss_capacitors) =give_task(drx_ql_special_task_find_gauss_wire) =give_task(drx_ql_special_task_find_gauss_flash)%
+
+on_complete = %=complete_task_inc_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_capacitors) =remove_item(drx_ql_quest_item_wire) =remove_item(af_electra_flash) =inc_task_stage(drx_ql_ecolog_sl_task_7) =drx_ql_reset_task(drx_ql_ecolog_sl_task_7)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =set_task_failed(drx_ql_special_task_find_gauss_flash) =set_task_failed(drx_ql_special_task_find_gauss_capacitors) =set_task_failed(drx_ql_special_task_find_gauss_wire) =drx_ql_fail_task(drx_ql_ecolog_sl_task_7) =drx_ql_reset_task(drx_ql_ecolog_sl_task_7)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =set_task_failed(drx_ql_special_task_find_gauss_flash) =set_task_failed(drx_ql_special_task_find_gauss_capacitors) =set_task_failed(drx_ql_special_task_find_gauss_wire) =drx_ql_fail_task(drx_ql_ecolog_sl_task_7) =drx_ql_reset_task(drx_ql_ecolog_sl_task_7)%
+
+; -----------------------------------------------
+; Ecologist Wait For Gauss Gun Storyline Task (LINKS FROM: Build Gauss Gun Task)-
+
+[drx_ql_ecolog_sl_task_8]
+
+icon = ui_inGame2_Izdelie_N62
+storyline = true
+prior = 14
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_hermann_wait_for_gauss_gun_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_ecolog_sl_task_8_name
+descr = drx_ql_ecolog_sl_task_8_text
+descr_functor = drx_ql_wait_task_target
+job_descr = drx_ql_ecolog_sl_task_8_about
+message = drx_ql_ecolog_sl_task_8_message
+task_complete_descr = drx_ql_ecolog_sl_task_8_finish
+
+stage_complete = 2
+target_functor = drx_ql_wait_task_target
+status_functor = drx_ql_wait_task_status
+status_functor_params = 172800  ;2 days
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_8)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_8)} fail
+on_init = %=drx_ql_save_pstor_ctime(drx_ql_ecolog_sl_task_8)%
+
+on_complete = %=reward_random_item(wpn_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =reward_random_item(ammo_gauss) =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_ecolog_sl_task_8) =erase_pstor_ctime(drx_ql_ecolog_sl_task_8) =drx_ql_reset_task(drx_ql_ecolog_sl_task_8)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =erase_pstor_ctime(drx_ql_ecolog_sl_task_8) =drx_ql_fail_task(drx_ql_ecolog_sl_task_8) =drx_ql_reset_task(drx_ql_ecolog_sl_task_8)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =erase_pstor_ctime(drx_ql_ecolog_sl_task_8) =drx_ql_fail_task(drx_ql_ecolog_sl_task_8) =drx_ql_reset_task(drx_ql_ecolog_sl_task_8)%
+
+;------------------------------------------------
+; Ecologist Find Missing Scientist Storyline Task-
+
+[drx_ql_ecolog_sl_task_9]
+
+icon = ui_inGame2_Zalozhnik
+storyline = true
+prior = 195
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(jup_b6_scientist_nuclear_physicist) -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(ecolog:drx_ql_ecolog_sl_task_9) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_ecolog_sl_task_9_name
+descr = drx_ql_ecolog_sl_task_9_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_ecolog_sl_task_9_about
+task_complete_descr = drx_ql_ecolog_sl_task_9_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_9)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_9)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_ecolog_sl_task_9) =drx_ql_setup_hostage_task(hostage_companion_task_1_ecolog:nil:drx_ql_ecolog_sl_task_9_id) +hostage_companion_task_1_started%
+
+on_complete = %=drx_ql_reward_item(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_ecolog_sl_task_9) =unlock_smart(drx_ql_ecolog_sl_task_9_id) =drx_ql_reset_task(drx_ql_ecolog_sl_task_9)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_ecolog_sl_task_9_id) =drx_ql_fail_task(drx_ql_ecolog_sl_task_9) =drx_ql_reset_task(drx_ql_ecolog_sl_task_9)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_ecolog_sl_task_9_id) =drx_ql_fail_task(drx_ql_ecolog_sl_task_9) =drx_ql_reset_task(drx_ql_ecolog_sl_task_9)%
+
+;------------------------------------------------
+; Ecologist Find Artefact Storyline Task-
+
+[drx_ql_ecolog_sl_task_10]
+
+icon = ui_inGame2_Kontrakt_s_uchenimi
+storyline = true
+prior = 125
+weight = 1
+repeat_timeout = 604800
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(yan_stalker_sakharov)} true, false
+
+title = drx_ql_ecolog_sl_task_10_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_ecolog_sl_task_10_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_ecolog_sl_task_10_about
+fetch_descr = drx_ql_ecolog_sl_task_10_fetch_about
+task_complete_descr = drx_ql_ecolog_sl_task_10_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_10)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_10)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_ecolog_sl_task_10:5000:25000:1:1:0:items_artefacts_list)%
+on_init = %=reward_random_item(detector_scientific) =drx_ql_add_havfetch_task(drx_ql_ecolog_sl_task_10)%
+
+on_complete = %=drx_ql_fetch_reward_random(drx_ql_ecolog_sl_task_10:1.0) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_ecolog_sl_task_10) =drx_ql_reset_task(drx_ql_ecolog_sl_task_10)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_10) =drx_ql_reset_task(drx_ql_ecolog_sl_task_10)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_10) =drx_ql_reset_task(drx_ql_ecolog_sl_task_10)%
+
+;------------------------------------------------
+; Ecologist Recover Stolen Documents Task-
+
+[drx_ql_ecolog_sl_task_11]
+
+icon = ui_inGame2_Poslednie_razrabotki
+storyline = true
+prior = 180
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(yan_ecolog_semenov) -drx_ql_quest_item_document_case_task_started !squad_exist(drx_ql_designated_target_squad_bandit) =drx_ql_find_unoccupied_smart_terrain(drx_ql_ecolog_sl_task_11)} true, false
+
+title = drx_ql_ecolog_sl_task_11_name
+descr = drx_ql_ecolog_sl_task_11_text
+descr_functor = drx_ql_interceptor_task_target
+job_descr = drx_ql_ecolog_sl_task_11_about
+task_complete_descr = drx_ql_ecolog_sl_task_11_finish
+
+stage_complete = 1
+target_functor = drx_ql_interceptor_task_target
+status_functor = drx_ql_interceptor_task_status
+status_functor_params = drx_ql_quest_item_document_case
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_11)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_11)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_ecolog_sl_task_11) =drx_ql_create_interceptor_squad(drx_ql_ecolog_sl_task_11:drx_ql_designated_target_squad_bandit) +drx_ql_quest_item_document_case_task_started%
+
+on_complete = %=drx_ql_reward_random(3000:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_document_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit) =inc_task_stage(drx_ql_ecolog_sl_task_11) -drx_ql_quest_item_document_case_task_started =drx_ql_reset_task(drx_ql_ecolog_sl_task_11)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_document_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit) -drx_ql_quest_item_document_case_task_started =drx_ql_fail_task(drx_ql_ecolog_sl_task_11) =drx_ql_reset_task(drx_ql_ecolog_sl_task_11)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_document_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_bandit) -drx_ql_quest_item_document_case_task_started =drx_ql_fail_task(drx_ql_ecolog_sl_task_11) =drx_ql_reset_task(drx_ql_ecolog_sl_task_11)%
+
+;------------------------------------------------
+; Ecologist Meet With Kruglov Storyline Task (LINKS TO: Ecologist Kruglov Deactivate Brain Scorcher)-
+
+[drx_ql_ecolog_sl_task_12]
+
+icon = ui_inGame2_Put_v_pripyat
+storyline = true
+prior = 192
+weight = 3
+repeat_timeout = 259200
+link_info = drx_ql_kruglov_bs_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =actor_on_level(l08_yantar) =drx_ql_is_alive(yan_ecolog_kruglov) -drx_ql_info_mon_inf_task_started +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_ecolog_sl_task_12_name
+descr = drx_ql_ecolog_sl_task_12_text
+job_descr = drx_ql_ecolog_sl_task_12_about
+
+target = yan_ecolog_kruglov
+condlist_0 = {!drx_ql_is_alive(yan_ecolog_kruglov)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_12)} fail
+condlist_3 = {-drx_ql_meet_honcho_yan_ecolog_kruglov} complete
+on_init = %+drx_ql_meet_honcho_yan_ecolog_kruglov +drx_ql_kruglov_bs_sl_task_link%
+
+on_complete = %=drx_ql_reset_task(drx_ql_ecolog_sl_task_12)%
+on_fail = %-drx_ql_meet_honcho_yan_ecolog_kruglov -drx_ql_kruglov_bs_sl_task_link =drx_ql_fail_task(drx_ql_ecolog_sl_task_12) =drx_ql_reset_task(drx_ql_ecolog_sl_task_12)%
+on_cancel = %-drx_ql_meet_honcho_yan_ecolog_kruglov -drx_ql_kruglov_bs_sl_task_link =drx_ql_fail_task(drx_ql_ecolog_sl_task_12) =drx_ql_reset_task(drx_ql_ecolog_sl_task_12)%
+
+;------------------------------------------------
+; Ecologist Kruglov Deactivate Brain Scorcher Storyline Task (LINKS FROM: Ecologist Meet With Kruglov)-
+
+[drx_ql_ecolog_sl_task_13]
+
+icon = ui_iconsTotal_bar_radar_deactivate
+storyline = true
+prior = 165
+weight = 3
+repeat_timeout = 259200
+link_back_info = drx_ql_kruglov_bs_sl_task_link
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(yan_ecolog_kruglov) =drx_ql_actor_faction() -drx_ql_info_mon_inf_task_started +drx_ql_info_main_task_agr_u_done +drx_ql_info_main_task_labx16_done +drx_ql_actor_has_psi_helmet -drx_ql_info_main_task_x19_done} true, false
+
+title = drx_ql_ecolog_sl_task_13_name
+descr = drx_ql_ecolog_sl_task_13_text
+descr_functor = drx_ql_ug_fetch_task_target
+job_descr = drx_ql_ecolog_sl_task_13_about
+task_complete_descr = drx_ql_ecolog_sl_task_13_finish
+
+stage_complete = 2
+target_functor = drx_ql_ug_fetch_task_target
+target_functor_params = rad_space_restrictor_to_bunker
+status_functor = drx_ql_brain_scorcher_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_13)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog) -drx_ql_mon_inf_is_infiltrator} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_13)} fail
+on_init = %+drx_ql_info_mon_inf_task_started -drx_ql_meet_honcho_yan_ecolog_kruglov -drx_ql_kruglov_bs_sl_task_link =drx_ql_setup_mon_inf_task() =drx_ql_activate_teleport(rad_space_restrictor_to_bunker)%
+
+on_complete = %=drx_ql_reward_random(9000:12000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_ecolog_sl_task_13) +drx_ql_info_main_task_x19_done -drx_ql_info_mon_inf_task_started =drx_ql_reset_task(drx_ql_ecolog_sl_task_13)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_13) -drx_ql_info_mon_inf_task_started =drx_ql_reset_task(drx_ql_ecolog_sl_task_13)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_13) -drx_ql_info_mon_inf_task_started =drx_ql_reset_task(drx_ql_ecolog_sl_task_13)%
+
+; -----------------------------------------------
+; Ecologist Hermann Investigate Stingray 1 (Jupiter, Helipad) Storyline Task-
+
+[drx_ql_ecolog_sl_task_14]
+
+icon = ui_inGame2_Skat_1
+storyline = true
+prior = 139
+weight = 3
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_is_npc(jup_b6_scientist_nuclear_physicist) =drx_ql_actor_faction() +drx_ql_info_main_task_x19_done -drx_ql_info_stingray_1_done -drx_ql_info_stingray_4_done -drx_ql_quest_item_flight_plan_task_started} true, false
+
+title = drx_ql_ecolog_sl_task_14_name
+descr = drx_ql_ecolog_sl_task_14_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_ecolog_sl_task_14_about
+task_complete_descr = drx_ql_ecolog_sl_task_14_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_14)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_14)} fail
+condlist_3 = {=actor_has_item(drx_ql_quest_item_flight_plan) -drx_ql_info_stingray_1_boars_spawned} %=drx_ql_spawn_horde(drx_ql_location_stingray_1_boars_spawn:12:boar_normal:boar_strong:boar_02a_strong:boar_01a_hard:boar_02a_hard:boar_01a_weak:boar_02a_weak) +drx_ql_info_stingray_1_boars_spawned%
+on_init = %=drx_ql_setup_float_task(drx_ql_ecolog_sl_task_14:drx_ql_quest_item_flight_plan:0:drx_ql_location_stingray_1_flight_plan) -drx_ql_info_stingray_1_boars_spawned +drx_ql_quest_item_flight_plan_task_started%
+
+on_complete = %=drx_ql_reward_random(6500:8500) =complete_task_inc_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_flight_plan) =inc_task_stage(drx_ql_ecolog_sl_task_14) -drx_ql_info_stingray_1_boars_spawned -drx_ql_quest_item_flight_plan_task_started +drx_ql_info_stingray_1_done =drx_ql_reset_task(drx_ql_ecolog_sl_task_14)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_ecolog_sl_task_14) -drx_ql_info_stingray_1_boars_spawned -drx_ql_quest_item_flight_plan_task_started =drx_ql_fail_task(drx_ql_ecolog_sl_task_14) =drx_ql_reset_task(drx_ql_ecolog_sl_task_14)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_ecolog_sl_task_14) -drx_ql_info_stingray_1_boars_spawned -drx_ql_quest_item_flight_plan_task_started =drx_ql_fail_task(drx_ql_ecolog_sl_task_14) =drx_ql_reset_task(drx_ql_ecolog_sl_task_14)%
+
+;------------------------------------------------
+; Ecologist Sakharov Assault Storyline Task-
+
+[drx_ql_ecolog_sl_task_15]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = true
+prior = 165
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(yan_stalker_sakharov) =drx_ql_find_occupied_smart_ext(ecolog:drx_ql_ecolog_sl_task_15)} true, false
+
+title = drx_ql_ecolog_sl_task_15_name
+descr = drx_ql_ecolog_sl_task_15_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_ecolog_sl_task_15_about
+task_complete_descr = drx_ql_ecolog_sl_task_15_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_15)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_15)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_ecolog_sl_task_15)%
+
+on_complete = %=drx_ql_reward_random(3500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_ecolog_sl_task_15) =drx_ql_reset_task(drx_ql_ecolog_sl_task_15)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_15) =drx_ql_reset_task(drx_ql_ecolog_sl_task_15)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_15) =drx_ql_reset_task(drx_ql_ecolog_sl_task_15)%
+
+;------------------------------------------------
+; Ecologist Hermann Assault Storyline Task-
+
+[drx_ql_ecolog_sl_task_16]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = true
+prior = 165
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(jup_b6_scientist_nuclear_physicist) =drx_ql_find_occupied_smart_ext(ecolog:drx_ql_ecolog_sl_task_16)} true, false
+
+title = drx_ql_ecolog_sl_task_16_name
+descr = drx_ql_ecolog_sl_task_16_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_ecolog_sl_task_16_about
+task_complete_descr = drx_ql_ecolog_sl_task_16_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_16)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_16)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_ecolog_sl_task_16)%
+
+on_complete = %=drx_ql_reward_random(3500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_ecolog_sl_task_16) =drx_ql_reset_task(drx_ql_ecolog_sl_task_16)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_16) =drx_ql_reset_task(drx_ql_ecolog_sl_task_16)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_ecolog_sl_task_16) =drx_ql_reset_task(drx_ql_ecolog_sl_task_16)%
+
+; -----------------------------------------------
+; Ecologist Semenov Find Transistors Storyline Task-
+
+[drx_ql_ecolog_sl_task_17]
+
+icon = ui_inGame2_PD_Ecologist
+storyline = true
+prior = 139
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_is_npc(yan_ecolog_semenov) -drx_ql_quest_item_transistors_task_started =drx_ql_find_special_smart_terrain(drx_ql_ecolog_sl_task_17:building_smarts)} true, false
+
+title = drx_ql_ecolog_sl_task_17_name
+descr = drx_ql_ecolog_sl_task_17_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_ecolog_sl_task_17_about
+task_complete_descr = drx_ql_ecolog_sl_task_17_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_ecolog_sl_task_17)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_ecolog_sl_task_17)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_ecolog_sl_task_17:drx_ql_quest_item_transistors:50) +drx_ql_quest_item_transistors_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =complete_task_inc_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_transistors) =inc_task_stage(drx_ql_ecolog_sl_task_17) -drx_ql_quest_item_transistors_task_started =drx_ql_reset_task(drx_ql_ecolog_sl_task_17)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_ecolog_sl_task_17) -drx_ql_quest_item_transistors_task_started =drx_ql_fail_task(drx_ql_ecolog_sl_task_17) =drx_ql_reset_task(drx_ql_ecolog_sl_task_17)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_ecolog_sl_task_17) -drx_ql_quest_item_transistors_task_started =drx_ql_fail_task(drx_ql_ecolog_sl_task_17) =drx_ql_reset_task(drx_ql_ecolog_sl_task_17)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Ecologist Simulation Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 02, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Ecologist Ransom Simulation Task-
+
+[drx_ql_simulation_task_ecolog_1]
+
+icon = ui_inGame2_Zalozhnik
+storyline = false
+prior = 95
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_is_enemy(bandit) =is_factions_enemies(ecolog:bandit) -hostage_companion_task_1_started -hostage_companion_task_1_hostage_rescued =drx_ql_find_occupied_smart_ext(ecolog:drx_ql_simulation_task_ecolog_1:bandit) !squad_exist(hostage_companion_task_1)} true, false
+
+title = drx_ql_simulation_task_ecolog_1_name
+descr = drx_ql_simulation_task_ecolog_1_text
+descr_functor = drx_ql_hostage_task_target
+job_descr = drx_ql_simulation_task_ecolog_1_about
+task_complete_descr = drx_ql_simulation_task_ecolog_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_hostage_task_target
+status_functor = drx_ql_hostage_task_status
+status_functor_params = hostage_companion_task_1
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_ecolog_1)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_ecolog_1)} fail
+condlist_3 = {!squad_exist(hostage_companion_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_ecolog_1) =drx_ql_setup_hostage_task(hostage_companion_task_1_ecolog:nil:drx_ql_simulation_task_ecolog_1_id) +hostage_companion_task_1_started =drx_ql_reward_money(2000)%
+
+on_complete = %=drx_ql_reward_item(2000:5000:items_artefacts_list) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =inc_task_stage(drx_ql_simulation_task_ecolog_1) =unlock_smart(drx_ql_simulation_task_ecolog_1_id) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_1)%
+on_fail = %=drx_ql_take_money(2000) =fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_simulation_task_ecolog_1_id) =drx_ql_fail_task(drx_ql_simulation_task_ecolog_1) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_1)%
+on_cancel = %=drx_ql_take_money(2000) =fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_story_squad(hostage_companion_task_1) -hostage_companion_task_1_hostage_rescued -hostage_companion_task_1_started =unlock_smart(drx_ql_simulation_task_ecolog_1_id) =drx_ql_fail_task(drx_ql_simulation_task_ecolog_1) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_1)%
+
+;------------------------------------------------
+; Clear Research Area for Ecologist Simulation Task-
+
+[drx_ql_simulation_task_ecolog_2]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = false
+prior = 65
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_ext(ecolog:drx_ql_simulation_task_ecolog_2)} true, false
+
+title = drx_ql_simulation_task_ecolog_2_name
+descr = drx_ql_simulation_task_ecolog_2_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_simulation_task_ecolog_2_about
+task_complete_descr = drx_ql_simulation_task_ecolog_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_ecolog_2)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_ecolog_2)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_ecolog_2)%
+
+on_complete = %=drx_ql_reward_item(2000:5000:items_artefacts_list) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_simulation_task_ecolog_2) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_2)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_simulation_task_ecolog_2) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_2)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_simulation_task_ecolog_2) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_2)%
+
+; -----------------------------------------------
+; Find Anomalous Plant for Ecologist Simulation Task-
+
+[drx_ql_simulation_task_ecolog_3]
+
+icon = ui_inGame2_Anomalnoe_rastenie
+storyline = false
+prior = 39
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_plant_task_started =drx_ql_find_special_smart_terrain(drx_ql_simulation_task_ecolog_3:anomalous_smarts)} true, false
+
+title = drx_ql_simulation_task_ecolog_3_name
+descr = drx_ql_simulation_task_ecolog_3_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_ecolog_3_about
+task_complete_descr = drx_ql_simulation_task_ecolog_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_ecolog_3)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_ecolog_3)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_ecolog_3:drx_ql_quest_item_plant:50) +drx_ql_quest_item_plant_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4500) =complete_task_inc_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_plant) =inc_task_stage(drx_ql_simulation_task_ecolog_3) -drx_ql_quest_item_plant_task_started =drx_ql_reset_task(drx_ql_simulation_task_ecolog_3)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_simulation_task_ecolog_3) -drx_ql_quest_item_plant_task_started =drx_ql_fail_task(drx_ql_simulation_task_ecolog_3) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_3)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_simulation_task_ecolog_3) -drx_ql_quest_item_plant_task_started =drx_ql_fail_task(drx_ql_simulation_task_ecolog_3) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_3)%
+
+;------------------------------------------------
+; Ecologist Guide Simulation Task-
+
+[drx_ql_simulation_task_ecolog_4]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = false
+prior = 50
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_guide_task_started =drx_ql_find_guide_target(drx_ql_simulation_task_ecolog_4)} true, false
+guide_task = true
+
+title = drx_ql_simulation_task_ecolog_4_name
+descr = drx_ql_simulation_task_ecolog_4_text
+descr_functor = drx_ql_guide_task_target
+job_descr = drx_ql_simulation_task_ecolog_4_about
+message = drx_ql_simulation_task_ecolog_4_message
+task_complete_descr = drx_ql_simulation_task_ecolog_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_guide_task_target
+status_functor = drx_ql_guide_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_ecolog_4)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_ecolog_4)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_simulation_task_ecolog_4) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_ecolog_4) +drx_ql_guide_task_started%
+
+on_complete = %=drx_ql_give_stored_reward(drx_ql_simulation_task_ecolog_4) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_simulation_task_ecolog_4) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_ecolog_4) -drx_ql_guide_task_started =drx_ql_reset_task(drx_ql_simulation_task_ecolog_4)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_ecolog_4) -drx_ql_guide_task_started =drx_ql_fail_task(drx_ql_simulation_task_ecolog_4) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_4)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_ecolog_4) -drx_ql_guide_task_started =drx_ql_fail_task(drx_ql_simulation_task_ecolog_4) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_4)%
+
+;------------------------------------------------
+; Collect Mutant Tissue Sample for Ecologist Simulation Task-
+
+[drx_ql_simulation_task_ecolog_5]
+
+icon = ui_inGame2_Logovo_krovososov
+storyline = false
+prior = 35
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction()} true, false
+
+title = drx_ql_simulation_task_ecolog_5_name
+title_functor = drx_ql_fetch_task_target
+descr = drx_ql_simulation_task_ecolog_5_text
+descr_functor = drx_ql_fetch_task_target
+job_descr = drx_ql_simulation_task_ecolog_5_about
+fetch_descr = drx_ql_simulation_task_ecolog_5_fetch_about
+task_complete_descr = drx_ql_simulation_task_ecolog_5_fetch_finish
+
+stage_complete = 2
+target_functor = drx_ql_fetch_task_target
+status_functor = drx_ql_fetch_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_ecolog_5)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_ecolog_5)} fail
+fetch_func = %=drx_ql_setup_fetch_task(drx_ql_simulation_task_ecolog_5:500:1250:1:1:0:items_mutant_parts_list)%
+
+on_complete = %=drx_ql_fetch_reward_money(drx_ql_simulation_task_ecolog_5:1.2) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_simulation_task_ecolog_5) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_5)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_simulation_task_ecolog_5) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_5)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_simulation_task_ecolog_5) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_5)%
+
+; -----------------------------------------------
+; Find Missing Notebook for Ecologist Simulation Task-
+
+[drx_ql_simulation_task_ecolog_6]
+
+icon = ui_inGame2_Poslednie_razrabotki
+storyline = false
+prior = 39
+repeat_timeout = 259200
+weight = 1
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() -drx_ql_quest_item_notebook_task_started =drx_ql_find_special_smart_terrain(drx_ql_simulation_task_ecolog_6:building_smarts)} true, false
+
+title = drx_ql_simulation_task_ecolog_6_name
+descr = drx_ql_simulation_task_ecolog_6_text
+descr_functor = drx_ql_float_item_task_target
+job_descr = drx_ql_simulation_task_ecolog_6_about
+task_complete_descr = drx_ql_simulation_task_ecolog_6_finish
+
+stage_complete = 1
+target_functor = drx_ql_float_item_task_target
+status_functor = drx_ql_float_item_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_ecolog_6)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_ecolog_6)} fail
+on_init = %=drx_ql_setup_float_task(drx_ql_simulation_task_ecolog_6:drx_ql_quest_item_notebook:25) +drx_ql_quest_item_notebook_task_started%
+
+on_complete = %=drx_ql_reward_random(2500:4000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =remove_item(drx_ql_quest_item_notebook) =inc_task_stage(drx_ql_simulation_task_ecolog_6) -drx_ql_quest_item_notebook_task_started =drx_ql_reset_task(drx_ql_simulation_task_ecolog_6)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_simulation_task_ecolog_6) -drx_ql_quest_item_notebook_task_started =drx_ql_fail_task(drx_ql_simulation_task_ecolog_6) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_6)%
+on_cancel = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_release_float_item(drx_ql_simulation_task_ecolog_6) -drx_ql_quest_item_notebook_task_started =drx_ql_fail_task(drx_ql_simulation_task_ecolog_6) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_6)%
+
+;------------------------------------------------
+; Mutant Hunt with Ecologist Simulation Task -
+
+[drx_ql_simulation_task_ecolog_7]
+
+icon = ui_inGame2_Nochnaya_ohota
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(75) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(ecolog:drx_ql_simulation_task_ecolog_7:monster)} true, false
+
+title = drx_ql_simulation_task_ecolog_7_name
+descr = drx_ql_simulation_task_ecolog_7_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_simulation_task_ecolog_7_about
+task_complete_descr = drx_ql_simulation_task_ecolog_7_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monster
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_simulation_task_ecolog_7)} fail
+condlist_1 = {=drx_ql_is_enemy(ecolog)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_simulation_task_ecolog_7)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_simulation_task_ecolog_7) =drx_ql_add_task_giver_companion(drx_ql_simulation_task_ecolog_7)%
+
+on_complete = %=drx_ql_reward_random(1500:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:ecolog) =inc_task_stage(drx_ql_simulation_task_ecolog_7) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_ecolog_7) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_7)%
+on_fail = %=fail_task_dec_goodwill(50:ecolog) =drx_ql_fail_task(drx_ql_simulation_task_ecolog_7) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_ecolog_7) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_7)%
+on_cancel = %=fail_task_dec_goodwill(50:stalker) =drx_ql_fail_task(drx_ql_simulation_task_ecolog_7) =drx_ql_remove_task_giver_companion(drx_ql_simulation_task_ecolog_7) =drx_ql_reset_task(drx_ql_simulation_task_ecolog_7)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

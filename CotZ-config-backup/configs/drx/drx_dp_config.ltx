@@ -1,0 +1,2031 @@
+;==============================================================
+;
+; Dynamic Population Settings (drx_dp_config.ltx)
+;	CoC 1.5b r4 - DoctorX Dynamic Population 1.0
+;
+;	Created by: DoctorX
+;	Last revised: October 03, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Spawn Modifiers
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	July 02, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Spawn modifiers:
+[spawn_modifiers]
+
+; Whether to use CoC default starting squads or completely randomize faction populations on game start (bool):
+classic_start = true  ; Use CoC default starting squads
+
+; Spawn multiplier on first run to add additional spawns to existing population if using classic start (float, decimal percent):
+first_run_mult_classic = 0.5  ; 50%
+
+; Spawn multiplier on first run to establish initial population if not using classic start (float, decimal percent):
+first_run_mult_random = 2.5  ; 250%
+
+; Percent chance of respawn for each eligible squad (float, decimal percent):
+squad_spawn_chance = 0.75  ; 75%
+
+; Percent of population spawn multiplier setting to apply to maximum population multiplier (float, decimal percent):
+max_pop_mult = 0.5  ; 50%
+
+; Length of time between mutant squad respawns (int, seconds):
+respawn_time_mutant = 86400  ; 1 day
+
+; Length of time between NPC squad respawns (int, seconds):
+respawn_time_npc = 172800  ; 2 days
+
+; Length of time between helicopter respawns (int, seconds):
+respawn_time_heli = 432000  ; 5 days
+
+; Allowable deviation from respawn time (float, decimal percent):
+respawn_time_deviation = 0.1  ; +-10%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Squads Available per Faction
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 26, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Squads available per faction:
+[squads_by_faction]
+army = army_sim_squad_novice, army_sim_squad_novice, army_sim_squad_advanced, army_sim_squad_advanced, army_sim_squad_veteran, army_sim_squad_veteran, army_sim_squad_sniper
+bandit = bandit_sim_squad_novice, bandit_sim_squad_advanced, bandit_sim_squad_veteran
+csky = csky_sim_squad_novice, csky_sim_squad_advanced, csky_sim_squad_veteran
+dolg = duty_sim_squad_novice, duty_sim_squad_advanced, duty_sim_squad_veteran
+ecolog = ecolog_sim_squad_novice, ecolog_sim_squad_advanced, ecolog_sim_squad_veteran
+freedom = freedom_sim_squad_novice, freedom_sim_squad_advanced, freedom_sim_squad_veteran
+killer = merc_sim_squad_novice, merc_sim_squad_advanced, merc_sim_squad_veteran
+monolith = monolith_sim_squad_novice, monolith_sim_squad_novice, monolith_sim_squad_advanced, monolith_sim_squad_advanced, monolith_sim_squad_veteran, monolith_sim_squad_veteran, monolith_sim_squad_sniper
+stalker = stalker_sim_squad_novice, stalker_sim_squad_advanced, stalker_sim_squad_veteran
+zombied = zombied_sim_squad_novice, zombied_sim_squad_advanced, zombied_sim_squad_veteran
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; MWFC Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 13, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; MWFC Squads:
+[mwfc_squads]
+; simulation_rat = 0
+; simulation_tushkano = 0
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+; simulation_zombie = 0
+; simulation_fracture = 0
+; simulation_snork = 0
+; simulation_bloodsucker = 0
+; simulation_psysucker = 0
+; simulation_burer = 0
+simulation_controller = 1
+simulation_controller_psy = 0.1
+; simulation_gigant = 0
+; simulation_borya = 0
+; simulation_chimera = 0
+; simulation_karlik = 0
+; simulation_poltergeist_tele = 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Survival Mode Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 12, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Survival Mode Mutants:
+[survival_mode]
+; simulation_rat = 0
+; simulation_tushkano = 0
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+simulation_zombie = {-warlab_deactivate_generators_done} 1, 0
+simulation_fracture = 0.2
+simulation_snork = 0.2
+; simulation_bloodsucker = 0
+; simulation_psysucker = 0
+; simulation_burer = 0
+; simulation_controller = 0
+; simulation_controller_psy = 0
+; simulation_gigant = 0
+; simulation_borya = 0
+; simulation_chimera = 0
+; simulation_karlik = 0
+; simulation_poltergeist_tele = 0
+
+; Survival Mode Factions:
+[survival_mode_factions]
+; stalker = 0
+; dolg = 0
+; freedom = 0
+; csky = 0
+; ecolog = 0
+; killer = 0
+; army = 0
+; bandit = 0
+; monolith = 0
+zombied = 1
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Great Swamp Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Great Swamp Level Mutants:
+[k00_marsh]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.1
+simulation_burer = 0.1
+simulation_gigant = 0.1
+simulation_borya = 0.3
+simulation_chimera = 0.1
+simulation_psysucker = 0
+simulation_controller_psy = 0
+simulation_karlik = 0
+simulation_poltergeist_tele = 0.2
+
+; Great Swamp Level Factions:
+[k00_marsh_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Great Swamp, North of the Old Church:
+[mar_smart_terrain_8_9]
+simulation_helicopter_strong = {-achieved_down_to_earth !heli_exist_on_level} 1, 0
+simulation_helicopter_weak = {+achieved_down_to_earth !heli_exist_on_level} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Cordon Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Cordon Level Mutants:
+[l01_escape]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.1
+simulation_burer = 0.1
+simulation_gigant = 0.1
+simulation_borya = 0.3
+simulation_chimera = 0.1
+simulation_psysucker = 0
+simulation_controller_psy = 0
+simulation_karlik = 0
+simulation_poltergeist_tele = 0.2
+
+; Cordon Level Factions:
+[l01_escape_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Cordon, Rookie Village:
+[esc_smart_terrain_2_12]
+drx_dp_esc_smart_terrain_2_12_lager_squad = {!squad_exist(drx_dp_esc_smart_terrain_2_12_lager_squad)} 1, 0
+stalker_sim_squad_novice = {=squad_exist(drx_dp_esc_smart_terrain_2_12_lager_squad)} 1, 0
+stalker_sim_squad_advanced = {=squad_exist(drx_dp_esc_smart_terrain_2_12_lager_squad)} 1, 0
+stalker_sim_squad_veteran = {=squad_exist(drx_dp_esc_smart_terrain_2_12_lager_squad)} 1, 0
+
+; Cordon, Southern Checkpoint:
+[esc_smart_terrain_3_16]
+drx_dp_esc_smart_terrain_3_16_lager_squad = {!squad_exist(drx_dp_esc_smart_terrain_3_16_lager_squad)} 1, 0
+army_sim_squad_novice = {=squad_exist(drx_dp_esc_smart_terrain_3_16_lager_squad)} 1, 0
+army_sim_squad_advanced = {=squad_exist(drx_dp_esc_smart_terrain_3_16_lager_squad)} 1, 0
+army_sim_squad_veteran = {=squad_exist(drx_dp_esc_smart_terrain_3_16_lager_squad)} 1, 0
+army_sim_squad_sniper = {=squad_exist(drx_dp_esc_smart_terrain_3_16_lager_squad)} 1, 0
+
+; Cordon, North of the Southern Checkpoint:
+[esc_smart_terrain_4_13]
+simulation_helicopter_strong = {-achieved_down_to_earth !heli_exist_on_level} 1, 0
+simulation_helicopter_weak = {+achieved_down_to_earth !heli_exist_on_level} 1, 0
+
+; Cordon, Xenotech's Camp:
+[esc_smart_terrain_5_7]
+drx_dp_esc_smart_terrain_5_7_lager_squad = {!squad_exist(drx_dp_esc_smart_terrain_5_7_lager_squad)} 1, 0
+stalker_sim_squad_novice = {=squad_exist(drx_dp_esc_smart_terrain_5_7_lager_squad)} 1, 0
+stalker_sim_squad_advanced = {=squad_exist(drx_dp_esc_smart_terrain_5_7_lager_squad)} 1, 0
+stalker_sim_squad_veteran = {=squad_exist(drx_dp_esc_smart_terrain_5_7_lager_squad)} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Garbage Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Garbage Level Mutants:
+[l02_garbage]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.2
+simulation_burer = 0.2
+simulation_gigant = 0.2
+simulation_borya = 0.4
+simulation_chimera = 0.2
+simulation_psysucker = 0
+simulation_controller_psy = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Garbage Level Factions:
+[l02_garbage_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Darkscape Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	March 15, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Darkscape Level Mutants:
+[k01_darkscape]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.4
+simulation_burer = 0.4
+simulation_gigant = 0.4
+simulation_borya = 0.5
+simulation_chimera = 0.4
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Darkscape Level Factions:
+[k01_darkscape_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Darkscape, West of the Abandoned Fuel Station:
+[ds_deb1]
+simulation_helicopter_strong = {-achieved_down_to_earth !heli_exist_on_level} 1, 0
+simulation_helicopter_weak = {+achieved_down_to_earth !heli_exist_on_level} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Agroprom Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Agroprom Level Mutants:
+[l03_agroprom]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.2
+simulation_burer = 0.2
+simulation_gigant = 0.2
+simulation_borya = 0.4
+simulation_chimera = 0.2
+simulation_psysucker = 0
+simulation_controller_psy = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Agroprom Level Factions:
+[l03_agroprom_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Agroprom, Military Base:
+[agr_smart_terrain_1_6]
+drx_dp_agr_smart_terrain_1_6_lager_squad = {!squad_exist(drx_dp_agr_smart_terrain_1_6_lager_squad)} 1, 0
+army_sim_squad_novice = {=squad_exist(drx_dp_agr_smart_terrain_1_6_lager_squad)} 1, 0
+army_sim_squad_advanced = {=squad_exist(drx_dp_agr_smart_terrain_1_6_lager_squad)} 1, 0
+army_sim_squad_veteran = {=squad_exist(drx_dp_agr_smart_terrain_1_6_lager_squad)} 1, 0
+army_sim_squad_sniper = {=squad_exist(drx_dp_agr_smart_terrain_1_6_lager_squad)} 1, 0
+
+; Agroprom, Military Base East Gate:
+[agr_smart_terrain_1_6_near_2]
+simulation_helicopter_strong = {-achieved_down_to_earth !heli_exist_on_level} 1, 0
+simulation_helicopter_weak = {+achieved_down_to_earth !heli_exist_on_level} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Agroprom Underground Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	July 02, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Agroprom Underground Level Mutants:
+[l03u_agr_underground]
+simulation_rat = 0.5
+simulation_tushkano = 0.5
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+simulation_zombie = {-warlab_deactivate_generators_done} 1.0, 0
+; simulation_fracture = 0
+simulation_snork = 1.0
+simulation_bloodsucker = 1.0
+simulation_controller = 0.5
+simulation_burer = 0.5
+simulation_gigant = 0.5
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_psysucker = 0.2
+simulation_controller_psy = 0.2
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.2
+
+; Agroprom Underground Level Factions:
+[l03u_agr_underground_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dark Valley Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Dark Valley Level Mutants:
+[l04_darkvalley]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.2
+simulation_burer = 0.2
+simulation_gigant = 0.2
+simulation_borya = 0.4
+simulation_chimera = 0.2
+simulation_psysucker = 0
+simulation_controller_psy = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Dark Valley Level Factions:
+[l04_darkvalley_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Dark Valley, Bandit Base:
+[val_smart_terrain_7_3]
+drx_dp_val_smart_terrain_7_3_lager_squad = {!squad_exist(drx_dp_val_smart_terrain_7_3_lager_squad)} 1, 0
+bandit_sim_squad_novice = {=squad_exist(drx_dp_val_smart_terrain_7_3_lager_squad)} 1, 0
+bandit_sim_squad_advanced = {=squad_exist(drx_dp_val_smart_terrain_7_3_lager_squad)} 1, 0
+bandit_sim_squad_veteran = {=squad_exist(drx_dp_val_smart_terrain_7_3_lager_squad)} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Lab X-18 (Dark Valley) Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	July 02, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Lab X-18 (Dark Valley) Level Mutants:
+[l04u_labx18]
+simulation_rat = 0.5
+simulation_tushkano = 0.5
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+simulation_zombie = {-warlab_deactivate_generators_done} 1.0, 0
+; simulation_fracture = 0
+simulation_snork = 1.0
+simulation_bloodsucker = 1.0
+simulation_controller = 0.5
+simulation_burer = 0.5
+simulation_gigant = 0.5
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_psysucker = 0.2
+simulation_controller_psy = 0.2
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.2
+
+; Lab X-18 (Dark Valley) Level Factions:
+[l04u_labx18_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Rostok Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Rostok Level Mutants:
+[l05_bar]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.2
+simulation_burer = 0.2
+simulation_gigant = 0.2
+simulation_borya = 0.4
+simulation_chimera = 0.2
+simulation_psysucker = 0
+simulation_controller_psy = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Rostok Level Factions:
+[l05_bar_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; 100 Rads Bar:
+[bar_visitors]
+drx_dp_bar_visitors_lager_squad = {!squad_exist(drx_dp_bar_visitors_lager_squad)} 1, 0
+stalker_sim_squad_novice = {=squad_exist(drx_dp_bar_visitors_lager_squad)} 1, 0
+stalker_sim_squad_advanced = {=squad_exist(drx_dp_bar_visitors_lager_squad)} 1, 0
+stalker_sim_squad_veteran = {=squad_exist(drx_dp_bar_visitors_lager_squad)} 1, 0
+
+; Duty Base:
+[bar_dolg_general]
+drx_dp_bar_dolg_general_lager_squad = {!squad_exist(drx_dp_bar_dolg_general_lager_squad)} 1, 0
+duty_sim_squad_novice = {=squad_exist(drx_dp_bar_dolg_general_lager_squad)} 1, 0
+duty_sim_squad_advanced = {=squad_exist(drx_dp_bar_dolg_general_lager_squad)} 1, 0
+duty_sim_squad_veteran = {=squad_exist(drx_dp_bar_dolg_general_lager_squad)} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Wild Territory Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	March 15, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Wild Territory Level Mutants:
+[l06_rostok]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.4
+simulation_burer = 0.4
+simulation_gigant = 0.4
+simulation_borya = 0.5
+simulation_chimera = 0.4
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Wild Territory Level Factions:
+[l06_rostok_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Yantar Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Yantar Level Mutants:
+[l08_yantar]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.2
+simulation_burer = 0.2
+simulation_gigant = 0.2
+simulation_borya = 0.4
+simulation_chimera = 0.2
+simulation_psysucker = 0
+simulation_controller_psy = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Yantar Level Factions:
+[l08_yantar_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-yan_labx16_switcher_primary_off} 0.7, {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Lab X-16 (Yantar) Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	July 02, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Lab X-16 (Yantar) Level Mutants:
+[l08u_brainlab]
+simulation_rat = 0.5
+simulation_tushkano = 0.5
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+simulation_zombie = {-yan_labx16_switcher_primary_off} 1.0, {-warlab_deactivate_generators_done} 1.0, 0
+; simulation_fracture = 0
+simulation_snork = 1.0
+simulation_bloodsucker = 1.0
+simulation_controller = 0.5
+simulation_burer = 0.5
+simulation_gigant = 0.5
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_psysucker = 0.2
+simulation_controller_psy = 0.2
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.2
+
+; Lab X-16 (Yantar) Level Factions:
+[l08u_brainlab_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-yan_labx16_switcher_primary_off} 0.7, {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Army Warehouses Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Army Warehouses Level Mutants:
+[l07_military]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.3
+simulation_burer = 0.3
+simulation_gigant = 0.3
+simulation_borya = 0.4
+simulation_chimera = 0.3
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Army Warehouses Level Factions:
+[l07_military_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Army Warehouses, Freedom Base:
+[mil_smart_terrain_7_7]
+drx_dp_mil_smart_terrain_7_7_lager_squad = {!squad_exist(drx_dp_mil_smart_terrain_7_7_lager_squad)} 1, 0
+freedom_sim_squad_novice = {=squad_exist(drx_dp_mil_smart_terrain_7_7_lager_squad)} 1, 0
+freedom_sim_squad_advanced = {=squad_exist(drx_dp_mil_smart_terrain_7_7_lager_squad)} 1, 0
+freedom_sim_squad_veteran = {=squad_exist(drx_dp_mil_smart_terrain_7_7_lager_squad)} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Red Forest Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 26, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Red Forest Level Mutants:
+[l10_red_forest]
+simulation_rat = 1
+simulation_tushkano = 1
+simulation_flesh = 1
+simulation_mix_boar_flesh = 1
+simulation_boar = 1
+simulation_cat = 1
+simulation_dog = 1
+simulation_mix_dogs = 1
+simulation_pseudodog = 1
+simulation_psy_dog = 1
+simulation_zombie = {-warlab_deactivate_generators_done} 1, 0
+simulation_fracture = 1
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 1
+simulation_burer = 1
+simulation_controller = 1
+simulation_controller_psy = 1
+simulation_gigant = 1
+simulation_borya = 1
+simulation_chimera = 1
+simulation_karlik = 0.5
+simulation_poltergeist_tele = 0.5
+
+; Red Forest Level Factions:
+[l10_red_forest_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Limansk Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	March 15, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Limansk Level Mutants:
+[l10_limansk]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.4
+simulation_burer = 0.4
+simulation_gigant = 0.4
+simulation_borya = 0.5
+simulation_chimera = 0.4
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Limansk Level Factions:
+[l10_limansk_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Limansk, River Bend:
+[lim_smart_terrain_7]
+simulation_helicopter_strong = {-achieved_down_to_earth !heli_exist_on_level} 1, 0
+simulation_helicopter_weak = {+achieved_down_to_earth !heli_exist_on_level} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Deserted Hospital Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	July 20, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Deserted Hospital Level Mutants:
+[l11_hospital]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.4
+simulation_burer = 0.4
+simulation_gigant = 0.4
+simulation_borya = 0.5
+simulation_chimera = 0.4
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Deserted Hospital Level Factions:
+[l11_hospital_factions]
+; stalker = 1
+; dolg = 1
+; freedom = 1
+; csky = 1
+; ecolog = 1
+; killer = 1
+; army = 1
+; bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+; zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Deserted Hospital, Hospital:
+[katacomb_smart_terrain]
+drx_dp_katacomb_smart_terrain_lager_squad = {!squad_exist(drx_dp_katacomb_smart_terrain_lager_squad)} 1, 0
+monolith_sim_squad_novice = {=squad_exist(drx_dp_katacomb_smart_terrain_lager_squad)} 1, 0
+monolith_sim_squad_advanced = {=squad_exist(drx_dp_katacomb_smart_terrain_lager_squad)} 1, 0
+monolith_sim_squad_veteran = {=squad_exist(drx_dp_katacomb_smart_terrain_lager_squad)} 1, 0
+monolith_sim_squad_sniper = {=squad_exist(drx_dp_katacomb_smart_terrain_lager_squad)} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dead City Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Dead City Level Mutants:
+[l09_deadcity]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.3
+simulation_burer = 0.3
+simulation_gigant = 0.3
+simulation_borya = 0.4
+simulation_chimera = 0.3
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Dead City Level Factions:
+[l09_deadcity_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Dead City, Mercenary Base:
+[cit_killers]
+drx_dp_cit_killers_lager_squad = {!squad_exist(drx_dp_cit_killers_lager_squad)} 1, 0
+merc_sim_squad_novice = {=squad_exist(drx_dp_cit_killers_lager_squad)} 1, 0
+merc_sim_squad_advanced = {=squad_exist(drx_dp_cit_killers_lager_squad)} 1, 0
+merc_sim_squad_veteran = {=squad_exist(drx_dp_cit_killers_lager_squad)} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Radar Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	March 15, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Radar Level Mutants:
+[l10_radar]
+simulation_rat = {-bar_deactivate_radar_done} 0, 0.9
+simulation_tushkano = {-bar_deactivate_radar_done} 0, 0.9
+simulation_flesh = {-bar_deactivate_radar_done} 0, 0.6
+simulation_mix_boar_flesh = {-bar_deactivate_radar_done} 0, 0.6
+simulation_boar = {-bar_deactivate_radar_done} 0, 0.6
+simulation_cat = {-bar_deactivate_radar_done} 0, 0.5
+simulation_dog = {-bar_deactivate_radar_done} 0, 0.9
+simulation_mix_dogs = {-bar_deactivate_radar_done} 0, 0.9
+simulation_pseudodog = {-bar_deactivate_radar_done} 0.9, 0.9
+simulation_psy_dog = {-bar_deactivate_radar_done} 0.9, 0.9
+simulation_zombie = {+warlab_deactivate_generators_done} 0, {-bar_deactivate_radar_done} 1.0, 0.8
+simulation_fracture = {-bar_deactivate_radar_done} 0.5, 0.5
+simulation_snork = {-bar_deactivate_radar_done} 1.4, 1.8
+simulation_bloodsucker = {-bar_deactivate_radar_done} 1.2, 1.2
+simulation_psysucker = {-bar_deactivate_radar_done} 0.5, 0.1
+simulation_burer = {-bar_deactivate_radar_done} 0.6, 0.9
+simulation_controller = {-bar_deactivate_radar_done} 0.8, 0.8
+simulation_controller_psy = {-bar_deactivate_radar_done} 0.2, 0.1
+simulation_gigant = {-bar_deactivate_radar_done} 0, 0.6
+simulation_borya = {-bar_deactivate_radar_done} 0.6, 0.5
+simulation_chimera = {-bar_deactivate_radar_done} 0.6, 0.5
+simulation_karlik = {-bar_deactivate_radar_done} 0.1, 0.1
+simulation_poltergeist_tele = {-bar_deactivate_radar_done} 0.3, 0.3
+
+; Radar Level Factions:
+[l10_radar_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-bar_deactivate_radar_done} 0.7, {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Lab X-19 (Radar) Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	July 02, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Lab X-19 (Radar) Level Mutants:
+[l10u_bunker]
+simulation_rat = 0.5
+simulation_tushkano = 0.5
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+simulation_zombie = {-bar_deactivate_radar_done} 1.0, {-warlab_deactivate_generators_done} 1.0, 0
+; simulation_fracture = 0
+simulation_snork = 1.0
+simulation_bloodsucker = 1.0
+simulation_controller = 0.5
+simulation_burer = 0.5
+simulation_gigant = 0.5
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_psysucker = 0.2
+simulation_controller_psy = 0.2
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.2
+
+; Lab X-19 (Radar) Level Factions:
+[l10u_bunker_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-bar_deactivate_radar_done} 0.7, {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Pripyat Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	March 15, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Pripyat Level Mutants:
+[l11_pripyat]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.4
+simulation_burer = 0.4
+simulation_gigant = 0.4
+simulation_borya = 0.5
+simulation_chimera = 0.4
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Pripyat Level Factions:
+[l11_pripyat_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Pripyat, Monolith Base:
+[pri_monolith]
+drx_dp_pri_monolith_lager_squad = {!squad_exist(drx_dp_pri_monolith_lager_squad)} 1, 0
+monolith_sim_squad_novice = {=squad_exist(drx_dp_pri_monolith_lager_squad)} 1, 0
+monolith_sim_squad_advanced = {=squad_exist(drx_dp_pri_monolith_lager_squad)} 1, 0
+monolith_sim_squad_veteran = {=squad_exist(drx_dp_pri_monolith_lager_squad)} 1, 0
+monolith_sim_squad_sniper = {=squad_exist(drx_dp_pri_monolith_lager_squad)} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Chernobyl NPP South Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 26, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Chernobyl NPP South Level Mutants:
+[l12_stancia]
+; simulation_rat = 0
+; simulation_tushkano = 0
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+simulation_pseudodog = 1
+simulation_psy_dog = 1
+simulation_zombie = {-warlab_deactivate_generators_done} 0.5, 0
+simulation_fracture = 0.5
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 1
+simulation_burer = 1
+simulation_controller = 1
+simulation_controller_psy = 1
+simulation_gigant = 1
+simulation_borya = 1
+simulation_chimera = 1
+simulation_karlik = 1
+simulation_poltergeist_tele = 0.1
+
+; Chernobyl NPP South Level Factions:
+[l12_stancia_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Sarcophagus (Chernobyl NPP South) Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 27, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Sarcophagus (Chernobyl NPP South) Level Mutants:
+[l12u_sarcofag]
+simulation_rat = 1
+; simulation_tushkano = 0
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+simulation_zombie = {-warlab_deactivate_generators_done} 1, 0
+; simulation_fracture = 0
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 0.5
+simulation_burer = 0.5
+simulation_controller = 0.5
+simulation_controller_psy = 0.5
+; simulation_gigant = 0
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.1
+
+; Sarcophagus (Chernobyl NPP South) Level Factions:
+[l12u_sarcofag_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Monolith Control Center (Chernobyl NPP North) Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 27, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Monolith Control Center (Chernobyl NPP North) Level Mutants:
+[l12u_control_monolith]
+simulation_rat = 1
+; simulation_tushkano = 0
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+simulation_zombie = {-warlab_deactivate_generators_done} 1, 0
+; simulation_fracture = 0
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 0.5
+simulation_burer = 0.5
+simulation_controller = 0.5
+simulation_controller_psy = 0.5
+; simulation_gigant = 0
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.1
+
+; Monolith Control Center (Chernobyl NPP North) Level Factions:
+[l12u_control_monolith_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Chernobyl NPP North Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 26, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Chernobyl NPP North Level Mutants:
+[l12_stancia_2]
+; simulation_rat = 0
+; simulation_tushkano = 0
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+simulation_pseudodog = 1
+simulation_psy_dog = 1
+simulation_zombie = {-warlab_deactivate_generators_done} 0.5, 0
+simulation_fracture = 0.5
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 1
+simulation_burer = 1
+simulation_controller = 1
+simulation_controller_psy = 1
+simulation_gigant = 1
+simulation_borya = 1
+simulation_chimera = 1
+simulation_karlik = 1
+simulation_poltergeist_tele = 0.1
+
+; Chernobyl NPP North Level Factions:
+[l12_stancia_2_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Generators Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 27, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Generators Level Mutants:
+[l13_generators]
+; simulation_rat = 0
+; simulation_tushkano = 0
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+simulation_pseudodog = 1
+simulation_psy_dog = 1
+simulation_zombie = {-warlab_deactivate_generators_done} 0.5, 0
+simulation_fracture = 0.5
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 1
+simulation_burer = 1
+simulation_controller = 1
+simulation_controller_psy = 1
+simulation_gigant = 1
+simulation_borya = 1
+simulation_chimera = 1
+simulation_karlik = 1
+simulation_poltergeist_tele = 0.1
+
+; Generators Level Factions:
+[l13_generators_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Warlab (Generators) Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	April 27, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Warlab (Generators) Level Mutants:
+[l13u_warlab]
+simulation_rat = 1
+simulation_tushkano = 1
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+; simulation_zombie = 0
+; simulation_fracture = 0
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 0.5
+simulation_burer = 0.5
+simulation_controller = 0.5
+simulation_controller_psy = 0.5
+simulation_gigant = 0.5
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.1
+
+; Warlab (Generators) Level Factions:
+[l13u_warlab_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+; zombied = 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Zaton Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	March 15, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Zaton Level Mutants:
+[zaton]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.4
+simulation_burer = 0.4
+simulation_gigant = 0.4
+simulation_borya = 0.5
+simulation_chimera = 0.4
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Zaton Level Factions:
+[zaton_factions]
+stalker = {-bar_deactivate_radar_done} 0.05, 1
+dolg = {-bar_deactivate_radar_done} 0.05, 1
+freedom = {-bar_deactivate_radar_done} 0.05, 1
+csky = {-bar_deactivate_radar_done} 0.05, 1
+ecolog = {-bar_deactivate_radar_done} 0.05, 1
+killer = {-bar_deactivate_radar_done} 0.05, 1
+army = {-bar_deactivate_radar_done} 0.05, 1
+bandit = {-bar_deactivate_radar_done} 0.05, 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Jupiter Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	March 15, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Jupiter Level Mutants:
+[jupiter]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.4
+simulation_burer = 0.4
+simulation_gigant = 0.4
+simulation_borya = 0.5
+simulation_chimera = 0.4
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Jupiter Level Factions:
+[jupiter_factions]
+stalker = {-bar_deactivate_radar_done} 0.05, 1
+dolg = {-bar_deactivate_radar_done} 0.05, 1
+freedom = {-bar_deactivate_radar_done} 0.05, 1
+csky = {-bar_deactivate_radar_done} 0.05, 1
+ecolog = {-bar_deactivate_radar_done} 0.05, 1
+killer = {-bar_deactivate_radar_done} 0.05, 1
+army = {-bar_deactivate_radar_done} 0.05, 1
+bandit = {-bar_deactivate_radar_done} 0.05, 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Jupiter, Yanov Station:
+[jup_a6]
+drx_dp_jup_a6_lager_squad = {!squad_exist(drx_dp_jup_a6_lager_squad)} 1, 0
+freedom_sim_squad_novice = {=squad_exist(drx_dp_jup_a6_lager_squad)} 1, 0
+freedom_sim_squad_advanced = {=squad_exist(drx_dp_jup_a6_lager_squad)} 1, 0
+freedom_sim_squad_veteran = {=squad_exist(drx_dp_jup_a6_lager_squad)} 1, 0
+
+; Jupiter Plant - Northeast Courtyard:
+[jup_b47]
+simulation_rat = 1
+simulation_tushkano = 1
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+simulation_dog = 1
+simulation_mix_dogs = 1
+simulation_pseudodog = 1
+simulation_psy_dog = 1
+simulation_zombie = {-warlab_deactivate_generators_done} 0.5, 0
+simulation_fracture = 0.5
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 0.1
+simulation_burer = 0.1
+simulation_controller = 0.1
+simulation_controller_psy = 0.1
+simulation_gigant = 0.1
+simulation_borya = 0.2
+simulation_chimera = 0.2
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.1
+
+; Jupiter Plant - Big Building North:
+[jup_b219]
+simulation_rat = 1
+simulation_tushkano = 1
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+simulation_pseudodog = 1
+simulation_psy_dog = 1
+simulation_zombie = {-warlab_deactivate_generators_done} 1, 0
+simulation_fracture = 1
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 0.5
+simulation_burer = 0.5
+simulation_controller = 0.5
+simulation_controller_psy = 0.5
+; simulation_gigant = 0
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.1
+
+; Jupiter Plant - Big Building South:
+[jup_b8_smart_terrain]
+simulation_rat = 1
+simulation_tushkano = 1
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+simulation_pseudodog = 1
+simulation_psy_dog = 1
+simulation_zombie = {-warlab_deactivate_generators_done} 1, 0
+simulation_fracture = 1
+simulation_snork = 1
+simulation_bloodsucker = 1
+simulation_psysucker = 0.5
+simulation_burer = 0.5
+simulation_controller = 0.5
+simulation_controller_psy = 0.5
+; simulation_gigant = 0
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.1
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Outskirts Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	March 15, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Outskirts Level Mutants:
+[pripyat]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.4
+simulation_burer = 0.4
+simulation_gigant = 0.4
+simulation_borya = 0.5
+simulation_chimera = 0.4
+simulation_psysucker = 0.1
+simulation_controller_psy = 0.1
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Outskirts Level Factions:
+[pripyat_factions]
+stalker = {-bar_deactivate_radar_done} 0.02, 1
+dolg = {-bar_deactivate_radar_done} 0.02, 1
+freedom = {-bar_deactivate_radar_done} 0.02, 1
+csky = {-bar_deactivate_radar_done} 0.02, 1
+ecolog = {-bar_deactivate_radar_done} 0.02, 1
+killer = {-bar_deactivate_radar_done} 0.02, 1
+army = {-bar_deactivate_radar_done} 0.02, 1
+bandit = {-bar_deactivate_radar_done} 0.02, 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; Outskirts, Laundromat:
+[pri_a16]
+drx_dp_pri_a16_lager_squad = {!squad_exist(drx_dp_pri_a16_lager_squad)} 1, 0
+stalker_sim_squad_novice = {=squad_exist(drx_dp_pri_a16_lager_squad)} 1, 0
+stalker_sim_squad_advanced = {=squad_exist(drx_dp_pri_a16_lager_squad)} 1, 0
+stalker_sim_squad_veteran = {=squad_exist(drx_dp_pri_a16_lager_squad)} 1, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Lab X-8 (Outskirts) Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	July 02, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Lab X-8 (Outskirts) Level Mutants:
+[labx8]
+simulation_rat = 0.5
+simulation_tushkano = 0.5
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+simulation_zombie = {-warlab_deactivate_generators_done} 1.0, 0
+; simulation_fracture = 0
+simulation_snork = 1.0
+simulation_bloodsucker = 1.0
+simulation_controller = 0.5
+simulation_burer = 0.5
+simulation_gigant = 0.5
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_psysucker = 0.2
+simulation_controller_psy = 0.2
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.2
+
+; Lab X-8 (Outskirts) Level Factions:
+[labx8_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Jupiter Underground Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	July 02, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Jupiter Underground Level Mutants:
+[jupiter_underground]
+simulation_rat = 0.5
+simulation_tushkano = 0.5
+; simulation_flesh = 0
+; simulation_mix_boar_flesh = 0
+; simulation_boar = 0
+; simulation_cat = 0
+; simulation_dog = 0
+; simulation_mix_dogs = 0
+; simulation_pseudodog = 0
+; simulation_psy_dog = 0
+simulation_zombie = {-warlab_deactivate_generators_done} 1.0, 0
+; simulation_fracture = 0
+simulation_snork = 1.0
+simulation_bloodsucker = 1.0
+simulation_controller = 0.5
+simulation_burer = 0.5
+simulation_gigant = 0.5
+; simulation_borya = 0
+; simulation_chimera = 0
+simulation_psysucker = 0.2
+simulation_controller_psy = 0.2
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.2
+
+; Jupiter Underground Level Factions:
+[jupiter_underground_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Truck Cemetery Spawn Overrides
+;
+;	Created by DoctorX
+;	for DoctorX Dynamic Population 1.0
+;	October 03, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Truck Cemetery Level Mutants:
+[k02_trucks_cemetery]
+simulation_rat = 0.9
+simulation_tushkano = 0.9
+simulation_flesh = 0.6
+simulation_mix_boar_flesh = 0.6
+simulation_boar = 0.6
+simulation_cat = 0.5
+simulation_dog = 0.9
+simulation_mix_dogs = 0.9
+simulation_pseudodog = 0.9
+simulation_psy_dog = 0.9
+simulation_zombie = {-warlab_deactivate_generators_done} 0.8, 0
+simulation_fracture = 0.6
+simulation_snork = 1.8
+simulation_bloodsucker = 1.3
+simulation_controller = 0.2
+simulation_burer = 0.2
+simulation_gigant = 0.2
+simulation_borya = 0.4
+simulation_chimera = 0.2
+simulation_psysucker = 0
+simulation_controller_psy = 0
+simulation_karlik = 0.1
+simulation_poltergeist_tele = 0.3
+
+; Truck Cemetery Level Factions:
+[k02_trucks_cemetery_factions]
+stalker = 1
+dolg = 1
+freedom = 1
+csky = 1
+ecolog = 1
+killer = 1
+army = 1
+bandit = 1
+monolith = {-warlab_deactivate_generators_done} 1, 0
+zombied = {-warlab_deactivate_generators_done} 0.5, 0
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

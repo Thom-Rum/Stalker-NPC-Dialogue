@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< Actor Blackout Strings (drx_ql_blackout_strings.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Created by: DoctorX
+<	Last revised: August 30, 2019
+<
+<===========================================================-->
+
+
+<string_table>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Player Mugged PDA Message
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	August 30, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- PDA message to display if player was mugged while unconscious (%s = attacker name): -->
+	<string id="drx_ql_bo_str_was_mugged">
+		<text>You were mugged by %s.</text>
+	</string>
+
+	<!-- Name to use for attacker if attacker was removed from game: -->
+	<string id="drx_ql_bo_str_unknown_attacker">
+		<text>an unknown assailant that ran off with your gear</text>
+	</string>
+
+	<!-- PDA message to display if player companion was kidnapped (%s = companion name): -->
+	<string id="drx_ql_bo_str_companion_kidnapped">
+		<text>%s has been kidnapped.</text>
+	</string>
+
+	<!-- PDA message to display if player companion was killed: -->
+	<string id="drx_ql_bo_str_companion_killed">
+		<text>Your companion was captured and killed by your attackers.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Attacker Taunts
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 01, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- PDA message to display from the attacker after player is knocked out: -->
+	<string id="drx_ql_bo_str_attacker_taunt_1">
+		<text>He's finished. Let's get out of here.</text>
+	</string>
+	<string id="drx_ql_bo_str_attacker_taunt_2">
+		<text>Leave him. The snorks will finish him off.</text>
+	</string>
+	<string id="drx_ql_bo_str_attacker_taunt_3">
+		<text>Die you fucking scum.</text>
+	</string>
+	<string id="drx_ql_bo_str_attacker_taunt_4">
+		<text>He's worm food. Come on, let's go.</text>
+	</string>
+	<string id="drx_ql_bo_str_attacker_taunt_5">
+		<text>No, he's dead. I never miss.</text>
+	</string>
+	<string id="drx_ql_bo_str_attacker_taunt_6">
+		<text>Shit, he's dead. Let's get the fuck out of here.</text>
+	</string>
+	<string id="drx_ql_bo_str_attacker_taunt_7">
+		<text>He's done for. Let's get moving before anyone comes looking for him.</text>
+	</string>
+	<string id="drx_ql_bo_str_attacker_taunt_8">
+		<text>He got what he deserved. See you in hell, asshole.</text>
+	</string>
+	<string id="drx_ql_bo_str_attacker_taunt_9">
+		<text>He'll bleed out. There's no saving him now.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Companion Kidnapped Messages
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	May 14, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- PDA message to display from companion while being kidnapped (%s = actor name): -->
+	<string id="drx_ql_bo_str_kidnapped_companion_1">
+		<text>%s, help me!</text>
+	</string>
+
+	<!-- PDA response to display from kidnapper: -->
+	<string id="drx_ql_bo_str_kidnapper_taunt_1">
+		<text>He's dead, he can't save you now. You're coming with us.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Companion Revive Messages
+	<!--
+	<!--	Created by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	November 04, 2017
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- PDA message to display when companion is reviving the player: -->
+	<string id="drx_ql_bo_str_companion_revive_1">
+		<text>Don't try to move. I've got you.</text>
+	</string>
+	<string id="drx_ql_bo_str_companion_revive_2">
+		<text>Stay still. I'll bandage you up.</text>
+	</string>
+	<string id="drx_ql_bo_str_companion_revive_3">
+		<text>You're hurt pretty bad. Lie still. I'll fix you up.</text>
+	</string>
+	<string id="drx_ql_bo_str_companion_revive_4">
+		<text>Holy shit... I mean, you look great. Let me just slap a bandage on that real quick.</text>
+	</string>
+	<string id="drx_ql_bo_str_companion_revive_5">
+		<text>Hey, you ok? Hold still, let me give you a medkit.</text>
+	</string>
+	<string id="drx_ql_bo_str_companion_revive_6">
+		<text>Don't try to speak, you'll be ok. I'll get you fixed up.</text>
+	</string>
+	<string id="drx_ql_bo_str_companion_revive_7">
+		<text>You've lost a lot of blood. Hang in there, I'll take care of you.</text>
+	</string>
+	<string id="drx_ql_bo_str_companion_revive_8">
+		<text>Stay with me, I have a medkit for you.</text>
+	</string>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+</string_table>

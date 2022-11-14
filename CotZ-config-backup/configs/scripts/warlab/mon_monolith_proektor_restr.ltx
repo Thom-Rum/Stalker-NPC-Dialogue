@@ -1,0 +1,176 @@
+;==============================================================
+;
+; mon_monolith_proektor_restr.ltx
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: October 09, 2019
+;
+;==============================================================
+
+
+[logic]
+active = sr_idle@teleport
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; After Opening Osoznanie Door
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+[sr_idle@teleport]
+;on_timer = 7000 | sr_cutscene@osoznanie_cam %=teleport_actor(oso_actor_walk:oso_actor_look)%
+; on_info = {+warlab_door_opened} sr_idle@out %=run_postprocess(fade_in) =teleport_actor(oso_actor_walk:oso_actor_look) +warlab_actor_teleported =disable_ui =play_sound_looped(warlab_oso)%
+on_info = {+warlab_door_opened} sr_idle@out %+warlab_actor_teleported =play_sound_looped(warlab_oso)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;[sr_cutscene@osoznanie_cam]
+;cam_effector = oso_cam
+;point = oso_actor_walk
+;look = oso_actor_look
+;on_signal = cameff_end | sr_idle@nil %=oso_init_dialod%
+;on_timer = 7500 | %+oso_init_dialog%
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Teleport to Meet Osoznanie
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+[sr_idle@out]
+; on_timer = 500 | {+warlab_actor_teleported} sr_idle@talk %=run_postprocess(black:3009:true)%
+on_timer = 500 | sr_idle@talk
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Speaking With Osoznanie
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+[sr_idle@talk]
+; on_timer = 6000 | sr_idle@decided %=stop_postprocess(3009) =enable_ui +oso_init_dialog%
+on_timer = 6000 | sr_idle@decided %+oso_init_dialog%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Osoznanie Decision Made
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+[sr_idle@decided]
+; on_timer = 2000 | {-oso_init_dialog} sr_idle@wait_2nd_actor %=destroy_object(story:osoznanie) =run_postprocess(black:3009:true)%
+on_timer = 1000 | {-oso_init_dialog} sr_idle@drx_ql_end_decision
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Choose Good or Bad Ending
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	May 11, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Determine if actor chose good or bad ending:
+[sr_idle@drx_ql_end_decision]
+on_info = {+drx_ql_info_actor_joined_osoznanie} sr_idle@drx_ql_join_osoznanie
+on_info2 = {+drx_ql_info_actor_refused_osoznanie} sr_idle@wait_2nd_actor
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Bad Ending
+;
+;	Added by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 09, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Actor passes out:
+[sr_idle@drx_ql_join_osoznanie]
+on_timer = 2000 | {-oso_init_dialog} sr_idle@pod_scene %=run_postprocess(deimos1:3045:true) =run_postprocess(agr_u_fade)%
+
+; Play pod scene video:
+[sr_idle@pod_scene]
+on_timer = 6000 | sr_idle@pod_scene_end %=run_tutorial(mov_join_osoznanie)%
+
+; Black screen at end of video:
+[sr_idle@pod_scene_end]
+on_info = {+end_mov_join_osoznanie} sr_idle@drx_ql_bad_choice %=run_postprocess(black:3009:true)%
+
+; Teleport actor to Generators and change faction:
+[sr_idle@drx_ql_bad_choice]
+on_info = sr_idle@nil %=destroy_object(story:osoznanie) =spawn_object(artefact_monolit_ghost:oso_walk:0) =drx_ql_osoznanie_bad_ending()%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Good Ending
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	July 27, 2018
+;
+;--------------------------------------------------------------------------------------------------
+
+; Wait for actor to switch off generators:
+[sr_idle@wait_2nd_actor]
+; on_info = {+sar2_monolith_end} sr_idle@wait_gen_off %=stop_postprocess(3009) +warlab_actor_second_arrive =spawn_object(artefact_monolit_ghost:oso_walk:0)%
+on_timer = 1000 | sr_idle@drx_ql_spawn_delay %+warlab_actor_second_arrive =destroy_object(story:osoznanie) =spawn_object(artefact_monolit_ghost:oso_walk:0) =give_task(drx_ql_special_task_destroy_generators)%
+
+; Spawn delay:
+[sr_idle@drx_ql_spawn_delay]
+on_timer = 7000 | sr_idle@drx_ql_check_switch
+
+; Check if generators deactivated:
+[sr_idle@drx_ql_check_switch]
+on_info = {+warlab_deactivate_generators_done} sr_idle@wait_gen_off
+on_info2 = {-warlab_deactivate_generators_done} sr_idle@drx_ql_spawn_delay %=drx_ql_spawn_osoznanie_protectors()%
+
+; After switching off generators:
+[sr_idle@wait_gen_off]
+; on_info = {+warlab_deactivate_generators_done} sr_idle@destroy_holo %=destroy_object(story:artefact_monolit_ghost) =play_sound(mon_explosion) =stop_sound_looped%
+on_info = {+warlab_deactivate_generators_done} sr_idle@destroy_holo %=destroy_object(story:sar_monolith) =destroy_object(story:artefact_monolit_ghost) =play_sound(mon_explosion) +sar2_monolith_end =stop_sound_looped%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[sr_idle@destroy_holo]
+on_info = {=story_object_exist(warlab_light_alarm_glass_0017)} %=destroy_object(story:warlab_light_alarm_glass_0017)%
+on_info2 = {=story_object_exist(warlab_light_alarm_glass_0026)} %=destroy_object(story:warlab_light_alarm_glass_0026)%
+on_info3 = {!story_object_exist(warlab_light_alarm_glass_0017) !story_object_exist(warlab_light_alarm_glass_0026)} sr_idle@nil
+
+[sr_idle@nil]

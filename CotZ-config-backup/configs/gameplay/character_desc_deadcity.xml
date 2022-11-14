@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding="windows-1251"?>
+
+<!--===========================================================
+<
+< Character Descriptions For Dead City Map (character_desc_deadcity.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Modified by: DoctorX
+<	Last revised: October 13, 2019
+<
+<===========================================================-->
+
+
+<xml>
+    <!-------------------------- MERC TRADER ---------------------- -->
+    <specific_character id="cit_killers_merc_trader_stalker" team_default="1">
+    <name>cit_killers_merc_trader_stalker_name</name>
+    <icon>ui_inGame2_merc_trade</icon>
+    <bio>ќпытный сталкер. ?етальна¤ информаци¤ отсутствует.</bio>
+    <class>cit_killers_merc_trader_stalker</class>
+    <community>killer</community>
+    <map_icon x="1" y="0"/>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <rank>15322</rank>
+    <reputation>-818</reputation>
+    <money min="1000000" max="1000000" infinitive="1"/>
+    <visual>actors\stalker_merc\stalker_ki_head_2</visual>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <supplies>
+        [spawn] \n
+        wpn_mp5 \n
+        wpn_hpsa \n
+        ammo_9x19_fmj = 1 \n
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs.xml"
+    </supplies>
+#include "gameplay\character_criticals.xml"
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Dushman (Mercenary Trader) Dialogs
+		<!--
+		<!--	- Dialogs ID's declared in configs\gameplay\dialogs*.xml
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Questlines 2.0
+		<!--	October 13, 2019
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<actor_dialog>drx_ql_start_game_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_sl_task_completed_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_honcho_task_completed_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_cf_task_completed_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_sl_task_dialog_init</actor_dialog>
+		<actor_dialog>dm_broker_dialog</actor_dialog>
+		<actor_dialog>drx_ql_honcho_task_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_change_faction_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_dialog_cit_killers_merc_trader_stalker_info</actor_dialog>
+		<actor_dialog>drx_ql_sl_task_cancel_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_honcho_task_cancel_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_cf_task_cancel_dialog_init</actor_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+    </specific_character>
+
+    <!-------------------------- MERC MECHANIC ---------------------- -->
+    <specific_character id="cit_killers_merc_mechanic_stalker" team_default="1">
+    <name>cit_killers_merc_mechanic_stalker_name</name>
+    <icon>ui_inGame2_merc_tech</icon>
+    <bio>ќпытный сталкер. ?етальна¤ информаци¤ отсутствует.</bio>
+    <class>cit_killers_merc_mechanic_stalker</class>
+    <community>killer</community>
+    <map_icon x="1" y="0"/>
+    <terrain_sect>stalker_terrain</terrain_sect>
+    <mechanic_mode>1</mechanic_mode>
+    <rank>14098</rank>
+    <reputation>149</reputation>
+    <visual>actors\stalker_merc\stalker_merc_2_face_2</visual>
+    <snd_config>characters_voice\human_03\killer\</snd_config>
+    <supplies>
+        [spawn] \n
+        wpn_mp5 = 1 \n
+        ammo_9x19_pbp = 1 \n
+        wpn_hpsa \n
+#include "gameplay\character_food.xml"
+#include "gameplay\character_drugs_2.xml"
+    </supplies>
+#include "gameplay\character_criticals.xml"
+
+
+		<!-- ////////////////////////////////////////////////////////////////////////////////////////////
+		<!--
+		<!-- Hog (Mercenary Mechanic) Dialogs
+		<!--
+		<!--	- Dialogs ID's declared in configs\gameplay\dialogs*.xml
+		<!--
+		<!--	Modified by DoctorX
+		<!--	for DoctorX Questlines 2.0
+		<!--	November 17, 2017
+		<!--
+		<!-- ---------------------------------------------------------------------------------------- -->
+
+		<actor_dialog>drx_ql_sl_task_completed_dialog_init</actor_dialog>
+	    <actor_dialog>drx_ql_honcho_task_completed_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_sl_task_dialog_init</actor_dialog>
+		<actor_dialog>dm_tech_repair</actor_dialog>
+		<actor_dialog>drx_ql_mechanic_task_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_sl_task_cancel_dialog_init</actor_dialog>
+		<actor_dialog>drx_ql_honcho_task_cancel_dialog_init</actor_dialog>
+		<actor_dialog>actor_break_dialog</actor_dialog>
+
+		<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+    </specific_character>
+
+</xml>

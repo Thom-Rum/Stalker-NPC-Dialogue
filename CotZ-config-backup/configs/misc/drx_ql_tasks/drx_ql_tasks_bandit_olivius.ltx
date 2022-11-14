@@ -1,0 +1,182 @@
+;==============================================================
+;
+; Tasks Given by Olivius (Bandit Trader, Dark Valley) (drx_ql_tasks_bandit_olivius.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;		- Strings file: configs\text\eng\drx_ql_strings_bandit_olivius.xml  (text for task titles and descriptions)
+;		- Status functor file: scripts\task_status_functor.script  (functions for status_functor field)
+;		- Target functor file: scripts\task_functor.script  (functions for target_functor field)
+;		- Preconditions file: scripts\xr_conditions.script  (functions for precondition and condlist_* fields)
+;		- Task scripts file: scripts\xr_effects.script  (functions for on_* fields)
+;
+;	Created by: DoctorX
+;	Last revised: September 10, 2019
+;
+;==============================================================
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Dynamic Tasks
+;
+;	Created by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 10, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+;------------------------------------------------
+; Olivius (Bandit Trader) Eliminate Mutants Task-
+
+[drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1]
+
+icon = ui_inGame2_Nochnaya_ohota
+storyline = false
+prior = 55
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_local(bandit:drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1:monster)} true, false
+
+title = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1_name
+descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1_about
+task_complete_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+status_functor_params = monster
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1)%
+
+on_complete = %=drx_ql_reward_random(1000:3000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_1)%
+
+;------------------------------------------------
+; Olivius (Bandit Trader) Eliminate Territorial Threat Task-
+
+[drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2]
+
+icon = ui_inGame2_Karti_mestnosti
+storyline = false
+prior = 65
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_occupied_smart_ext(bandit:drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2)} true, false
+
+title = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2_name
+descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2_text
+descr_functor = drx_ql_assault_task_target
+job_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2_about
+task_complete_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2_finish
+
+stage_complete = 1
+target_functor = drx_ql_assault_task_target
+status_functor = drx_ql_assault_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2)} fail
+on_init = %=drx_ql_give_assault_target(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2)%
+
+on_complete = %=drx_ql_reward_random(3500:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_2)%
+
+;------------------------------------------------
+; Olivius (Bandit Trader) Dark Valley Raiders Task-
+
+[drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3]
+
+icon = ui_inGame2_PD_Lider
+storyline = false
+prior = 75
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() !squad_exist(bandit_companion_task_1)} true, false
+
+title = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3_name
+descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3_text
+descr_functor = drx_ql_bandit_companion_task_1_target
+job_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3_about
+task_complete_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3_finish
+
+stage_complete = 1
+target_functor = drx_ql_bandit_companion_task_1_target
+status_functor = drx_ql_bandit_companion_task_1_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3)} fail
+condlist_3 = {!squad_exist(bandit_companion_task_1)} fail
+on_init = %=drx_ql_give_escort_task_companions(bandit_companion_task_1) =pstor_set(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3_fetch_count:6) =pstor_reset(drx_ql_looted_count_bandit_companion_task_1) -bandit_companion_task_1_started -bandit_companion_task_1_force_started%
+
+on_complete = %=drx_ql_reward_money(1500:3500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =drx_ql_remove_story_squad(bandit_companion_task_1) =inc_task_stage(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3) -drx_ql_info_bandit_companion_task_1_ended =pstor_reset(drx_ql_looted_count_bandit_companion_task_1) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_story_squad(bandit_companion_task_1) -drx_ql_info_bandit_companion_task_1_ended =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3) =pstor_reset(drx_ql_looted_count_bandit_companion_task_1) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_remove_story_squad(bandit_companion_task_1) -drx_ql_info_bandit_companion_task_1_ended =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3) =pstor_reset(drx_ql_looted_count_bandit_companion_task_1) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_3)%
+
+;------------------------------------------------
+; Olivius (Bandit Trader) Hit Man Task-
+
+[drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4]
+
+icon = ui_inGame2_Odin_vistrel
+storyline = false
+prior = 45
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() =drx_ql_find_assassination_target(bandit:drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4)} true, false
+
+title = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4_name
+descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4_text
+descr_functor = drx_ql_assassination_task_target
+job_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4_about
+task_complete_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4_finish
+
+stage_complete = 1
+target_functor = drx_ql_assassination_task_target
+status_functor = drx_ql_assassination_task_status
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4)} fail
+on_job_descr = %=drx_ql_show_assassination_target(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4)%
+on_init = %=drx_ql_give_assassination_target(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4)%
+
+on_complete = %=drx_ql_reward_random(5000:7000) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =inc_task_stage(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4) =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_4)%
+
+;------------------------------------------------
+; Olivius (Bandit Trader) Interceptor Task-
+
+[drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5]
+
+icon = ui_inGame2_Osobiy_zakaz
+storyline = false
+prior = 80
+weight = 1
+repeat_timeout = 259200
+precondition = {=drx_ql_random_chance(100) =drx_ql_actor_faction() -drx_ql_quest_item_case_task_started =drx_ql_is_enemy(stalker) =is_factions_enemies(bandit:stalker) !squad_exist(drx_ql_designated_target_squad_stalker) =drx_ql_find_unoccupied_smart_terrain(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5)} true, false
+
+title = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5_name
+descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5_text
+descr_functor = drx_ql_interceptor_task_target
+job_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5_about
+task_complete_descr = drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5_finish
+
+stage_complete = 1
+target_functor = drx_ql_interceptor_task_target
+status_functor = drx_ql_interceptor_task_status
+status_functor_params = drx_ql_quest_item_case
+condlist_0 = {!drx_ql_task_giver_alive(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5)} fail
+condlist_1 = {=drx_ql_is_enemy(bandit)} fail
+condlist_2 = {=drx_ql_wg_fail(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5)} fail
+on_init = %=drx_ql_give_stored_smart_target(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5) =drx_ql_create_interceptor_squad(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5:drx_ql_designated_target_squad_stalker) +drx_ql_quest_item_case_task_started%
+
+on_complete = %=drx_ql_reward_money(3000:4500) =drx_ql_reward_stash() =complete_task_inc_goodwill(50:bandit) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_stalker) =inc_task_stage(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5) -drx_ql_quest_item_case_task_started =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5)%
+on_fail = %=fail_task_dec_goodwill(50:bandit) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_stalker) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5)%
+on_cancel = %=fail_task_dec_goodwill(50:bandit) =remove_item(drx_ql_quest_item_case) =drx_ql_remove_story_squad(drx_ql_designated_target_squad_stalker) -drx_ql_quest_item_case_task_started =drx_ql_fail_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5) =drx_ql_reset_task(drx_ql_val_smart_terrain_7_4_bandit_trader_stalker_task_5)%
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

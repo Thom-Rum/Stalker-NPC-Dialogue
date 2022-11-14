@@ -1,0 +1,155 @@
+;==============================================================
+;
+; General Tasks (task_manager.ltx)
+;	CoC 1.5b r4 - DoctorX Questlines 2.0
+;
+;	Modified by: DoctorX
+;	Last revised: September 02, 2019
+;
+;==============================================================
+
+
+; Выдача заданий: =give_task(тип_задания:ид_задания:группировка)
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Task File Includes
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	September 02, 2019
+;
+;--------------------------------------------------------------------------------------------------
+
+; Include Questlines task files:
+#include "drx_ql_tasks\drx_ql_sl_meet_tasks.ltx"
+#include "drx_ql_tasks\drx_ql_starting_tasks.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_bandit.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_bandit_limpid.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_bandit_olivius.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_bandit_sultan.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_csky.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_csky_cold.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_csky_librarian.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_csky_novikov.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_csky_spore.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_duty.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_duty_mangun.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_duty_petrenko.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_duty_voronin.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_ecolog.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_ecolog_hermann.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_ecolog_kruglov.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_ecolog_sakharov.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_ecolog_semenov.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_ecolog_tukarev.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_freedom.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_freedom_loki.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_freedom_lukash.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_freedom_screw.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_freedom_skinflint.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_freedom_yar.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_barkeep.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_beard.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_cardan.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_doc.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_nimble.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_nitro.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_noah.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_owl.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_sidorovich.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_trapper.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_wolf.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_loner_xenotech.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_merc.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_merc_dushman.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_merc_hog.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_military.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_military_kirilov.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_military_kuznetsov.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_military_spooner.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_monolith.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_monolith_cleric.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_monolith_krolik.ltx"
+#include "drx_ql_tasks\drx_ql_tasks_special.ltx"
+
+; Don't include existing task files:
+; #include "tm_zaton.ltx"
+; #include "tm_jupiter.ltx"
+; #include "tm_pripyat.ltx"
+;
+; ;Call of Chernobyl
+; #include "tm_escape.ltx"
+; #include "tm_marsh.ltx"
+; #include "tm_yantar.ltx"
+; #include "tm_darkvalley.ltx"
+; #include "tm_military.ltx"
+; #include "tm_bar.ltx"
+; #include "tm_pripyat2.ltx"
+; #include "tm_deadcity.ltx"
+; #include "tm_agroprom.ltx"
+; #include "tm_radar.ltx"
+; #include "tm_dynamic.ltx"
+; #include "tm_sarcofag.ltx"
+; #include "tm_warlab.ltx"
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[hide_from_surge]
+icon = ui_inGame2_Vibros
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Hide From Blowout Task Priority
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 15, 2017
+;
+;--------------------------------------------------------------------------------------------------
+
+; prior = 20
+prior = 200
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+title_functor = surge_task_title
+descr_functor = surge_task_descr
+target_functor = surge_task_target
+;dont_send_update_news = true
+condlist_0 = {=surge_complete()} complete
+condlist_1 = {!actor_alive()} fail
+
+;AtmosFear Psi Storm
+[hide_from_psi_storm]
+icon = ui_inGame2_psi_storm
+
+
+;//////////////////////////////////////////////////////////////////////////////////////////////////
+;
+; Hide From Psi Storm Task Priority
+;
+;	Modified by DoctorX
+;	for DoctorX Questlines 2.0
+;	October 15, 2017
+;
+;--------------------------------------------------------------------------------------------------
+
+; prior = 20
+prior = 199
+
+; \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+title_functor = psi_storm_task_title
+descr_functor = psi_storm_task_descr
+target_functor = psi_storm_task_target
+;dont_send_update_news = true
+condlist_0 = {=psi_storm_complete()} complete
+condlist_1 = {!actor_alive()} fail
+

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+
+<!--===========================================================
+<
+< Dialog Manager For Warlab Map (dialogs_warlab.xml)
+<	CoC 1.5b r4 - DoctorX Questlines 2.0
+<
+<	Modified by: DoctorX
+<	Last revised: October 08, 2019
+<
+<===========================================================-->
+
+
+<game_dialogs>
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Meet Dialog
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Meet Dialog: -->
+	<dialog id="drx_ql_osoz_meet_dialog">
+		<phrase_list>
+			<phrase id="0">
+				<text>drx_ql_str_osoz_meet_0</text>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Question Dialogs
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor asks about Osoznanie: -->
+	<dialog id="drx_ql_osoz_who_dialog">
+        <dont_has_info>drx_ql_info_osoz_who_asked</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>drx_ql_str_osoz_who_0</text>
+				<give_info>oso_who_are_you</give_info>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>drx_ql_str_osoz_who_1</text>
+				<next>2</next>
+			</phrase>
+			<phrase id="2">
+				<text>drx_ql_str_osoz_who_2</text>
+				<next>3</next>
+			</phrase>
+			<phrase id="3">
+				<text>drx_ql_str_osoz_who_3</text>
+				<next>4</next>
+			</phrase>
+			<phrase id="4">
+				<text>drx_ql_str_osoz_who_4</text>
+				<next>5</next>
+			</phrase>
+			<phrase id="5">
+				<text>drx_ql_str_osoz_who_5</text>
+				<give_info>drx_ql_info_osoz_who_asked</give_info>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- Chernobyl incident: -->
+	<dialog id="drx_ql_osoz_chernobyl_dialog">
+        <has_info>drx_ql_info_osoz_who_asked</has_info>
+        <dont_has_info>drx_ql_info_osoz_gen_asked</dont_has_info>
+        <dont_has_info>drx_ql_info_osoz_chernobyl_asked</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>drx_ql_str_osoz_chernobyl_0</text>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>drx_ql_str_osoz_chernobyl_1</text>
+				<give_info>drx_ql_info_osoz_chernobyl_asked</give_info>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- Miracle Machine: -->
+	<dialog id="drx_ql_osoz_mm_dialog">
+        <has_info>drx_ql_info_osoz_who_asked</has_info>
+        <dont_has_info>drx_ql_info_osoz_gen_asked</dont_has_info>
+        <dont_has_info>drx_ql_info_osoz_mm_asked</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>drx_ql_str_osoz_mm_0</text>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>drx_ql_str_osoz_mm_1</text>
+				<give_info>drx_ql_info_osoz_mm_asked</give_info>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- Brain Scorcher: -->
+	<dialog id="drx_ql_osoz_bs_dialog">
+        <has_info>drx_ql_info_osoz_who_asked</has_info>
+        <dont_has_info>drx_ql_info_osoz_gen_asked</dont_has_info>
+        <dont_has_info>drx_ql_info_osoz_bs_asked</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>drx_ql_str_osoz_bs_0</text>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>drx_ql_str_osoz_bs_1</text>
+				<next>2</next>
+			</phrase>
+			<phrase id="2">
+				<text>drx_ql_str_osoz_bs_2</text>
+				<next>3</next>
+			</phrase>
+			<phrase id="3">
+				<text>drx_ql_str_osoz_bs_3</text>
+				<give_info>drx_ql_info_osoz_bs_asked</give_info>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- Wish Granter: -->
+	<dialog id="drx_ql_osoz_wg_dialog">
+        <has_info>drx_ql_info_osoz_who_asked</has_info>
+        <dont_has_info>drx_ql_info_osoz_gen_asked</dont_has_info>
+        <dont_has_info>drx_ql_info_osoz_wg_asked</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>drx_ql_str_osoz_wg_0</text>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>drx_ql_str_osoz_wg_1</text>
+				<give_info>drx_ql_info_osoz_wg_asked</give_info>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- Generators: -->
+	<dialog id="drx_ql_osoz_gen_dialog">
+        <has_info>drx_ql_info_osoz_who_asked</has_info>
+        <dont_has_info>drx_ql_info_osoz_gen_asked</dont_has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>drx_ql_str_osoz_gen_0</text>
+				<next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>drx_ql_str_osoz_gen_1</text>
+				<next>2</next>
+			</phrase>
+			<phrase id="2">
+				<text>drx_ql_str_osoz_gen_2</text>
+				<next>3</next>
+			</phrase>
+			<phrase id="3">
+				<text>drx_ql_str_osoz_gen_3</text>
+				<next>4</next>
+			</phrase>
+			<phrase id="4">
+				<text>drx_ql_str_osoz_gen_4</text>
+				<next>5</next>
+			</phrase>
+			<phrase id="5">
+				<text>drx_ql_str_osoz_gen_5</text>
+				<next>6</next>
+			</phrase>
+			<phrase id="6">
+				<text>drx_ql_str_osoz_gen_6</text>
+				<next>7</next>
+			</phrase>
+			<phrase id="7">
+				<text>drx_ql_str_osoz_gen_7</text>
+				<give_info>drx_ql_info_osoz_gen_asked</give_info>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////
+	<!--
+	<!-- Actor Decision Dialogs
+	<!--
+	<!--	Added by DoctorX
+	<!--	for DoctorX Questlines 2.0
+	<!--	October 08, 2019
+	<!--
+	<!-- ----------------------------------------------------------------------------------------- -->
+
+	<!-- Actor refuses to join: -->
+	<dialog id="drx_ql_osoz_refuse_dialog">
+        <has_info>drx_ql_info_osoz_gen_asked</has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>drx_ql_str_osoz_refuse_0</text>
+	            <next>1</next>
+			</phrase>
+			<phrase id="1">
+				<text>drx_ql_str_osoz_refuse_1</text>
+	            <next>2</next>
+			</phrase>
+			<phrase id="2">
+				<text>drx_ql_str_osoz_refuse_2</text>
+				<action>dialogs_warlab.osoznanie_decline</action>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- Actor joins Osoznanie: -->
+	<dialog id="drx_ql_osoz_agree_dialog">
+        <has_info>drx_ql_info_osoz_gen_asked</has_info>
+		<phrase_list>
+			<phrase id="0">
+				<text>drx_ql_str_osoz_agree_0</text>
+				<action>dialogs_warlab.osoznanie_agree</action>
+			</phrase>
+		</phrase_list>
+	</dialog>
+
+	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+
+    <dialog id="oso_what_about_me">
+        <has_info>oso_what_is_the_zone</has_info>
+        <dont_has_info>oso_what_about_me</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>oso_what_about_me_0</text>
+                <give_info>oso_what_about_me</give_info>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>oso_what_about_me_1</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="oso_no">
+        <has_info>oso_question</has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>oso_no_0</text>
+                <action>dialogs_warlab.osoznanie_decline</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="oso_death_truck">
+        <has_info>oso_what_about_me</has_info>
+        <dont_has_info>oso_death_truck</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>oso_death_truck_0</text>
+                <give_info>oso_death_truck</give_info>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>oso_death_truck_1</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="oso_osoznanie_start">
+        <phrase_list>
+            <phrase id="2">
+                <text />
+                <has_info>oso_question</has_info>
+                <next>21</next>
+            </phrase>
+            <phrase id="11">
+                <text>oso_osoznanie_start_11</text>
+            </phrase>
+            <phrase id="21">
+                <text>oso_osoznanie_start_21</text>
+            </phrase>
+            <phrase id="0">
+                <text />
+                <next>1</next>
+                <next>2</next>
+            </phrase>
+            <phrase id="1">
+                <text />
+                <dont_has_info>oso_question</dont_has_info>
+                <next>11</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="oso_stalker">
+        <has_info>oso_what_about_me</has_info>
+        <dont_has_info>oso_stalker</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>oso_stalker_0</text>
+                <give_info>oso_stalker</give_info>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>oso_stalker_1</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="oso_why_chernobyl">
+        <has_info>oso_what_is_the_zone</has_info>
+        <dont_has_info>oso_why_chernobyl</dont_has_info>
+        <phrase_list>
+            <phrase id="1">
+                <text>oso_why_chernobyl_1</text>
+            </phrase>
+            <phrase id="0">
+                <text>oso_why_chernobyl_0</text>
+                <give_info>oso_why_chernobyl</give_info>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="oso_what_is_the_zone">
+        <has_info>oso_who_are_you</has_info>
+        <dont_has_info>oso_what_is_the_zone</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>oso_what_is_the_zone_0</text>
+                <give_info>oso_what_is_the_zone</give_info>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>oso_what_is_the_zone_1</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="oso_who_are_you">
+        <dont_has_info>oso_who_are_you</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>oso_who_are_you_0</text>
+                <give_info>oso_who_are_you</give_info>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>oso_who_are_you_1</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+
+    <dialog id="oso_what_next">
+        <has_info>oso_death_truck</has_info>
+        <has_info>oso_stalker</has_info>
+        <has_info>oso_chernobyl_crush</has_info>
+        <dont_has_info>oso_question</dont_has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>oso_what_next_0</text>
+                <give_info>oso_question</give_info>
+                <next>1</next>
+            </phrase>
+            <phrase id="1">
+                <text>oso_what_next_1</text>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="oso_yes">
+        <has_info>oso_question</has_info>
+        <phrase_list>
+            <phrase id="0">
+                <text>oso_yes_0</text>
+                <action>dialogs_warlab.osoznanie_agree</action>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="oso_chernobyl_crush">
+        <has_info>oso_why_chernobyl</has_info>
+        <dont_has_info>oso_chernobyl_crush</dont_has_info>
+        <phrase_list>
+            <phrase id="1">
+                <text>oso_chernobyl_crush_1</text>
+            </phrase>
+            <phrase id="0">
+                <text>oso_chernobyl_crush_0</text>
+                <give_info>oso_chernobyl_crush</give_info>
+                <next>1</next>
+            </phrase>
+        </phrase_list>
+    </dialog>
+    <dialog id="warlab_entity_start">
+        <phrase_list>
+            <phrase id="1">
+                <text></text>
+                <dont_has_info>warlab_ent_question</dont_has_info>
+                <next>11</next>
+            </phrase>
+            <phrase id="0">
+                <text></text>
+                <next>1</next>
+            </phrase>
+            <phrase id="11">
+                <text>warlab_entity_start_11</text>
+                <next>12</next>
+            </phrase>
+            <phrase id="12">
+                <text>warlab_entity_start_12</text>
+                <next>13</next>
+            </phrase>
+            <phrase id="13">
+                <text>warlab_entity_start_13</text>
+                <next>14</next>
+            </phrase>
+            <phrase id="14">
+                <text>warlab_entity_start_14</text>
+                <next>15</next>
+            </phrase>
+            <phrase id="15">
+                <text>warlab_entity_start_15</text>
+                <next>16</next>
+            </phrase>
+            <phrase id="16">
+                <text>warlab_entity_start_16</text>
+                <next>17</next>
+            </phrase>
+            <phrase id="17">
+                <text>warlab_entity_start_17</text>
+                <next>18</next>
+            </phrase>
+            <phrase id="18">
+                <text>warlab_entity_start_18</text>
+                <action>dialogs.break_dialog</action>
+                <give_info>warlab_main_polter_scene_start</give_info>
+            </phrase>
+        </phrase_list>
+    </dialog>
+</game_dialogs>
