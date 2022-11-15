@@ -1,0 +1,320 @@
+-- ============================================================
+--
+-- ui_sr_teleport.script
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--	Modified by: DoctorX
+--	Last revised: July 30, 2019
+--
+-- ============================================================
+
+
+-- basic dynamic msg_box
+-- alundaio
+
+local ini = ini_file("sr_teleport_sections.ltx")
+
+local SINGLETON = nil
+function create(obj,disable_msg,item)
+	SINGLETON = SINGLETON or msg_box_ui(obj,disable_msg,item)
+	SINGLETON:Reset(obj,disable_msg,item)
+	return SINGLETON
+end
+
+local old_pos
+function on_update()
+	if not (SINGLETON) then
+		return true
+	end
+
+	if (old_pos) then
+		if (old_pos:similar(db.actor:position(),1.2) == 0) then
+			SINGLETON:OnMsgCancel()
+			return true
+		end
+	end
+
+	return false
+end
+------------------------------------------------------------------------------------
+class "msg_box_ui" (CUIScriptWnd)
+function msg_box_ui:__init(obj,disable_msg,item) super()
+	self:SetWndRect(Frect():set(0,0,1024,768))
+	self:SetAutoDelete(true)
+
+	self.message_box = CUIMessageBoxEx()
+	self:Register(self.message_box, "msg_box")
+
+	self:InitCallBacks()
+	self:InitControls(obj,disable_msg,item)
+end
+
+function msg_box_ui:__finalize()
+	SINGLETON = nil
+	RemoveUniqueCall(on_update)
+end
+
+function msg_box_ui:Reset(obj,disable_msg,item)
+	if (self.message_box and self.message_box:IsShown()) then
+		self.message_box:HideDialog()
+	end
+	self:InitControls(obj,disable_msg,item)
+end
+
+function msg_box_ui:InitCallBacks()
+	self:AddCallback("msg_box",     ui_events.MESSAGE_BOX_OK_CLICKED,			self.OnMsgOk,						self)
+	self:AddCallback("msg_box",     ui_events.MESSAGE_BOX_CANCEL_CLICKED,		self.OnMsgCancel,					self)
+	self:AddCallback("msg_box",     ui_events.MESSAGE_BOX_YES_CLICKED,			self.OnMsgOk,						self)
+	self:AddCallback("msg_box",     ui_events.MESSAGE_BOX_NO_CLICKED,			self.OnMsgCancel,					self)
+end
+
+function msg_box_ui:OnMsgOk()
+	RemoveUniqueCall(on_update)
+
+	local pos = ini:r_string_ex(self.name,"position")
+	local path = pos == nil and ini:r_string_ex(self.name,"path")
+	local point = path and patrol(path)
+
+	if not (pos or point) then
+		return
+	end
+
+	if not (self.disable_msg) then
+		level.add_pp_effector("black.ppe", 1313, false)
+	end
+
+	if (ini:r_bool_ex(self.name,"autosave",false)) then
+		xr_effects.scenario_autosave(nil,nil,{ini:r_string_ex(self.name,"hint") or "moving"})
+	end
+
+	local p = pos and alun_utils.str_explode(pos,",")
+	pos = p and vector():set(tonumber(p[1]),tonumber(p[2]),tonumber(p[3]))
+
+
+	-- ///////////////////////////////////////////////////////////////////////////////////////////////
+	--
+	-- Don't allow vehicles by default
+	--
+	--	Modified by DoctorX
+	--	for DoctorX Questlines 2.0
+	--	July 30, 2019
+	--
+	-- -----------------------------------------------------------------------------------------------
+
+-- 	local allow_car = ini:r_bool_ex(self.name,"allow_vehicle",true)
+	local allow_car = ini:r_bool_ex( self.name, "allow_vehicle", false )
+
+	-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+	if (allow_car) then
+		-- allow vehicles to teleport too
+		local car = db.actor:get_attached_vehicle()
+		if (car) then
+			car:force_set_position(pos or point and point:point(0))
+		else
+
+
+			-- /////////////////////////////////////////////////////////////////////////////////////////////
+			--
+			-- Teleport Location Overrides
+			--
+			--	Ini requirements:
+			--		drx\drx_ql_locations.ltx
+			--			[drx_ql_location_{teleport_name}]
+			--				pos_x (type: float)
+			--					- x-location of teleport override destination
+			--				pos_y (type: float)
+			--					- y-location of teleport override destination
+			--				pos_z (type: float)
+			--					- z-location of teleport override destination
+			--				lvid (type: int, level vertex id)
+			--					- Level vertex id of teleport override destination
+			--				gvid (type: int, game vertex id)
+			--					- Game vertex id of teleport override destination
+			--				dir (type: float, radians)
+			--					- Actor direction facing after teleport
+			--
+			--	Modified by DoctorX
+			--	for DoctorX Questlines 2.0
+			--	May 09, 2019
+			--
+			-- ---------------------------------------------------------------------------------------------
+
+-- 			db.actor:set_actor_position(pos or point and point:point(0))
+			local loc_ini = ini_file( "drx\\drx_ql_locations.ltx" )
+			local section = string.format( "drx_ql_location_%s", self.name )
+			if ( loc_ini and loc_ini:section_exist( section ) ) then
+				local pos_x = (loc_ini:r_float_ex( section, "pos_x" ) or 0)
+				local pos_y = (loc_ini:r_float_ex( section, "pos_y" ) or 0)
+				local pos_z = (loc_ini:r_float_ex( section, "pos_z" ) or 0)
+				local lvid = (loc_ini:r_float_ex( section, "lvid" ) or 0)
+				local gvid = (loc_ini:r_float_ex( section, "gvid" ) or 0)
+				local dir = (loc_ini:r_float_ex( section, "dir" ) or 0)
+				ChangeLevel( vector( ):set( pos_x, pos_y, pos_z ), lvid, gvid, vector( ):set( 0, dir, 0 ) )
+			else
+				db.actor:set_actor_position( pos or point and point:point(0) )
+			end
+
+			-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+		end
+	else
+		-- If not wanting vehicles to teleport
+		local car = db.actor:get_attached_vehicle()
+		if (car) then
+			db.actor:detach_vehicle()
+
+			local cpos = ini:r_string_ex(self.name,"reject")
+			local cpath = cpos == nil and ini:r_string_ex(self.name,"reject_path")
+			local cpoint = cpath and patrol(cpath)
+
+			local cp = cpos and alun_utils.str_explode(cpos,",")
+			cpos = cp and vector():set(tonumber(cp[1]) or 0,tonumber(cp[2]) or 0,tonumber(cp[3]) or 0)
+
+			if (cpos or cpoint) then
+				TeleportObject(car:id(),cpos or cpoint and cpoint:point(0),cpoint and cpoint:level_vertex_id(0),cpoint and cpoint:game_vertex_id(0))
+			end
+		end
+
+
+		-- /////////////////////////////////////////////////////////////////////////////////////////////
+		--
+		-- Teleport Location Overrides
+		--
+		--	Ini requirements:
+		--		drx\drx_ql_locations.ltx
+		--			[drx_ql_location_{teleport_name}]
+		--				pos_x (type: float)
+		--					- x-location of teleport override destination
+		--				pos_y (type: float)
+		--					- y-location of teleport override destination
+		--				pos_z (type: float)
+		--					- z-location of teleport override destination
+		--				lvid (type: int, level vertex id)
+		--					- Level vertex id of teleport override destination
+		--				gvid (type: int, game vertex id)
+		--					- Game vertex id of teleport override destination
+		--				dir (type: float, radians)
+		--					- Actor direction facing after teleport
+		--
+		--	Modified by DoctorX
+		--	for DoctorX Questlines 2.0
+		--	May 09, 2019
+		--
+		-- ---------------------------------------------------------------------------------------------
+
+-- 		db.actor:set_actor_position(pos or point and point:point(0) or db.actor:position())
+		local loc_ini = ini_file( "drx\\drx_ql_locations.ltx" )
+		local section = string.format( "drx_ql_location_%s", self.name )
+		if ( loc_ini and loc_ini:section_exist( section ) ) then
+			local pos_x = (loc_ini:r_float_ex( section, "pos_x" ) or 0)
+			local pos_y = (loc_ini:r_float_ex( section, "pos_y" ) or 0)
+			local pos_z = (loc_ini:r_float_ex( section, "pos_z" ) or 0)
+			local lvid = (loc_ini:r_float_ex( section, "lvid" ) or 0)
+			local gvid = (loc_ini:r_float_ex( section, "gvid" ) or 0)
+			local dir = (loc_ini:r_float_ex( section, "dir" ) or 0)
+			ChangeLevel( vector( ):set( pos_x, pos_y, pos_z ), lvid, gvid, vector( ):set( 0, dir, 0 ) )
+		else
+			db.actor:set_actor_position( pos or point and point:point( 0 ) or db.actor:position( ) )
+		end
+
+		-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+	end
+
+	if (pos and p[4]) then
+		db.actor:set_actor_direction(tonumber(p[4]) or 0)
+	end
+end
+
+function msg_box_ui:OnMsgCancel()
+	RemoveUniqueCall(on_update)
+
+	if (self.message_box and self.message_box:IsShown()) then
+		self.message_box:HideDialog()
+	end
+
+	local pos = ini:r_string_ex(self.name,"reject")
+	local path = pos == nil and ini:r_string_ex(self.name,"reject_path")
+	local point = path and patrol(path)
+
+	if not (pos or point) then
+		return
+	end
+
+	local p = pos and alun_utils.str_explode(pos,",")
+	pos = p and vector():set(tonumber(p[1]) or 0,tonumber(p[2]) or 0,tonumber(p[3]) or 0)
+
+	local car = db.actor:get_attached_vehicle()
+	if (car) then
+		car:force_set_position(pos or point and point:point(0) or db.actor:position())
+	else
+		db.actor:set_actor_position(pos or point and point:point(0) or db.actor:position())
+		if (pos and p[4]) then
+			db.actor:set_actor_direction(tonumber(p[4]) or 0)
+			return
+		end
+		db.actor:set_actor_direction(-device().cam_dir:getH())
+	end
+end
+
+function msg_box_ui:InitControls(obj,disable_msg,item)
+	self.obj = obj
+	self.name = obj and obj:name()
+	self.disable_msg = disable_msg
+	self.item = item
+
+	if (string.find(self.name,obj:id())) then
+		local story_name = story_objects.get_story_objects_registry():get_story_id(obj:id())
+		self.name = story_name or self.name
+	end
+
+	if (not self.name or not ini:section_exist(self.name)) then
+		printf("sr_teleport_sections.ltx: section doesn't exist %s",obj and obj:name())
+		return
+	end
+
+	local enable = ini:r_string_ex(self.name,"enable")
+	enable = enable and xr_logic.pick_section_from_condlist(db.actor,obj,xr_logic.parse_condlist(obj,"enable",self.name,enable))
+
+	if (enable ~= "true") then
+		local reject_on_disable = ini:r_bool_ex(self.name,"reject_on_disabled",false)
+		if (reject_on_disable) then
+			local warning = ini:r_string_ex(self.name,"warning")
+			if (warning) then
+				SetHudMsg(game.translate_string(warning),5)
+			end
+			self:OnMsgCancel()
+		end
+		return
+	end
+
+	if (self.disable_msg) then
+		if (not self.item or db.actor:object(self.item)) then
+			self:OnMsgOk()
+		else
+			self:OnMsgCancel()
+		end
+		return
+	end
+
+	local vehicle = db.actor:get_attached_vehicle()
+	if (vehicle) then
+		local car = vehicle:get_car()
+		if (car and car:IsActiveEngine()) then
+			car:StopEngine()
+		end
+	end
+
+	self.message_box:InitMessageBox("message_box_yes_no")
+	self.message_box:ShowDialog(true)
+	local str = game.translate_string(ini:r_string_ex(self.name,"text") or "")
+	self.message_box:SetText(str)
+
+	old_pos = utils.vector_copy_by_val(db.actor:position())
+
+	AddUniqueCall(on_update)
+end

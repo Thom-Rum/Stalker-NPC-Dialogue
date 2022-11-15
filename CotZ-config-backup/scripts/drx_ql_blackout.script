@@ -1,0 +1,1539 @@
+--=============================================================
+--
+-- Actor Blackout Script (drx_ql_blackout.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--	- Gives actor a chance of blacking out from blood loss instead of dying on low health
+--	- While blacked out, there is a chance the player will get mugged by the attacker and left for dead
+--	- If actor has a companion with a medkit, there is a chance the companion will revive the player
+--	- If actor has a single companion, there is a chance the companion will be kidnapped while the player is unconscious
+--	- Settings file: configs\drx\drx_ql_blackout.ltx
+--	- Strings file: configs\text\eng\drx_ql_blackout_strings.xml
+--
+--	Created by: DoctorX
+--	Last revised: August 30, 2019
+--
+--=============================================================
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Settings File
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	October 31, 2017
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Location of the settings file:
+local ini = ini_file( "drx\\drx_ql_blackout.ltx" )
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Global Vars
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	May 17, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Flag indicating whether or not the player is currently experiencing a blackout:
+local drx_ql_bo_blackout_started = false
+
+-- Flag indicating whether or not the player was mugged while unconscious:
+local drx_ql_bo_player_was_mugged = false
+
+-- Flag indicating if the player was successfully revived by a companion:
+local drx_ql_bo_revived_by_companion = false
+
+-- Flag indicating if the player companion is being taken hostage:
+local drx_ql_bo_kidnap_companion = false
+
+-- ID of NPC that knocked out the player:
+local drx_ql_bo_blackout_enemy_id = nil
+
+-- ID of player companion that is reviving the player from blackout:
+local drx_ql_bo_revive_companion_id = nil
+
+-- ID of player companion being kidnapped:
+local drx_ql_bo_kidnap_companion_id = nil
+
+-- Start time for fail safe timer while waiting for revive companion to arrive on scene:
+local drx_ql_bo_revive_wait_start_time = nil
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_blackout_start function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Starting point for the actor blackout action
+--
+--	Usage:
+--		drx_ql_bo_blackout_start( attacker )
+--
+--	Parameters:
+--		attacker (type: obj)
+--			- NPC that delivered the current hit to the actor
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				invulnerable_time (type: float, seconds)
+--					- Maximum length of time for player to be invulnerable during a blackout
+--				lightheaded_time (type: float, seconds)
+--					- Length of time player will be lightheaded before fully blacking out
+--			[blackout_settings]
+--				blackout_chance (type: float, decimal percent)
+--					- Percent chance actor will experience a blackout after hit on low health
+--				health_threshold (type: float, decimal percent)
+--					- Percent of player health below which a blackout could occur
+--
+--	Return value (type: bool):
+--		Returns true on success
+--		Returns false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 15, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Start actor blackout action:
+function drx_ql_bo_blackout_start( attacker )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		printf( "DRX QL BO Error: Could not initiate player blackout action, db.actor not available" )
+		return false
+	end
+
+	-- Check if player is currently experiencing a blackout:
+	if ( drx_ql_bo_blackout_started ) then
+		return true
+	end
+
+	-- Check if hit was delivered by an enemy NPC:
+	if ( (not attacker) or (not IsStalker( attacker )) or (not game_relations.is_factions_enemies( db.actor:character_community( ), attacker:character_community( ) )) ) then
+		return true
+	end
+
+	-- Check if attacker is allowable faction:
+	if ( not ini:r_bool_ex( "blackout_factions", attacker:character_community( ) ) ) then
+		return true
+	end
+
+	-- Check if player health is above blackout threshold:
+	local blackout_threshold = (ini:r_float_ex( "blackout_settings", "health_threshold" ) or 0)
+	if ( (blackout_threshold <= 0) or (db.actor.health >= blackout_threshold) ) then
+		return true
+	end
+
+	-- Determine if a blackout should occur:
+	local blackout_chance = (ini:r_float_ex( "blackout_settings", "blackout_chance" ) or 0)
+	if ( (blackout_chance <= 0) or (math.random( ) >= blackout_chance) ) then
+		return true
+	end
+
+	-- Check if player not on underground level:
+	if ( not level_weathers.valid_levels[level.name( )] ) then
+		return true
+	end
+
+	-- Make player invulnerable:
+	local invulnerable_time = (ini:r_float_ex( "blackout_progression", "invulnerable_time" ) or 0)
+	bind_stalker_ext.invulnerable_time = (time_global( ) + (invulnerable_time * 1000))
+
+	-- Set blackout started flag and store attacker id:
+	drx_ql_bo_blackout_started = true
+	drx_ql_bo_blackout_enemy_id = attacker:id( )
+	printf( "DRX QL BO: Player was knocked unconscious by %s, %s", attacker:character_name( ), game.translate_string( attacker:character_community( ) ) )
+
+	-- Disable user input and hide hud elements:
+	xr_effects.disable_ui( nil, nil, nil )
+
+	-- Make player vision go lightheaded:
+	level.add_cam_effector( "camera_effects\\prison_1.anm", 9990, false )
+	level.add_pp_effector( "deimos1.ppe", 9991, false )
+
+	-- Hold lightheaded effect briefly before moving on to full blackout:
+	local lightheaded_time = (ini:r_float_ex( "blackout_progression", "lightheaded_time" ) or 0)
+	CreateTimeEvent( 0, "drx_ql_bo_blackout_lightheaded", lightheaded_time, drx_ql_bo_blackout_unconscious )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_blackout_unconscious function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Makes player go fully unconscious
+--
+--	Usage:
+--		drx_ql_bo_blackout_unconscious( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				unconscious_time (type: float, seconds)
+--					- Length of time player will be fully blacked out before attacker message is displayed
+--			[blackout_settings]
+--				companion_local_max_dist (type: float, distance_to_sqr units)
+--					- Maximum companion distance from player to be considered eligible to revive the player
+--				mugging_chance (type: float, decimal percent)
+--					- Percent chance player will get mugged by attacker while unconscious
+--				kidnap_chance (type: float, decimal percent)
+--					- Percent chance player companion will be kidnapped while player unconcious
+--			[revenge_task_settings]
+--				revenge_task (type: string, task id)
+--					- Task id of the revenge task to give
+--				kidnapped_task (type: string, task id)
+--					- Task id of the rescue kidnapped companion task
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified May 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Have actor go fully unconscious:
+function drx_ql_bo_blackout_unconscious( )
+
+	-- Make screen go completely black:
+	level.add_pp_effector( "black.ppe", 9992, true )
+
+	-- Check if eligible for companion kidnapped task:
+	drx_ql_bo_kidnap_companion = false
+	drx_ql_bo_kidnap_companion_id = nil
+
+	-- Check if actor has companion:
+	local max_dist = (ini:r_float_ex( "blackout_settings", "companion_local_max_dist" ) or 0)
+	for id, squad in pairs( axr_companions.companion_squads ) do
+		if ( squad and squad.commander_id ) then
+			for k in squad:squad_members( ) do
+
+				-- Check if current companion is alive:
+				local member = (db.storage[k.id] and db.storage[k.id].object)
+				if ( member and member:alive( ) ) then
+
+					-- Check if current companion is on same level as player:
+					if ( game_graph( ):vertex( alife( ):actor( ).m_game_vertex_id ):level_id( ) == game_graph( ):vertex( alife( ):object( k.id ).m_game_vertex_id ):level_id( ) ) then
+
+						-- Check if current companion is within range of the player:
+						if ( alife_object( k.id ).position:distance_to_sqr( db.actor:position( ) ) < max_dist ) then
+
+							-- If player has more than one companion then ineligible:
+							if ( drx_ql_bo_kidnap_companion_id ) then
+								drx_ql_bo_kidnap_companion = false
+								break
+							end
+
+							-- Store current companion id:
+							drx_ql_bo_kidnap_companion_id = k.id
+							drx_ql_bo_kidnap_companion = true
+
+						end
+
+					end
+
+				end
+			end
+			if ( (drx_ql_bo_kidnap_companion_id) and (not drx_ql_bo_kidnap_companion) ) then
+				drx_ql_bo_kidnap_companion_id = nil
+				break
+			end
+		end
+	end
+
+	-- If kidnapped eligible check kidnapped chance:
+	if ( drx_ql_bo_kidnap_companion ) then
+		local kidnap_chance = (ini:r_float_ex( "blackout_settings", "kidnap_chance" ) or 0)
+		if ( (not kidnap_chance) or (math.random( ) > kidnap_chance) ) then
+			drx_ql_bo_kidnap_companion = false
+			drx_ql_bo_kidnap_companion_id = nil
+		end
+	end
+
+	-- Remove attackers from immediate vicinity:
+	drx_ql_bo_remove_attackers( )
+
+	-- Have attacker mug the actor:
+	if ( not drx_ql_bo_kidnap_companion ) then
+		local mug_chance = (ini:r_float_ex( "blackout_settings", "mugging_chance" ) or 0)
+		if ( (mug_chance > 0) and (math.random( ) <= mug_chance) ) then
+			drx_ql_bo_mug_player( )
+		end
+	end
+
+	-- Hold black screen briefly before displaying message from attacker:
+	local unconscious_time = (ini:r_float_ex( "blackout_progression", "unconscious_time" ) or 0)
+	if ( drx_ql_bo_kidnap_companion ) then
+		CreateTimeEvent( 1, "drx_ql_bo_blackout_fullout_1", unconscious_time, drx_ql_bo_blackout_kidnapped_message )
+	else
+		CreateTimeEvent( 2, "drx_ql_bo_blackout_fullout_2", unconscious_time, drx_ql_bo_blackout_unconscious_message )
+	end
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_blackout_kidnapped_message function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Displays message from actor companion while being kidnapped
+--
+--	Usage:
+--		drx_ql_bo_blackout_kidnapped_message( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				kidnapper_reply_time (type: float, seconds)
+--					- Length of time after displaying companion kidnapped message before attacker reply is displayed
+--
+--	External strings:
+--		configs\text\eng\drx_ql_blackout_strings.xml
+--			drx_ql_bo_str_kidnapped_companion_{x} (type: string)
+--				- Message to display from companion while being kidnapped ({x} = sequential int starting with 1)
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified May 14, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Display message from actor companion while being kidnapped:
+function drx_ql_bo_blackout_kidnapped_message( )
+
+	-- Send PDA message from companion:
+	if ( db.actor ) then
+		local kidnapped_obj = alife_object( drx_ql_bo_kidnap_companion_id )
+		if ( kidnapped_obj ) then
+			local news_text_list = {}
+			local string_count = 1
+			while ( true ) do
+				local new_string = game.translate_string( string.format( "drx_ql_bo_str_kidnapped_companion_%s", string_count ) )
+				if ( new_string == string.format( "drx_ql_bo_str_kidnapped_companion_%s", string_count ) ) then
+					break
+				end
+				table.insert( news_text_list, new_string )
+				string_count = (string_count + 1)
+			end
+			if ( #news_text_list > 0 ) then
+				if ( drx_ql_bo_kidnap_companion_id ~= nil ) then
+					local caption_text = string.format( "%s, %s", kidnapped_obj:character_name( ), game.translate_string( "st_ui_pda_companion" ) )
+					local news_text = news_text_list[math.random( #news_text_list )]
+					news_text = string.format( news_text, alife( ):actor( ):character_name( ) )
+					db.actor:give_game_news( caption_text, news_text, kidnapped_obj:character_icon( ), 0, 5000, 0 )
+				end
+			end
+		end
+	end
+
+	-- Hold black screen briefly before displaying response from attacker:
+	local kidnapper_reply_time = (ini:r_float_ex( "blackout_progression", "kidnapper_reply_time" ) or 0)
+	CreateTimeEvent( 3, "drx_ql_bo_blackout_kinapped_message", kidnapper_reply_time, drx_ql_bo_blackout_unconscious_message )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_blackout_unconscious_message function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Displays message from attacker while player is fully unconscious
+--
+--	Usage:
+--		drx_ql_bo_blackout_unconscious_message( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				unconscious_message_time (type: float, seconds)
+--					- Length of time player will be fully blacked out after attacker message is displayed
+--
+--	External strings:
+--		configs\text\eng\drx_ql_blackout_strings.xml
+--			drx_ql_bo_str_attacker_taunt_{x} (type: string)
+--				- Message to display from attacker after player is knocked out ({x} = sequential int starting with 1)
+--			drx_ql_bo_str_kidnapper_taunt_{x} (type: string)
+--				- PDA response to display from kidnapper ({x} = sequential int starting with 1)
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified May 14, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Display message from attacker while actor is fully unconscious:
+function drx_ql_bo_blackout_unconscious_message( )
+
+	-- Send PDA message from attacker:
+	if ( db.actor ) then
+		local attacker_obj = alife_object( drx_ql_bo_blackout_enemy_id )
+		if ( attacker_obj ) then
+			local news_text_list = {}
+			local string_count = 1
+			local string_root = "drx_ql_bo_str_attacker_taunt"
+			if ( drx_ql_bo_kidnap_companion ) then
+				string_root = "drx_ql_bo_str_kidnapper_taunt"
+			end
+			while ( true ) do
+				local new_string = game.translate_string( string.format( "%s_%s", string_root, string_count ) )
+				if ( new_string == string.format( "%s_%s", string_root, string_count ) ) then
+					break
+				end
+				table.insert( news_text_list, new_string )
+				string_count = (string_count + 1)
+			end
+			if ( #news_text_list > 0 ) then
+				if ( drx_ql_bo_blackout_enemy_id ~= nil ) then
+					local caption_text = string.format( "%s, %s", attacker_obj:character_name( ), game.translate_string( attacker_obj:community( ) ) )
+					local news_text = news_text_list[math.random( #news_text_list )]
+					db.actor:give_game_news( caption_text, news_text, attacker_obj:character_icon( ), 0, 5000, 0 )
+				end
+			end
+		end
+	end
+
+	-- Hold black screen briefly before opening eyes:
+	local unconscious_message_time = (ini:r_float_ex( "blackout_progression", "unconscious_message_time" ) or 0)
+	CreateTimeEvent( 2, "drx_ql_bo_blackout_message", unconscious_message_time, drx_ql_bo_blackout_wakeup )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_blackout_wakeup function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Makes player wake up and open eyes
+--
+--	Usage:
+--		drx_ql_bo_blackout_wakeup( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				companion_check_time (type: float, seconds)
+--					- Length of time to continue to check for companion to arrive on scene to revive the player
+--				wakeup_time (type: float, seconds)
+--					- Length of time player will stay immobilized after opening eyes if not revived by companion
+--			[blackout_settings]
+--				companion_local_max_dist (type: float, distance_to_sqr units)
+--					- Maximum companion distance from player to be considered eligible to revive the player
+--				companion_revive_chance (type: float, decimal percent)
+--					- Percent chance a companion with a medkit will revive the player
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified May 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Have actor wake up:
+function drx_ql_bo_blackout_wakeup( )
+
+	-- Remove blackout effect:
+	level.remove_pp_effector( 9992 )
+
+	-- Set player pov on ground looking up:
+	level.add_cam_effector( "camera_effects\\dream.anm", 9993, true )
+
+	-- Have companion revive actor:
+	if ( not drx_ql_bo_kidnap_companion ) then
+
+		-- Get maximum companion distance from player to be considered an eligible reviver:
+		local max_dist = (ini:r_float_ex( "blackout_settings", "companion_local_max_dist" ) or 0)
+
+		-- Determine if a companion can revive the player:
+		local companion_revive_chance = (ini:r_float_ex( "blackout_settings", "companion_revive_chance" ) or 0)
+		if ( (companion_revive_chance > 0) and (math.random( ) <= companion_revive_chance) ) then
+
+			-- Check if companion is available to revive the player:
+			for id, squad in pairs( axr_companions.companion_squads ) do
+				if ( squad and squad.commander_id ) then
+					for k in squad:squad_members( ) do
+
+						-- Check if current companion is alive:
+						local member = (db.storage[k.id] and db.storage[k.id].object)
+						if ( member and member:alive( ) ) then
+
+							-- Check if current companion is on same level as player:
+							if ( game_graph( ):vertex( alife( ):actor( ).m_game_vertex_id ):level_id( ) == game_graph( ):vertex( alife( ):object( k.id ).m_game_vertex_id ):level_id( ) ) then
+
+								-- Check if current companion is within range of the player:
+								if ( alife_object( k.id ).position:distance_to_sqr( db.actor:position( ) ) < max_dist ) then
+
+									-- Check if the current companion is wounded or hostage:
+									if ( (not member:wounded( )) and (not xrs_kill_wounded.hostage_list[k.id]) ) then
+
+										-- Check if current companion has a medkit:
+										if ( (member:object( "medkit" ) ~= nil) or (member:object( "medkit_army" ) ~= nil) or (member:object( "medkit_scientic" ) ~= nil) ) then
+
+											-- Store the id of the revive companion and mark current start time for fail safe timer:
+											drx_ql_bo_revive_companion_id = k.id
+											drx_ql_bo_revive_wait_start_time = time_global( )
+
+											-- Restore player control:
+											level.enable_input( )
+
+											-- Have companion run over to actor:
+											axr_companions.set_companion_to_default_substate( member )
+											axr_companions.set_companion_to_follow_state( member )
+
+											-- Wait for companion to arrive on scene:
+											local wait_check_time = (ini:r_float_ex( "blackout_progression", "companion_check_time" ) or 0)
+											CreateTimeEvent( 4, "drx_ql_bo_wait_for_companion", wait_check_time, drx_ql_bo_wait_for_companion )
+
+											-- Set return value:
+											return true
+
+										end
+
+									end
+
+								end
+
+							end
+
+						end
+
+					end
+				end
+			end
+
+		end
+
+	end
+
+	-- Hold wakeup animation briefly before standing up:
+	local wakeup_time = (ini:r_float_ex( "blackout_progression", "wakeup_time" ) or 0)
+	CreateTimeEvent( 5, "drx_ql_bo_blackout_wakeup", wakeup_time, drx_ql_bo_restore_player )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_wait_for_companion function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Checks if the revival companion has arrived on scene at the actor
+--
+--	Usage:
+--		drx_ql_bo_wait_for_companion( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				administer_medkit_delay (type: float, seconds)
+--					- Length of time after revive companion arrives at player before administering medkit
+--				companion_wait_max_time (type: float, seconds)
+--					- Maximum length of time to wait for a companion to revive the player
+--				wakeup_time (type: float, seconds)
+--					- Length of time player will stay immobilized after opening eyes if not revived by companion
+--			[blackout_settings]
+--				minimum_revive_dist (type: float, distance_to_sqr units)
+--					- Minimum distance from player before revive companion will start reviving the player
+--
+--	External strings:
+--		configs\text\eng\drx_ql_blackout_strings.xml
+--			drx_ql_bo_str_companion_revive_{x} (type: string)
+--				- Message to display from from companion about to revive the player ({x} = sequential int starting with 1)
+--
+--	Return value (type: bool):
+--		Returns true on success
+--		Returns false if revive companion is not within minimum distance from player
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 23, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Check if revival companion has arrived:
+function drx_ql_bo_wait_for_companion( )
+
+	-- Get revive companion and failsafe time:
+	local revive_companion = (db.storage[drx_ql_bo_revive_companion_id] and db.storage[drx_ql_bo_revive_companion_id].object)
+	local failsafe_time = ((ini:r_float_ex( "blackout_progression", "companion_wait_max_time" ) or 0) * 1000)
+
+	-- Check if revive companion was killed, db.actor is not available, or fail safe timer has timed out:
+	if ( (not db.actor) or (not revive_companion) or (not revive_companion:alive( )) or (time_global( ) > (drx_ql_bo_revive_wait_start_time + failsafe_time)) ) then
+		local wakeup_time = (ini:r_float_ex( "blackout_progression", "wakeup_time" ) or 0)
+		CreateTimeEvent( 6, "drx_ql_bo_blackout_wakeup_companion_fail", wakeup_time, drx_ql_bo_restore_player )
+		return true
+	end
+
+	-- Check if revive companion has arrived next to actor:
+	local min_dist = (ini:r_float_ex( "blackout_settings", "minimum_revive_dist" ) or 3)
+	local dist = alife_object( drx_ql_bo_revive_companion_id ).position:distance_to_sqr( db.actor:position( ) )
+	if ( dist > min_dist ) then
+		return false
+	end
+
+	-- Display message from companion:
+	local news_text_list = {}
+	local string_count = 1
+	while ( true ) do
+		local new_string = game.translate_string( string.format( "drx_ql_bo_str_companion_revive_%s", string_count ) )
+		if ( new_string == string.format( "drx_ql_bo_str_companion_revive_%s", string_count ) ) then
+			break
+		end
+		table.insert( news_text_list, new_string )
+		string_count = (string_count + 1)
+	end
+	if ( #news_text_list > 0 ) then
+		local companion_obj = level.object_by_id( drx_ql_bo_revive_companion_id )
+		local caption_text = string.format( "%s, %s", companion_obj:character_name( ), game.translate_string( "st_ui_pda_companion" ) )
+		local news_text = news_text_list[math.random( #news_text_list )]
+		db.actor:give_game_news( caption_text, news_text, companion_obj:character_icon( ), 0, 5000, 0 )
+	end
+
+	-- Make companion crouch down next to player:
+	axr_companions.set_companion_to_stealth_substate( revive_companion )
+
+	-- Wait for companion to prepare to administer medkit:
+	local revive_delay = (ini:r_float_ex( "blackout_progression", "administer_medkit_delay" ) or 0)
+	CreateTimeEvent( 7, "drx_ql_bo_wait_for_medkit", revive_delay, drx_ql_bo_companion_apply_medkit )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_companion_apply_medkit function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Makes revival companion administer a medkit to the actor
+--
+--	Usage:
+--		drx_ql_bo_companion_apply_medkit( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				apply_medkit_time (type: float, seconds)
+--					- Length of time for a medkit to be administered by a companion
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 05, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Have companion administer medkit to actor:
+function drx_ql_bo_companion_apply_medkit( )
+
+	-- Remove medkit from companion:
+	local revive_companion = (db.storage[drx_ql_bo_revive_companion_id] and db.storage[drx_ql_bo_revive_companion_id].object)
+	if ( revive_companion:object( "medkit" ) ~= nil ) then
+		alife( ):release( alife_object( revive_companion:object( "medkit"):id( ) ), true )
+	elseif ( revive_companion:object( "medkit_army" ) ~= nil ) then
+		alife( ):release( alife_object( revive_companion:object( "medkit_army" ):id( ) ), true )
+	elseif ( revive_companion:object( "medkit_scientic" ) ~= nil ) then
+		alife( ):release( alife_object( revive_companion:object( "medkit_scientic" ):id( ) ), true )
+	end
+
+	-- Play medkit sound:
+	xr_effects.play_sound_on_actor( nil, nil, {"interface\\inv_medkit"} )
+
+	-- Wait while medkit is applied:
+	local medkit_time = (ini:r_float_ex( "blackout_progression", "apply_medkit_time" ) or 0)
+	CreateTimeEvent( 8, "drx_ql_bo_applying_medkit", medkit_time, drx_ql_bo_done_applying_medkit )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_done_applying_medkit function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Makes revival companion stand up after applying medkit to actor
+--
+--	Usage:
+--		drx_ql_bo_done_applying_medkit( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				player_restore_delay (type: float, seconds)
+--					- Length of time after companion finishes administering medkit before restoring player controls
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 05, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Have revive companion stand up after administering medkit:
+function drx_ql_bo_done_applying_medkit( )
+
+	-- Have revive companion stand up:
+	local revive_companion = (db.storage[drx_ql_bo_revive_companion_id] and db.storage[drx_ql_bo_revive_companion_id].object)
+	axr_companions.set_companion_to_default_substate( revive_companion )
+
+	-- Update revived by companion flag:
+	drx_ql_bo_revived_by_companion = true
+
+	-- Send update to the console:
+	printf( "DRX QL BO: Player was revived by companion %s", level.object_by_id( drx_ql_bo_revive_companion_id ):character_name( ) )
+
+	-- Restore player controls:
+	local restore_delay = (ini:r_float_ex( "blackout_progression", "player_restore_delay" ) or 0)
+	CreateTimeEvent( 9, "drx_ql_bo_after_revival", restore_delay, drx_ql_bo_restore_player )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_restore_player function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Restores player input and hud icons
+--
+--	Usage:
+--		drx_ql_bo_restore_player( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				player_stand_up_delay (type: float, seconds)
+--					- Length of time to wait after restoring player controls before actor stands up
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified December 31, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Restore player input and hud icons:
+function drx_ql_bo_restore_player( )
+
+	-- Restore player input and hud:
+	xr_effects.enable_ui( nil, nil, nil )
+
+	-- Have actor stand up:
+	local stand_delay = (ini:r_float_ex( "blackout_progression", "player_stand_up_delay" ) or 0)
+	CreateTimeEvent( 10, "drx_ql_bo_wait_to_stand", stand_delay, drx_ql_bo_blackout_getup_groggy )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_blackout_getup_groggy function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Makes player stand up and be momentarily groggy
+--
+--	Usage:
+--		drx_ql_bo_blackout_getup_groggy( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_settings]
+--				wakeup_health (type: float, decimal percent)
+--					- Percent health to give player upon regaining consciousness if not revived by companion
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 05, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Have player stand up and stumble:
+function drx_ql_bo_blackout_getup_groggy( )
+
+	-- Remove player invulnerability:
+	bind_stalker_ext.invulnerable_time = nil
+
+	-- Determine health level to restore player to:
+	local wakeup_health = 1
+	if ( not drx_ql_bo_revived_by_companion ) then
+		wakeup_health = (ini:r_float_ex( "blackout_settings", "wakeup_health" ) or 1)
+	end
+
+	-- Restore player health:
+	if ( db.actor ) then
+		db.actor:set_health_ex( wakeup_health )
+	else
+		printf( "DRX QL BO Error: Could not restore player health from blackout, db.actor not available" )
+	end
+
+	-- Remove wakeup effect animation:
+	level.remove_cam_effector( 9993 )
+
+	-- Play groggy animation before displaying mugged by attacker message:
+	level.add_cam_effector( "camera_effects\\prison_1.anm", 9994, false, "drx_ql_blackout.drx_ql_bo_mugged_message" )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_mugged_message function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Displays a PDA message if the player was mugged or companion was kidnapped
+--
+--	Usage:
+--		drx_ql_bo_mugged_message( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				give_task_delay (type: float, seconds)
+--					- Length of time to wait after player stands up before giving revenge task
+--
+--	External strings:
+--		configs\text\eng\drx_ql_blackout_strings.xml
+--			drx_ql_bo_str_was_mugged (type: string)
+--				- PDA message to display if player was mugged while unconscious
+--			drx_ql_bo_str_unknown_attacker (type: string)
+--				- Name to use for attacker if attacker was removed from game
+--			drx_ql_bo_str_companion_kidnapped (type: string)
+--				- PDA message to display if player companion was kidnapped
+--			drx_ql_bo_str_companion_killed (type: string)
+--				- PDA message to display if player companion was killed
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 30, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Display player mugged message:
+function drx_ql_bo_mugged_message( )
+
+	-- Send update to the console:
+	printf( "DRX QL BO: Actor regained consciousness" )
+
+	-- Display pda message if player was mugged:
+	if ( db.actor ) then
+		if ( drx_ql_bo_player_was_mugged ) then
+			if ( drx_ql_bo_blackout_enemy_id ~= nil ) then
+				local attacker_name = game.translate_string( "drx_ql_bo_str_unknown_attacker" )
+				local attacker_obj = alife_object( drx_ql_bo_blackout_enemy_id )
+				if ( attacker_obj ) then
+					attacker_name = attacker_obj:character_name( )
+				end
+				news_manager.send_tip( db.actor, string.format( game.translate_string( "drx_ql_bo_str_was_mugged" ), attacker_name ), nil, "rag_and_bone", nil, nil )
+			end
+
+		-- Display pda message if companion was kidnapped:
+		elseif ( drx_ql_bo_kidnap_companion ) then
+			if ( drx_ql_bo_kidnap_companion_id ~= nil ) then
+				local companion_obj = alife_object( drx_ql_bo_kidnap_companion_id )
+				if ( companion_obj ) then
+					local companion_name = companion_obj:character_name( )
+					news_manager.send_tip( db.actor, string.format( game.translate_string( "drx_ql_bo_str_companion_kidnapped" ), companion_name ), nil, "recent_surge", nil, nil )
+				else
+					news_manager.send_tip( db.actor, game.translate_string( "drx_ql_bo_str_companion_killed" ), nil, "recent_surge", nil, nil )
+				end
+			end
+
+		end
+	end
+
+	-- Give revenge task:
+	local give_task_delay = (ini:r_float_ex( "blackout_progression", "give_task_delay" ) or 0)
+	CreateTimeEvent( 11, "drx_ql_bo_wait_give_task", give_task_delay, drx_ql_bo_give_revenge_task )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_give_revenge_task  function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Gives a revenge task after being mugged by a blackout attacker or companion kidnapped
+--
+--	Usage:
+--		drx_ql_bo_give_revenge_task( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_progression]
+--				end_sequence_delay (type: float, seconds)
+--					- Length of time to wait after giving revenge task before ending blackout sequence
+--			[revenge_task_settings]
+--				revenge_task (type: string, task id)
+--					- Task id of the revenge task to give
+--				revenge_task_chance (type: float, decimal percent)
+--					- Percent chance player will be given a revenge manhunt task after being mugged
+--				kidnapped_task (type: string, task id)
+--					- Task id of the rescue kidnapped companion task
+--
+--	Return value (type: bool):
+--		Returns true on success
+--		Returns false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified May 16, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Give revenge manhunt task:
+function drx_ql_bo_give_revenge_task( )
+
+	-- If player was mugged then give manhunt task:
+	if ( (drx_ql_bo_player_was_mugged) and (drx_ql_bo_blackout_enemy_id ~= nil) ) then
+
+		-- If random chance is satisfied, give manhunt task:
+		local revenge_task_chance = (ini:r_float_ex( "revenge_task_settings", "revenge_task_chance" ) or 0)
+		if ( (revenge_task_chance > 0) and (math.random( ) <= revenge_task_chance) ) then
+
+			-- Ensure attacker is valid:
+			local attacker_obj = alife( ):object( drx_ql_bo_blackout_enemy_id )
+			if ( (attacker_obj) and (attacker_obj:alive( )) and (simulation_objects.is_on_the_same_level( attacker_obj, alife( ):actor( ) )) ) then
+
+				-- Revenge task id:
+				local revenge_task_id = ini:r_string_ex( "revenge_task_settings", "revenge_task" )
+				if ( revenge_task_id ) then
+
+					-- Ensure actor does not already have ongoing revenge task:
+					local existing_task_info = task_manager.get_task_manager( ).task_info[revenge_task_id]
+					if ( not existing_task_info ) then
+
+						-- Store blackout attacker as assassination target:
+						axr_task_manager.bounties_by_id[revenge_task_id] = drx_ql_bo_blackout_enemy_id
+
+						-- Store blackout attacker as hidden target:
+						xr_effects.drx_ql_add_hidden_target( nil, nil, {revenge_task_id} )
+
+						-- Give revenge task:
+						task_manager.get_task_manager( ):give_task( revenge_task_id )
+						printf( "DRX QL BO: Revenge task %s started", revenge_task_id )
+
+					end
+
+				end
+
+			end
+
+		end
+
+	end
+
+	-- If player companion was kidnapped then give rescue hostage task:
+	if ( (drx_ql_bo_kidnap_companion) and (drx_ql_bo_kidnap_companion_id ~= nil) ) then
+		local kidnapped_task_id = ini:r_string_ex( "revenge_task_settings", "kidnapped_task" )
+		if ( kidnapped_task_id ) then
+			task_manager.get_task_manager( ):give_task( kidnapped_task_id )
+			give_info( "hostage_companion_task_1_started" )
+			printf( "DRX QL BO: Rescue kidnapped companion task %s started", kidnapped_task_id )
+		end
+	end
+
+	-- End blackout sequence:
+	local end_sequence_delay = (ini:r_float_ex( "blackout_progression", "end_sequence_delay" ) or 0)
+	CreateTimeEvent( 12, "drx_ql_bo_wait_end_sequence", end_sequence_delay, drx_ql_bo_blackout_end )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_blackout_end function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Ends player blackout sequence
+--
+--	Usage:
+--		drx_ql_bo_blackout_end( )
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: bool):
+--		Returns true
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified May 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- End player blackout sequence:
+function drx_ql_bo_blackout_end( )
+
+	-- Reset status flags:
+	drx_ql_bo_blackout_started = false
+	drx_ql_bo_player_was_mugged = false
+	drx_ql_bo_revived_by_companion = false
+	drx_ql_bo_kidnap_companion = false
+	drx_ql_bo_blackout_enemy_id = nil
+	drx_ql_bo_revive_companion_id = nil
+	drx_ql_bo_kidnap_companion_id = nil
+
+	-- Send update to the console:
+	printf( "DRX QL BO: Blackout sequence ended" )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_mug_player function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Removes all inventory from the player and gives it to the attacker
+--
+--	Usage:
+--		drx_ql_bo_mug_player( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_settings]
+--				money_taken_min (type: float, decimal percent)
+--					- Minimum percent of player total money a mugger will take
+--				money_taken_max (type: float, decimal percent)
+--					- Maximum percent of player total money a mugger will take
+--			[protected_items] (type: string, item section names)
+--				- List of items attackers will not take if player gets mugged
+--
+--	Return value (type: bool):
+--		Returns true on success
+--		Returns false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified May 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Have attacker mug the player:
+function drx_ql_bo_mug_player( )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		printf( "DRX QL BO Error: Could not have blackout attacker mug player, db.actor not available" )
+		return false
+	end
+
+	-- Get attacker object:
+	if ( not drx_ql_bo_blackout_enemy_id ) then
+		return false
+	end
+	local attacker_obj = level.object_by_id( drx_ql_bo_blackout_enemy_id )
+	if ( (not attacker_obj) or (not attacker_obj:alive( )) ) then
+		return false
+	end
+
+	-- Get list of protected items:
+	local protected_items = alun_utils.collect_section( ini, "protected_items" )
+
+	-- Transfer player inventory to attacker:
+	local function give_inventory_to_attacker( actor, item )
+		for i = 1, ( #protected_items ) do
+			if ( item:section( ) == protected_items[i] ) then
+				return
+			end
+		end
+		db.actor:transfer_item( item, attacker_obj )
+	end
+	db.actor:iterate_inventory( give_inventory_to_attacker )
+
+	-- Remove player's money:
+	local min_percent = (ini:r_float_ex( "blackout_settings", "money_taken_min" ) or 0)
+	local max_percent = (ini:r_float_ex( "blackout_settings", "money_taken_max" ) or 1)
+	db.actor:give_money( -(math.random( math.ceil( (db.actor:money( ) * min_percent) ), math.ceil( (db.actor:money( ) * max_percent) ) )) )
+
+	-- Update player was mugged status flag:
+	drx_ql_bo_player_was_mugged = true
+
+	-- Send update to the console:
+	printf( "DRX QL BO: Player was mugged by %s, %s", attacker_obj:character_name( ), game.translate_string( attacker_obj:character_community( ) ) )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_remove_attackers function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Removes attackers from the players immediate vicinity while the player is blacked out
+--
+--	Usage:
+--		drx_ql_bo_remove_attackers( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[revenge_task_settings]
+--				kidnapped_task (type: string, task id)
+--					- Task id of the rescue kidnapped companion task
+--
+--	Persistent storage:
+--		drx_ql_bo_kidnapped_id (type: int, npc id)
+--			- ID of the kidnapped companion
+--
+--	Return value (type: bool):
+--		Returns true on success
+--		Returns false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified May 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Remove attackers from player vicinity:
+function drx_ql_bo_remove_attackers( )
+
+	-- Build list of local unoccupied smart terrains:
+	local smart_list = {}
+	for name, smart in pairs( SIMBOARD.smarts_by_names ) do
+
+		-- Inspect next smart terrain:
+		if ( (smart.online) and (simulation_objects.available_by_id[smart.id] == true) ) then
+			local smrt = SIMBOARD.smarts[smart.id]
+			if ( smrt ) then
+
+				-- Check if current smart terrain is occupied:
+				local smart_is_occupied = false
+				for k, squad in pairs( smrt.squads ) do
+					if ( (squad.id) and (alife( ):object( squad.id )) ) then
+						smart_is_occupied = true
+						break
+					end
+				end
+
+				-- If current smart terrain is unoccupied and is not closest to actor then add to the list of available smarts:
+				if ( (not smart_is_occupied) and (smart.id ~= smart_terrain.nearest_to_actor_smart.id) ) then
+					table.insert( smart_list, smart )
+				end
+
+			end
+		end
+
+	end
+
+	-- If an unoccupied smart terrain was not found then just remove the squads:
+	local remove_squads = false
+	if ( #smart_list < 1 ) then
+		drx_ql_bo_kidnap_companion = false
+		for enemy_npc_id, is_fighting in pairs( xr_combat_ignore.fighting_with_actor_npcs ) do
+			local enemy_npc_obj = level.object_by_id( enemy_npc_id )
+			if ( enemy_npc_obj ) then
+				local enemy_squad_obj = get_object_squad( enemy_npc_obj )
+				if ( enemy_squad_obj ) then
+					enemy_squad_obj:remove_squad( )
+				elseif ( enemy_npc_obj:alive( ) ) then
+					local se_obj = alife( ):object( enemy_npc_id )
+					if ( se_obj ) then
+						alife( ):release( se_obj )
+					end
+				end
+			end
+		end
+		printf( "DRX QL BO: No suitable teleport smarts available, blackout attackers removed from the game" )
+		return true
+	end
+
+	-- Relocate the attacking squads to the new smart:
+	local smrt = smart_list[math.random( #smart_list )]
+	local position = level.vertex_position( smrt.m_level_vertex_id )
+	for enemy_npc_id, is_fighting in pairs( xr_combat_ignore.fighting_with_actor_npcs ) do
+		local enemy_npc_obj = level.object_by_id( enemy_npc_id )
+		if ( enemy_npc_obj ) then
+			local enemy_squad_obj = get_object_squad( enemy_npc_obj )
+			if ( enemy_squad_obj ) then
+				enemy_squad_obj.current_target_id = smrt.id
+				enemy_squad_obj.action_condlist = alun_utils.parse_condlist( smrt:name( ) )
+				enemy_squad_obj.stay_time = game.get_game_time( )
+				enemy_squad_obj.force_online = true
+				enemy_squad_obj:set_squad_position( position )
+			elseif ( enemy_npc_obj:alive( ) ) then
+				enemy_npc_obj:set_npc_position( position )
+			end
+		end
+	end
+
+	-- Send update to the console:
+	printf( "DRX QL BO: Blackout attackers ran off to %s", smrt:name( ) )
+
+	-- If actor companion was kidnapped then setup rescue hostage task:
+	if ( (drx_ql_bo_kidnap_companion) and (drx_ql_bo_kidnap_companion_id ~= nil) and (drx_ql_bo_blackout_enemy_id ~= nil) ) then
+
+		-- Ensure attacker is valid:
+		local attacker_obj = alife( ):object( drx_ql_bo_blackout_enemy_id )
+		if ( (not attacker_obj) or (not attacker_obj:alive( )) or (not simulation_objects.is_on_the_same_level( attacker_obj, alife( ):actor( ) )) ) then
+			drx_ql_bo_kidnap_companion = false
+			drx_ql_bo_kidnap_companion_id = nil
+			return true
+		end
+
+		-- Ensure companion is valid:
+		local kidnapped_obj = alife( ):object( drx_ql_bo_kidnap_companion_id )
+		if ( (not kidnapped_obj) or (not kidnapped_obj:alive( )) or (not simulation_objects.is_on_the_same_level( kidnapped_obj, alife( ):actor( ) )) ) then
+			drx_ql_bo_kidnap_companion = false
+			drx_ql_bo_kidnap_companion_id = nil
+			return true
+		end
+
+		-- Rescue kidnapped companion task id:
+		local kidnapped_task_id = ini:r_string_ex( "revenge_task_settings", "kidnapped_task" )
+		if ( not kidnapped_task_id ) then
+			drx_ql_bo_kidnap_companion = false
+			drx_ql_bo_kidnap_companion_id = nil
+			return true
+		end
+
+		-- Ensure actor does not already have ongoing hostage rescue task:
+		local existing_task_info = task_manager.get_task_manager( ).task_info[kidnapped_task_id]
+		if ( existing_task_info ) then
+			drx_ql_bo_kidnap_companion = false
+			drx_ql_bo_kidnap_companion_id = nil
+			return true
+		end
+		if ( (has_alife_info( "hostage_companion_task_1_started" )) or (has_alife_info( "hostage_companion_task_1_hostage_rescued" )) ) then
+			drx_ql_bo_kidnap_companion = false
+			drx_ql_bo_kidnap_companion_id = nil
+			return true
+		end
+
+		-- Ensure destination was chosen:
+		if ( not smrt.id ) then
+			drx_ql_bo_kidnap_companion = false
+			drx_ql_bo_kidnap_companion_id = nil
+			return true
+		end
+
+		-- Ensure db.actor available:
+		if ( not db.actor ) then
+			drx_ql_bo_kidnap_companion = false
+			drx_ql_bo_kidnap_companion_id = nil
+			return true
+		end
+
+		-- Get kidnapped companion object:
+		local kidnapped_npc_obj = level.object_by_id( drx_ql_bo_kidnap_companion_id )
+		if ( not kidnapped_npc_obj ) then
+			drx_ql_bo_kidnap_companion = false
+			drx_ql_bo_kidnap_companion_id = nil
+			return true
+		end
+
+		-- Relocate kidnapped companion:
+		local kidnapped_squad_obj = get_object_squad( kidnapped_npc_obj )
+		if ( kidnapped_squad_obj ) then
+			kidnapped_squad_obj:set_squad_position( position )
+		elseif ( kidnapped_npc_obj:alive( ) ) then
+			kidnapped_npc_obj:set_npc_position( position )
+		end
+
+		-- Setup hostage rescue task:
+		kidnapped_npc_obj:disable_info_portion( "npcx_beh_wait" )
+		kidnapped_npc_obj:disable_info_portion( "npcx_beh_hide_in_cover" )
+		kidnapped_npc_obj:disable_info_portion( "npcx_beh_patrol_mode" )
+		kidnapped_npc_obj:give_info_portion( "npcx_beh_ignore_combat" )
+		kidnapped_npc_obj:give_info_portion( "npcx_beh_ignore_actor_enemies" )
+		kidnapped_npc_obj:disable_info_portion( "npcx_beh_substate_stealth" )
+		kidnapped_npc_obj:disable_info_portion( "npcx_beh_substate_relax" )
+		kidnapped_npc_obj:disable_info_portion( "npcx_beh_distance_far" )
+		kidnapped_npc_obj:disable_info_portion( "npcx_beh_patrol_mode" )
+		kidnapped_npc_obj:disable_info_portion( "npcx_beh_gather_items" )
+		kidnapped_npc_obj:disable_info_portion( "npcx_beh_loot_corpses" )
+		utils.se_obj_save_var( kidnapped_obj.id, kidnapped_obj:name( ), "companion_cannot_teleport", true )
+		local member_obj = (drx_ql_bo_kidnap_companion_id and (db.storage[drx_ql_bo_kidnap_companion_id] and db.storage[drx_ql_bo_kidnap_companion_id].object))
+		member_obj:inactualize_patrol_path( )
+		axr_companions.setup_companion_logic( member_obj, db.storage[drx_ql_bo_kidnap_companion_id], false, false )
+		xrs_kill_wounded.hostage_list[drx_ql_bo_kidnap_companion_id] = smrt.id
+		utils.save_var( db.actor, string.format( "%s_id", kidnapped_task_id ), smrt.id )
+		utils.save_var( db.actor, string.format( "%s_target_id", kidnapped_task_id ), drx_ql_bo_blackout_enemy_id )
+		utils.save_var( db.actor, "drx_ql_bo_kidnapped_id", drx_ql_bo_kidnap_companion_id )
+
+		-- Send update to console:
+		printf( "DRX QL BO: %s was kidnapped by %s", kidnapped_npc_obj:character_name( ), attacker_obj:character_name( ) )
+
+	end
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bo_actor_on_hit_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when the actor is hit
+--
+--	Usage:
+--		(called when the actor is hit)
+--
+--	Parameters:
+--		obj (type: obj)
+--			- Actor object that was hit
+--		amount (type: float, decimal percent)
+--			- Percent of potential force the hit struck with
+--		local_direction (type: )
+--			- Direction the hit came from relative to the actor
+--		who (type: obj)
+--			- NPC that delivered the hit to the actor
+--		bone_index (type: int, bone index)
+--			- Bone index on the actor that was hit
+--
+--	Ini requirements:
+--		drx\drx_ql_blackout.ltx
+--			[blackout_settings]
+--				blackout_enabled (type: bool)
+--					- Whether or not to enable the blackout feature
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 31, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when the actor is hit:
+local function drx_ql_bo_actor_on_hit_callback( obj, amount, local_direction, who, bone_index )
+
+	-- Run actor blackout action:
+	if ( ini:r_bool_ex( "blackout_settings", "blackout_enabled" ) ) then
+		drx_ql_bo_blackout_start( who )
+	end
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- on_game_start function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Registers callback scripts
+--
+--	Usage:
+--		(called when a game session begins)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 31, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Register callback scripts:
+function on_game_start( )
+	RegisterScriptCallback( "actor_on_hit_callback", drx_ql_bo_actor_on_hit_callback )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

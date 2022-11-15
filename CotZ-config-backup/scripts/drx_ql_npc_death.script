@@ -1,0 +1,364 @@
+-- ============================================================
+--
+-- NPC Death Manager (drx_ql_npc_death.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--		- Performs certain actions on an NPC death
+--
+--	Created by: DoctorX
+--	Last revised: September 25, 2019
+--
+-- ============================================================
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_store_assn_tgt_killer function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Checks if the dead npc was an assassination target and stores the id of the killer
+--
+--	Usage:
+--		drx_ql_store_assn_tgt_killer( dead_npc, killer_npc )
+--
+--	Parameters:
+--		dead_npc (type: object)
+--			- NPC that died
+--		killer_npc (type: object)
+--			- NPC that killed the dead NPC
+--
+--	Persistent storage:
+--		drx_ql_assn_tgt_killer_{target_npc_id} (type: int, npc id)
+--			- Id of the npc that killed an assassination target or -1 if target killed by non-npc
+--
+--	Return value (type: bool):
+--		Returns true on success
+--		Returns false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified September 25, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Check if the dead NPC was an assassination target:
+function drx_ql_store_assn_tgt_killer( dead_npc, killer_npc )
+
+	-- Ensure db.actor is available:
+	if ( not db.actor ) then
+		printf( "DRX QL Error: Unable to store assassination target killer id, db.actor not available" )
+		return false
+	end
+
+	-- If the dead guy was an assassination target, store the id of the killer:
+	for task_id, assn_tgt_id in pairs( axr_task_manager.bounties_by_id ) do
+		if ( dead_npc:id( ) == assn_tgt_id ) then
+			if ( (not killer_npc) or (not IsStalker( killer_npc )) ) then
+				utils.save_var( db.actor, string.format( "drx_ql_assn_tgt_killer_%s", assn_tgt_id ), -1 )
+			else
+				utils.save_var( db.actor, string.format( "drx_ql_assn_tgt_killer_%s", assn_tgt_id ), killer_npc:id( ) )
+			end
+			printf( "DRX QL: Assassination target %s was killed by npc id %s", dead_npc:id( ), killer_npc:id( ) )
+			break
+		end
+	end
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_check_target_companion_killed function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Checks if the actor killed the companion of an assassination target
+--
+--	Usage:
+--		drx_ql_check_target_companion_killed( dead_npc, killer_npc )
+--
+--	Parameters:
+--		dead_npc (type: object)
+--			- NPC that died
+--		killer_npc (type: object)
+--			- NPC that killed the dead NPC
+--
+--	Persistent storage:
+--		drx_ql_{task_id}_no_kill_id_{x} (type: int, npc id)
+--			- NPC's the player must not kill during the task
+--
+--	Ini requirements:
+--		misc\drx_ql_tasks\drx_ql_tasks_*.ltx
+--			[{task_id}]
+--				sniper_task (type: bool)
+--					- Indicates an assassination task is a sniper task (target companions must not be killed)
+--
+--	Return value (type: bool):
+--		Returns true on success
+--		Returns false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 30, 2018
+-- ------------------------------------------------------------------------------------------------
+
+-- Check if the actor killed the companion of an assassination target:
+function drx_ql_check_target_companion_killed( dead_npc, killer_npc )
+
+	-- Ensure db.actor is available:
+	if ( not db.actor ) then
+		printf( "DRX QL Error: Unable to check if killed npc was companion of assassination target, db.actor not available" )
+		return false
+	end
+
+	-- Check if the player was the killer:
+	if ( killer_npc:id( ) ~= db.actor:id( ) ) then
+		return true
+	end
+
+	-- Check if dead guy was a companion of an assassination target:
+	for task_id, assn_tgt_id in pairs( axr_task_manager.bounties_by_id ) do
+
+		-- Check if the current task is a sniper task type:
+		local tsk = task_manager.get_task_manager( ).task_info[task_id]
+		if ( (tsk) and ((tsk.stage == 0) or (tsk.stage == 1)) ) then
+			local is_sniper_task = (task_manager.task_ini:r_bool_ex( task_id, "sniper_task" ) or false)
+			if ( is_sniper_task ) then
+
+				-- Check if dead guy was on do not kill list:
+				local i = 0
+				while ( true ) do
+
+					-- Get the current companion id:
+					i = (i + 1)
+					local tgt_companion_id = utils.load_var( db.actor, string.format( "drx_ql_%s_no_kill_id_%s", task_id, i ), nil )
+					if ( not tgt_companion_id ) then
+						break
+					end
+
+					-- Check if the current companion was the dead guy:
+					if ( dead_npc:id( ) == tgt_companion_id ) then
+						printf( "DRX QL: Player killed companion of sniper task assassination target, setting %s failed", task_id )
+						task_manager.get_task_manager( ):set_task_failed( task_id )
+						break
+					end
+
+				end
+
+			end
+		end
+
+	end
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_guide_task_bonus function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Adds a bonus to a guide task reward if the actor killed an enemy of an npc the actor is guiding
+--
+--	Usage:
+--		drx_ql_guide_task_bonus( dead_npc, killer_npc )
+--
+--	Parameters:
+--		dead_npc (type: object)
+--			- NPC that died
+--		killer_npc (type: object)
+--			- NPC that killed the dead NPC
+--
+--	Persistent storage:
+--		{task_id}_reward_value (type: float)
+--			- Value of task reward
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[reward_values]
+--				guide_defense_bonus (type: float, RU)
+--					- Bonus for guide task reward for each npc killed
+--		misc\drx_ql_tasks\drx_ql_tasks_*.ltx
+--			[{task_id}]
+--				guide_task (type: bool)
+--					- Indicates a task is a guide task
+--
+--	Return value (type: bool):
+--		Returns true on success
+--		Returns false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified April 02, 2018
+-- ------------------------------------------------------------------------------------------------
+
+-- Add bonus to guide task reward:
+function drx_ql_guide_task_bonus( dead_npc, killer_npc )
+
+	-- Get the location of the main config file:
+	local drx_ql_config_ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not drx_ql_config_ini ) then
+		printf( "DRX QL Error: Unable to add guide task reward bonus, Questlines config file not found" )
+		return false
+	end
+
+	-- Ensure db.actor is available:
+	if ( not db.actor ) then
+		printf( "DRX QL Error: Unable to add guide task reward bonus, db.actor not available" )
+		return false
+	end
+
+	-- Check if the player was the killer:
+	if ( killer_npc:id( ) ~= db.actor:id( ) ) then
+		return true
+	end
+
+	-- Check if player has a guide task:
+	local task_info = task_manager.get_task_manager( ).task_info
+	for task_id, tsk in pairs( task_info ) do
+
+		-- Check if the current task is a guide task:
+		if ( (tsk) and (tsk.stage == 0) ) then
+			local is_guide_task = (task_manager.task_ini:r_bool_ex( task_id, "guide_task" ) or false)
+			if ( is_guide_task ) then
+
+				-- Get dead guy faction:
+				local killed_obj = alife( ):object( dead_npc:id( ) )
+				if ( not killed_obj ) then
+					printf( "DRX QL Error: Unable to add guide task reward bonus, could not get dead npc object" )
+					return false
+				end
+				local killed_faction = alife_character_community( killed_obj )
+				killed_faction = string.gsub( killed_faction, "actor_", "" )
+
+				-- Get task giver faction:
+				local task_giver_id = tsk.task_giver_id
+				local task_giver_obj = alife( ):object( task_giver_id )
+				if ( not task_giver_obj ) then
+					printf( "DRX QL Error: Unable to add guide task reward bonus, could not get task giver object" )
+					return false
+				end
+				local task_giver_faction = alife_character_community( task_giver_obj )
+				task_giver_faction = string.gsub( task_giver_faction, "actor_", "" )
+
+				-- If dead guy and task giver were enemies then add bonus to reward value:
+				if ( game_relations.is_factions_enemies( task_giver_faction, killed_faction ) ) then
+					local reward_money = utils.load_var( db.actor, string.format( "%s_reward_value", task_id ), 0 )
+					local reward_bonus = (drx_ql_config_ini:r_float_ex( "reward_values", "guide_defense_bonus" ) or 0)
+					reward_money = (reward_money + reward_bonus)
+					utils.save_var( db.actor, string.format( "%s_reward_value", task_id ), reward_money )
+				end
+
+			end
+		end
+
+	end
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_npc_on_death_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when an NPC dies
+--
+--	Usage:
+--		(called when a NPC is killed)
+--
+--	Parameters:
+--		dead_npc (type: object)
+--			- NPC that died
+--		killer_npc (type: object)
+--			- NPC that killed the dead NPC
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified April 02, 2018
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when an NPC dies:
+local function drx_ql_npc_on_death_callback( dead_npc, killer_npc )
+
+	-- Store the id of the killer of an assassination target:
+	drx_ql_store_assn_tgt_killer( dead_npc, killer_npc )
+
+	-- Check if actor killed assassination target companion:
+	drx_ql_check_target_companion_killed( dead_npc, killer_npc )
+
+	-- Add bonus to guide task reward:
+	drx_ql_guide_task_bonus( dead_npc, killer_npc )
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- on_game_start function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Registers callback scripts
+--
+--	Usage:
+--		(called when a game session begins)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 22, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Register callback scripts:
+function on_game_start( )
+	RegisterScriptCallback( "npc_on_death_callback", drx_ql_npc_on_death_callback )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

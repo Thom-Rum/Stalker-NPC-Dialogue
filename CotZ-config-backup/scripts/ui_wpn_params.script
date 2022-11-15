@@ -1,0 +1,91 @@
+function normalize(val, min, max)
+	local d = 100*(val-min)/(max-min)
+	if d < 0 then
+		return 0
+	end
+	return d
+end
+
+function normalizeMP(val)
+	if val > 100 then
+		val = 100
+	elseif val < 1 then
+		val  = 1
+	end
+	
+	return val
+end
+
+function read_if_exist(section, value, default)
+    local ltx = system_ini()
+    if ltx:section_exist(section) and ltx:line_exist(section,value) then
+		return ltx:r_float_ex(section,value)
+	else
+		return default
+	end
+end
+
+function read_float(wpn_section, upgr_sections, param)
+	local ltx = system_ini()
+	local res = 0
+	
+	if (param == "hit_power") then
+		local t = parse_names(ltx:r_string_ex(wpn_section,"hit_power") or {})
+		res = tonumber(t[1]) or 0.3
+		local atype = parse_names(ltx:r_string_ex(wpn_section,"ammo_class"))[1] or ""
+		local a_hit = (ltx:r_float_ex(atype,"k_hit",0.5) + (ltx:r_float_ex(atype,"k_ap",1)/10)) * (ltx:r_float_ex(atype,"buck_shot",1))
+		res = math.pow(normalize(res + a_hit,0.8,3.2),0.2)/math.pow(100,0.2) or 1
+	--	printf("ammo type %s  ammo damage %s display damage %s", atype,a_hit,res)
+	else
+		res = ltx:r_float_ex(wpn_section, param) or param == "control_inertion_factor" and 1 or 0
+	end 
+	
+	if upgr_sections == nil or upgr_sections == "" then
+        return res
+    end
+	
+	for k, sect in pairs(parse_names(upgr_sections)) do
+		if param == "hit_power" then
+			local r = parse_names(ltx:r_string_ex(sect,param) or "")
+			r = tonumber(r[1]) or 0
+			res = res + r
+		--	printf("upgrade display damage %s", res)
+		else
+			res = res + (ltx:r_float_ex(sect,param) or 0)
+		end		
+    end 
+	
+    return res
+end
+
+function GetRPM(wpn_section, upgr_sections) --' скорострельность
+	local rpm = read_float(wpn_section, upgr_sections, "rpm")
+	return normalize(rpm, 0, 1000)
+end
+
+function GetDamage(wpn_section, upgr_sections) --' повреждение
+   local hit_power = read_float(wpn_section, upgr_sections, "hit_power")
+   return normalize(hit_power, 0.5, 1.2)
+end
+
+function GetDamageMP(wpn_section, upgr_sections) -- ??? (повреждениеMP)
+	local hit_power = read_float(wpn_section, upgr_sections, "hit_power")
+	hit_power = hit_power * 100	
+	-- if val < 1.05 then
+		-- val = val*100-30
+	-- else
+		-- val = 75 + math.pow(val/4,2)*25
+	-- end	
+	return normalizeMP(hit_power)	
+end
+
+function GetHandling(wpn_section, upgr_sections) --' удобность
+	local PDM_disp_base = read_float(wpn_section, upgr_sections, "PDM_disp_base")
+	local control_inertion_factor = read_float(wpn_section, upgr_sections, "control_inertion_factor")
+	return (normalize(PDM_disp_base, 2.1, 0) + normalize(control_inertion_factor, 3, 1))/2
+end
+
+function GetAccuracy(wpn_section, upgr_sections) --' точность
+    local fire_dispersion_base	= read_float(wpn_section, upgr_sections, "fire_dispersion_base")
+	return normalize(fire_dispersion_base, 1.5, 0)
+end

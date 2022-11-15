@@ -1,0 +1,69 @@
+-- ============================================================
+--
+-- dialogs_warlab.script
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--	Modified by: DoctorX
+--	Last revised: May 11, 2018
+--
+-- ============================================================
+
+
+--' Мы отказываемся вступить в осознание, нас переносит на вторую станцию
+function osoznanie_decline(npc, actor)
+    db.actor:disable_info_portion("oso_init_dialog")
+	db.actor:give_info_portion("warlab_actor_teleported_to_sar2")
+	npc:stop_talk()
+    actor:stop_talk()
+--	xr_effects.enable_ui(db.actor, nil)
+
+
+	-- ///////////////////////////////////////////////////////////////////////////////////////////////
+	--
+	-- Refuse Osoznanie
+	--
+	--	Modified by DoctorX
+	--	for DoctorX Questlines 2.0
+	--	May 11, 2018
+	--
+	-- -----------------------------------------------------------------------------------------------
+
+-- 	local point = patrol("warlab_jump_sar2_walk")
+-- 	local look = patrol("warlab_jump_sar2_look")
+-- 	db.actor:set_actor_position(point:point(0))
+-- 	local dir = look:point(0):sub(point:point(0))
+-- 	db.actor:set_actor_direction(-dir:getH())
+	db.actor:give_info_portion("drx_ql_info_actor_refused_osoznanie")
+
+	-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+--	game.start_tutorial("mov_refuse_osoznanie")
+
+end
+
+--' Мы соглашаемся вступить в осознание, конец игры.
+function osoznanie_agree(npc, actor)
+	db.actor:disable_info_portion("oso_init_dialog")
+	npc:stop_talk()
+    actor:stop_talk()
+
+
+	-- ///////////////////////////////////////////////////////////////////////////////////////////////
+	--
+	-- Join Osoznanie
+	--
+	--	Modified by DoctorX
+	--	for DoctorX Questlines 2.0
+	--	May 11, 2018
+	--
+	-- -----------------------------------------------------------------------------------------------
+
+-- 	xr_effects.enable_ui(db.actor, nil)
+-- 	game.start_tutorial("mov_join_osoznanie")
+	db.actor:give_info_portion("drx_ql_info_actor_joined_osoznanie")
+
+	-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+end

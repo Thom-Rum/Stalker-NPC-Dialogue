@@ -1,0 +1,287 @@
+--=============================================================
+--
+-- Force NPC Wounded (drx_ql_force_wounded.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--		- Forces an NPC to become wounded on next non-fatal hit by the actor
+--		- Add NPC id to map drx_ql_force_wounded.drx_ql_force_wound_npcs for NPC to use this behavior
+--		- Remove the infoportion "drx_ql_npc_is_prisoner" if NPC no longer needs to be flagged as prisoner
+--
+--	Created by: DoctorX
+--	Last revised: November 17, 2019
+--
+--=============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Global Vars
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	November 17, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- List of npcs to set as force wounded:
+drx_ql_force_wound_npcs = {}
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_squad_is_prisoner function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Checks if a squad contains a prisoner target
+--
+--	Usage:
+--		drx_ql_squad_is_prisoner( squad_id )
+--
+--	Parameters:
+--		squad_id (type: squad id)
+--			- Squad id of the squad to check
+--
+--	Return value (type: bool):
+--		- Returns true if the squad contains a prisoner target, false otherwise)
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Check if squad is prisoner target:
+function drx_ql_squad_is_prisoner( squad_id )
+
+	-- Get the squad object:
+	local squad_obj = (squad_id and alife( ):object( squad_id ))
+	if ( not squad_obj ) then
+		return false
+	end
+
+	-- Check each member in squad to see if prisoner target:
+	for k in squad_obj:squad_members( ) do
+		local member = (db.storage[k.id] and db.storage[k.id].object)
+		if ( member and member:alive( ) ) then
+			if ( drx_ql_force_wound_npcs[k.id] ) then
+				return true
+			end
+			if ( member:has_info( "drx_ql_npc_is_prisoner" ) ) then
+				return true
+			end
+		end
+	end
+
+	-- Set return value:
+	return false
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_fw_npc_on_hit_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Flags NPC to force wound
+--
+--	Usage:
+--		(Called on NPC hit)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 16, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Flag NPC to force wound:
+function drx_ql_fw_npc_on_hit_callback( npc, amount, local_direction, who, bone_index )
+
+	-- Ensure db.actor available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if actor was shooter:
+	local shooter_id = (who and who:id( ))
+	if ( (shooter_id == nil) or (shooter_id ~= db.actor:id( )) ) then
+		return
+	end
+
+	-- Check if npc is eligible to become force wounded:
+	if ( not drx_ql_force_wound_npcs[npc:id( )] ) then
+		return
+	end
+
+	-- Check if NPC already force wounded:
+	if ( npc:has_info( "drx_ql_npc_is_force_wounded" ) ) then
+		return
+	end
+
+	-- Flag NPC to become force wounded:
+	npc:give_info_portion( "drx_ql_npc_make_force_wounded" )
+	npc:give_info_portion( "drx_ql_npc_is_force_wounded" )
+	npc:give_info_portion( "drx_ql_npc_is_prisoner" )
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_fw_npc_on_update function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Forces an NPC to become wounded
+--
+--	Usage:
+--		(Called on NPC update)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 16, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Force NPC to wounded:
+function drx_ql_fw_npc_on_update( npc, st )
+
+	-- Force NPC wounded if flagged:
+	if ( npc:has_info( "drx_ql_npc_make_force_wounded" ) ) then
+		local vo = level.object_by_id( npc:id( ) )
+		if ( vo ) then
+			vo:set_health_ex( 0.15 )
+			npc:disable_info_portion( "drx_ql_npc_make_force_wounded" )
+			printf( "DRX QL: NPC %s force wounded", npc:id( ) )
+		end
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_fw_save_state function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when a game is saved
+--
+--	Usage:
+--		(called on game save)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when the game is saved:
+local function drx_ql_fw_save_state( m_data )
+
+	-- Save force wounded list:
+	m_data.drx_ql_force_wound_npcs = drx_ql_force_wound_npcs
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_fw_load_state function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when a game is loaded
+--
+--	Usage:
+--		(called on game load)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when the game is loaded:
+local function drx_ql_fw_load_state( m_data )
+
+	-- Restore force wounded list:
+	if ( m_data.drx_ql_force_wound_npcs ) then
+		drx_ql_force_wound_npcs = m_data.drx_ql_force_wound_npcs
+		m_data.drx_ql_force_wound_npcs = nil
+	end
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Callback functions
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 16, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- On game start:
+function on_game_start( )
+	RegisterScriptCallback( "npc_on_hit_callback", drx_ql_fw_npc_on_hit_callback )
+	RegisterScriptCallback( "npc_on_update", drx_ql_fw_npc_on_update )
+	RegisterScriptCallback( "save_state", drx_ql_fw_save_state )
+	RegisterScriptCallback( "load_state", drx_ql_fw_load_state )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

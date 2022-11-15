@@ -1,0 +1,113 @@
+--=============================================================
+--
+-- DoctorX Keybind Scripts (drx_kb_main.script)
+--	CoC 1.5b r4 - DoctorX Keybinds 1.0
+--
+--		- Settings file: configs\drx\drx_kb_config.ltx
+--		- Strings file: configs\text\eng\drx_kb_strings.xml
+--
+--	Created by: DoctorX
+--	Last revised: August 17, 2019
+--
+--=============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Settings File
+--
+--	Created by DoctorX
+--	for DoctorX Keybinds 1.0
+--	March 21, 2018
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Location of the settings file:
+local ini = ini_file( "drx\\drx_kb_config.ltx" )
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_kb_spawn_crate function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Spawns a crate at the actors location
+--
+--	Usage:
+--		drx_kb_spawn_crate( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_kb_config.ltx
+--			[spawn_properties]
+--				crate_section (type: string, section name)
+--					- Type of crate to spawn
+--				spawn_dist (type: float, meters)
+--					- Distance in front of player to spawn crate
+--				message_time (type: float, seconds)
+--					- Length of time to display out of resources message
+--
+--	External strings:
+--		drx_kb_strings.xml
+--			drx_kb_str_no_wood (type: string)
+--				- Text to display on hud if player is out of resources while trying to craft a crate
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Keybinds 1.0
+--	Last modified March 21, 2018
+-- ------------------------------------------------------------------------------------------------
+
+-- Spawn crate at actor location:
+function drx_kb_spawn_crate( )
+
+	-- Check if db.actor is available:
+	if ( not db.actor ) then
+		printf( "DRX KB Error: Unable to spawn crate, db.actor not available" )
+		return
+	end
+
+	-- Check if player has resources to build a crate:
+	local wood_count = (xr_statistic.actor_statistic["boxes_smashed"] or 0)
+	if ( wood_count < 1 ) then
+		SetHudMsg( game.translate_string( "drx_kb_str_no_wood" ), (ini:r_float_ex( "spawn_properties", "message_time" ) or 4) )
+		return
+	end
+
+	-- Determine spawn location data:
+	local dist = (ini:r_float_ex( "spawn_properties", "spawn_dist" ) or 1)
+	local pos = vector( ):set( db.actor:position( ) )
+	pos:add( vector( ):set( device( ).cam_dir ):mul( dist ) )
+	pos = vector( ):set( pos.x, db.actor:position( ).y, pos.z )
+	local lvid = db.actor:level_vertex_id( )
+	local gvid = db.actor:game_vertex_id()
+
+	-- Spawn a crate at the location:
+	local se_obj = alife( ):create( (ini:r_string_ex( "spawn_properties", "crate_section" ) or "box_wood_01"), pos, lvid, gvid )
+	if ( not se_obj ) then
+		printf( "DRX KB Error: Unable to spawn crate" )
+		return
+	end
+
+	-- Decrement wood supplies:
+	wood_count = (wood_count - 1)
+	if ( wood_count < 0 ) then
+		wood_count = 0
+	end
+	xr_statistic.actor_statistic["boxes_smashed"] = wood_count
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

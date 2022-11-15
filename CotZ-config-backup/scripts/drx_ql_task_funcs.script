@@ -1,0 +1,789 @@
+-- ============================================================
+--
+-- Questlines Task Functions (drx_ql_task_funcs.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--	Created by: DoctorX
+--	Last revised: October 28, 2019
+--
+-- ============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- High Value Fetch Tasks Global Array
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	January 07, 2018
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Storage for current high value fetch tasks:
+drx_ql_havfetch_tasks = {}
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_init_questline function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Creates the initial questline task
+--
+--	Usage:
+--		drx_ql_init_questline( player_faction, start_location_gvid )
+--
+--	Parameters:
+--		player_faction (type: string, faction name)
+--			Starting faction of the player
+--		start_location_gvid (type: int, game vertex id)
+--			Game vertex id of the player starting position
+--
+--	Persistent storage:
+--		drx_ql_total_task_number (type: int)
+--			Total number of meet honcho tasks to complete
+--		drx_ql_current_honcho (type: string, npc name)
+--			Current meet honcho target npc
+--		drx_ql_current_task_number (type: int)
+--			Current meet honcho task number
+--		drx_ql_start_task (type: string, task id)
+--			Task id of the starting game task
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[task_number_range]
+--				min_tasks (type: int)
+--					- Minimum number of meet honcho tasks to complete (default = 1)
+--				max_tasks (type: int)
+--					- Maximum number of meet honcho tasks to complete (default = 1)
+--		misc\task_manager.ltx
+--			[drx_ql_{npc_id}_start_game_{x}]
+--				- Section containing start game task
+--				- {npc_id} = NPC id for the start game honcho
+--				- {x} = Sequential number starting with 1
+--
+--	Return value (type: bool):
+--		Returns true on success, false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 20, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Create the initial questline task:
+function drx_ql_init_questline( player_faction, start_location_gvid )
+
+	-- Abort if player faction is zombied:
+	if ( player_faction == "zombied" ) then
+		printf( "DRX QL: Player is zombie, no questline given. Go eat some braiinz" )
+		return true
+	end
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		printf( "DRX QL Error: Could not start questline, db.actor not available" )
+		return false
+	end
+
+	-- Get the location of the settings file:
+	local drx_ql_ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not drx_ql_ini ) then
+		printf( "DRX QL Error: Could not start questline, Questlines ini file not found" )
+		return false
+	end
+
+	-- Get the range of meet honcho tasks to complete:
+	local min_task_count = (drx_ql_ini:r_float_ex( "task_number_range", "min_tasks" ) or 1)
+	local max_task_count = (drx_ql_ini:r_float_ex( "task_number_range", "max_tasks" ) or 1)
+
+	-- Determine the total number of meet honcho tasks to complete for this game:
+	utils.save_var( db.actor, "drx_ql_total_task_number", math.random( min_task_count, max_task_count ) )
+	utils.save_var( db.actor, "drx_ql_current_task_number", 1 )
+
+	-- Build a list of starting honchos for player faction:
+	local start_faction_section = string.format( "start_honcho_%s", player_faction )
+	local start_honcho_list = alun_utils.collect_section( drx_ql_ini, start_faction_section )
+	if ( (not start_honcho_list) or (#start_honcho_list < 1) ) then
+		printf( "DRX QL Error: Could not start questline, no available start game honchos for %s", player_faction )
+		return false
+	end
+
+	-- Find the closest starting honcho to the actor:
+	local start_game_honcho
+	local nearest_dist
+	for i = 1, ( #start_honcho_list ) do
+		local honcho_smart = drx_ql_ini:r_string_ex( start_faction_section, start_honcho_list[i] )
+		local smart = SIMBOARD.smarts_by_names[honcho_smart]
+		if ( smart )  then
+			local dist = utils.graph_distance( start_location_gvid, smart.m_game_vertex_id )
+			if ( (nearest_dist == nil) or (dist < nearest_dist) ) then
+				start_game_honcho = start_honcho_list[i]
+				nearest_dist = dist
+			end
+		end
+	end
+
+	-- Ensure a starting honcho was found:
+	if ( not start_game_honcho ) then
+		printf( "DRX QL Error: Could not start questline, starting honcho could not be determined" )
+		return false
+	end
+
+	-- Get the location of the file containing game start tasks:
+	local task_ini_file = ini_file( "misc\\task_manager.ltx" )
+	if ( not task_ini_file ) then
+		printf( "DRX QL Error: Could not start questline, task manager file not found" )
+		return false
+	end
+
+	-- Build list of available start game versions for the honcho:
+	local honcho_task_list = {}
+	local j = 1
+	while ( true ) do
+		local task_id = string.format( "drx_ql_%s_start_game_%s", start_game_honcho, j )
+		if ( task_ini_file:section_exist( task_id ) ) then
+			table.insert( honcho_task_list, task_id )
+			j = (j + 1)
+		else
+			break
+		end
+	end
+
+	-- Ensure at least one starting task was found:
+	if ( (not honcho_task_list) or (#honcho_task_list < 1) ) then
+		printf( "DRX QL Error: Could not start questline, no start game tasks available for %s", start_game_honcho )
+		return false
+	end
+
+	-- Give player starting task:
+	local start_game_task = honcho_task_list[math.random( #honcho_task_list )]
+	printf( "DRX QL: Current storyline task: %s", start_game_task )
+	utils.save_var( db.actor, "drx_ql_start_task", start_game_task )
+	utils.save_var( db.actor, "drx_ql_current_honcho", start_game_honcho )
+	give_info( string.format( "drx_ql_start_game_%s", start_game_honcho ) )
+	task_manager.get_task_manager( ):give_task( start_game_task )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_build_mutual_enemy_list function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Generates a list of factions that are mutual enemies of the player's faction and the specified faction
+--
+--	Usage:
+--		drx_ql_build_mutual_enemy_list( faction )
+--
+--	Parameters:
+--		faction (type: string, faction name)
+--			- Faction to find mutual enemies of
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[assault_target_factions] (type: string, faction names)
+--				- List of factions to include as potential assault task targets
+--
+--	Return value (type: array<string>, faction names):
+--		Returns a list of mutual enemies of the player and the specified faction
+--		Returns an empty array on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 14, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Build list of mutual enemies:
+function drx_ql_build_mutual_enemy_list( faction )
+
+	-- Return array:
+	local enemy_faction_list = {}
+
+	-- Location of the settings file:
+	local ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not ini ) then
+		printf( "DRX QL Error: Unable to generate list of mutual enemies, cannot locate ini file" )
+		return enemy_faction_list
+	end
+
+	-- Build list of all potential assault task target factions:
+	local factions_list = alun_utils.collect_section( ini, "assault_target_factions" )
+	if ( (not factions_list) or (#factions_list < 1) ) then
+		printf( "DRX QL Error: Unable to generate list of mutual enemies, no potential factions specified" )
+		return enemy_faction_list
+	end
+
+	-- Populate list of mutual enemy factions:
+	for i = 1, ( #factions_list ) do
+		if ( (game_relations.is_factions_enemies( factions_list[i], faction )) and (relation_registry.community_relation( factions_list[i], alife( ):actor( ):community( ) ) <= game_relations.ENEMIES) ) then
+			table.insert( enemy_faction_list, factions_list[i] )
+		end
+	end
+
+	-- Set return value:
+	return enemy_faction_list
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_task_giver_faction function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines what faction a task giver belongs to
+--
+--	Usage:
+--		drx_ql_task_giver_faction( task_id )
+--
+--	Parameters:
+--		task_id (type: string, task id)
+--			- Task name that the task giver in question gave the player
+--
+--	Return value (type: string, faction name):
+--		Returns the faction of the task giver
+--		Returns nil on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified April 09, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine task giver faction:
+function drx_ql_task_giver_faction( task_id )
+
+	-- Get task giver id:
+	local task_info = task_manager.get_task_manager( ).task_info
+	local giver_id = task_info[task_id].task_giver_id
+	if ( not giver_id ) then
+		printf( "DRX QL Error: Unable to determine task giver faction, could not find task giver id" )
+		return
+	end
+
+	-- Get task giver's faction:
+	local giver_obj = alife( ):object( giver_id )
+	if ( not giver_obj ) then
+		printf( "DRX QL Error: Unable to determine task giver faction, could not find task giver object" )
+		return
+	end
+	local giver_faction = giver_obj:community( )
+	if ( giver_faction == "trader" ) then
+		giver_faction = "stalker"
+	end
+
+	-- Set return value:
+	return giver_faction
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_spawn_float_obj function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Spawns a specified object at a random position within a specified location
+--
+--	Usage:
+--		drx_ql_spawn_float_obj( float_item, location_name, max_dist )
+--
+--	Parameters:
+--		float_item (type: string, item name)
+--			- Section name of the item to spawn
+--		location_name (type: string, section name)
+--			- Smart terrain or special area to spawn the item at (optional; see notes)
+--		max_dist (type: float)
+--			- Max offset from center of location to spawn the item (see notes) (optional; default = 0)
+--
+--	Ini requirements:
+--		drx\drx_ql_locations.ltx
+--			[offset_settings]
+--				max_tries (type: int)
+--					- Number of tries to move past an obstacle when generating offset location
+--				max_loops (type: int)
+--					- Maximum number of iterations to try reaching desired offset position before aborting
+--			[{location_name}]
+--				pos_x (type: float)
+--					- x-coordinate of the location position
+--				pos_y (type: float)
+--					- y-coordinate of the location position
+--				pos_z (type: float)
+--					- z-coordinate of the location position
+--				lvid (type: int)
+--					- Level vertex id of the location
+--				gvid (type: int)
+--					- Game vertex id of the location
+--
+--	Return value (type: obj_id):
+--		Returns the id of the spawned object
+--		Returns nil on failure
+--
+--	Notes:
+--		- Special area location data is defined in configs\drx\drx_ql_locations.ltx
+--		- If max_dist > 0, the location must be online (actor on same level) for the item to spawn
+--		- If location_name is ommitted, location names for the item must be specified in drx_ql_locations.ltx using the following format:
+--			[drx_ql_location_{story_item}_{x}]
+--				- {story_id} = section name of the quest item
+--				- {x} = sequential int starting with 1 (if more than one location is defined, the spawn location will be chosen randomly from those defined)
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 02, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Spawn floating location item:
+function drx_ql_spawn_float_obj( float_item, location_name, max_dist )
+
+	-- Format optional params:
+	max_dist = (max_dist or 0)
+
+	-- Get special location positional data:
+	local drx_ql_ini = ini_file( "drx\\drx_ql_locations.ltx" )
+	if ( not drx_ql_ini ) then
+		printf( "DRX QL Error: Unable to spawn float object, locations ini file not found" )
+		return
+	end
+
+	-- Choose spawn location if one was not specified:
+	if ( not location_name ) then
+		local location_array = {}
+		local i = 1
+		while ( true ) do
+			local current_loc_name = string.format( "drx_ql_location_%s_%s", float_item, i )
+			if ( not drx_ql_ini:section_exist( current_loc_name ) ) then
+				break
+			end
+			table.insert( location_array, current_loc_name )
+			i = (i + 1)
+		end
+		if ( #location_array < 1 ) then
+			printf( "DRX QL Error: Unable to spawn float object, no locations specified" )
+			return
+		end
+		location_name = location_array[math.random( #location_array )]
+	end
+
+	-- Get the location data for the center of a special area:
+	local center_x = drx_ql_ini:r_float_ex( location_name, "pos_x" )
+	local center_y = drx_ql_ini:r_float_ex( location_name, "pos_y" )
+	local center_z = drx_ql_ini:r_float_ex( location_name, "pos_z" )
+	local current_lvid = drx_ql_ini:r_float_ex( location_name, "lvid" )
+	local location_gvid = drx_ql_ini:r_float_ex( location_name, "gvid" )
+
+	-- If the location is not a special area then get the location data for the center of the smart terrain:
+	local smart
+	if ( (center_x == nil) or (center_y == nil) or (center_z == nil) or (current_lvid == nil) or (location_gvid == nil) ) then
+		smart = SIMBOARD.smarts_by_names[location_name]
+		if ( not smart ) then
+			printf( "DRX QL Error: Unable to spawn float object, specified smart terrain does not exist" )
+			return
+		end
+		center_x = smart.position.x
+		center_y = smart.position.y
+		center_z = smart.position.z
+		current_lvid = smart.m_level_vertex_id
+		location_gvid = smart.m_game_vertex_id
+	end
+
+	-- Set initial position vector:
+	local pos = vector( ):set( center_x, center_y, center_z )
+
+	-- Offset positional data for the spawn:
+	if ( max_dist > 0 ) then
+
+		-- If the location is a smart terrain then ensure it is online:
+		if ( (smart) and (not smart.online) ) then
+			printf( "DRX QL Error: Unable to spawn float object, specified smart terrain is not online" )
+			return
+		end
+
+		-- Generate the desired offset from center with bias toward outside:
+		local desired_dist = (max_dist - (max_dist * (math.random( ) ^ 2)))
+
+		-- Generate random angle out from center:
+		local origin_angle = (2 * math.pi * math.random( ))
+
+		-- Offset spawn point out until path blocked or max dist reached:
+		local direction_vector = vector( ):set( math.cos( origin_angle ), 0, math.sin( origin_angle ) )
+		local max_tries = (drx_ql_ini:r_float_ex( "offset_settings", "max_tries" ) or 1)
+		local current_tries = 1
+		for i = 1, ( max_tries ) do
+			local last_lvid = current_lvid
+			current_lvid = level.vertex_in_direction( last_lvid, direction_vector, desired_dist )
+			if ( current_lvid >= 4294967295 ) then
+				current_lvid = last_lvid
+				current_tries = (current_tries + 1)
+				if ( current_tries >= max_tries ) then
+					printf( "DRX QL Error: Unable to spawn float object, generated level vertex id is invalid" )
+					return
+				end
+			else
+				break
+			end
+		end
+
+		-- Check if the desired distance was reached:
+		local current_pos = level.vertex_position( current_lvid )
+		local current_dist = current_pos:distance_to( pos )
+		local max_loops = (drx_ql_ini:r_float_ex( "offset_settings", "max_loops" ) or 1)
+		local current_loop = 1
+		current_tries = 1
+		while ( current_dist < desired_dist ) do
+
+			-- Check if maximum iterations has been reached:
+			if ( current_loop >= max_loops ) then
+				break
+			end
+
+			-- Generate new angle away from center:
+			local new_angle = 0
+			local angle_offset = ((math.pi / 2) * math.random( ))
+			if ( math.random( ) <= 0.5 ) then
+				new_angle = (origin_angle + angle_offset)
+				if ( new_angle > (2 * math.pi) ) then
+					new_angle = (new_angle - (2 * math.pi))
+				end
+			else
+				new_angle = (origin_angle - angle_offset)
+				if ( new_angle < 0 ) then
+					new_angle = (new_angle + (2 * math.pi))
+				end
+			end
+
+			-- Offset spawn point out until path blocked or max dist reached:
+			direction_vector = vector( ):set( math.cos( new_angle ), 0, math.sin( new_angle ) )
+			local last_lvid = current_lvid
+			current_lvid = level.vertex_in_direction( last_lvid, direction_vector, (desired_dist - current_dist) )
+			if ( current_lvid >= 4294967295 ) then
+				current_lvid = last_lvid
+				current_tries = (current_tries + 1)
+				if ( current_tries >= max_tries ) then
+					break
+				end
+
+			else
+
+				-- Check if the desired distance was reached:
+				current_pos = level.vertex_position( current_lvid )
+				local last_dist = current_dist
+				current_dist = current_pos:distance_to( pos )
+				if ( current_dist <= last_dist ) then
+					current_tries = (current_tries + 1)
+					if ( current_tries >= max_tries ) then
+						break
+					end
+				else
+					current_tries = 1
+				end
+
+			end
+
+			-- Increment loop counter:
+			current_loop = (current_loop + 1)
+
+		end
+
+		-- Set the new position:
+		pos = current_pos
+
+	end
+
+	-- Check if a valid vertex was generated:
+	if ( current_lvid >= 4294967295 ) then
+		printf( "DRX QL Error: Unable to spawn float object, generated level vertex id is invalid" )
+		return
+	end
+
+	-- Spawn the item:
+	local se_obj = alife( ):create( float_item, pos, current_lvid, location_gvid )
+	if ( not se_obj ) then
+		printf( "DRX QL Error: Unable to spawn float object" )
+		return
+	end
+
+	-- Set return value:
+	return se_obj.id
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_setup_pilot_hostage_task function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Sets up the rescue hostage stage of the Stingray 4 task
+--
+--	Usage:
+--		drx_ql_setup_pilot_hostage_task( task_id )
+--
+--	Parameters:
+--		task_id (type: string, task id)
+--			- Task id of the parent task
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[operation_fairway_props]
+--				rally_smart (type: string, smart terrain name)
+--					- Smart terrain location of the rally point
+--				enemy_faction (type: string, faction name)
+--					- Faction of the enemy hostage takers
+--				pilot_squad (type: string, squad section name)
+--					- Stingray 4 pilot squad
+--				enemy_squad_{n} (type: string, squad section name)
+--					- Hostage taker squads ({n} = sequential int starting with 1)
+--				survivor_corpse_{n} (type: string, NPC section name)
+--					- Survivor corpses ({n} = sequential int starting with 1)
+--		drx\drx_ql_locations.ltx
+--			[drx_ql_location_stingray_corpse_{n}]
+--				pos_x (type: float)
+--					- x-coordinate of the location position
+--				pos_y (type: float)
+--					- y-coordinate of the location position
+--				pos_z (type: float)
+--					- z-coordinate of the location position
+--				lvid (type: int)
+--					- Level vertex id of the location
+--				gvid (type: int)
+--					- Game vertex id of the location
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 28, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Set up pilot hostage task:
+function drx_ql_setup_pilot_hostage_task( task_id )
+
+	-- Ensure db.actor is available:
+	if ( not db.actor ) then
+		printf( "DRX QL Error: Unable to setup pilot hostage task, db.actor not available" )
+		return
+	end
+
+	-- Location of the settings file:
+	local ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not ini ) then
+		printf( "DRX QL Error: Unable to setup pilot hostage task, cannot locate ini file" )
+		return
+	end
+
+	-- Get special location positional data:
+	local loc_ini = ini_file( "drx\\drx_ql_locations.ltx" )
+	if ( not loc_ini ) then
+		printf( "DRX QL Error: Unable to setup pilot hostage task, locations ini file not found" )
+		return
+	end
+
+	-- Get the smart terrain of the rally point:
+	local smart_name = ini:r_string_ex( "operation_fairway_props", "rally_smart" )
+	local smart_id = (smart_name and SIMBOARD.smarts_by_names[smart_name] and SIMBOARD.smarts_by_names[smart_name].id)
+	if ( not smart_id ) then
+		printf( "DRX QL Error: Unable to setup pilot hostage task, rally point smart terrain is invalid" )
+		return
+	end
+
+	-- Get the enemy faction:
+	local enemy_faction = ini:r_string_ex( "operation_fairway_props", "enemy_faction" )
+	if ( not enemy_faction ) then
+		printf( "DRX QL Error: Unable to setup pilot hostage task, enemy faction not supplied" )
+		return
+	end
+
+	-- Get the hostage squad:
+	local hostage_squad = ini:r_string_ex( "operation_fairway_props", "pilot_squad" )
+	if ( not hostage_squad ) then
+		printf( "DRX QL Error: Unable to setup pilot hostage task, hostage squad not supplied" )
+		return
+	end
+
+	-- Spawn corpses:
+	local i = 1
+	while ( true ) do
+		local current_corpse = ini:r_string_ex( "operation_fairway_props", string.format( "survivor_corpse_%s", i ) )
+		if ( not current_corpse ) then
+			break
+		end
+		local location_section = string.format( "drx_ql_location_stingray_corpse_%s", i )
+		if ( not loc_ini:section_exist( location_section ) ) then
+			break
+		end
+		local pos_x = (loc_ini:r_float_ex( location_section, "pos_x" ) or 0)
+		local pos_y = (loc_ini:r_float_ex( location_section, "pos_y" ) or 0)
+		local pos_z = (loc_ini:r_float_ex( location_section, "pos_z" ) or 0)
+		local lvid = (loc_ini:r_float_ex( location_section, "lvid" ) or 0)
+		local gvid = (loc_ini:r_float_ex( location_section, "gvid" ) or 0)
+		local corpse_obj = alife( ):create( current_corpse, vector( ):set( pos_x, pos_y, pos_z ), lvid, gvid )
+		if ( corpse_obj ) then
+			corpse_obj:kill( )
+		end
+		i = (i + 1)
+	end
+
+	-- Spawn hostage takers:
+	local k = 1
+	while ( true ) do
+		local squad_name = ini:r_string_ex( "operation_fairway_props", string.format( "enemy_squad_%s", k ) )
+		if ( not squad_name ) then
+			break
+		end
+		xr_effects.drx_ql_create_squad( nil, nil, {squad_name, smart_name} )
+		k = (k + 1)
+	end
+
+	-- Set up hostage task:
+	utils.save_var( db.actor, string.format( "%s_id", task_id ), smart_id )
+	utils.save_var( db.actor, string.format( "%s_enemy_faction", task_id ), enemy_faction )
+	xr_effects.drx_ql_setup_hostage_task( nil, nil, {hostage_squad, nil, string.format( "%s_id", task_id )} )
+	utils.save_var( db.actor, "drx_ql_hostage_giver_needed", false )
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_tf_save_state_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when a game is saved
+--
+--	Usage:
+--		(called on game save)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 07, 2018
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when the game is saved:
+local function drx_ql_tf_save_state_callback( m_data )
+
+	-- Save high value fetch tasks list:
+	m_data.drx_ql_havfetch_tasks = drx_ql_havfetch_tasks
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_tf_load_state_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when a game is loaded
+--
+--	Usage:
+--		(called on game load)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 07, 2018
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when the game is loaded:
+local function drx_ql_tf_load_state_callback( m_data )
+
+	-- Restore high value fetch tasks list:
+	if ( m_data.drx_ql_havfetch_tasks ) then
+		drx_ql_havfetch_tasks = m_data.drx_ql_havfetch_tasks
+		m_data.drx_ql_havfetch_tasks = nil
+	end
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- on_game_start function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Registers callback scripts
+--
+--	Usage:
+--		(called when a game session begins)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 07, 2018
+-- ------------------------------------------------------------------------------------------------
+
+-- Register callback scripts:
+function on_game_start( )
+	RegisterScriptCallback( "save_state", drx_ql_tf_save_state_callback )
+	RegisterScriptCallback( "load_state", drx_ql_tf_load_state_callback )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

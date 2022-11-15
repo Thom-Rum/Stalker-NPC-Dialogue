@@ -1,0 +1,301 @@
+--=============================================================
+--
+-- Forced Dialog on Specific NPC First Meet (drx_ql_first_meet.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--		- Initiates a forced dialog between the actor and an npc when they are within proximity of each other
+--		- To give an npc a forced dialog, add the squad section name to the drx_ql_first_meet_dialogs map with the dialog root id as the value
+--		- Dialog string id's for the forced dialog must follow the following format:
+--			{dialog_root}_npc  -- NPC greeting
+--			{dialog_root}_pre_actor_{x}  -- Actor pre-description text (optional)
+--			{dialog_root}_pre_npc_{x}  -- NPC pre-description text (optional, but required for each {dialog_root}_pre_actor_{x})
+--			{dialog_root}_actor  -- Actor conversation ending
+--				- {dialog_root} = value stored in drx_ql_first_meet_dialogs under the squad section name
+--				- {x} = int from 1 to 3
+--
+--	Created by: DoctorX
+--	Last revised: November 17, 2019
+--
+--=============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- First Meet Settings
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[dialog_settings]
+--				max_dist (type: float, meters)
+--					- Max distance from actor for npc forced dialogs
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	March 01, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Load first meet dialog settings:
+local ini = ini_file( "drx\\drx_ql_config.ltx" )
+local max_dist = (ini:r_float_ex( "dialog_settings", "max_dist" ) or 0)
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Global Vars
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	March 01, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Map containing first meet dialogs by squad:
+drx_ql_first_meet_dialogs = {}
+
+-- Flag indicating whether a first meet dialog has been initiated:
+drx_ql_first_meet_dialog_initiated = false
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_trigger_first_meet_dialog function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Changes the squad factions to actor faction
+--
+--	Usage:
+--		drx_ql_trigger_first_meet_dialog( )
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Trigger first meet dialog:
+function drx_ql_trigger_first_meet_dialog( npc, st )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if dialog has alreaded been initiated:
+	if ( drx_ql_first_meet_dialog_initiated ) then
+		return
+	end
+
+	-- Get npc squad name:
+	local squad = get_object_squad( npc )
+	if ( not squad ) then
+		return
+	end
+	local squad_name = squad:section_name( )
+	if ( not squad_name ) then
+		return
+	end
+
+	-- Remove first meet dialog if npc is prisoner:
+	if ( npc:has_info( "drx_ql_npc_is_force_wounded" ) ) then
+		drx_ql_first_meet_dialogs[squad_name] = nil
+		return
+	end
+
+	-- Check if npc is near actor:
+	if ( (not max_dist) or (npc:position( ):distance_to( db.actor:position( ) ) > max_dist) ) then
+		return
+	end
+
+	-- Check if npc is capable of dialog with actor:
+	if ( (not npc:alive( )) or (npc:wounded( )) or (npc:general_goodwill( db.actor ) <= game_relations.ENEMIES) ) then
+		return
+	end
+
+	-- Check if engaged in combat:
+-- 	if ( (npc:best_enemy( )) or (not is_empty( xr_combat_ignore.fighting_with_actor_npcs )) ) then
+	if ( npc:best_enemy( ) ) then
+		return
+	end
+
+	-- Check if there is stored first meet dialog:
+	if ( not drx_ql_first_meet_dialogs[squad_name] ) then
+		return
+	end
+
+	-- Check if npc is squad commander:
+	if ( npc:id( ) ~= squad:commander_id( ) ) then
+		return
+	end
+
+	-- Give forced dialog:
+	npc:set_start_dialog( "drx_ql_first_meet_dialog_init" )
+-- 	npc:allow_break_talk_dialog( false )
+	npc:allow_break_talk_dialog( true )
+	npc:disable_trade( )
+	db.actor:run_talk_dialog( npc, true )
+	drx_ql_first_meet_dialog_initiated = true
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- npc_on_update function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run on npc update
+--
+--	Usage:
+--		(called on actor update)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 28, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run on npc update:
+local function drx_ql_fm_npc_on_update( npc, st )
+
+	-- Trigger first meet dialog if meeting specific npc for first time:
+	drx_ql_trigger_first_meet_dialog( npc, st )
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_fm_save_state_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when a game is saved
+--
+--	Usage:
+--		(called on game save)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 01, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when the game is saved:
+local function drx_ql_fm_save_state_callback( m_data )
+
+	-- Save first meet dialog map:
+	m_data.drx_ql_first_meet_dialogs = drx_ql_first_meet_dialogs
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_fm_load_state_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when a game is loaded
+--
+--	Usage:
+--		(called on game load)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 01, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when the game is loaded:
+local function drx_ql_fm_load_state_callback( m_data )
+
+	-- Restore first meet dialog map:
+	if ( m_data.drx_ql_first_meet_dialogs ) then
+		drx_ql_first_meet_dialogs = m_data.drx_ql_first_meet_dialogs
+		m_data.drx_ql_first_meet_dialogs = nil
+	end
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- on_game_start function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Registers callback scripts
+--
+--	Usage:
+--		(called when a game session begins)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 01, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Register callback scripts:
+function on_game_start( )
+	RegisterScriptCallback( "npc_on_update", drx_ql_fm_npc_on_update )
+	RegisterScriptCallback( "save_state", drx_ql_fm_save_state_callback )
+	RegisterScriptCallback( "load_state", drx_ql_fm_load_state_callback )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

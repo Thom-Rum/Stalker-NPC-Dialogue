@@ -1,0 +1,210 @@
+--=============================================================
+--
+-- Barrier Spawner (drx_ql_barriers.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--	- Spawns anomalies as blockades in specified areas
+--	- Config file: drx\drx_ql_barriers.ltx
+--
+--	Created by: DoctorX
+--	Last revised: February 08, 2019
+--
+--=============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_spawn_barriers function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Spawns barrier anomalies on current level
+--
+--	Usage:
+--		drx_ql_spawn_barriers( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_barriers.ltx
+--			[drx_ql_barrier_{level_name}_{x}]  ({x} = sequential int starting with 1)
+--				type (type: string, anomaly section name)
+--					- Anomaly type to use as barrier
+--				lvid (type: int, level vertex id)
+--					- Level vertex id of the barrier
+--				gvid (type: int, game vertex id)
+--					- Game vertex id of the barrier
+--				pos_x (type: float)
+--					- X-coordinate of the barrier
+--				pos_y (type: float)
+--					- Y-coordinate of the barrier
+--				pos_z (type: float)
+--					- Z-coordinate of the barrier
+--
+--	Return value (type: bool):
+--		Returns true on success
+--		Returns false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Spawn barrier anomalies on current level:
+function drx_ql_spawn_barriers( )
+
+	-- Get the current level name:
+	local level_name = level.name( )
+	if ( (not level_name) or (level_name == "") ) then
+		return false
+	end
+
+	-- Check if barriers are spawned on the current level:
+	if ( has_alife_info( string.format( "drx_ql_info_barriers_spawned_%s", level_name ) ) ) then
+		return true
+	end
+
+	-- Get ini file:
+	local ini = ini_file( "drx\\drx_ql_barriers.ltx" )
+	if ( not ini ) then
+		printf( "DRX QL Error: Unable to spawn barriers, config file not found" )
+		return false
+	end
+
+	-- Spawn barrier anomalies on the current level:
+	local i = 1
+	local current_section = string.format( "drx_ql_barrier_%s_%s", level_name, i )
+	while ( ini:section_exist( current_section ) ) do
+
+		-- Send update to console:
+		printf( "DRX QL: Spawning barrier %s", current_section )
+
+		-- Get the type of barrier to create:
+		local anom_type = ini:r_string_ex( current_section, "type" )
+		if ( not anom_type ) then
+			printf( "DRX QL Error: Unable to spawn barrier %s, no barrier type supplied", current_section )
+		else
+
+			-- Get current barrier positional info:
+			local lvid = (ini:r_float_ex( current_section, "lvid" ) or 0)
+			local gvid = (ini:r_float_ex( current_section, "gvid" ) or 0)
+			local pos_x = (ini:r_float_ex( current_section, "pos_x" ) or 0)
+			local pos_y = (ini:r_float_ex( current_section, "pos_y" ) or 0)
+			local pos_z = (ini:r_float_ex( current_section, "pos_z" ) or 0)
+			local pos = vector( ):set( pos_x, pos_y, pos_z )
+
+			-- Spawn the barrier:
+			local se_obj = alife( ):create( anom_type, pos, lvid, gvid )
+			if ( not se_obj ) then
+				printf( "DRX QL Error: Unable to spawn barrier %s", current_section )
+
+			-- Set anomaly properties:
+			else
+				local data = stpk_utils.get_anom_zone_data( se_obj )
+				if ( not data ) then
+					printf( "DRX QL Error: Unable to set barrier anomaly properties for %s", current_section )
+				else
+					data.shapes[1] = {}
+					data.shapes[1].shtype = 0
+					data.shapes[1].offset = vector( ):set( 0, 0, 0 )  -- Leave for compatibility with CoC 1.4.22, delete later
+					data.shapes[1].center = vector( ):set( 0, 0, 0 )
+					data.shapes[1].radius = 3
+					stpk_utils.set_anom_zone_data( data, se_obj )
+				end
+
+			end
+
+		end
+
+		-- Prepare for next loop:
+		i = (i + 1)
+		current_section = string.format( "drx_ql_barrier_%s_%s", level_name, i )
+
+	end
+
+	-- Set barriers spawned flag:
+	give_info( string.format( "drx_ql_info_barriers_spawned_%s", level_name ) )
+	printf( "DRX QL: Barriers spawned on %s", level_name )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_actor_on_update_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run on actor update
+--
+--	Usage:
+--		(called on actor update)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run on actor update:
+local function drx_ql_actor_on_update_callback( )
+
+	-- Spawn barrier anomalies:
+	drx_ql_spawn_barriers( )
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- on_game_start function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Registers callback scripts
+--
+--	Usage:
+--		(called when a game session begins)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Register callback scripts:
+function on_game_start( )
+	RegisterScriptCallback( "actor_on_update", drx_ql_actor_on_update_callback )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

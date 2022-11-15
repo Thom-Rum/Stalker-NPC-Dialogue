@@ -1,0 +1,139 @@
+--=============================================================
+--
+-- Helicopter Functions (drx_cotz_heli.script)
+--	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+--
+--	Created by: DoctorX
+--	Last revised: November 21, 2019
+--
+--=============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Global Vars
+--
+--	Created by DoctorX
+--	for DoctorX Call of The Zone 1.0
+--	November 21, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- ID of helicopter that was fatally wounded but has not yet crashed:
+drx_cotz_hel_dead_heli_id = nil
+
+-- Last known altitude of dead helicopter:
+local drx_cotz_hel_last_alt = nil
+
+-- Whether or not the crash sound was played:
+local drx_cotz_hel_crash_sound_played = false
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_cotz_hel_death function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Restores helicopter explosion sound after helicopter is shot down
+--
+--	Usage:
+--		drx_cotz_hel_death( )
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Call of The Zone 1.0
+--	Last modified November 21, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Play helicopter explosion sound on ground impact:
+function drx_cotz_hel_death( )
+
+	-- Check for dead heli:
+	if ( drx_cotz_hel_dead_heli_id == nil ) then
+		return
+	end
+
+	-- Check if sound already played:
+	if ( drx_cotz_hel_crash_sound_played ) then
+		return
+	end
+
+	-- Get heli object:
+	local heli = level.object_by_id( drx_cotz_hel_dead_heli_id )
+	if ( not heli ) then
+		return
+	end
+
+	-- Get helicopter altitude:
+	local heli_alt = heli:position( ).y
+	if ( drx_cotz_hel_last_alt == nil ) then
+		drx_cotz_hel_last_alt = heli_alt
+		return
+	end
+
+	-- Check if crashed:
+	if ( heli_alt ~= drx_cotz_hel_last_alt ) then
+		drx_cotz_hel_last_alt = heli_alt
+		return
+	end
+
+	-- Play explosion sound at crash site:
+	if ( db.actor ) then
+		local actor_pos = db.actor:position( )
+		local heli_pos = heli:position( )
+		local snd = "weapons\\heli_explosion"
+		sound_object( snd ):play_at_pos( db.actor, vector( ):set( (heli_pos.x - actor_pos.x), (heli_pos.y - actor_pos.y), (heli_pos.z - actor_pos.z) ), 0, 2 )
+		drx_cotz_hel_crash_sound_played = true
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Register Script Callbacks
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Registers callback scripts
+--
+--	Usage:
+--		(called when a game session begins)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Call of The Zone 1.0
+--	Last modified November 21, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Register callback scripts:
+function on_game_start( )
+	RegisterScriptCallback( "actor_on_update", drx_cotz_hel_death )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

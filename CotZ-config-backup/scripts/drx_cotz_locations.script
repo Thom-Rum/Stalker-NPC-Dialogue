@@ -1,0 +1,144 @@
+-- ============================================================
+--
+-- CoTZ Locations  (drx_cotz_locations.script)
+--	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+--
+--		- Adds map icons for places in the Zone
+--		- To add a map spot for a smart terrain, define a string id with the following format:
+--			drx_cotz_str_loc_{smart_name}
+--				- {smart_name} = smart terrain section name
+--				- Note: First letter of smart terrain location description text will be capitalized on display on the PDA map
+--		- Settings file: drx\drx_cotz_config.ltx
+--		- Strings file: drx_cotz_locations.xml
+--
+--	Created by: DoctorX
+--	Last revised: October 07, 2019
+--
+-- ============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Global Vars
+--
+--	Created by DoctorX
+--	for DoctorX Call of The Zone 1.0
+--	October 07, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Whether or not to show location icons for the current level on the PDA map:
+local show_local_icons = false
+
+-- Whether or not to show all location icons for all levels:
+local show_all_icons = false
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_cotz_loc_add_map_spots function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Adds map spot icons on the PDA map for smart terrains that have a location description specified
+--
+--	Usage:
+--		drx_cotz_loc_add_map_spots( )
+--
+--	Ini requirements:
+--		drx\drx_cotz_config.ltx
+--			[location_settings]
+--				show_local_icons (type: bool)
+--					- Whether or not to show location icons for the current level on the PDA map
+--				show_all_icons (type: bool)
+--					- Whether or not to show all location icons on the PDA map
+--
+--	External strings:
+--		drx_cotz_locations.xml
+--			drx_cotz_str_loc_{smart_name} (type: string)
+--				- Location description for the specified smart terrain ({smart_name} = smart terrain section name)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Call of The Zone 1.0
+--	Last modified October 07, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run on actor update:
+function drx_cotz_loc_add_map_spots( )
+
+	-- Location of the settings file:
+	local ini = ini_file( "drx\\drx_cotz_config.ltx" )
+	if ( not ini ) then
+		printf( "DRX COTZ Error: Unable to create location icons, config file not found" )
+		return
+	end
+
+	-- Load settings:
+	local show_local_icons = (ini:r_bool_ex( "location_settings", "show_local_icons" ) or false)
+	local show_all_icons = (ini:r_bool_ex( "location_settings", "show_all_icons" ) or false)
+
+	-- Check if feature is active:
+	if ( (not show_local_icons) and (not show_all_icons) ) then
+		return
+	end
+
+	-- Check smart terrains for location descriptions:
+	for smart_name, smart in pairs( SIMBOARD.smarts_by_names ) do
+
+		-- Check if smart is on current level:
+		if ( (smart) and ((show_all_icons) or (show_local_icons and smart.online)) ) then
+
+			-- Check if description name exists for current smart terrain:
+			local location_name = string.format( "drx_cotz_str_loc_%s", smart_name )
+			if ( game.translate_string( location_name ) ~= location_name ) then
+
+				-- Capitalize first letter of description:
+				location_name = string.gsub( game.translate_string( location_name ), "^%l", string.upper )
+
+				-- Add map spot:
+				if ( level.map_has_object_spot( smart.id, "fast_travel" ) == 0 ) then
+					level.map_add_object_spot( smart.id, "fast_travel", location_name )
+				end
+
+			end
+
+		end
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Callback Functions
+--
+--	Created by DoctorX
+--	for DoctorX Call of The Zone 1.0
+--	Last modified October 07, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+function on_game_start( )
+	RegisterScriptCallback( "on_game_load", drx_cotz_loc_add_map_spots )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

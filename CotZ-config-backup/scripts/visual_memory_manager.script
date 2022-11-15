@@ -1,0 +1,57 @@
+-- ============================================================
+--
+-- visual_memory_manager.script
+--	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+--
+--	Modified by: DoctorX
+--	Last revised: October 05, 2019
+--
+-- ============================================================
+
+
+-- Visual Memory Manager exports
+-- by Alundaio
+
+-- called from engine
+-- This occurs during the visible check. If value >= visiblity_threshold then object is considered visible
+-- warning npc and who can be nil sometimes
+function get_visible_value(npc,who,time_delta,time_quant,luminocity,velocity_factor,velocity,distance,object_distance,always_visible_distance)
+	distance = distance <= 0 and 0.00001 or distance
+
+	if (level_weathers.bLevelUnderground) then
+		luminocity = luminocity + 0.30
+	end
+
+
+	-- ///////////////////////////////////////////////////////////////////////////////////////////////
+	--
+	-- Make actor more visible if flashlight is on at night
+	--
+	--	- Modified from Revo Lucas commit 1d557ee 2017-09-15
+	--
+	--	Added by DoctorX
+	--	for DoctorX Call of The Zone 1.0
+	--	Last modified October 05, 2019
+	--
+	-- -----------------------------------------------------------------------------------------------
+
+	-- Increase actor luminocity if flashlight on:
+	if ( db.actor ) then
+		if ( (who) and (who:id( ) == db.actor:id( )) ) then
+			if ( xr_conditions.is_night( who, npc ) or level_weathers.bLevelUnderground ) then
+				local torch = db.actor:object( "device_torch" )
+				if ( torch and torch:torch_enabled( ) ) then
+					luminocity = (luminocity + 0.30)
+				end
+			end
+		end
+	end
+
+	-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+	-- unaltered formula
+	-- time_delta / time_quant * luminocity * (1 + velocity_factor*velocity) * (distance - object_distance) / (distance - always_visible_distance)
+
+	return  time_delta / time_quant * (0.02 + luminocity) * (1 + velocity_factor*velocity) * (distance - object_distance) / distance
+end

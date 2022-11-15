@@ -1,0 +1,238 @@
+--=============================================================
+--
+-- River Guide (drx_ql_river_guide.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--		- Settings file: configs\drx\drx_ql_river_guide.ltx
+--
+--	Created by: DoctorX
+--	Last revised: August 08, 2019
+--
+--=============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Settings File
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	August 08, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Location of the settings file:
+local ini = ini_file( "drx\\drx_ql_river_guide.ltx" )
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_rg_spawn_guides function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Spawns river guides
+--
+--	Usage:
+--		drx_ql_rg_spawn_guides( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_rg_north_id (type: npc id)
+--			- NPC id of the northern river guide
+--		drx_ql_rg_south_id (type: npc id)
+--			- NPC id of the southern river guide
+--
+--	Ini requirements:
+--		drx\drx_ql_river_guide.ltx
+--			[river_guide_settings]
+--				north_guide (type: string, npc section name)
+--					- Northern river guide
+--				south_guide (type: string, npc section name)
+--					- Southern river guide
+--			[north_guide_loc]
+--				pos_x (type: float)
+--					- X-position for northern river guide
+--				pos_y (type: float)
+--					- Y-position for northern river guide
+--				pos_z (type: float)
+--					- Z-position for northern river guide
+--				lvid (type: int, level vertex id)
+--					- Level vertex id for northern river guide
+--				gvid (type: int, game vertex id)
+--					- Game vertex id for northern river guide
+--			[south_guide_loc]
+--				pos_x (type: float)
+--					- X-position for southern river guide
+--				pos_y (type: float)
+--					- Y-position for southern river guide
+--				pos_z (type: float)
+--					- Z-position for southern river guide
+--				lvid (type: int, level vertex id)
+--					- Level vertex id for southern river guide
+--				gvid (type: int, game vertex id)
+--					- Game vertex id for southern river guide
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Spawn river guides:
+function drx_ql_rg_spawn_guides( )
+
+	-- Ensure db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Spawn southern guide:
+	if ( not has_alife_info( "drx_ql_rg_southern_guide_spawned" ) ) then
+		local npc_sect = (ini:r_string_ex( "river_guide_settings", "south_guide" ) or "")
+		local pos_x = (ini:r_float_ex( "south_guide_loc", "pos_x" ) or 0)
+		local pos_y = (ini:r_float_ex( "south_guide_loc", "pos_y" ) or 0)
+		local pos_z = (ini:r_float_ex( "south_guide_loc", "pos_z" ) or 0)
+		local lvid = (ini:r_float_ex( "south_guide_loc", "lvid" ) or 0)
+		local gvid = (ini:r_float_ex( "south_guide_loc", "gvid" ) or 0)
+		local tc_obj = alife( ):create( npc_sect, vector( ):set( pos_x, pos_y, pos_z ), lvid, gvid )
+		if ( tc_obj ) then
+			utils.save_var( db.actor, "drx_ql_rg_south_id", tc_obj.id )
+			give_info( "drx_ql_rg_southern_guide_spawned" )
+			printf( "DRX QL RG: Southern river guide spawned" )
+		end
+	end
+
+	-- Spawn northern guide:
+	if ( not has_alife_info( "drx_ql_rg_northern_guide_spawned" ) ) then
+		local npc_sect = (ini:r_string_ex( "river_guide_settings", "north_guide" ) or "")
+		local pos_x = (ini:r_float_ex( "north_guide_loc", "pos_x" ) or 0)
+		local pos_y = (ini:r_float_ex( "north_guide_loc", "pos_y" ) or 0)
+		local pos_z = (ini:r_float_ex( "north_guide_loc", "pos_z" ) or 0)
+		local lvid = (ini:r_float_ex( "north_guide_loc", "lvid" ) or 0)
+		local gvid = (ini:r_float_ex( "north_guide_loc", "gvid" ) or 0)
+		local tc_obj = alife( ):create( npc_sect, vector( ):set( pos_x, pos_y, pos_z ), lvid, gvid )
+		if ( tc_obj ) then
+			utils.save_var( db.actor, "drx_ql_rg_north_id", tc_obj.id )
+			give_info( "drx_ql_rg_northern_guide_spawned" )
+			printf( "DRX QL RG: Northern river guide spawned" )
+		end
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_rg_update_icons function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Updates river guide map icons
+--
+--	Usage:
+--		drx_ql_rg_update_icons( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_rg_north_id (type: npc id)
+--			- NPC id of the northern river guide
+--		drx_ql_rg_south_id (type: npc id)
+--			- NPC id of the southern river guide
+--
+--	External strings:
+--		drx_ql_strings.xml
+--			drx_ql_str_rg_north_map_name
+--				- Text to display on map icon for northern river guide
+--			drx_ql_str_rg_south_map_name
+--				- Text to display on map icon for southern river guide
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 07, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Update river guide map icons:
+function drx_ql_rg_update_icons( )
+
+	-- Ensure db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Update south river guide icon:
+	local south_id = utils.load_var( db.actor, "drx_ql_rg_south_id" )
+	if ( south_id ) then
+		if ( level.map_has_object_spot( south_id, "ui_pda2_quest_npc_location" ) == 0 ) then
+			level.map_add_object_spot( south_id, "ui_pda2_quest_npc_location", game.translate_string( "drx_ql_str_rg_south_map_name" ) )
+		end
+	end
+
+	-- Update north river guide icon:
+	local north_id = utils.load_var( db.actor, "drx_ql_rg_north_id" )
+	if ( north_id ) then
+		if ( level.map_has_object_spot( north_id, "ui_pda2_quest_npc_location" ) == 0 ) then
+			level.map_add_object_spot( north_id, "ui_pda2_quest_npc_location", game.translate_string( "drx_ql_str_rg_north_map_name" ) )
+		end
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Callback functions
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 07, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- On actor update:
+local function drx_ql_rg_actor_on_update( )
+
+	-- Spawn river guide:
+	drx_ql_rg_spawn_guides( )
+
+	-- Update river guide map icons:
+	drx_ql_rg_update_icons( )
+
+end
+
+-- ------------------------------------------------------------------------------------------------
+
+-- On game start:
+function on_game_start( )
+	RegisterScriptCallback( "actor_on_update", drx_ql_rg_actor_on_update )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

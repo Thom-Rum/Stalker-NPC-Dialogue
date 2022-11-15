@@ -1,0 +1,3518 @@
+-- ============================================================
+--
+-- Task Status Functors (task_status_functor.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--	Modified by: DoctorX
+--	Last revised: November 17, 2019
+--
+-- ============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Global vars
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified September 27, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Number of times npc death was checked:
+local drx_ql_death_checks = 0
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_money_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a money task
+--
+--	Usage:
+--		drx_ql_money_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_fetch (type: int)
+--			- Amount of money to be collected for the specified collect money task
+--
+--	Return value (type: nil):
+--		none, increments tsk.stage if the specified amount of money has been collected
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of money task:
+function drx_ql_money_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if not ( db.actor ) then
+		return
+	end
+
+	-- Check if the specified amount of money has been collected:
+	if ( db.actor:money( ) >= tonumber( utils.load_var( db.actor, string.format( "%s_fetch", task_id ), 0 ) ) ) then
+		tsk.stage = 1
+	else
+		tsk.stage = 0
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_assault_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of an assault task
+--		- Modification of check_smart_under_faction_control_staged (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_assault_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_id (type: smart terrain id)
+--			- Id of current target smart terrain for specified task
+--		{task_id}_target_id (type: smart terrain id)
+--			- Id of current target within the smart terrain for specified task
+--		{task_id}_enemy_faction (type: string, faction name)
+--			- Name of enemy faction for specified task
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[sim_task_props]
+--				assault_radius (type: float, meters)
+--					- Assault task max dist from target to actor if target is outside target radius
+--				tgt_close_dist (type: float, meters)
+--					- Assault task target radius
+--
+--	Return value (type: string):
+--		Returns "fail" if the task is failed, returns nil otherwise
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 10, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of assault task:
+function drx_ql_assault_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if the task is already completed:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- See if check time elapsed:
+	local tg = time_global( )
+	if ( (tsk.__check_smart_time) and (tg < tsk.__check_smart_time) ) then
+		return
+	end
+	tsk.__check_smart_time = (tg + 3000)
+
+	-- Get assault task target smart terrain:
+	local smart_id = utils.load_var( db.actor, string.format( "%s_id", task_id ) )
+	if ( not smart_id ) then
+		printf( "DRX QL: Task %s failed, target smart id not found", task_id )
+		return "fail"
+	end
+	local smrt = SIMBOARD.smarts[smart_id]
+	if ( not smrt ) then
+		printf( "DRX QL: Task %s failed, target smart id invalid", task_id )
+		return "fail"
+	end
+	local smart = smrt.smrt
+	if ( not smart ) then
+		printf( "DRX QL: Task %s failed, target smart object not found", task_id )
+		return "fail"
+	end
+
+	-- Ensure smart terrain is still available:
+	if ( simulation_objects.available_by_id[smart.id] == false ) then
+		printf( "DRX QL: Task %s failed, target smart not available", task_id )
+		return "fail"
+	end
+
+	-- Get enemy faction:
+	local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+	if ( (not enemy_faction) or (enemy_faction == "") ) then
+		printf( "DRX QL: Task %s failed, no enemy faction specified", task_id )
+		return "fail"
+	end
+
+	-- Clear out stored target id:
+-- 	utils.save_var( db.actor, string.format( "%s_target_id", task_id ), nil )
+	local prev_tgt_valid = false
+
+	-- Get target radius:
+	local assault_radius = 0
+	local near_dist = 0
+	local ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( ini ) then
+		assault_radius = ((ini:r_float_ex( "sim_task_props", "assault_radius" ) or 0) ^ 2)
+		near_dist = ((ini:r_float_ex( "sim_task_props", "tgt_close_dist" ) or 0) ^ 2)
+	end
+
+	-- Check target terrain for enemy targets:
+	for k, squad in pairs( smrt.squads ) do
+		if ( squad ) then
+
+			-- Check if all squads are loaded:
+			if ( not squad.first_update ) then
+				return
+			end
+
+			-- Check if squad is enemy:
+			if ( (squad.player_id == enemy_faction) or ((enemy_faction == "monster") and is_squad_monster[squad.player_id]) ) then
+
+				-- Check if target is still within smart terrain:
+				local se_target = alife( ):object( squad.id )
+				if ( (assault_radius == 0) or (smart.position:distance_to_sqr( se_target.position ) <= assault_radius) or (db.actor:position( ):distance_to_sqr( se_target.position ) <= near_dist) ) then
+
+					-- Update target id:
+					if ( not prev_tgt_valid ) then
+						utils.save_var( db.actor, string.format( "%s_target_id", task_id ), squad.id )
+						prev_tgt_valid = true
+					end
+
+					-- Prevent squad from leaving:
+					squad.stay_time = game.get_game_time( )
+					squad.force_online = true
+
+				end
+
+			-- Remove non-enemy squads from target smart terrain:
+			else
+				if ( (not get_story_squad( squad:section_name( ) )) and (not axr_companions.companion_squads[squad.id]) ) then
+					printf( "DRX QL: Removing non-target %s squad %s from %s", squad.player_id, squad.id, smart:name( ) )
+					SIMBOARD:remove_squad( squad )
+				end
+
+			end
+
+		end
+	end
+
+	-- Check if task is still current:
+	if ( prev_tgt_valid ) then
+		return
+	end
+
+	-- Set smart terrain controlling faction:
+	if (smart.faction_controlled) then
+		smart.faction = string.gsub( character_community( db.actor ), "actor_", "" )
+	end
+
+	-- Set task completed:
+	if (tsk.stage == 0) then
+		tsk.stage = 1
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_guide_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a guide task
+--
+--	Usage:
+--		drx_ql_guide_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_id (type: smart terrain id)
+--			- Id of current target smart terrain for specified task
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[sim_task_props]
+--				guide_task_target_dist (type: float, meters)
+--					- Maximum distance from target before considering a guide task complete
+--
+--	Return value (type: string):
+--		Returns "fail" if the task is failed, returns nil otherwise
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified July 29, 2018
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of guide task:
+function drx_ql_guide_task_status( tsk, task_id )
+
+	-- Location of the settings file:
+	local ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not ini ) then
+		printf( "DRX QL Error: Unable to determine guide task status, cannot locate ini file" )
+		return false
+	end
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if the task is already completed:
+	if ( tsk.stage ~= 0 ) then
+		return
+	end
+
+	-- Check if smart terrain target has been reached:
+	local smart_id = utils.load_var( db.actor, string.format( "%s_id", task_id ) )
+	if ( not smart_id ) then
+		return "fail"
+	end
+	if ( (not smart_terrain.nearest_to_actor_smart.id) or (smart_terrain.nearest_to_actor_smart.id ~= smart_id) or (smart_terrain.nearest_to_actor_smart.dist > (ini:r_float_ex( "sim_task_props", "guide_task_target_dist" ) or 0)) ) then
+		return
+	end
+
+	-- Increment the task stage:
+	tsk.stage = 1
+	drx_ql_send_message( tsk, task_id )
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_assassination_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of an assassination task
+--		- Modification of bounty_task (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_assassination_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_assn_tgt_killer_{target_npc_id} (type: int, npc id)
+--			- Id of the npc that killed an assassination target or -1 if target killed by non-npc
+--		drx_ql_last_assassination_name (type: string)
+--			- Character name of the last assassination target the player killed
+--		drx_ql_last_assassination_time (type: ctime)
+--			- Timestamp from the last assassination target the player killed
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[hunted_task_factions] (type: string, faction names)
+--				- List of factions that can be assassins
+--
+--	External strings:
+--		configs\text\eng\drx_ql_strings.xml
+--			drx_ql_str_companion_bounty_killer_{x} (type: string)
+--				- PDA message to display if actor companion kills an assassination task target ({x} = sequential int starting with 1)
+--			drx_ql_str_bounty_killer_{x} (type: string)
+--				- PDA message to display if another NPC kills an assassination task target ({x} = sequential int starting with 1)
+--
+--	Return value (type: string):
+--		Returns "fail" if the task is failed, returns nil otherwise
+--
+--	Notes:
+--		- Assassination task will fail if the assassination target is killed by someone other than the player or companion
+--		- Killer id is stored in pstor var drx_ql_assn_tgt_killer_{target_npc_id} when the target is killed
+--		- Killer id pstor var is set in npc_on_death_callback in drx_ql_npc_death.script
+--		- If the target is killed by an npc other than the player, a dynamic news alert announcing the kill will be displayed
+--		- Character name of the assassination target will be stored in pstor var drx_ql_last_assassination_name if the player killed the target
+--		- Timestamp of the assassination will be stored in pstor var drx_ql_last_assassination_time if the player killed the target
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified September 27, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of assassination task:
+function drx_ql_assassination_task_status( tsk, task_id )
+
+	-- Location of the settings file:
+	local ini = ini_file( "drx\\drx_ql_config.ltx" )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+-- 	-- Verify the task giver is valid:
+-- 	if ( not axr_task_manager.is_task_giver_valid( tsk ) ) then
+-- 		return "fail"
+-- 	end
+
+	-- Check if task stage invalid:
+	if ( tsk.stage == 254 ) then
+		return "fail"
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Get the assassination target id:
+	local tgt_id = axr_task_manager.bounties_by_id[task_id]
+	if ( not tgt_id ) then
+		return "fail"
+	end
+
+	-- Get the assassination target object:
+	local tgt_obj = alife_object( tgt_id )
+	if ( not tgt_obj ) then
+		return "fail"
+	end
+	if ( not IsStalker( nil, tgt_obj:clsid( ) ) ) then
+		return "fail"
+	end
+
+	-- Check if the target is still alive:
+	if ( tgt_obj:alive( ) ) then
+		return
+	end
+
+	-- Get the id of the NPC that killed the target:
+	local killer_id = utils.load_var( db.actor, string.format( "drx_ql_assn_tgt_killer_%s", tgt_id ), nil )
+	if ( killer_id == nil ) then
+		if ( drx_ql_death_checks < 2 ) then
+			drx_ql_death_checks = (drx_ql_death_checks + 1)
+			return
+		else
+			drx_ql_death_checks = 0
+			return "fail"
+		end
+	end
+	drx_ql_death_checks = 0
+
+	-- If the target was killed by a non-npc, fail the task:
+	if ( killer_id < 0 ) then
+		return "fail"
+	end
+
+	-- Check if the player was the one that killed the target:
+	if ( killer_id == db.actor:id( ) ) then
+
+		-- Advance task stage:
+		tsk.stage = 1
+
+		-- Save killed assassination victim details:
+		if ( not db.actor:has_info( "drx_ql_info_has_hunted_task" ) ) then
+			if ( ini ) then
+				local factions_list = alun_utils.collect_section( ini, "hunted_task_factions", true )
+				if ( factions_list and factions_list[tgt_obj:community( )] ) then
+					utils.save_var( db.actor, "drx_ql_last_assassination_name", tgt_obj:character_name( ) )
+					utils.save_ctime( db.actor, "drx_ql_last_assassination_time", game.get_game_time( ) )
+				end
+			end
+		end
+		return
+
+	end
+
+	-- Check if one of the player's companions killed the target:
+	for id, squad in pairs( axr_companions.companion_squads ) do
+		if ( squad ) then
+			for member in squad:squad_members( ) do
+				if ( member.id == killer_id ) then
+
+					-- Display PDA message from killer companion:
+					local news_text_list = {}
+					local string_count = 1
+					while ( true ) do
+						local new_string = game.translate_string( string.format( "drx_ql_str_companion_bounty_killer_%s", string_count ) )
+						if ( new_string == string.format( "drx_ql_str_companion_bounty_killer_%s", string_count ) ) then
+							break
+						end
+						table.insert( news_text_list, new_string )
+						string_count = (string_count + 1)
+					end
+					if ( #news_text_list > 0 ) then
+						local killer_obj = alife_object( killer_id )
+						if ( (killer_obj) and (killer_obj:alive( )) ) then
+							local caption_text = string.format( "%s, %s", killer_obj:character_name( ), game.translate_string( "st_ui_pda_companion" ) )
+							local news_text = string.format( news_text_list[math.random( #news_text_list )], tgt_obj:character_name( ) )
+							db.actor:give_game_news( caption_text, news_text, killer_obj:character_icon( ), 0, 5000, 0 )
+							xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+						end
+					end
+
+					-- Advance the task stage:
+					tsk.stage = 1
+					return
+
+				end
+			end
+		end
+	end
+
+	-- Neither player nor companion killed the target, so display PDA message from the actual killer:
+	local news_text_list = {}
+	local string_count = 1
+	while ( true ) do
+		local new_string = game.translate_string( string.format( "drx_ql_str_bounty_killer_%s", string_count ) )
+		if ( new_string == string.format( "drx_ql_str_bounty_killer_%s", string_count ) ) then
+			break
+		end
+		table.insert( news_text_list, new_string )
+		string_count = (string_count + 1)
+	end
+	if ( #news_text_list > 0 ) then
+		local killer_obj = alife_object( killer_id )
+		if ( (killer_obj) and (killer_obj:alive( )) and (killer_obj:community( ) ~= "zombied") ) then
+			local caption_text = string.format( "%s, %s", killer_obj:character_name( ), game.translate_string( killer_obj:community( ) ) )
+			local news_text = string.format( news_text_list[math.random( #news_text_list )], tgt_obj:character_name( ) )
+			db.actor:give_game_news( caption_text, news_text, killer_obj:character_icon( ), 0, 5000, 0 )
+			xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+		end
+	end
+
+	-- Set return value:
+	return "fail"
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_prisoner_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a prisoner snatch task
+--
+--	Usage:
+--		drx_ql_prisoner_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_target_id (type: npc id)
+--			- Id of selected target for specified task
+--
+--	Return value (type: string):
+--		Returns "fail" if the task is failed, returns nil otherwise
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of prisoner snatch task:
+function drx_ql_prisoner_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if task stage invalid:
+	if ( tsk.stage == 254 ) then
+		return "fail"
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 2 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+	end
+
+	-- Get the target id:
+	local tgt_id = utils.load_var( db.actor, string.format( "%s_target_id", task_id ) )
+	if ( not tgt_id ) then
+		return "fail"
+	end
+
+	-- Get the target object:
+	local tgt_obj = alife_object( tgt_id )
+	if ( not tgt_obj ) then
+		return "fail"
+	end
+	if ( not IsStalker( nil, tgt_obj:clsid( ) ) ) then
+		return "fail"
+	end
+
+	-- Check if the target was killed:
+	if ( not tgt_obj:alive( ) ) then
+		return "fail"
+	end
+
+	-- Check if the prisoner has been captured:
+	local prisoner_captured = false
+	if ( not drx_ql_force_wounded.drx_ql_force_wound_npcs[tgt_id] ) then
+		local prisoner_npc = ((db.storage[tgt_id] and db.storage[tgt_id].object) or level.object_by_id( tgt_id ))
+		if ( (prisoner_npc) and (not prisoner_npc:has_info( "drx_ql_npc_prisoner_needs_healed" )) ) then
+			prisoner_captured = true
+		end
+	end
+	if ( prisoner_captured ) then
+		local dist_to = db.actor:position( ):distance_to_sqr( tgt_obj.position )
+		if ( (dist_to) and (dist_to > 3600) ) then  -- 60 meters
+			tsk.stage = 1
+		else
+			tsk.stage = 2
+		end
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_hunted_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a hunted task
+--
+--	Usage:
+--		drx_ql_hunted_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_assassin_squad_id (type: squad id)
+--			- Id of the assassin squad for a hunted task
+--
+--	External strings:
+--		configs\text\eng\drx_ql_strings.xml
+--			drx_ql_str_assassin_killed_message (type: string)
+--				- PDA message to display if an assassin has been killed
+--
+--	Return value (type: string):
+--		Returns "fail" if the task is failed, returns nil otherwise
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of hunted task:
+function drx_ql_hunted_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if task stage invalid:
+	if ( tsk.stage == 254 ) then
+		return "fail"
+	end
+
+	-- Check if task is complete:
+	if ( tsk.stage ~= 0 ) then
+		return
+	end
+
+	-- Get the assassin squad id:
+	local assassin_squad_id = utils.load_var( db.actor, "drx_ql_assassin_squad_id" )
+	if ( assassin_squad_id ) then
+
+		-- Get the assassin squad object:
+		local assassin_squad_obj = alife_object( assassin_squad_id )
+		if ( assassin_squad_obj ) then
+
+			-- Get the assassin object:
+			local assassin_id = assassin_squad_obj:commander_id( )
+			if ( assassin_id ) then
+				local assassin_obj = alife_object( assassin_id )
+				if ( assassin_obj and IsStalker( nil, assassin_obj:clsid( ) ) ) then
+
+					-- Check if the assassin is still alive:
+					if ( assassin_obj:alive( ) ) then
+
+						-- Make actor target of assassin squad:
+						local condlist = "actor"
+						assassin_squad_obj.action_condlist = alun_utils.parse_condlist( condlist )
+						assassin_squad_obj:set_squad_relation( game_relations.ENEMIES )
+
+						-- Task is still current so return:
+						return
+
+					end
+
+				end
+
+			end
+
+		end
+
+	end
+
+	-- Display PDA message that assassin has been killed:
+	local message = game.translate_string( "drx_ql_str_assassin_killed_message" )
+	db.actor:give_game_news( "", message, "ui_inGame2_Odin_vistrel", 0, 5000, 0 )
+	xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+
+	-- Advance task stage:
+	tsk.stage = 1
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_fetch_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a fetch task
+--		- Modification of actor_has_fetch_item (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_fetch_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_fetch (type: string, section name)
+--			- Section name of the fetch item to get
+--		{task_id}_fetch_count (type: int)
+--			- Number of fetch items to get
+--		{task_id}_fetch_cond (type: float, decimal percent)
+--			- Minimum acceptable condition of the fetch items
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 07, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of fetch task:
+function drx_ql_fetch_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Get the fetch item:
+	local section = utils.load_var( db.actor, string.format( "%s_fetch", task_id ) )
+	local item = (section and db.actor:object( section ))
+	if ( not item ) then
+		tsk.stage = 0
+		return
+	end
+	local min_count = utils.load_var( db.actor, string.format( "%s_fetch_count", task_id ), 1 )
+	local min_condition = utils.load_var( db.actor, string.format( "%s_fetch_cond", task_id ), 0 )
+
+	-- Check each item on the actor to see if it is fetch item of acceptable condition:
+	local cnt = 0
+	local acceptable_cnt = 0
+	local function section_count( npc, item )
+		if ( item:section( ) == section ) then
+			cnt = (cnt + 1)
+			if ( item:condition( ) >= min_condition ) then
+				acceptable_cnt = (acceptable_cnt + 1)
+			end
+		end
+	end
+	db.actor:iterate_inventory( section_count, nil )
+	if ( acceptable_cnt >= min_count ) then
+		tsk.stage = 2
+	elseif ( cnt >= min_count ) then
+		tsk.stage = 1
+	else
+		tsk.stage = 0
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 2 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_float_item_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a floating item location task
+--
+--	Usage:
+--		drx_ql_float_item_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_target_name (type: location name)
+--			- Name of the target smart terrain or special location for the specified task
+--		{task_id}_max_dist (type: float)
+--			- Maximum distance from center to spawn a target item
+--		{task_id}_fetch (type: string, section name)
+--			- Section name of the fetch item for specified task
+--		{task_id}_target_id (type: object id)
+--			- Id of the spawned float item
+--		{task_id}_helper (type: squad id)
+--			- Squad id of the helper for the specified float fetch task
+--		{task_id}_search_time (type: int, seconds)
+--			- Amount of time a search will take
+--		{task_id}_start_time (type: ctime)
+--			- Time stamp for the start of a search
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[ff_task_props]
+--				ff_search_dist (type: float, meters)
+--					- Max distance from center of search area to trigger search timer
+--				ff_search_min_time (type: int, seconds)
+--					- Minimum time a task helper will take to locate a float fetch item
+--				ff_search_max_time (type: int, seconds)
+--					- Maximum time a task helper will take to locate a float fetch item
+--		drx\drx_ql_locations.ltx
+--			[{location_name}]
+--				pos_x (type: float)
+--					- x-coordinate of the location position
+--				pos_y (type: float)
+--					- y-coordinate of the location position
+--				pos_z (type: float)
+--					- z-coordinate of the location position
+--				gvid (type: int)
+--					- Game vertex id of the location
+--
+--	External strings:
+--		drx_ql_strings.xml
+--			drx_ql_str_helper_start_search_[x} (type: string)
+--				- Text for PDA message from companion when starting a float fetch task item search
+--			drx_ql_str_helper_search_done_[x} (type: string)
+--				- Text for PDA message from companion when a float fetch task item search is complete
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified September 23, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of float task:
+function drx_ql_float_item_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Get config file:
+	local drx_ql_ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not drx_ql_ini ) then
+		printf( "DRX QL Error: Unable to update float item task status, config ini file not found" )
+		return
+	end
+
+	-- Get special location positional data file:
+	local drx_ql_loc_ini = ini_file( "drx\\drx_ql_locations.ltx" )
+	if ( not drx_ql_loc_ini ) then
+		printf( "DRX QL Error: Unable to update float item task status, locations ini file not found" )
+		return
+	end
+
+	-- Get the float item name:
+	local float_item = utils.load_var( db.actor, string.format( "%s_fetch", task_id ) )
+	if ( not float_item ) then
+		return
+	end
+
+	-- Check if the actor lost the item:
+	if ( tsk.stage == 1 ) then
+		if ( not db.actor:object( float_item ) ) then
+			return "fail"
+		end
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Check if the actor has the float item:
+	if ( db.actor:object( float_item ) ) then
+
+		-- Remove the current task from the undiscovered float fetch task array:
+		for i = 1, ( #xr_effects.drx_ql_float_fetch_tasks ) do
+			if ( xr_effects.drx_ql_float_fetch_tasks[i] == task_id ) then
+				table.remove( xr_effects.drx_ql_float_fetch_tasks, i )
+				break
+			end
+		end
+
+		-- Remove the task helper squad as companions:
+		xr_effects.drx_ql_remove_task_helper( nil, nil, {task_id} )
+
+		-- Increase the task stage:
+		tsk.stage = 1
+		return
+
+	end
+
+	-- Check if item is spawned:
+	local item_id = utils.load_var( db.actor, string.format( "%s_target_id", task_id ) )
+	if ( not item_id ) then
+
+		-- Get the spawn location name and radius:
+		local location_name = utils.load_var( db.actor, string.format( "%s_target_name", task_id ) )
+		local max_dist = utils.load_var( db.actor, string.format( "%s_max_dist", task_id ) )
+
+		-- If the target smart is online then spawn the item:
+		local smart = SIMBOARD.smarts_by_names[location_name]
+		if ( (max_dist == 0) or (not smart) or (smart and smart.online) ) then
+			local float_id = drx_ql_task_funcs.drx_ql_spawn_float_obj( float_item, location_name, max_dist )
+			if ( float_id ) then
+				utils.save_var( db.actor, string.format( "%s_target_id", task_id ), float_id )
+				printf( "DRX QL: Float item %s spawned at %s", float_item, location_name )
+			end
+		end
+
+		-- Don't check for helper squad if spawning item:
+		return
+
+	end
+
+	-- Check if float item fell below the map:
+	local float_obj = level.object_by_id( item_id )
+	if ( (float_obj) and (float_obj:position( ).y <= level.get_bounding_volume( ).min.y) ) then
+		local se_obj = alife( ):object( item_id )
+		if ( se_obj ) then
+			alife( ):release( se_obj )
+			utils.save_var( db.actor, string.format( "%s_target_id", task_id ), nil )
+			printf( "DRX QL: Float item %s fell under the map, despawning", float_item )
+			return
+		end
+	end
+
+	-- Check if actor has task helper squad:
+	if ( drx_ql_dialog_funcs.drx_ql_task_has_helper( task_id ) ) then
+
+		-- Check if task target is still undiscovered:
+		local current_task_index = 0
+		for task_index = 1, ( #xr_effects.drx_ql_float_fetch_tasks ) do
+			if ( xr_effects.drx_ql_float_fetch_tasks[task_index] == task_id ) then
+				current_task_index = task_index
+				break
+			end
+		end
+		if ( current_task_index < 1 ) then
+			return
+		end
+
+		-- Get positional data for the target area:
+		local location_name = utils.load_var( db.actor, string.format( "%s_target_name", task_id ) )
+		local tgt_gvid = (location_name and drx_ql_loc_ini:r_float_ex( location_name, "gvid" ))
+		local tgt_pos_x = (location_name and drx_ql_loc_ini:r_float_ex( location_name, "pos_x" ))
+		local tgt_pos_y = (location_name and drx_ql_loc_ini:r_float_ex( location_name, "pos_y" ))
+		local tgt_pos_z = (location_name and drx_ql_loc_ini:r_float_ex( location_name, "pos_z" ))
+		local tgt_pos = ((tgt_pos_x) and (tgt_pos_y) and (tgt_pos_z) and (vector:set( tgt_pos_x, tgt_pos_y, tgt_pos_z )))
+		if ( (not tgt_gvid) or (not tgt_pos) ) then
+			local smart = SIMBOARD.smarts_by_names[location_name]
+			if ( not smart ) then
+				printf( "DRX QL Error: Unable to update float item task status, specified smart terrain does not exist" )
+				return
+			end
+			tgt_gvid = smart.m_game_vertex_id
+			tgt_pos = smart.position
+		end
+
+		-- Check if actor on same level as target area:
+		if ( game_graph( ):vertex( alife( ):actor( ).m_game_vertex_id ):level_id( ) ~= game_graph( ):vertex( tgt_gvid ):level_id( ) ) then
+			return
+		end
+
+		-- Check if actor is within target area:
+		local max_dist = (drx_ql_ini:r_float_ex( "ff_task_props", "ff_search_dist" ) or 0)
+		local dist = db.actor:position( ):distance_to( tgt_pos )
+		if ( dist > max_dist ) then
+			return
+		end
+
+		-- Get helper squad info:
+		local squad_id = utils.load_var( db.actor, string.format( "%s_helper", task_id ) )
+		if ( not squad_id ) then
+			return
+		end
+		local squad = axr_companions.companion_squads[squad_id]
+		if ( not squad ) then
+			return
+		end
+		local companion_id
+		local member_obj
+		for member in squad:squad_members( ) do
+			member_obj = (member.id and (db.storage[member.id] and db.storage[member.id].object))
+			if ( member_obj and member_obj:alive( ) ) then
+				companion_id = member.id
+				break
+			end
+		end
+		if ( (not companion_id) or (not member_obj) ) then
+			return
+		end
+
+		-- Check if companion squad is near actor:
+		if ( (squad.dist_to_actor == nil) or (squad.dist_to_actor > max_dist) ) then
+			return
+		end
+
+		-- Check if not in combat:
+		if ( (member_obj:wounded( )) or (member_obj:best_enemy( )) or (not is_empty( xr_combat_ignore.fighting_with_actor_npcs )) ) then
+			return
+		end
+
+		-- Check if first time within search area:
+		local start_time = utils.load_ctime( db.actor, string.format( "%s_start_time", task_id ) )
+		if ( not start_time ) then
+
+			-- Save the search start time:
+			utils.save_ctime( db.actor, string.format( "%s_start_time", task_id ), game.get_game_time( ) )
+
+			-- Determine a search time duration:
+			local min_search_time = (drx_ql_ini:r_float_ex( "ff_task_props", "ff_search_min_time" ) or 0)
+			local max_search_time = (drx_ql_ini:r_float_ex( "ff_task_props", "ff_search_max_time" ) or 0)
+			utils.save_var( db.actor, string.format( "%s_search_time", task_id ), math.random( min_search_time, max_search_time ) )
+
+			-- Send PDA update from task helper companion:
+			local se_obj = alife( ):object( companion_id )
+			if ( (se_obj) and (se_obj:alive( )) ) then
+				local caption_text = string.format( "%s, %s", se_obj:character_name( ), game.translate_string( "st_ui_pda_companion" ) )
+				local msg_text = game.translate_string( drx_ql_dialog_funcs.drx_ql_random_phrase( "drx_ql_str_helper_start_search" ) )
+				msg_text = string.format( msg_text, game.translate_string( string.format( "%s_name", float_item ) ) )
+				db.actor:give_game_news( caption_text, msg_text, se_obj:character_icon( ), 0, 5000, 0 )
+				xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+			end
+
+		-- Check if search time elapsed:
+		else
+
+			-- Check if still searching:
+			local search_time = utils.load_var( db.actor, string.format( "%s_search_time", task_id ), 0 )
+			if ( game.get_game_time( ):diffSec( start_time ) < search_time ) then
+				return
+			end
+
+			-- Send helper companion found item message:
+			local se_obj = alife( ):object( companion_id )
+			if ( (se_obj) and (se_obj:alive( )) ) then
+				local caption_text = string.format( "%s, %s", se_obj:character_name( ), game.translate_string( "st_ui_pda_companion" ) )
+				local msg_text = game.translate_string( drx_ql_dialog_funcs.drx_ql_random_phrase( "drx_ql_str_helper_search_done" ) )
+				msg_text = string.format( msg_text, game.translate_string( string.format( "%s_name", float_item ) ) )
+				db.actor:give_game_news( caption_text, msg_text, se_obj:character_icon( ), 0, 5000, 0 )
+				xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+			end
+
+			-- Remove current task from undiscovered float fetch task array:
+			table.remove( xr_effects.drx_ql_float_fetch_tasks, current_task_index )
+
+		end
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_plateau_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of the Southern Plateau task
+--
+--	Usage:
+--		drx_ql_plateau_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_target_name (type: location name)
+--			- Name of the target smart terrain or special location for the specified task
+--		{task_id}_max_dist (type: float)
+--			- Maximum distance from center to spawn a target item
+--		{task_id}_fetch (type: string, section name)
+--			- Section name of the fetch item for specified task
+--		{task_id}_target_id (type: object id)
+--			- Id of the spawned float item
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 19, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of task:
+function drx_ql_plateau_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if the task is already complete:
+	if ( tsk.stage == 3 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Check if actor pissed off Noah:
+	if ( has_alife_info( "drx_ql_info_pissed_off_noah" ) ) then
+		return "fail"
+	end
+
+	-- Get the float item:
+	local float_item = utils.load_var( db.actor, string.format( "%s_fetch", task_id ) )
+	if ( not float_item ) then
+		return
+	end
+
+	-- If teleport complete, check if actor has float item:
+	if ( tsk.stage == 2 ) then
+		if ( db.actor:object( float_item ) ) then
+			tsk.stage = 3
+			return
+		end
+	end
+
+	-- Check if teleport complete:
+	if ( tsk.stage == 1 ) then
+		if ( has_alife_info( "drx_ql_info_plateau_teleport_completed" ) ) then
+			tsk.stage = 2
+			return
+		end
+	end
+
+	-- Check if meet Noah complete:
+	if ( tsk.stage == 0 ) then
+		if ( not has_alife_info( "drx_ql_info_play_noah_plateau_task_dialog" ) ) then
+			tsk.stage = 1
+			return
+		end
+	end
+
+	-- Check if item is spawned:
+	local item_id = utils.load_var( db.actor, string.format( "%s_target_id", task_id ) )
+	if ( not item_id ) then
+
+		-- Get target smart for float item:
+		local location_name = utils.load_var( db.actor, string.format( "%s_target_name", task_id ) )
+		local smart = SIMBOARD.smarts_by_names[location_name]
+
+		-- If the target smart is online then spawn the item:
+		local max_dist = utils.load_var( db.actor, string.format( "%s_max_dist", task_id ) )
+		if ( (max_dist == 0) or (not smart) or (smart and smart.online) ) then
+			local float_id = drx_ql_task_funcs.drx_ql_spawn_float_obj( float_item, location_name, max_dist )
+			if ( float_id ) then
+				utils.save_var( db.actor, string.format( "%s_target_id", task_id ), float_id )
+				printf( "DRX QL: Float item %s spawned at %s", float_item, location_name )
+			end
+		end
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_rescue_pilot_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of the rescue Stingray 4 pilot task
+--
+--	Usage:
+--		drx_ql_rescue_pilot_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[operation_fairway_props]
+--				max_discovery_dist (type: float, meters)
+--					- Distance to Stingray 4 crash site before calling it found
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: string, squad section name)
+--					- Section name of the hostage squad for the rescue pilot stage
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 29, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of task:
+function drx_ql_rescue_pilot_task_status( tsk, task_id )
+
+	-- Get config file:
+	local drx_ql_ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not drx_ql_ini ) then
+		printf( "DRX QL Error: Unable to update rescue pilot task status, config ini file not found" )
+		return
+	end
+
+	-- Var to store return value:
+	local retval
+
+	-- Check if task is finished:
+	if ( tsk.stage >= 3 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+
+	-- Check if interrogation complete:
+	elseif ( tsk.stage == 2 ) then
+		if ( has_alife_info( "drx_ql_info_pilot_interrogated" ) ) then
+
+			-- Get hostage squad:
+			local params_list = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+			local squad_name = ((params_list) and (#params_list > 0) and (params_list[1]))
+			local squad = (squad_name and get_story_squad( squad_name ))
+			if ( squad ) then
+
+				-- Remove squad as companion:
+				squad.scripted_target = nil
+				squad.current_action = nil
+				axr_companions.companion_squads[squad.id] = nil
+				for member in squad:squad_members( ) do
+					local member_obj = (member.id and db.storage[member.id] and db.storage[member.id].object)
+					if ( member_obj ) then
+						axr_logic.restore_scheme_and_logic( member_obj )
+						member_obj:disable_info_portion( "npcx_is_companion" )
+						member_obj:disable_info_portion( "npcx_beh_cannot_dismiss" )
+						member_obj:disable_info_portion( "npcx_beh_ignore_combat" )
+						member_obj:disable_info_portion( "npcx_beh_ignore_actor_enemies" )
+						utils.se_obj_save_var( member.id, member.object:name( ), "companion", nil )
+						utils.se_obj_save_var( member.id, member.object:name( ), "companion_cannot_dismiss", nil )
+						utils.se_obj_save_var( member.id, member.object:name( ), "companion_cannot_teleport", nil )
+					end
+				end
+
+				-- Set squad as hostile to actor:
+				if ( has_alife_info( "drx_ql_info_pilot_enemy" ) ) then
+					squad:set_squad_relation( game_relations.ENEMIES )
+					for member in squad:squad_members( ) do
+						local st = (db.storage[member.id] and db.storage[member.id].overrides)
+						if ( st and st.combat_ignore ) then
+							st.combat_ignore = nil
+						end
+					end
+				end
+
+			end
+
+			-- Set task complete:
+			tsk.stage = 3
+			return
+
+		end
+
+	-- Check status of find PDA stage:
+	elseif ( not has_alife_info( "drx_ql_info_pilot_pda_found" ) ) then
+
+		-- If PDA is found then set up rescue hostage stage:
+		if ( tsk.stage == 1 ) then
+			drx_ql_task_funcs.drx_ql_setup_pilot_hostage_task( task_id )
+			give_info( "drx_ql_info_pilot_pda_found" )
+			tsk.stage = 0
+			return
+		end
+
+		-- Check if helicopter found:
+		if ( not has_alife_info( "drx_ql_info_stingray_4_found" ) ) then
+			local smart_name = utils.load_var( db.actor, string.format( "%s_target_name", task_id ) )
+			local smart = (smart_name and SIMBOARD.smarts_by_names[smart_name])
+			if ( smart and smart.online ) then
+				if ( smart.id == smart_terrain.nearest_to_actor_smart.id ) then
+					local max_dist = (drx_ql_ini:r_float_ex( "operation_fairway_props", "max_discovery_dist" ) or 0)
+					if ( (not max_dist) or (smart_terrain.nearest_to_actor_smart.dist <= max_dist) ) then
+						give_info( "drx_ql_info_stingray_4_found" )
+					end
+				end
+			end
+		end
+
+		-- Update task status:
+		retval = drx_ql_float_item_task_status( tsk, task_id )
+
+	-- Check status of rescue hostage stage:
+	elseif ( has_alife_info( "drx_ql_info_pilot_pda_found" ) ) then
+
+		-- If hostage rescued then set task ready for interrogation:
+		if ( tsk.stage == 1 ) then
+			tsk.stage = 2
+			return
+		end
+
+		-- If hostage not rescued then update task status:
+		retval = drx_ql_hostage_task_status( tsk, task_id )
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_hostage_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a rescue hostage task
+--		- Modification of hostage_task (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_hostage_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_id (type: int, object id)
+--			- Id of the task target smart terrain
+--		{task_id}_enemy_faction (type: string, faction name)
+--			- Name of the enemy faction for the current task
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 04, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of hostage task:
+function drx_ql_hostage_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if the task is already completed:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- See if check time elapsed:
+	local tg = time_global( )
+	if ( (tsk.__check_smart_time) and (tg < tsk.__check_smart_time) ) then
+		return
+	end
+	tsk.__check_smart_time = (tg + 3000)
+
+	-- Check if hostage rescued:
+	if ( db.actor:has_info( "hostage_companion_task_1_hostage_rescued" ) ) then
+		tsk.stage = 1
+		return
+	end
+
+	-- Get assault task target smart terrain:
+	local smart_id = utils.load_var( db.actor, string.format( "%s_id", task_id ) )
+	if ( not smart_id ) then
+		printf( "DRX QL: Task %s failed, target smart id not found", task_id )
+		return "fail"
+	end
+	local smrt = SIMBOARD.smarts[smart_id]
+	if ( not smrt ) then
+		printf( "DRX QL: Task %s failed, target smart id invalid", task_id )
+		return "fail"
+	end
+	local smart = smrt.smrt
+	if ( not smart ) then
+		printf( "DRX QL: Task %s failed, target smart object not found", task_id )
+		return "fail"
+	end
+
+	-- Ensure smart terrain is still available:
+	if ( simulation_objects.available_by_id[smart.id] == false ) then
+		printf( "DRX QL: Task %s failed, target smart not available", task_id )
+		return "fail"
+	end
+
+	-- Get enemy faction:
+	local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+	if ( (not enemy_faction) or (enemy_faction == "") ) then
+		printf( "DRX QL: Task %s failed, no enemy faction specified", task_id )
+		return "fail"
+	end
+
+	-- Check target terrain for enemy targets:
+	for k, squad in pairs( smrt.squads ) do
+		if ( squad ) then
+
+			-- Check if all squads are loaded:
+			if ( not squad.first_update ) then
+				return
+			end
+
+			-- Check if squad is enemy:
+			if ( squad.player_id == enemy_faction ) then
+
+				-- Prevent squad from leaving:
+				squad.stay_time = game.get_game_time( )
+				squad.force_online = true
+
+			-- Remove non-enemy squads from target smart terrain:
+			else
+				if ( (not get_story_squad( squad:section_name( ) )) and (not axr_companions.companion_squads[squad.id]) ) then
+					printf( "DRX QL: Removing non-target %s squad %s from %s", squad.player_id, squad.id, smart:name( ) )
+					SIMBOARD:remove_squad( squad )
+				end
+
+			end
+
+		end
+	end
+
+	-- Lock the target smart terrain:
+	local smart_obj = alife( ):object( smart_id )
+	if ( smart_obj ) then
+		smart_obj.locked = true
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_kidnapped_companion_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a rescue kidnapped companion task
+--
+--	Usage:
+--		drx_ql_kidnapped_companion_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_bo_kidnapped_id (type: int, npc id)
+--			- ID of the kidnapped companion
+--		{task_id}_id (type: int, object id)
+--			- Id of the task target smart terrain
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 04, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of kidnapped companion task:
+function drx_ql_kidnapped_companion_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if hostage was killed:
+	local hostage_id = utils.load_var( db.actor, "drx_ql_bo_kidnapped_id" )
+	if ( hostage_id == nil ) then
+		printf( "DRX QL: Task %s failed, hostage id not found", task_id )
+		return "fail"
+	end
+	local hostage_obj = alife( ):object( hostage_id )
+	if ( not hostage_obj:alive( ) ) then
+		printf( "DRX QL: Task %s failed, hostage was killed", task_id )
+		return "fail"
+	end
+
+	-- Get smart terrain object:
+	local smart_obj
+	local smart_id = tonumber( utils.load_var( db.actor, string.format( "%s_id", task_id ) ) )
+	if ( smart_id ) then
+		smart_obj = alife_object( smart_id )
+	end
+
+	-- Check if hostage rescued:
+	if ( tsk.stage == 0 ) then
+
+		-- If hostage rescued then increase task stage:
+		if ( db.actor:has_info( "hostage_companion_task_1_hostage_rescued" ) ) then
+			tsk.stage = 1
+
+		-- If hostage not rescued then prevent squads from leaving:
+		else
+
+			-- Check if attacker squad still alive:
+			local attacker_npc_id = utils.load_var( db.actor, string.format( "%s_target_id", task_id ) )
+			if ( attacker_npc_id ) then
+				local attacker_npc_obj = level.object_by_id( attacker_npc_id )
+				if ( attacker_npc_obj ) then
+					local attacker_squad_obj = get_object_squad( attacker_npc_obj )
+					if ( attacker_squad_obj ) then
+						if ( smart_id ) then
+
+							-- Prevent squad from leaving:
+							attacker_squad_obj.current_target_id = smart_id
+							attacker_squad_obj.action_condlist = alun_utils.parse_condlist( smart_obj:name( ) )
+							attacker_squad_obj.stay_time = game.get_game_time( )
+							attacker_squad_obj.force_online = true
+
+							-- Remove non-target squads:
+							local smrt = SIMBOARD.smarts[smart_id]
+							if ( smrt ) then
+								local smart = smrt.smrt
+								if ( smart ) then
+									for k, squad in pairs( smrt.squads ) do
+										if ( (squad) and (squad.player_id ~= attacker_squad_obj.player_id) ) then
+											if ( (not get_story_squad( squad:section_name( ) )) and (not axr_companions.companion_squads[squad.id]) ) then
+												printf( "DRX QL: Removing non-target %s squad %s from %s", squad.player_id, squad.id, smart:name( ) )
+												SIMBOARD:remove_squad( squad )
+											end
+										end
+									end
+								end
+							end
+
+						end
+					end
+				end
+			end
+
+			-- Lock the target smart terrain:
+			if ( smart_obj ) then
+				smart_obj.locked = true
+			end
+
+		end
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_quest_stash_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a quest stash task
+--
+--	Usage:
+--		drx_ql_quest_stash_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{quest_item}_stash_id (type: obj id)
+--			- Id of the stash containing the quest item
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: string, comma-delimited list of section names)
+--					- Quest item for the current task
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of quest stash task:
+function drx_ql_quest_stash_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if not ( db.actor ) then
+		return
+	end
+
+	-- Get quest stash item:
+	local item_list = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+	if ( (not item_list) or (#item_list < 1) ) then
+		return
+	end
+	local target_item = item_list[1]
+
+	-- Check if the actor lost the quest item:
+	if ( tsk.stage == 1 ) then
+		if ( not db.actor:object( target_item ) ) then
+			return "fail"
+		end
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Check if the actor has the quest item:
+	if ( tsk.stage == 0 ) then
+		if ( db.actor:object( target_item ) ) then
+			tsk.stage = 1
+			utils.save_var( db.actor, string.format( "%s_stash_id", target_item, nil ) )
+			return
+		end
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_interceptor_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of an interceptor task
+--
+--	Usage:
+--		drx_ql_interceptor_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_target_id (type: npc id)
+--			- Id of the npc carrying interceptor task item
+--		{task_id}_target_spawned (type: bool)
+--			- Flag indicating whether or not a task target has been spawned
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: string, item section name)
+--					- Interceptor item for the current task
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of interceptor task:
+function drx_ql_interceptor_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if not ( db.actor ) then
+		return
+	end
+
+	-- Get the interceptor item:
+	local item_list = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+	if ( (not item_list) or (#item_list < 1) ) then
+		return
+	end
+	local target_item = item_list[1]
+
+	-- Check if the actor lost the interceptor item:
+	if ( tsk.stage == 1 ) then
+		if ( not db.actor:object( target_item ) ) then
+			return "fail"
+		end
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Check if the actor has the interceptor item:
+	if ( tsk.stage == 0 ) then
+		if ( db.actor:object( target_item ) ) then
+			tsk.stage = 1
+			return
+		end
+	end
+
+	-- Get the target npc:
+	local target_id = utils.load_var( db.actor, string.format( "%s_target_id", task_id ) )
+	if ( not target_id ) then
+		printf( "DRX QL Error: Unable to locate interceptor target npc id" )
+		return
+	end
+
+	-- Check if the target npc was killed and removed from game before actor retrieved item:
+	local target_obj = alife( ):object( target_id )
+	if ( (not target_obj) or (not IsStalker( nil, target_obj:clsid( ) )) ) then
+		return "fail"
+	end
+
+	-- Check if the npc is still alive:
+	if ( target_obj:alive( ) ) then
+		return
+	end
+
+	-- Check if target item was already spawned:
+	if ( utils.load_var( db.actor, string.format( "%s_target_spawned", task_id ), false ) == true ) then
+		return
+	end
+
+	-- Check if interceptor target is online:
+	local victim = level.object_by_id( target_id )
+	if ( victim ) then
+
+		-- Check if interceptor item was spawned:
+		if ( victim:object( target_item ) ) then
+			printf( "DRX QL: Interceptor item spawned on target npc" )
+			utils.save_var( db.actor, string.format( "%s_target_spawned", task_id ), true )
+			return
+		end
+
+		-- Spawn interceptor item on target npc corpse:
+		local item_obj = alife( ):create( target_item, target_obj.position, target_obj.m_level_vertex_id, target_obj.m_game_vertex_id, target_id )
+		if ( not item_obj ) then
+			printf( "DRX QL Error: Unable to spawn interceptor target item on target npc" )
+			return
+		end
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_wait_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a wait task
+--
+--	Usage:
+--		drx_ql_wait_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id} (type: ctime)
+--			- Timestamp from the beginning of the wait task
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: int, seconds)
+--					- Amount of time to wait until the task is complete
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of quest stash task:
+function drx_ql_wait_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if not ( db.actor ) then
+		return
+	end
+
+	-- Check if task is valid:
+	if ( not tsk ) then
+		return
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 2 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Get amount of time to wait:
+	local params_list = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+	if ( (not params_list) or (#params_list < 1) ) then
+		return
+	end
+
+	-- Check if the required amount of time has passed:
+	local start_time = utils.load_ctime( db.actor, task_id )
+	if ( (start_time) and (game.get_game_time( ):diffSec( start_time ) < tonumber( params_list[1] )) ) then
+		return
+	end
+
+	-- Increase task stage:
+	tsk.stage = 2
+
+	-- Send PDA message from task giver:
+	drx_ql_send_message( tsk, task_id )
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bandit_companion_task_1_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of bandit_companion_task_1 (Dark Valley Raiders) task
+--		- Modification of dialogs_darkvalley.bandit_companion_task_1_complete (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_bandit_companion_task_1_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_looted_count_bandit_companion_task_1 (type: int)
+--			- Total corpses looted for Raiders task (set in xr_corpse_detection.get_all_from_corpse)
+--		{task_id}_fetch_count (type: float, decimal percent)
+--			- Number of fetch items to collect
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 24, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of bandit_companion_task_1 task:
+function drx_ql_bandit_companion_task_1_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Get the companion squad:
+	local squad = get_story_squad( "bandit_companion_task_1" )
+	if ( not squad ) then
+		return
+	end
+
+	-- Get the total looted so far:
+	local total_loot_count = utils.load_var( db.actor, "drx_ql_looted_count_bandit_companion_task_1", 0 )
+
+	-- Check if looted enough:
+	local needed_loot_count = utils.load_var( db.actor, string.format( "%s_fetch_count", task_id ), 0 )
+	if ( total_loot_count >= needed_loot_count ) then
+		db.actor:give_info_portion( "drx_ql_info_bandit_companion_task_1_ended" )
+		tsk.stage = 1
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_yan_ecolog_semenov_squad_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of yan_ecolog_semenov_squad (Research Hunt) task
+--		- Modification of task_type_ecolog_gathered_tissue_samples (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_yan_ecolog_semenov_squad_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		yan_ecolog_semenov_task_1_tissue_count (type: int)
+--			- Count of mutants hunted so far
+--		yan_ecolog_semenov_task_1_tissue_need (type: int)
+--			- Number of mutants to hunt
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of yan_ecolog_semenov_squad task:
+function drx_ql_yan_ecolog_semenov_squad_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Get the total collected so far:
+	local total_loot_count = utils.load_var( db.actor, "yan_ecolog_semenov_task_1_tissue_count", 0 )
+
+	-- Get the needed loot count:
+	local needed_loot_count = utils.load_var( db.actor, "yan_ecolog_semenov_task_1_tissue_need", 0 )
+
+	-- Check if looted enough:
+	if ( total_loot_count >= needed_loot_count ) then
+		db.actor:give_info_portion( "yan_ecolog_semenov_task_1_completed" )
+		db.actor:disable_info_portion( "drx_ql_info_yan_ecolog_semenov_squad_ongoing" )
+		tsk.stage = 1
+	else
+		db.actor:give_info_portion( "drx_ql_info_yan_ecolog_semenov_squad_ongoing" )
+		tsk.stage = 0
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_anomaly_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of an escort researchers to anomaly task
+--		- Modification of dialogs_marsh.ecolog_companion_task_1_complete (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_anomaly_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: string, npc name)
+--					- Story name of the anomaly target task companion squad
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of current task:
+function drx_ql_anomaly_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Get the companion squad name:
+	local params_list = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+	if ( (not params_list) or (#params_list < 1) ) then
+		return
+	end
+
+	-- Get the companion squad object:
+	local squad = get_story_squad( params_list[1] )
+	if ( not squad ) then
+		return
+	end
+
+	-- Check at least one companion member exists:
+	local id = squad:commander_id( )
+	if ( id == nil ) then
+		return
+	end
+	local npc = (db.storage[id] and db.storage[id].object)
+	if ( not npc ) then
+		return
+	end
+
+	-- Check if the task is complete:
+	if ( xr_conditions.has_task_target_anomaly( ) ~= true ) then
+		db.actor:give_info_portion( string.format( "drx_ql_info_%s_ended", params_list[1] ) )
+		tsk.stage = 1
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_miracle_machine_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of Disable the Miracle Machine / Search Lab X-16 task
+--
+--	Usage:
+--		drx_ql_miracle_machine_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 03, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of Miracle Machine task:
+function drx_ql_miracle_machine_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if Miracle Machine is disabled:
+	if ( db.actor:has_info( "yan_labx16_switcher_primary_off" ) ) then
+
+-- 		-- Check if actor has X-16 documents:
+-- 		if ( db.actor:object( "main_story_3_lab_x16_documents" ) ) then
+			tsk.stage = 2
+-- 		else
+-- 			tsk.stage = 1
+-- 		end
+
+	-- Otherwise set task to beginning:
+	else
+		tsk.stage = 0
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_brain_scorcher_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of Deactivate Brain Scorcher / Search Lab X-19 task
+--
+--	Usage:
+--		drx_ql_brain_scorcher_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[mon_inf_settings]
+-- 				trigger_level (type: string, level name)
+-- 					- Actor level that triggers start of Monolith infiltrator task
+-- 				mon_inf_faction (type: string, faction name)
+-- 					- Faction to set actor to at start of Monolith infiltrator task
+-- 				crash_health (type: float, decimal percent)
+-- 					- Health level to give actor after death truck crash
+-- 				mon_inf_faction (type: string, faction name)
+-- 					- Faction to set actor to at start of Monolith infiltrator task
+-- 				trigger_level (type: string, level name)
+-- 					- Actor level that triggers extraction squad
+-- 				extraction_smart (type: string, smart terrain name)
+-- 					- Smart terrain to spawn extraction squads
+-- 				defenders_smart (type: string, smart terrain name)
+-- 					- Smart terrain to spawn defending squads
+-- 				defenders_faction (type: string, faction name)
+-- 					- Faction for defending squads
+--		drx\drx_ql_blackout.ltx
+--			[protected_items] (type: string, item section names)
+--				- List of items attackers will not take if player gets mugged
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 03, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of Brain Scorcher task:
+function drx_ql_brain_scorcher_task_status( tsk, task_id )
+
+	-- Location of the settings file:
+	local drx_ql_ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not drx_ql_ini ) then
+		printf( "DRX QL Error: Unable to determine Brain Scorcher task status, cannot locate ini file" )
+		return
+	end
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if Brain Scorcher is disabled:
+	if ( has_alife_info( "bar_deactivate_radar_done" ) ) then
+
+-- 		-- Check if actor has X-19 documents:
+-- 		if ( db.actor:object( "main_story_4_lab_x10_documents" ) ) then
+			tsk.stage = 2
+-- 		else
+-- 			tsk.stage = 1
+-- 		end
+
+	-- Otherwise set task to beginning:
+	else
+		tsk.stage = 0
+	end
+
+	-- Initiate Monolith infiltration task if applicable:
+	if ( tsk.stage < 2 ) then
+		if ( has_alife_info( "drx_ql_info_mon_inf_start" ) ) then
+			local trigger_level = drx_ql_ini:r_string_ex( "mon_inf_settings", "trigger_level" )
+			if ( (trigger_level) and (level.name( ) == trigger_level) ) then
+
+				-- Give actor is infiltrator infoportion:
+				give_info( "drx_ql_mon_inf_is_infiltrator" )
+
+				-- Change actor faction to Monolith:
+				local mon_inf_faction = drx_ql_ini:r_string_ex( "mon_inf_settings", "mon_inf_faction" )
+				if ( mon_inf_faction ) then
+					xr_effects.drx_ql_change_factions( nil, nil, {mon_inf_faction} )
+				end
+
+				-- Remove gear from player:
+				local bo_ini = ini_file( "drx\\drx_ql_blackout.ltx" )
+				local protected_items = alun_utils.collect_section( bo_ini, "protected_items", true )
+				local function remove_actor_inventory( actor, item )
+					if ( not protected_items[item:section( )] ) then
+						local se_item = alife( ):object( item:id( ) )
+						if ( se_item ) then
+							alife( ):release( se_item, true )
+						end
+					end
+				end
+				db.actor:iterate_inventory( remove_actor_inventory )
+
+				-- Set actor as wounded from truck crash:
+				local crash_health = (drx_ql_ini:r_float_ex( "mon_inf_settings", "crash_health" ) or 0)
+				if ( crash_health ) then
+					db.actor:set_health_ex( crash_health )
+				end
+
+				-- Remove start monolith infiltrator task infoportion:
+				disable_info( "drx_ql_info_mon_inf_start" )
+
+			end
+		end
+	end
+
+	-- Revert actor faction at end of Monolith infiltration task:
+	if ( tsk.stage == 2 ) then
+		if ( has_alife_info( "drx_ql_info_mon_inf_stop" ) ) then
+
+			-- Check if actor faction should be reverted:
+			if ( has_alife_info( "drx_ql_info_mon_inf_task_started" ) ) then
+
+				-- Revert actor to task giver faction:
+				local giver_faction = drx_ql_task_funcs.drx_ql_task_giver_faction( task_id )
+				if ( giver_faction ) then
+					xr_effects.drx_ql_change_factions( nil, nil, {giver_faction} )
+				end
+
+				-- Remove actor is infiltrator infoportion:
+				disable_info( "drx_ql_mon_inf_is_infiltrator" )
+
+			end
+
+			-- Remove stop monolith infiltrator task infoportion:
+			disable_info( "drx_ql_info_mon_inf_stop" )
+
+		end
+	end
+
+	-- Spawn extraction squads after Brain Scorcher deactivated:
+	if ( tsk.stage == 2 ) then
+		if ( has_alife_info( "drx_ql_info_spawn_bs_extraction_squads" ) ) then
+			if ( not has_alife_info( "drx_ql_info_mon_inf_squads_spawned" ) ) then
+				local extraction_level = drx_ql_ini:r_string_ex( "mon_inf_settings", "extraction_level" )
+				if ( (extraction_level) and (level.name( ) == extraction_level) ) then
+
+					-- Spawn Monolith defender squads:
+					local defenders_smart = drx_ql_ini:r_string_ex( "mon_inf_settings", "defenders_smart" )
+					local defenders_faction = drx_ql_ini:r_string_ex( "mon_inf_settings", "defenders_faction" )
+					if ( defenders_faction and defenders_smart ) then
+						local i = 1
+						while ( true ) do
+
+							-- Format squad name:
+							local squad_name = string.format( "drx_ql_mon_inf_defending_squad_%s_%s", defenders_faction, i )
+							if ( not system_ini( ):section_exist( squad_name ) ) then
+								break
+							end
+
+							-- Spawn the squad:
+							if ( not get_story_squad( squad_name ) ) then
+								xr_effects.create_squad( nil, nil, {squad_name, defenders_smart} )
+								printf( "DRX QL: Defending squad %s spawned at %s", squad_name, defenders_smart )
+							end
+
+							-- Increment the counter:
+							i = (i + 1)
+
+						end
+					end
+
+					-- Spawn extraction squads:
+					local giver_faction = drx_ql_task_funcs.drx_ql_task_giver_faction( task_id )
+					local extraction_smart = drx_ql_ini:r_string_ex( "mon_inf_settings", "extraction_smart" )
+					if ( giver_faction and extraction_smart ) then
+						local k = 1
+						while ( true ) do
+
+							-- Format squad name:
+							local squad_name = string.format( "drx_ql_mon_inf_extraction_squad_%s_%s", giver_faction, k )
+							if ( not system_ini( ):section_exist( squad_name ) ) then
+								break
+							end
+
+							-- Spawn the squad:
+							if ( not get_story_squad( squad_name ) ) then
+								xr_effects.create_squad( nil, nil, {squad_name, extraction_smart} )
+								printf( "DRX QL: Extraction squad %s spawned at %s", squad_name, extraction_smart )
+							end
+
+							-- Increment the counter:
+							k = (k + 1)
+
+						end
+					end
+
+					-- Set extraction squads spawned flag:
+					give_info( "drx_ql_info_mon_inf_squads_spawned" )
+
+				end
+			end
+		end
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_designated_target_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a designated target squad task
+--
+--	Usage:
+--		drx_ql_designated_target_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: string, comma-delimited list of squad section names)
+--					- Names of the designated target squads
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of designated target task:
+function drx_ql_designated_target_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Get the designated target squads:
+	local param_list = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+	if ( (not param_list) or (#param_list < 1) ) then
+		printf( "DRX QL Error: Invalid parameters for drx_ql_designated_target_task_status" )
+		return
+	end
+
+	-- Check if designated target squads were killed:
+	local squad_alive = false
+	for i = 1, ( #param_list ) do
+
+		-- Check if squad members are still alive:
+		local squad = get_story_squad( param_list[i] )
+		if ( squad ) then
+			for k in ( squad:squad_members( ) ) do
+				local se_obj = alife_object( k.id )
+				if ( (se_obj) and (se_obj:alive( )) ) then
+					squad_alive = true
+					break
+				end
+			end
+		end
+
+		-- Prevent squad from leaving:
+		if ( (squad) and (squad_alive) ) then
+			squad.stay_time = game.get_game_time( )
+			squad.force_online = true
+		end
+
+	end
+
+	-- Check if all squad members are dead:
+	if ( not squad_alive ) then
+		tsk.stage = 1
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bab_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a big ass brawl task
+--
+--	Usage:
+--		drx_ql_bab_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: string, comma-delimited list of squad section names)
+--					- Names of the designated target squads
+--				status_functor_rendezvous (type: string, smart section name)
+--					- Smart terrain to rendezvous with the allied squads
+--				status_functor_rendezvous_dist (type: int, meters)
+--					- Max actor distance from rendezvous to spawn squads
+--				status_functor_allied_squads (type: string, comma-delimited list of squad section names followed by smart terrain section names)
+--					- List of allied squads to spawn and the smart terrain to spawn at
+--				status_functor_enemy_squads (type: string, comma-delimited list of squad section names followed by smart terrain section names)
+--					- List of enemy squads to spawn and the smart terrain to spawn at
+--				message (type: string)
+--					- PDA message to display from the allied squad commander when the squad is spawned
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of big ass brawl task:
+function drx_ql_bab_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 2 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- If rendezvous point hasn't yet been reached, check distance:
+	if ( tsk.stage == 0 ) then
+
+		-- Get rendezvous point:
+		local meet_smart = task_manager.task_ini:r_string_ex( task_id, "status_functor_rendezvous" )
+		if ( not meet_smart ) then
+			tsk.stage = 1
+			return
+		end
+
+		-- Check if actor is within rendezvous distance:
+		local max_dist = (task_manager.task_ini:r_float_ex( task_id, "status_functor_rendezvous_dist" ) or 0)
+		local smart = SIMBOARD.smarts_by_names[meet_smart]
+		if ( (not smart) or (utils.graph_distance( smart.m_game_vertex_id, alife( ):actor( ).m_game_vertex_id ) > max_dist) ) then
+			return
+		end
+
+		-- Spawn friendly squads:
+		local allied_squads = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_allied_squads" )
+		if ( (allied_squads) and (#allied_squads >= 2) ) then
+			for i = 1, ( #allied_squads ), 2 do
+				if ( #allied_squads >= (i + 1) ) then
+					xr_effects.create_squad( nil, nil, {allied_squads[i], allied_squads[(i + 1)]} )
+				end
+			end
+		end
+
+		-- Spawn enemy squads:
+		local enemy_squads = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_enemy_squads" )
+		if ( (enemy_squads) and (#enemy_squads >= 2) ) then
+			for i = 1, ( #enemy_squads ), 2 do
+				if ( #enemy_squads >= (i + 1) ) then
+					xr_effects.create_squad( nil, nil, {enemy_squads[i], enemy_squads[(i + 1)]} )
+				end
+			end
+		end
+
+		-- Display PDA message from allied squad commander:
+		local message = task_manager.task_ini:r_string_ex( task_id, "message" )
+		if ( (message) and (allied_squads) and (#allied_squads >= 1) ) then
+			local squad = get_story_squad( allied_squads[1] )
+			if ( squad ) then
+				local se_obj = alife( ):object( squad:commander_id( ) )
+				if ( (se_obj) and (se_obj:alive( )) ) then
+					local caption_text = string.format( "%s, %s", se_obj:character_name( ), game.translate_string( se_obj:community( ) ) )
+					local msg_text = game.translate_string( message )
+					msg_text = string.format( msg_text, alife( ):actor( ):character_name( ) )
+					db.actor:give_game_news( caption_text, msg_text, se_obj:character_icon( ), 0, 5000, 0 )
+					xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+				end
+			end
+		end
+
+		-- Advance the task stage:
+		tsk.stage = 1
+
+	end
+
+	-- If squads have been spawned check if they are still alive:
+	if ( tsk.stage == 1 ) then
+
+		-- Get the designated target squads:
+		local param_list = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+		if ( (not param_list) or (#param_list < 1) ) then
+			printf( "DRX QL Error: Invalid parameters for drx_ql_designated_target_task_status" )
+			return
+		end
+
+		-- Check if designated target squads were killed:
+		local squad_alive = false
+		for i = 1, ( #param_list ) do
+
+			-- Check if squad members are still alive:
+			local squad = get_story_squad( param_list[i] )
+			if ( squad ) then
+				for k in ( squad:squad_members( ) ) do
+					local se_obj = alife_object( k.id )
+					if ( (se_obj) and (se_obj:alive( )) ) then
+						squad_alive = true
+						squad.stay_time = game.get_game_time( )
+						squad.force_online = true
+						break
+					end
+				end
+			end
+		end
+
+		-- Check if all squad members are dead:
+		if ( not squad_alive ) then
+			tsk.stage = 2
+		end
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_brawl_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a dynamic brawl task
+--
+--	Usage:
+--		drx_ql_brawl_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_enemy_smart (type: smart terrain name)
+--			- Name of the stored enemy smart terrain for a brawl task
+--		{task_id}_friendly_smart (type: smart terrain name)
+--			- Name of the stored friendly smart terrain for a brawl task
+--		{task_id}_enemy_faction (type: faction name)
+--			- Name of the stored enemy faction
+--		{task_id}_friendly_faction (type: faction name)
+--			- Name of the stored friendly faction
+--		{task_id}_enemy_count (type: int)
+--			- Number of enemy squads to spawn
+--		{task_id}_friendly_count (type: int)
+--			- Number of friendly squads to spawn
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[brawl_settings]
+--				rendezvous_dist (type: float, meters)
+--					- Rendezvous distance
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				message (type: string)
+--					- PDA message to display from the allied squad commander when the squad is spawned (optional)
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified July 24, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of dynamic brawl task:
+function drx_ql_brawl_task_status( tsk, task_id )
+
+	-- Get config file:
+	local drx_ql_ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not drx_ql_ini ) then
+		printf( "DRX QL Error: Unable to update dynamic brawl task status, config ini file not found" )
+		return
+	end
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 2 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- If rendezvous point hasn't yet been reached, check distance:
+	if ( tsk.stage == 0 ) then
+
+		-- Get rendezvous point:
+		local meet_smart = utils.load_var( db.actor, string.format( "%s_friendly_smart", task_id ) )
+		if ( not meet_smart ) then
+			tsk.stage = 1
+			return
+		end
+
+		-- Check if actor is within rendezvous distance:
+		local max_dist = (drx_ql_ini:r_float_ex( "brawl_settings", "rendezvous_dist" ) or 0)
+		local smart = SIMBOARD.smarts_by_names[meet_smart]
+		if ( (not smart) or (utils.graph_distance( smart.m_game_vertex_id, alife( ):actor( ).m_game_vertex_id ) > max_dist) ) then
+			return
+		end
+
+		-- Spawn friendly squads:
+		local friendly_smart = utils.load_var( db.actor, string.format( "%s_friendly_smart", task_id ) )
+		local friendly_faction = utils.load_var( db.actor, string.format( "%s_friendly_faction", task_id ) )
+		local friendly_count = utils.load_var( db.actor, string.format( "%s_friendly_count", task_id ) )
+		for i = 1, ( friendly_count ) do
+			local squad_name = string.format( "drx_ql_brawl_squad_%s_%s", friendly_faction, i )
+			xr_effects.create_squad( nil, nil, {squad_name, friendly_smart} )
+		end
+
+		-- Spawn enemy squads:
+		local enemy_smart = utils.load_var( db.actor, string.format( "%s_enemy_smart", task_id ) )
+		local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+		local enemy_count = utils.load_var( db.actor, string.format( "%s_enemy_count", task_id ) )
+		for m = 1, ( enemy_count ) do
+			local squad_name = string.format( "drx_ql_brawl_squad_%s_%s", enemy_faction, m )
+			xr_effects.create_squad( nil, nil, {squad_name, enemy_smart} )
+		end
+
+		-- Display PDA message from allied squad commander:
+		local message = task_manager.task_ini:r_string_ex( task_id, "message" )
+		if ( (message) and (friendly_count) and (friendly_count >= 1) ) then
+			local squad = get_story_squad( string.format( "drx_ql_brawl_squad_%s_1", friendly_faction ) )
+			if ( squad ) then
+				local se_obj = alife( ):object( squad:commander_id( ) )
+				if ( (se_obj) and (se_obj:alive( )) ) then
+					local caption_text = string.format( "%s, %s", se_obj:character_name( ), game.translate_string( se_obj:community( ) ) )
+					local msg_text = game.translate_string( message )
+					msg_text = string.format( msg_text, alife( ):actor( ):character_name( ) )
+					db.actor:give_game_news( caption_text, msg_text, se_obj:character_icon( ), 0, 5000, 0 )
+					xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+				end
+			end
+		end
+
+		-- Advance the task stage:
+		tsk.stage = 1
+
+	end
+
+	-- If squads have been spawned give them target smarts:
+	if ( tsk.stage == 1 ) then
+
+		-- Give friendly squads opposing side smart terrain target:
+		local friendly_faction = utils.load_var( db.actor, string.format( "%s_friendly_faction", task_id ) )
+		local friendly_count = utils.load_var( db.actor, string.format( "%s_friendly_count", task_id ) )
+		for r = 1, ( friendly_count ) do
+			local squad = get_story_squad( string.format( "drx_ql_brawl_squad_%s_%s", friendly_faction, r ) )
+			if ( squad ) then
+				squad.action_condlist = alun_utils.parse_condlist( utils.load_var( db.actor, string.format( "%s_enemy_smart", task_id ) ) )
+			end
+		end
+
+		-- Check if enemy squads were killed:
+		local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+		local enemy_count = utils.load_var( db.actor, string.format( "%s_enemy_count", task_id ) )
+		local enemy_squad_alive = false
+		for n = 1, ( enemy_count ) do
+
+			-- Check if enemy squad members are still alive:
+			local squad = get_story_squad( string.format( "drx_ql_brawl_squad_%s_%s", enemy_faction, n ) )
+			if ( squad ) then
+				for k in ( squad:squad_members( ) ) do
+					local se_obj = alife_object( k.id )
+					if ( (se_obj) and (se_obj:alive( )) ) then
+						enemy_squad_alive = true
+
+						-- Give enemy squad opposing side smart terrain target:
+						squad.action_condlist = alun_utils.parse_condlist( utils.load_var( db.actor, string.format( "%s_friendly_smart", task_id ) ) )
+						break
+
+					end
+				end
+			end
+		end
+
+		-- Check if all enemy squad members are dead:
+		if ( not enemy_squad_alive ) then
+			tsk.stage = 2
+		end
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_big_mutant_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a big mutant target squad task
+--
+--	Usage:
+--		drx_ql_big_mutant_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_id (type: smart terrain id)
+--			- Id of current target smart terrain for specified task
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of big mutant target task:
+function drx_ql_big_mutant_task_status( tsk, task_id )
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Get the big mutant target squad:
+	local squad_name = utils.load_var( db.actor, string.format( "%s_target_id", task_id ) )
+	if ( not squad_name ) then
+		return
+	end
+	local squad = get_story_squad( squad_name )
+
+	-- Check if big mutant target squad was killed:
+	local squad_alive = false
+	if ( squad ) then
+		for k in ( squad:squad_members( ) ) do
+			local se_obj = alife_object( k.id )
+			if ( (se_obj) and (se_obj:alive( )) ) then
+				squad_alive = true
+				break
+			end
+		end
+	end
+
+	-- Prevent squad from leaving:
+	if ( (squad) and (squad_alive) ) then
+		squad.stay_time = game.get_game_time( )
+		squad.force_online = true
+	end
+
+	-- Check if all squad members are dead:
+	if ( (not squad) or (not squad_alive) ) then
+
+		-- Increase task stage:
+		tsk.stage = 1
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_heli_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a helicopter task
+--
+--	Usage:
+--		drx_ql_heli_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: string, level name)
+--					- Name of the level the helicopter is on
+--
+--	Return value (type: string):
+--		Returns "fail" if the task is failed, returns nil otherwise
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of helicopter task:
+function drx_ql_heli_task_status( tsk, task_id )
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Check if the helicopter no longer exists:
+	local level_name_list = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+	if ( #level_name_list > 0 ) then
+		if ( not xr_conditions.drx_ql_heli_on_level( nil, nil, {level_name_list[1]} ) ) then
+			tsk.stage = 1
+		end
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_gather_items_task_status function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the status of a gather items task
+--
+--	Usage:
+--		drx_ql_gather_items_task_status( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: string, level name)
+--					- Task id of the gather items task
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified June 08, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine status of gather items task:
+function drx_ql_gather_items_task_status( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if not ( db.actor ) then
+		return
+	end
+
+	-- Check if actor has all items to gather:
+	local items_list = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+	if ( #items_list > 0 ) then
+		for i = 1, ( #items_list ) do
+			if ( not db.actor:object( items_list[i] ) ) then
+				tsk.stage = 0
+				return
+			end
+		end
+	end
+
+	-- Advance the task stage:
+	tsk.stage = 1
+
+	-- If task is completed make task giver move toward actor:
+	if ( tsk.stage == 1 ) then
+		drx_ql_give_task_giver_actor_target( tsk, task_id )
+		return
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_send_message function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Sends a PDA message from the task giver
+--
+--	Usage:
+--		drx_ql_send_message( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				message (type: int, seconds)
+--					- PDA message to display from the task giver for the current task
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified July 29, 2018
+-- ------------------------------------------------------------------------------------------------
+
+-- Send PDA message from task giver:
+function drx_ql_send_message( tsk, task_id )
+
+	-- Verify db.actor is available:
+	if not ( db.actor ) then
+		return
+	end
+
+	-- Get PDA message from task giver:
+	local msg_text = task_manager.task_ini:r_string_ex( task_id, "message" )
+	if ( (not msg_text) or (game.translate_string( msg_text ) == msg_text) ) then
+		return
+	end
+
+	-- Get task giver id:
+	local giver_id = tsk.task_giver_id
+	if ( not giver_id ) then
+		return
+	end
+
+	-- Send PDA message from task giver:
+	local se_obj = alife( ):object( giver_id )
+	if ( (se_obj) and (se_obj:alive( )) ) then
+		local caption_text = string.format( "%s, %s", se_obj:character_name( ), game.translate_string( se_obj:community( ) ) )
+		local msg_text = game.translate_string( msg_text )
+		db.actor:give_game_news( caption_text, msg_text, se_obj:character_icon( ), 0, 5000, 0 )
+		xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_give_task_giver_actor_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Makes the actor the target destination of a task giver
+--
+--	Usage:
+--		drx_ql_give_task_giver_actor_target( tsk, task_id )
+--
+--	Parameters:
+--		tsk (type: object)
+--			- Task object of the task giver
+--		task_id
+--			- Task id of the task given to the actor by the task giver
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 05, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Give task giver actor as target destination:
+function drx_ql_give_task_giver_actor_target( tsk, task_id )
+
+-- 	-- Validate input:
+-- 	if ( not tsk ) then
+-- 		return
+-- 	end
+--
+-- 	-- Get task giver id:
+-- 	local giver_id = tsk.task_giver_id
+-- 	if ( giver_id == nil ) then
+-- 		return
+-- 	end
+--
+-- 	-- Get the task giver squad object:
+-- 	local task_giver_obj = alife( ):object( giver_id )
+-- 	if ( not task_giver_obj ) then
+-- 		return
+-- 	end
+-- 	local squad = get_object_squad( task_giver_obj )
+-- 	if ( not squad ) then
+-- 		return
+-- 	end
+--
+-- 	-- Set actor smart terrain as squad target:
+-- 	if ( (not drx_ql_honcho_relations.drx_ql_is_honcho( giver_id )) and (not axr_companions.companion_squads[squad.id] ) and (not string.find( squad:section_name( ), "lager_squad" )) ) then
+-- 		local nearest_smart_id = (smart_terrain.nearest_to_actor_smart and smart_terrain.nearest_to_actor_smart.id)
+-- 		if ( nearest_smart_id ) then
+-- 			local nearest_smart_obj = alife( ):object( nearest_smart_id )
+-- 			if ( nearest_smart_obj ) then
+-- 				local actor_smart = nearest_smart_obj:name( )
+-- 				if ( (not xr_conditions.surge_started( )) and (xr_conditions.drx_ql_smart_not_blacklisted( nil, nil, {actor_smart} )) and (xr_conditions.drx_ql_smart_not_scorched( nil, nil, {actor_smart} )) and (level_weathers.valid_levels[level.name( )]) ) then
+-- 					squad.action_condlist = alun_utils.parse_condlist( actor_smart )
+-- 					squad.stay_time = game.get_game_time( )
+-- 				end
+-- 			end
+-- 		end
+-- 	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+------------------------------------
+-- HELPERS
+------------------------------------
+
+----------------------------------------------------------------------------------------------
+-- Status Functors
+----------------------------------------------------------------------------------------------
+-- checks smart from pstor variable
+function check_smart_under_faction_control(tsk,task_id)
+	--printf("task_id = %s",task_id)
+	if not (db.actor) then
+		return
+	end
+	local smart_id = utils.load_var(db.actor,task_id.."_id")
+	if not (smart_id) then
+		return "fail"
+	end
+
+	local smrt = SIMBOARD.smarts[smart_id]
+	if not (smrt) then
+		return "fail"
+	end
+
+	local smart = smrt.smrt
+	if not (smart) then
+		return "fail"
+	end
+
+	--in case sim_avail is set true during the player's tsk
+	-- with simulation_objects.available_by_id[smart.id] nil means unprocess, false is absolutely not avail
+	if (simulation_objects.available_by_id[smart.id] == false) then
+		return "fail"
+	end
+
+	local faction_list = alun_utils.parse_list(task_manager.task_ini,task_id,"status_functor_params")
+
+	local tg = time_global()
+	if (tsk.__check_smart_time and tg < tsk.__check_smart_time) then
+		return
+	end
+	tsk.__check_smart_time = tg+3000
+
+	utils.save_var(db.actor,task_id.."_target_id",nil)
+
+	for id,squad in pairs(SIMBOARD.squads) do
+		if (squad) and simulation_objects.is_on_the_same_level(squad, smart) then
+			if not (squad.first_update) then
+				return -- not all squads are loaded yet!
+			end
+			if not (squad:get_script_target()) and (squad.current_target_id and squad.current_target_id == smart.id and squad.current_action == 1) then
+				for i=1,#faction_list do
+					if (faction_list[i] == "monster" and is_squad_monster[squad.player_id]) or (squad.player_id == faction_list[i]) then
+						utils.save_var(db.actor,task_id.."_target_id",squad.id)
+						squad.stay_time = game.get_game_time() -- reset gametime so they don't leave
+						squad.force_online = true
+						--printf("task_id = %s squad_id = %s",task_id,squad.id)
+						return
+					end
+				end
+			end
+		end
+	end
+
+	--if not (smart.online) then
+	--	return "fail"
+	--end
+
+	--[[
+	local last_target_id = utils.load_var(db.actor,task_id.."_target_id")
+	if (last_target_id and axr_task_manager.actor_tagged_squad_by_id[last_target_id] ~= true) then
+		return "fail"
+	end
+	--]]
+
+	if (smart.faction_controlled) then
+		smart.faction = character_community(db.actor):sub(7)
+	end
+
+	return "complete"
+end
+
+-- to check a specific smart given as a param
+function specific_check_smart_under_faction_control(tsk,task_id)
+	if not (db.actor) then
+		return
+	end
+	local p = alun_utils.parse_list(task_manager.task_ini,task_id,"status_functor_params")
+	local smart = p[1] and SIMBOARD.smarts_by_names[p[1]]
+	if not (smart) then
+		return "fail"
+	end
+
+	local smrt = SIMBOARD.smarts[smart.id]
+	if not (smrt) then
+		return "fail"
+	end
+
+	--in case sim_avail is set true during the player's tsk
+	if (simulation_objects.available_by_id[smart.id] == false) then
+		return "fail"
+	end
+
+	local tg = time_global()
+	if (tsk.__check_smart_time and tg < tsk.__check_smart_time) then
+		return
+	end
+	tsk.__check_smart_time = tg+1500
+
+	utils.save_var(db.actor,task_id.."_target_id",nil)
+
+	for id,squad in pairs(SIMBOARD.squads) do
+		if (squad) and simulation_objects.is_on_the_same_level(squad, smart) then
+			if not (squad.first_update) then
+				return -- not all squads are loaded yet!
+			end
+			if not (squad:get_script_target()) and (squad.current_target_id and squad.current_target_id == smart.id and squad.current_action == 1) then
+				for i=2,#p do
+					if (p[i] == "monster" and is_squad_monster[squad.player_id]) or (squad.player_id == p[i]) then
+						utils.save_var(db.actor,task_id.."_target_id",squad.id)
+						squad.stay_time = game.get_game_time() -- reset gametime so they don't leave
+						squad.force_online = true
+						--printf("task_id = %s squad_id = %s",task_id,squad.id)
+						return
+					end
+				end
+			end
+		end
+	end
+
+	--if not (smart.online) then
+	--	return "fail"
+	--end
+
+	--[[
+	local last_target_id = utils.load_var(db.actor,task_id.."_target_id")
+	if (last_target_id and axr_task_manager.actor_tagged_squad_by_id[last_target_id] ~= true) then
+		return "fail"
+	end
+	--]]
+
+	if (smart.faction_controlled) then
+		local a_to_f = {	["actor_stalker"] = "stalker",
+							["actor_bandit"] = "bandit",
+							["actor_ecolog"] = "ecolog",
+							["actor_dolg"] = "dolg",
+							["actor_freedom"] = "freedom",
+							["actor_monolith"] = "monolith",
+							["actor_army"] = "army",
+							["actor_killer"] = "killer",
+							["actor_csky"] = "csky"
+		}
+
+		smart.faction = a_to_f[character_community(db.actor)] or smart.faction
+	end
+
+	return "complete"
+end
+
+function check_smart_under_faction_control_staged(tsk,task_id)
+	if not (db.actor) then
+		return
+	end
+	if (tsk.stage == 1) then -- already completed
+		return
+	end
+	local status = check_smart_under_faction_control(tsk,task_id)
+	if (status == "fail") then
+		return "fail"
+	elseif (status == "complete" and tsk.stage == 0) then
+		tsk.stage = 1
+	end
+end
+
+function check_specific_smart_under_faction_control_staged(tsk,task_id)
+	if not (db.actor) then
+		return
+	end
+	if (tsk.stage == 1) then -- already completed
+		return
+	end
+	local status = specific_check_smart_under_faction_control(tsk,task_id)
+	if (status == "fail") then
+		return "fail"
+	elseif (status == "complete" and tsk.stage == 0) then
+		tsk.stage = 1
+		--printf("set %s on complete stage",task_id)
+	end
+end
+
+function hostage_task(tsk,task_id)
+	if not (db.actor) then
+		return
+	end
+
+	local id = tonumber(utils.load_var(db.actor,task_id .. "_id"))
+	local smart = id and alife_object(id)
+	if (smart) then
+		smart.locked = true
+	end
+
+	if (tsk.stage == 0) then
+		if (db.actor:has_info("hostage_companion_task_1_hostage_rescued")) then
+			tsk.stage = 1
+		end
+	elseif (tsk.stage == 1) then
+		if not (axr_task_manager.is_task_giver_valid(tsk)) then
+			local hud = get_hud()
+			if (hud) then
+				hud:HideActorMenu()
+			end
+			return "complete" -- complete task even though giver is dead/missing/deleted
+		end
+	end
+end
+
+function bounty_task(tsk,task_id)
+	if not (axr_task_manager.is_task_giver_valid(tsk)) then
+		return "fail"
+	end
+
+	if (tsk.stage == 0) then
+		local id = axr_task_manager.bounties_by_id[task_id]
+		if not (id) then
+			return "fail"
+		end
+		local se_obj = id and alife_object(id)
+		if not (se_obj) then
+			return "fail"
+		end
+		if not (IsStalker(nil,se_obj:clsid())) then
+			return "fail"
+		end
+		if not (se_obj:alive()) then
+			tsk.stage = 1
+		end
+	elseif (tsk.stage == 254) then
+		return "fail"
+	end
+end
+
+
+function actor_has_fetch_item(tsk,task_id)
+	if not (db.actor) then
+		return
+	end
+	--if not (axr_task_manager.is_task_giver_valid(tsk)) then
+	--	return "fail"
+	--end
+	local section = db.actor and utils.load_var(db.actor,task_id.."_fetch")
+	local item = section and db.actor:object(section)
+	if (item ~= nil) then
+		if (task_id == "esc_2_12_stalker_nimble_task_1" or task_id == "jup_b220_trapper_task_3") then
+			if (item:condition() >= 0.9) then
+				tsk.stage = 1
+			else
+				tsk.stage = 0
+			end
+		else
+			local count = utils.load_var(db.actor,task_id.."_fetch_count")
+			if (count and count > 1) then
+			 	local cnt = 0
+				local function section_count(npc, item)
+					if (item:section() == section) then
+						cnt = cnt + 1
+					end
+				end
+				db.actor:iterate_inventory(section_count, nil)
+				if (cnt >= count) then
+					tsk.stage = 1
+				end
+				return
+			end
+			tsk.stage = 1
+		end
+	else
+		tsk.stage = 0
+	end
+end
+
+function check_if_enough_time_passed(tsk,task_id)
+	if not (db.actor) then
+		return
+	end
+	local p = alun_utils.parse_list(task_manager.task_ini,task_id,"status_functor_params")
+	if not (p[1]) then
+		printf("task_status_function not set up properly! check_if_killed_enough needs an extra param for squad story id! task_id=%s",task_id)
+		return
+	end
+
+	local gt = utils.load_ctime(db.actor,task_id)
+	if (gt == nil or game.get_game_time():diffSec(gt) >= tonumber(p[1])) then
+		tsk.stage = 2
+		return
+	end
+end
+
+function check_if_killed_enough(tsk,task_id)
+	local p = alun_utils.parse_list(task_manager.task_ini,task_id,"status_functor_params")
+	if not (p[1]) then
+		printf("task_status_function not set up properly! check_if_killed_enough needs an extra param for squad story id! task_id=%s",task_id)
+		return
+	end
+
+	local squad = get_story_squad(p[1])
+	if not (squad) then
+		return
+	end
+
+	local id = squad:commander_id()
+	local npc = db.storage[id] and db.storage[id].object
+	if not (npc) then
+		return
+	end
+
+	local total_kill_count, npc
+	for k in self:squad_members() do
+		local npc = db.storage[k.id] and db.storage[k.id].object
+		if (npc) then
+			total_kill_count = total_kill_count + (utils.load_var(npc,"s_kill_count") or 0)
+		end
+	end
+
+	if (total_kill_count >= tonumber(p[2] or 5)) then
+		return "complete"
+	end
+end
+
+function check_if_looted_enough(tsk,task_id)
+	local p = alun_utils.parse_list(task_manager.task_ini,task_id,"status_functor_params")
+	if not (p[1]) then
+		printf("task_status_function not set up properly! check_if_looted_enough needs an extra param for squad story id! task_id=%s",task_id)
+		return
+	end
+
+	local squad = get_story_squad(p[1])
+	if not (squad) then
+		return
+	end
+
+	local id = squad:commander_id()
+	local npc = db.storage[id] and db.storage[id].object
+	if not (npc) then
+		return
+	end
+
+	local total_loot_count, npc
+	for k in squad:squad_members() do
+		local npc = db.storage[k.id] and db.storage[k.id].object
+		if (npc) then
+			total_loot_count = total_loot_count + (utils.load_var(npc,"s_loot_count") or 0)
+		end
+	end
+
+	if (total_loot_count >= tonumber(p[2] or 5)) then
+		return "complete"
+	end
+end
+
+function task_type_ecolog_gathered_tissue_samples(tsk,task_id)
+	if (db.actor and tsk.stage == 0) then
+		local count = utils.load_var(db.actor,task_id.."_tissue_count",0)
+		local need = utils.load_var(db.actor,task_id.."_tissue_need",0)
+
+		if (count >= need) then
+			tsk.stage = 1
+		else
+			tsk.stage = 0
+		end
+	end
+	return
+end
+--------------------------------------------------------------
+function kill_strelok(tsk,task_id)
+	local squad = get_story_squad("legendary_strelok")
+	if (squad) then
+		for k in squad:squad_members() do
+			local se_obj = alife_object(k.id)
+			if (se_obj and not se_obj:alive()) then
+				return "complete"
+			end
+		end
+	end
+end

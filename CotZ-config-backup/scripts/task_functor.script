@@ -1,0 +1,3486 @@
+-- ============================================================
+--
+-- Target Functors for Tasks  (task_functor.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--	Modified by: DoctorX
+--	Last revised: November 17, 2019
+--
+-- ============================================================
+
+
+--'*************************************************************************************
+--' Функторы тайтла и описания квеста (должны возвращать строку)
+--'*************************************************************************************
+---
+-- HELPERS
+-----------------------------------------------------------
+local function under_faction_control_target_id(task_id)
+	local smart_id = db.actor and utils.load_var(db.actor,task_id.."_id")
+	if not (smart_id) then
+		printf("task_functor.under_faction_control_target_id is nil")
+		return
+	end
+	local sim = alife()
+	local smart = smart_id and sim:object(smart_id)
+	if not (smart) then
+		printf("task_functor.under_faction_control_target_id smart by id is nil")
+		return
+	end
+
+	local target_id = utils.load_var(db.actor,task_id.."_target_id")
+	local se_target = target_id and sim:object(target_id)
+
+	-- If enemies are more then 50m from target location, then show red (?) near their location
+	if (se_target) then
+
+
+		-- //////////////////////////////////////////////////////////////////////////////////////////////
+		--
+		-- Check if target is outside target radius
+		--
+		--	Ini requirements:
+		--		drx\drx_ql_config.ltx
+		--			[sim_task_props]
+		--				assault_radius (type: float, meters)
+		--					- Assault task target radius
+		--
+		--	Modified by DoctorX
+		--	for DoctorX Questlines 2.0
+		--	October 10, 2019
+		--
+		-- ----------------------------------------------------------------------------------------------
+
+		-- Show red icon if target outside target area but inside target radius:
+		local assault_radius = 0
+		local near_dist = 0
+		local ini = ini_file( "drx\\drx_ql_config.ltx" )
+		if ( ini ) then
+			assault_radius = ((ini:r_float_ex( "sim_task_props", "assault_radius" ) or 0) ^ 2)
+			near_dist = ((ini:r_float_ex( "sim_task_props", "tgt_close_dist" ) or 0) ^ 2)
+		end
+
+-- 		if (smart.position:distance_to_sqr(se_target.position) > 2500) then
+		if ( ((assault_radius) and (smart.position:distance_to_sqr( se_target.position ) > 2500) and ((smart.position:distance_to_sqr( se_target.position ) <= assault_radius) or (db.actor:position( ):distance_to_sqr( se_target.position ) <= near_dist))) or ((not assault_radius) and (smart.position:distance_to_sqr( se_target.position ) > 2500)) ) then
+
+		-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+			if (se_target:clsid() == clsid.online_offline_group_s) then
+				if (se_target.id and level.map_has_object_spot(se_target.id,"red_location") == 0) then
+					level.map_add_object_spot(se_target.id, "red_location", "st_ui_pda_task_unknown_enemy")
+				end
+			end
+		else
+			if (se_target:clsid() == clsid.online_offline_group_s) then
+				if (se_target.id and level.map_has_object_spot(se_target.id,"red_location") == 1) then
+					level.map_remove_object_spot(se_target.id, "red_location")
+				end
+			end
+		end
+	end
+
+	return smart_id
+end
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_smart_terrain_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Gives a smart terrain as a task target
+--
+--	Usage:
+--		drx_ql_smart_terrain_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_enemy_faction (type: faction name)
+--			- Name of the stored enemy faction
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				target_functor_params (type: string, npc id)
+--					- Smart name of the target smart terrain
+--
+--	External strings:
+--		configs\text\eng\drx_ql_strings.xml
+--			drx_ql_str_{faction}_plural (type: string)
+--				- Faction names used when referring to a faction as a whole
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 04, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_smart_terrain_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If target was requested, get the id of the requested smart terrain:
+	if ( field == "target" ) then
+		local params_list = alun_utils.parse_list( task_manager.task_ini, task_id, "target_functor_params" )
+		if ( (not params_list) or (#params_list < 1) ) then
+			return
+		end
+		local smart = SIMBOARD.smarts_by_names[params_list[1]]
+		if ( smart ) then
+			retval = smart.id
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- Translate description text:
+		retval = (game.translate_string( p ) or "")
+
+		-- Add the enemy faction name to the description:
+		if ( db.actor ) then
+			local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+			if ( enemy_faction ) then
+				retval = string.format( retval, game.translate_string( string.format( "drx_ql_str_%s_plural", enemy_faction ) ) )
+			end
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_oasis_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Gives the target for the find Oasis task
+--
+--	Usage:
+--		drx_ql_oasis_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				target_functor_params (type: string, npc id)
+--					- Smart name of the target smart terrain
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified July 28, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_oasis_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- Check if Oasis entrance location was given:
+	if ( not has_alife_info( "drx_ql_info_oasis_location_given" ) ) then
+		return
+	end
+
+	-- Get the smart id for the Oasis entrance location:
+	local params_list = alun_utils.parse_list( task_manager.task_ini, task_id, "target_functor_params" )
+	if ( (not params_list) or (#params_list < 1) ) then
+		return
+	end
+	local smart = SIMBOARD.smarts_by_names[params_list[1]]
+	if ( smart ) then
+		retval = smart.id
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_money_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Returns the id of the current target for a money task
+--
+--	Usage:
+--		drx_ql_money_task_target( task_id )
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: id):
+--		ID of the current task target
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 03, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_money_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If target was requested, check if the specified amount of money has been collected:
+	if ( field == "target" ) then
+		if ( tsk.stage == 1 ) then
+			retval = tsk.task_giver_id
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- Translate description text:
+		retval = (game.translate_string( p ) or "")
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_hostage_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Returns the id of the current target for a hostage task
+--		- Modification of simulation_task_target (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_hostage_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_enemy_faction (type: faction name)
+--			- Name of the stored enemy faction
+--
+--	External strings:
+--		configs\text\eng\drx_ql_strings.xml
+--			drx_ql_str_{faction}_plural (type: string)
+--				- Faction names used when referring to a faction as a whole
+--
+--	Return value (type: id):
+--		Returns ID of the current task target if "target" is requested
+--		Returns the formatted task description text if "descr" was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 04, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_hostage_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If target was requested, get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- Check if hostage squad is alive, if not task will fail via condition list:
+		local squad = get_story_squad( "hostage_companion_task_1" )
+		if not ( (squad) and (squad:clsid( ) == clsid.online_offline_group_s) ) then
+			return
+		end
+
+		-- Determine if hostage is rescued or not:
+		retval = squad.id
+		if ( tsk ) then
+
+			-- If hostage is not rescued or actor moved away from rescued hostage, target is hostage:
+			if ( (tsk.stage == 0) or ((squad) and (squad.dist_to_actor) and (squad.dist_to_actor > 60)) ) then
+				retval = (squad and squad.id)
+
+			-- If hostage is rescued, target is task giver:
+			elseif ( (tsk.stage >= 1) or ((db.actor) and (db.actor:has_info( "hostage_companion_task_1_hostage_rescued" ))) ) then
+				local npc_id = tsk.task_giver_id
+				if ( npc_id ) then
+					retval = npc_id
+				end
+			end
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		else
+			retval = (game.translate_string( p ) or "")
+		end
+
+		-- Add the enemy faction name to the description:
+		if ( db.actor ) then
+			local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+			if ( enemy_faction ) then
+				retval = string.format( retval, game.translate_string( string.format( "drx_ql_str_%s_plural", enemy_faction ) ) )
+			end
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_kidnapped_companion_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Returns the id of the current target for the kidnapped companion task
+--
+--	Usage:
+--		drx_ql_kidnapped_companion_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_bo_kidnapped_id (type: int, npc id)
+--			- ID of the kidnapped companion
+--
+--	Return value (type: id):
+--		Returns ID of the current task target
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified May 14, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_kidnapped_companion_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- Get hostage id:
+	if ( db.actor ) then
+		retval = utils.load_var( db.actor, "drx_ql_bo_kidnapped_id" )
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_assassination_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for an assassination task and formats task description text
+--		- Modification of general_bounty_task (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_assassination_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	External strings:
+--		configs\text\eng\drx_ql_strings.xml
+--			drx_ql_str_{faction_name}_collective (type: string)
+--				- Text to use for faction name when referring to member as part of collective
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns the formatted task description text if "descr" was requested
+--
+-- 	Notes:
+-- 		- Include this function as title_functor in the task configuration file to add target name to task title
+-- 		- Include this function as descr_functor in the task configuration file to add target faction collective and target name to task description
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_assassination_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If description was requested, add target faction collective and target name to task description text:
+	if ( field == "descr" ) then
+
+		-- If the task is completed, set return for reward text:
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+
+		-- Format task description text:
+		else
+
+			-- Get target name and faction collective:
+			local tgt_name = ""
+			local tgt_faction_collective = ""
+			local tgt_id = axr_task_manager.bounties_by_id[task_id]
+			if ( tgt_id ) then
+				local tgt_obj = alife_object( tgt_id )
+				if ( tgt_obj and IsStalker( nil, tgt_obj:clsid( ) ) and tgt_obj:alive( ) ) then
+					tgt_name = tgt_obj:character_name( )
+					tgt_faction_collective = game.translate_string( string.format( "drx_ql_str_%s_collective", tgt_obj:community( ) ) )
+				end
+			end
+
+			-- Add target faction collective and target name to task description text:
+			retval = string.format( game.translate_string( p ), tgt_faction_collective, tgt_name )
+
+			-- Add the task giver name to the description:
+			local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+			if ( npc_obj ) then
+				retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+			end
+
+		end
+
+	-- If target was requested, get the id of the current task target:
+	elseif ( field == "target" ) then
+		if ( tsk ) then
+
+			-- If task is completed then get task giver id:
+			if ( tsk.stage == 1 ) then
+				retval = tsk.task_giver_id
+
+			-- If task is not completed then get target id:
+			else
+				local tgt_id = axr_task_manager.bounties_by_id[task_id]
+				if ( not xr_effects.drx_ql_hidden_targets[tgt_id] ) then
+					retval = axr_task_manager.bounties_by_id[task_id]
+				end
+
+			end
+
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_prisoner_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a prisoner task and formats task description text
+--
+--	Usage:
+--		drx_ql_prisoner_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_target_id (type: npc id)
+--			- Id of selected target for specified task
+--
+--	External strings:
+--		configs\text\eng\drx_ql_strings.xml
+--			drx_ql_str_{faction_name}_collective (type: string)
+--				- Text to use for faction name when referring to member as part of collective
+--			drx_ql_str_return_prisoner (type: string)
+--				- Text to display for task description if actor moved away from prisoner
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns the formatted task description text if "descr" was requested
+--
+-- 	Notes:
+-- 		- Include this function as descr_functor in the task configuration file to add target faction collective and target name to task description
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_prisoner_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If description was requested, add target faction collective and target name to task description text:
+	if ( field == "descr" ) then
+
+		-- If the task is completed, set return for reward text:
+		if ( tsk.stage == 2 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+
+		-- If actor not near prisoner, give return to prisoner task desription:
+		elseif ( tsk.stage == 1 ) then
+			retval = game.translate_string( "drx_ql_str_return_prisoner" )
+
+		-- Format task description text:
+		else
+
+			-- Get target name and faction collective:
+			local tgt_name = ""
+			local tgt_faction_collective = ""
+			local tgt_id = (db.actor and utils.load_var( db.actor, string.format( "%s_target_id", task_id ) ))
+			if ( tgt_id ) then
+				local tgt_obj = alife_object( tgt_id )
+				if ( tgt_obj and IsStalker( nil, tgt_obj:clsid( ) ) and tgt_obj:alive( ) ) then
+					tgt_name = tgt_obj:character_name( )
+					tgt_faction_collective = game.translate_string( string.format( "drx_ql_str_%s_collective", tgt_obj:community( ) ) )
+				end
+			end
+
+			-- Add target faction collective and target name to task description text:
+			retval = string.format( game.translate_string( p ), tgt_faction_collective, tgt_name )
+
+			-- Add the task giver name to the description:
+			local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+			if ( npc_obj ) then
+				retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+			end
+
+		end
+
+	-- If target was requested, get the id of the current task target:
+	elseif ( field == "target" ) then
+		if ( tsk ) then
+
+			-- If task is completed then get task giver id:
+			if ( tsk.stage == 2 ) then
+				retval = tsk.task_giver_id
+
+			-- If task is not completed or actor not close to prisoner then get target id:
+			else
+				retval = (db.actor and utils.load_var( db.actor, string.format( "%s_target_id", task_id ) ))
+
+			end
+
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_hunted_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a hunted task and formats task description text
+--
+--	Usage:
+--		drx_ql_hunted_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_last_assassination_name (type: string, npc character name)
+--			- Character name of the last assassination target killed
+--		drx_ql_assassin_squad_id (type: squad id)
+--			- Id of the assassin squad for a hunted task
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns the formatted task description text if "descr" was requested
+--
+-- 	Notes:
+-- 		- Include this function as descr_functor in the task configuration file to format task description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 16, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_hunted_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If description was requested, format task description text:
+	if ( field == "descr" ) then
+
+		-- Format task description text:
+		if ( db.actor ) then
+			retval = string.format( game.translate_string( p ), utils.load_var( db.actor, "drx_ql_last_assassination_name" ), "" )
+		end
+
+	-- If target was requested, get the id of the current task target:
+	elseif ( field == "target" ) then
+
+		-- Get id of target npc:
+		if ( tsk and db.actor ) then
+			if ( db.actor:has_info( "drx_ql_info_assassin_known" ) ) then
+				retval = utils.load_var( db.actor, "drx_ql_assassin_squad_id" )
+			end
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_manhunt_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a manhunt task
+--
+--	Usage:
+--		drx_ql_manhunt_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				target_functor_params (type: string, npc id)
+--					- NPC id of the manhunt target
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 03, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_manhunt_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- Ensure task is valid:
+	if ( not tsk ) then
+		return
+	end
+
+	-- If target was requested, get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If task is completed then get task giver id:
+		if ( tsk.stage == 1 ) then
+			retval = tsk.task_giver_id
+
+		-- If task is not completed then get target id:
+		else
+			local params_list = alun_utils.parse_list( task_manager.task_ini, task_id, "target_functor_params" )
+			if ( (not params_list) or (#params_list < 1) ) then
+				return
+			end
+			local tgt_id = get_story_object_id( params_list[1] )
+			if ( not xr_effects.drx_ql_hidden_targets[tgt_id] ) then
+				retval = tgt_id
+			end
+
+		end
+
+	-- If description was requested, format task description text:
+	elseif ( field == "descr" ) then
+
+		-- Format task description text:
+		retval = game.translate_string( p )
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_interceptor_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for an interceptor task and formats task description text
+--
+--	Usage:
+--		drx_ql_interceptor_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_target_id (type: npc id)
+--			- Id of the npc carrying interceptor task item
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns the formatted task description text if "descr" was requested
+--
+-- 	Notes:
+-- 		- Include this function as descr_functor in the task configuration file to format task description
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_interceptor_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If description was requested, format task description text:
+	if ( field == "descr" ) then
+
+		-- Format task description text:
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		else
+			retval = game.translate_string( p )
+
+			-- Add the task giver name to the description:
+			local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+			if ( npc_obj ) then
+				retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+			end
+
+		end
+
+	-- If target was requested, get the id of the current task target:
+	elseif ( field == "target" ) then
+		if ( (tsk) and (db.actor) ) then
+
+			-- If task is completed then get task giver id:
+			if ( tsk.stage == 1 ) then
+				retval = tsk.task_giver_id
+
+			-- If task is not completed then get target id:
+			else
+				retval = utils.load_var( db.actor, string.format( "%s_target_id", task_id ) )
+
+			end
+
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_fetch_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a fetch task and formats task description text
+--		- Modification of general_fetch_task (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_fetch_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_fetch (type: string, section name)
+--			- Section name of the fetch item to get
+--		{task_id}_fetch_count (type: int)
+--			- Number of fetch items to get
+--		{task_id}_fetch_cond (type: float, decimal percent)
+--			- Minumum acceptable condition of fetch items
+--
+--	External strings:
+--		configs\text\eng\drx_ql_strings.xml
+--			drx_ql_str_fetch_descr_repair (type: string)
+--				- Task description for fetch task when player has required items but they are not acceptable condition
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns the formatted task description text if "descr" or "title" was requested
+--		Returns nil on failure
+--
+--	Notes:
+--		- Include this function as title_functor in the task configuration file to add fetch item name to task title
+--		- Include this function as descr_functor in the task configuration file to add fetch item name to description
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_fetch_task_target( task_id, field, p, tsk )
+
+	-- Ensure db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Var to store return value:
+	local retval
+
+	-- If title was requested, format the task title text:
+	if ( field == "title" ) then
+		local fetch = alun_utils.get_inv_name( utils.load_var( db.actor, string.format( "%s_fetch", task_id ),"" ) )
+		local count = utils.load_var( db.actor, string.format( "%s_fetch_count", task_id ), 1 )
+		if ( count > 1 ) then
+			retval = strformat( (game.translate_string( p ) or ""), string.format( "%s x%s", fetch, tostring( count ) ) )
+		else
+			retval = strformat( (game.translate_string( p ) or ""), fetch )
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+		if ( tsk.stage == 2 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		elseif ( tsk.stage == 1 ) then
+			local fetch = alun_utils.get_inv_name( utils.load_var( db.actor, string.format( "%s_fetch", task_id ), "" ) )
+			local cond = utils.load_var( db.actor, string.format( "%s_fetch_cond", task_id ), 0 )
+			local count = utils.load_var( db.actor, string.format( "%s_fetch_count", task_id ), 1 )
+			if ( count > 1 ) then
+				retval = strformat( game.translate_string( "drx_ql_str_fetch_descr_repair" ), string.format( "%s x%s", fetch, tostring( count ) ), math.ceil(cond * 100) )
+			else
+				retval = strformat( game.translate_string( "drx_ql_str_fetch_descr_repair" ), fetch, math.ceil(cond * 100) )
+			end
+		else
+			local fetch = alun_utils.get_inv_name( utils.load_var( db.actor, string.format( "%s_fetch", task_id ), "" ) )
+			local count = utils.load_var( db.actor, string.format( "%s_fetch_count", task_id ), 1 )
+			if ( count > 1 ) then
+				retval = strformat( (game.translate_string( p ) or ""), string.format( "%s x%s", fetch, tostring( count ) ) )
+			else
+				retval = strformat( (game.translate_string( p ) or ""), fetch )
+			end
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	-- If target was requested, return the id of the current task target:
+	elseif ( field == "target" ) then
+		if ( tsk.stage == 2 ) then
+			local id = (utils.load_var( db.actor, string.format( "%s_target_id", task_id ) ) or tsk.task_giver_id)
+			if ( id ) then
+				retval = id
+			else
+				local story_id = string.sub( task_id, (string.len( "drx_ql_" ) + 1), ((string.find( task_id, "_sl_task" ) or string.find( task_id, "_task" )) -1) )
+				local se_obj = get_story_se_object( story_id )
+				if ( se_obj ) then
+					retval = se_obj.id
+				end
+			end
+		end
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_ug_fetch_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a underground lab fetch task and formats task description text
+--		- Modification of general_fetch_task (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_ug_fetch_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_fetch (type: string, section name)
+--			- Section name of the fetch item to get
+--		{task_id}_fetch_count (type: int)
+--			- Number of fetch items to get
+--		{task_id}_fetch_cond (type: float, decimal percent)
+--			- Minumum acceptable condition of fetch items
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				target_functor_params (type: string, story id)
+--					- Story id of the entrance to the underground lab
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns the formatted task description text if "descr" was requested
+--		Returns nil on failure
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to format description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 06, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_ug_fetch_task_target( task_id, field, p, tsk )
+
+	-- Ensure db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Var to store return value:
+	local retval
+
+	-- If target was requested, return the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If task is completed then return the id of the task giver:
+		if ( tsk.stage == 2 ) then
+			local id = (utils.load_var( db.actor, string.format( "%s_target_id", task_id ) ) or tsk.task_giver_id)
+			if ( id ) then
+				retval = id
+			end
+
+		-- Get underground entrance:
+		else
+			local params_list = alun_utils.parse_list( task_manager.task_ini, task_id, "target_functor_params" )
+			if ( (params_list) and (#params_list > 0) ) then
+				retval = get_story_object_id( params_list[1] )
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- Translate description text:
+		if ( tsk.stage == 2 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		else
+			retval = (game.translate_string( p ) or "")
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_assault_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for an assault task
+--		- Modification of general_under_faction_control (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_assault_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_enemy_faction (type: faction name)
+--			- Name of the stored enemy faction
+--
+--	External strings:
+--		configs\text\eng\drx_ql_strings.xml
+--			drx_ql_str_{faction}_plural (type: string)
+--				- Faction names used when referring to a faction as a whole
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 04, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_assault_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If task is complete then return the id of the task giver:
+		if ( (tsk) and (tsk.stage == 1) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		-- Otherwise return the id of the assault location:
+		else
+			retval = under_faction_control_target_id( task_id )
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		else
+			retval = (game.translate_string( p ) or "")
+		end
+
+		-- Add the enemy faction name to the description:
+		if ( db.actor ) then
+			local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+			if ( enemy_faction ) then
+				retval = string.format( retval, game.translate_string( string.format( "drx_ql_str_%s_plural", enemy_faction ) ) )
+			end
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_guide_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a guide task
+--
+--	Usage:
+--		drx_ql_guide_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_id (type: int, smart terrain id)
+--			- Id of the target smart terrain for the selected task
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_guide_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- Get task giver squad:
+		local squad
+		if ( (tsk) and (tsk.task_giver_id) ) then
+			local task_giver_obj = alife( ):object( tsk.task_giver_id )
+			if ( task_giver_obj ) then
+				squad = get_object_squad( task_giver_obj )
+			end
+		end
+
+		-- If task is complete then return the id of the task giver:
+		if ( (tsk) and (tsk.task_giver_id) and (tsk.stage == 1) ) then
+			retval = tsk.task_giver_id
+
+		-- If task companions are too far away then return companion squad id:
+		elseif ( (squad) and (squad.dist_to_actor) and (squad.dist_to_actor > 60) ) then
+			retval = squad.id
+
+		-- Otherwise return the id of the target smart terrain:
+		elseif ( db.actor ) then
+			local smart_id = utils.load_var( db.actor, string.format( "%s_id", task_id ) )
+			if ( smart_id ) then
+				retval = smart_id
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		else
+			retval = (game.translate_string( p ) or "")
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_quest_stash_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a quest stash task
+--
+--	Usage:
+--		drx_ql_quest_stash_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				target_functor_params (type: string, comma-delimited list of section names)
+--					- Quest item for the current task
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_quest_stash_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If quest item is found then return the quest giver id:
+		if ( (tsk) and (tsk.stage == 1) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		-- Otherwise return the quest stash location:
+		else
+
+			-- Verify db.actor is available:
+			if not ( db.actor ) then
+				return
+			end
+
+			-- Get quest stash item:
+			local item_list = alun_utils.parse_list( task_manager.task_ini, task_id, "target_functor_params" )
+			if ( (not item_list) or (#item_list < 1) ) then
+				return
+			end
+
+			-- Get the quest stash id:
+			local stash_id = utils.load_var( db.actor, string.format( "%s_stash_id", item_list[1] ), nil )
+			if ( stash_id ) then
+				retval = stash_id
+			else
+				local se_obj = get_story_se_object( item_list[1] )
+				if ( se_obj ) then
+					retval = se_obj.id
+				end
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		else
+			retval = (game.translate_string( p ) or "")
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_float_item_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a floating item task
+--
+--	Usage:
+--		drx_ql_float_item_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_target_name (type: location name)
+--			- Name of the target smart terrain or special location for the specified task
+--		{task_id}_max_dist (type: float)
+--			- Maximum distance from center to spawn a target item
+--		{task_id}_fetch (type: string, section name)
+--			- Section name of the fetch item for specified task
+--		{task_id}_target_id (type: object id)
+--			- Id of the spawned float item
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified September 04, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_float_item_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If float item has been found then return the quest giver id:
+		if ( (tsk) and (tsk.stage == 1) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		-- Check if the float item has been spawned:
+		else
+
+			-- Verify db.actor is available:
+			if ( not db.actor ) then
+				return
+			end
+
+			-- Get the float item name:
+			local float_item = utils.load_var( db.actor, string.format( "%s_fetch", task_id ) )
+			if ( not float_item ) then
+				return
+			end
+
+			-- Get the float item id:
+			local float_id = utils.load_var( db.actor, string.format( "%s_target_id", task_id ) )
+
+			-- Check if exact target or general area should be given:
+			local exact_target = true
+			for i = 1, ( #xr_effects.drx_ql_float_fetch_tasks ) do
+				if ( xr_effects.drx_ql_float_fetch_tasks[i] == task_id ) then
+					exact_target = false
+					break
+				end
+			end
+			if ( (exact_target) and (float_id) ) then
+				retval = float_id
+
+			-- If the float item has not been spawned then return the smart terrain id:
+			else
+				local location_name = utils.load_var( db.actor, string.format( "%s_target_name", task_id ) )
+				local smart = SIMBOARD.smarts_by_names[location_name]
+				if ( smart ) then
+					retval = smart.id
+				end
+
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+		if ( (tsk) and (tsk.stage == 1) ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		else
+			retval = (game.translate_string( p ) or "")
+		end
+
+		-- Add the enemy faction name to the description:
+		if ( db.actor ) then
+			local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+			if ( enemy_faction ) then
+				retval = string.format( retval, game.translate_string( string.format( "drx_ql_str_%s_plural", enemy_faction ) ) )
+			end
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bloodsucker_lair_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for the Bloodsucker lair task
+--
+--	Usage:
+--		drx_ql_bloodsucker_lair_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified November 02, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_bloodsucker_lair_task_target( task_id, field, p, tsk )
+
+	-- Check if the current task is valid:
+	if ( not tsk ) then
+		return
+	end
+
+	-- Var for storing return value:
+	local retval
+
+	-- Check if task is finished or on float fetch stage:
+	if ( (tsk.stage == 1) or (has_alife_info( "drx_ql_info_actor_in_bs_lair" ) and has_alife_info( "zat_b57_gas_running_stop" )) ) then
+		retval = drx_ql_float_item_task_target( task_id, field, p, tsk )
+		return retval
+	end
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- Enter complex stage:
+		if ( has_alife_info( "zat_b57_gas_running_stop" ) ) then
+			local smart = SIMBOARD.smarts_by_names["zat_b38"]
+			if ( smart ) then
+				retval = smart.id
+			end
+
+		-- Turn valve stage:
+		elseif ( has_alife_info( "zat_b57_balon_use" ) or has_alife_info( "zat_b57_den_of_the_bloodsucker_wait_destroy_give" ) ) then
+			local se_obj = get_story_se_object( "zat_b57_vintil_id" )
+			if ( se_obj ) then
+				retval = se_obj.id
+			end
+
+		-- Inject gas stage:
+		elseif ( xr_conditions.actor_has_item( nil, nil, {"zat_b57_gas"} ) ) then
+			local se_obj = get_story_se_object( "zat_b57_place_gas_id" )
+			if ( se_obj ) then
+				retval = se_obj.id
+			end
+
+		-- Search convoy stage:
+		else
+			local se_obj = get_story_se_object( "zat_b57_gas_box" )
+			if ( se_obj ) then
+				retval = se_obj.id
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- Enter basement:
+		if ( has_alife_info( "zat_b57_gas_running_stop" ) ) then
+			retval = (game.translate_string( string.format( "%s_8", p ) ) or "")
+
+		-- Wait for gas stage:
+		elseif ( has_alife_info( "zat_b57_den_of_the_bloodsucker_wait_destroy_give" ) ) then
+			retval = (game.translate_string( string.format( "%s_7", p ) ) or "")
+
+		-- Turn valve stage:
+		elseif ( has_alife_info( "zat_b57_balon_use" ) ) then
+			retval = (game.translate_string( string.format( "%s_6", p ) ) or "")
+
+		-- Travel to Krug stage:
+		elseif ( xr_conditions.actor_has_item( nil, nil, {"zat_b57_gas"} ) ) then
+			retval = (game.translate_string( string.format( "%s_5", p ) ) or "")
+
+		-- Open canister stage:
+		elseif ( has_alife_info( "drx_ql_info_got_both_convoy_keys" ) ) then
+			retval = (game.translate_string( string.format( "%s_4", p ) ) or "")
+
+		-- Open canister stage:
+		elseif ( xr_conditions.actor_has_item( nil, nil, {"zat_b12_key_1"} ) and xr_conditions.actor_has_item( nil, nil, {"zat_b12_key_2"} ) ) then
+			give_info( "drx_ql_info_got_both_convoy_keys" )
+			retval = (game.translate_string( string.format( "%s_4", p ) ) or "")
+
+		-- Open canister stage:
+		elseif ( has_alife_info( "zat_b12_one_lock_open" ) and xr_conditions.actor_has_item( nil, nil, {"zat_b12_key_1"} ) ) then
+			give_info( "drx_ql_info_got_both_convoy_keys" )
+			retval = (game.translate_string( string.format( "%s_4", p ) ) or "")
+
+		-- Open canister stage:
+		elseif ( has_alife_info( "zat_b12_one_lock_open" ) and xr_conditions.actor_has_item( nil, nil, {"zat_b12_key_2"} ) ) then
+			give_info( "drx_ql_info_got_both_convoy_keys" )
+			retval = (game.translate_string( string.format( "%s_4", p ) ) or "")
+
+		-- Find second key stage:
+		elseif ( has_alife_info( "zat_b12_one_lock_open" ) ) then
+			retval = (game.translate_string( string.format( "%s_3", p ) ) or "")
+
+		-- Find second key stage:
+		elseif ( xr_conditions.actor_has_item( nil, nil, {"zat_b12_key_1"} ) ) then
+			retval = (game.translate_string( string.format( "%s_3", p ) ) or "")
+
+		-- Find second key stage:
+		elseif ( xr_conditions.actor_has_item( nil, nil, {"zat_b12_key_2"} ) ) then
+			retval = (game.translate_string( string.format( "%s_3", p ) ) or "")
+
+		-- Find keys stage:
+		elseif ( has_alife_info( "zat_b12_find_the_way_to_open" ) ) then
+			retval = (game.translate_string( string.format( "%s_2", p ) ) or "")
+
+		-- Search convoy stage:
+		else
+			retval = (game.translate_string( string.format( "%s_1", p ) ) or "")
+
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_plateau_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for the Southern Plateau task
+--
+--	Usage:
+--		drx_ql_plateau_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_target_name (type: location name)
+--			- Name of the target smart terrain or special location for the specified task
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				target_functor_params (type: string, npc id)
+--					- Smart name of the teleport smart
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 19, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_plateau_task_target( task_id, field, p, tsk )
+
+	-- Check if the current task is valid:
+	if ( not tsk ) then
+		return
+	end
+
+	-- Var for storing return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If float item has been found then return the quest giver id:
+		if ( tsk.stage == 3 ) then
+			retval = tsk.task_giver_id
+
+		-- If the teleport is complete then return the target smart id:
+		elseif ( tsk.stage == 2 ) then
+			local smart = SIMBOARD.smarts_by_names[utils.load_var( db.actor, string.format( "%s_target_name", task_id ) )]
+			if ( smart ) then
+				retval = smart.id
+			end
+
+		-- If the teleport has not been completed then return the id for the teleport smart:
+		elseif ( tsk.stage == 1 ) then
+			local params_list = alun_utils.parse_list( task_manager.task_ini, task_id, "target_functor_params" )
+			if ( (not params_list) or (#params_list < 1) ) then
+				return
+			end
+			local smart = SIMBOARD.smarts_by_names[params_list[1]]
+			if ( smart ) then
+				retval = smart.id
+			end
+
+		-- If player has not yet met Noah return Noah id:
+		elseif ( tsk.stage == 0 ) then
+			local noah_obj = get_story_se_object( "zat_b18_noah" )
+			if ( noah_obj ) then
+				retval = noah_obj.id
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- Set return type to string:
+		retval = ""
+		if ( tsk.stage == 3 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		elseif ( tsk.stage == 2 ) then
+			retval = (game.translate_string( string.format( "%s_2", p ) ) or "")
+		elseif ( tsk.stage == 1 ) then
+			retval = (game.translate_string( string.format( "%s_1", p ) ) or "")
+		elseif ( tsk.stage == 0 ) then
+			retval = (game.translate_string( p ) or "")
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_rescue_pilot_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for the rescue Stingray 4 pilot task
+--
+--	Usage:
+--		drx_ql_rescue_pilot_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	External strings:
+--		st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--		drx_ql_strings_{task_giver_faction}.xml
+--			{task_id}_text (type: string)
+--				- Task description for before Stingray 4 found
+--			{task_id}_text_1 (type: string)
+--				- Task description while searching crash site
+--			{task_id}_text_2 (type: string)
+--				- Task description when traveling to rally point
+--			{task_id}_text_3 (type: string)
+--				- Task description when ready to interrogate pilot
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 28, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_rescue_pilot_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- Check if task is complete:
+	if ( tsk.stage >= 3 ) then
+		if ( field == "target" ) then
+			retval = tsk.task_giver_id
+		elseif ( field == "descr" ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		end
+
+	-- Check if on interrogation stage:
+	elseif ( tsk.stage == 2 ) then
+		if ( field == "target" ) then
+			local squad = get_story_squad( "hostage_companion_task_1" )
+			if not ( (squad) and (squad:clsid( ) == clsid.online_offline_group_s) ) then
+				return
+			end
+			retval = (squad and squad.id)
+		elseif ( field == "descr" ) then
+			retval = game.translate_string( string.format( "%s_text_3", task_id ) )
+		end
+
+	-- Get find PDA stage target:
+	elseif ( not has_alife_info( "drx_ql_info_pilot_pda_found" ) ) then
+		if ( field == "target" ) then
+			retval = drx_ql_float_item_task_target( task_id, field, p, tsk )
+		elseif ( field == "descr" ) then
+			if ( has_alife_info( "drx_ql_info_stingray_4_found" ) ) then
+				retval = game.translate_string( string.format( "%s_text_1", task_id ) )
+			else
+				retval = game.translate_string( string.format( "%s_text", task_id ) )
+			end
+		end
+
+	-- Get rescue hostage stage target:
+	elseif ( has_alife_info( "drx_ql_info_pilot_pda_found" ) ) then
+		if ( field == "target" ) then
+			retval = drx_ql_hostage_task_target( task_id, field, p, tsk )
+		elseif ( field == "descr" ) then
+			retval = game.translate_string( string.format( "%s_text_2", task_id ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_wait_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a wait task
+--
+--	Usage:
+--		drx_ql_wait_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_wait_task_target( task_id, field, p, tsk )
+
+	-- Var for storing return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+		if ( (tsk) and (tsk.stage == 2) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+		if ( (tsk) and (tsk.stage == 2) ) then
+			retval = game.translate_string( "st_return_for_reward" )
+		else
+			retval = (game.translate_string( p ) or "")
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bandit_companion_task_1_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for the bandit_companion_task_1 (Dark Valley Raiders) task
+--		- Modification of val_smart_terrain_7_4_bandit_trader_stalker_task_target (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_bandit_companion_task_1_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_looted_count (type: int)
+--			- Total corpses looted for Raiders task (set in xr_corpse_detection.get_all_from_corpse)
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified August 24, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_bandit_companion_task_1_target( task_id, field, p, tsk )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Var to store return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- Check if the actor has moved away from the companion squad:
+		local squad = get_story_squad( "bandit_companion_task_1" )
+		if ( (squad) and (squad.dist_to_actor) and (squad.dist_to_actor > 60) ) then
+			retval = squad.id
+
+		-- If task is complete then return the id of the task giver:
+		elseif ( (tsk) and (tsk.stage == 1) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- If the task is complete then display the return for reward text:
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+
+		-- If the task is still ongoing update the description text with the number of lootings left to do:
+		else
+
+			-- Get the total looted so far:
+			local total_loot_count = utils.load_var( db.actor, "drx_ql_looted_count_bandit_companion_task_1", 0 )
+
+			-- Get the needed loot count:
+			local needed_loot_count = utils.load_var( db.actor, string.format( "%s_fetch_count", task_id ), 0 )
+
+			-- Add the lootings left to do to the task description text:
+			local lootings_left = (needed_loot_count - total_loot_count)
+			retval = string.format( (game.translate_string( p ) or ""), lootings_left )
+
+			-- Add the task giver name to the description:
+			local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+			if ( npc_obj ) then
+				retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+			end
+
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_yan_ecolog_semenov_squad_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for the yan_ecolog_semenov_squad (Research Hunt) task
+--		- Modification of yan_ecolog_semenov_task_target (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_yan_ecolog_semenov_squad_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		yan_ecolog_semenov_task_1_tissue_count (type: int)
+--			- Count of mutants hunted so far
+--		yan_ecolog_semenov_task_1_tissue_need (type: int)
+--			- Number of mutants to hunt
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_yan_ecolog_semenov_squad_target( task_id, field, p, tsk )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Var to store return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- Check if the actor has moved away from the companion squad:
+		local squad = get_story_squad( "yan_ecolog_semenov_squad" )
+		if ( (squad) and (squad.dist_to_actor) and (squad.dist_to_actor > 60) ) then
+			retval = squad.id
+
+		-- If task is complete then return the id of the task giver:
+		elseif ( (tsk) and (tsk.stage >= 1) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- If the task is complete then display the return for reward text:
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+
+		-- If the task is still ongoing update the description text with the number of lootings left to do:
+		else
+
+			-- Get the total collected so far:
+			local total_loot_count = utils.load_var( db.actor, "yan_ecolog_semenov_task_1_tissue_count", 0 )
+
+			-- Get the needed loot count:
+			local needed_loot_count = utils.load_var( db.actor, "yan_ecolog_semenov_task_1_tissue_need", 0 )
+
+			-- Add the lootings left to do to the task description text:
+			local lootings_left = (needed_loot_count - total_loot_count)
+			retval = string.format( (game.translate_string( p ) or ""), lootings_left )
+
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_anomaly_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for an escort researchers to anomaly task
+--		- Modification of mar_base_owl_stalker_trader_task_target (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_anomaly_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		task_target_anomaly (type: string, anomaly section name)
+--			- Name of the current target anomaly for escort scientist tasks
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				target_functor_params (type: string, npc name)
+--					- Story name of the anomaly target task companion squad
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 05, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_anomaly_task_target( task_id, field, p, tsk )
+
+	-- Var to store return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- Get the companion squad:
+		local params_list = alun_utils.parse_list( task_manager.task_ini, task_id, "target_functor_params" )
+		if ( (params_list) and (#params_list > 0) ) then
+			local squad = get_story_squad( params_list[1] )
+			if ( squad ) then
+
+				-- Check if the actor has moved away from the companion squad:
+				if ( (squad.dist_to_actor) and (squad.dist_to_actor > 60) ) then
+					retval = squad.id
+
+				-- If task is complete then return the id of the task giver:
+				elseif ( (tsk) and (tsk.stage == 1) and (tsk.task_giver_id) ) then
+					retval = tsk.task_giver_id
+
+				-- Otherwise return the id of the target area:
+				else
+					if ( db.actor ) then
+						local target_anom = utils.load_var( db.actor, "task_target_anomaly" )
+						if ( target_anom ) then
+							local anomaly = db.anomaly_by_name[target_anom]
+							if ( anomaly and anomaly.object ) then
+								retval = anomaly.object:id( )
+							end
+						end
+					end
+
+				end
+
+			end
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- If the task is complete then display the return for reward text:
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+
+		-- If the task is still ongoing return the task description text:
+		else
+			retval = (game.translate_string( p ) or "")
+
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_designated_target_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a designated target squad task
+--
+--	Usage:
+--		drx_ql_designated_target_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				target_functor_params (type: string, comma-delimited list of section names)
+--					- Names of the designated target squad
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 28, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_designated_target_task_target( task_id, field, p, tsk )
+
+	-- Var to store return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If task is complete then return the id of the task giver:
+		if ( (tsk) and (tsk.stage == 1) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		-- Otherwise return the id of the target squad:
+		else
+			local param_list = alun_utils.parse_list( task_manager.task_ini, task_id, "target_functor_params" )
+			if ( (not param_list) or (#param_list < 1) ) then
+				return
+			end
+			for i = 1, ( #param_list ) do
+				local squad = get_story_squad( param_list[i] )
+				if ( squad ) then
+					retval = squad.id
+					break
+				end
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- If the task is complete then display the return for reward text:
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+
+		-- If the task is still ongoing return the task description text:
+		else
+			retval = (game.translate_string( p ) or "")
+
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_bab_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a big ass brawl task
+--
+--	Usage:
+--		drx_ql_bab_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				status_functor_params (type: string, comma-delimited list of squad section names)
+--					- Names of the designated target squads
+--				status_functor_rendezvous (type: string, smart section name)
+--					- Smart terrain to rendezvous with the allied squads
+--				descr_1 (type: string, string id)
+--					- Task description for task on stage 1
+--				descr_2 (type: string, string id)
+--					- Task description for task on stage 2
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified July 24, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_bab_task_target( task_id, field, p, tsk )
+
+	-- Var to store return value:
+	local retval
+
+	-- Verify task is valid:
+	if ( not tsk ) then
+		return
+	end
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If task is complete then return the id of the task giver:
+		if ( (tsk.stage == 2) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		-- If squads not spawned yet return the id of the rendezvous point:
+		elseif ( tsk.stage == 0 ) then
+			local meet_smart = task_manager.task_ini:r_string_ex( task_id, "status_functor_rendezvous" )
+			if ( meet_smart ) then
+				local smart = SIMBOARD.smarts_by_names[meet_smart]
+				if ( smart ) then
+					retval = smart.id
+				end
+			end
+
+		-- Otherwise return the id of the target squads:
+		else
+			local enemy_squads = alun_utils.parse_list( task_manager.task_ini, task_id, "status_functor_params" )
+			if ( (not enemy_squads) or (#enemy_squads < 1) ) then
+				printf( "DRX QL Error: Cannot find target id's, status functor params are missing" )
+				return
+			end
+			for i = 1, ( #enemy_squads ) do
+				local squad = get_story_squad( enemy_squads[i] )
+				if ( squad ) then
+					retval = squad.id
+					break
+				end
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- Get default text:
+		retval = (game.translate_string( p ) or "")
+
+		-- If the task is complete then display the return for reward text:
+		if ( tsk.stage == 2 ) then
+			local descr_2 = task_manager.task_ini:r_string_ex( task_id, "descr_2" )
+			if ( descr_2 ) then
+				retval = game.translate_string( descr_2 )
+			else
+				retval = game.translate_string( "st_return_for_reward" )
+			end
+
+		-- If the task is still ongoing return the ongoing task description text:
+		elseif ( tsk.stage == 1 ) then
+			local descr_1 = task_manager.task_ini:r_string_ex( task_id, "descr_1" )
+			if ( descr_1 ) then
+				retval = game.translate_string( descr_1 )
+			end
+
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_brawl_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a dynamic brawl task
+--
+--	Usage:
+--		drx_ql_brawl_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_enemy_faction (type: faction name)
+--			- Name of the stored enemy faction
+--		{task_id}_enemy_count (type: int)
+--			- Number of enemy squads to spawn
+--		{task_id}_friendly_smart (type: smart terrain name)
+--			- Name of the stored friendly smart terrain for a brawl task
+--
+--	Ini requirements:
+--		misc\tm_*.ltx
+--			[{task_id}]
+--				descr_1 (type: string, string id)
+--					- Task description for task on stage 1
+--				descr_2 (type: string, string id)
+--					- Task description for task on stage 2
+--
+--	External strings:
+--		configs\text\eng\drx_ql_strings.xml
+--			drx_ql_str_{faction}_plural (type: string)
+--				- Faction names used when referring to a faction as a whole
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified July 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_brawl_task_target( task_id, field, p, tsk )
+
+	-- Var to store return value:
+	local retval
+
+	-- Verify task is valid:
+	if ( not tsk ) then
+		return
+	end
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If task is complete then return the id of the task giver:
+		if ( (tsk.stage == 2) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		-- If squads not spawned yet return the id of the rendezvous point:
+		elseif ( tsk.stage == 0 ) then
+			if ( db.actor ) then
+				local meet_smart = utils.load_var( db.actor, string.format( "%s_friendly_smart", task_id ) )
+				if ( meet_smart ) then
+					local smart = SIMBOARD.smarts_by_names[meet_smart]
+					if ( smart ) then
+						retval = smart.id
+					end
+				end
+			end
+
+		-- Otherwise return the id of the target squads:
+		else
+			if ( db.actor ) then
+				local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+				local enemy_count = utils.load_var( db.actor, string.format( "%s_enemy_count", task_id ) )
+				for m = 1, ( enemy_count ) do
+					local squad = get_story_squad( string.format( "drx_ql_brawl_squad_%s_%s", enemy_faction, m ) )
+					if ( squad ) then
+						retval = squad.id
+						break
+					end
+				end
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- Get default text:
+		retval = (game.translate_string( p ) or "")
+
+		-- If the task is complete then display the return for reward text:
+		if ( tsk.stage == 2 ) then
+			local descr_2 = task_manager.task_ini:r_string_ex( task_id, "descr_2" )
+			if ( descr_2 ) then
+				retval = game.translate_string( descr_2 )
+			else
+				retval = game.translate_string( "st_return_for_reward" )
+			end
+
+		-- If the task is still ongoing return the ongoing task description text:
+		elseif ( tsk.stage == 1 ) then
+			local descr_1 = task_manager.task_ini:r_string_ex( task_id, "descr_1" )
+			if ( descr_1 ) then
+				retval = game.translate_string( descr_1 )
+			end
+
+		end
+
+		-- Add the enemy faction name to the description:
+		if ( db.actor ) then
+			local enemy_faction = utils.load_var( db.actor, string.format( "%s_enemy_faction", task_id ) )
+			if ( enemy_faction ) then
+				retval = string.format( retval, game.translate_string( string.format( "drx_ql_str_%s_plural", enemy_faction ) ) )
+			end
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_big_mutant_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a big mutant target squad task
+--
+--	Usage:
+--		drx_ql_big_mutant_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		{task_id}_target_id (type: squad section name)
+--			- Name of the target squad for specified task
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target if "target" field was requested
+--		Returns task description text if "descr" field was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified January 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_big_mutant_task_target( task_id, field, p, tsk )
+
+	-- Var to store return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If task is complete then return the id of the task giver:
+		if ( (tsk) and (tsk.stage == 1) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		-- Otherwise return the id of the target squad:
+		else
+			if ( db.actor ) then
+				local squad_name = utils.load_var( db.actor, string.format( "%s_target_id", task_id ) )
+				if ( squad_name ) then
+					local squad = get_story_squad( squad_name )
+					if ( squad ) then
+						retval = squad.id
+					end
+				end
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- If the task is complete then display the return for reward text:
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+
+		-- If the task is still ongoing return the task description text:
+		else
+			retval = (game.translate_string( p ) or "")
+
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_heli_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a helicopter task
+--
+--	Usage:
+--		drx_ql_heli_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		{task_file}.ltx
+--			[{task_name}]
+--				target_functor_params (type: string, level name)
+--					- Name of the level for the helicopter task
+--
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target
+--		Returns nil if the actor is not on the specified level
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 05, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_heli_task_target( task_id, field, p, tsk )
+
+	-- Var to store return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If task is complete then return the id of the task giver:
+		if ( (tsk) and (tsk.stage == 1) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+
+		-- Otherwise return the id of the target:
+		elseif ( tsk ) then
+
+			-- Check if the current level is not the specified level:
+			local level_name_list = alun_utils.parse_list( task_manager.task_ini, task_id, "target_functor_params" )
+			if ( #level_name_list > 0 ) then
+				if ( level.name( ) ~= level_name_list[1] ) then
+					return
+				end
+			end
+
+			-- Get the id of the helicopter on the current level:
+			for id, obj in pairs( db.heli ) do
+				if ( obj and obj.id ) then
+					retval = id
+					break
+				end
+			end
+
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- Translate description string:
+		retval = (game.translate_string( p ) or "")
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_gather_items_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a gather items task
+--
+--	Usage:
+--		drx_ql_gather_items_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	External strings:
+--		configs\text\eng\st_dialog_manager.xml
+--			st_return_for_reward (type: string)
+--				- Text to display for task description when the task is completed
+--
+--	Return value (type: id):
+--		Returns the ID of the current task target
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 06, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_gather_items_task_target( task_id, field, p, tsk )
+
+	-- Var to store return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+		-- If task is complete then return the id of the task giver:
+		if ( (tsk) and (tsk.stage == 1) and (tsk.task_giver_id) ) then
+			retval = tsk.task_giver_id
+		end
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- If the task is complete then display the return for reward text:
+		if ( tsk.stage == 1 ) then
+			retval = game.translate_string( "st_return_for_reward" )
+
+		-- If the task is still ongoing return the task description text:
+		else
+			retval = (game.translate_string( p ) or "")
+
+		end
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_delivery_task_target function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Determines the current task target for a delivery task
+--
+--	Usage:
+--		drx_ql_delivery_task_target( )
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: npc id / string):
+--		Returns the ID of the current task target if "target" was requested
+--		Returns formatted task description text if "descr" was requested
+--
+--	Notes:
+--		- Include this function as descr_functor in the task configuration file to update description text
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 05, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Determine current task target:
+function drx_ql_delivery_task_target( task_id, field, p, tsk )
+
+	-- Var to store return value:
+	local retval
+
+	-- If target was requested get the id of the current task target:
+	if ( field == "target" ) then
+
+	-- If descr was requested, format the task description text:
+	elseif ( field == "descr" ) then
+
+		-- Translate description string:
+		retval = (game.translate_string( p ) or "")
+
+		-- Add the task giver name to the description:
+		local npc_obj = (tsk.task_giver_id and alife( ):object( tsk.task_giver_id ))
+		if ( npc_obj ) then
+			retval = string.gsub( retval, "{npc_name}", npc_obj:character_name( ) )
+		end
+
+	end
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+function get_squad_id_by_task_var(var_name,no_check_online)
+	local npc_id = db.actor and utils.load_var(db.actor,var_name)
+	if not (npc_id) then
+		return
+	end
+
+	-- by default npc's id is returned instead if game_object is online
+	if not (no_check_online) then
+		local npc = npc_id and db.storage[npc_id] and db.storage[npc_id].object
+		if (npc) then
+			return npc_id
+		end
+	end
+
+	local sim = alife()
+	local se_npc = sim:object(npc_id)
+	if not (se_npc) then
+		return
+	end
+
+	local squad = se_npc.group_id and se_npc.group_id ~= 65535 and sim:object(se_npc.group_id)
+	if not (squad) then
+		if (no_check_online) then
+			return
+		end
+		return npc_id
+	end
+
+	return squad.id
+end
+---------------------------------------------------------
+-- TASK FUNCTORS
+---------------------------------------------------------
+function general_bounty_task(task_id,field,p,tsk)
+	if (field == "target") then
+		if (tsk) then
+			if (tsk.stage == 1) then
+				return tsk.task_giver_id or nil
+			end
+
+			return axr_task_manager.bounties_by_id[task_id] or nil
+		end
+	end
+end
+
+function general_fetch_task(task_id,field,p,tsk)
+	if (field == "title") then
+		local fetch = db.actor and alun_utils.get_inv_name(utils.load_var(db.actor,task_id.."_fetch",""))
+		local count = fetch and utils.load_var(db.actor,task_id.."_fetch_count") or 1
+		if (count > 1) then
+			return strformat((game.translate_string(p) or ""),fetch .. " x" .. tostring(count))
+		end
+		return strformat(game.translate_string(p) or "",fetch)
+	elseif (field == "descr") then
+		if (tsk.stage == 1) then
+			return game.translate_string("st_return_for_reward")
+		end
+		local fetch = db.actor and alun_utils.get_inv_name(utils.load_var(db.actor,task_id.."_fetch",""))
+		local count = fetch and utils.load_var(db.actor,task_id.."_fetch_count") or 1
+		if (count > 1) then
+			return strformat((game.translate_string(p) or ""),fetch .. " x" .. tostring(count))
+		end
+		return strformat(game.translate_string(p) or "",fetch)
+	elseif (field == "target") then
+		if (tsk.stage == 1) then
+			local id = db.actor and utils.load_var(db.actor,task_id.."_target_id") or tsk.task_giver_id
+			if (id) then
+				return id
+			end
+			local story_id = string.sub(task_id,1,string.find(task_id,"_task")-1)
+			local se_obj = get_story_se_object(story_id)
+			if (se_obj) then
+				return se_obj.id
+			end
+		end
+	end
+end
+
+function general_under_faction_control(task_id,field,p,tsk)
+	if (field == "target") then
+		if (tsk and tsk.stage == 1 and tsk.task_giver_id) then
+			return tsk.task_giver_id
+		end
+
+		return under_faction_control_target_id(task_id)
+	end
+end
+
+-- Yantar
+function yan_ecolog_semenov_task_target(task_id,field,p,tsk)
+	if (task_id == "yan_ecolog_semenov_squad") then
+		local squad = get_story_squad("yan_ecolog_semenov_squad")
+		if (squad and squad.dist_to_actor and squad.dist_to_actor > 50) then
+			return squad.id
+		end
+
+		if (tsk.stage >= 1) then
+			return squad.id
+		end
+	end
+end
+
+-- Marsh
+function mar_base_stalker_barmen_task_target(task_id,field,p,tsk)
+
+	if (tsk and tsk.stage == 1 and tsk.task_giver_id) then
+		return tsk.task_giver_id
+	end
+
+	if (task_id == "mar_base_stalker_barmen_task_1") then
+		return under_faction_control_target_id(task_id)
+	elseif (task_id == "mar_base_stalker_barmen_task_2") then
+		return under_faction_control_target_id(task_id)
+	end
+end
+
+function mar_base_owl_stalker_trader_task_target(task_id,field,p)
+	if (task_id == "mar_base_owl_stalker_trader_task_1") then
+		local se_npc = get_story_se_object("esc_2_12_stalker_nimble")
+		return se_npc and se_npc.id or nil
+	elseif (task_id == "mar_base_owl_stalker_trader_task_2") then
+		if (level.name() == "k00_marsh") then
+			for id,obj in pairs(db.heli) do
+				if (obj and obj.id) then
+					return id
+				end
+			end
+		end
+	elseif (task_id == "mar_base_owl_stalker_trader_task_3") then
+		local squad = get_story_squad("ecolog_companion_task_1")
+		if (db.actor and squad and squad.dist_to_actor and squad.dist_to_actor > 50) then
+			return squad.id
+		end
+		local n = db.actor and utils.load_var(db.actor,"task_target_anomaly")
+		if (n) then
+			local anomaly = db.anomaly_by_name[n]
+			if (anomaly and anomaly.object) then
+				return anomaly.object:id()
+			end
+		else
+			local smart = SIMBOARD.smarts_by_names["mar_smart_terrain_base"]
+			if (smart) then
+				return smart.id
+			end
+		end
+	end
+end
+
+-- Escape
+function esc_m_trader_task_target(task_id,field,p,tsk)
+	if (field == "target") then
+		if (task_id == "esc_m_trader_task_1") then
+			if (tsk.stage == 1) then
+				return tsk.task_giver_id
+			end
+
+			local smart = SIMBOARD.smarts_by_names["esc_smart_terrain_7_11"]
+			local target_id = db.actor and utils.load_var(db.actor,"esc_m_trader_task_1_target_id")
+			local se_target = target_id and alife_object(target_id)
+
+			if (se_target and smart.position:distance_to_sqr(se_target.position) > 2500) then
+				return target_id
+			end
+
+			return smart and smart.id or nil
+		end
+	end
+end
+
+-- Darkvalley
+function val_smart_terrain_7_4_bandit_trader_stalker_task_target(task_id,field,p,tsk)
+	if (task_id == "val_smart_terrain_7_4_bandit_trader_stalker_task_3") then
+		local squad = get_story_squad("bandit_companion_task_1")
+		if (squad and squad.dist_to_actor and squad.dist_to_actor > 60) then
+			return squad.id
+		end
+	end
+end
+
+-- soc pripyat
+
+
+-- Jupiter
+function jup_b6_scientist_tech_task_target(task_id,field,p,tsk)
+	if (task_id == "jup_b6_scientist_tech_task_1") then
+		local squad = get_story_squad("ecolog_companion_task_2")
+		if (squad and squad.dist_to_actor and squad.dist_to_actor > 60) then
+			return squad.id
+		end
+		local n = db.actor and utils.load_var(db.actor,"task_target_anomaly")
+		if (n) then
+			local anomaly = db.anomaly_by_name[n]
+			if (anomaly and anomaly.object) then
+				return anomaly.object:id()
+			end
+		else
+			local smart = SIMBOARD.smarts_by_names["jup_b41"]
+			if (smart) then
+				return smart.id
+			end
+		end
+	end
+end
+
+function jup_b19_freedom_yar_task_target(task_id,field,p,tsk)
+	if (task_id == "jup_b19_freedom_yar_task_1") then
+		if (tsk) then
+			local squad
+			if (tsk.stage == 0) then
+				squad = get_story_squad("jup_a6_freedom_trader_ashot_squad")
+			elseif (tsk.stage == 1) then
+				squad = get_story_squad("jup_b19_freedom_yar_squad")
+			end
+			return squad and squad.id or nil
+		end
+	end
+end
+
+-- Zaton
+function zat_b7_bandit_boss_sultan_task_target(task_id,field,p)
+	if (task_id == "zat_b7_bandit_boss_sultan_task_1") then
+		return get_squad_id_by_task_var("zat_b7_bandit_boss_sultan_bounty_target_id") --add to axr_main remove_non_story_squads to ensure squad never removed
+	end
+end
+
+-- Simulation
+function simulation_task_target(task_id,field,p,tsk)
+	if (task_id == "simulation_task_7" or task_id == "simulation_task_8" or task_id == "simulation_task_9" or task_id == "simulation_task_10") then
+		local squad = get_story_squad("hostage_companion_task_1")
+		if not (squad and squad:clsid() == clsid.online_offline_group_s) then
+			return -- quest will auto-fail via section condition
+		end
+
+		if (tsk) then
+			if (tsk.stage == 0) or (squad and squad.dist_to_actor and squad.dist_to_actor > 60) then
+				return squad and squad.id
+			elseif (tsk.stage >= 1 or (db.actor and db.actor:has_info("hostage_companion_task_1_hostage_rescued"))) then
+				local id = tsk.task_giver_id
+				if (id) then
+					return id
+				end
+			end
+		end
+
+		return squad.id
+	end
+end
+
+function faction_base_defense_target(task_id,field,p,tsk)
+	local squad = get_story_squad("faction_base_defense_flesh_squad")
+	if (squad) then
+		return squad.id
+	end
+	squad = get_story_squad("faction_base_defense_boar_squad")
+	if (squad) then
+		return squad.id
+	end
+	squad = get_story_squad("faction_base_defense_dog_squad")
+	if (squad) then
+		return squad.id
+	end
+	squad = get_story_squad("faction_base_defense_flesh_second_squad")
+	if (squad) then
+		return squad.id
+	end
+	squad = get_story_squad("faction_base_defense_boar_second_squad")
+	if (squad) then
+		return squad.id
+	end
+	squad = get_story_squad("faction_base_defense_dog_second_squad")
+	if (squad) then
+		return squad.id
+	end
+    squad = get_story_squad("yan_faction_base_defense_zombi_in_sci_base1")
+	if (squad) then
+		return squad.id
+	end
+    squad = get_story_squad("yan_faction_base_defense_zombi_in_sci_base2")
+	if (squad) then
+		return squad.id
+	end
+    squad = get_story_squad("yan_faction_base_defense_zombi_in_sci_base3")
+	if (squad) then
+		return squad.id
+	end
+    squad = get_story_squad("yan_faction_base_defense_zombi_in_sci_base4")
+	if (squad) then
+		return squad.id
+	end
+    squad = get_story_squad("yan_faction_base_defense_zombi_in_sci_base5")
+	if (squad) then
+		return squad.id
+	end
+	squad = get_story_squad("yan_faction_base_defense_zombi_in_sci_base6")
+	if (squad) then
+		return squad.id
+	end
+    squad = get_story_squad("yan_faction_base_defense_zombi_in_sci_base7")
+	if (squad) then
+		return squad.id
+	end
+    squad = get_story_squad("yan_faction_base_defense_zombi_in_sci_base8")
+	if (squad) then
+		return squad.id
+	end
+    squad = get_story_squad("yan_faction_base_defense_zombi_in_sci_base9")
+	if (squad) then
+		return squad.id
+	end
+end
+
+--[[
+==================================================================
+
+==================================================================
+--]]
+
+function condlist(id, field, cond_string)
+	return xr_logic.pick_section_from_condlist(db.actor, nil, xr_logic.parse_condlist(nil, "task", "task_condlist", cond_string) )
+end
+
+function zat_b29_adv_title(id, field, p)
+	local actor = get_story_object("actor")
+	for i = 16, 23 do
+		if (has_alife_info(dialogs_zaton.zat_b29_infop_bring_table[i]) and actor:object(dialogs_zaton.zat_b29_af_table[i])) then
+			title = "zat_b29_simple_bring_title_"..i
+			break
+		elseif has_alife_info(dialogs_zaton.zat_b29_infop_bring_table[i]) then
+			title = "zat_b29_simple_find_title_"..i
+			break
+		end
+	end
+
+	return title
+end
+
+function zat_b29_adv_descr(id, field, p)
+	local descr
+	local f_af = 0
+	local actor = get_story_object("actor")
+
+	for i = 16, 23 do
+		if (has_alife_info(dialogs_zaton.zat_b29_infop_bring_table[i]) and actor:object(dialogs_zaton.zat_b29_af_table[i])) then
+			f_af = 1
+			descr = "zat_b29_simple_bring_text_5"
+			if has_alife_info("zat_b29_stalker_rival_1_found_af") and has_alife_info("zat_b29_first_rival_taken_out") and f_af ~= 0 then
+				return descr
+			elseif has_alife_info("zat_b29_stalker_rival_2_found_af") and has_alife_info("zat_b29_second_rival_taken_out") and f_af ~= 0 then
+				return descr
+			elseif has_alife_info("zat_b29_linker_take_af_from_rival") then
+				descr = "zat_b29_simple_bring_text_4"
+			elseif has_alife_info("zat_b29_stalkers_rivals_found_af") then
+				descr = "zat_b29_simple_bring_text_3"
+			elseif has_alife_info("zat_b29_rivals_search") and has_alife_info("zat_b29_exclusive_conditions") then
+				descr = "zat_b29_simple_bring_text_1"
+			elseif has_alife_info("zat_b29_rivals_search") then
+				descr = "zat_b29_simple_bring_text_2"
+			end
+			break
+		elseif has_alife_info(dialogs_zaton.zat_b29_infop_bring_table[i]) then
+			descr = "zat_b29_simple_find_text_5"
+			if has_alife_info("zat_b29_stalker_rival_1_found_af") and has_alife_info("zat_b29_first_rival_taken_out") and f_af ~= 0 then
+				return descr
+			elseif has_alife_info("zat_b29_stalker_rival_2_found_af") and has_alife_info("zat_b29_second_rival_taken_out") and f_af ~= 0 then
+				return descr
+				elseif has_alife_info("zat_b29_linker_take_af_from_rival") then
+					descr = "zat_b29_simple_find_text_4"
+				elseif has_alife_info("zat_b29_stalkers_rivals_found_af") then
+					descr = "zat_b29_simple_find_text_3"
+				elseif has_alife_info("zat_b29_rivals_search") and has_alife_info("zat_b29_exclusive_conditions") then
+					descr = "zat_b29_simple_find_text_1"
+				elseif has_alife_info("zat_b29_rivals_search") then
+					descr = "zat_b29_simple_find_text_2"
+				end
+			break
+		end
+	end
+
+	return descr
+end
+
+function surge_task_title(id, field, p)
+	if(surge_manager.actor_in_cover()) then
+		return "hide_from_surge_name_2"
+	else
+		return "hide_from_surge_name_1"
+	end
+end
+
+function surge_task_descr(id, field, p)
+	return surge_manager.get_task_descr()
+end
+--'*************************************************************************************
+--' Функторы цели квеста (должны возвращать id персонажа)
+--'*************************************************************************************
+
+function target_condlist(task_id, field, cond_string)
+	local parsed_condlist = xr_logic.parse_condlist(nil, "task", "task_condlist", cond_string)
+	local value = xr_logic.pick_section_from_condlist(db.actor, nil, parsed_condlist)
+	return value and get_story_object_id(value)
+end
+
+function zat_b29_adv_target(task_id, field, p)
+	local target_obj_id = "zat_a2_stalker_barmen"
+	local af = nil
+	local actor = get_story_object("actor")
+
+
+	for i = 16, 23 do
+		if (has_alife_info(dialogs_zaton.zat_b29_infop_bring_table[i])
+			and actor:object(dialogs_zaton.zat_b29_af_table[i])) then
+			af = dialogs_zaton.zat_b29_af_table[i]
+			break
+		end
+	end
+
+	if (not has_alife_info("zat_b29_linker_take_af_from_rival") and has_alife_info("zat_b29_stalkers_rivals_found_af")) then
+		if has_alife_info("zat_b29_stalker_rival_1_found_af") then
+			if not has_alife_info("zat_b29_first_rival_taken_out") then
+				if has_alife_info("zat_b29_exclusive_conditions") then
+					target_obj_id = "zat_b29_stalker_rival_1"
+				else
+					target_obj_id = "zat_b29_stalker_rival_default_1"
+				end
+			elseif af == nil then
+				if has_alife_info("zat_b29_exclusive_conditions") then
+					target_obj_id = "zat_b29_stalker_rival_1"
+				else
+					target_obj_id = "zat_b29_stalker_rival_default_1"
+				end
+			end
+		elseif has_alife_info("zat_b29_stalker_rival_2_found_af") then
+			if not has_alife_info("zat_b29_second_rival_taken_out") then
+				if has_alife_info("zat_b29_exclusive_conditions") then
+					target_obj_id = "zat_b29_stalker_rival_2"
+				else
+					target_obj_id = "zat_b29_stalker_rival_default_2"
+				end
+			elseif af == nil then
+ 				if has_alife_info("zat_b29_exclusive_conditions") then
+					target_obj_id = "zat_b29_stalker_rival_2"
+				else
+					target_obj_id = "zat_b29_stalker_rival_default_2"
+				end
+			end
+		end
+		return get_story_object_id(target_obj_id)
+	end
+
+	if af ~= nil then
+		return get_story_object_id(target_obj_id)
+	end
+
+	return nil
+end
+
+function surge_task_target(id, field, p)
+	return surge_manager.get_task_target()
+end
+
+--AtmosFear Fallout
+
+function fallout_task_title(id, field, p)
+	return fallout_manager and fallout_manager.get_task_title() or ""
+end
+
+function fallout_task_descr(id, field, p)
+	return fallout_manager and fallout_manager.get_task_descr() or ""
+end
+
+function fallout_task_target(id, field, p)
+	return fallout_manager and fallout_manager.get_task_target() or nil
+end
+
+--AtmosFear Psi Storm
+
+function psi_storm_task_title(id, field, p)
+	return psi_storm_manager and psi_storm_manager.get_task_title() or ""
+end
+
+function psi_storm_task_descr(id, field, p)
+	return psi_storm_manager and psi_storm_manager.get_task_descr() or ""
+end
+
+function psi_storm_task_target(id, field, p)
+	return psi_storm_manager and psi_storm_manager.get_task_target() or nil
+end
+
+-----------------------------------------
+function kill_strelok(id,field,p)
+	local squad = get_story_squad("legendary_strelok")
+	if (squad) then
+		return squad.id
+	end
+end

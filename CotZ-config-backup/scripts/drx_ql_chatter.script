@@ -1,0 +1,1775 @@
+--=============================================================
+--
+-- Companion Chatter (drx_ql_chatter.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--	- Displays PDA messages from actor companion
+--	- Config file: drx\drx_ql_chatter.ltx
+--	- Strings file: drx_ql_chatter_strings.xml
+--	- To assign alternate chatter phrases for specific npc's, add a string from the npc section name to the map drx_ql_cht_special_phrases with the value set to true
+--	- String id's for alternate text must be prefaced with the string stored in drx_ql_cht_special_phrases
+--
+--	Created by: DoctorX
+--	Last revised: October 18, 2019
+--
+--=============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Settings File
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	February 20, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Location of the settings file:
+local ini = ini_file( "drx\\drx_ql_chatter.ltx" )
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Component Switches
+--
+--	Ini requirements:
+--		drx\drx_ql_chatter.ltx
+--			[chatter_settings]
+--				enable_chatter (type: bool)
+--					- Enable companion chatter
+--				enable_enemy_warning_chatter (type: bool)
+--					- Enable enemy warning chatter
+--				enable_injured_chatter (type: bool)
+--					- Enable injured chatter
+--				enable_wounded_chatter (type: bool)
+--					- Enable wounded chatter
+--				enable_compliment_chatter (type: bool)
+--					- Enable actor kill compliment chatter
+--				enable_companion_kill_chatter (type: bool)
+--					- Enable companion kill chatter
+--				enable_building_chatter (type: bool)
+--					- Enable companion idle chatter
+--				enable_idle_chatter (type: bool)
+--					- Enable companion idle chatter
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	February 23, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Enable companion chatter:
+local enable_chatter = (ini:r_bool_ex( "chatter_settings", "enable_chatter" ) or false)
+
+-- Enable enemy warning chatter:
+local enable_enemy_warning_chatter = (ini:r_bool_ex( "chatter_settings", "enable_enemy_warning_chatter" ) or false)
+
+-- Enable companion wounded chatter:
+local enable_wounded_chatter = (ini:r_bool_ex( "chatter_settings", "enable_wounded_chatter" ) or false)
+
+-- Enable companion injured chatter:
+local enable_injured_chatter = (ini:r_bool_ex( "chatter_settings", "enable_injured_chatter" ) or false)
+
+-- Enable actor kill compliment chatter:
+local enable_compliment_chatter = (ini:r_bool_ex( "chatter_settings", "enable_compliment_chatter" ) or false)
+
+-- Enable companion kill chatter:
+local enable_companion_kill_chatter = (ini:r_bool_ex( "chatter_settings", "enable_companion_kill_chatter" ) or false)
+
+-- Enable building chatter:
+local enable_building_chatter = (ini:r_bool_ex( "chatter_settings", "enable_building_chatter" ) or false)
+
+-- Enable idle chatter:
+local enable_idle_chatter = (ini:r_bool_ex( "chatter_settings", "enable_idle_chatter" ) or false)
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Settings
+--
+--	Ini requirements:
+--		drx\drx_ql_chatter.ltx
+--			[chatter_settings]
+--				alt_text_chance (type: ffloat, decimal percent)
+--					- Percent chance an NPC will use alternate phrases if alternate phrases are available for that npc
+--				max_dist (type: float, meters)
+--					- Maximum distance from npc to allow chatter
+--				update_interval (type: float, seconds)
+--					- Minimum length of time between updates
+--				msg_time (type: float, miliseconds)
+--					- Minimum message display time
+--				max_chars (type: int)
+--					- Message characters at minimum display time
+--				injured_delay (type: float, seconds)
+--					- Delay from when companion became injured to sending message
+--				injured_health (type: float, decimal percent)
+--					- Maximum health level to consider a companion injured
+--				compliment_chance (type: float, decimal percent)
+--					- Percent chance a companion will give a compliment
+--				compliment_delay (type: float, seconds)
+--					- Delay after actor kill before displaying message
+--				companion_kill_chance (type: float, decimal percent)
+--					- Percent chance a companion will talk about kill
+--				companion_kill_delay (type: float, seconds)
+--					- Delay after companion kill before displaying message
+--				building_chance (type: float, decimal percent)
+--					- Percent chance a companion will make building chatter
+--				building_dist (type: float, meters)
+--					- Maximum distance from building smart terrain
+--				building_repeat (type: float, seconds)
+--					- Minimum time between building chatter messages
+--				idle_chance (type: float, decimal percent)
+--					- Percent chance a companion will make idle chatter
+--				idle_min_delay (type: float, seconds)
+--				idle_max_delay (type: float, seconds)
+--					- Time from last chatter to idle chatter message
+--				surge_idle_min_delay (type: float, seconds)
+--				surge_idle_max_delay (type: float, seconds)
+--					- Time from last chatter to idle chatter message during a blowout
+--				campfire_idle_min_delay (type: float, seconds)
+--				campfire_idle_max_delay (type: float, seconds)
+--					- Time from last chatter to idle chatter message at a campfire
+--				campfire_dist (type: float, meters)
+--					- Maximum distance from a campfire
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	February 26, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Special phrase identifier map for unique npc messages:
+drx_ql_cht_special_phrases = {}
+
+-- Phrase availability map:
+local phrases_availability_map = {}
+
+-- Percent chance an NPC will use alternate phrases if alternate phrases are available for that npc:
+local alt_text_chance = (ini:r_float_ex( "chatter_settings", "alt_text_chance" ) or 0)
+
+-- Maximum distance from npc to allow chatter:
+local max_dist = (ini:r_float_ex( "chatter_settings", "max_dist" ) or 0)
+
+-- Minimum message display time:
+local msg_time = (ini:r_float_ex( "chatter_settings", "msg_time" ) or 0)
+
+-- Message characters at minimum display time:
+local max_chars = (ini:r_float_ex( "chatter_settings", "max_chars" ) or 0)
+
+-- Minimum length of time between updates:
+local update_interval = (ini:r_float_ex( "chatter_settings", "update_interval" ) or 0)
+
+-- Timestamp from last update:
+local last_update_time
+
+-- Companion injured max health:
+local injured_health = (ini:r_float_ex( "chatter_settings", "injured_health" ) or 0)
+
+-- Delay from when companion became injured to sending message:
+local injured_delay = (ini:r_float_ex( "chatter_settings", "injured_delay" ) or 0)
+
+-- Timestamp from when companion was injured:
+local injured_time
+
+-- Percent chance a companion will give a compliment:
+local compliment_chance = (ini:r_float_ex( "chatter_settings", "compliment_chance" ) or 0)
+
+-- Delay after actor kill before displaying message:
+local compliment_delay = (ini:r_float_ex( "chatter_settings", "compliment_delay" ) or 0)
+
+-- Percent chance a companion will talk about last kill:
+local companion_kill_chance = (ini:r_float_ex( "chatter_settings", "companion_kill_chance" ) or 0)
+
+-- Delay after companion kill before displaying message:
+local companion_kill_delay = (ini:r_float_ex( "chatter_settings", "companion_kill_delay" ) or 0)
+
+-- Timestamp from actor kill:
+local actor_kill_time
+
+-- NPC ID of last actor kill:
+local actor_kill_id
+
+-- Timestamp from companion kill:
+local companion_kill_time
+
+-- NPC ID of last companion kill:
+local companion_kill_id
+
+-- ID of the companion that had the last kill:
+local companion_killer_id
+
+-- Percent chance a companion will make building chatter:
+local building_chance = (ini:r_float_ex( "chatter_settings", "building_chance" ) or 0)
+
+-- Minimum time between building chatter messages:
+local building_repeat = (ini:r_float_ex( "chatter_settings", "building_repeat" ) or 0)
+
+-- Maximum distance from building smart terrain:
+local building_dist = (ini:r_float_ex( "chatter_settings", "building_dist" ) or 0)
+
+-- List of smart terrains inside buildings:
+local buildings_list = {}
+
+-- Timestamp from last chatter message:
+local last_chatter_time
+
+-- Percent chance a companion will make idle chatter:
+local idle_chance = (ini:r_float_ex( "chatter_settings", "idle_chance" ) or 0)
+
+-- Time from last chatter to idle chatter message:
+local idle_min_delay = (ini:r_float_ex( "chatter_settings", "idle_min_delay" ) or 0)
+local idle_max_delay = (ini:r_float_ex( "chatter_settings", "idle_max_delay" ) or 0)
+local surge_idle_min_delay = (ini:r_float_ex( "chatter_settings", "surge_idle_min_delay" ) or 0)
+local surge_idle_max_delay = (ini:r_float_ex( "chatter_settings", "surge_idle_max_delay" ) or 0)
+local campfire_idle_min_delay = (ini:r_float_ex( "chatter_settings", "campfire_idle_min_delay" ) or 0)
+local campfire_idle_max_delay = (ini:r_float_ex( "chatter_settings", "campfire_idle_max_delay" ) or 0)
+local idle_delay
+
+-- Maximum distance from a campfire:
+local campfire_dist = (ini:r_float_ex( "chatter_settings", "campfire_dist" ) or 0)
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_enemy_warning_chatter function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Companion chatter on enemy sighted
+--
+--	Usage:
+--		drx_ql_enemy_warning_chatter( )
+--
+--	Parameters:
+--		none
+--
+--	External strings:
+--		drx_ql_chatter_strings.xml
+--			drx_ql_ch_str_enemy_warning_{x} (type: string)
+--				- Enemy warning messages ({x} = sequential int starting with 1)
+--			drx_ql_ch_str_mutant_warning_{x} (type: string)
+--				- Mutant warning messages ({x} = sequential int starting with 1)
+--		drx_ql_strings.xml
+--			drx_ql_str_direction_{dir} (type: string)
+--				- Compass direction ({dir} = compass direction)
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 16, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Enemy sighted chatter:
+function drx_ql_enemy_warning_chatter( )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if companion has enemy:
+	local warner_id
+	local member_obj
+	local enemy_obj
+	for id, squad in pairs( axr_companions.companion_squads ) do
+		if ( squad and squad.commander_id ) then
+			for member in squad:squad_members( ) do
+				member_obj = db.storage[member.id] and db.storage[member.id].object
+				if ( (member_obj) and (member_obj:alive( )) and (state_mgr.get_state( member_obj ) ~= "sleep") ) then
+					if ( member_obj:position( ):distance_to_sqr( db.actor:position( ) ) <= (max_dist ^ 2) ) then
+						if ( (not member_obj:wounded( )) and (not xrs_kill_wounded.hostage_list[member.id]) ) then
+							enemy_obj = member_obj:best_enemy( )
+							if ( enemy_obj ) then
+								warner_id = member.id
+								break
+							end
+						end
+					end
+				end
+			end
+		end
+		if ( warner_id ~= nil ) then
+			break
+		end
+	end
+
+	-- If no enemy then reset message availability:
+	if ( (not warner_id) or (not member_obj) or (not enemy_obj) ) then
+		if ( is_empty( xr_combat_ignore.fighting_with_actor_npcs ) ) then
+			disable_info( "drx_ql_cht_info_enemy_warning_played" )
+		end
+		return
+	end
+
+	-- Display enemy warning message:
+	if ( not has_alife_info( "drx_ql_cht_info_enemy_warning_played" ) ) then
+
+		-- Format message text:
+		local msg_text = ""
+		if ( IsMonster( member_obj:best_enemy( ) ) ) then
+			msg_text = drx_ql_pick_phrase( "drx_ql_ch_str_mutant_warning", warner_id )
+		else
+			msg_text = drx_ql_pick_phrase( "drx_ql_ch_str_enemy_warning", warner_id )
+		end
+
+		-- Add target direction to text:
+		local dx = (enemy_obj:position( ).x - db.actor:position( ).x)
+		local dy = (enemy_obj:position( ).z - db.actor:position( ).z)
+		local radians = math.atan2( dy, dx )
+		local angle = 0
+		if ( radians ) then
+			angle = (radians * 57)
+			if ( angle < 0 ) then
+				angle = (angle + 360)
+			end
+			if ( angle > 360 ) then
+				angle = (angle - 360)
+			end
+		end
+		local dir_string = ""
+		if ( (angle >= 330) or (angle <= 30) ) then
+			dir_string = game.translate_string( "drx_ql_str_direction_east" )
+		elseif ( (angle > 30) and (angle <= 60) ) then
+			dir_string = game.translate_string( "drx_ql_str_direction_northeast" )
+		elseif ( (angle > 60) and (angle <= 120) ) then
+			dir_string = game.translate_string( "drx_ql_str_direction_north" )
+		elseif ( (angle > 120) and (angle <= 150) ) then
+			dir_string = game.translate_string( "drx_ql_str_direction_northwest" )
+		elseif ( (angle > 150) and (angle <= 210) ) then
+			dir_string = game.translate_string( "drx_ql_str_direction_west" )
+		elseif ( (angle > 210) and (angle <= 240) ) then
+			dir_string = game.translate_string( "drx_ql_str_direction_southwest" )
+		elseif ( (angle > 240) and (angle <= 300) ) then
+			dir_string = game.translate_string( "drx_ql_str_direction_south" )
+		elseif ( (angle > 300) and (angle <= 330) ) then
+			dir_string = game.translate_string( "drx_ql_str_direction_southeast" )
+		else
+			dir_string = game.translate_string( "drx_ql_str_direction_close" )
+		end
+		msg_text = string.format( msg_text, dir_string )
+
+		-- Display message:
+		drx_ql_cht_show_message( msg_text, warner_id )
+
+		-- Mark message as played:
+		give_info( "drx_ql_cht_info_enemy_warning_played" )
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_wounded_chatter function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Companion chatter on wounded
+--
+--	Usage:
+--		drx_ql_wounded_chatter( )
+--
+--	Parameters:
+--		none
+--
+--	External strings:
+--		drx_ql_chatter_strings.xml
+--			drx_ql_ch_str_wounded_{x} (type: string)
+--				- Companion wounded messages ({x} = sequential int starting with 1)
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Companion wounded chatter:
+function drx_ql_wounded_chatter( )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if companion is wounded:
+	local wounded_id
+	for id, squad in pairs( axr_companions.companion_squads ) do
+		if ( squad and squad.commander_id ) then
+			for member in squad:squad_members( ) do
+				local member_obj = db.storage[member.id] and db.storage[member.id].object
+				if ( (member_obj) and (member_obj:alive( )) and (state_mgr.get_state( member_obj ) ~= "sleep") ) then
+					if ( member_obj:position( ):distance_to_sqr( db.actor:position( ) ) <= (max_dist ^ 2) ) then
+						if ( (member_obj:wounded( )) and (not xrs_kill_wounded.hostage_list[member.id]) ) then
+							wounded_id = member.id
+							break
+						end
+					end
+				end
+			end
+		end
+		if ( wounded_id ~= nil ) then
+			break
+		end
+	end
+
+	-- If no wounded then reset message availability:
+	if ( not wounded_id ) then
+		disable_info( "drx_ql_cht_info_companion_wounded_played" )
+		return
+	end
+
+	-- Display companion wounded message:
+	if ( not has_alife_info( "drx_ql_cht_info_companion_wounded_played" ) ) then
+
+		-- Format message text:
+		local msg_text = drx_ql_pick_phrase( "drx_ql_ch_str_wounded", wounded_id )
+		msg_text = string.format( msg_text, alife( ):actor( ):character_name( ) )
+
+		-- Display message:
+		drx_ql_cht_show_message( msg_text, wounded_id )
+
+		-- Mark message as played:
+		give_info( "drx_ql_cht_info_companion_wounded_played" )
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_injured_chatter function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Companion chatter on low health
+--
+--	Usage:
+--		drx_ql_injured_chatter( )
+--
+--	Parameters:
+--		none
+--
+--	External strings:
+--		drx_ql_chatter_strings.xml
+--			drx_ql_ch_str_injured_{x} (type: string)
+--				- Companion injured messages ({x} = sequential int starting with 1)
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Companion injured chatter:
+function drx_ql_injured_chatter( )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if companion is injured:
+	local injured_id
+	for id, squad in pairs( axr_companions.companion_squads ) do
+		if ( squad and squad.commander_id ) then
+			for member in squad:squad_members( ) do
+				local member_obj = db.storage[member.id] and db.storage[member.id].object
+				if ( (member_obj) and (member_obj:alive( )) and (state_mgr.get_state( member_obj ) ~= "sleep") ) then
+					if ( member_obj:position( ):distance_to_sqr( db.actor:position( ) ) <= (max_dist ^ 2) ) then
+						if ( (member_obj.health < injured_health) and (not member_obj:wounded( )) and (not member_obj:best_enemy( )) and (is_empty( xr_combat_ignore.fighting_with_actor_npcs )) and (not xrs_kill_wounded.hostage_list[member.id]) ) then
+							injured_id = member.id
+							if ( not injured_time ) then
+								injured_time = game.get_game_time( )
+							end
+							break
+						end
+					end
+				end
+			end
+		end
+		if ( injured_id ~= nil ) then
+			break
+		end
+	end
+
+	-- If no injured then reset message availability:
+	if ( not injured_id ) then
+		disable_info( "drx_ql_cht_info_companion_injured_played" )
+		injured_time = nil
+		return
+	end
+
+	-- Display companion injured message:
+	if ( not has_alife_info( "drx_ql_cht_info_companion_injured_played" ) ) then
+		if ( (injured_time) and (game.get_game_time( ):diffSec( injured_time ) >= injured_delay) ) then
+
+			-- Format message text:
+			local msg_text = drx_ql_pick_phrase( "drx_ql_ch_str_injured", injured_id )
+			msg_text = string.format( msg_text, alife( ):actor( ):character_name( ) )
+
+			-- Display message:
+			drx_ql_cht_show_message( msg_text, injured_id )
+
+			-- Mark message as played:
+			give_info( "drx_ql_cht_info_companion_injured_played" )
+			injured_time = nil
+
+		end
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_compliment_chatter function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Companion chatter on actor kill
+--
+--	Usage:
+--		drx_ql_compliment_chatter( )
+--
+--	Parameters:
+--		none
+--
+--	External strings:
+--		drx_ql_chatter_strings.xml
+--			drx_ql_ch_str_compliment_{x} (type: string)
+--				- Companion compliment on actor kill ({x} = sequential int starting with 1)
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 17, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Actor kill compliment chatter:
+function drx_ql_compliment_chatter( )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if delay time elapsed:
+	if ( (not actor_kill_time) or (game.get_game_time( ):diffSec( actor_kill_time ) < compliment_delay) ) then
+		return
+	end
+
+	-- Reset last kill time:
+	actor_kill_time = nil
+
+	-- Random chance:
+	if ( (not compliment_chance) or (math.random( ) > compliment_chance) ) then
+		actor_kill_id = nil
+		return
+	end
+
+	-- Get companion speaker:
+	local speakers_list = {}
+	for id, squad in pairs( axr_companions.companion_squads ) do
+		if ( squad and squad.commander_id ) then
+			for member in squad:squad_members( ) do
+				local member_obj = db.storage[member.id] and db.storage[member.id].object
+				if ( (member_obj) and (member_obj:alive( )) and (state_mgr.get_state( member_obj ) ~= "sleep") ) then
+					if ( member_obj:position( ):distance_to_sqr( db.actor:position( ) ) <= (max_dist ^ 2) ) then
+						if ( (not member_obj:wounded( )) and (not xrs_kill_wounded.hostage_list[member.id]) ) then
+							if ( (not member_obj:best_enemy( )) and (is_empty( xr_combat_ignore.fighting_with_actor_npcs )) ) then
+								table.insert( speakers_list, member.id )
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+	-- Check if a speaker is available:
+	if ( #speakers_list < 1 ) then
+		actor_kill_id = nil
+		return
+	end
+	local speaker_id = speakers_list[math.random( #speakers_list )]
+
+	-- Format message text:
+	local msg_text = drx_ql_pick_phrase( "drx_ql_ch_str_compliment", speaker_id )
+	msg_text = string.format( msg_text, alife( ):actor( ):character_name( ) )
+
+	-- Display message:
+	drx_ql_cht_show_message( msg_text, speaker_id )
+
+	-- Reset last kill id:
+	actor_kill_id = nil
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_companion_kill_chatter function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Companion chatter on companion kill
+--
+--	Usage:
+--		drx_ql_companion_kill_chatter( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_assn_tgt_killer_{target_npc_id} (type: int, npc id)
+--			- Id of the npc that killed an assassination target or -1 if target killed by non-npc
+--
+--	External strings:
+--		drx_ql_chatter_strings.xml
+--			drx_ql_ch_str_companion_kill_{x} (type: string)
+--				- Companion announcement of kill ({x} = sequential int starting with 1)
+--			drx_ql_ch_str_companion_mutant_kill_{x} (type: string)
+--				- Companion announcement of mutant kill ({x} = sequential int starting with 1)
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 26, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Companion kill chatter:
+function drx_ql_companion_kill_chatter( )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if delay time elapsed:
+	if ( (not companion_kill_time) or (game.get_game_time( ):diffSec( companion_kill_time ) < companion_kill_delay) ) then
+		return
+	end
+
+	-- Reset last kill time:
+	companion_kill_time = nil
+
+	-- Random chance:
+	if ( (not companion_kill_chance) or (math.random( ) > companion_kill_chance) ) then
+		companion_kill_id = nil
+		companion_killer_id = nil
+		return
+	end
+
+	-- Check if a speaker is available:
+	if ( not companion_killer_id ) then
+		companion_kill_id = nil
+		return
+	end
+	local companion_obj = (db.storage[companion_killer_id] and db.storage[companion_killer_id].object)
+	if ( (not companion_obj) or (not companion_obj:alive( )) or (companion_obj:wounded( )) ) then
+		companion_kill_id = nil
+		companion_killer_id = nil
+		return
+	end
+	if ( companion_obj:position( ):distance_to_sqr( db.actor:position( ) ) > (max_dist ^ 2) ) then
+		companion_kill_id = nil
+		companion_killer_id = nil
+		return
+	end
+
+	-- Prevent conflicts with assassination tasks:
+	local assassination_killer_id = utils.load_var( db.actor, string.format( "drx_ql_assn_tgt_killer_%s", companion_kill_id ) )
+	if ( (assassination_killer_id) and (assassination_killer_id == companion_killer_id) ) then
+		companion_kill_id = nil
+		companion_killer_id = nil
+		return
+	end
+
+	-- Format message text:
+	local msg_text = ""
+	local last_kill_obj = (db.storage[companion_kill_id] and db.storage[companion_kill_id].object)
+	if ( (last_kill_obj) and (IsMonster( last_kill_obj )) ) then
+		msg_text = drx_ql_pick_phrase( "drx_ql_ch_str_companion_mutant_kill", companion_killer_id )
+	else
+		msg_text = drx_ql_pick_phrase( "drx_ql_ch_str_companion_kill", companion_killer_id )
+	end
+	msg_text = string.format( msg_text, alife( ):actor( ):character_name( ) )
+
+	-- Display message:
+	drx_ql_cht_show_message( msg_text, companion_killer_id )
+
+	-- Reset last kill id:
+	companion_kill_id = nil
+	companion_killer_id = nil
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_building_chatter function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Companion chatter about buildings
+--
+--	Usage:
+--		drx_ql_building_chatter( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_cht_building_time (type: ctime)
+--			- Timestamp from the last building chatter
+--
+--	External strings:
+--		drx_ql_chatter_strings.xml
+--			drx_ql_ch_str_building_{x} (type: string)
+--				- Companion building chatter messages ({x} = sequential int starting with 1)
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 18, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Building chatter:
+function drx_ql_building_chatter( )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check if repeat time elapsed:
+	local building_time = utils.load_ctime( db.actor, "drx_ql_cht_building_time" )
+	if ( (building_time) and (game.get_game_time( ):diffSec( building_time ) < building_repeat) ) then
+		return
+	end
+
+	-- Get actor smart terrain:
+	local nearest_smart_id = smart_terrain.nearest_to_actor_smart.id
+	if ( not nearest_smart_id ) then
+		return
+	end
+	local nearest_smart_obj = alife( ):object( nearest_smart_id )
+	if ( not nearest_smart_obj ) then
+		return
+	end
+
+	-- Check if actor smart terrain is building smart terrain:
+	if ( not buildings_list[nearest_smart_obj:name( )] ) then
+		return
+	end
+
+	-- Check if actor is within max radius::
+	if ( smart_terrain.nearest_to_actor_smart.dist > building_dist ) then
+		return
+	end
+
+	-- Reset last message time:
+	utils.save_ctime( db.actor, "drx_ql_cht_building_time", game.get_game_time( ) )
+
+	-- Random chance:
+	if ( (not building_chance) or (math.random( ) > building_chance) ) then
+		return
+	end
+
+	-- Check if actor is taking:
+	if ( db.actor:is_talking( ) ) then
+		return
+	end
+
+	-- Check if a banter sequence is playing:
+	if ( has_alife_info( "drx_ql_banter_playing" ) ) then
+		return
+	end
+
+	-- Check if a blowout has started:
+	if ( surge_manager.get_surge_manager( ).started ) then
+		return
+	end
+
+	-- Get companion speaker:
+	local speakers_list = {}
+	for id, squad in pairs( axr_companions.companion_squads ) do
+		if ( squad and squad.commander_id ) then
+			for member in squad:squad_members( ) do
+				local member_obj = db.storage[member.id] and db.storage[member.id].object
+				if ( (member_obj) and (member_obj:alive( )) and (state_mgr.get_state( member_obj ) ~= "sleep") ) then
+					if ( member_obj:position( ):distance_to_sqr( db.actor:position( ) ) <= (max_dist ^ 2) ) then
+						if ( (not member_obj:wounded( )) and (not xrs_kill_wounded.hostage_list[member.id]) ) then
+							if ( (not member_obj:best_enemy( )) and (is_empty( xr_combat_ignore.fighting_with_actor_npcs )) ) then
+								table.insert( speakers_list, member.id )
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+	-- Check if a speaker is available:
+	if ( #speakers_list < 1 ) then
+		return
+	end
+	local speaker_id = speakers_list[math.random( #speakers_list )]
+
+	-- Format message text:
+	local msg_text = drx_ql_pick_phrase( "drx_ql_ch_str_building", speaker_id )
+	msg_text = string.format( msg_text, alife( ):actor( ):character_name( ) )
+
+	-- Display message:
+	drx_ql_cht_show_message( msg_text, speaker_id )
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_idle_chatter function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Companion idle chatter
+--
+--	Usage:
+--		drx_ql_idle_chatter( )
+--
+--	Parameters:
+--		none
+--
+--	Persistent storage:
+--		drx_ql_cht_surge_started (type: bool)
+--			- Whether or not a blowout has started and the actor is sheltered
+--		drx_ql_cht_near_campfire (type: bool)
+--			- Whether or not the actor is near a lit campfire
+--
+--	External strings:
+--		drx_ql_chatter_strings.xml
+--			drx_ql_ch_str_idle_{x} (type: string)
+--				- Companion idle chatter messages ({x} = sequential int starting with 1)
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 18, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Idle chatter:
+function drx_ql_idle_chatter( )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Check surge status:
+	local surge_started = utils.load_var( db.actor, "drx_ql_cht_surge_started", false )
+	if ( (surge_started) and (surge_manager.get_surge_manager( ).finished) ) then
+		surge_started = false
+		utils.save_var( db.actor, "drx_ql_cht_surge_started", false )
+		idle_delay = nil
+		last_chatter_time = nil
+	elseif ( (not surge_started) and (surge_manager.get_surge_manager( ).started) and (surge_manager.get_surge_manager( ).actor_in_cover) ) then
+		surge_started = true
+		utils.save_var( db.actor, "drx_ql_cht_surge_started", true )
+		utils.save_var( db.actor, "drx_ql_cht_near_campfire", false )
+		idle_delay = math.random( surge_idle_min_delay, surge_idle_max_delay )
+		last_chatter_time = game.get_game_time( )
+	end
+
+	-- Check campfire status:
+	local near_campfire = utils.load_var( db.actor, "drx_ql_cht_near_campfire", false )
+	if ( not surge_manager.get_surge_manager( ).started ) then
+
+		-- Find dist to nearest campfire:
+		local actor_near_fire = false
+		local nearest_smart_id = smart_terrain.nearest_to_actor_smart.id
+		if ( nearest_smart_id ) then
+			local nearest_smart_obj = alife( ):object( nearest_smart_id )
+			if ( nearest_smart_obj ) then
+				local campfires = db.campfire_table_by_smart_names[nearest_smart_obj:name( )]
+				if ( not is_empty( campfires ) ) then
+					for id, binder in pairs( campfires ) do
+						if ( binder.campfire:is_on( ) ) then
+							if ( (campfire_dist) and (binder.object:position( ):distance_to_sqr( db.actor:position( ) ) <= (campfire_dist ^ 2)) ) then
+								actor_near_fire = true
+								break
+							end
+						end
+					end
+				end
+			end
+		end
+
+		-- Update campfire status:
+		if ( ((near_campfire) and (not actor_near_fire)) ) then
+			near_campfire = false
+			utils.save_var( db.actor, "drx_ql_cht_near_campfire", false )
+			idle_delay = nil
+			last_chatter_time = nil
+		elseif ( (not near_campfire) and (actor_near_fire) )then
+			near_campfire = true
+			utils.save_var( db.actor, "drx_ql_cht_near_campfire", true )
+			idle_delay = math.random( campfire_idle_min_delay, campfire_idle_max_delay )
+			last_chatter_time = game.get_game_time( )
+		end
+
+	end
+
+	-- Check if no stored delay time:
+	if ( (idle_delay == nil) or (not last_chatter_time) ) then
+		idle_delay = math.random( idle_min_delay, idle_max_delay )
+		last_chatter_time = game.get_game_time( )
+	end
+
+	-- Check if delay time elapsed:
+	if ( (idle_delay) and (game.get_game_time( ):diffSec( last_chatter_time ) < idle_delay) ) then
+		return
+	end
+
+	-- Reset last chatter time if actor sleeping:
+	if ( has_alife_info( "sleep_active" ) or has_alife_info( "actor_is_sleeping" ) ) then
+		last_chatter_time = game.get_game_time( )
+		return
+	end
+
+	-- Reset last chatter time:
+	last_chatter_time = game.get_game_time( )
+	if ( surge_started ) then
+		idle_delay = math.random( surge_idle_min_delay, surge_idle_max_delay )
+	elseif ( near_campfire ) then
+		idle_delay = math.random( campfire_idle_min_delay, campfire_idle_max_delay )
+	else
+		idle_delay = math.random( idle_min_delay, idle_max_delay )
+	end
+
+	-- Random chance:
+	if ( (not idle_chance) or (math.random( ) > idle_chance) ) then
+		return
+	end
+
+	-- Check if actor is taking:
+	if ( db.actor:is_talking( ) ) then
+		return
+	end
+
+	-- Check if a banter sequence is playing:
+	if ( has_alife_info( "drx_ql_banter_playing" ) ) then
+		return
+	end
+
+	-- Get companion speaker:
+	local speakers_list = {}
+	for id, squad in pairs( axr_companions.companion_squads ) do
+		if ( squad and squad.commander_id ) then
+			for member in squad:squad_members( ) do
+				local member_obj = db.storage[member.id] and db.storage[member.id].object
+				if ( (member_obj) and (member_obj:alive( )) and (state_mgr.get_state( member_obj ) ~= "sleep") ) then
+					if ( member_obj:position( ):distance_to_sqr( db.actor:position( ) ) <= (max_dist ^ 2) ) then
+						if ( (not member_obj:wounded( )) and (not xrs_kill_wounded.hostage_list[member.id]) ) then
+							if ((not member_obj:best_enemy( )) and (is_empty( xr_combat_ignore.fighting_with_actor_npcs )) ) then
+								table.insert( speakers_list, member.id )
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+	-- Check if a speaker is available:
+	if ( #speakers_list < 1 ) then
+		return
+	end
+	local speaker_id = speakers_list[math.random( #speakers_list )]
+
+	-- Format message text:
+	local phrase_list = "drx_ql_ch_str_idle"
+	if ( (surge_started) and (math.random( ) > 0.5) ) then
+		phrase_list = "drx_ql_ch_str_building"
+	end
+	local msg_text = drx_ql_pick_phrase( phrase_list, speaker_id )
+	msg_text = string.format( msg_text, alife( ):actor( ):character_name( ) )
+
+	-- Display message:
+	drx_ql_cht_show_message( msg_text, speaker_id )
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_pick_phrase function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Picks a random phrase varient from a specified phrase group
+--		- Modification of drx_ql_dialog_funcs.drx_ql_random_phrase (DoctorX Questlines 2.0)
+--
+--	Usage:
+--		drx_ql_pick_phrase( phrase_root, npc_id )
+--
+--	Parameters:
+--		phrase_root (type: string, string id without index)
+--			- Phrase base id without index number suffix
+--		npc_id (type: npc id)
+--			- ID of the speaker delivering the message
+--
+--	Persistent storage:
+--		drx_ql_cht_{phrase_root}_count (type: int)
+--			- Number of phrase strings for the specified phrase root
+--
+--	Ini requirements:
+--		drx\drx_ql_chatter.ltx
+--			[chatter_settings]
+--				special_phrase_chance (type: float, decimal percent)
+--					- Percent chance the speaker will use an npc-specific phrase if one was supplied
+--
+--	Return value (type: string):
+--		Returns the translated message text on success
+--		Returns phrase_root on failure
+--
+--	Notes:
+--		- Alternate text strings can be specified for individual npc's by adding a string from the npc section name to the map drx_ql_cht_special_phrases
+--		- String id's for alternate text must be prefaced with the string stored in drx_ql_cht_special_phrases
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified April 04, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Select random phrase:
+function drx_ql_pick_phrase( phrase_root, npc_id )
+
+	-- Var to store return string:
+	local retval = phrase_root
+	local available_phrases = {}
+
+	-- Check if alternate phrase should be used:
+	if ( (npc_id ~= nil) and (not is_empty( drx_ql_cht_special_phrases )) and (alt_text_chance) and (math.random( ) <= alt_text_chance) ) then
+
+		-- Get npc section name:
+		local npc_obj = alife( ):object( npc_id )
+		if ( npc_obj ) then
+			npc_section = npc_obj:section_name( )
+			if ( npc_section ) then
+
+				-- Check if npc has special phrases available:
+				for npc_ident, val in pairs( drx_ql_cht_special_phrases ) do
+					if ( string.find( npc_section, npc_ident ) ) then
+						local alt_phrase_root = string.format( "%s_%s", npc_ident, phrase_root )
+
+						-- Build list of available phrases:
+						local alt_phrase_count = 0
+						while ( true ) do
+							if ( game.translate_string( string.format( "%s_%s", alt_phrase_root, (alt_phrase_count + 1) ) ) == string.format( "%s_%s", alt_phrase_root, (alt_phrase_count + 1) ) ) then
+								break
+							end
+							alt_phrase_count = (alt_phrase_count + 1)
+							if ( phrases_availability_map[string.format( "%s_%s", alt_phrase_root, alt_phrase_count )] ) then
+								table.insert( available_phrases, string.format( "%s_%s", alt_phrase_root, alt_phrase_count ) )
+							end
+						end
+
+						-- Check if string count has changed:
+						local string_count_changed = false
+						local old_alt_count = alt_phrase_count
+						if ( db.actor ) then
+							old_alt_count = utils.load_var( db.actor, string.format( "drx_ql_cht_%s_count", alt_phrase_root ), 0 )
+						end
+						if ( alt_phrase_count ~= old_alt_count ) then
+							string_count_changed = true
+							utils.save_var( db.actor, string.format( "drx_ql_cht_%s_count", alt_phrase_root ), alt_phrase_count )
+						end
+
+						-- Check if phrase availability map needs to be rebuilt:
+						if ( ((string_count_changed) or (not available_phrases) or (#available_phrases < 1)) and (alt_phrase_count > 0) ) then
+							printf( "DRX QL CHT: Rebuilding phrase availability map for %s", alt_phrase_root )
+							for k = 1, ( alt_phrase_count ) do
+								phrases_availability_map[string.format( "%s_%s", alt_phrase_root, k )] = true
+							end
+							if ( old_alt_count > alt_phrase_count ) then
+								for n = (alt_phrase_count + 1), ( old_alt_count ) do
+									phrases_availability_map[string.format( "%s_%s", alt_phrase_root, n )] = nil
+								end
+							end
+							table.insert( available_phrases, string.format( "%s_%s", alt_phrase_root, math.random( alt_phrase_count ) ) )
+						end
+
+					end
+				end
+
+			end
+		end
+
+	end
+
+	-- Build list of available phrases:
+	if ( #available_phrases < 1 ) then
+		local phrase_count = 0
+		while ( true ) do
+			if ( game.translate_string( string.format( "%s_%s", phrase_root, (phrase_count + 1) ) ) == string.format( "%s_%s", phrase_root, (phrase_count + 1) ) ) then
+				break
+			end
+			phrase_count = (phrase_count + 1)
+			if ( phrases_availability_map[string.format( "%s_%s", phrase_root, phrase_count )] ) then
+				table.insert( available_phrases, string.format( "%s_%s", phrase_root, phrase_count ) )
+			end
+		end
+
+		-- Check if string count has changed:
+		local string_count_changed = false
+		local old_count = phrase_count
+		if ( db.actor ) then
+			old_count = utils.load_var( db.actor, string.format( "drx_ql_cht_%s_count", phrase_root ), 0 )
+		end
+		if ( phrase_count ~= old_count ) then
+			string_count_changed = true
+			utils.save_var( db.actor, string.format( "drx_ql_cht_%s_count", phrase_root ), phrase_count )
+		end
+
+		-- Check if phrase availaibility map needs to be rebuilt:
+		if ( ((string_count_changed) or (not available_phrases) or (#available_phrases < 1)) and (phrase_count > 0) ) then
+			printf( "DRX QL CHT: Rebuilding phrase availability map for %s", phrase_root )
+			for i = 1, ( phrase_count ) do
+				phrases_availability_map[string.format( "%s_%s", phrase_root, i )] = true
+			end
+			if ( old_count > phrase_count ) then
+				for m = (phrase_count + 1), ( old_count ) do
+					phrases_availability_map[string.format( "%s_%s", phrase_root, m )] = nil
+				end
+			end
+			table.insert( available_phrases, string.format( "%s_%s", phrase_root, math.random( phrase_count ) ) )
+		end
+	end
+
+	-- Select random phrase and remove it from master availability list:
+	if ( (available_phrases) and (#available_phrases > 0) ) then
+		retval = available_phrases[math.random( #available_phrases )]
+		phrases_availability_map[retval] = nil
+	end
+
+	-- Translate the string:
+	retval = game.translate_string( retval )
+
+	-- Set return value:
+	return retval
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_cht_show_message function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Displays dynamic news message
+--
+--	Usage:
+--		drx_ql_cht_show_message( msg_text, sender_id )
+--
+--	Parameters:
+--		msg_text (type: string)
+--			- Message to display
+--		sender_id (type: npc id)
+--			- Id of the npc sending the message
+--
+--	Persistent storage:
+--		drx_ql_cht_surge_started (type: bool)
+--			- Whether or not a blowout has started and the actor is sheltered
+--		drx_ql_cht_near_campfire (type: bool)
+--			- Whether or not the actor is near a campfire
+--
+--	Return value (type: bool):
+--		Returns true on success, false on failure
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified April 05, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Display message:
+function drx_ql_cht_show_message( msg_text, sender_id )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return false
+	end
+
+	-- Validate input:
+	if ( not sender_id ) then
+		return false
+	end
+
+	-- Get sender object:
+	local sender_obj = alife( ):object( sender_id )
+	if ( not sender_obj ) then
+		return false
+	end
+
+	-- Format speaker faction name:
+	local faction_name = ""
+	if ( alife( ):has_info( sender_id, "npcx_is_companion" ) ) then
+		faction_name = game.translate_string( "st_ui_pda_companion" )
+	else
+		faction_name = game.translate_string( sender_obj:community( ) )
+	end
+
+	-- Format message caption text:
+	local caption_text = string.format( "%s, %s", sender_obj:character_name( ), faction_name )
+
+	-- Calculate display time:
+	local display_time = msg_time
+	local char_count = string.len( msg_text )
+	if ( (max_chars) and (char_count > max_chars) ) then
+		display_time = math.floor( display_time * (char_count / max_chars) )
+	end
+	if ( not display_time ) then
+		return false
+	end
+
+	-- Display message:
+	db.actor:give_game_news( caption_text, msg_text, sender_obj:character_icon( ), 0, display_time, 0 )
+	xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+
+	-- Reset last message times:
+	last_chatter_time = game.get_game_time( )
+	if ( utils.load_var( db.actor, "drx_ql_cht_surge_started", false ) == true ) then
+		idle_delay = math.random( surge_idle_min_delay, surge_idle_max_delay )
+	elseif ( utils.load_var( db.actor, "drx_ql_cht_near_campfire", false ) == true ) then
+		idle_delay = math.random( campfire_idle_min_delay, campfire_idle_max_delay )
+	else
+		idle_delay = math.random( idle_min_delay, idle_max_delay )
+	end
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_store_kill_info function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Stores actor / companion last kill info
+--
+--	Usage:
+--		drx_ql_store_kill_info( dead_npc, killer_npc )
+--
+--	Parameters:
+--		dead_npc (type: object)
+--			- NPC that died
+--		killer_npc (type: object)
+--			- NPC that killed the dead NPC
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 22, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Store last kill info:
+function drx_ql_store_kill_info( dead_npc, killer_npc )
+
+	-- Verify db.actor is available:
+	if ( not db.actor ) then
+		return
+	end
+
+	-- Get dead guy object:
+	local killed_obj = alife( ):object( dead_npc:id( ) )
+	if ( not killed_obj ) then
+		return
+	end
+
+	-- Get killer object:
+	local killer_obj = alife( ):object( killer_npc:id( ) )
+	if ( not killer_obj ) then
+		return
+	end
+
+	-- Check if actor was killer:
+	if ( killer_npc:id( ) == db.actor:id( ) ) then
+		if ( (IsMonster( dead_npc )) or (game_relations.is_factions_enemies( alife_character_community( killer_obj ), alife_character_community( killed_obj ) )) ) then
+			actor_kill_time = game.get_game_time( )
+			actor_kill_id = dead_npc:id( )
+		else
+			actor_kill_time = nil
+			actor_kill_id = nil
+		end
+
+	-- Check if companion was killer:
+	elseif ( alife( ):has_info( killer_npc:id( ), "npcx_is_companion" ) ) then
+		if ( (IsMonster( dead_npc )) or (game_relations.is_factions_enemies( alife_character_community( killer_obj ), alife_character_community( killed_obj ) )) ) then
+			companion_killer_id = killer_npc:id( )
+			companion_kill_time = game.get_game_time( )
+			companion_kill_id = dead_npc:id( )
+		else
+			companion_killer_id = nil
+			companion_kill_time = nil
+			companion_kill_id = nil
+		end
+
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_fill_buildings_list function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Populates the building smart terrain list
+--
+--	Usage:
+--		drx_ql_fill_buildings_list( )
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[building_smarts] (type: string, smart terrain names)
+--				- List of smart terrains inside buildings
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 24, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Fill buildings list:
+function drx_ql_fill_buildings_list( )
+
+	-- Get main config file:
+	local buildings_ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not buildings_ini ) then
+		printf( "DRX QL CHT Error: Unable to fill buildings list, config file not found" )
+		return
+	end
+
+	-- Populate buildings list:
+	buildings_list = alun_utils.collect_section( buildings_ini, "building_smarts", true )
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_cht_on_game_load_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run on game load
+--
+--	Usage:
+--		(called on game load)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 24, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run on game load:
+local function drx_ql_cht_on_game_load_callback( )
+
+	-- Compile list of building smart terrains:
+	if ( enable_building_chatter ) then
+		drx_ql_fill_buildings_list( )
+	end
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_cht_actor_on_update_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run on actor update
+--
+--	Usage:
+--		(called on actor update)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 23, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run on actor update:
+local function drx_ql_cht_actor_on_update_callback( )
+
+	-- Check if update interval elapsed:
+	if ( (not last_update_time) or (game.get_game_time( ):diffSec( last_update_time ) >= update_interval) ) then
+
+		-- Enemy warning chatter:
+		if ( enable_enemy_warning_chatter ) then
+			drx_ql_enemy_warning_chatter( )
+		end
+
+		-- Companion wounded chatter:
+		if ( enable_wounded_chatter ) then
+			drx_ql_wounded_chatter( )
+		end
+
+		-- Companion injured chatter:
+		if ( enable_injured_chatter ) then
+			drx_ql_injured_chatter( )
+		end
+
+		-- Actor kill compliment chatter:
+		if ( enable_compliment_chatter ) then
+			drx_ql_compliment_chatter( )
+		end
+
+		-- Companion kill chatter:
+		if ( enable_companion_kill_chatter ) then
+			drx_ql_companion_kill_chatter( )
+		end
+
+		-- Building chatter:
+		if ( enable_building_chatter ) then
+			drx_ql_building_chatter( )
+		end
+
+		-- Idle chatter:
+		if ( enable_idle_chatter ) then
+			drx_ql_idle_chatter( )
+		end
+
+		-- Reset update time:
+		last_update_time = game.get_game_time( )
+
+	end
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_cht_npc_on_death_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run on npc death
+--
+--	Usage:
+--		(called on npc death)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 22, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run on npc death:
+local function drx_ql_cht_npc_on_death_callback( dead_npc, killer_npc )
+
+	-- Store actor / companion kill info:
+	if ( (enable_compliment_chatter) or (enable_companion_kill_chatter) ) then
+		drx_ql_store_kill_info( dead_npc, killer_npc )
+	end
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_cht_monster_on_death_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run on mutant death
+--
+--	Usage:
+--		(called on mutant death)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 22, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run on npc death:
+local function drx_ql_cht_monster_on_death_callback( dead_npc, killer_npc )
+
+	-- Store actor / companion kill info:
+	if ( (enable_compliment_chatter) or (enable_companion_kill_chatter) ) then
+		drx_ql_store_kill_info( dead_npc, killer_npc )
+	end
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_cht_save_state_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when a game is saved
+--
+--	Usage:
+--		(called on game save)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 01, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when the game is saved:
+local function drx_ql_cht_save_state_callback( m_data )
+
+	-- Save phrase availabilty list:
+	m_data.phrases_availability_map = phrases_availability_map
+
+	-- Save special phrases:
+	m_data.drx_ql_cht_special_phrases = drx_ql_cht_special_phrases
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_cht_load_state_callback function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Scripts to run when a game is loaded
+--
+--	Usage:
+--		(called on game load)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified March 01, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run when the game is loaded:
+local function drx_ql_cht_load_state_callback( m_data )
+
+	-- Restore phrase availabilty list:
+	if ( m_data.phrases_availability_map ) then
+		phrases_availability_map = m_data.phrases_availability_map
+		m_data.phrases_availability_map = nil
+	end
+
+	-- Restore special phrases:
+	if ( m_data.drx_ql_cht_special_phrases ) then
+		drx_ql_cht_special_phrases = m_data.drx_ql_cht_special_phrases
+		m_data.drx_ql_cht_special_phrases = nil
+	end
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- on_game_start function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Registers callback scripts
+--
+--	Usage:
+--		(called when a game session begins)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified February 24, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Register callback scripts:
+function on_game_start( )
+	if ( enable_chatter ) then
+		RegisterScriptCallback( "on_game_load", drx_ql_cht_on_game_load_callback )
+		RegisterScriptCallback( "actor_on_update", drx_ql_cht_actor_on_update_callback )
+		RegisterScriptCallback( "npc_on_death_callback", drx_ql_cht_npc_on_death_callback )
+		RegisterScriptCallback( "monster_on_death_callback", drx_ql_cht_monster_on_death_callback )
+		RegisterScriptCallback( "save_state", drx_ql_cht_save_state_callback )
+		RegisterScriptCallback( "load_state", drx_ql_cht_load_state_callback )
+	end
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

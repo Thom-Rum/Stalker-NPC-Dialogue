@@ -1,0 +1,157 @@
+-- ============================================================
+--
+-- CoTZ Statistics  (drx_cotz_stats.script)
+--	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+--
+--		- Tracks additional statistics for the actor
+--
+--	Created by: DoctorX
+--	Last revised: November 14, 2019
+--
+-- ============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_cotz_stat_on_npc_killed function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Tracks the last kill range and longest kill shot ever for the actor
+--		- Checks if killed NPC was not enemy or bounty and stores friendly fire kills against the actor
+--		- Checks if kill was a knife kill and stores total knife kills
+--
+--	Usage:
+--		(called when a mutant or NPC is killed)
+--
+--	Parameters:
+--		dead_npc (type: object)
+--			- NPC that died
+--		killer_npc (type: object)
+--			- NPC that killed the dead NPC
+--
+--	Persistent storage:
+--		drx_cotz_stat_friendlies_killed (type: int)
+--			Number of non-hostile non-bounty target kills the actor has
+--		drx_cotz_stat_knife_kills (type: int)
+--			- Number of knife kills the actor has
+--		drx_cotz_stat_last_kill_range (type: int, meters)
+--			- Range to last npc or mutant actor killed
+--		drx_cotz_stat_longest_kill (type: int, meters)
+--			- Longest kill range for the actor
+--		drx_ql_assassin_npc_id (type: npc id)
+--			- Id of the assassin for a hunted task
+--
+--	External strings:
+--		drx_cotz_strings.xml
+--			drx_cotz_friendly_fire_news (type: string)
+--				- PDA message to display on a friendly fire event
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Call of The Zone 1.0
+--	Last modified November 14, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Scripts to run on NPC death:
+local function drx_cotz_stat_on_npc_killed( dead_npc, killer_npc )
+
+	-- Check if actor killed victim:
+	if ( (not dead_npc) or (not killer_npc) or (not db.actor) or (killer_npc:id( ) ~= db.actor:id( )) ) then
+		return
+	end
+
+	-- Store range to target:
+	if ( dead_npc:position( ) and killer_npc:position( ) ) then
+		local dist = math.ceil( math.sqrt( heli_alife.distance_2d_sqr( dead_npc:position( ), killer_npc:position( ) ) ) )
+		utils.save_var( db.actor, "drx_cotz_stat_last_kill_range", dist )
+		printf( "DRX CoTZ: Player killed %s at a range of %s meters", dead_npc:name( ), dist )
+		if ( dist > utils.load_var( db.actor, "drx_cotz_stat_longest_kill", 0 ) ) then
+			utils.save_var( db.actor, "drx_cotz_stat_longest_kill", dist )
+		end
+	else
+		utils.save_var( db.actor, "drx_cotz_stat_last_kill_range", 0 )
+	end
+
+	-- Check if kill was knife kill:
+	local active_item = db.actor:active_item( )
+	if ( active_item and IsWeapon( active_item ) ) then
+		if ( string.find( active_item:section( ), "wpn_knife" ) ) then
+			local knife_kills = utils.load_var( db.actor, "drx_cotz_stat_knife_kills", 0 )
+			utils.save_var( db.actor, "drx_cotz_stat_knife_kills", (knife_kills + 1) )
+			printf( "DRX CoTZ: Player scored a knife kill against %s", dead_npc:name( ) )
+		end
+	end
+
+	-- Check if NPC was friendly and was not a bounty target:
+	if ( IsStalker( dead_npc ) ) then
+		if ( not xr_conditions.is_factions_enemies( nil, nil, { character_community( dead_npc ), character_community( killer_npc ) } ) ) then
+			local is_bounty = false
+			for task_id, npc_id in pairs( axr_task_manager.bounties_by_id ) do
+				if ( npc_id == dead_npc:id( ) ) then
+					is_bounty = true
+				end
+			end
+			if ( has_alife_info( "drx_ql_info_has_hunted_task" ) ) then
+				local assassin_id = utils.load_var( db.actor, "drx_ql_assassin_npc_id" )
+				if ( (assassin_id) and (assassin_id == dead_npc:id( )) ) then
+					is_bounty = true
+				end
+			end
+			if ( not is_bounty ) then
+				local friendlies_killed = utils.load_var( db.actor, "drx_cotz_stat_friendlies_killed", 0 )
+				utils.save_var( db.actor, "drx_cotz_stat_friendlies_killed", (friendlies_killed + 1) )
+				printf( "DRX CoTZ: Friendly fire event, player killed non-hostile npc %s", dead_npc:name( ) )
+				local message = game.translate_string( "drx_cotz_friendly_fire_news" )
+				db.actor:give_game_news( "", message, "ui_inGame2_PD_Gonets_pravosudiya", 0, 5000, 0 )
+				xr_sound.set_sound_play( db.actor:id( ), "pda_alarm" )
+			end
+		end
+	end
+
+	-- Set return value:
+	return
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- on_game_start function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Registers callback scripts
+--
+--	Usage:
+--		(called when a game session begins)
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Call of The Zone 1.0
+--	Last modified October 22, 2017
+-- ------------------------------------------------------------------------------------------------
+
+-- Register callback scripts:
+function on_game_start( )
+	RegisterScriptCallback( "npc_on_death_callback", drx_cotz_stat_on_npc_killed )
+	RegisterScriptCallback( "monster_on_death_callback", drx_cotz_stat_on_npc_killed )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -1,0 +1,128 @@
+--=============================================================
+--
+-- Osoznanie functions (drx_ql_osoz.script)
+--	CoC 1.5b r4 - DoctorX Questlines 2.0
+--
+--	Created by: DoctorX
+--	Last revised: October 09, 2019
+--
+--=============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_osoz_bad_ending_start function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- Changes actor faction and displays message for Osoznanie bad ending
+--
+--	Usage:
+--		(called on game load)
+--
+--	Parameters:
+--		none
+--
+--	Ini requirements:
+--		drx\drx_ql_config.ltx
+--			[osoznanie_settings]
+--				fail_msg_delay (type: float, seconds)
+--					- Length of pause before displaying Osoznanie fail message
+--				trigger_level (type: string, level name)
+--					- Level that will trigger bad ending sequence
+--
+--	External strings:
+--		drx_ql_strings_osoz.xml
+--			drx_ql_str_osoznanie_fail (type: string)
+--				- Osoznanie fail message
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified October 09, 2019
+-- ------------------------------------------------------------------------------------------------
+
+-- Change actor faction:
+function drx_ql_osoz_bad_ending_start( npc, st )
+
+	-- Ensure db.actor available:
+	if ( not db.actor ) then
+		return false
+	end
+
+	-- Location of the settings file:
+	local ini = ini_file( "drx\\drx_ql_config.ltx" )
+	if ( not ini ) then
+		printf( "DRX QL Error: Unable to start Osoz bad ending sequence, config file not found" )
+		return
+	end
+
+	-- Check if bad ending sequence should start:
+	local trigger_level = (ini:r_string_ex( "osoznanie_settings", "trigger_level" ) or "")
+	if ( (level.name( ) ~= trigger_level) or (not has_alife_info( "drx_ql_info_osoznanie_bad_ending" )) or (has_alife_info( "drx_ql_info_osoznanie_fail_msg_played" )) ) then
+		return
+	end
+
+	-- Change actor faction:
+	db.actor:set_character_community( "actor_zombied", 0, 0 )
+	local communities = alun_utils.get_communities_list( )
+	for i, community in pairs( communities ) do
+		relation_registry.set_community_goodwill( community, db.actor:id( ), 0 )
+	end
+	printf( "DRX QL: Player's mind has melted, player is now zombie" )
+
+	-- Pause before displaying fail message:
+	local delay_time = (ini:r_float_ex( "osoznanie_settings", "fail_msg_delay" ) or 0)
+	CreateTimeEvent( 1, "drx_ql_osoz_fail_msg_start", delay_time, drx_ql_osoz_fail_msg )
+
+	-- Set return value:
+	return
+
+end
+
+-- Display Osoz fail message:
+function drx_ql_osoz_fail_msg( npc, st )
+
+	-- Ensure db.actor available:
+	if ( not db.actor ) then
+		return false
+	end
+
+	-- Display message:
+	xr_sound.set_sound_play( db.actor:id( ), "pda_tips" )
+	db.actor:give_game_news( game.translate_string( "drx_ql_str_osoznanie_name" ), game.translate_string( "drx_ql_str_osoznanie_fail" ), "ui_iconsNpc_stalker_osoznanie", 0, 10000, 0 )
+
+	-- Mark message as played:
+	give_info( "drx_ql_info_osoznanie_fail_msg_played" )
+
+	-- Set return value:
+	return true
+
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+-- ________________________________________________________________________________________________
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Callback functions
+--
+--	Created by DoctorX
+--	for DoctorX Questlines 2.0
+--	Last modified April 03, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- Register script callbacks:
+function on_game_start( )
+	RegisterScriptCallback( "on_game_load", drx_ql_osoz_bad_ending_start )
+end
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

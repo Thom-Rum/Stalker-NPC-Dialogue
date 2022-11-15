@@ -1,0 +1,35 @@
+-- ============================================================
+--
+-- loadscreen.script
+--	CoC 1.5b r4 - DoctorX Call of The Zone 1.0
+--
+--	Modified by: DoctorX
+--	Last revised: November 12, 2019
+--
+-- ============================================================
+
+
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- Loading screen tips count
+--
+--	Modified by DoctorX
+--	for DoctorX Call of The Zone 1.0
+--	November 12, 2019
+--
+-- ------------------------------------------------------------------------------------------------
+
+-- local tip_count = 24
+local tip_count = 29
+
+-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+function get_tip_number(level_name)
+	math.randomseed(os.time())
+	return math.random(1,tip_count)
+end
+
+function get_mp_tip_number(level_name)
+	return get_tip_number(level_name)
+end
