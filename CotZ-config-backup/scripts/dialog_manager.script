@@ -1391,6 +1391,46 @@ function drx_ql_news_dialog_template( dialog )
 
 end
 
+-- ////////////////////////////////////////////////////////////////////////////////////////////////
+--
+-- drx_ql_tips_dialog_template function
+--
+-- ------------------------------------------------------------------------------------------------
+--
+--	Description:
+--		- NPC general info dialogue by Thom Rum
+--		- Modification of init_new_dialog (CoC 1.5b r4)
+--
+--	Usage:
+--		drx_ql_tips_dialog_template( )
+--
+--	Parameters:
+--		none
+--
+--	Return value (type: nil):
+--		none
+--
+-- ------------------------------------------------------------------------------------------------
+--	Created by Thom Rum
+--	for DoctorX Questlines 2.0
+--  Rip DoctorX. He was a good Stalker.
+--	Last modified November, 2022.
+-- ------------------------------------------------------------------------------------------------
+
+-- Dialog structure for NPC general tips:
+function drx_ql_tips_dialog_template( dialog )
+
+	-- Update dialog manager:
+	saved_dialog = dialog
+
+	-- Actor asks NPC for tips:
+	add_dialog( "", 0, "dm_universal_actor_start" )
+
+		-- NPC gives tips:
+		add_script_dialog( 0, 1, "drx_ql_dialog_funcs.drx_ql_tips_text" )
+
+end
+
 -- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
