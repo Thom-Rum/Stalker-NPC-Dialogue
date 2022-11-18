@@ -28,6 +28,9 @@
 	<string id="dm_universal_actor_start">
 		<text>Do you have any news?</text>
 	</string>
+	<string id="dm_universal_actor_tips">
+		<text>Do you have any advice about surviving in the Zone?</text>
+	</string>
 	<string id="dm_universal_actor_exit">
 		<text>Nevermind.</text>
 	</string>

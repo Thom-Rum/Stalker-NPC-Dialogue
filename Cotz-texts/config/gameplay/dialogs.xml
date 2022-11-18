@@ -381,6 +381,13 @@
 		<init_func>dialog_manager.drx_ql_news_dialog_template</init_func>
 	</dialog>
     <! -- TOM NOTE HERE - Copy this drx_ql_news_dialog_init and add it for info, tips? -->
+	<!-- Actor asks npc for tips -->
+	<dialog id="drx_ql_tips_dialog_init">
+		<precondition>dialogs_axr_companion.is_not_actor_companion</precondition>
+		<precondition>dialog_manager.uni_dialog_precond</precondition>
+		<precondition>drx_ql_dialog_funcs.drx_ql_tips_not_asked</precondition>
+		<init_func>dialog_manager.drx_ql_tips_dialog_template</init_func>
+	</dialog>
 	<!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
 
 

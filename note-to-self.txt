@@ -1,0 +1,11 @@
+search for TOM NOTE HERE in dialogs.xml
+
+	<dialog id="drx_ql_news_dialog_init">
+		<precondition>dialogs_axr_companion.is_not_actor_companion</precondition>
+		<precondition>dialog_manager.uni_dialog_precond</precondition>
+		<precondition>drx_ql_dialog_funcs.drx_ql_news_not_asked</precondition>
+		<init_func>dialog_manager.drx_ql_news_dialog_template</init_func>
+	</dialog>
+Could try copying this and adding info and tips?
+
+
